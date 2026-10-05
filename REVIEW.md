@@ -6,6 +6,34 @@ calibration and regularization-versus-optical-information, written after reading
 were run. Evidence is from `documents/Theory.md`, `documents/CURRENT_PLAN.md`,
 `exp2/full_information/*.py` and the existing JSON/CSV outputs.
 
+## Label correction and baseline establishment
+
+**Critical discovery:** Far-capture gaze targets in `exp2/fixations/fixation_intervals.json`
+are mislabeled. Capture 1 (0.36 D, typical near vision) reports targets at ±15° when the
+true values are ±7.22°. This systematic label error accounts for the original ~0.38° gaze
+disagreement between full (N=4 demands) and holdout-3 (N=3 demands) reduced-calibration
+fits, and for the steep spurious change in accommodation gain `s(A)` between 0.36 D and
+2 D (due to fitting gain/scale to misidentified targets).
+
+**Correction method:** Added versioned `target_overrides_v1.json` support to
+`exp2/calibrate_profiled.py` (line 79+) with schema validation, SHA256 checksum, and
+provenance tracking. No modification to frozen inputs; overrides are opt-in and auditable.
+See `exp2/corrected_labels/target_overrides_v1.json` for the correction specification.
+
+**Baseline results with corrected labels** (joint gaze/accommodation using mean(P4-P1)/S1):
+- **Holdout-3 training (5 fixations from 3 demands; held-out 3D gaze at fixation 17):**
+  - Held-out RMSE: 0.248°; bias RMS 0.161°; within-fixation SD 0.183°
+  - Convergence: 7 iterations, ~14 s (vs ~600 s pre-correction)
+- **Full training (all 20 fixations):**
+  - In-sample RMSE: 0.280°; bias RMS 0.207°; within-fixation SD 0.180°
+  - Convergence: 8 iterations, ~23 s (vs ~600 s pre-correction)
+- Per-demand accommodation estimates: -0.203 D (holdout3) / -0.212 D (full) mean offsets
+  (negative indicates model underestimates demand relative to fixture; soft anchor at 1.0x).
+
+All outputs (training states, predictions, frame-level/per-fixation metrics, comparison
+traces) stored in `exp2/corrected_labels/`. The joint algorithm baseline is now established
+and ready for further refinement or full-information comparison.
+
 ## Main finding (missed by the original suggestions)
 
 Each capture uses a single demand, and the five gaze targets (-15, -7.5, 0, 7.5, 15 deg)
