@@ -1,0 +1,485 @@
+{
+  "version": 1,
+  "schema": "full_information_mean_probe_v1",
+  "coefficient_order": "b[4],s[4],rho[1,t,t\u00b2,a,at,at\u00b2]",
+  "states_shape": [
+    77756,
+    2
+  ],
+  "frame_hash": "da245b7564eb5584b29332d569dca6d03725f97e2c5f69322425e698f0fce827",
+  "group_hash": "da2799efcf8777b1816fe5da17c681d8cb73a54aa81b9f924dc5182b2fc3591a",
+  "global_group_hash": "da2799efcf8777b1816fe5da17c681d8cb73a54aa81b9f924dc5182b2fc3591a",
+  "observation_hash": "f7f019feded34dd54ab76fd1d5cf5ebb021db23271bd16e8cf4167a0c45f01de",
+  "source_sha256": {
+    "capture_1_detections.pkl": "65eb4ed79d807751634b98d114adb470165642af2c6a349578ce6b79343f2a51",
+    "capture_2_detections.pkl": "96d903e81f31a2265aab0072a0c24e77d0d5b4e9f5ce754d30fa781ef997b357",
+    "capture_3_detections.pkl": "5d67d6d15bd4e48bf481353086d980b74e96cc9dddf097e2a6b2137de1daf349",
+    "capture_4_detections.pkl": "227a3dbeba3db3e5e9565d90364e68389ad3428e13ce5e53f0b6ac58132b0721"
+  },
+  "interval_sha256": "970d4a8215690ac65dc8c1147d1582b06d0bf03be030ad9f8146a4e5c8fc381a",
+  "validity_policy": "measurement_valid AND stored pupil_valid",
+  "training_fixations": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "heldout_fixation": null,
+  "capture5_used": false,
+  "targets": [
+    -15.0,
+    -7.5,
+    0.0,
+    7.5,
+    15.0,
+    -15.0,
+    -7.5,
+    0.0,
+    7.5,
+    15.0,
+    -15.0,
+    -7.5,
+    0.0,
+    7.5,
+    15.0,
+    -15.0,
+    -7.5,
+    0.0,
+    7.5,
+    15.0
+  ],
+  "demands": [
+    0.36036036036036034,
+    0.36036036036036034,
+    0.36036036036036034,
+    0.36036036036036034,
+    0.36036036036036034,
+    4.0,
+    4.0,
+    4.0,
+    4.0,
+    4.0,
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0
+  ],
+  "p": 0.6850521375104464,
+  "knots": [
+    0.36036036036036034,
+    2.0,
+    3.0,
+    4.0
+  ],
+  "initial_coefficients": [
+    0.13902201295855174,
+    0.12681599132193322,
+    0.10895036836195493,
+    0.09108474540197664,
+    0.022705081641652244,
+    0.04188632629306606,
+    0.040081427201044906,
+    0.038276528109023746,
+    0.723118612951967,
+    0.0023027146403071467,
+    0.00012807313316956156,
+    -0.018374502518766177,
+    0.001959792780989392,
+    0.004251629787730376
+  ],
+  "basis_description": "d=linear knot b(A)+s(A)*theta; rho=[1,t,t\u00b2,a,at,at\u00b2], t=theta/15,a=A**p; endpoint-linear extrapolation",
+  "prior_grid": {
+    "theta": [
+      -15.0,
+      -11.25,
+      -7.5,
+      -3.75,
+      0.0,
+      3.75,
+      7.5,
+      11.25,
+      15.0
+    ],
+    "A": [
+      0.36036036036036034,
+      0.8153153153153153,
+      1.2702702702702702,
+      1.7252252252252251,
+      2.18018018018018,
+      2.635135135135135,
+      3.09009009009009,
+      3.545045045045045,
+      4.0
+    ]
+  },
+  "prior_matrix_hash": "3663b0bd570b9c165f26803701faa030df83174d6f60bdd4ddce069ebaea3658",
+  "prior_value_hash": "62137af6e055205cf887bb323bd856f2c7ccec18f8a38c5d6726bc65d523ba6a",
+  "precision": [
+    [
+      60728705.58872983,
+      -206811.15733770517
+    ],
+    [
+      -206811.1573377052,
+      61519954.45030485
+    ]
+  ],
+  "prior_precision": [
+    [
+      0.5538449109409366,
+      0.0
+    ],
+    [
+      0.0,
+      371.14774504433365
+    ]
+  ],
+  "precision_inverse": [
+    [
+      1.646686585289082e-08,
+      5.5356536187165725e-11
+    ],
+    [
+      5.535653618716573e-11,
+      1.62550745897758e-08
+    ]
+  ],
+  "settings": {
+    "theta_bounds_deg": [
+      -20,
+      20
+    ],
+    "A_bounds_diopters": [
+      0,
+      6
+    ],
+    "theta_anchor_strength": 1.0,
+    "A_anchor_strength": 1.0,
+    "smooth_theta_strength": 0.1,
+    "smooth_A_strength": 0.1,
+    "theta_anchor_scale_deg": 1.0,
+    "A_anchor_scale_diopters": 0.25,
+    "smooth_theta_scale_deg": 1.0,
+    "smooth_A_scale_diopters": 0.25,
+    "model_prior_strength": 0.1,
+    "equal_fixation_optical_weight": true,
+    "objective_factor": 0.5,
+    "solver_residual_scale": "sqrt(frame_count)",
+    "curvature_prior": 0.0,
+    "invalid_gap_links": "broken",
+    "extrapolation": "endpoint-linear displacement",
+    "mean_probe": {
+      "global_fixation": 17,
+      "local_group": 17,
+      "baseline_fitted_mean_deg": 0.06847839264299624,
+      "requested_offset_deg": -0.5,
+      "requested_mean_deg": -0.43152160735700373,
+      "strength": 1.0,
+      "scale_deg": 1.0
+    }
+  },
+  "estimated_noise_covariance": [
+    [
+      1.6466865852890816e-08,
+      5.5356536187165725e-11
+    ],
+    [
+      5.5356536187165725e-11,
+      1.62550745897758e-08
+    ]
+  ],
+  "temporal_left_hash": "cd504c393561346416e6b4e723a3a72f44c0946f789c4f512c82337f7c31220f",
+  "temporal_right_hash": "0d7691a28eb0100f07d0afbe1eb1f5b8dc054716b3b4ca41bc7b6a8b84f8525b",
+  "loss": "block_soft_l1",
+  "kappa": 2.0,
+  "encoding": {
+    "theta_scale": 15.0,
+    "power_scale": 2.584892485218791,
+    "residual_scale": 278.8476286433148
+  },
+  "bounds": {
+    "theta": [
+      -20.0,
+      20.0
+    ],
+    "A": [
+      0.0,
+      6.0
+    ]
+  },
+  "coefficient_map": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.5,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.5,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "free_coefficient_count": 12,
+  "active_demand_knots": [
+    0.36036036036036034,
+    2.0,
+    3.0,
+    4.0
+  ],
+  "experiment": "full_information_mean_probe_v1",
+  "source": {
+    "directory": "/workspace/ximea/xrecorder/exp2/relative_calibration/training/FC0/robust",
+    "model_sha256": "a202aeb8a52fbac95136472648075cad3b2465155517bac9d44a02ba23c1e446",
+    "checkpoint_sha256": "96c9716d1023810c7b75aff3cd5d9fbcc89029d3e3a6c8c1788586e40b3aba45",
+    "training_fixations": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "frame_hash": "da245b7564eb5584b29332d569dca6d03725f97e2c5f69322425e698f0fce827",
+    "global_group_hash": "da2799efcf8777b1816fe5da17c681d8cb73a54aa81b9f924dc5182b2fc3591a",
+    "observation_hash": "f7f019feded34dd54ab76fd1d5cf5ebb021db23271bd16e8cf4167a0c45f01de",
+    "source_sha256": {
+      "capture_1_detections.pkl": "65eb4ed79d807751634b98d114adb470165642af2c6a349578ce6b79343f2a51",
+      "capture_2_detections.pkl": "96d903e81f31a2265aab0072a0c24e77d0d5b4e9f5ce754d30fa781ef997b357",
+      "capture_3_detections.pkl": "5d67d6d15bd4e48bf481353086d980b74e96cc9dddf097e2a6b2137de1daf349",
+      "capture_4_detections.pkl": "227a3dbeba3db3e5e9565d90364e68389ad3428e13ce5e53f0b6ac58132b0721"
+    },
+    "interval_sha256": "970d4a8215690ac65dc8c1147d1582b06d0bf03be030ad9f8146a4e5c8fc381a",
+    "schema": "profiled_piecewise_displacement_power_ratio_v1"
+  },
+  "mean_probe": {
+    "global_fixation": 17,
+    "local_group": 17,
+    "baseline_fitted_mean_deg": 0.06847839264299624,
+    "requested_offset_deg": -0.5,
+    "requested_mean_deg": -0.43152160735700373,
+    "strength": 1.0,
+    "scale_deg": 1.0
+  }
+}

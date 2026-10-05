@@ -1,0 +1,135 @@
+{
+  "scope": "Synthetic algebra control; scale priors are hypotheses, not validated physiology.",
+  "covariance_source": "synthetic correlated positive-definite raw covariance",
+  "raw_coordinate_order": [
+    "m",
+    "S1",
+    "S4"
+  ],
+  "independent_coordinate_order": [
+    "d",
+    "rho4",
+    "logS1"
+  ],
+  "raw_anchor": [
+    18.0,
+    446.0,
+    55.0
+  ],
+  "raw_covariance": [
+    [
+      0.09,
+      0.035,
+      -0.018
+    ],
+    [
+      0.035,
+      0.25,
+      0.04
+    ],
+    [
+      -0.018,
+      0.04,
+      0.16
+    ]
+  ],
+  "independent_covariance": [
+    [
+      4.4029688388392193e-07,
+      -1.1404939508203961e-07,
+      1.2523031782936165e-07
+    ],
+    [
+      -1.1404939508203962e-07,
+      7.738763357790546e-07,
+      4.610189018200622e-08
+    ],
+    [
+      1.2523031782936162e-07,
+      4.6101890182006214e-08,
+      1.2568119206097045e-06
+    ]
+  ],
+  "conditional_scale_variance": 1.2129062728778876e-06,
+  "identity": "q_full=q_relative+(t-b.T@inv(A)@r)^2/(c-b.T@inv(A)@b)",
+  "free_scale_optimum": "t=b.T@inv(A)@r, one unrestricted nuisance per frame",
+  "free_scale_shape_prior": "none",
+  "constrained_formula_scope": "Gaussian quadratic data term with Gaussian scale prior only",
+  "constraints": [
+    {
+      "hypothesis": "known",
+      "prior_variance_over_conditional_variance": 0.0,
+      "mean_extra_quadratic_cost": 1.0193197881038882,
+      "max_closed_form_error": 3.552713678800501e-15,
+      "synthetic_extra_information_eigenvalues": [
+        -7.933389365132765e-10,
+        -6.241194324524048e-10,
+        -2.761686831472458e-10,
+        3116640.9222303615
+      ]
+    },
+    {
+      "hypothesis": "Gaussian-constrained-varying",
+      "prior_variance_over_conditional_variance": 0.1,
+      "mean_extra_quadratic_cost": 0.9266543528217167,
+      "max_closed_form_error": 3.552713678800501e-15,
+      "synthetic_extra_information_eigenvalues": [
+        -3.1650394470961997e-09,
+        2.972965997948553e-10,
+        5.02374101516034e-10,
+        2833309.9293003273
+      ]
+    },
+    {
+      "hypothesis": "Gaussian-constrained-varying",
+      "prior_variance_over_conditional_variance": 1.0,
+      "mean_extra_quadratic_cost": 0.5096598940519441,
+      "max_closed_form_error": 1.7763568394002505e-15,
+      "synthetic_extra_information_eigenvalues": [
+        -2.274974218683941e-09,
+        -4.772427288826061e-10,
+        5.448299263542285e-10,
+        1558320.4611151817
+      ]
+    },
+    {
+      "hypothesis": "Gaussian-constrained-varying",
+      "prior_variance_over_conditional_variance": 10.0,
+      "mean_extra_quadratic_cost": 0.09266543528217167,
+      "max_closed_form_error": 3.552713678800501e-15,
+      "synthetic_extra_information_eigenvalues": [
+        -9.749577659722536e-10,
+        1.262832949935675e-10,
+        1.7575488256474945e-09,
+        283330.99293003307
+      ]
+    },
+    {
+      "hypothesis": "Gaussian-constrained-varying",
+      "prior_variance_over_conditional_variance": 100.0,
+      "mean_extra_quadratic_cost": 0.010092275129741458,
+      "max_closed_form_error": 2.6645352591003757e-15,
+      "synthetic_extra_information_eigenvalues": [
+        -2.2333004143777182e-09,
+        1.9947686935095884e-10,
+        3.7246393914140364e-10,
+        30857.83091317179
+      ]
+    }
+  ],
+  "checks": {
+    "coordinate_roundtrip_max_abs": 5.684341886080802e-14,
+    "linearized_raw_vs_independent_quadratic_max_abs": 5.329070518200751e-15,
+    "quadratic_decomposition_max_abs": 1.7763568394002505e-15,
+    "free_profile_max_abs": 0.0,
+    "free_information_relative_error": 1.266938027698161e-16,
+    "free_radial_robust_max_abs": {
+      "linear": 0.0,
+      "soft_l1": 0.0,
+      "huber": 0.0,
+      "cauchy": 0.0,
+      "arctan": 0.0
+    }
+  },
+  "interpretation": "Additional information requires a constraint on scale; free per-frame scale exactly recovers the matched two-channel marginal objective, including common monotone radial robust losses. Separate per-channel losses are not this control."
+}

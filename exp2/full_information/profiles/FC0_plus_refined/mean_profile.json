@@ -1,0 +1,151 @@
+{
+  "schema": "achieved_mean_local_profile_v1",
+  "source": {
+    "directory": "/workspace/ximea/xrecorder/exp2/relative_calibration/training/FC0/robust",
+    "model_sha256": "a202aeb8a52fbac95136472648075cad3b2465155517bac9d44a02ba23c1e446",
+    "checkpoint_sha256": "96c9716d1023810c7b75aff3cd5d9fbcc89029d3e3a6c8c1788586e40b3aba45",
+    "training_fixations": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "frame_hash": "da245b7564eb5584b29332d569dca6d03725f97e2c5f69322425e698f0fce827",
+    "global_group_hash": "da2799efcf8777b1816fe5da17c681d8cb73a54aa81b9f924dc5182b2fc3591a",
+    "observation_hash": "f7f019feded34dd54ab76fd1d5cf5ebb021db23271bd16e8cf4167a0c45f01de",
+    "source_sha256": {
+      "capture_1_detections.pkl": "65eb4ed79d807751634b98d114adb470165642af2c6a349578ce6b79343f2a51",
+      "capture_2_detections.pkl": "96d903e81f31a2265aab0072a0c24e77d0d5b4e9f5ce754d30fa781ef997b357",
+      "capture_3_detections.pkl": "5d67d6d15bd4e48bf481353086d980b74e96cc9dddf097e2a6b2137de1daf349",
+      "capture_4_detections.pkl": "227a3dbeba3db3e5e9565d90364e68389ad3428e13ce5e53f0b6ac58132b0721"
+    },
+    "interval_sha256": "970d4a8215690ac65dc8c1147d1582b06d0bf03be030ad9f8146a4e5c8fc381a",
+    "schema": "profiled_piecewise_displacement_power_ratio_v1"
+  },
+  "probe": {
+    "global_fixation": 17,
+    "local_group": 17,
+    "baseline_fitted_mean_deg": 0.06847839264299624,
+    "requested_offset_deg": 0.5,
+    "requested_mean_deg": 0.5684783926429963,
+    "strength": 1.0,
+    "scale_deg": 1.0
+  },
+  "continuation_phases": [
+    {
+      "directory": "/workspace/ximea/xrecorder/exp2/full_information/profiles/FC0_plus",
+      "status": {
+        "status": "not_converged",
+        "elapsed_seconds": 291.6729633060022,
+        "accepted_iterations": 109,
+        "nfev": 222,
+        "termination": "evaluation/outer budget or solver stall; physical criteria not satisfied",
+        "scipy_status": 3,
+        "scipy_message": "`xtol` termination condition is satisfied."
+      },
+      "checkpoint_sha256": "283634f9d2be383d53e86aa624327e10449410917863cf6486ed0d709b17d62f",
+      "history_sha256": "c2b60ee8721fa0fc9429c9c66396c9eb0697d66a02dcae210940acab803c4e4a",
+      "lsmr_history_sha256": "b774ac3b65df3f99bd8f1506a7cadbaf34e6a06795e93bb708a7bcf638e7271e"
+    },
+    {
+      "directory": "/workspace/ximea/xrecorder/exp2/full_information/profiles/FC0_plus_continued",
+      "status": {
+        "status": "not_converged",
+        "elapsed_seconds": 6.332061715002055,
+        "accepted_iterations": 1,
+        "nfev": 16,
+        "termination": "evaluation/outer budget or solver stall; physical criteria not satisfied",
+        "scipy_status": 3,
+        "scipy_message": "`xtol` termination condition is satisfied."
+      },
+      "checkpoint_sha256": "7e884a2bd2255ea902b1cfccfc4e584a9a452db5810f5c2e853167ba27e07de3",
+      "history_sha256": "1abcbd91b181af2a1bf37b53708a7305657ed3b61060fc27d57d8cfe6991529d",
+      "lsmr_history_sha256": "8bc073136017bf4e30ab6bc5d31e354930bb8ae18baa77365b986644d7419a94"
+    },
+    {
+      "directory": "/workspace/ximea/xrecorder/exp2/full_information/profiles/FC0_plus_refined",
+      "status": {
+        "status": "not_converged",
+        "elapsed_seconds": 46.56482587799837,
+        "accepted_iterations": 1,
+        "nfev": 16,
+        "termination": "evaluation/outer budget or solver stall; physical criteria not satisfied",
+        "scipy_status": 3,
+        "scipy_message": "`xtol` termination condition is satisfied."
+      },
+      "checkpoint_sha256": "790d79235dc2443128202cc88c5bb351f19d304c615390651c661fa3063c65e4",
+      "history_sha256": "793a7b15057097a7f1efe9a15b33e8c32e81bc62311d495688bab578196f2205",
+      "lsmr_history_sha256": "3d2efb3f0f93da68a03b446c24831d3e95af32ad69c1fa62f72c6f4651a4e8fd"
+    }
+  ],
+  "cumulative_continuation_totals": {
+    "elapsed_seconds": 344.56985089900263,
+    "nfev": 254.0,
+    "accepted_iterations": 111.0
+  },
+  "resume_initial_objective_verified": true,
+  "achieved_offset_deg": 0.37867925505349453,
+  "augmented_objective": 0.6227466948141995,
+  "original_objective": 0.615387333237012,
+  "original_objective_components": {
+    "observations": 0.002078498520724519,
+    "model_prior": 1.2412773684758603e-05,
+    "anchors": 0.6127353978834146,
+    "temporal": 0.0005610240591884208
+  },
+  "probe_objective": 0.007359361577187523,
+  "baseline_original_objective": 0.5925054434228951,
+  "baseline_original_parts": {
+    "observations": 0.002175389859215139,
+    "model_prior": 8.269519811292902e-06,
+    "anchors": 0.5897618595148624,
+    "temporal": 0.0005599245290058882
+  },
+  "original_objective_change": 0.022881889814116874,
+  "calibration_converged": false,
+  "constrained_stationarity": {
+    "achieved_mean_deg": 0.44715764769649075,
+    "estimated_mean_constraint_multiplier": -0.12134269935337033,
+    "probe_multiplier": -0.12132074494650552,
+    "multiplier_difference": -2.1954406864810316e-05,
+    "constrained_physical_projected_optimality": 7.534542570480259e-05,
+    "selected_fixation_interior_frame_count": 4080,
+    "zero_A_feasible_descent_count": 0,
+    "zero_A_stationarity_unverified_count": 0,
+    "augmented_physical_projected_optimality": 7.534542570480259e-05,
+    "interpretation": "local constrained first-order test at achieved mean; target need not be attained; no global profile certificate or confidence interval"
+  },
+  "constrained_stationarity_verified": false,
+  "continuation_status": {
+    "status": "not_converged",
+    "elapsed_seconds": 46.56482587799837,
+    "accepted_iterations": 1,
+    "nfev": 16,
+    "termination": "evaluation/outer budget or solver stall; physical criteria not satisfied",
+    "scipy_status": 3,
+    "scipy_message": "`xtol` termination condition is satisfied."
+  },
+  "coefficient_irls": {
+    "converged": true,
+    "iterations": 4,
+    "weight_change": 3.4710012641880894e-12,
+    "objective": 0.6227466948141995
+  },
+  "interpretation": "Other training states and coefficients were reoptimized. This is a local constrained-stationary point at achieved mean only if KKT passes; no exact requested-mean or global profile/CI claim."
+}

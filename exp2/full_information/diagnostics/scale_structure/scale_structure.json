@@ -1,0 +1,540 @@
+{
+  "scope": "Descriptive retained-frame scale structure, conditional on the shared frozen gate.",
+  "limitations": [
+    "Demand and recording are completely confounded: capture1..4 correspond to approximately 0.36036, 4, 3, 2 D, each with five fixations.",
+    "Capture1 wall-clock timestamps are unreliable; all time comparisons use within-recording frame/order.",
+    "No independent scale, head-distance, gaze or accommodation reference is available.",
+    "Capture5 lacks fixation/protocol annotations and cannot establish an independent repeat.",
+    "Nominal-gaze, time and detector associations are observational; consecutive differences can contain actual eye motion."
+  ],
+  "demand_effect_identifiable_with_recording_effects": false,
+  "recordings": [
+    {
+      "capture": "1",
+      "n": 19645,
+      "S1_median_px": 445.8897705078125,
+      "S1_p05_px": 444.83173828125,
+      "S1_p95_px": 447.16944580078126,
+      "S1_robust_cv": 0.002053997791788003,
+      "demand_D_values": [
+        0.36036036036036034
+      ],
+      "associations": {
+        "nominal_gaze_deg": {
+          "n": 19645,
+          "slope": -0.06221960550360638,
+          "correlation": -0.8060858458223216
+        },
+        "within_recording_order": {
+          "n": 19645,
+          "slope": -2.148955825503008,
+          "correlation": -0.780168847401143
+        },
+        "detector_angle_error_deg": {
+          "n": 19645,
+          "slope": 1.2785373878735073,
+          "correlation": 0.7635598694827286
+        },
+        "detector_p1_angle_deg": {
+          "n": 19645,
+          "slope": -7.545919535883743,
+          "correlation": -0.6628515934344613
+        },
+        "detector_p1_count": {
+          "n": 19645,
+          "slope": null,
+          "correlation": null
+        },
+        "detector_p4_angle_deg": {
+          "n": 19645,
+          "slope": 1.075012133706918,
+          "correlation": 0.8115524245719347
+        },
+        "detector_p4_count": {
+          "n": 19645,
+          "slope": -0.48376850706481894,
+          "correlation": -0.43318025814735717
+        },
+        "detector_p4_inside_count": {
+          "n": 19645,
+          "slope": -1.1783944521374201,
+          "correlation": -0.7014028676313122
+        },
+        "detector_pupil_angle_deg": {
+          "n": 19645,
+          "slope": -0.03021364012565553,
+          "correlation": -0.6979766573985768
+        },
+        "detector_pupil_major_px": {
+          "n": 19645,
+          "slope": 0.023666175384322627,
+          "correlation": 0.5079736165475344
+        },
+        "detector_pupil_minor_px": {
+          "n": 19645,
+          "slope": 0.029105803778201503,
+          "correlation": 0.7219783145598878
+        },
+        "detector_scale_difference_percent": {
+          "n": 19645,
+          "slope": -1.1889092556486127,
+          "correlation": -0.47591718204828853
+        },
+        "detector_scale_ratio": {
+          "n": 19645,
+          "slope": -165.779716556212,
+          "correlation": -0.47591715239641896
+        }
+      }
+    },
+    {
+      "capture": "2",
+      "n": 19596,
+      "S1_median_px": 447.0230407714844,
+      "S1_p05_px": 445.56675720214844,
+      "S1_p95_px": 449.23600006103516,
+      "S1_robust_cv": 0.0015446395291769531,
+      "demand_D_values": [
+        4.0
+      ],
+      "associations": {
+        "nominal_gaze_deg": {
+          "n": 19596,
+          "slope": -0.07966679337992973,
+          "correlation": -0.7723854860751951
+        },
+        "within_recording_order": {
+          "n": 19596,
+          "slope": -2.7532807746986343,
+          "correlation": -0.7536100205702774
+        },
+        "detector_angle_error_deg": {
+          "n": 19596,
+          "slope": 1.5635374867170257,
+          "correlation": 0.8364155199535942
+        },
+        "detector_p1_angle_deg": {
+          "n": 19596,
+          "slope": 0.9641993364931902,
+          "correlation": 0.05419934822759785
+        },
+        "detector_p1_count": {
+          "n": 19596,
+          "slope": null,
+          "correlation": null
+        },
+        "detector_p4_angle_deg": {
+          "n": 19596,
+          "slope": 1.0571152287824337,
+          "correlation": 0.7658405006629673
+        },
+        "detector_p4_count": {
+          "n": 19596,
+          "slope": 0.2811437017404268,
+          "correlation": 0.43909569480367083
+        },
+        "detector_p4_inside_count": {
+          "n": 19596,
+          "slope": -0.7209252972158574,
+          "correlation": -0.3143725884250051
+        },
+        "detector_pupil_angle_deg": {
+          "n": 19596,
+          "slope": -0.07947421210017865,
+          "correlation": -0.5093178563636959
+        },
+        "detector_pupil_major_px": {
+          "n": 19596,
+          "slope": -0.02543761595984757,
+          "correlation": -0.47644560715283335
+        },
+        "detector_pupil_minor_px": {
+          "n": 19596,
+          "slope": -0.02345232783780771,
+          "correlation": -0.4014522672524176
+        },
+        "detector_scale_difference_percent": {
+          "n": 19596,
+          "slope": -0.33398556157051607,
+          "correlation": -0.28668443326314613
+        },
+        "detector_scale_ratio": {
+          "n": 19596,
+          "slope": -47.12463135535652,
+          "correlation": -0.28668443260190857
+        }
+      }
+    },
+    {
+      "capture": "3",
+      "n": 19445,
+      "S1_median_px": 445.95831298828125,
+      "S1_p05_px": 444.8662475585937,
+      "S1_p95_px": 449.5348327636719,
+      "S1_robust_cv": 0.002914844713279713,
+      "demand_D_values": [
+        3.0
+      ],
+      "associations": {
+        "nominal_gaze_deg": {
+          "n": 19445,
+          "slope": -0.11089440706248693,
+          "correlation": -0.820199971752256
+        },
+        "within_recording_order": {
+          "n": 19445,
+          "slope": -3.967894649310104,
+          "correlation": -0.815074287146163
+        },
+        "detector_angle_error_deg": {
+          "n": 19445,
+          "slope": 2.5886307719997794,
+          "correlation": 0.890746591517657
+        },
+        "detector_p1_angle_deg": {
+          "n": 19445,
+          "slope": -6.12618410000524,
+          "correlation": -0.32786735951616175
+        },
+        "detector_p1_count": {
+          "n": 19445,
+          "slope": null,
+          "correlation": null
+        },
+        "detector_p4_angle_deg": {
+          "n": 19445,
+          "slope": 1.354845431880001,
+          "correlation": 0.8011400245092123
+        },
+        "detector_p4_count": {
+          "n": 19445,
+          "slope": -0.19147390294532027,
+          "correlation": -0.18110751152513715
+        },
+        "detector_p4_inside_count": {
+          "n": 19445,
+          "slope": -0.7031959574005241,
+          "correlation": -0.32341232081700044
+        },
+        "detector_pupil_angle_deg": {
+          "n": 19445,
+          "slope": -0.08114904632374528,
+          "correlation": -0.2560357182146452
+        },
+        "detector_pupil_major_px": {
+          "n": 19445,
+          "slope": -0.014427059083975194,
+          "correlation": -0.32226380365899376
+        },
+        "detector_pupil_minor_px": {
+          "n": 19445,
+          "slope": -0.013436546992258425,
+          "correlation": -0.2542175173447836
+        },
+        "detector_scale_difference_percent": {
+          "n": 19445,
+          "slope": -0.4605196379366557,
+          "correlation": -0.30780529153685304
+        },
+        "detector_scale_ratio": {
+          "n": 19445,
+          "slope": -65.57662007649292,
+          "correlation": -0.3078052772936104
+        }
+      }
+    },
+    {
+      "capture": "4",
+      "n": 19070,
+      "S1_median_px": 446.123779296875,
+      "S1_p05_px": 444.82972717285156,
+      "S1_p95_px": 449.5481948852539,
+      "S1_robust_cv": 0.0033357674450548696,
+      "demand_D_values": [
+        2.0
+      ],
+      "associations": {
+        "nominal_gaze_deg": {
+          "n": 19070,
+          "slope": -0.11663578279497783,
+          "correlation": -0.8033961844257628
+        },
+        "within_recording_order": {
+          "n": 19070,
+          "slope": -4.055214246089963,
+          "correlation": -0.7963099904500022
+        },
+        "detector_angle_error_deg": {
+          "n": 19070,
+          "slope": 2.6704362017521395,
+          "correlation": 0.8859143965498646
+        },
+        "detector_p1_angle_deg": {
+          "n": 19070,
+          "slope": -5.606501150682506,
+          "correlation": -0.25827469321693425
+        },
+        "detector_p1_count": {
+          "n": 19070,
+          "slope": null,
+          "correlation": null
+        },
+        "detector_p4_angle_deg": {
+          "n": 19070,
+          "slope": 1.259371409758172,
+          "correlation": 0.758513590503638
+        },
+        "detector_p4_count": {
+          "n": 19070,
+          "slope": -0.07551547080305226,
+          "correlation": -0.06310808116378146
+        },
+        "detector_p4_inside_count": {
+          "n": 19070,
+          "slope": -0.6579568767557965,
+          "correlation": -0.3165197134618691
+        },
+        "detector_pupil_angle_deg": {
+          "n": 19070,
+          "slope": -0.08198496840080875,
+          "correlation": -0.6607951616110227
+        },
+        "detector_pupil_major_px": {
+          "n": 19070,
+          "slope": -0.013873537633979848,
+          "correlation": -0.18739337804200856
+        },
+        "detector_pupil_minor_px": {
+          "n": 19070,
+          "slope": 0.012772215055538997,
+          "correlation": 0.12824631146828833
+        },
+        "detector_scale_difference_percent": {
+          "n": 19070,
+          "slope": -0.5325300545296098,
+          "correlation": -0.3675763019732969
+        },
+        "detector_scale_ratio": {
+          "n": 19070,
+          "slope": -77.32338942999662,
+          "correlation": -0.3675763193057405
+        }
+      }
+    }
+  ],
+  "fixations": [
+    {
+      "capture": "1",
+      "fixation_index": "0",
+      "n": 3490,
+      "S1_mean_px": 446.8683044958251,
+      "S1_median_px": 446.80865478515625,
+      "S1_std_px": 0.40216805259684113
+    },
+    {
+      "capture": "1",
+      "fixation_index": "1",
+      "n": 4000,
+      "S1_mean_px": 446.39583555603025,
+      "S1_median_px": 446.43475341796875,
+      "S1_std_px": 0.17072505313645872
+    },
+    {
+      "capture": "1",
+      "fixation_index": "2",
+      "n": 3840,
+      "S1_mean_px": 446.1987847805023,
+      "S1_median_px": 446.1285400390625,
+      "S1_std_px": 0.5820130371161362
+    },
+    {
+      "capture": "1",
+      "fixation_index": "3",
+      "n": 3840,
+      "S1_mean_px": 445.0628340880076,
+      "S1_median_px": 445.01068115234375,
+      "S1_std_px": 0.20005828857336405
+    },
+    {
+      "capture": "1",
+      "fixation_index": "4",
+      "n": 4475,
+      "S1_mean_px": 445.1752580798272,
+      "S1_median_px": 445.3018798828125,
+      "S1_std_px": 0.5737658042617837
+    },
+    {
+      "capture": "2",
+      "fixation_index": "5",
+      "n": 3680,
+      "S1_mean_px": 448.9998945319134,
+      "S1_median_px": 449.05189514160156,
+      "S1_std_px": 0.3199224642956752
+    },
+    {
+      "capture": "2",
+      "fixation_index": "6",
+      "n": 4000,
+      "S1_mean_px": 447.0697079467773,
+      "S1_median_px": 447.0947570800781,
+      "S1_std_px": 0.20104847919256472
+    },
+    {
+      "capture": "2",
+      "fixation_index": "7",
+      "n": 3920,
+      "S1_mean_px": 447.34064601976047,
+      "S1_median_px": 447.37921142578125,
+      "S1_std_px": 0.1784842772620589
+    },
+    {
+      "capture": "2",
+      "fixation_index": "8",
+      "n": 3920,
+      "S1_mean_px": 445.69046898666693,
+      "S1_median_px": 445.7187805175781,
+      "S1_std_px": 0.2355684573763009
+    },
+    {
+      "capture": "2",
+      "fixation_index": "9",
+      "n": 4076,
+      "S1_mean_px": 446.6273486405991,
+      "S1_median_px": 446.6124267578125,
+      "S1_std_px": 0.22302280833184832
+    },
+    {
+      "capture": "3",
+      "fixation_index": "10",
+      "n": 3616,
+      "S1_mean_px": 449.156848755558,
+      "S1_median_px": 449.05335998535156,
+      "S1_std_px": 0.47806228201477147
+    },
+    {
+      "capture": "3",
+      "fixation_index": "11",
+      "n": 3913,
+      "S1_mean_px": 447.1423561491992,
+      "S1_median_px": 447.1243896484375,
+      "S1_std_px": 0.13654655597113594
+    },
+    {
+      "capture": "3",
+      "fixation_index": "12",
+      "n": 3998,
+      "S1_mean_px": 445.7967381670572,
+      "S1_median_px": 445.76556396484375,
+      "S1_std_px": 0.10827120929059075
+    },
+    {
+      "capture": "3",
+      "fixation_index": "13",
+      "n": 3758,
+      "S1_mean_px": 445.05039749835765,
+      "S1_median_px": 445.05908203125,
+      "S1_std_px": 0.22109974732025064
+    },
+    {
+      "capture": "3",
+      "fixation_index": "14",
+      "n": 4160,
+      "S1_mean_px": 445.90255477611834,
+      "S1_median_px": 445.9393310546875,
+      "S1_std_px": 0.26570713641220156
+    },
+    {
+      "capture": "4",
+      "fixation_index": "15",
+      "n": 3798,
+      "S1_mean_px": 449.31321048585914,
+      "S1_median_px": 449.32044982910156,
+      "S1_std_px": 0.26339299608075567
+    },
+    {
+      "capture": "4",
+      "fixation_index": "16",
+      "n": 3840,
+      "S1_mean_px": 447.042629814148,
+      "S1_median_px": 447.1404113769531,
+      "S1_std_px": 0.30692121622449936
+    },
+    {
+      "capture": "4",
+      "fixation_index": "17",
+      "n": 4080,
+      "S1_mean_px": 445.85349263209923,
+      "S1_median_px": 445.8451843261719,
+      "S1_std_px": 0.10680630146153763
+    },
+    {
+      "capture": "4",
+      "fixation_index": "18",
+      "n": 3920,
+      "S1_mean_px": 444.92552006001375,
+      "S1_median_px": 444.940673828125,
+      "S1_std_px": 0.12454590581534246
+    },
+    {
+      "capture": "4",
+      "fixation_index": "19",
+      "n": 3432,
+      "S1_mean_px": 446.13079585006466,
+      "S1_median_px": 446.1309814453125,
+      "S1_std_px": 0.09049182359608939
+    }
+  ],
+  "conditional_structure": {
+    "scope": "Descriptive logS1 regression after recording-intercept removal; frame/order and available detector QA covariates. No causal interpretation or independent gaze reference.",
+    "n": 77756,
+    "predictors": [
+      "nominal_gaze_deg",
+      "within_recording_order",
+      "detector_angle_error_deg",
+      "detector_p1_angle_deg",
+      "detector_p4_angle_deg",
+      "detector_p4_count",
+      "detector_p4_inside_count",
+      "detector_pupil_angle_deg",
+      "detector_pupil_major_px",
+      "detector_pupil_minor_px",
+      "detector_scale_difference_percent",
+      "detector_scale_ratio"
+    ],
+    "rank": 12,
+    "full_rank": true,
+    "condition_number": 351.0855553221966,
+    "within_recording_R2": 0.8025714949222844,
+    "coefficients_logS1_per_unit": {
+      "nominal_gaze_deg": 6.9860405837012925e-06,
+      "within_recording_order": -0.0010949829342275209,
+      "detector_angle_error_deg": 0.0026419627071550956,
+      "detector_p1_angle_deg": 0.009384343828495557,
+      "detector_p4_angle_deg": 0.002065101734079376,
+      "detector_p4_count": -0.00014481046755514514,
+      "detector_p4_inside_count": -3.6190313651643826e-05,
+      "detector_pupil_angle_deg": 1.4634671321295431e-05,
+      "detector_pupil_major_px": -2.9736058517788913e-05,
+      "detector_pupil_minor_px": 2.1273914662328937e-05,
+      "detector_scale_difference_percent": -0.013748028939313709,
+      "detector_scale_ratio": 2.0862581280195722
+    },
+    "coefficient_warning": "Nominal gaze, order and QA may be collinear; associations depend on this model and cannot establish accommodation."
+  },
+  "provenance": {
+    "selected_interval_path": "exp2/fixations/fixation_intervals.json",
+    "selected_interval_sha256": "970d4a8215690ac65dc8c1147d1582b06d0bf03be030ad9f8146a4e5c8fc381a",
+    "source_sha256": {
+      "capture_1_detections.pkl": "65eb4ed79d807751634b98d114adb470165642af2c6a349578ce6b79343f2a51",
+      "capture_2_detections.pkl": "96d903e81f31a2265aab0072a0c24e77d0d5b4e9f5ce754d30fa781ef997b357",
+      "capture_3_detections.pkl": "5d67d6d15bd4e48bf481353086d980b74e96cc9dddf097e2a6b2137de1daf349",
+      "capture_4_detections.pkl": "227a3dbeba3db3e5e9565d90364e68389ad3428e13ce5e53f0b6ac58132b0721"
+    },
+    "validity_policy": "measurement_valid AND stored pupil_valid",
+    "native_detection_rerun": false,
+    "interval_version_frozen": true,
+    "edge_fraction": 0.1,
+    "event_mask": "empty; S_j=V_j",
+    "capture5_used": false
+  }
+}

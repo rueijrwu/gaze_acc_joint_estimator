@@ -1,0 +1,86 @@
+{
+  "A0_degenerate_nonzero_cost_detected": true,
+  "A0_negative_encoded_sign_flags_infinite_optimality": true,
+  "A0_requested_linear_displacement_probe_fixture": {
+    "coefficient_definition": "coef[:4]=KNOTS; remaining normalized coefficients=0; log intercept=log(446); other log-shape coefficients=0",
+    "noiseless": {
+      "degenerate": false,
+      "observation": [
+        0.0,
+        0.0,
+        6.100318952020064
+      ],
+      "right_probe_descent": false
+    },
+    "p": 0.6,
+    "positive_d_channel_residual": {
+      "degenerate": true,
+      "observation": [
+        0.1,
+        0.0,
+        6.100318952020064
+      ],
+      "right_probe_descent": true
+    },
+    "precision": "identity",
+    "state": [
+      0.0,
+      0.0
+    ]
+  },
+  "A0_right_probe_descent": false,
+  "A0_stationarity_unverified": true,
+  "bounds": {
+    "accommodation_D": [
+      0,
+      6
+    ],
+    "free_and_known_same": true,
+    "theta_deg": [
+      -20,
+      20
+    ]
+  },
+  "forward_fixture": "global joint_basis(theta,A**p,p), not a single segment-specific forward_jac across knots",
+  "free14_exact_legacy_diagnostic_keys": true,
+  "free14_exact_legacy_diagnostics": true,
+  "free14_exact_legacy_state": true,
+  "geometry_free_matches_normalized_jacobian_fisher": true,
+  "geometry_known_matches_full_covariance_fisher": true,
+  "initial_fixture_error": {
+    "correction": "Generate global observations by joint_basis(theta,A**p,p,derivatives=False)[0] @ coef; in direct forward_jac calls use a=A**p and each row actual smooth segment.",
+    "description": "Rejected preliminary roundtrip used segment-specific forward_jac with one (lo,hi) for observations across multiple A knots; the first attempt also passed physical A instead of encoded A**p."
+  },
+  "known_noiseless_equivalent_minima": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "known_noiseless_roundtrip_max_abs_state_error": 6.750155989720952e-14,
+  "known_noiseless_weighted_cost_max": 1.3650749784790122e-27,
+  "noisy_cost_excess": [
+    -1.199040866595169e-14,
+    1.3322676295501878e-15,
+    -2.220446049250313e-14
+  ],
+  "noisy_independent_bounded_multistart_costs": [
+    2.9380427942211718,
+    0.28794010881481025,
+    2.010498373953245
+  ],
+  "noisy_joint_inverse_costs": [
+    2.9380427942211598,
+    0.2879401088148116,
+    2.0104983739532227
+  ],
+  "noisy_multistart_count": 30,
+  "schema": "joint_inverse_synthetic_checks_v1",
+  "seed": 20261004,
+  "source_sha256": {
+    "exp2/estimate_profiled.py": "f69d07096fdafe2376d3d3bd14910140658ddbb6d07bfd62067d0eb4363f7e36",
+    "exp2/full_information/joint_inverse.py": "dd4e7ab2c25cace5a8b9acef9f43236c14963c7f47dc0e5aab2c5bfc00021ad2",
+    "exp2/full_information/joint_problem.py": "8e20b00c14a6fc441a85a9443d054ff5637839a7e8d0f26b18dbe43fe1f42659",
+    "exp2/full_information/matched_predict.py": "b71616b471bda3005b8a440f26ebb7e576f8323250db4d0abcd7b4e6c77d871e"
+  }
+}

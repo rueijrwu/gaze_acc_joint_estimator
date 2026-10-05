@@ -1,0 +1,227 @@
+{
+  "checks": {
+    "crossed_exact_algebra": {
+      "max_error": 8.881784197001252e-16,
+      "tolerance": 2e-15
+    },
+    "normalized_crossed_rho_plus_one": {
+      "max_error": 2.220446049250313e-16,
+      "tolerance": 5e-16
+    },
+    "common_shift": {
+      "max_error": 1.7763568394002505e-15,
+      "tolerance": 5e-15
+    },
+    "common_positive_scale": {
+      "max_error": 8.326672684688674e-17,
+      "tolerance": 5e-16
+    },
+    "measurement_ranks": {
+      "relative": 3,
+      "normalized": 2
+    },
+    "ordering_failure_not_relabelled": {
+      "passed": true
+    },
+    "correlated_mahalanobis_basis": {
+      "max_error": 2.220446049250313e-16,
+      "tolerance": 1e-12
+    },
+    "robust_block_basis": {
+      "max_error": 0.0,
+      "tolerance": 1e-12
+    },
+    "independent_legacy_basis": {
+      "max_error": 4.440892098500626e-16,
+      "tolerance": 1e-14
+    },
+    "q_zero_legacy_columns": {
+      "bit_exact": true
+    },
+    "curvature_basis_gaze": {
+      "max_error": 0.0,
+      "tolerance": 0
+    },
+    "curvature_basis_A": {
+      "max_error": 0.0,
+      "tolerance": 0
+    },
+    "existing_normalized_capture1": {
+      "bit_exact": true
+    },
+    "existing_relative_identity_capture1": {
+      "max_error": 0.0,
+      "tolerance": 1e-12
+    },
+    "existing_normalized_capture2": {
+      "bit_exact": true
+    },
+    "existing_relative_identity_capture2": {
+      "max_error": 0.0,
+      "tolerance": 1e-12
+    },
+    "existing_normalized_capture3": {
+      "bit_exact": true
+    },
+    "existing_relative_identity_capture3": {
+      "max_error": 0.0,
+      "tolerance": 1e-12
+    },
+    "existing_normalized_capture4": {
+      "bit_exact": true
+    },
+    "existing_relative_identity_capture4": {
+      "max_error": 0.0,
+      "tolerance": 1e-12
+    },
+    "immutable_legacy_checkpoint_profile": {
+      "max_error": 0.0,
+      "tolerance": 1e-07
+    },
+    "immutable_legacy_checkpoint_objective": {
+      "max_error": 0.0,
+      "tolerance": 1e-08
+    },
+    "immutable_legacy_checkpoint_physical": {
+      "max_error": 0.0,
+      "tolerance": 1e-10
+    },
+    "full_source_rejected_for_holdout": {
+      "passed": true
+    },
+    "dense_profile_reduced_15": {
+      "max_error": 8.376979665492001e-15,
+      "tolerance": 1e-12
+    },
+    "profile_adjoint": {
+      "max_error": 9.947598300641403e-14,
+      "tolerance": 1e-10
+    },
+    "profile_jv_finite_difference": {
+      "max_error": 1.0367257630150561e-07,
+      "tolerance": 2e-07,
+      "relative_error": 1.8816840323304164e-09
+    },
+    "profile_jv_step_sweep": {
+      "steps": [
+        0.001,
+        0.0001,
+        1e-05,
+        1e-06,
+        1e-07,
+        1e-08
+      ],
+      "absolute_errors": [
+        0.26851,
+        0.0027301,
+        2.7305e-05,
+        2.6777e-07,
+        1.0367e-07,
+        1.0105e-06
+      ],
+      "interpretation": "quadratic truncation followed by roundoff; original threshold retained with step1e-7"
+    },
+    "physical_envelope_axis0": {
+      "max_error": 2.186807268253488e-09,
+      "tolerance": 2e-07
+    },
+    "physical_envelope_axis1": {
+      "max_error": 1.507669544764667e-10,
+      "tolerance": 2e-07
+    },
+    "curved_forward_theta_jac": {
+      "max_error": 1.7097684379407951e-10,
+      "tolerance": 2e-10
+    },
+    "legacy_prior_M": {
+      "bit_exact": true
+    },
+    "legacy_prior_v": {
+      "bit_exact": true
+    },
+    "legacy_profile_coef": {
+      "bit_exact": true
+    },
+    "legacy_residual": {
+      "bit_exact": true
+    },
+    "legacy_jv": {
+      "bit_exact": true
+    },
+    "legacy_jtv": {
+      "bit_exact": true
+    },
+    "lambda_zero_residual": {
+      "bit_exact": true
+    },
+    "changed_mean_prior_strength_resume_rejected": {
+      "passed": true
+    },
+    "changed_mean_prior_scale_deg_resume_rejected": {
+      "passed": true
+    },
+    "changed_mean_prior_means_deg_resume_rejected": {
+      "passed": true
+    },
+    "quadratic_two_root_inverse_cost": {
+      "max_error": 0.0,
+      "tolerance": 1e-10
+    },
+    "quadratic_inverse_physical": {
+      "max_error": 0.0,
+      "tolerance": 1e-05
+    },
+    "physical_forward_A_-20.0_0.1_-1": {
+      "max_error": 1.1611265685051997e-08,
+      "tolerance": 2e-08
+    },
+    "physical_forward_A_-20.0_0.1_1": {
+      "max_error": 1.170341783207629e-08,
+      "tolerance": 2e-08
+    },
+    "physical_forward_A_20.0_5.9_-1": {
+      "max_error": 6.934911932904297e-10,
+      "tolerance": 2e-08
+    },
+    "physical_forward_A_20.0_5.9_1": {
+      "max_error": 4.167318313347268e-10,
+      "tolerance": 2e-08
+    },
+    "physical_forward_A_4.0_2.0_-1": {
+      "max_error": 2.664411261066313e-10,
+      "tolerance": 2e-08
+    },
+    "physical_forward_A_4.0_2.0_1": {
+      "max_error": 2.2459412259666356e-10,
+      "tolerance": 2e-08
+    },
+    "physical_forward_A_4.0_3.0_-1": {
+      "max_error": 1.320383663516722e-10,
+      "tolerance": 2e-08
+    },
+    "physical_forward_A_4.0_3.0_1": {
+      "max_error": 9.819238833488897e-10,
+      "tolerance": 2e-08
+    },
+    "trusted_scalar_curved_inverse_minimum_cost": {
+      "max_error": 3.383643003932902e-13,
+      "tolerance": 1e-08
+    },
+    "actual_inverse_bounds": {
+      "passed": true,
+      "includes_zero_A": true,
+      "includes_six_A": true,
+      "includes_theta_bounds": true
+    },
+    "source_encoding_tamper_rejected": {
+      "passed": true
+    },
+    "source_schema_tamper_rejected": {
+      "passed": true
+    }
+  },
+  "passed": true,
+  "source_backup_status": "mechanically reconstructed from initial user-edited sources, not untouched snapshots",
+  "baseline_validation": "independent explicit 14 basis plus actual immutable holdout checkpoint reconstruction/objective/physical checks",
+  "interpretation": "implementation consistency and sampled inverse verification; no physiological or global uniqueness claim"
+}

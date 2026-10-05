@@ -1,0 +1,17 @@
+{
+  "schema": "independent_validation_synthetic_checks_v1",
+  "validation_py_sha256": "29136a86a1455ee87cc0ec52fcb6d8e5cd93b9c63525b6bf138862c96fc13013",
+  "scope": "synthetic validator behavior; no real independent validation data supplied",
+  "checks": {
+    "current_contract_fails_closed_without_independent_references": true,
+    "paired_model_pass_fixture": "passed_independent_validation",
+    "degraded_accommodation": "failed_independent_validation",
+    "missing_threshold": "not_evaluable_without_independent_references",
+    "duplicate_row_key": "invalid_validation_input",
+    "one_recording": "limited_head_coverage",
+    "missing_all_inputs": "not_evaluable_without_independent_references",
+    "artifact_overwrite_prevented": true
+  },
+  "fixture": "two independent recordings; same repeat condition repeated twice; two measured head conditions with both recordings represented; predeclared reference uncertainty and thresholds; baseline errors +1 degree/+1 D; model prediction exact",
+  "result": "passed"
+}

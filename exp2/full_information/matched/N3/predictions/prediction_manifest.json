@@ -1,0 +1,37 @@
+{
+  "schema": "full_information_heldout_predictions_v1",
+  "source_model_sha256": "85f489add02e7baa8657ce9dce7098f0e2ba65bb3d3fe2f6a49611c69e969bef",
+  "source_checkpoint_sha256": "1d07680acb8071e2ebe3c7149b628f3f33611ed81e89dcdfd976c0829f0322fe",
+  "source_model_dir": "exp2/full_information/matched/N3",
+  "common_policy_sha256": "a55c455d678df2729c2219e72885badf00f3bf61834a15580deea575091b5271",
+  "heldout_fixations": [
+    17
+  ],
+  "inverse_state_prior": "none; no nominal anchors",
+  "scale_hypothesis": "free",
+  "conditional_scale": true,
+  "source_converged": true,
+  "prediction_csv_sha256": "3683312f6012eee6c6c014f0f53568417c5b41bc8eb3000485b7388558dd7ecf",
+  "fixations": [
+    {
+      "fixation_index": 17,
+      "training_support": false,
+      "frame_count": 4080,
+      "coverage": 1.0,
+      "theta_nominal_mean_offset_deg": 0.07542356001354969,
+      "A_nominal_mean_offset_D": -0.20326757610086554,
+      "theta_within_fixation_sd_deg": 0.05757242382401921,
+      "A_within_fixation_sd_D": 0.30903765182697984,
+      "failed_count": 0,
+      "ambiguous_count": 0,
+      "stationarity_unverified_count": 0,
+      "theta_bound_count": 0,
+      "A_bound_count": 0,
+      "nominal_knot_extrapolation_count": 0
+    }
+  ],
+  "stationarity_threshold": 0.0001,
+  "stationarity_policy": "existing physical inverse optimality threshold; encoded one-sided check at singular zero accommodation",
+  "conditional_geometry_scope": "fixed coefficient local propagation; 1deg/0.25D reference-scaled Jacobian; excludes knots, physical bounds and rank deficiency; not physiological uncertainty or confidence intervals",
+  "independent_accuracy_status": "not_evaluable_without_independent_references"
+}

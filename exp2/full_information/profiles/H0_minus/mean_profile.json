@@ -1,0 +1,93 @@
+{
+  "schema": "achieved_mean_local_profile_v1",
+  "source": {
+    "directory": "/workspace/ximea/xrecorder/exp2/reduced_calibration/training/holdout3/robust",
+    "model_sha256": "407dd805229dfc7a24a51a37daf7c4aeb6ab9767546aa9509ac3b5af215b2cc2",
+    "checkpoint_sha256": "a43dc79d1ca81cc7a08e4669085f937594349fca3d138b2c2de4f4d648f5df9f",
+    "training_fixations": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "frame_hash": "d00c746727c8a18f4f5a0e69b91dbc9bdb10a230114f9501e83c2cc82aa08883",
+    "global_group_hash": "e71e0321905bbec8560bed498e445081155df4967497f6210380f773a487c21e",
+    "observation_hash": "639365132e9983713d305f874f6e7fdffd3e1fdd8b38b2a0b57e39f11754cef2",
+    "source_sha256": {
+      "capture_1_detections.pkl": "65eb4ed79d807751634b98d114adb470165642af2c6a349578ce6b79343f2a51",
+      "capture_2_detections.pkl": "96d903e81f31a2265aab0072a0c24e77d0d5b4e9f5ce754d30fa781ef997b357",
+      "capture_3_detections.pkl": "5d67d6d15bd4e48bf481353086d980b74e96cc9dddf097e2a6b2137de1daf349",
+      "capture_4_detections.pkl": "227a3dbeba3db3e5e9565d90364e68389ad3428e13ce5e53f0b6ac58132b0721"
+    },
+    "interval_sha256": "970d4a8215690ac65dc8c1147d1582b06d0bf03be030ad9f8146a4e5c8fc381a",
+    "schema": "profiled_piecewise_displacement_power_ratio_v1"
+  },
+  "probe": {
+    "global_fixation": 17,
+    "local_group": 12,
+    "baseline_fitted_mean_deg": 0.04768068857549606,
+    "requested_offset_deg": -0.5,
+    "requested_mean_deg": -0.45231931142450393,
+    "strength": 1.0,
+    "scale_deg": 1.0
+  },
+  "achieved_offset_deg": -0.39344664734410373,
+  "augmented_objective": 0.6891185984562225,
+  "original_objective": 0.6834417899751166,
+  "original_objective_components": {
+    "observations": 0.0025111458864958,
+    "model_prior": 8.424331881953874e-06,
+    "anchors": 0.6804258639293784,
+    "temporal": 0.0004963558273607216
+  },
+  "probe_objective": 0.005676808481105898,
+  "baseline_original_objective": 0.6622429001936604,
+  "baseline_original_parts": {
+    "observations": 0.0023809924809993547,
+    "model_prior": 6.6702154367882215e-06,
+    "anchors": 0.6593887158292321,
+    "temporal": 0.0004665216679930986
+  },
+  "original_objective_change": 0.02119888978145623,
+  "calibration_converged": true,
+  "constrained_stationarity": {
+    "achieved_mean_deg": -0.34576595876860766,
+    "estimated_mean_constraint_multiplier": 0.10654778906476348,
+    "probe_multiplier": 0.10655335265589627,
+    "multiplier_difference": -5.563591132795587e-06,
+    "constrained_physical_projected_optimality": 3.4170931516177675e-06,
+    "selected_fixation_interior_frame_count": 4080,
+    "zero_A_feasible_descent_count": 0,
+    "zero_A_stationarity_unverified_count": 0,
+    "augmented_physical_projected_optimality": 3.4170931516177675e-06,
+    "interpretation": "local constrained first-order test at achieved mean; target need not be attained; no global profile certificate or confidence interval"
+  },
+  "constrained_stationarity_verified": true,
+  "continuation_status": {
+    "status": "converged",
+    "elapsed_seconds": 141.99256902599882,
+    "accepted_iterations": 58,
+    "nfev": 103,
+    "termination": "physical stationarity, step, cost and weight criteria satisfied",
+    "scipy_status": -2,
+    "scipy_message": "Stopped because `callback` function raised `StopIteration` or returned `True`"
+  },
+  "coefficient_irls": {
+    "converged": true,
+    "iterations": 4,
+    "weight_change": 9.357181696145744e-12,
+    "objective": 0.6891185984562225
+  },
+  "interpretation": "Other training states and coefficients were reoptimized. This is a local constrained-stationary point at achieved mean only if KKT passes; no exact requested-mean or global profile/CI claim."
+}
