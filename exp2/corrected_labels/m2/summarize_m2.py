@@ -18,8 +18,7 @@ EXP = HERE.parents[1]
 sys.path.insert(0, str(HERE))
 import check_m2
 
-CONFIGS = [('M0', 'piecewise, theta anchor 1.0 deg'), ('M2a1', 'm2, theta anchor 1.0 deg'), ('M2a01', 'm2, theta anchor 0.1 deg'),
-           ('M3a01', 'm3 (m2 + gaze^3 term in rho4), theta anchor 0.1 deg')]
+CONFIGS = [('M0', 'piecewise, theta anchor 1.0 deg'), ('M2a1', 'm2, theta anchor 1.0 deg'), ('M2a01', 'm2, theta anchor 0.1 deg')]
 HELDOUT = [10, 11, 12, 13, 14]
 PIECEWISE_NAMES = ['b@0.36', 'b@2', 'b@3', 'b@4', 's@0.36', 's@2', 's@3', 's@4', 'r0', 'r1', 'r2', 'r3(a)', 'r4(a t)', 'r5(a t2)']
 

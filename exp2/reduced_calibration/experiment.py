@@ -38,7 +38,7 @@ def coefficient_map(active):
     return E
 
 
-def build_training_m2(y, frames, groups, meta, fold, anchor_scale=1., model='m2'):
+def build_training_m2(y, frames, groups, meta, fold, anchor_scale=1.):
     """m2: no exponent/knots/map. 13 coefficients from linear LS at nominal targets and demands."""
     heldout = FOLDS[fold]
     selected = [j for j in range(20) if j not in heldout]
@@ -48,7 +48,7 @@ def build_training_m2(y, frames, groups, meta, fold, anchor_scale=1., model='m2'
     targets = np.array([meta[j]['target_theta_deg'] for j in selected])
     demands = np.array([meta[j]['demand_diopters_label'] for j in selected])
     means = np.array([ty[tg == j].mean(axis=0) for j in range(len(selected))])
-    coef = m2_model.initial_coefficients(ty, tg, targets, demands, len(selected), cubic_rho=model == 'm3')
+    coef = m2_model.initial_coefficients(ty, tg, targets, demands, len(selected))
     theta = m2_model.initial_theta(coef, ty[:, 0], demands[tg])
     covariance = noise_covariance(ty, tf, tg)
     ranges = np.ptp(ty, axis=0)
@@ -56,12 +56,12 @@ def build_training_m2(y, frames, groups, meta, fold, anchor_scale=1., model='m2'
         raise ValueError('Degenerate training observable range')
     prior_W = np.diag(1/ranges**2)
     problem = ProfiledProblem(ty, tf, tg, targets, demands, None, coef, np.linalg.inv(covariance), prior_W,
-                              model=model, theta_anchor_scale_deg=anchor_scale)
+                              model='m2', theta_anchor_scale_deg=anchor_scale)
     initial = problem.encode(theta, demands[tg])
     return problem, initial, selected, groups[mask], covariance, dict(
         training_mean_observations=means.tolist(), training_observation_hash=array_hash(ty),
         initial_fit='linear least squares of training-frame observations at nominal corrected targets and nominal demands, equal weight per fixation',
-        initial_coefficient_names=m2_model.info(model)['names'], prior_rule=PRIOR_RULE, free_coefficient_count=m2_model.info(model)['n'])
+        initial_coefficient_names=m2_model.COEFFICIENT_NAMES, prior_rule=PRIOR_RULE, free_coefficient_count=m2_model.N_COEF)
 
 
 def build_training(y, frames, groups, meta, fold, fixed_p=None, anchor_scale=1.):
@@ -120,9 +120,9 @@ def train(args):
         if source_identity['settings'].get('theta_anchor_scale_deg', 1.) != args.theta_anchor_scale_deg:
             raise ValueError('Source checkpoint theta anchor scale differs from --theta-anchor-scale-deg')
     y, frames, groups, meta, records, provenance = load_data(args.experiment_dir, args.intervals, target_overrides=args.target_overrides)
-    if args.model in m2_model.M2_FAMILY:
+    if args.model == 'm2':
         problem, initial, selected, global_groups, covariance, detail = build_training_m2(
-            y, frames, groups, meta, args.fold, args.theta_anchor_scale_deg, args.model)
+            y, frames, groups, meta, args.fold, args.theta_anchor_scale_deg)
     else:
         problem, initial, selected, global_groups, covariance, detail = build_training(
             y, frames, groups, meta, args.fold, source_identity['p'] if source_identity else None,
@@ -136,7 +136,7 @@ def train(args):
     if args.model != 'piecewise' or args.theta_anchor_scale_deg != 1.:
         # Default piecewise provenance is left byte-identical to earlier runs.
         provenance.update(model_type=args.model, theta_anchor_scale_deg=args.theta_anchor_scale_deg,
-                          coefficient_schema=m2_model.info(args.model)['schema'] if args.model in m2_model.M2_FAMILY else 'profiled_piecewise_displacement_power_ratio_v1')
+                          coefficient_schema=m2_model.SCHEMA if args.model == 'm2' else 'profiled_piecewise_displacement_power_ratio_v1')
     meta = [dict(row, heldout=j in heldout) for j, row in enumerate(meta)]
     held_capture = 3 if args.fold == 'holdout3' else 4 if args.fold == 'holdout2' else None
     records = [record for record in records if record['capture'] != held_capture]
@@ -290,7 +290,7 @@ def check_model(model, expected, label='model'):
     """Refuse to use a model.json whose type/schema differs from the requested --model."""
     if model_type_of(model) != expected:
         raise ValueError(f'{label} is a {model_type_of(model)} model but --model {expected} was requested')
-    if expected in m2_model.M2_FAMILY and (model.get('schema') != m2_model.info(expected)['schema'] or len(model['coefficients']) != m2_model.info(expected)['n']
+    if expected == 'm2' and (model.get('schema') != m2_model.SCHEMA or len(model['coefficients']) != m2_model.N_COEF
                              or model.get('p') is not None or 'coefficient_map' in model):
         raise ValueError(f'{label} does not match the m2 schema')
     if expected == 'piecewise' and (model.get('schema') != 'profiled_piecewise_displacement_power_ratio_v1'
@@ -299,7 +299,7 @@ def check_model(model, expected, label='model'):
 
 
 def invert_and_diagnose(model_type, observation, coef, p, W, iterations, active_knots=None):
-    if model_type in m2_model.M2_FAMILY:
+    if model_type == 'm2':
         states, diagnostics = m2_model.invert_batch_m2(observation, coef, W, iterations)
         prediction, physical = m2_model.state_diagnostics_m2(states, observation, coef, W)
     else:
@@ -332,7 +332,7 @@ def estimate(args):
         raise ValueError('Use a new prediction directory; preserve frozen predictions')
     args.output_dir.mkdir(parents=True)
     p, W = model['p'], np.asarray(model['precision'])
-    if args.model in m2_model.M2_FAMILY:
+    if args.model == 'm2':
         E, active = None, None
     else:
         E = np.asarray(model['coefficient_map'])
@@ -364,7 +364,7 @@ def estimate(args):
         write_csv(path, rows)
         manifests[name] = dict(prediction_sha256=sha(path), frame_count=len(rows), frame_hash=array_hash(hf), observation_hash=array_hash(hy))
         atomic_json(args.output_dir/(name+'_grid_audit.json'), json_safe(
-            m2_model.grid_audit_m2(coef, W) if args.model in m2_model.M2_FAMILY else grid_audit(coef, p, W, active)))
+            m2_model.grid_audit_m2(coef, W) if args.model == 'm2' else grid_audit(coef, p, W, active)))
         capture = 3 if args.fold == 'holdout3' else 4
         record = next(record for record in records if record['capture'] == capture)
         lookup = {row['frame_index']: row for row in rows}
@@ -459,7 +459,7 @@ def compare(args):
         prov = model['diagnostics']['provenance']
         if prov['training_fixations'] != list(range(20)) or prov['source_sha256'] != frozen['source_sha256'] or prov['selected_interval_sha256'] != frozen['selected_interval_sha256']:
             raise ValueError('Reference cohort/source mismatch: '+name)
-        identity_map = 'coefficient_map' not in model if args.model in m2_model.M2_FAMILY else np.array_equal(np.asarray(model.get('coefficient_map')), np.eye(14))
+        identity_map = 'coefficient_map' not in model if args.model == 'm2' else np.array_equal(np.asarray(model.get('coefficient_map')), np.eye(14))
         if name == 'fresh_matched_full' and (prov.get('experiment') != frozen['experiment'] or prov.get('prior_rule') != PRIOR_RULE or not identity_map):
             raise ValueError('Matched full reference must use new policy and identity map')
         csv_path = directory/f'capture_{capture}_states.csv'
@@ -554,8 +554,8 @@ def main():
         command = sub.add_parser(stage)
         command.add_argument('--fold', choices=list(FOLDS), required=True)
     for stage in ['train', 'estimate', 'compare']:
-        sub.choices[stage].add_argument('--model', choices=['piecewise', 'm2', 'm3'], default='piecewise',
-            help='piecewise (14 coefficients, knots, exponent p), m2 (13 coefficients, log(1+A)) or m3 (m2 plus a gaze-cubed term in rho4, 14 coefficients)')
+        sub.choices[stage].add_argument('--model', choices=['piecewise', 'm2'], default='piecewise',
+            help='piecewise (14 coefficients, knots, exponent p) or m2 (13 coefficients, log(1+A))')
     sub.choices['train'].add_argument('--theta-anchor-scale-deg', type=float, default=1.,
         help='scale of the nominal-target mean gaze anchor (deg); default 1.0 = existing behaviour')
     for stage in ['train', 'estimate']:

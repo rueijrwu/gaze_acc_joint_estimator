@@ -24,23 +24,6 @@ BASIS_DESCRIPTION = ('d=(b0+b1*A)+(s0+s1*L)*t+(c20+c21*L)*t^2+c3*t^3; '
                      'rho=(r0+r1*t+r2*t^2)+L*(r3+r4*t+r5*t^2); t=theta/15, L=log(1+A); '
                      'state=(theta,A) encoded (theta/15,A/4); no knots, no exponent')
 N_COEF = 13
-# m3 = m2 plus one A-independent gaze-cubed term in rho4: rho4 += r6*t**3 (14 coefficients).
-N_COEF_M3 = 14
-SCHEMA_M3 = 'profiled_m3_displacement_log_ratio_v1'
-MODEL_TYPE_M3 = 'm3'
-COEFFICIENT_NAMES_M3 = COEFFICIENT_NAMES + ['r6']
-COEFFICIENT_ORDER_M3 = COEFFICIENT_ORDER.replace('r5 (', 'r5,r6 (')
-BASIS_DESCRIPTION_M3 = BASIS_DESCRIPTION.replace('L*(r3+r4*t+r5*t^2)', 'L*(r3+r4*t+r5*t^2)+r6*t^3')
-M2_FAMILY = ('m2', 'm3')
-
-
-def info(model):
-    """Schema/identity fields for an m2-family model type."""
-    if model == 'm3':
-        return dict(schema=SCHEMA_M3, model_type=MODEL_TYPE_M3, names=COEFFICIENT_NAMES_M3, order=COEFFICIENT_ORDER_M3,
-                    description=BASIS_DESCRIPTION_M3, n=N_COEF_M3)
-    return dict(schema=SCHEMA, model_type=MODEL_TYPE, names=COEFFICIENT_NAMES, order=COEFFICIENT_ORDER,
-                description=BASIS_DESCRIPTION, n=N_COEF)
 A_SCALE = 4.0
 CAL_A_RANGE = (1000/2775, 4.0)  # protocol demand support, for the extrapolation flag/audits only
 THETA_BOUNDS, A_BOUNDS = (-20., 20.), (0., 6.)
@@ -51,26 +34,22 @@ A_STARTS = np.unique(np.r_[_EDGES, (_EDGES[:-1]+_EDGES[1:])/2])
 THETA_STARTS = np.array([-20., -10., 0., 10., 20.])
 
 
-def basis_m2(theta, A, derivatives=True, cubic_rho=False):
-    """Design tensor H (n,2,13 or 14 with cubic_rho) with pred = H@coef; dt, dA = dH/dtheta_deg, dH/dA."""
+def basis_m2(theta, A, derivatives=True):
+    """Design tensor H (n,2,13) with pred = H@coef; dt, dA = dH/dtheta_deg, dH/dA."""
     theta, A = np.asarray(theta, float), np.asarray(A, float)
     n = len(theta)
     t, L = theta/15, np.log1p(A)
-    H = np.zeros((n, 2, N_COEF_M3 if cubic_rho else N_COEF))
+    H = np.zeros((n, 2, N_COEF))
     H[:, 0, :7] = np.column_stack([np.ones(n), A, t, L*t, t*t, L*t*t, t**3])
-    H[:, 1, 7:13] = np.column_stack([np.ones(n), t, t*t, L, L*t, L*t*t])
-    if cubic_rho:
-        H[:, 1, 13] = t**3
+    H[:, 1, 7:] = np.column_stack([np.ones(n), t, t*t, L, L*t, L*t*t])
     if not derivatives:
         return H, None, None
     z, o, iL = np.zeros(n), np.ones(n), 1/(1+A)
     dt, dA = np.zeros_like(H), np.zeros_like(H)
     dt[:, 0, :7] = np.column_stack([z, z, o, L, 2*t, 2*L*t, 3*t*t])/15
-    dt[:, 1, 7:13] = np.column_stack([z, o, 2*t, z, L, 2*L*t])/15
-    if cubic_rho:
-        dt[:, 1, 13] = 3*t*t/15
+    dt[:, 1, 7:] = np.column_stack([z, o, 2*t, z, L, 2*L*t])/15
     dA[:, 0, :7] = np.column_stack([z, o, z, t*iL, z, t*t*iL, z])
-    dA[:, 1, 7:13] = np.column_stack([z, z, z, iL, t*iL, t*t*iL])
+    dA[:, 1, 7:] = np.column_stack([z, z, z, iL, t*iL, t*t*iL])
     return H, dt, dA
 
 
@@ -81,18 +60,16 @@ def forward_jac_m2(theta, A, coef):
     t, L, iL = theta/15, np.log1p(A), 1/(1+A)
     s, q = c[2]+c[3]*L, c[4]+c[5]*L
     r, g = c[7]+c[8]*t+c[9]*t*t, c[10]+c[11]*t+c[12]*t*t
-    cubic = len(c) == N_COEF_M3
-    rho = r+L*g+(c[13]*t**3 if cubic else 0.)
-    pred = np.stack([c[0]+c[1]*A+s*t+q*t*t+c[6]*t**3, rho], axis=-1)
+    pred = np.stack([c[0]+c[1]*A+s*t+q*t*t+c[6]*t**3, r+L*g], axis=-1)
     jac = np.empty(theta.shape+(2, 2))
     jac[..., 0, 0] = (s+2*q*t+3*c[6]*t*t)/15
     jac[..., 0, 1] = c[1]+(c[3]*t+c[5]*t*t)*iL
-    jac[..., 1, 0] = (c[8]+2*c[9]*t+L*(c[11]+2*c[12]*t)+(3*c[13]*t*t if cubic else 0.))/15
+    jac[..., 1, 0] = (c[8]+2*c[9]*t+L*(c[11]+2*c[12]*t))/15
     jac[..., 1, 1] = g*iL
     return pred, jac
 
 
-def initial_coefficients(y, groups, targets, demands, selected_count, cubic_rho=False):
+def initial_coefficients(y, groups, targets, demands, selected_count):
     """Linear LS of the training-frame observations at nominal (theta, A), equal weight per fixation.
 
     `groups` are 0..J-1 training indices; `targets`/`demands` per group.  The nominal state is
@@ -101,10 +78,9 @@ def initial_coefficients(y, groups, targets, demands, selected_count, cubic_rho=
     """
     counts = np.bincount(groups, minlength=selected_count)
     w = np.sqrt(1/(selected_count*counts[groups]))
-    H = basis_m2(np.asarray(targets, float)[groups], np.asarray(demands, float)[groups], derivatives=False, cubic_rho=cubic_rho)[0]
-    n_coef = N_COEF_M3 if cubic_rho else N_COEF
-    coef = np.zeros(n_coef)
-    for row, cols in [(0, slice(0, 7)), (1, slice(7, n_coef))]:
+    H = basis_m2(np.asarray(targets, float)[groups], np.asarray(demands, float)[groups], derivatives=False)[0]
+    coef = np.zeros(N_COEF)
+    for row, cols in [(0, slice(0, 7)), (1, slice(7, 13))]:
         X = H[:, row, cols]*w[:, None]
         coef[cols], _, rank, sv = np.linalg.lstsq(X, y[:, row]*w, rcond=None)
         if rank < X.shape[1]:

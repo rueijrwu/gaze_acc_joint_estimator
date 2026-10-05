@@ -90,11 +90,10 @@ def make_manifest(problem, provenance, global_groups, kappa):
             nominal_anchor_policy='retained unchanged'))
         manifest['settings'] = dict(manifest['settings'], previous_mean_strength=problem.previous_mean_strength,
                                     previous_mean_scale_deg=problem.previous_mean_scale_deg)
-    if problem.model in m2_model.M2_FAMILY:
-        # No knots/exponent: the checkpoint identity records the m2-family schema instead.
-        ident = m2_model.info(problem.model)
-        manifest.update(schema=ident['schema'], coefficient_order=ident['order'],
-                        basis_description=ident['description'], p=None, knots=None, model_type=ident['model_type'],
+    if problem.model == 'm2':
+        # No knots/exponent: the checkpoint identity records the m2 schema instead.
+        manifest.update(schema=m2_model.SCHEMA, coefficient_order=m2_model.COEFFICIENT_ORDER,
+                        basis_description=m2_model.BASIS_DESCRIPTION, p=None, knots=None, model_type=m2_model.MODEL_TYPE,
                         state_encoding='theta/15, A/4 (A in diopters)')
         manifest['settings'] = dict(manifest['settings'], extrapolation='none (smooth analytic m2 forms)')
     if problem.model != 'piecewise' or problem.theta_anchor_scale != 1.:
@@ -208,7 +207,7 @@ def envelope_gradients(problem, x, coef, omega, use_problem_hook=True):
         hook=getattr(problem,'physical_envelope_gradients',None)
         if hook is not None: return hook(x,coef,omega)
     theta, a, A, chain = problem.decode(x)
-    if problem.model in m2_model.M2_FAMILY:
+    if problem.model == 'm2':
         return envelope_gradients_m2(problem, theta, A, chain, coef, omega)
     H, dt, _ = basis(theta, a, problem.p, curvature=problem.curvature)
     error = H@coef-problem.y

@@ -34,11 +34,9 @@ def rel(a, b):
     return float(np.linalg.norm(a-b)/max(np.linalg.norm(b), 1e-12))
 
 
-def check_a(rng, cubic=False):
+def check_a(rng):
     results = {}
-    scale = [.1, .02, .05, .02, .01, .01, .005, .7, .01, .005, .02, .01, .005] + ([.01] if cubic else [])
-    n_coef = len(scale)
-    coef = rng.normal(size=n_coef)*np.array(scale)
+    coef = rng.normal(size=13)*np.array([.1, .02, .05, .02, .01, .01, .005, .7, .01, .005, .02, .01, .005])
     theta, A = rng.uniform(-20, 20, 40), rng.uniform(0, 6, 40)
     h = 1e-6
     pred, jac = m2.forward_jac_m2(theta, A, coef)
@@ -46,19 +44,18 @@ def check_a(rng, cubic=False):
     fd_A = (m2.forward_jac_m2(theta, A+h, coef)[0]-m2.forward_jac_m2(theta, A-h, coef)[0])/(2*h)
     results['forward_jac_dtheta'] = rel(jac[..., 0], fd_t)
     results['forward_jac_dA'] = rel(jac[..., 1], fd_A)
-    H, dt, dA = m2.basis_m2(theta, A, cubic_rho=cubic)
+    H, dt, dA = m2.basis_m2(theta, A)
     results['basis_H_pred_vs_forward'] = rel(H@coef, pred)
     results['basis_dt_vs_forward_jac'] = rel(dt@coef, jac[..., 0])
     results['basis_dA_vs_forward_jac'] = rel(dA@coef, jac[..., 1])
     fd_coef = np.empty_like(H)
-    for k in range(n_coef):
-        e = np.zeros(n_coef); e[k] = h
+    for k in range(13):
+        e = np.zeros(13); e[k] = h
         fd_coef[:, :, k] = (m2.forward_jac_m2(theta, A, coef+e)[0]-m2.forward_jac_m2(theta, A, coef-e)[0])/(2*h)
-    results[f'jacobian_wrt_coefficients(all {n_coef})'] = rel(H, fd_coef)
-    names = m2.COEFFICIENT_NAMES_M3 if cubic else m2.COEFFICIENT_NAMES
-    results['per_coefficient_max'] = {name: rel(H[:, :, k], fd_coef[:, :, k]) for k, name in enumerate(names)}
-    fd_Ht = (m2.basis_m2(theta+h, A, False, cubic)[0]-m2.basis_m2(theta-h, A, False, cubic)[0])/(2*h)
-    fd_HA = (m2.basis_m2(theta, A+h, False, cubic)[0]-m2.basis_m2(theta, A-h, False, cubic)[0])/(2*h)
+    results['jacobian_wrt_coefficients(all 13)'] = rel(H, fd_coef)
+    results['per_coefficient_max'] = {name: rel(H[:, :, k], fd_coef[:, :, k]) for k, name in enumerate(m2.COEFFICIENT_NAMES)}
+    fd_Ht = (m2.basis_m2(theta+h, A, False)[0]-m2.basis_m2(theta-h, A, False)[0])/(2*h)
+    fd_HA = (m2.basis_m2(theta, A+h, False)[0]-m2.basis_m2(theta, A-h, False)[0])/(2*h)
     results['basis_dt_tensor'] = rel(dt, fd_Ht)
     results['basis_dA_tensor'] = rel(dA, fd_HA)
     results['_ok'] = all(v < TOL for k, v in results.items() if not k.startswith('_') and not isinstance(v, dict)) and \
@@ -66,19 +63,19 @@ def check_a(rng, cubic=False):
     return results
 
 
-def check_problem_jacobian(rng, model='m2'):
-    """ProfiledProblem(model=model) variable-projection Jacobian vs finite differences of the residual."""
+def check_problem_jacobian(rng):
+    """ProfiledProblem(model='m2') variable-projection Jacobian vs finite differences of the residual."""
     J, n_per = 4, 30
     groups = np.repeat(np.arange(J), n_per)
     targets, demands = np.array([-10., 0., 10., 5.]), np.array([.36, 2., 4., 3.])
-    truth = np.array([.12, .02, .5, .1, .05, .02, .01, .6, .03, .01, .04, .02, .01] + ([.02] if model == 'm3' else []))
+    truth = np.array([.12, .02, .5, .1, .05, .02, .01, .6, .03, .01, .04, .02, .01])
     th0, A0 = targets[groups]+rng.normal(0, .5, len(groups)), demands[groups]+rng.normal(0, .1, len(groups))
     A0 = np.clip(A0, 0, 6)
-    y = m2.basis_m2(th0, A0, False, model == 'm3')[0]@truth+rng.normal(0, 1e-3, (len(groups), 2))
+    y = m2.basis_m2(th0, A0, False)[0]@truth+rng.normal(0, 1e-3, (len(groups), 2))
     frames = np.arange(len(groups))
     W = np.diag([1e4, 1e4])
     problem = cp.ProfiledProblem(y, frames, groups, targets, demands, None, truth, W, np.diag(1/np.ptp(y, axis=0)**2),
-                                 model=model, theta_anchor_scale_deg=.5)
+                                 model='m2', theta_anchor_scale_deg=.5)
     x = problem.encode(th0+.1, A0+.05)
     omega = np.ones(problem.n)
     op = problem.jacobian(x, omega)
@@ -92,25 +89,10 @@ def check_problem_jacobian(rng, model='m2'):
                 _ok=bool(err_mv < 1e-5 and adjoint < 1e-9))
 
 
-def check_m3_reduces(rng):
-    """m3 with r6 = 0 must equal m2 exactly; m2 predictions must be unchanged by the m3 code path."""
-    coef = rng.normal(size=13)*np.array([.1, .02, .05, .02, .01, .01, .005, .7, .01, .005, .02, .01, .005])
-    theta, A = rng.uniform(-20, 20, 40), rng.uniform(0, 6, 40)
-    p2, j2 = m2.forward_jac_m2(theta, A, coef)
-    p3, j3 = m2.forward_jac_m2(theta, A, np.r_[coef, 0.])
-    H2 = m2.basis_m2(theta, A)[0]; H3 = m2.basis_m2(theta, A, cubic_rho=True)[0]
-    out = dict(forward_max_abs_diff=float(np.max(abs(p2-p3))), jac_max_abs_diff=float(np.max(abs(j2-j3))),
-               basis_first13_max_abs_diff=float(np.max(abs(H2-H3[:, :, :13]))),
-               r6_column_d_channel_zero=bool(np.all(H3[:, 0, 13] == 0)))
-    out['_ok'] = bool(out['forward_max_abs_diff'] == 0 and out['jac_max_abs_diff'] == 0
-                      and out['basis_first13_max_abs_diff'] == 0 and out['r6_column_d_channel_zero'])
-    return out
-
-
 def min_slope(model_json, theta, A):
     """dd/dtheta over a (theta, A) grid for an m2 or a piecewise model.json (d units per degree)."""
     coef = np.asarray(model_json['coefficients'])
-    if model_json.get('model_type', 'piecewise') in ('m2', 'm3'):
+    if model_json.get('model_type', 'piecewise') == 'm2':
         return m2.forward_jac_m2(theta, A, coef)[1][..., 0, 0]
     w = cp.interpolation(A.ravel(), cp.KNOTS)[0]
     return (w@coef[4:8]).reshape(A.shape)+0*theta  # piecewise d = b(A)+s(A)*theta: slope is s(A)
@@ -191,9 +173,7 @@ def main():
     parser.add_argument('--skip-c', action='store_true')
     args = parser.parse_args()
     rng = np.random.default_rng(20261005)
-    report = {'a_m2_finite_differences': check_a(rng), 'a2_problem_jacobian': check_problem_jacobian(rng),
-              'a_m3_finite_differences': check_a(rng, cubic=True), 'a2_m3_problem_jacobian': check_problem_jacobian(rng, 'm3'),
-              'a3_m3_reduces_to_m2_when_r6_zero': check_m3_reduces(rng)}
+    report = {'a_m2_finite_differences': check_a(rng), 'a2_problem_jacobian': check_problem_jacobian(rng)}
     if not args.skip_b and args.model_json:
         report['b_monotonicity'] = check_b(args.model_json)
     if not args.skip_c:
