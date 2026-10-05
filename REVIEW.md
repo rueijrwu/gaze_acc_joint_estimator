@@ -26,8 +26,8 @@ accommodation information in this archive.
 | Suggestion | Verdict | Evidence |
 |---|---|---|
 | Information bound from the N3 map | Wrong | N3 has 14 coefficients and no log-S1 model. S1 sensitivity exists only in the 3 shape coefficients of the unconverged 17-coefficient fits. The free-scale case is already proven to add nothing (`scale_controls.json`); the formula is in Theory.md. |
-| Within-capture log-S1 plots vs gaze/demand | Already done; impossible for demand | `scale_structure.json` states demand is not identifiable with recording effects and already has a within-recording regression (R2 = 0.80). Gaze cannot be separated from time. |
-| Physical framing (distance vs state) | Imprecise | Theory.md already treats S1 invariance as a hypothesis. S1 also tracks detector angle error (r = 0.76-0.89 per capture), which was not mentioned. |
+| Within-capture log-S1 plots vs gaze/demand | Already done; impossible for demand | `scale_structure.json` states demand is not identifiable with recording effects and already has a within-recording regression (R2 = 0.80 in the committed file; 0.75 when regenerated with current code, see Reproducibility note). Gaze cannot be separated from time. |
+| Physical framing (distance vs state) | Imprecise | Theory.md already treats S1 invariance as a hypothesis. The committed file reports S1 correlating with detector angle error (r = 0.76-0.89 per capture), but the current code no longer produces that predictor, so treat it as unconfirmed. |
 | Scale proxy: glint spacing | Wrong (circular) | S1 is the P1 glint spacing. Rig features are fixed to the camera and say nothing about head distance. |
 | Scale proxy: limbus/iris | Plausible, unverified | Needs the raw videos (repo has only detection pickles) and a new detector. Horizontal width changes with gaze, so only vertical extent is a candidate. |
 | Break-even scale spec | Good idea, two errors | "Tens of microns" has no basis (no working distance in the repo; glint spacing may not scale as 1/D). The per-frame scale model (`joint_problem.py:253-286`) lets scale error average out over about 4,000 frames per fixation, whereas real head-distance error is per-capture or slow drift. |
@@ -72,3 +72,20 @@ accommodation information in this archive.
 4. Knot: decide whether to authorize the one-sided check on the single frame.
 5. Anchors/holdouts: vary gaze-anchor weight against accommodation-anchor weight separately;
    run holdouts only on the 9-12 usable fixations, after the earlier decisions.
+
+## Reproducibility note (Python 3.11)
+
+The scripts run on Python 3.11.15 with the versions pinned in `requirements.lock`
+(numpy 2.4.6, scipy 1.16.2, matplotlib 3.10.8), although the lockfile header says 3.14.5.
+Re-running `experiment.py scale` into a scratch directory gave:
+
+- `scale_fixations.csv`: byte-identical to the committed file.
+- `scale_controls.json`: identical except for synthetic eigenvalues at the 1e-9 to 1e-10
+  level (numerical zero, BLAS round-off); the one meaningful eigenvalue and all checks match.
+- `scale_structure.json`: **differs materially.** The committed file was produced by an older
+  version of `scale_diagnostics.py` (different detector predictors, no `ordering_audit` or
+  `time_policy`). Regenerated: rank 11 vs 12, within-recording R2 0.75 vs 0.80, different
+  regression coefficients. The demand/recording confounding and the S1 medians are unchanged.
+
+The committed `scale_structure.json` therefore does not correspond to the current code. This
+is unrelated to the Python version. Nothing in the repository was overwritten.
