@@ -76,7 +76,7 @@ def basis(theta, a, p, derivatives=True, curvature=False):
     return H, dt, da
 
 
-def load_data(experiment, interval_path, heldout=None):
+def load_data(experiment, interval_path, heldout=None, target_overrides=None):
     raw = interval_path.read_bytes()
     report = json.loads(raw)
     rows = report["fixations"]
@@ -86,6 +86,40 @@ def load_data(experiment, interval_path, heldout=None):
     if set(r["capture"] for r in rows) != expected:
         raise ValueError("Only captures1–4 are authorized")
     hashes = {r["capture"]: r["sha256"] for r in report["sources"]}
+
+    # Load and validate target overrides if provided
+    override_targets = None
+    override_sha256 = None
+    override_captures = None
+    if target_overrides is not None:
+        target_overrides = Path(target_overrides)
+        override_raw = target_overrides.read_bytes()
+        override_sha256 = hashlib.sha256(override_raw).hexdigest()
+        override_spec = json.loads(override_raw)
+        if override_spec.get("schema_version") != 1:
+            raise ValueError("Target override schema_version must be 1")
+        if override_spec.get("units") != "deg":
+            raise ValueError("Target override units must be 'deg'")
+        if hashlib.sha256(raw).hexdigest() != override_spec.get("base_intervals_sha256"):
+            raise ValueError("Target override base_intervals_sha256 mismatch")
+        override_targets = override_spec.get("targets", {})
+        if not isinstance(override_targets, dict) or not override_targets:
+            raise ValueError("Target override targets must be a nonempty dict")
+        override_captures = set(override_targets.keys())
+        for capture_name in override_captures:
+            if capture_name not in expected:
+                raise ValueError(f"Unknown capture name in overrides: {capture_name}")
+            targets = override_targets[capture_name]
+            if not isinstance(targets, list) or len(targets) != 5:
+                raise ValueError(f"Override targets for {capture_name} must be a list of exactly 5 elements")
+            for t in targets:
+                if not isinstance(t, (int, float)) or not np.isfinite(t):
+                    raise ValueError(f"Override targets must be finite floats")
+                if abs(t) > 20:
+                    raise ValueError(f"Override target {t} exceeds bounds [-20, 20]")
+            if not all(targets[i] < targets[i+1] for i in range(4)):
+                raise ValueError(f"Override targets for {capture_name} must be strictly increasing")
+
     records, meta, ylist, flist, glist = [], [], [], [], []
     for capture in range(1, 5):
         name = f"capture_{capture}_detections.pkl"
@@ -127,10 +161,30 @@ def load_data(experiment, interval_path, heldout=None):
                              excluded_event_count=0, heldout=j == heldout))
             ylist.append(obs[index]); flist.append(frame[index]); glist.append(np.full(len(index), j))
         records.append(dict(capture=capture, arrays=arrays, y=obs, valid=good, full=full, core=core, groups=lookup))
+
+    # Apply overrides to meta if provided
+    if override_targets is not None:
+        selected = [dict(r) for r in meta]
+        for j, r in enumerate(selected):
+            if r["capture"] in override_captures:
+                targets_list = override_targets[r["capture"]]
+                fixation_index = r.get("fixation_index_in_capture", j % 5)  # fallback to derived index
+                # Find the target index based on the original target value
+                try:
+                    orig_idx = TARGETS.tolist().index(r["target_theta_deg"])
+                except (ValueError, IndexError):
+                    raise ValueError(f"Cannot map original target {r['target_theta_deg']} for override")
+                r["nominal_target_theta_deg_frozen"] = r["target_theta_deg"]
+                r["target_theta_deg"] = float(targets_list[orig_idx])
+        meta = selected
+
     provenance = {"selected_interval_path":str(interval_path), "selected_interval_sha256":hashlib.sha256(raw).hexdigest(),
                   "source_sha256":hashes, "validity_policy":"measurement_valid AND stored pupil_valid",
                   "native_detection_rerun":False, "interval_version_frozen":True, "edge_fraction":.1,
                   "event_mask":"empty; S_j=V_j", "capture5_used":False}
+    if override_targets is not None:
+        provenance.update(target_override_path=str(target_overrides), target_override_sha256=override_sha256,
+                         target_override_captures=list(override_captures), target_override_targets=override_targets)
     return np.vstack(ylist), np.concatenate(flist), np.concatenate(glist), meta, records, provenance
 
 

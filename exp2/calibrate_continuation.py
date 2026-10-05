@@ -68,6 +68,8 @@ def make_manifest(problem, provenance, global_groups, kappa):
                 encoding=dict(theta_scale=15., power_scale=problem.a_scale,
                               residual_scale=float(np.sqrt(problem.n))),
                 bounds=dict(theta=[-20., 20.], A=[0., 6.]))
+    if 'target_override_sha256' in provenance:
+        manifest['target_override_sha256'] = provenance['target_override_sha256']
     if problem.coefficient_map is not None:
         manifest.update(coefficient_map=problem.coefficient_map.tolist(),
                         free_coefficient_count=problem.free_coefficient_count,

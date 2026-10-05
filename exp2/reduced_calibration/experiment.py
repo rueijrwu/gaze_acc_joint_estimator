@@ -87,7 +87,7 @@ def train(args):
             source_identity = json.loads(str(checkpoint['manifest_json']))
         if source_identity.get('fold') != args.fold or source_identity.get('experiment') != 'hard_constrained_reduced_demands_v1':
             raise ValueError('Source checkpoint is not this experiment/fold')
-    y, frames, groups, meta, records, provenance = load_data(args.experiment_dir, args.intervals)
+    y, frames, groups, meta, records, provenance = load_data(args.experiment_dir, args.intervals, target_overrides=args.target_overrides)
     problem, initial, selected, global_groups, covariance, detail = build_training(
         y, frames, groups, meta, args.fold, source_identity['p'] if source_identity else None)
     heldout = FOLDS[args.fold]
@@ -248,9 +248,11 @@ def estimate(args):
     prov = model['diagnostics']['provenance']
     if prov['fold'] != args.fold or prov.get('experiment') != 'hard_constrained_reduced_demands_v1':
         raise ValueError('Wrong model fold/experiment')
-    y, frames, groups, meta, records, current = load_data(args.experiment_dir, args.intervals)
+    y, frames, groups, meta, records, current = load_data(args.experiment_dir, args.intervals, target_overrides=args.target_overrides)
     if current['source_sha256'] != prov['source_sha256'] or current['selected_interval_sha256'] != prov['selected_interval_sha256']:
         raise ValueError('Prediction sources differ from training')
+    if current.get('target_override_sha256') != prov.get('target_override_sha256'):
+        raise ValueError('Target override mismatch')
     heldout = FOLDS[args.fold]
     mask = np.isin(groups, heldout)
     hy, hf, hg = y[mask], frames[mask], groups[mask]
@@ -367,7 +369,9 @@ def compare(args):
             raise ValueError('Frozen frame count differs')
         prediction_rows[model_name] = rows
     exact_join(prediction_rows['trained'], prediction_rows['initial'], heldout)
-    reference_dirs = dict(preserved_legacy=args.legacy_dir, fresh_matched_full=args.matched_dir)
+    reference_dirs = dict(fresh_matched_full=args.matched_dir)
+    if not args.no_legacy:
+        reference_dirs['preserved_legacy'] = args.legacy_dir
     refs, reference_hashes = {}, {}
     for name, directory in reference_dirs.items():
         model = json.loads((directory/'model.json').read_text())
@@ -473,6 +477,7 @@ def main():
         command.add_argument('--experiment-dir', type=Path, default=EXP)
         command.add_argument('--intervals', type=Path, default=EXP/'fixations/fixation_intervals.json')
         command.add_argument('--output-dir', type=Path)
+        command.add_argument('--target-overrides', type=Path, default=None)
     command = sub.choices['train']
     source = command.add_mutually_exclusive_group()
     source.add_argument('--resume-dir', type=Path)
@@ -490,6 +495,7 @@ def main():
     command.add_argument('--prediction-dir', type=Path, required=True)
     command.add_argument('--legacy-dir', type=Path, default=EXP/'full_calibration/legacy')
     command.add_argument('--matched-dir', type=Path, default=EXP/'full_calibration/matched/robust')
+    command.add_argument('--no-legacy', action='store_true')
     args = parser.parse_args()
     for field in ['max_nfev', 'wall_seconds', 'lsmr_maxiter', 'lsmr_atol', 'lsmr_btol', 'robust_outer', 'robust_max_nfev',
                   'physical_gtol', 'physical_step_tol', 'relative_cost_tol', 'kappa', 'batch_size', 'inverse_iterations']:

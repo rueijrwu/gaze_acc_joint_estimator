@@ -1,0 +1,66 @@
+{
+  "experiment": "hard_constrained_reduced_demands_v1",
+  "fold": "holdout3",
+  "heldout_fixations": [
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "training_fixations": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "source_sha256": {
+    "capture_1_detections.pkl": "65eb4ed79d807751634b98d114adb470165642af2c6a349578ce6b79343f2a51",
+    "capture_2_detections.pkl": "96d903e81f31a2265aab0072a0c24e77d0d5b4e9f5ce754d30fa781ef997b357",
+    "capture_3_detections.pkl": "5d67d6d15bd4e48bf481353086d980b74e96cc9dddf097e2a6b2137de1daf349",
+    "capture_4_detections.pkl": "227a3dbeba3db3e5e9565d90364e68389ad3428e13ce5e53f0b6ac58132b0721"
+  },
+  "selected_interval_sha256": "970d4a8215690ac65dc8c1147d1582b06d0bf03be030ad9f8146a4e5c8fc381a",
+  "model_sha256": "bcfc9dc9977b5df52092e03147eed387f1c458f1850d08978b2a36eccfe502e0",
+  "models": {
+    "trained": {
+      "prediction_sha256": "086a7e214eabf2f022fec6bc45e6d800368b63c91d36d9a3fd5dc4212e4f5d37",
+      "frame_count": 19445,
+      "frame_hash": "6bbe36c5279c466a8ed9bb9c80770c7673c7c6dbed818f765f2adf300bfee90f",
+      "observation_hash": "26b7362fdbb5255c2658ed34aa160acabc884cd7e30fcace77ee67f68fa9a522"
+    },
+    "initial": {
+      "prediction_sha256": "abe2afc9296e3b841a774bde100938d38b9eec09c8bcd799779830644f85f93a",
+      "frame_count": 19445,
+      "frame_hash": "6bbe36c5279c466a8ed9bb9c80770c7673c7c6dbed818f765f2adf300bfee90f",
+      "observation_hash": "26b7362fdbb5255c2658ed34aa160acabc884cd7e30fcace77ee67f68fa9a522"
+    }
+  },
+  "model_dir": "/home/user/gaze_acc_joint_estimator/.claude/worktrees/agent-a82971408cd597034/exp2/corrected_labels/training/holdout3/robust",
+  "training_converged": true,
+  "training_status": {
+    "status": "converged",
+    "elapsed_seconds": 13.561197332999882,
+    "accepted_iterations": 7,
+    "nfev": 11,
+    "termination": "physical stationarity, step, cost and weight criteria satisfied",
+    "scipy_status": -2,
+    "scipy_message": "Stopped because `callback` function raised `StopIteration` or returned `True`"
+  },
+  "inverse_iterations": 100,
+  "batch_size": 512,
+  "baseline_read": false,
+  "inference": "independent bounded per-frame optical inversion; no nominal/state/temporal anchors",
+  "branch_rule": "equivalentcost1e-7; reference-scaleddistance1e-4; smallestA then theta; no global certificate"
+}
