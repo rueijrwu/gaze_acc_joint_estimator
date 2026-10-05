@@ -1,0 +1,3187 @@
+{
+  "calibrated_grid_conditioning": {
+    "noise_physical_scales": [
+      1.0,
+      0.25
+    ],
+    "theta_support": [
+      -15,
+      15
+    ],
+    "A_support": [
+      0.36036036036036034,
+      4.0
+    ],
+    "condition_quantiles": [
+      9.186270488212033,
+      17.9842366704228,
+      26.470973041089284
+    ],
+    "minimum_singular_quantiles": [
+      11.614968962716649,
+      18.349776505922133,
+      41.98730379190581
+    ],
+    "near_singular_fraction": 0.0
+  },
+  "optical_loss": "block soft-L1",
+  "coefficient_rank": 13,
+  "settings": {
+    "theta_bounds_deg": [
+      -20,
+      20
+    ],
+    "A_bounds_diopters": [
+      0,
+      6
+    ],
+    "theta_anchor_strength": 1.0,
+    "A_anchor_strength": 1.0,
+    "smooth_theta_strength": 0.1,
+    "smooth_A_strength": 0.1,
+    "theta_anchor_scale_deg": 0.1,
+    "A_anchor_scale_diopters": 0.25,
+    "smooth_theta_scale_deg": 1.0,
+    "smooth_A_scale_diopters": 0.25,
+    "model_prior_strength": 0.1,
+    "equal_fixation_optical_weight": true,
+    "objective_factor": 0.5,
+    "solver_residual_scale": "sqrt(frame_count)",
+    "curvature_prior": 0.0,
+    "invalid_gap_links": "broken",
+    "extrapolation": "none (smooth analytic m2 forms)"
+  },
+  "measurement_support": "All gated valid central-core frames; S_j=V_j, no event exclusions",
+  "provenance": {
+    "selected_interval_path": "/home/user/gaze_acc_joint_estimator/.claude/worktrees/agent-a82971408cd597034/exp2/fixations/fixation_intervals.json",
+    "selected_interval_sha256": "970d4a8215690ac65dc8c1147d1582b06d0bf03be030ad9f8146a4e5c8fc381a",
+    "source_sha256": {
+      "capture_1_detections.pkl": "65eb4ed79d807751634b98d114adb470165642af2c6a349578ce6b79343f2a51",
+      "capture_2_detections.pkl": "96d903e81f31a2265aab0072a0c24e77d0d5b4e9f5ce754d30fa781ef997b357",
+      "capture_3_detections.pkl": "5d67d6d15bd4e48bf481353086d980b74e96cc9dddf097e2a6b2137de1daf349",
+      "capture_4_detections.pkl": "227a3dbeba3db3e5e9565d90364e68389ad3428e13ce5e53f0b6ac58132b0721"
+    },
+    "validity_policy": "measurement_valid AND stored pupil_valid",
+    "native_detection_rerun": false,
+    "interval_version_frozen": true,
+    "edge_fraction": 0.1,
+    "event_mask": "empty; S_j=V_j",
+    "capture5_used": false,
+    "target_override_path": "exp2/corrected_labels/target_overrides_v1.json",
+    "target_override_sha256": "007fda3d6cb4498e97e6de756928bd0cef3c1f4c81453689e16c73832b1c0898",
+    "target_override_captures": [
+      "capture_1_detections.pkl"
+    ],
+    "target_override_targets": {
+      "capture_1_detections.pkl": [
+        -7.21983367,
+        -3.62430389,
+        0.0,
+        3.62430389,
+        7.21983367
+      ]
+    },
+    "training_fixations": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "heldout_fixation": null,
+    "heldout_fixations": [
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "fold": "holdout3",
+    "experiment": "hard_constrained_reduced_demands_v1",
+    "training_frame_count": 58311,
+    "heldout_frame_count": 19445,
+    "full_seed_used": false,
+    "historical_reference_used": false,
+    "fixed_p": null,
+    "initialization": {
+      "training_mean_observations": [
+        [
+          -0.2015761769736691,
+          0.7137003963121014
+        ],
+        [
+          -0.032978742270361384,
+          0.7131759946817144
+        ],
+        [
+          0.1389038445485025,
+          0.71614181761448
+        ],
+        [
+          0.3147722520703561,
+          0.713419078918135
+        ],
+        [
+          0.47598888741793083,
+          0.7184496012294933
+        ],
+        [
+          -0.47713134883122044,
+          0.6819566548162636
+        ],
+        [
+          -0.20151300752586757,
+          0.6728311705693747
+        ],
+        [
+          0.08442581628687151,
+          0.6755583175113932
+        ],
+        [
+          0.3804726835007847,
+          0.6850158923654853
+        ],
+        [
+          0.667847340943078,
+          0.6904626645938409
+        ],
+        [
+          -0.4986966452443275,
+          0.6948258701409926
+        ],
+        [
+          -0.19153339263962021,
+          0.6876635855142837
+        ],
+        [
+          0.1232454858018696,
+          0.6951799970078938
+        ],
+        [
+          0.4457332808608679,
+          0.7005122684691788
+        ],
+        [
+          0.7540089851946397,
+          0.7090887655953172
+        ]
+      ],
+      "training_observation_hash": "639365132e9983713d305f874f6e7fdffd3e1fdd8b38b2a0b57e39f11754cef2",
+      "initial_fit": "linear least squares of training-frame observations at nominal corrected targets and nominal demands, equal weight per fixation",
+      "initial_coefficient_names": [
+        "b0",
+        "b1",
+        "s0",
+        "s1",
+        "c20",
+        "c21",
+        "c3",
+        "r0",
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ],
+      "prior_rule": "diag(1/ptp(retained_training_frame_observations,axis=0)**2); strength0.1",
+      "free_coefficient_count": 13
+    },
+    "prior_rule": "diag(1/ptp(retained_training_frame_observations,axis=0)**2); strength0.1",
+    "continuation_source": null,
+    "model_type": "m2",
+    "theta_anchor_scale_deg": 0.1,
+    "coefficient_schema": "profiled_m2_displacement_log_ratio_v1"
+  },
+  "p": null,
+  "state_count": 58311,
+  "converged": false,
+  "history": [
+    {
+      "iteration": 0,
+      "objective": 0.840725750273208,
+      "observations": 0.006564608532494964,
+      "model_prior": 9.483085361472411e-05,
+      "anchors": 0.8336957492237363,
+      "temporal": 0.0003705616633619969,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 6.165068455743494e-13,
+        "objective": 0.840725750273208
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 3.028692642336229e-06,
+      "physical_gradient_max": [
+        3.028692642336229e-06,
+        3.893378142557276e-06
+      ],
+      "physical_gradient_rms": [
+        6.87778927656435e-07,
+        8.435933116367992e-07
+      ],
+      "physical_gradient_quantiles": [
+        [
+          3.3823053104741373e-07,
+          5.539731323846555e-07
+        ],
+        [
+          1.4362411980445828e-06,
+          1.9950928565594882e-06
+        ],
+        [
+          3.028692642336229e-06,
+          3.893378142557276e-06
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate"
+    },
+    {
+      "iteration": 1,
+      "outer": 0,
+      "objective": 0.8407249486075504,
+      "observations": 0.0066934904418104076,
+      "model_prior": 9.482283369343347e-05,
+      "anchors": 0.8335660750769086,
+      "temporal": 0.0003705602551368311,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 2.0409229861684253e-12,
+        "objective": 0.8407249486075504
+      },
+      "robust_weight_change": 0.000962097677078666,
+      "fixed_weight_change": 0.000962097677078666,
+      "elapsed_seconds": 6.722414616000151,
+      "lsmr": {
+        "istop": 7,
+        "iterations": 300,
+        "normr": 313.11857476870193,
+        "normar": 0.002009073031529018,
+        "norma": 1387.1125963127497,
+        "conda": 20.30336181200161,
+        "normx": 0.06146355371954896,
+        "elapsed_seconds": 4.401180007999756,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 1.646360621277873e-07,
+      "physical_gradient_max": [
+        1.646360621277873e-07,
+        1.6101242893157017e-07
+      ],
+      "physical_gradient_rms": [
+        1.7309634600465428e-08,
+        2.177982570374254e-08
+      ],
+      "physical_gradient_quantiles": [
+        [
+          8.051196325124035e-09,
+          1.3275317992975113e-08
+        ],
+        [
+          2.889148739242706e-08,
+          4.2669304790208274e-08
+        ],
+        [
+          1.646360621277873e-07,
+          1.6101242893157017e-07
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        0.00013100295256940342,
+        0.0002175609961527769
+      ],
+      "physical_step_rms": [
+        1.4389644778332631e-05,
+        2.5150741947820407e-05
+      ],
+      "physical_step_quantiles": [
+        [
+          3.984346992780274e-06,
+          7.1757134276762e-06
+        ],
+        [
+          2.992807417950827e-05,
+          5.332635070254277e-05
+        ],
+        [
+          0.00013100295256940342,
+          0.0002175609961527769
+        ]
+      ],
+      "reference_step_max": 0.0008702439846111076,
+      "relative_cost_change": 9.53540030459761e-07
+    },
+    {
+      "iteration": 2,
+      "outer": 0,
+      "objective": 0.840724948171763,
+      "observations": 0.006693592364715128,
+      "model_prior": 9.481557763191191e-05,
+      "anchors": 0.8335659763515045,
+      "temporal": 0.00037056387791073556,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 2.4958923816598144e-12,
+        "objective": 0.840724948171763
+      },
+      "robust_weight_change": 2.8943872666387094e-06,
+      "fixed_weight_change": 0.0009620648886018435,
+      "elapsed_seconds": 12.13725825399979,
+      "lsmr": {
+        "istop": 7,
+        "iterations": 300,
+        "normr": 313.11857464783964,
+        "normar": 0.0010667029779964866,
+        "norma": 1467.3565905489502,
+        "conda": 28.28074179484405,
+        "normx": 0.012458118326228408,
+        "elapsed_seconds": 4.256268994000038,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 1.5393029975650336e-07,
+      "physical_gradient_max": [
+        1.5393029975650336e-07,
+        1.601604236018396e-07
+      ],
+      "physical_gradient_rms": [
+        1.6620225509473124e-08,
+        2.1547935138212812e-08
+      ],
+      "physical_gradient_quantiles": [
+        [
+          8.44106107215188e-09,
+          1.3805977585460869e-08
+        ],
+        [
+          2.9464555638856945e-08,
+          4.222004065508054e-08
+        ],
+        [
+          1.5393029975650336e-07,
+          1.601604236018396e-07
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        7.038139408166444e-06,
+        1.6238399541457227e-05
+      ],
+      "physical_step_rms": [
+        2.0465025408365023e-06,
+        4.830472489893228e-06
+      ],
+      "physical_step_quantiles": [
+        [
+          1.5243670367232065e-06,
+          2.621916248779499e-06
+        ],
+        [
+          3.6443960338417014e-06,
+          9.305614678156715e-06
+        ],
+        [
+          7.038139408166444e-06,
+          1.6238399541457227e-05
+        ]
+      ],
+      "reference_step_max": 6.495359816582891e-05,
+      "relative_cost_change": 5.183471798748185e-10
+    },
+    {
+      "iteration": 3,
+      "outer": 0,
+      "objective": 0.8407249480142164,
+      "observations": 0.006693608647649905,
+      "model_prior": 9.481586488798124e-05,
+      "anchors": 0.8335659602079829,
+      "temporal": 0.0003705632936961316,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 4.384381746547206e-12,
+        "objective": 0.8407249480142164
+      },
+      "robust_weight_change": 1.223862197363701e-06,
+      "fixed_weight_change": 0.0009629423218900923,
+      "elapsed_seconds": 17.534769703000165,
+      "lsmr": {
+        "istop": 7,
+        "iterations": 300,
+        "normr": 313.11857462299935,
+        "normar": 0.0007361535666368741,
+        "norma": 1482.1425965523665,
+        "conda": 21.244883253398076,
+        "normx": 0.007737096421905985,
+        "elapsed_seconds": 4.314031438999791,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 1.6041072249412235e-07,
+      "physical_gradient_max": [
+        1.6041072249412235e-07,
+        1.5169802119297897e-07
+      ],
+      "physical_gradient_rms": [
+        1.7183101362727382e-08,
+        2.1313890937269967e-08
+      ],
+      "physical_gradient_quantiles": [
+        [
+          8.172072084723071e-09,
+          1.353073177365555e-08
+        ],
+        [
+          3.135016688916936e-08,
+          4.066687481082197e-08
+        ],
+        [
+          1.6041072249412235e-07,
+          1.5169802119297897e-07
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        4.6812959766384665e-06,
+        6.75917481585131e-06
+      ],
+      "physical_step_rms": [
+        1.1777295042694082e-06,
+        3.322300291692408e-06
+      ],
+      "physical_step_quantiles": [
+        [
+          5.447183095697028e-07,
+          2.8171119028641556e-06
+        ],
+        [
+          2.2664200054478556e-06,
+          5.380874181060147e-06
+        ],
+        [
+          4.6812959766384665e-06,
+          6.75917481585131e-06
+        ]
+      ],
+      "reference_step_max": 2.703669926340524e-05,
+      "relative_cost_change": 1.873937995312771e-10
+    },
+    {
+      "iteration": 4,
+      "outer": 0,
+      "objective": 0.84072494796564,
+      "observations": 0.0066936033620486664,
+      "model_prior": 9.481326330709007e-05,
+      "anchors": 0.8335659668669575,
+      "temporal": 0.0003705644733274444,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 1.421640583032513e-11,
+        "objective": 0.84072494796564
+      },
+      "robust_weight_change": 1.2582206719846667e-06,
+      "fixed_weight_change": 0.0009619703667663737,
+      "elapsed_seconds": 22.22505646599984,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 259,
+        "normr": 313.11857460695774,
+        "normar": 0.00043459846696532276,
+        "norma": 1388.5871414643825,
+        "conda": 24.515768445616903,
+        "normx": 0.003909304689185312,
+        "elapsed_seconds": 3.486015819000386,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 1.6004404339846936e-07,
+      "physical_gradient_max": [
+        1.6004404339846936e-07,
+        1.5428579769962459e-07
+      ],
+      "physical_gradient_rms": [
+        1.7452336791488382e-08,
+        2.1109985557132368e-08
+      ],
+      "physical_gradient_quantiles": [
+        [
+          8.367737170706366e-09,
+          1.3728567708203838e-08
+        ],
+        [
+          3.247777507186181e-08,
+          4.0867536366044206e-08
+        ],
+        [
+          1.6004404339846936e-07,
+          1.5428579769962459e-07
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        2.9432161312570315e-06,
+        5.48242799336407e-06
+      ],
+      "physical_step_rms": [
+        7.132447795291001e-07,
+        1.5767156572425845e-06
+      ],
+      "physical_step_quantiles": [
+        [
+          4.234191477436866e-07,
+          9.307629955657148e-07
+        ],
+        [
+          1.405326367276416e-06,
+          3.518916272149397e-06
+        ],
+        [
+          2.9432161312570315e-06,
+          5.48242799336407e-06
+        ]
+      ],
+      "reference_step_max": 2.192971197345628e-05,
+      "relative_cost_change": 5.777914080851125e-11
+    },
+    {
+      "iteration": 5,
+      "outer": 0,
+      "objective": 0.8407249479496113,
+      "observations": 0.0066936383963247855,
+      "model_prior": 9.481340309862291e-05,
+      "anchors": 0.83356593187234,
+      "temporal": 0.00037056427784865287,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 2.031375068156649e-12,
+        "objective": 0.8407249479496113
+      },
+      "robust_weight_change": 1.0437372723881566e-06,
+      "fixed_weight_change": 0.0009628253301995349,
+      "elapsed_seconds": 25.493321319000188,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 147,
+        "normr": 313.1185746056682,
+        "normar": 0.00032742289820987227,
+        "norma": 1046.9649492002682,
+        "conda": 23.176133707018984,
+        "normx": 0.0006047467982722004,
+        "elapsed_seconds": 2.159694882999702,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 1.612164645160718e-07,
+      "physical_gradient_max": [
+        1.612164645160718e-07,
+        1.489875532300006e-07
+      ],
+      "physical_gradient_rms": [
+        1.7395485358126788e-08,
+        2.0911574658263038e-08
+      ],
+      "physical_gradient_quantiles": [
+        [
+          8.108894392394302e-09,
+          1.3578796146219876e-08
+        ],
+        [
+          3.1901451592890205e-08,
+          4.030722873399608e-08
+        ],
+        [
+          1.612164645160718e-07,
+          1.489875532300006e-07
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        1.121052363828312e-06,
+        1.1627766325350564e-06
+      ],
+      "physical_step_rms": [
+        3.0447193330150725e-07,
+        3.6169568383610164e-07
+      ],
+      "physical_step_quantiles": [
+        [
+          2.2786529019214186e-07,
+          2.6991847179580475e-07
+        ],
+        [
+          5.367766684472031e-07,
+          9.315578792801205e-07
+        ],
+        [
+          1.121052363828312e-06,
+          1.1627766325350564e-06
+        ]
+      ],
+      "reference_step_max": 4.6511065301402255e-06,
+      "relative_cost_change": 1.9065372015555224e-11
+    },
+    {
+      "iteration": 6,
+      "outer": 1,
+      "objective": 0.840724947361483,
+      "observations": 0.006696760895067486,
+      "model_prior": 9.481277354457734e-05,
+      "anchors": 0.8335628092903082,
+      "temporal": 0.0003705644025621506,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 3.1069591344135006e-12,
+        "objective": 0.840724947361483
+      },
+      "robust_weight_change": 4.318836534034087e-05,
+      "fixed_weight_change": 4.318836534034087e-05,
+      "elapsed_seconds": 38.760243504999835,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 244,
+        "normr": 313.1182782080249,
+        "normar": 0.00038911965313680755,
+        "norma": 1251.454866063267,
+        "conda": 11.352360354732047,
+        "normx": 0.0027496241626853548,
+        "elapsed_seconds": 3.7131081969996558,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 8.668625787192643e-09,
+      "physical_gradient_max": [
+        8.668625787192643e-09,
+        5.898791065232206e-09
+      ],
+      "physical_gradient_rms": [
+        6.152406452799705e-10,
+        6.127682736997742e-10
+      ],
+      "physical_gradient_quantiles": [
+        [
+          2.0380158515160937e-10,
+          2.4187748493360207e-10
+        ],
+        [
+          8.088312829661869e-10,
+          1.6504610958157015e-09
+        ],
+        [
+          8.668625787192643e-09,
+          5.898791065232206e-09
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        7.613467571943033e-06,
+        1.1536141261814237e-05
+      ],
+      "physical_step_rms": [
+        5.245092268348293e-07,
+        1.020096134124115e-06
+      ],
+      "physical_step_quantiles": [
+        [
+          1.5857434298993667e-07,
+          5.381814710547772e-07
+        ],
+        [
+          6.461183352790556e-07,
+          1.2567778841510169e-06
+        ],
+        [
+          7.613467571943033e-06,
+          1.1536141261814237e-05
+        ]
+      ],
+      "reference_step_max": 4.614456504725695e-05,
+      "relative_cost_change": 6.99549032360644e-10
+    },
+    {
+      "iteration": 7,
+      "outer": 1,
+      "objective": 0.8407249473610238,
+      "observations": 0.006696713225622839,
+      "model_prior": 9.481262965285664e-05,
+      "anchors": 0.8335628570551669,
+      "temporal": 0.0003705644505812848,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 3.168021400767884e-12,
+        "objective": 0.8407249473610238
+      },
+      "robust_weight_change": 1.929740333861396e-06,
+      "fixed_weight_change": 4.14391370562317e-05,
+      "elapsed_seconds": 41.07338876899985,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 82,
+        "normr": 313.11827820750773,
+        "normar": 0.0002348436646068212,
+        "norma": 751.5279127839776,
+        "conda": 27.54681509722392,
+        "normx": 0.00011434343605490684,
+        "elapsed_seconds": 1.1417855849999796,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 1.0908585596800633e-08,
+      "physical_gradient_max": [
+        1.0908585596800633e-08,
+        1.1809000916920785e-08
+      ],
+      "physical_gradient_rms": [
+        7.441250934144377e-10,
+        8.658722677506909e-10
+      ],
+      "physical_gradient_quantiles": [
+        [
+          3.208720416486222e-10,
+          5.43039396909537e-10
+        ],
+        [
+          1.3579536950475288e-09,
+          1.477118957949594e-09
+        ],
+        [
+          1.0908585596800633e-08,
+          1.1809000916920785e-08
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        3.714109819696887e-07,
+        3.5520107033448767e-07
+      ],
+      "physical_step_rms": [
+        1.1416148887170497e-07,
+        8.32017227899859e-08
+      ],
+      "physical_step_quantiles": [
+        [
+          8.913530358256594e-08,
+          3.906772994000107e-08
+        ],
+        [
+          2.1277077918990805e-07,
+          1.9753854174631158e-07
+        ],
+        [
+          3.714109819696887e-07,
+          3.5520107033448767e-07
+        ]
+      ],
+      "reference_step_max": 1.4208042813379507e-06,
+      "relative_cost_change": 5.461812979691794e-13
+    },
+    {
+      "iteration": 8,
+      "outer": 1,
+      "objective": 0.8407249473599763,
+      "observations": 0.006696757928445788,
+      "model_prior": 9.48125946253286e-05,
+      "anchors": 0.8335628123643662,
+      "temporal": 0.00037056447253858604,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 4.424349775433711e-12,
+        "objective": 0.8407249473599763
+      },
+      "robust_weight_change": 1.8427547678889766e-06,
+      "fixed_weight_change": 4.305078903887871e-05,
+      "elapsed_seconds": 43.31153957200013,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 68,
+        "normr": 313.1182782073337,
+        "normar": 0.00021912826594699538,
+        "norma": 705.4975354531077,
+        "conda": 21.44603909991996,
+        "normx": 9.163899112146225e-05,
+        "elapsed_seconds": 1.049355794999883,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 7.83583225830738e-09,
+      "physical_gradient_max": [
+        7.83583225830738e-09,
+        5.7259589304979205e-09
+      ],
+      "physical_gradient_rms": [
+        5.504168324595763e-10,
+        5.998735380402424e-10
+      ],
+      "physical_gradient_quantiles": [
+        [
+          1.8540976748870788e-10,
+          2.923391946359149e-10
+        ],
+        [
+          7.740056236975857e-10,
+          1.4439083939467057e-09
+        ],
+        [
+          7.83583225830738e-09,
+          5.7259589304979205e-09
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        3.651744222565867e-07,
+        4.4390147824202586e-07
+      ],
+      "physical_step_rms": [
+        9.099185289055107e-08,
+        2.2019217369047246e-08
+      ],
+      "physical_step_quantiles": [
+        [
+          5.499669253339334e-08,
+          1.0604722877616268e-08
+        ],
+        [
+          1.8477709851083546e-07,
+          3.857179353694562e-08
+        ],
+        [
+          3.651744222565867e-07,
+          4.4390147824202586e-07
+        ]
+      ],
+      "reference_step_max": 1.7756059129681034e-06,
+      "relative_cost_change": 1.245943072132984e-12
+    },
+    {
+      "iteration": 9,
+      "outer": 2,
+      "objective": 0.8407249473592602,
+      "observations": 0.006696839989295574,
+      "model_prior": 9.481256925986653e-05,
+      "anchors": 0.8335627303252026,
+      "temporal": 0.0003705644755026212,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 4.054645508233534e-12,
+        "objective": 0.8407249473592602
+      },
+      "robust_weight_change": 1.968506304850237e-06,
+      "fixed_weight_change": 1.968506304850237e-06,
+      "elapsed_seconds": 45.772210448999886,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 71,
+        "normr": 313.1182705166444,
+        "normar": 0.00021546243281348043,
+        "norma": 688.582634198754,
+        "conda": 29.43581440732061,
+        "normx": 8.188749595120885e-05,
+        "elapsed_seconds": 1.0118451170001208,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 5.105776850258503e-10,
+      "physical_gradient_max": [
+        5.105776850258503e-10,
+        1.885439154720465e-09
+      ],
+      "physical_gradient_rms": [
+        5.395491510068664e-11,
+        3.96394762351179e-10
+      ],
+      "physical_gradient_quantiles": [
+        [
+          2.0485207902157637e-11,
+          1.3199438614995483e-10
+        ],
+        [
+          1.3510964109844003e-10,
+          1.1257858942080442e-09
+        ],
+        [
+          5.105776850258503e-10,
+          1.885439154720465e-09
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        3.680107365511276e-07,
+        4.5713466167995875e-07
+      ],
+      "physical_step_rms": [
+        2.691646191680593e-08,
+        3.285825887804752e-08
+      ],
+      "physical_step_quantiles": [
+        [
+          5.672220027008734e-09,
+          1.889703493684891e-08
+        ],
+        [
+          5.5978740753914735e-08,
+          4.8624159365573405e-08
+        ],
+        [
+          3.680107365511276e-07,
+          4.5713466167995875e-07
+        ]
+      ],
+      "reference_step_max": 1.828538646719835e-06,
+      "relative_cost_change": 8.517575850840233e-13
+    },
+    {
+      "iteration": 10,
+      "outer": 3,
+      "objective": 0.8407249473587151,
+      "observations": 0.006696782288920048,
+      "model_prior": 9.481246336366534e-05,
+      "anchors": 0.8335627880816344,
+      "temporal": 0.0003705645247967739,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 1.712074926274454e-12,
+        "objective": 0.8407249473587151
+      },
+      "robust_weight_change": 1.4977483442368822e-06,
+      "fixed_weight_change": 1.4977483442368822e-06,
+      "elapsed_seconds": 47.59326843400004,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 54,
+        "normr": 313.11827029340867,
+        "normar": 0.00019533893405630776,
+        "norma": 629.3369445000069,
+        "conda": 32.84362491730889,
+        "normx": 4.633160830185383e-05,
+        "elapsed_seconds": 0.7219617269997798,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 4.425206268440326e-09,
+      "physical_gradient_max": [
+        4.425206268440326e-09,
+        6.642184001512318e-09
+      ],
+      "physical_gradient_rms": [
+        3.1820828364174254e-10,
+        6.66542148071393e-10
+      ],
+      "physical_gradient_quantiles": [
+        [
+          1.1905718179835316e-10,
+          2.7477304502836867e-10
+        ],
+        [
+          8.373953499449286e-10,
+          1.5393014906322986e-09
+        ],
+        [
+          4.425206268440326e-09,
+          6.642184001512318e-09
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        2.3754073907866768e-07,
+        2.66803827031481e-07
+      ],
+      "physical_step_rms": [
+        4.9721242784089846e-08,
+        6.724537013293768e-08
+      ],
+      "physical_step_quantiles": [
+        [
+          1.741924027243158e-08,
+          3.319603186779929e-08
+        ],
+        [
+          1.5165100464287207e-07,
+          1.6688834403311148e-07
+        ],
+        [
+          2.3754073907866768e-07,
+          2.66803827031481e-07
+        ]
+      ],
+      "reference_step_max": 1.067215308125924e-06,
+      "relative_cost_change": 6.483922081807932e-13
+    },
+    {
+      "iteration": 11,
+      "outer": 4,
+      "objective": 0.8407249473581947,
+      "observations": 0.006696850422301457,
+      "model_prior": 9.481242176051723e-05,
+      "anchors": 0.8335627199823961,
+      "temporal": 0.0003705645317363921,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 3.400058012914542e-12,
+        "objective": 0.8407249473581947
+      },
+      "robust_weight_change": 1.7863047326871495e-06,
+      "fixed_weight_change": 1.7863047326871495e-06,
+      "elapsed_seconds": 49.89362796600017,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 76,
+        "normr": 313.11827044236213,
+        "normar": 0.00023305372528902398,
+        "norma": 749.9349722792638,
+        "conda": 27.581598822269303,
+        "normx": 7.420487316142146e-05,
+        "elapsed_seconds": 1.1396095830000377,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 3.3132869414169317e-09,
+      "physical_gradient_max": [
+        3.3132869414169317e-09,
+        3.274088411401211e-09
+      ],
+      "physical_gradient_rms": [
+        8.218443150834255e-11,
+        4.159922355988511e-10
+      ],
+      "physical_gradient_quantiles": [
+        [
+          5.162673433605582e-11,
+          2.0309413580491362e-10
+        ],
+        [
+          1.6551156206041892e-10,
+          4.924631985264679e-10
+        ],
+        [
+          3.3132869414169317e-09,
+          3.274088411401211e-09
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        1.9168895271093334e-07,
+        4.2454749404896575e-07
+      ],
+      "physical_step_rms": [
+        3.459817827221655e-08,
+        3.1634031128011345e-08
+      ],
+      "physical_step_quantiles": [
+        [
+          2.1033407016091132e-08,
+          1.3978701862704668e-08
+        ],
+        [
+          7.089109474445188e-08,
+          5.267463487612645e-08
+        ],
+        [
+          1.9168895271093334e-07,
+          4.2454749404896575e-07
+        ]
+      ],
+      "reference_step_max": 1.698189976195863e-06,
+      "relative_cost_change": 6.189438451619854e-13
+    },
+    {
+      "iteration": 12,
+      "outer": 5,
+      "objective": 0.8407249473581058,
+      "observations": 0.006696820984726275,
+      "model_prior": 9.481241362095738e-05,
+      "anchors": 0.8335627494228914,
+      "temporal": 0.0003705645368662582,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 1.248334768888526e-12,
+        "objective": 0.8407249473581058
+      },
+      "robust_weight_change": 8.007939764631544e-07,
+      "fixed_weight_change": 8.007939764631544e-07,
+      "elapsed_seconds": 51.5780674130001,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 42,
+        "normr": 313.1182702673077,
+        "normar": 0.00017458611044852499,
+        "norma": 560.3766044051015,
+        "conda": 43.62322310385362,
+        "normx": 1.9051431192703695e-05,
+        "elapsed_seconds": 0.5883219890001783,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 3.87844818221435e-09,
+      "physical_gradient_max": [
+        3.87844818221435e-09,
+        4.403228643877412e-09
+      ],
+      "physical_gradient_rms": [
+        6.055692339002222e-11,
+        3.146226843023259e-10
+      ],
+      "physical_gradient_quantiles": [
+        [
+          2.5027326344186115e-11,
+          9.226979524267427e-11
+        ],
+        [
+          1.2340082187748217e-10,
+          9.351371007274992e-10
+        ],
+        [
+          3.87844818221435e-09,
+          4.403228643877412e-09
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        1.1710061897929336e-07,
+        1.8187657779833444e-07
+      ],
+      "physical_step_rms": [
+        8.55602118053311e-09,
+        1.0812439947483051e-08
+      ],
+      "physical_step_quantiles": [
+        [
+          5.440980999082967e-09,
+          4.825100319294506e-09
+        ],
+        [
+          1.4792535314722688e-08,
+          1.4317914409645027e-08
+        ],
+        [
+          1.1710061897929336e-07,
+          1.8187657779833444e-07
+        ]
+      ],
+      "reference_step_max": 7.275063111933378e-07,
+      "relative_cost_change": 1.0577640707810053e-13
+    },
+    {
+      "iteration": 13,
+      "outer": 6,
+      "objective": 0.8407249473578855,
+      "observations": 0.006696862417385716,
+      "model_prior": 9.481237346327265e-05,
+      "anchors": 0.8335627080184322,
+      "temporal": 0.00037056454860511146,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 1.2428946760678627e-12,
+        "objective": 0.8407249473578855
+      },
+      "robust_weight_change": 9.675770163974917e-07,
+      "fixed_weight_change": 9.675770163974917e-07,
+      "elapsed_seconds": 53.297611163000056,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 39,
+        "normr": 313.1182703423173,
+        "normar": 0.00016944228883114323,
+        "norma": 541.4001174541477,
+        "conda": 34.422425902664585,
+        "normx": 2.2713032546653006e-05,
+        "elapsed_seconds": 0.5130786499998976,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 1.0888296595277629e-08,
+      "physical_gradient_max": [
+        1.0888296595277629e-08,
+        1.0182208947641845e-08
+      ],
+      "physical_gradient_rms": [
+        8.968620920678668e-11,
+        5.802840294569006e-10
+      ],
+      "physical_gradient_quantiles": [
+        [
+          3.200151646944554e-11,
+          1.9568243508370952e-10
+        ],
+        [
+          1.1040375774285381e-10,
+          6.885771830561296e-10
+        ],
+        [
+          1.0888296595277629e-08,
+          1.0182208947641845e-08
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        1.4969274531040355e-07,
+        2.539504029286377e-07
+      ],
+      "physical_step_rms": [
+        1.4522946259162776e-08,
+        2.5516743854559222e-08
+      ],
+      "physical_step_quantiles": [
+        [
+          8.300556686435812e-09,
+          1.1022249613024115e-08
+        ],
+        [
+          2.7873728214444782e-08,
+          5.288786453228056e-08
+        ],
+        [
+          1.4969274531040355e-07,
+          2.539504029286377e-07
+        ]
+      ],
+      "reference_step_max": 1.0158016117145507e-06,
+      "relative_cost_change": 2.6199799206363753e-13
+    },
+    {
+      "iteration": 14,
+      "outer": 7,
+      "objective": 0.8407249473577911,
+      "observations": 0.006696825957060339,
+      "model_prior": 9.481236943877117e-05,
+      "anchors": 0.8335627444784485,
+      "temporal": 0.00037056455284388453,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 1.4299672557172016e-12,
+        "objective": 0.8407249473577911
+      },
+      "robust_weight_change": 8.217983460401257e-07,
+      "fixed_weight_change": 8.217983460401257e-07,
+      "elapsed_seconds": 55.160555227999794,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 39,
+        "normr": 313.11827023922683,
+        "normar": 0.00016835065507038983,
+        "norma": 539.8972970973929,
+        "conda": 36.53537016657604,
+        "normx": 2.159135734210786e-05,
+        "elapsed_seconds": 0.5486416550002104,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 5.104443054396492e-09,
+      "physical_gradient_max": [
+        5.104443054396492e-09,
+        5.5050437059898044e-09
+      ],
+      "physical_gradient_rms": [
+        3.390870874650334e-11,
+        2.830642117141706e-10
+      ],
+      "physical_gradient_quantiles": [
+        [
+          9.538100206386282e-12,
+          7.738376113149229e-11
+        ],
+        [
+          2.80861237599339e-11,
+          5.354704323437832e-10
+        ],
+        [
+          5.104443054396492e-09,
+          5.5050437059898044e-09
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        1.2511975810980402e-07,
+        1.8852329031204818e-07
+      ],
+      "physical_step_rms": [
+        7.566439617336848e-09,
+        1.0848504595938797e-08
+      ],
+      "physical_step_quantiles": [
+        [
+          2.7345592457095336e-09,
+          2.9928306499726887e-09
+        ],
+        [
+          1.3373939809768753e-08,
+          1.4161337269502638e-08
+        ],
+        [
+          1.2511975810980402e-07,
+          1.8852329031204818e-07
+        ]
+      ],
+      "reference_step_max": 7.540931612481927e-07,
+      "relative_cost_change": 1.1224712361600314e-13
+    },
+    {
+      "iteration": 15,
+      "outer": 8,
+      "objective": 0.8407249473575581,
+      "observations": 0.006696867611316335,
+      "model_prior": 9.481231651251948e-05,
+      "anchors": 0.8335627028635343,
+      "temporal": 0.00037056456619540814,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 2.64088750867586e-12,
+        "objective": 0.8407249473575581
+      },
+      "robust_weight_change": 6.895122653949315e-07,
+      "fixed_weight_change": 6.895122653949315e-07,
+      "elapsed_seconds": 56.989746318000016,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 33,
+        "normr": 313.11827032885276,
+        "normar": 0.00015672499847972638,
+        "norma": 502.08906042285105,
+        "conda": 45.91171354640273,
+        "normx": 1.6023768573203373e-05,
+        "elapsed_seconds": 0.5323052999997344,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 1.1241649184326797e-08,
+      "physical_gradient_max": [
+        1.1241649184326797e-08,
+        1.0981458470725012e-08
+      ],
+      "physical_gradient_rms": [
+        9.080547006838237e-11,
+        1.0131460097787891e-09
+      ],
+      "physical_gradient_quantiles": [
+        [
+          3.874954664247385e-11,
+          2.6817436637328383e-10
+        ],
+        [
+          1.0692719815083577e-10,
+          1.2433418204225067e-09
+        ],
+        [
+          1.1241649184326797e-08,
+          1.0981458470725012e-08
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        8.865653455814027e-08,
+        2.060250334778857e-07
+      ],
+      "physical_step_rms": [
+        1.1107097804598363e-08,
+        3.4680783404184507e-08
+      ],
+      "physical_step_quantiles": [
+        [
+          6.1212208635197385e-09,
+          2.01359790508171e-08
+        ],
+        [
+          2.1128893301636253e-08,
+          7.78294981795824e-08
+        ],
+        [
+          8.865653455814027e-08,
+          2.060250334778857e-07
+        ]
+      ],
+      "reference_step_max": 8.241001339115428e-07,
+      "relative_cost_change": 2.7718436761178477e-13
+    },
+    {
+      "iteration": 16,
+      "outer": 9,
+      "objective": 0.8407249473573252,
+      "observations": 0.00669682283363383,
+      "model_prior": 9.481230898430196e-05,
+      "anchors": 0.8335627476397526,
+      "temporal": 0.0003705645749548719,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 1.0630940572298186e-11,
+        "objective": 0.8407249473573252
+      },
+      "robust_weight_change": 7.337559948528138e-07,
+      "fixed_weight_change": 7.337559948528138e-07,
+      "elapsed_seconds": 59.12458724199996,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 56,
+        "normr": 313.11827023342124,
+        "normar": 0.0002005726792725901,
+        "norma": 645.4944894318409,
+        "conda": 58.62670939367833,
+        "normx": 3.02145767106579e-05,
+        "elapsed_seconds": 0.9245486489999166,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 1.8109103327645443e-08,
+      "physical_gradient_max": [
+        1.8109103327645443e-08,
+        1.9600031022207348e-08
+      ],
+      "physical_gradient_rms": [
+        1.2229532728093174e-10,
+        2.981900905313609e-10
+      ],
+      "physical_gradient_quantiles": [
+        [
+          3.531768603333032e-11,
+          9.817331507110761e-11
+        ],
+        [
+          1.5781340306055766e-10,
+          6.114322521605008e-10
+        ],
+        [
+          1.8109103327645443e-08,
+          1.9600031022207348e-08
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        9.607823514556912e-08,
+        1.6174511863198404e-07
+      ],
+      "physical_step_rms": [
+        9.417955343685791e-09,
+        1.2584552566562022e-08
+      ],
+      "physical_step_quantiles": [
+        [
+          4.374272499774179e-09,
+          4.9729038664736436e-09
+        ],
+        [
+          1.9630287537847346e-08,
+          2.268857013376646e-08
+        ],
+        [
+          9.607823514556912e-08,
+          1.6174511863198404e-07
+        ]
+      ],
+      "reference_step_max": 6.469804745279362e-07,
+      "relative_cost_change": 2.770523121723133e-13
+    },
+    {
+      "iteration": 17,
+      "outer": 10,
+      "objective": 0.840724947357319,
+      "observations": 0.006696846928692891,
+      "model_prior": 9.481229737846013e-05,
+      "anchors": 0.833562723555834,
+      "temporal": 0.00037056457541267176,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 8.257505790254527e-12,
+        "objective": 0.840724947357319
+      },
+      "robust_weight_change": 2.8936638463150643e-07,
+      "fixed_weight_change": 2.8936638463150643e-07,
+      "elapsed_seconds": 60.9953310689998,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 31,
+        "normr": 313.1182703371754,
+        "normar": 0.00014929427264452594,
+        "norma": 485.41049567788906,
+        "conda": 35.905313506972774,
+        "normx": 1.1478625739850559e-05,
+        "elapsed_seconds": 0.4984424469998885,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 5.66880851095149e-09,
+      "physical_gradient_max": [
+        5.66880851095149e-09,
+        5.662525726057703e-09
+      ],
+      "physical_gradient_rms": [
+        7.001269498968194e-11,
+        5.193200059210463e-10
+      ],
+      "physical_gradient_quantiles": [
+        [
+          3.3842036984145134e-11,
+          1.3200115140704116e-10
+        ],
+        [
+          1.1642984746857848e-10,
+          1.1975599871709156e-09
+        ],
+        [
+          5.66880851095149e-09,
+          5.662525726057703e-09
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        3.569009976445159e-08,
+        7.321578809893481e-08
+      ],
+      "physical_step_rms": [
+        4.690711470978726e-09,
+        9.497142464643533e-09
+      ],
+      "physical_step_quantiles": [
+        [
+          2.7763835674932125e-09,
+          5.088055310409345e-09
+        ],
+        [
+          9.934194133975893e-09,
+          2.0466727645995775e-08
+        ],
+        [
+          3.569009976445159e-08,
+          7.321578809893481e-08
+        ]
+      ],
+      "reference_step_max": 2.9286315239573923e-07,
+      "relative_cost_change": 7.395104614706312e-15
+    },
+    {
+      "iteration": 18,
+      "outer": 10,
+      "objective": 0.840724947357215,
+      "observations": 0.006696835383580253,
+      "model_prior": 9.481229558346497e-05,
+      "anchors": 0.8335627351001745,
+      "temporal": 0.00037056457787698865,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 1.6930901125533637e-12,
+        "objective": 0.840724947357215
+      },
+      "robust_weight_change": 1.0394856786444251e-07,
+      "fixed_weight_change": 1.8603656704030413e-07,
+      "elapsed_seconds": 62.75829340400014,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 35,
+        "normr": 313.1182703371717,
+        "normar": 0.00015648056798423678,
+        "norma": 509.12888029723166,
+        "conda": 17.869926579231063,
+        "normx": 1.2165634430589882e-05,
+        "elapsed_seconds": 0.49078760300017166,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 2.828703248460161e-09,
+      "physical_gradient_max": [
+        2.828703248460161e-09,
+        3.317623079205534e-09
+      ],
+      "physical_gradient_rms": [
+        2.3432536704632968e-11,
+        3.257002656288067e-10
+      ],
+      "physical_gradient_quantiles": [
+        [
+          1.1099770855496765e-11,
+          6.539224287705367e-11
+        ],
+        [
+          3.2881407954969094e-11,
+          8.115637472914136e-10
+        ],
+        [
+          2.828703248460161e-09,
+          3.317623079205534e-09
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        1.3599116499563024e-08,
+        2.1436153296860994e-08
+      ],
+      "physical_step_rms": [
+        1.919258857194574e-09,
+        2.782162129329259e-09
+      ],
+      "physical_step_quantiles": [
+        [
+          8.752527591582293e-10,
+          1.3266203691131295e-09
+        ],
+        [
+          4.231166179577417e-09,
+          5.087684801230452e-09
+        ],
+        [
+          1.3599116499563024e-08,
+          2.1436153296860994e-08
+        ]
+      ],
+      "reference_step_max": 8.574461318744397e-08,
+      "relative_cost_change": 1.2360389141723498e-13
+    },
+    {
+      "iteration": 19,
+      "outer": 11,
+      "objective": 0.8407249473571157,
+      "observations": 0.006696802216058565,
+      "model_prior": 9.481227643658026e-05,
+      "anchors": 0.8335627682755363,
+      "temporal": 0.00037056458908454214,
+      "accepted": true,
+      "fixed_weight_trust_region_accepted": true,
+      "true_objective_backtracking_accepted": false,
+      "coefficient_irls": {
+        "converged": true,
+        "iterations": 6,
+        "weight_change": 3.3454350401029842e-12,
+        "objective": 0.8407249473571157
+      },
+      "robust_weight_change": 2.729536086043538e-07,
+      "fixed_weight_change": 2.729536086043538e-07,
+      "elapsed_seconds": 64.34426409600019,
+      "lsmr": {
+        "istop": 2,
+        "iterations": 35,
+        "normr": 313.1182703056364,
+        "normar": 0.0001545712841179818,
+        "norma": 498.82549470257834,
+        "conda": 47.409139217200384,
+        "normx": 1.0107565715487469e-05,
+        "elapsed_seconds": 0.469117186999938,
+        "requested_maxiter": 300,
+        "atol": 1e-09,
+        "btol": 1e-09
+      },
+      "physical_reference_units": [
+        1.0,
+        0.25
+      ],
+      "physical_projected_optimality": 8.591759344641746e-09,
+      "physical_gradient_max": [
+        8.591759344641746e-09,
+        9.317954767065437e-09
+      ],
+      "physical_gradient_rms": [
+        3.63513317829788e-10,
+        6.285510805075445e-10
+      ],
+      "physical_gradient_quantiles": [
+        [
+          1.3466877432605628e-10,
+          2.532446506632947e-10
+        ],
+        [
+          8.743570485085788e-10,
+          1.2426728657676762e-09
+        ],
+        [
+          8.591759344641746e-09,
+          9.317954767065437e-09
+        ]
+      ],
+      "zero_A_physical_derivative_undefined_count": 0,
+      "zero_A_feasible_descent_count": 0,
+      "zero_A_stationarity_unverified_count": 0,
+      "exact_knot_count": 0,
+      "near_not_exact_knot_count": 0,
+      "knot_violation_max": 0.0,
+      "one_sided_knot_minus_max": null,
+      "one_sided_knot_plus_min": null,
+      "theta_active_bound_count": 0,
+      "A_active_bound_count": 0,
+      "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate",
+      "physical_step_max": [
+        2.82302785592492e-08,
+        3.927283404037141e-08
+      ],
+      "physical_step_rms": [
+        6.95237895316076e-09,
+        1.7564592089620104e-08
+      ],
+      "physical_step_quantiles": [
+        [
+          3.3483313899296263e-09,
+          1.2797927384511354e-08
+        ],
+        [
+          1.4805481812762977e-08,
+          3.1028833169521874e-08
+        ],
+        [
+          2.82302785592492e-08,
+          3.927283404037141e-08
+        ]
+      ],
+      "reference_step_max": 1.5709133616148563e-07,
+      "relative_cost_change": 1.1818961839576814e-13
+    }
+  ],
+  "rmse": [
+    3.152030520095389e-06,
+    1.4206724503841018e-05
+  ],
+  "fixations": [
+    {
+      "fixation_index": 0,
+      "capture": "capture_1_detections.pkl",
+      "target_theta_deg": -7.21983367,
+      "nominal_D": 0.36036036036036034,
+      "count": 3490,
+      "theta_mean": -7.226570382921311,
+      "A_mean": 0.35704994421751934,
+      "theta_std": 0.10176435755444548,
+      "A_std": 0.0293603708342827,
+      "mean_d_bias": 2.334760958577398e-07,
+      "mean_rho4_bias": 2.2367959155086992e-07,
+      "d_rmse": 2.3347902297561053e-07,
+      "rho4_rmse": 2.2490061510179217e-07,
+      "scaled_noise_jacobian_condition_quantiles": [
+        8.521517336891865,
+        8.714498972691004,
+        8.981339741851556
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        41.4471921961194,
+        43.031770985958985,
+        44.25364228868709
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 3.92237553924227e-24,
+        "theta_deg": -7.22660496141865,
+        "A_diopters": 0.35671158045280194,
+        "equivalent_minima": [
+          [
+            3.92237553924227e-24,
+            -7.22660496141865,
+            0.35671158045280194
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": true,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            2936731.2621683464,
+            344344.6850489122
+          ],
+          "condition": 8.528464035247707
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": -0.006736712921311394,
+      "mean_A_anchor_offset_D": -0.0033104161428409995,
+      "free_theta_offset_nominal_deg": -0.006771291418649739,
+      "free_A_offset_nominal_D": -0.003648779907558408
+    },
+    {
+      "fixation_index": 1,
+      "capture": "capture_1_detections.pkl",
+      "target_theta_deg": -3.62430389,
+      "nominal_D": 0.36036036036036034,
+      "count": 4000,
+      "theta_mean": -3.67113553305544,
+      "A_mean": 0.34441144127121953,
+      "theta_std": 0.03322793270902074,
+      "A_std": 0.04202463110965111,
+      "mean_d_bias": 1.6021813131010775e-06,
+      "mean_rho4_bias": 1.6123440907797603e-07,
+      "d_rmse": 1.6022040672668121e-06,
+      "rho4_rmse": 1.6870668242909709e-07,
+      "scaled_noise_jacobian_condition_quantiles": [
+        8.07834765587211,
+        8.642151192728335,
+        8.851325315307413
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        41.86639487806985,
+        43.09148966599881,
+        46.73421269828206
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 3.315109843103505e-24,
+        "theta_deg": -3.671486838789663,
+        "A_diopters": 0.3437439358220686,
+        "equivalent_minima": [
+          [
+            3.315109843103505e-24,
+            -3.671486838789663,
+            0.3437439358220686
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": true,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            2922927.080859217,
+            349365.90524622204
+          ],
+          "condition": 8.366377591423038
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": -0.04683164305543963,
+      "mean_A_anchor_offset_D": -0.01594891908914081,
+      "free_theta_offset_nominal_deg": -0.04718294878966267,
+      "free_A_offset_nominal_D": -0.016616424538291763
+    },
+    {
+      "fixation_index": 2,
+      "capture": "capture_1_detections.pkl",
+      "target_theta_deg": 0.0,
+      "nominal_D": 0.36036036036036034,
+      "count": 3840,
+      "theta_mean": -0.09601479962657351,
+      "A_mean": 0.26782449182384876,
+      "theta_std": 0.021303860487069157,
+      "A_std": 0.04726999042873072,
+      "mean_d_bias": 3.2863255315918598e-06,
+      "mean_rho4_bias": -3.1412126392111525e-06,
+      "d_rmse": 3.2863953990120236e-06,
+      "rho4_rmse": 3.144371253686805e-06,
+      "scaled_noise_jacobian_condition_quantiles": [
+        7.970875573718561,
+        8.184033392684388,
+        8.766233285337195
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        42.9354449239575,
+        46.57666263123255,
+        48.05661518605014
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 1.385730597233297e-23,
+        "theta_deg": -0.09647712139173667,
+        "A_diopters": 0.26680893576693687,
+        "equivalent_minima": [
+          [
+            1.385730597233297e-23,
+            -0.09647712139173667,
+            0.26680893576693687
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": true,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            2980520.7935778745,
+            368565.21246689925
+          ],
+          "condition": 8.086820711125997
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": -0.09601479962657351,
+      "mean_A_anchor_offset_D": -0.09253586853651158,
+      "free_theta_offset_nominal_deg": -0.09647712139173667,
+      "free_A_offset_nominal_D": -0.09355142459342347
+    },
+    {
+      "fixation_index": 3,
+      "capture": "capture_1_detections.pkl",
+      "target_theta_deg": 3.62430389,
+      "nominal_D": 0.36036036036036034,
+      "count": 3840,
+      "theta_mean": 3.7457042436661387,
+      "A_mean": 0.5632007470516781,
+      "theta_std": 0.06123176664425185,
+      "A_std": 0.03878342416820546,
+      "mean_d_bias": -4.481850647078921e-06,
+      "mean_rho4_bias": 1.0219115714359013e-05,
+      "d_rmse": 4.481913318204907e-06,
+      "rho4_rmse": 1.0221984787326673e-05,
+      "scaled_noise_jacobian_condition_quantiles": [
+        9.961529344147786,
+        10.284228329559458,
+        10.67603629846932
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        35.11195659542295,
+        36.68941413335781,
+        38.12110534713661
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 3.367105324202584e-24,
+        "theta_deg": 3.7458738158651235,
+        "A_diopters": 0.5632608292552718,
+        "equivalent_minima": [
+          [
+            3.367105324202584e-24,
+            3.7458738158651235,
+            0.5632608292552718
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": false,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            2956533.4916542657,
+            293767.7692119216
+          ],
+          "condition": 10.064186073188468
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": 0.12140035366613855,
+      "mean_A_anchor_offset_D": 0.20284038669131776,
+      "free_theta_offset_nominal_deg": 0.12156992586512327,
+      "free_A_offset_nominal_D": 0.20290046889491142
+    },
+    {
+      "fixation_index": 4,
+      "capture": "capture_1_detections.pkl",
+      "target_theta_deg": 7.21983367,
+      "nominal_D": 0.36036036036036034,
+      "count": 4475,
+      "theta_mean": 7.125698399718544,
+      "A_mean": 0.5592763317164587,
+      "theta_std": 0.11497703735505202,
+      "A_std": 0.08755645953568937,
+      "mean_d_bias": 3.423588707746576e-06,
+      "mean_rho4_bias": -5.721322739706713e-06,
+      "d_rmse": 3.4237355936129827e-06,
+      "rho4_rmse": 5.723528224127984e-06,
+      "scaled_noise_jacobian_condition_quantiles": [
+        9.942883841034812,
+        10.705731031789362,
+        11.664098065663847
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        32.888565548334654,
+        36.48903445550647,
+        39.92409650190393
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 7.910104969990864e-24,
+        "theta_deg": 7.123626187931404,
+        "A_diopters": 0.5565588722451535,
+        "equivalent_minima": [
+          [
+            7.910104969990864e-24,
+            7.123626187931404,
+            0.5565588722451535
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": false,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            3058202.4379506055,
+            290848.695883229
+          ],
+          "condition": 10.514753826430852
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": -0.09413527028145552,
+      "mean_A_anchor_offset_D": 0.1989159713560984,
+      "free_theta_offset_nominal_deg": -0.0962074820685963,
+      "free_A_offset_nominal_D": 0.1961985118847932
+    },
+    {
+      "fixation_index": 5,
+      "capture": "capture_2_detections.pkl",
+      "target_theta_deg": -15.0,
+      "nominal_D": 4.0,
+      "count": 3680,
+      "theta_mean": -15.009871564786986,
+      "A_mean": 3.5962569618457367,
+      "theta_std": 0.12976581835667086,
+      "A_std": 0.167953692883261,
+      "mean_d_bias": 1.1071215076830316e-07,
+      "mean_rho4_bias": -1.3785152392678222e-05,
+      "d_rmse": 1.1089498421726773e-07,
+      "rho4_rmse": 1.3794734145171847e-05,
+      "scaled_noise_jacobian_condition_quantiles": [
+        20.17377652358899,
+        21.12019006829553,
+        21.913001694537154
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        13.29060727619569,
+        13.966298679361419,
+        14.852933050827057
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 3.92237553924227e-24,
+        "theta_deg": -15.010266708629397,
+        "A_diopters": 3.591428865756652,
+        "equivalent_minima": [
+          [
+            3.92237553924227e-24,
+            -15.010266708629397,
+            3.591428865756652
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": false,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            2313095.95094215,
+            112454.4312799748
+          ],
+          "condition": 20.569184554259998
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": -0.009871564786985587,
+      "mean_A_anchor_offset_D": -0.40374303815426327,
+      "free_theta_offset_nominal_deg": -0.010266708629396604,
+      "free_A_offset_nominal_D": -0.4085711342433478
+    },
+    {
+      "fixation_index": 6,
+      "capture": "capture_2_detections.pkl",
+      "target_theta_deg": -7.5,
+      "nominal_D": 4.0,
+      "count": 4000,
+      "theta_mean": -7.5666958293945825,
+      "A_mean": 4.3904601435806105,
+      "theta_std": 0.15182236041645947,
+      "A_std": 0.19573980177156655,
+      "mean_d_bias": 3.0477814780663568e-06,
+      "mean_rho4_bias": 1.4747298221748528e-05,
+      "d_rmse": 3.047874301246115e-06,
+      "rho4_rmse": 1.4752968562395055e-05,
+      "scaled_noise_jacobian_condition_quantiles": [
+        24.317897325989094,
+        25.608286242388598,
+        26.586760215273422
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        10.574723276971486,
+        11.098580326659071,
+        11.860002159961985
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 8.41776331050646e-25,
+        "theta_deg": -7.567874599771524,
+        "A_diopters": 4.389418412060942,
+        "equivalent_minima": [
+          [
+            8.41776331050646e-25,
+            -7.567874599771524,
+            4.389418412060942
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": true,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            2228381.3711814424,
+            89297.50623831384
+          ],
+          "condition": 24.95457560969756
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": -0.06669582939458252,
+      "mean_A_anchor_offset_D": 0.39046014358061054,
+      "free_theta_offset_nominal_deg": -0.06787459977152377,
+      "free_A_offset_nominal_D": 0.38941841206094185
+    },
+    {
+      "fixation_index": 7,
+      "capture": "capture_2_detections.pkl",
+      "target_theta_deg": 0.0,
+      "nominal_D": 4.0,
+      "count": 3920,
+      "theta_mean": 0.08539669821690349,
+      "A_mean": 4.0551670327884635,
+      "theta_std": 0.08148814296289984,
+      "A_std": 0.20020218590417332,
+      "mean_d_bias": -3.88988285312022e-06,
+      "mean_rho4_bias": 1.2853741708459645e-05,
+      "d_rmse": 3.890098675401222e-06,
+      "rho4_rmse": 1.287329751798009e-05,
+      "scaled_noise_jacobian_condition_quantiles": [
+        24.915660700708266,
+        26.613351402827632,
+        27.712719034354123
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        10.595025670730875,
+        11.136847546336408,
+        12.077342796057431
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 9.778444776199568e-24,
+        "theta_deg": 0.08413274556126853,
+        "A_diopters": 4.053319448654254,
+        "equivalent_minima": [
+          [
+            9.778444776199568e-24,
+            0.08413274556126853,
+            4.053319448654254
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": true,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            2325705.930705841,
+            90051.78699102445
+          ],
+          "condition": 25.8263162610826
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": 0.08539669821690349,
+      "mean_A_anchor_offset_D": 0.055167032788463466,
+      "free_theta_offset_nominal_deg": 0.08413274556126853,
+      "free_A_offset_nominal_D": 0.05331944865425431
+    },
+    {
+      "fixation_index": 8,
+      "capture": "capture_2_detections.pkl",
+      "target_theta_deg": 7.5,
+      "nominal_D": 4.0,
+      "count": 3920,
+      "theta_mean": 7.372725222434893,
+      "A_mean": 3.4802911364555396,
+      "theta_std": 0.27740257700183524,
+      "A_std": 0.3920578456412563,
+      "mean_d_bias": 6.632936536962093e-06,
+      "mean_rho4_bias": -4.3404135476083104e-05,
+      "d_rmse": 6.635882805793324e-06,
+      "rho4_rmse": 4.357093876511547e-05,
+      "scaled_noise_jacobian_condition_quantiles": [
+        22.839163586451654,
+        25.044947154624275,
+        29.228098387442046
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        10.65553549909858,
+        12.821905015695744,
+        14.317362288741842
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 1.1447216967002062e-22,
+        "theta_deg": 7.3568071871187755,
+        "A_diopters": 3.4566355340288704,
+        "equivalent_minima": [
+          [
+            1.1447216967002062e-22,
+            7.3568071871187755,
+            3.4566355340288704
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": false,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            2509808.396506231,
+            101296.02418769697
+          ],
+          "condition": 24.776968460831878
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": -0.1272747775651073,
+      "mean_A_anchor_offset_D": -0.5197088635444604,
+      "free_theta_offset_nominal_deg": -0.14319281288122454,
+      "free_A_offset_nominal_D": -0.5433644659711296
+    },
+    {
+      "fixation_index": 9,
+      "capture": "capture_2_detections.pkl",
+      "target_theta_deg": 15.0,
+      "nominal_D": 4.0,
+      "count": 4076,
+      "theta_mean": 15.019449351414996,
+      "A_mean": 4.20401317966079,
+      "theta_std": 0.21715097981608406,
+      "A_std": 0.20114120563998153,
+      "mean_d_bias": -1.370671930234676e-06,
+      "mean_rho4_bias": 1.3478372239208116e-05,
+      "d_rmse": 1.3708793251544746e-06,
+      "rho4_rmse": 1.3488826726554867e-05,
+      "scaled_noise_jacobian_condition_quantiles": [
+        28.155775429992847,
+        29.293040430003366,
+        30.94972377763187
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        10.70701116999018,
+        11.444984295020122,
+        11.983463723961343
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 2.8564622644018516e-23,
+        "theta_deg": 15.019244854521729,
+        "A_diopters": 4.2026366589824615,
+        "equivalent_minima": [
+          [
+            2.8564622644018516e-23,
+            15.019244854521729,
+            4.2026366589824615
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": true,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            2622716.1991336136,
+            91218.50368707704
+          ],
+          "condition": 28.75201952589335
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": 0.019449351414996485,
+      "mean_A_anchor_offset_D": 0.20401317966079002,
+      "free_theta_offset_nominal_deg": 0.019244854521728527,
+      "free_A_offset_nominal_D": 0.20263665898246153
+    },
+    {
+      "fixation_index": 15,
+      "capture": "capture_4_detections.pkl",
+      "target_theta_deg": -15.0,
+      "nominal_D": 2.0,
+      "count": 3798,
+      "theta_mean": -14.98516949351376,
+      "A_mean": 2.117646907116551,
+      "theta_std": 0.2567816344851722,
+      "A_std": 0.10359595171639623,
+      "mean_d_bias": -5.456508452830149e-07,
+      "mean_rho4_bias": 1.6653347424040616e-06,
+      "d_rmse": 5.456626413625469e-07,
+      "rho4_rmse": 1.6716856429192857e-06,
+      "scaled_noise_jacobian_condition_quantiles": [
+        15.666331012039825,
+        16.215504700479446,
+        16.795211357502726
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        19.01187424615032,
+        19.922398237421234,
+        20.86276510369197
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 7.910104969990864e-24,
+        "theta_deg": -14.984912882297476,
+        "A_diopters": 2.116023147762026,
+        "equivalent_minima": [
+          [
+            7.910104969990864e-24,
+            -14.984912882297476,
+            2.116023147762026
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": false,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            2530703.601764844,
+            159782.64901757956
+          ],
+          "condition": 15.838413102579189
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": 0.014830506486239514,
+      "mean_A_anchor_offset_D": 0.1176469071165509,
+      "free_theta_offset_nominal_deg": 0.015087117702524466,
+      "free_A_offset_nominal_D": 0.11602314776202594
+    },
+    {
+      "fixation_index": 16,
+      "capture": "capture_4_detections.pkl",
+      "target_theta_deg": -7.5,
+      "nominal_D": 2.0,
+      "count": 3840,
+      "theta_mean": -7.442756868386943,
+      "A_mean": 2.2703597100530777,
+      "theta_std": 0.1506603553549318,
+      "A_std": 0.09384386421844286,
+      "mean_d_bias": -2.274597843309324e-06,
+      "mean_rho4_bias": 7.0361020078831805e-06,
+      "d_rmse": 2.2746333845982053e-06,
+      "rho4_rmse": 7.04517006675263e-06,
+      "scaled_noise_jacobian_condition_quantiles": [
+        16.873896454351772,
+        17.218001220799355,
+        18.098605082674705
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        17.264082956800607,
+        18.3778409251243,
+        18.84849531015193
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 9.805938848105675e-25,
+        "theta_deg": -7.4432594836855825,
+        "A_diopters": 2.2696858567957743,
+        "equivalent_minima": [
+          [
+            9.805938848105675e-25,
+            -7.4432594836855825,
+            2.2696858567957743
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": false,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            2474562.6547161844,
+            146123.45684954862
+          ],
+          "condition": 16.934739350329217
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": 0.05724313161305705,
+      "mean_A_anchor_offset_D": 0.2703597100530777,
+      "free_theta_offset_nominal_deg": 0.056740516314417455,
+      "free_A_offset_nominal_D": 0.2696858567957743
+    },
+    {
+      "fixation_index": 17,
+      "capture": "capture_4_detections.pkl",
+      "target_theta_deg": 0.0,
+      "nominal_D": 2.0,
+      "count": 4080,
+      "theta_mean": 0.04225948065979627,
+      "A_mean": 1.607405533407409,
+      "theta_std": 0.10185916202420488,
+      "A_std": 0.29174710949960714,
+      "mean_d_bias": -1.504433135151139e-06,
+      "mean_rho4_bias": -6.511808372994717e-06,
+      "d_rmse": 1.5045706507430408e-06,
+      "rho4_rmse": 6.545112767647684e-06,
+      "scaled_noise_jacobian_condition_quantiles": [
+        13.972328884319856,
+        14.59694011955281,
+        18.001878071192262
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        18.056436771721536,
+        23.280313772244668,
+        24.546466014226954
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 5.158726160468954e-24,
+        "theta_deg": 0.03433131322244748,
+        "A_diopters": 1.5912547950547677,
+        "equivalent_minima": [
+          [
+            5.158726160468954e-24,
+            0.03433131322244748,
+            1.5912547950547677
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": false,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            2642127.6151389405,
+            178395.9995808191
+          ],
+          "condition": 14.810464479849347
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": 0.04225948065979627,
+      "mean_A_anchor_offset_D": -0.3925944665925909,
+      "free_theta_offset_nominal_deg": 0.03433131322244748,
+      "free_A_offset_nominal_D": -0.40874520494523225
+    },
+    {
+      "fixation_index": 18,
+      "capture": "capture_4_detections.pkl",
+      "target_theta_deg": 7.5,
+      "nominal_D": 2.0,
+      "count": 3920,
+      "theta_mean": 7.618356512153888,
+      "A_mean": 1.7875730236645453,
+      "theta_std": 0.16188177893252742,
+      "A_std": 0.14656716694068153,
+      "mean_d_bias": -4.779101146714226e-06,
+      "mean_rho4_bias": 1.0027508629662206e-05,
+      "d_rmse": 4.779353083178216e-06,
+      "rho4_rmse": 1.003464865248962e-05,
+      "scaled_noise_jacobian_condition_quantiles": [
+        16.04699858990948,
+        17.30098177686243,
+        18.574051023236624
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        18.62942990681026,
+        20.299990417493742,
+        22.214805529755058
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 1.2892730351580185e-23,
+        "theta_deg": 7.616708200831706,
+        "A_diopters": 1.7845919236777676,
+        "equivalent_minima": [
+          [
+            1.2892730351580185e-23,
+            7.616708200831706,
+            1.7845919236777676
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": false,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            2751713.983501767,
+            163231.6958238099
+          ],
+          "condition": 16.85771853079276
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": 0.11835651215388765,
+      "mean_A_anchor_offset_D": -0.2124269763354547,
+      "free_theta_offset_nominal_deg": 0.11670820083170597,
+      "free_A_offset_nominal_D": -0.21540807632223236
+    },
+    {
+      "fixation_index": 19,
+      "capture": "capture_4_detections.pkl",
+      "target_theta_deg": 15.0,
+      "nominal_D": 2.0,
+      "count": 3432,
+      "theta_mean": 14.981129762501965,
+      "A_mean": 2.1935810292823334,
+      "theta_std": 0.20376729707557295,
+      "A_std": 0.10977741606963175,
+      "mean_d_bias": 5.999273415796794e-07,
+      "mean_rho4_bias": 1.537196973625585e-06,
+      "d_rmse": 5.99984613358525e-07,
+      "rho4_rmse": 1.545536980344633e-06,
+      "scaled_noise_jacobian_condition_quantiles": [
+        19.514965696909478,
+        20.00419794758752,
+        21.178815809189505
+      ],
+      "physical_derivative_undefined_count": 0,
+      "scaled_min_singular_quantiles": [
+        17.225241134357542,
+        18.42504995567619,
+        18.982220616050753
+      ],
+      "optical_near_singular_fraction": 0.0,
+      "anchor_free_mean_inverse": {
+        "weighted_cost": 1.5542427570216737e-24,
+        "theta_deg": 14.979981930957914,
+        "A_diopters": 2.1919494565608684,
+        "equivalent_minima": [
+          [
+            1.5542427570216737e-24,
+            14.979981930957914,
+            2.1919494565608684
+          ]
+        ],
+        "exact_root_cost_tolerance": 1e-10,
+        "is_near_exact_root": true,
+        "extrapolation": false,
+        "branch_rule": "Smallest A then theta among equivalent minima; no labels",
+        "conditioning": {
+          "physical_derivative_defined": true,
+          "scaled_singular_values": [
+            2885282.630156677,
+            146640.47562644805
+          ],
+          "condition": 19.67589519763047
+        },
+        "theta_bound": false,
+        "A_bound": false
+      },
+      "mean_theta_anchor_offset_deg": -0.01887023749803518,
+      "mean_A_anchor_offset_D": 0.19358102928233345,
+      "free_theta_offset_nominal_deg": -0.02001806904208614,
+      "free_A_offset_nominal_D": 0.19194945656086837
+    }
+  ],
+  "covariance": [
+    [
+      1.6289266848176935e-08,
+      -4.1922465380668935e-11
+    ],
+    [
+      -4.1922465380668935e-11,
+      1.5534507374079192e-08
+    ]
+  ],
+  "theta_bound_fraction": 0.0,
+  "A_bound_fraction": 0.0,
+  "A_extrapolation_fraction": 0.31139922141619936,
+  "validation": "In-sample optical residuals and assumed nominal mean anchors, not measured state accuracy",
+  "termination": "evaluation/outer budget or solver stall; physical criteria not satisfied",
+  "continuation_status": {
+    "status": "not_converged",
+    "elapsed_seconds": 64.40112918800014,
+    "accepted_iterations": 19,
+    "nfev": 32,
+    "termination": "evaluation/outer budget or solver stall; physical criteria not satisfied",
+    "scipy_status": 2,
+    "scipy_message": "`ftol` termination condition is satisfied."
+  },
+  "checkpoint_manifest": {
+    "version": 1,
+    "schema": "profiled_m2_displacement_log_ratio_v1",
+    "coefficient_order": "b0,b1,s0,s1,c20,c21,c3,r0,r1,r2,r3,r4,r5 (t=theta/15, L=log(1+A))",
+    "states_shape": [
+      58311,
+      2
+    ],
+    "frame_hash": "d00c746727c8a18f4f5a0e69b91dbc9bdb10a230114f9501e83c2cc82aa08883",
+    "group_hash": "2e1213aeeec0d9ab41072055e3e9c0585f2d8284a5a7b58b2ac76eee46e370ba",
+    "global_group_hash": "e71e0321905bbec8560bed498e445081155df4967497f6210380f773a487c21e",
+    "observation_hash": "639365132e9983713d305f874f6e7fdffd3e1fdd8b38b2a0b57e39f11754cef2",
+    "source_sha256": {
+      "capture_1_detections.pkl": "65eb4ed79d807751634b98d114adb470165642af2c6a349578ce6b79343f2a51",
+      "capture_2_detections.pkl": "96d903e81f31a2265aab0072a0c24e77d0d5b4e9f5ce754d30fa781ef997b357",
+      "capture_3_detections.pkl": "5d67d6d15bd4e48bf481353086d980b74e96cc9dddf097e2a6b2137de1daf349",
+      "capture_4_detections.pkl": "227a3dbeba3db3e5e9565d90364e68389ad3428e13ce5e53f0b6ac58132b0721"
+    },
+    "interval_sha256": "970d4a8215690ac65dc8c1147d1582b06d0bf03be030ad9f8146a4e5c8fc381a",
+    "validity_policy": "measurement_valid AND stored pupil_valid",
+    "training_fixations": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "heldout_fixation": null,
+    "capture5_used": false,
+    "targets": [
+      -7.21983367,
+      -3.62430389,
+      0.0,
+      3.62430389,
+      7.21983367,
+      -15.0,
+      -7.5,
+      0.0,
+      7.5,
+      15.0,
+      -15.0,
+      -7.5,
+      0.0,
+      7.5,
+      15.0
+    ],
+    "demands": [
+      0.36036036036036034,
+      0.36036036036036034,
+      0.36036036036036034,
+      0.36036036036036034,
+      0.36036036036036034,
+      4.0,
+      4.0,
+      4.0,
+      4.0,
+      4.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "p": null,
+    "knots": null,
+    "initial_coefficients": [
+      0.145583476111997,
+      -0.014156886168623845,
+      0.7434818848628203,
+      -0.09850555437190474,
+      0.01075850546375185,
+      -0.0016696703391792462,
+      -0.010715301932161483,
+      0.7228636017864947,
+      0.0066257784454577945,
+      0.010972805443601102,
+      -0.02846134435006624,
+      9.465348120742454e-05,
+      -0.00101210232376695
+    ],
+    "basis_description": "d=(b0+b1*A)+(s0+s1*L)*t+(c20+c21*L)*t^2+c3*t^3; rho=(r0+r1*t+r2*t^2)+L*(r3+r4*t+r5*t^2); t=theta/15, L=log(1+A); state=(theta,A) encoded (theta/15,A/4); no knots, no exponent",
+    "prior_grid": {
+      "theta": [
+        -15.0,
+        -11.25,
+        -7.5,
+        -3.75,
+        0.0,
+        3.75,
+        7.5,
+        11.25,
+        15.0
+      ],
+      "A": [
+        0.36036036036036034,
+        0.8153153153153153,
+        1.2702702702702702,
+        1.7252252252252251,
+        2.18018018018018,
+        2.635135135135135,
+        3.09009009009009,
+        3.545045045045045,
+        4.0
+      ]
+    },
+    "prior_matrix_hash": "3fc62f698da57313fbf5ae991fa39620e4239ffb5c74e524f6869814ced8a9e0",
+    "prior_value_hash": "3aec49777b9b4c0979947796ac52de45bbd9c7cfaeb14f537b729a89474442c1",
+    "precision": [
+      [
+        61390543.52330601,
+        165672.64565148775
+      ],
+      [
+        165672.64565148778,
+        64373264.071080804
+      ]
+    ],
+    "prior_precision": [
+      [
+        0.5538449109409366,
+        0.0
+      ],
+      [
+        0.0,
+        371.14774504433365
+      ]
+    ],
+    "precision_inverse": [
+      [
+        1.6289266848176935e-08,
+        -4.192246538066893e-11
+      ],
+      [
+        -4.192246538066894e-11,
+        1.5534507374079192e-08
+      ]
+    ],
+    "settings": {
+      "theta_bounds_deg": [
+        -20,
+        20
+      ],
+      "A_bounds_diopters": [
+        0,
+        6
+      ],
+      "theta_anchor_strength": 1.0,
+      "A_anchor_strength": 1.0,
+      "smooth_theta_strength": 0.1,
+      "smooth_A_strength": 0.1,
+      "theta_anchor_scale_deg": 0.1,
+      "A_anchor_scale_diopters": 0.25,
+      "smooth_theta_scale_deg": 1.0,
+      "smooth_A_scale_diopters": 0.25,
+      "model_prior_strength": 0.1,
+      "equal_fixation_optical_weight": true,
+      "objective_factor": 0.5,
+      "solver_residual_scale": "sqrt(frame_count)",
+      "curvature_prior": 0.0,
+      "invalid_gap_links": "broken",
+      "extrapolation": "none (smooth analytic m2 forms)"
+    },
+    "estimated_noise_covariance": [
+      [
+        1.6289266848176935e-08,
+        -4.1922465380668935e-11
+      ],
+      [
+        -4.1922465380668935e-11,
+        1.5534507374079192e-08
+      ]
+    ],
+    "temporal_left_hash": "a8e19453c50e719969aeb26e077477587f2a93dde180910e9819c4139f2d40e5",
+    "temporal_right_hash": "d237017b43a2d7dd93bf481295f5fa38e7d3fc7ba1cf8e6cd8b3404bb1bb6dbe",
+    "loss": "block_soft_l1",
+    "kappa": 2.0,
+    "encoding": {
+      "theta_scale": 15.0,
+      "power_scale": 4.0,
+      "residual_scale": 241.47670695120885
+    },
+    "bounds": {
+      "theta": [
+        -20.0,
+        20.0
+      ],
+      "A": [
+        0.0,
+        6.0
+      ]
+    },
+    "target_override_sha256": "007fda3d6cb4498e97e6de756928bd0cef3c1f4c81453689e16c73832b1c0898",
+    "model_type": "m2",
+    "state_encoding": "theta/15, A/4 (A in diopters)",
+    "theta_anchor_scale_deg": 0.1,
+    "experiment": "hard_constrained_reduced_demands_v1",
+    "fold": "holdout3",
+    "heldout_fixations": [
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "prior_rule": "diag(1/ptp(retained_training_frame_observations,axis=0)**2); strength0.1"
+  }
+}
