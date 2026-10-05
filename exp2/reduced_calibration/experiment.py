@@ -19,6 +19,7 @@ from calibrate_profiled import (ProfiledProblem, KNOTS, basis, design, interpola
 from calibrate_continuation import (atomic_json, array_hash, make_manifest,
                                    read_checkpoint, continue_fit)
 from estimate_profiled import forward_jac, invert_batch, physical_optimality
+import m2_model
 
 FOLDS = {'full': [], 'holdout3': list(range(10, 15)), 'holdout2': list(range(15, 20))}
 PRIOR_RULE = 'diag(1/ptp(retained_training_frame_observations,axis=0)**2); strength0.1'
@@ -37,7 +38,33 @@ def coefficient_map(active):
     return E
 
 
-def build_training(y, frames, groups, meta, fold, fixed_p=None):
+def build_training_m2(y, frames, groups, meta, fold, anchor_scale=1.):
+    """m2: no exponent/knots/map. 13 coefficients from linear LS at nominal targets and demands."""
+    heldout = FOLDS[fold]
+    selected = [j for j in range(20) if j not in heldout]
+    mask = np.isin(groups, selected)
+    ty, tf = y[mask].copy(), frames[mask].copy()
+    tg = np.searchsorted(selected, groups[mask])
+    targets = np.array([meta[j]['target_theta_deg'] for j in selected])
+    demands = np.array([meta[j]['demand_diopters_label'] for j in selected])
+    means = np.array([ty[tg == j].mean(axis=0) for j in range(len(selected))])
+    coef = m2_model.initial_coefficients(ty, tg, targets, demands, len(selected))
+    theta = m2_model.initial_theta(coef, ty[:, 0], demands[tg])
+    covariance = noise_covariance(ty, tf, tg)
+    ranges = np.ptp(ty, axis=0)
+    if np.any(ranges <= 0):
+        raise ValueError('Degenerate training observable range')
+    prior_W = np.diag(1/ranges**2)
+    problem = ProfiledProblem(ty, tf, tg, targets, demands, None, coef, np.linalg.inv(covariance), prior_W,
+                              model='m2', theta_anchor_scale_deg=anchor_scale)
+    initial = problem.encode(theta, demands[tg])
+    return problem, initial, selected, groups[mask], covariance, dict(
+        training_mean_observations=means.tolist(), training_observation_hash=array_hash(ty),
+        initial_fit='linear least squares of training-frame observations at nominal corrected targets and nominal demands, equal weight per fixation',
+        initial_coefficient_names=m2_model.COEFFICIENT_NAMES, prior_rule=PRIOR_RULE, free_coefficient_count=m2_model.N_COEF)
+
+
+def build_training(y, frames, groups, meta, fold, fixed_p=None, anchor_scale=1.):
     heldout = FOLDS[fold]
     selected = [j for j in range(20) if j not in heldout]
     mask = np.isin(groups, selected)
@@ -71,7 +98,8 @@ def build_training(y, frames, groups, meta, fold, fixed_p=None):
     if np.any(ranges <= 0):
         raise ValueError('Degenerate training observable range')
     prior_W = np.diag(1/ranges**2)
-    problem = ProfiledProblem(ty, tf, tg, targets, demands, p, coef, np.linalg.inv(covariance), prior_W, coefficient_map=E)
+    problem = ProfiledProblem(ty, tf, tg, targets, demands, p, coef, np.linalg.inv(covariance), prior_W, coefficient_map=E,
+                              theta_anchor_scale_deg=anchor_scale)
     initial = problem.encode(theta, demands[tg])
     return problem, initial, selected, global_groups, covariance, dict(
         training_mean_observations=means.tolist(), active_demand_knots=active.tolist(),
@@ -87,15 +115,28 @@ def train(args):
             source_identity = json.loads(str(checkpoint['manifest_json']))
         if source_identity.get('fold') != args.fold or source_identity.get('experiment') != 'hard_constrained_reduced_demands_v1':
             raise ValueError('Source checkpoint is not this experiment/fold')
+        if source_identity.get('model_type', 'piecewise') != args.model:
+            raise ValueError('Source checkpoint model type differs from --model')
+        if source_identity['settings'].get('theta_anchor_scale_deg', 1.) != args.theta_anchor_scale_deg:
+            raise ValueError('Source checkpoint theta anchor scale differs from --theta-anchor-scale-deg')
     y, frames, groups, meta, records, provenance = load_data(args.experiment_dir, args.intervals, target_overrides=args.target_overrides)
-    problem, initial, selected, global_groups, covariance, detail = build_training(
-        y, frames, groups, meta, args.fold, source_identity['p'] if source_identity else None)
+    if args.model == 'm2':
+        problem, initial, selected, global_groups, covariance, detail = build_training_m2(
+            y, frames, groups, meta, args.fold, args.theta_anchor_scale_deg)
+    else:
+        problem, initial, selected, global_groups, covariance, detail = build_training(
+            y, frames, groups, meta, args.fold, source_identity['p'] if source_identity else None,
+            args.theta_anchor_scale_deg)
     heldout = FOLDS[args.fold]
     provenance.update(training_fixations=selected, heldout_fixation=None, heldout_fixations=heldout,
         fold=args.fold, experiment='hard_constrained_reduced_demands_v1', capture5_used=False,
         training_frame_count=problem.n, heldout_frame_count=int(np.isin(groups, heldout).sum()),
         full_seed_used=False, historical_reference_used=False, fixed_p=problem.p, initialization=detail,
         prior_rule=PRIOR_RULE, continuation_source=str(source) if source else None)
+    if args.model != 'piecewise' or args.theta_anchor_scale_deg != 1.:
+        # Default piecewise provenance is left byte-identical to earlier runs.
+        provenance.update(model_type=args.model, theta_anchor_scale_deg=args.theta_anchor_scale_deg,
+                          coefficient_schema=m2_model.SCHEMA if args.model == 'm2' else 'profiled_piecewise_displacement_power_ratio_v1')
     meta = [dict(row, heldout=j in heldout) for j, row in enumerate(meta)]
     held_capture = 3 if args.fold == 'holdout3' else 4 if args.fold == 'holdout2' else None
     records = [record for record in records if record['capture'] != held_capture]
@@ -241,13 +282,42 @@ def grid_audit(coef, p, W, active_knots=None):
             reference_scaled_roundtrip_distance=float(roundtrip_error[i])) for i, ((t, a), s) in enumerate(zip(true_states, states))])
 
 
+def model_type_of(model):
+    return model.get('model_type', 'piecewise')
+
+
+def check_model(model, expected, label='model'):
+    """Refuse to use a model.json whose type/schema differs from the requested --model."""
+    if model_type_of(model) != expected:
+        raise ValueError(f'{label} is a {model_type_of(model)} model but --model {expected} was requested')
+    if expected == 'm2' and (model.get('schema') != m2_model.SCHEMA or len(model['coefficients']) != m2_model.N_COEF
+                             or model.get('p') is not None or 'coefficient_map' in model):
+        raise ValueError(f'{label} does not match the m2 schema')
+    if expected == 'piecewise' and (model.get('schema') != 'profiled_piecewise_displacement_power_ratio_v1'
+                                    or len(model['coefficients']) != 14):
+        raise ValueError(f'{label} does not match the piecewise schema')
+
+
+def invert_and_diagnose(model_type, observation, coef, p, W, iterations, active_knots=None):
+    if model_type == 'm2':
+        states, diagnostics = m2_model.invert_batch_m2(observation, coef, W, iterations)
+        prediction, physical = m2_model.state_diagnostics_m2(states, observation, coef, W)
+    else:
+        states, diagnostics = invert_batch(observation, coef, p, W, iterations)
+        prediction, physical = state_diagnostics(states, observation, coef, p, W, active_knots)
+    return states, diagnostics, prediction, physical
+
+
 def estimate(args):
     if args.fold == 'full':
         raise ValueError('Estimate is for a heldout fold; full trajectories are exported by training')
     model = json.loads((args.model_dir/'model.json').read_text())
+    check_model(model, args.model)
     prov = model['diagnostics']['provenance']
     if prov['fold'] != args.fold or prov.get('experiment') != 'hard_constrained_reduced_demands_v1':
         raise ValueError('Wrong model fold/experiment')
+    if prov.get('model_type', 'piecewise') != args.model:
+        raise ValueError('Model provenance model type differs from --model')
     y, frames, groups, meta, records, current = load_data(args.experiment_dir, args.intervals, target_overrides=args.target_overrides)
     if current['source_sha256'] != prov['source_sha256'] or current['selected_interval_sha256'] != prov['selected_interval_sha256']:
         raise ValueError('Prediction sources differ from training')
@@ -262,21 +332,24 @@ def estimate(args):
         raise ValueError('Use a new prediction directory; preserve frozen predictions')
     args.output_dir.mkdir(parents=True)
     p, W = model['p'], np.asarray(model['precision'])
-    E = np.asarray(model['coefficient_map'])
-    active = np.unique([meta[j]['demand_diopters_label'] for j in prov['training_fixations']])
-    if not np.array_equal(E, coefficient_map(active)):
-        raise ValueError('Model map is not this fold hard constraint')
+    if args.model == 'm2':
+        E, active = None, None
+    else:
+        E = np.asarray(model['coefficient_map'])
+        active = np.unique([meta[j]['demand_diopters_label'] for j in prov['training_fixations']])
+        if not np.array_equal(E, coefficient_map(active)):
+            raise ValueError('Model map is not this fold hard constraint')
     manifests = {}
     for name, key in [('trained', 'coefficients'), ('initial', 'initial_coefficients')]:
         coef = np.asarray(model[key])
-        gamma = np.linalg.lstsq(E, coef, rcond=None)[0]
-        if not np.allclose(E@gamma, coef, atol=1e-12, rtol=1e-12):
-            raise ValueError('Exported model violates coefficient map')
+        if E is not None:
+            gamma = np.linalg.lstsq(E, coef, rcond=None)[0]
+            if not np.allclose(E@gamma, coef, atol=1e-12, rtol=1e-12):
+                raise ValueError('Exported model violates coefficient map')
         rows = []
         for start in range(0, len(hy), args.batch_size):
             stop = min(start+args.batch_size, len(hy))
-            states, diagnostics = invert_batch(hy[start:stop], coef, p, W, args.inverse_iterations)
-            prediction, physical = state_diagnostics(states, hy[start:stop], coef, p, W, active)
+            states, diagnostics, prediction, physical = invert_and_diagnose(args.model, hy[start:stop], coef, p, W, args.inverse_iterations, active)
             for k in range(len(states)):
                 i = start+k
                 row = dict(frame_index=int(hf[i]), fixation_index=int(hg[i]), theta_deg=float(states[k, 0]), A_diopters=float(states[k, 1]),
@@ -290,7 +363,8 @@ def estimate(args):
         path = args.output_dir/(name+'_predictions.csv')
         write_csv(path, rows)
         manifests[name] = dict(prediction_sha256=sha(path), frame_count=len(rows), frame_hash=array_hash(hf), observation_hash=array_hash(hy))
-        atomic_json(args.output_dir/(name+'_grid_audit.json'), json_safe(grid_audit(coef, p, W, active)))
+        atomic_json(args.output_dir/(name+'_grid_audit.json'), json_safe(
+            m2_model.grid_audit_m2(coef, W) if args.model == 'm2' else grid_audit(coef, p, W, active)))
         capture = 3 if args.fold == 'holdout3' else 4
         record = next(record for record in records if record['capture'] == capture)
         lookup = {row['frame_index']: row for row in rows}
@@ -307,8 +381,9 @@ def estimate(args):
                 row['d'], row['rho4'] = record['y'][i]
             full_rows.append(row)
         write_csv(args.output_dir/(name+f'_capture_{capture}_states.csv'), full_rows)
+    extra = {} if args.model == 'piecewise' else dict(model_type=args.model, coefficient_schema=model['schema'])
     atomic_json(args.output_dir/'prediction_manifest.json', dict(
-        experiment=prov['experiment'], fold=args.fold, heldout_fixations=heldout, training_fixations=prov['training_fixations'],
+        **extra, experiment=prov['experiment'], fold=args.fold, heldout_fixations=heldout, training_fixations=prov['training_fixations'],
         source_sha256=current['source_sha256'], selected_interval_sha256=current['selected_interval_sha256'],
         model_sha256=sha(args.model_dir/'model.json'), models=manifests, model_dir=str(args.model_dir.resolve()),
         training_converged=model['diagnostics']['converged'], training_status=model['diagnostics'].get('continuation_status'),
@@ -353,6 +428,8 @@ def compare(args):
     frozen = json.loads((args.prediction_dir/'prediction_manifest.json').read_text())
     if frozen['fold'] != args.fold:
         raise ValueError('Prediction fold mismatch')
+    if frozen.get('model_type', 'piecewise') != args.model:
+        raise ValueError('Prediction manifest model type differs from --model')
     heldout = FOLDS[args.fold]
     capture = 3 if args.fold == 'holdout3' else 4
     if sha(Path(frozen['model_dir'])/'model.json') != frozen['model_sha256']:
@@ -375,10 +452,15 @@ def compare(args):
     refs, reference_hashes = {}, {}
     for name, directory in reference_dirs.items():
         model = json.loads((directory/'model.json').read_text())
+        check_model(model, args.model, 'reference '+name)
+        trained_settings = json.loads((Path(frozen['model_dir'])/'model.json').read_text())['diagnostics']['settings']
+        if model['diagnostics']['settings'].get('theta_anchor_scale_deg', 1.) != trained_settings.get('theta_anchor_scale_deg', 1.):
+            raise ValueError('Reference theta anchor scale differs from the trained heldout model: '+name)
         prov = model['diagnostics']['provenance']
         if prov['training_fixations'] != list(range(20)) or prov['source_sha256'] != frozen['source_sha256'] or prov['selected_interval_sha256'] != frozen['selected_interval_sha256']:
             raise ValueError('Reference cohort/source mismatch: '+name)
-        if name == 'fresh_matched_full' and (prov.get('experiment') != frozen['experiment'] or prov.get('prior_rule') != PRIOR_RULE or not np.array_equal(np.asarray(model.get('coefficient_map')), np.eye(14))):
+        identity_map = 'coefficient_map' not in model if args.model == 'm2' else np.array_equal(np.asarray(model.get('coefficient_map')), np.eye(14))
+        if name == 'fresh_matched_full' and (prov.get('experiment') != frozen['experiment'] or prov.get('prior_rule') != PRIOR_RULE or not identity_map):
             raise ValueError('Matched full reference must use new policy and identity map')
         csv_path = directory/f'capture_{capture}_states.csv'
         refs[name] = (read_csv(csv_path), model)
@@ -392,8 +474,7 @@ def compare(args):
     control_rows = []
     for start in range(0, len(observation), frozen['batch_size']):
         stop = min(start+frozen['batch_size'], len(observation))
-        states, diagnostics = invert_batch(observation[start:stop], matched_coef, matched_p, matched_W, frozen['inverse_iterations'])
-        prediction, physical = state_diagnostics(states, observation[start:stop], matched_coef, matched_p, matched_W, KNOTS)
+        states, diagnostics, prediction, physical = invert_and_diagnose(args.model, observation[start:stop], matched_coef, matched_p, matched_W, frozen['inverse_iterations'], KNOTS)
         for k in range(len(states)):
             i = start+k
             row = dict(frame_index=int(input_rows[i]['frame_index']), fixation_index=int(input_rows[i]['fixation_index']),
@@ -472,6 +553,11 @@ def main():
     for stage in ['train', 'estimate', 'compare']:
         command = sub.add_parser(stage)
         command.add_argument('--fold', choices=list(FOLDS), required=True)
+    for stage in ['train', 'estimate', 'compare']:
+        sub.choices[stage].add_argument('--model', choices=['piecewise', 'm2'], default='piecewise',
+            help='piecewise (14 coefficients, knots, exponent p) or m2 (13 coefficients, log(1+A))')
+    sub.choices['train'].add_argument('--theta-anchor-scale-deg', type=float, default=1.,
+        help='scale of the nominal-target mean gaze anchor (deg); default 1.0 = existing behaviour')
     for stage in ['train', 'estimate']:
         command = sub.choices[stage]
         command.add_argument('--experiment-dir', type=Path, default=EXP)
@@ -501,6 +587,8 @@ def main():
                   'physical_gtol', 'physical_step_tol', 'relative_cost_tol', 'kappa', 'batch_size', 'inverse_iterations']:
         if hasattr(args, field) and getattr(args, field) <= 0:
             parser.error(field+' must be positive')
+    if hasattr(args, 'theta_anchor_scale_deg') and not 0 < args.theta_anchor_scale_deg < float('inf'):
+        parser.error('theta-anchor-scale-deg must be positive and finite')
     if args.stage == 'compare' and args.fold == 'full':
         parser.error('Compare requires a heldout fold')
     globals()[args.stage](args)
