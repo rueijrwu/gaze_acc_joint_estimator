@@ -232,3 +232,80 @@ Targets for fixations 10-14 come from `fixation_intervals.json` + `target_overri
 | holdout3_inverse | 19445 | 0 | 0 | 0 | 0 | 7.59e-24 |
 | full_inverse | 19445 | 0 | 0 | 0 | 0 | 7.51e-24 |
 
+## M3a01: m3 (m2 + gaze^3 term in rho4), theta anchor 0.1 deg
+
+### Training convergence
+
+| fold | stage | status | accepted iter | nfev | solver s | driver wall s |
+|---|---|---|---|---|---|---|
+| holdout3 | quadratic | converged | 20 | 21 | 197.3 |  |
+| holdout3 | robust | converged | 11 | 15 | 60.6 | 277.0 |
+| full | quadratic | converged | 16 | 17 | 238.0 |  |
+| full | robust | converged | 12 | 20 | 123.8 | 387.0 |
+
+### Coefficients (robust stage)
+
+| coefficient | holdout3 | full |
+|---|---|---|
+| b0 | 0.149482 | 0.149309 |
+| b1 | -0.015555 | -0.0152788 |
+| s0 | 0.751268 | 0.75203 |
+| s1 | -0.105502 | -0.104474 |
+| c20 | -0.00274641 | -0.00375242 |
+| c21 | 0.00807856 | 0.00894349 |
+| c3 | -0.00858936 | -0.010183 |
+| r0 | 0.722669 | 0.723437 |
+| r1 | 0.0135003 | 0.0119822 |
+| r2 | 0.0157314 | 0.0146894 |
+| r3 | -0.0287158 | -0.0290895 |
+| r4 | -0.000682041 | -0.000455096 |
+| r5 | -0.00395909 | -0.00345147 |
+| r6 | -0.00714477 | -0.0057076 |
+
+### Held-out fixations 10-14, holdout3-model anchor-free inverse vs targets
+
+| fixation | target deg | n | gaze bias | gaze RMSE | A bias | A RMSE |
+|---|---|---|---|---|---|---|
+| 10 | -15.000 | 3616 | -0.043 | 0.109 | -0.000 | 0.309 |
+| 11 | -7.500 | 3913 | 0.061 | 0.085 | 0.044 | 0.206 |
+| 12 | 0.000 | 3998 | -0.108 | 0.113 | -0.368 | 0.384 |
+| 13 | 7.500 | 3758 | 0.287 | 0.346 | 0.146 | 0.355 |
+| 14 | 15.000 | 4160 | 0.038 | 0.367 | -0.034 | 0.323 |
+| all | n/a | 19445 | 0.046 | 0.242 | -0.046 | 0.322 |
+
+### Held-out fixations 10-14, full-model (same anchor-free inverse) vs targets
+
+| fixation | target deg | n | gaze bias | gaze RMSE | A bias | A RMSE |
+|---|---|---|---|---|---|---|
+| 10 | -15.000 | 3616 | -0.035 | 0.108 | -0.044 | 0.306 |
+| 11 | -7.500 | 3913 | 0.069 | 0.091 | 0.124 | 0.238 |
+| 12 | 0.000 | 3998 | -0.108 | 0.113 | -0.331 | 0.349 |
+| 13 | 7.500 | 3758 | 0.212 | 0.281 | 0.097 | 0.332 |
+| 14 | 15.000 | 4160 | 0.019 | 0.373 | -0.017 | 0.333 |
+| all | n/a | 19445 | 0.030 | 0.227 | -0.036 | 0.315 |
+
+### Agreement: holdout3 inverse vs full inverse (holdout3 minus full)
+
+| fixation | n | mean gaze diff | gaze RMSE | mean A diff | A RMSE |
+|---|---|---|---|---|---|
+| 10 | 3616 | -0.008 | 0.009 | 0.043 | 0.044 |
+| 11 | 3913 | -0.009 | 0.009 | -0.080 | 0.080 |
+| 12 | 3998 | -0.000 | 0.001 | -0.037 | 0.037 |
+| 13 | 3758 | 0.075 | 0.076 | 0.048 | 0.049 |
+| 14 | 4160 | 0.019 | 0.020 | -0.017 | 0.021 |
+| all | 19445 | 0.015 | 0.035 | -0.010 | 0.050 |
+
+### Monotonicity of d in theta, theta in [-20,20], A in [0,6]
+
+| fold | min dd/dtheta | at theta | at A | strictly monotonic |
+|---|---|---|---|---|
+| holdout3 | 0.03104 | -20.0 | 6.00 | True |
+| full | 0.03053 | -20.0 | 6.00 | True |
+
+### Inverse diagnostics (frames)
+
+| inverse | frames | ambiguous | stationarity unverified | theta bound | A bound | max cost |
+|---|---|---|---|---|---|---|
+| holdout3_inverse | 19445 | 0 | 0 | 0 | 0 | 9.96e-24 |
+| full_inverse | 19445 | 0 | 0 | 0 | 0 | 7.69e-24 |
+
