@@ -18,6 +18,7 @@ from scipy.optimize import least_squares
 
 from calibrate_profiled import (ProfiledProblem, SETTINGS, KNOTS, basis, free_inverse,
                                load_data, initial_model, noise_covariance, save, interpolation)
+import m2_model
 
 SCHEMA = 'profiled_piecewise_displacement_power_ratio_v1'
 ORDER = 'b[4],s[4],rho[1,t,t²,a,at,at²]'
@@ -89,6 +90,15 @@ def make_manifest(problem, provenance, global_groups, kappa):
             nominal_anchor_policy='retained unchanged'))
         manifest['settings'] = dict(manifest['settings'], previous_mean_strength=problem.previous_mean_strength,
                                     previous_mean_scale_deg=problem.previous_mean_scale_deg)
+    if problem.model == 'm2':
+        # No knots/exponent: the checkpoint identity records the m2 schema instead.
+        manifest.update(schema=m2_model.SCHEMA, coefficient_order=m2_model.COEFFICIENT_ORDER,
+                        basis_description=m2_model.BASIS_DESCRIPTION, p=None, knots=None, model_type=m2_model.MODEL_TYPE,
+                        state_encoding='theta/15, A/4 (A in diopters)')
+        manifest['settings'] = dict(manifest['settings'], extrapolation='none (smooth analytic m2 forms)')
+    if problem.model != 'piecewise' or problem.theta_anchor_scale != 1.:
+        manifest.update(model_type=problem.model, theta_anchor_scale_deg=problem.theta_anchor_scale)
+    manifest['settings'] = dict(manifest['settings'], theta_anchor_scale_deg=problem.theta_anchor_scale)
     return manifest
 
 
@@ -146,7 +156,9 @@ def curvature_scale(problem, x, omega, use_problem_hook=True):
     # This is a coordinate preconditioner, not a change to the objective.
     curvature = np.sum(d['local']**2, axis=1)*problem.n
     physical = np.column_stack([np.full(problem.n, 15.), d['dA']/.25])
-    curvature += physical**2/(problem.J*problem.counts[problem.groups, None]**2)*problem.n
+    anchor_physical = physical.copy()
+    anchor_physical[:, 0] /= problem.theta_anchor_scale
+    curvature += anchor_physical**2/(problem.J*problem.counts[problem.groups, None]**2)*problem.n
     if problem.previous_mean_strength > 0:
         curvature[:, 0] += (15**2*problem.previous_mean_strength /
             (problem.J*problem.previous_mean_scale_deg**2*problem.counts[problem.groups]**2))*problem.n
@@ -161,6 +173,30 @@ def knot_violation(gminus, gplus):
     return np.maximum(np.maximum(gminus, -gplus), 0.)
 
 
+def add_penalty_gradient(problem, grad, theta, A):
+    """Anchor, previous-mean and temporal penalty gradients in physical (deg, D) units, in place."""
+    mt = np.bincount(problem.groups, weights=theta)/problem.counts
+    ma = np.bincount(problem.groups, weights=A)/problem.counts
+    grad[:, 0] += (mt-problem.targets)[problem.groups]/(problem.theta_anchor_scale**2*problem.J*problem.counts[problem.groups])
+    grad[:, 1] += (ma-problem.demands)[problem.groups]/(.25**2*problem.J*problem.counts[problem.groups])
+    if problem.previous_mean_strength > 0:
+        grad[:, 0] += (problem.previous_mean_strength*(mt-problem.previous_means)[problem.groups] /
+                       (problem.J*problem.previous_mean_scale_deg**2*problem.counts[problem.groups]))
+    dif = np.column_stack([theta[problem.right]-theta[problem.left],
+                           (A[problem.right]-A[problem.left])/.25**2])*problem.link_scale[:, None]**2
+    np.add.at(grad, problem.left, -dif); np.add.at(grad, problem.right, dif)
+
+
+def envelope_gradients_m2(problem, theta, A, chain, coef, omega):
+    """m2 physical gradients: smooth everywhere (no knots), no singular A=0 derivative."""
+    pred, J = m2_model.forward_jac_m2(theta, A, coef)
+    force = ((pred-problem.y)@problem.W)*(problem.alpha*omega)[:, None]
+    grad = np.column_stack([np.sum(force*J[:, :, 0], axis=1), np.sum(force*J[:, :, 1], axis=1)])
+    add_penalty_gradient(problem, grad, theta, A)
+    none = np.zeros(problem.n, bool)
+    return grad, grad[:, 1].copy(), grad[:, 1].copy(), none, none.copy(), grad[:, 1]*chain
+
+
 def envelope_gradients(problem, x, coef, omega, use_problem_hook=True):
     """Physical gradients of the true objective at coefficient stationarity.
 
@@ -171,6 +207,8 @@ def envelope_gradients(problem, x, coef, omega, use_problem_hook=True):
         hook=getattr(problem,'physical_envelope_gradients',None)
         if hook is not None: return hook(x,coef,omega)
     theta, a, A, chain = problem.decode(x)
+    if problem.model == 'm2':
+        return envelope_gradients_m2(problem, theta, A, chain, coef, omega)
     H, dt, _ = basis(theta, a, problem.p, curvature=problem.curvature)
     error = H@coef-problem.y
     force = (error@problem.W)* (problem.alpha*omega)[:, None]
@@ -184,16 +222,7 @@ def envelope_gradients(problem, x, coef, omega, use_problem_hook=True):
     if problem.p == 1: ratio_A[~positive] = ratio_a[~positive]
     grad = np.column_stack([np.sum(force*(dt@coef), axis=1),
                             force[:, 0]*displacement_A+force[:, 1]*ratio_A])
-    mt = np.bincount(problem.groups, weights=theta)/problem.counts
-    ma = np.bincount(problem.groups, weights=A)/problem.counts
-    grad[:, 0] += (mt-problem.targets)[problem.groups]/(problem.J*problem.counts[problem.groups])
-    grad[:, 1] += (ma-problem.demands)[problem.groups]/(.25**2*problem.J*problem.counts[problem.groups])
-    if problem.previous_mean_strength > 0:
-        grad[:, 0] += (problem.previous_mean_strength*(mt-problem.previous_means)[problem.groups] /
-                       (problem.J*problem.previous_mean_scale_deg**2*problem.counts[problem.groups]))
-    dif = np.column_stack([theta[problem.right]-theta[problem.left],
-                           (A[problem.right]-A[problem.left])/.25**2])*problem.link_scale[:, None]**2
-    np.add.at(grad, problem.left, -dif); np.add.at(grad, problem.right, dif)
+    add_penalty_gradient(problem, grad, theta, A)
     minus, plus = grad[:, 1].copy(), grad[:, 1].copy()
     exact = np.zeros(problem.n, bool)
     nearby = np.zeros(problem.n, bool)
@@ -226,16 +255,16 @@ def physical_diagnostics(problem, x, coef, omega, previous=None, value=None, old
     pg[(atlow & (pg > 0)) | (athigh & (pg < 0))] = 0
     pg[exact, 1] = knot_violation(minus[exact], plus[exact])
     zero = A == 0
-    singular_descent = zero & (encoded_zero < 0) & (problem.p < 1)
-    indeterminate_zero = zero & (np.abs(encoded_zero) <= 1e-14) & (problem.p < 1)
-    if problem.p < 1: pg[zero, 1] = 0  # magnitude undefined; feasible sign audited separately
+    singular_descent = zero & (encoded_zero < 0) & problem.zero_A_singular
+    indeterminate_zero = zero & (np.abs(encoded_zero) <= 1e-14) & problem.zero_A_singular
+    if problem.zero_A_singular: pg[zero, 1] = 0  # magnitude undefined; feasible sign audited separately
     scaled = np.abs(pg*REFERENCE_UNITS)
     row = dict(physical_reference_units=REFERENCE_UNITS.tolist(),
                physical_projected_optimality=float(scaled.max()),
                physical_gradient_max=np.max(np.abs(grad), axis=0).tolist(),
                physical_gradient_rms=np.sqrt(np.mean(grad**2, axis=0)).tolist(),
                physical_gradient_quantiles=np.quantile(np.abs(grad), [.5, .95, 1.], axis=0).tolist(),
-               zero_A_physical_derivative_undefined_count=int(zero.sum()) if problem.p < 1 else 0,
+               zero_A_physical_derivative_undefined_count=int(zero.sum()) if problem.zero_A_singular else 0,
                zero_A_feasible_descent_count=int(singular_descent.sum()),
                zero_A_stationarity_unverified_count=int(indeterminate_zero.sum()),
                exact_knot_count=int(exact.sum()), near_not_exact_knot_count=int(nearby.sum()),

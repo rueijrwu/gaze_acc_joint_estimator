@@ -1,0 +1,1 @@
+[M0] train_holdout3: python3 -B exp2/reduced_calibration/experiment.py train --model piecewise --theta-anchor-scale-deg 1.0 --target-overrides exp2/corrected_labels/target_overrides_v1.json --max-nfev 400 --wall-seconds 1800 --lsmr-maxiter 300 --lsmr-atol 1e-9 --lsmr-btol 1e-9 --fold holdout3 --output-dir exp2/corrected_labels/m2/M0/training/holdout3

@@ -1,0 +1,1 @@
+[M0] compare_holdout3: python3 -B exp2/reduced_calibration/experiment.py compare --fold holdout3 --model piecewise --prediction-dir exp2/corrected_labels/m2/M0/predictions/holdout3 --matched-dir exp2/corrected_labels/m2/M0/training/full/robust --no-legacy
