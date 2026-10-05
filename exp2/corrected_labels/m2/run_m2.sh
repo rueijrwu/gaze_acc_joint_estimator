@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Corrected-label model comparison: piecewise (M0) vs m2 with theta anchor scale 1.0 / 0.1 deg.
-#   usage: exp2/corrected_labels/m2/run_m2.sh [CONFIG ...]     (default: M0 M2a1 M2a01)
+#   usage: exp2/corrected_labels/m2/run_m2.sh [CONFIG ...]     (default: M0 M2a1 M2a01; M3a01 must be named explicitly)
 #   env:   WALL_SECONDS (per-stage training wall budget, default 1800), PARALLEL=1 (run configs concurrently)
 # Per config <C> everything lands in exp2/corrected_labels/m2/<C>/:
 #   training/{holdout3,full}/{quadratic,robust}   predictions/holdout3/   logs/
@@ -18,7 +18,7 @@ EXPERIMENT=exp2/reduced_calibration/experiment.py
 WALL_SECONDS="${WALL_SECONDS:-1800}"
 
 # config -> "model theta_anchor_scale_deg"
-declare -A CONFIG=( [M0]="piecewise 1.0" [M2a1]="m2 1.0" [M2a01]="m2 0.1" )
+declare -A CONFIG=( [M0]="piecewise 1.0" [M2a1]="m2 1.0" [M2a01]="m2 0.1" [M3a01]="m3 0.1" )  # m3 = m2 + gaze-cubed term in rho4
 
 step() {  # step <config> <name> <command...>: logs stdout+stderr and wall time; skips completed steps
   local cfg="$1" name="$2"; shift 2

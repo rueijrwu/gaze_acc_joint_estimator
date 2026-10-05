@@ -245,20 +245,20 @@ class ProfiledProblem:
                  coefficient_map=None, curvature=False, curvature_strength=0., curvature_scale_output=1.,
                  previous_means=None, previous_mean_strength=0., previous_mean_scale_deg=1.,
                  previous_mean_provenance=None, model='piecewise', theta_anchor_scale_deg=1.):
-        if model not in ('piecewise', 'm2'):
+        if model not in ('piecewise',)+m2_model.M2_FAMILY:
             raise ValueError('Unknown model')
         self.model = model
         if not np.isfinite(theta_anchor_scale_deg) or theta_anchor_scale_deg <= 0:
             raise ValueError('Invalid theta anchor scale')
         self.theta_anchor_scale = float(theta_anchor_scale_deg)
-        if model == 'm2' and (curvature or coefficient_map is not None or p is not None):
-            raise ValueError('m2 has no exponent, curvature term or coefficient map')
+        if model in m2_model.M2_FAMILY and (curvature or coefficient_map is not None or p is not None):
+            raise ValueError('m2/m3 have no exponent, curvature term or coefficient map')
         self.y, self.frames, self.groups = np.asarray(y), np.asarray(frames), np.asarray(groups)
         self.targets, self.demands = np.asarray(targets), np.asarray(demands)
         self.p, self.initial_coef = p, initial_coef.copy()
         self.coefficient_map = None
         self.curvature = bool(curvature)
-        self.coefficient_count = m2_model.N_COEF if model == 'm2' else 15 if self.curvature else 14
+        self.coefficient_count = m2_model.info(model)['n'] if model in m2_model.M2_FAMILY else 15 if self.curvature else 14
         if np.shape(initial_coef) != (self.coefficient_count,) or not np.isfinite(initial_coef).all():
             raise ValueError('Initial coefficients do not match model schema')
         if (not np.isfinite(curvature_strength) or curvature_strength < 0
@@ -306,7 +306,7 @@ class ProfiledProblem:
         links = np.bincount(groups[self.left], minlength=self.J)
         self.link_scale = np.sqrt(.1/(self.J*np.maximum(links[groups[self.left]], 1)))
         th, aa = np.meshgrid(np.linspace(-15,15,9), np.linspace(KNOTS[0], KNOTS[-1],9))
-        H = (m2_model.basis_m2(th.ravel(), aa.ravel(), derivatives=False)[0] if model == 'm2' else
+        H = (m2_model.basis_m2(th.ravel(), aa.ravel(), derivatives=False, cubic_rho=model == 'm3')[0] if model in m2_model.M2_FAMILY else
              basis(th.ravel(), aa.ravel()**p, p, curvature=self.curvature)[0])
         self.prior_M = np.einsum('ab,nbk->nak',self.prior_L,H).reshape(-1,self.coefficient_count)*np.sqrt(.1/len(H))
         self.prior_v = self.prior_M@initial_coef
@@ -316,7 +316,7 @@ class ProfiledProblem:
             row[0, 14] = np.sqrt(self.curvature_strength)/self.curvature_scale_output
             self.prior_M = np.vstack([self.prior_M, row])
             self.prior_v = np.r_[self.prior_v, 0.]
-        self.a_scale = m2_model.A_SCALE if model == 'm2' else 4**p
+        self.a_scale = m2_model.A_SCALE if model in m2_model.M2_FAMILY else 4**p
         self.cache = None
         self._geometry = None
 
@@ -327,26 +327,26 @@ class ProfiledProblem:
 
     def _basis(self, theta, a, derivatives=True):
         # For m2 `a` is A itself (identity state transform); for piecewise it is A**p.
-        if self.model == 'm2':
-            return m2_model.basis_m2(theta, a, derivatives)
+        if self.model in m2_model.M2_FAMILY:
+            return m2_model.basis_m2(theta, a, derivatives, cubic_rho=self.model == 'm3')
         return basis(theta, a, self.p, derivatives=derivatives, curvature=self.curvature)
 
     def encode(self, theta, A):
-        if self.model == 'm2':
+        if self.model in m2_model.M2_FAMILY:
             return np.column_stack([theta/15, A/self.a_scale]).ravel()
         return np.column_stack([theta/15, A**self.p/self.a_scale]).ravel()
 
     def decode(self, x):
         q = x.reshape(-1,2)
         th,a = 15*q[:,0],self.a_scale*q[:,1]
-        if self.model == 'm2':
+        if self.model in m2_model.M2_FAMILY:
             return th,a,a,np.full(len(th),self.a_scale)
         A = a**(1/self.p)
         dA = self.a_scale/self.p*a**(1/self.p-1)
         return th,a,A,dA
 
     def bounds(self):
-        if self.model == 'm2':
+        if self.model in m2_model.M2_FAMILY:
             return np.tile([-20/15,0.],self.n),np.tile([20/15,6/self.a_scale],self.n)
         return np.tile([-20/15,0.],self.n),np.tile([20/15,6**self.p/self.a_scale],self.n)
 
@@ -532,7 +532,7 @@ def save(output,problem,initial,x,coef,history,converged,meta,records,selected,p
     for group,j in enumerate(selected):
         mask=problem.groups==group
         local_A=A[mask]
-        if problem.model == 'm2':
+        if problem.model in m2_model.M2_FAMILY:
             m2_phys=m2_model.forward_jac_m2(th[mask],local_A,coef)[1]
             valid_derivative=np.ones(len(local_A),bool)
         else:
@@ -546,7 +546,7 @@ def save(output,problem,initial,x,coef,history,converged,meta,records,selected,p
         # A=0 has an undefined ratio derivative for p<1. Exclude it from
         # conditioning statistics and report its count, rather than inventing
         # a finite physical Jacobian by multiplying transformed zero/infinity.
-        phys=(m2_phys if problem.model == 'm2' else np.stack([dtheta,dphysical],axis=2))[valid_derivative]
+        phys=(m2_phys if problem.model in m2_model.M2_FAMILY else np.stack([dtheta,dphysical],axis=2))[valid_derivative]
         scaled=np.einsum('ab,nbc->nac',problem.L,phys)*np.array([1.,.25])[None,None,:]
         singular=np.linalg.svd(scaled,compute_uv=False)
         conditions=singular[:,0]/np.maximum(singular[:,1],1e-14)
@@ -561,7 +561,7 @@ def save(output,problem,initial,x,coef,history,converged,meta,records,selected,p
                             scaled_min_singular_quantiles=np.quantile(singular[:,1],[.05,.5,.95]).tolist() if len(singular) else [],
                             optical_near_singular_fraction=float(np.mean(singular[:,1]<1e-3*singular[:,0])) if len(singular) else None,
                             anchor_free_mean_inverse=(m2_model.free_inverse_m2(coef,problem.W,problem.y[mask].mean(axis=0))
-                                                      if problem.model == 'm2' else
+                                                      if problem.model in m2_model.M2_FAMILY else
                                                       free_inverse(problem,coef,problem.y[mask].mean(axis=0)))))
         summary[-1]['mean_theta_anchor_offset_deg']=float(th[mask].mean()-problem.targets[group])
         summary[-1]['mean_A_anchor_offset_D']=float(A[mask].mean()-problem.demands[group])
@@ -569,7 +569,7 @@ def save(output,problem,initial,x,coef,history,converged,meta,records,selected,p
         summary[-1]['free_A_offset_nominal_D']=summary[-1]['anchor_free_mean_inverse']['A_diopters']-float(problem.demands[group])
     grid_theta,grid_A=np.meshgrid(np.linspace(-15,15,9),np.linspace(KNOTS[0],KNOTS[-1],9))
     grid_th,grid_A=grid_theta.ravel(),grid_A.ravel()
-    if problem.model == 'm2':
+    if problem.model in m2_model.M2_FAMILY:
         grid_phys=m2_model.forward_jac_m2(grid_th,grid_A,coef)[1]
     else:
         grid_H,grid_dt,grid_da=basis(grid_th,grid_A**problem.p,problem.p,curvature=problem.curvature)
@@ -583,7 +583,7 @@ def save(output,problem,initial,x,coef,history,converged,meta,records,selected,p
                           near_singular_fraction=float(np.mean(grid_sv[:,1]<1e-3*grid_sv[:,0])))
     effective_settings = SETTINGS.copy()
     effective_settings.update(theta_anchor_scale_deg=problem.theta_anchor_scale)
-    if problem.model == 'm2':
+    if problem.model in m2_model.M2_FAMILY:
         effective_settings.update(extrapolation='none (smooth analytic m2 forms)')
     if problem.curvature:
         effective_settings.update(curvature_prior=problem.curvature_strength,
@@ -616,10 +616,11 @@ def save(output,problem,initial,x,coef,history,converged,meta,records,selected,p
                      free_coefficient_count=problem.free_coefficient_count)
         diag.update(coefficient_map=problem.coefficient_map.tolist(),
                     free_coefficient_count=problem.free_coefficient_count)
-    if problem.model == 'm2':
-        model.update(schema=m2_model.SCHEMA,coefficient_order=m2_model.COEFFICIENT_ORDER,model_type=m2_model.MODEL_TYPE,
-                     coefficient_names=m2_model.COEFFICIENT_NAMES,p=None,state_encoding='theta/15, A/4 (A in diopters)',
-                     basis_description=m2_model.BASIS_DESCRIPTION)
+    if problem.model in m2_model.M2_FAMILY:
+        ident=m2_model.info(problem.model)
+        model.update(schema=ident['schema'],coefficient_order=ident['order'],model_type=ident['model_type'],
+                     coefficient_names=ident['names'],p=None,state_encoding='theta/15, A/4 (A in diopters)',
+                     basis_description=ident['description'])
         model.pop('demand_knots')
     if problem.model != 'piecewise' or problem.theta_anchor_scale != 1.:
         model.update(theta_anchor_scale_deg=problem.theta_anchor_scale)
