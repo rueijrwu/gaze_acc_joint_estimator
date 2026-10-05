@@ -60,8 +60,7 @@ def make_manifest(problem, provenance, global_groups, kappa):
                                 A=np.linspace(KNOTS[0], KNOTS[-1], 9).tolist()),
                 prior_matrix_hash=array_hash(problem.prior_M), prior_value_hash=array_hash(problem.prior_v),
                 precision=problem.W.tolist(), prior_precision=problem.prior_W.tolist(),
-                precision_inverse=np.linalg.inv(problem.W).tolist(),
-                settings=dict(SETTINGS, theta_anchor_scale_deg=problem.theta_anchor_scale_deg),
+                precision_inverse=np.linalg.inv(problem.W).tolist(), settings=SETTINGS,
                 estimated_noise_covariance=(noise_covariance(problem.y, problem.frames, problem.groups).tolist()
                                             if len(problem.left) >= 10 else None),
                 temporal_left_hash=array_hash(problem.left), temporal_right_hash=array_hash(problem.right),
@@ -81,8 +80,7 @@ def make_manifest(problem, provenance, global_groups, kappa):
                         basis_description=manifest['basis_description']+'; displacement adds q*t²',
                         curvature_strength=problem.curvature_strength,
                         curvature_scale_output=problem.curvature_scale_output)
-        manifest['settings'] = dict(SETTINGS, theta_anchor_scale_deg=problem.theta_anchor_scale_deg,
-                                    curvature_prior=problem.curvature_strength,
+        manifest['settings'] = dict(SETTINGS, curvature_prior=problem.curvature_strength,
                                     curvature_scale_output=problem.curvature_scale_output)
     if problem.previous_means is not None:
         manifest.update(previous_mean_prior=dict(strength=problem.previous_mean_strength,
@@ -148,8 +146,7 @@ def curvature_scale(problem, x, omega, use_problem_hook=True):
     # This is a coordinate preconditioner, not a change to the objective.
     curvature = np.sum(d['local']**2, axis=1)*problem.n
     physical = np.column_stack([np.full(problem.n, 15.), d['dA']/.25])
-    anchor_weight = np.array([1/problem.theta_anchor_scale_deg**2, 1.])
-    curvature += physical**2*anchor_weight/(problem.J*problem.counts[problem.groups, None]**2)*problem.n
+    curvature += physical**2/(problem.J*problem.counts[problem.groups, None]**2)*problem.n
     if problem.previous_mean_strength > 0:
         curvature[:, 0] += (15**2*problem.previous_mean_strength /
             (problem.J*problem.previous_mean_scale_deg**2*problem.counts[problem.groups]**2))*problem.n
@@ -189,7 +186,7 @@ def envelope_gradients(problem, x, coef, omega, use_problem_hook=True):
                             force[:, 0]*displacement_A+force[:, 1]*ratio_A])
     mt = np.bincount(problem.groups, weights=theta)/problem.counts
     ma = np.bincount(problem.groups, weights=A)/problem.counts
-    grad[:, 0] += (mt-problem.targets)[problem.groups]/(problem.theta_anchor_scale_deg**2*problem.J*problem.counts[problem.groups])
+    grad[:, 0] += (mt-problem.targets)[problem.groups]/(problem.J*problem.counts[problem.groups])
     grad[:, 1] += (ma-problem.demands)[problem.groups]/(.25**2*problem.J*problem.counts[problem.groups])
     if problem.previous_mean_strength > 0:
         grad[:, 0] += (problem.previous_mean_strength*(mt-problem.previous_means)[problem.groups] /

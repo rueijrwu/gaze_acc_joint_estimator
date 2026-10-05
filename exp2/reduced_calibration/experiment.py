@@ -24,7 +24,7 @@ FOLDS = {'full': [], 'holdout3': list(range(10, 15)), 'holdout2': list(range(15,
 PRIOR_RULE = 'diag(1/ptp(retained_training_frame_observations,axis=0)**2); strength0.1'
 
 
-def coefficient_map(active, curvature=False):
+def coefficient_map(active):
     active = np.asarray(sorted(active), dtype=float)
     if len(active) not in (3, 4) or not np.all(np.isin(active, KNOTS)):
         raise ValueError('Use three or four protocol demand knots')
@@ -34,13 +34,10 @@ def coefficient_map(active, curvature=False):
     m = len(active)
     E = np.zeros((14, 2*m+6))
     E[:4, :m], E[4:8, m:2*m], E[8:, 2*m:] = weights, weights, np.eye(6)
-    if curvature:  # the d-channel curvature coefficient q is always free
-        E = np.pad(E, ((0, 1), (0, 1)))
-        E[14, -1] = 1.
     return E
 
 
-def build_training(y, frames, groups, meta, fold, fixed_p=None, curvature=False, theta_anchor_scale_deg=1.):
+def build_training(y, frames, groups, meta, fold, fixed_p=None):
     heldout = FOLDS[fold]
     selected = [j for j in range(20) if j not in heldout]
     mask = np.isin(groups, selected)
@@ -57,7 +54,7 @@ def build_training(y, frames, groups, meta, fold, fixed_p=None, curvature=False,
     if not .15 <= p <= 1:
         raise ValueError('Exponent must remain in the protocol .15..1 range')
     active = np.unique(demands)
-    E = coefficient_map(active, curvature)
+    E = coefficient_map(active)
     b, s, theta = [], [], np.empty(len(ty))
     for demand in active:
         slots = np.flatnonzero(demands == demand)
@@ -68,14 +65,13 @@ def build_training(y, frames, groups, meta, fold, fixed_p=None, curvature=False,
         rows = np.isin(tg, slots)
         theta[rows] = np.clip((ty[rows, 0]-line[0])/line[1], -20, 20)
     rho = np.linalg.lstsq(design(targets, demands**p), means[:, 1], rcond=None)[0]
-    coef = E@np.r_[b, s, rho, [0.] if curvature else []]  # curvature starts at q=0
+    coef = E@np.r_[b, s, rho]
     covariance = noise_covariance(ty, tf, tg)
     ranges = np.ptp(ty, axis=0)
     if np.any(ranges <= 0):
         raise ValueError('Degenerate training observable range')
     prior_W = np.diag(1/ranges**2)
-    problem = ProfiledProblem(ty, tf, tg, targets, demands, p, coef, np.linalg.inv(covariance), prior_W, coefficient_map=E,
-                              curvature=curvature, curvature_strength=0., theta_anchor_scale_deg=theta_anchor_scale_deg)
+    problem = ProfiledProblem(ty, tf, tg, targets, demands, p, coef, np.linalg.inv(covariance), prior_W, coefficient_map=E)
     initial = problem.encode(theta, demands[tg])
     return problem, initial, selected, global_groups, covariance, dict(
         training_mean_observations=means.tolist(), active_demand_knots=active.tolist(),
@@ -93,17 +89,13 @@ def train(args):
             raise ValueError('Source checkpoint is not this experiment/fold')
     y, frames, groups, meta, records, provenance = load_data(args.experiment_dir, args.intervals, target_overrides=args.target_overrides)
     problem, initial, selected, global_groups, covariance, detail = build_training(
-        y, frames, groups, meta, args.fold, source_identity['p'] if source_identity else None,
-        curvature=args.curvature, theta_anchor_scale_deg=args.theta_anchor_scale_deg)
+        y, frames, groups, meta, args.fold, source_identity['p'] if source_identity else None)
     heldout = FOLDS[args.fold]
     provenance.update(training_fixations=selected, heldout_fixation=None, heldout_fixations=heldout,
         fold=args.fold, experiment='hard_constrained_reduced_demands_v1', capture5_used=False,
         training_frame_count=problem.n, heldout_frame_count=int(np.isin(groups, heldout).sum()),
         full_seed_used=False, historical_reference_used=False, fixed_p=problem.p, initialization=detail,
         prior_rule=PRIOR_RULE, continuation_source=str(source) if source else None)
-    if args.curvature or args.theta_anchor_scale_deg != 1.:  # defaults leave provenance byte-identical
-        provenance.update(curvature=bool(args.curvature), curvature_strength=0.,
-                          theta_anchor_scale_deg=float(args.theta_anchor_scale_deg))
     meta = [dict(row, heldout=j in heldout) for j, row in enumerate(meta)]
     held_capture = 3 if args.fold == 'holdout3' else 4 if args.fold == 'holdout2' else None
     records = [record for record in records if record['capture'] != held_capture]
@@ -174,19 +166,17 @@ def json_safe(value):
 
 def state_diagnostics(states, observation, coef, p, W, active_knots=None):
     theta, A = states.T
-    curved = len(coef) == 15
-    prediction = basis(theta, A**p, p, derivatives=False, curvature=curved)[0]@coef
+    prediction = basis(theta, A**p, p, derivatives=False)[0]@coef
     stationarity, knots = physical_optimality(states, observation, coef, p, W)
     active = KNOTS if active_knots is None else np.asarray(active_knots)
     nonsmooth = np.zeros(len(A), dtype=bool)
     for knot in active[1:-1]:
         nonsmooth |= abs(A-knot) <= 16*np.finfo(float).eps*max(1., knot)
     w, dw = interpolation(A, KNOTS)
-    r, t, a = coef[8:14], theta/15, A**p
+    r, t, a = coef[8:], theta/15, A**p
     defined = (A > 0) | (p == 1)
     jac = np.empty((len(A), 2, 2))
     jac[:, 0, 0] = w@coef[4:8]
-    if curved: jac[:, 0, 0] += 2*coef[14]*theta/225
     jac[:, 1, 0] = (r[1]+2*r[2]*t+a*(r[4]+2*r[5]*t))/15
     jac[:, 0, 1] = dw@coef[:4]+(dw@coef[4:8])*theta
     jac[:, 1, 1] = np.nan
@@ -233,7 +223,7 @@ def grid_audit(coef, p, W, active_knots=None):
     # Calibrated-support interior probes; inversion still searches full bounds.
     theta, A = np.meshgrid(np.linspace(-15, 15, 9), np.unique(np.r_[np.linspace(KNOTS[0], 4., 13), KNOTS]))
     true_states = np.column_stack([theta.ravel(), A.ravel()])
-    obs = basis(true_states[:, 0], true_states[:, 1]**p, p, derivatives=False, curvature=len(coef) == 15)[0]@coef
+    obs = basis(true_states[:, 0], true_states[:, 1]**p, p, derivatives=False)[0]@coef
     states, diagnostics = invert_batch(obs, coef, p, W, maxiter=100)
     stationarity, _ = physical_optimality(states, obs, coef, p, W)
     roundtrip_error = np.linalg.norm((states-true_states)/np.array([1., .25]), axis=1)
@@ -274,10 +264,7 @@ def estimate(args):
     p, W = model['p'], np.asarray(model['precision'])
     E = np.asarray(model['coefficient_map'])
     active = np.unique([meta[j]['demand_diopters_label'] for j in prov['training_fixations']])
-    curved = len(model['coefficients']) == 15
-    if curved != bool(prov.get('curvature', False)):
-        raise ValueError('Model curvature schema differs from its provenance')
-    if not np.array_equal(E, coefficient_map(active, curved)):
+    if not np.array_equal(E, coefficient_map(active)):
         raise ValueError('Model map is not this fold hard constraint')
     manifests = {}
     for name, key in [('trained', 'coefficients'), ('initial', 'initial_coefficients')]:
@@ -391,7 +378,7 @@ def compare(args):
         prov = model['diagnostics']['provenance']
         if prov['training_fixations'] != list(range(20)) or prov['source_sha256'] != frozen['source_sha256'] or prov['selected_interval_sha256'] != frozen['selected_interval_sha256']:
             raise ValueError('Reference cohort/source mismatch: '+name)
-        if name == 'fresh_matched_full' and (prov.get('experiment') != frozen['experiment'] or prov.get('prior_rule') != PRIOR_RULE or not np.array_equal(np.asarray(model.get('coefficient_map')), np.eye(len(model['coefficients'])))):
+        if name == 'fresh_matched_full' and (prov.get('experiment') != frozen['experiment'] or prov.get('prior_rule') != PRIOR_RULE or not np.array_equal(np.asarray(model.get('coefficient_map')), np.eye(14))):
             raise ValueError('Matched full reference must use new policy and identity map')
         csv_path = directory/f'capture_{capture}_states.csv'
         refs[name] = (read_csv(csv_path), model)
@@ -399,11 +386,6 @@ def compare(args):
     summary = {}
     matched_model = refs['fresh_matched_full'][1]
     matched_coef = np.asarray(matched_model['coefficients'])
-    trained_model = json.loads((Path(frozen['model_dir'])/'model.json').read_text())
-    if len(matched_coef) != len(trained_model['coefficients']):
-        raise ValueError('Matched full reference and heldout model differ in curvature schema')
-    if matched_model['diagnostics']['settings'] != trained_model['diagnostics']['settings']:
-        raise ValueError('Matched full reference and heldout model differ in training settings')
     matched_p, matched_W = matched_model['p'], np.asarray(matched_model['precision'])
     input_rows = prediction_rows['trained']
     observation = np.array([[float(r['d']), float(r['rho4'])] for r in input_rows])
@@ -497,10 +479,6 @@ def main():
         command.add_argument('--output-dir', type=Path)
         command.add_argument('--target-overrides', type=Path, default=None)
     command = sub.choices['train']
-    command.add_argument('--theta-anchor-scale-deg', type=float, default=1.,
-                         help='Gaze mean-anchor scale in degrees (default 1.0; smaller is a stronger anchor)')
-    command.add_argument('--curvature', action='store_true',
-                         help='Add the 15th d-channel coefficient q*(theta/15)^2 (zero explicit prior)')
     source = command.add_mutually_exclusive_group()
     source.add_argument('--resume-dir', type=Path)
     source.add_argument('--warm-start-dir', type=Path)
@@ -520,8 +498,7 @@ def main():
     command.add_argument('--no-legacy', action='store_true')
     args = parser.parse_args()
     for field in ['max_nfev', 'wall_seconds', 'lsmr_maxiter', 'lsmr_atol', 'lsmr_btol', 'robust_outer', 'robust_max_nfev',
-                  'physical_gtol', 'physical_step_tol', 'relative_cost_tol', 'kappa', 'batch_size', 'inverse_iterations',
-                  'theta_anchor_scale_deg']:
+                  'physical_gtol', 'physical_step_tol', 'relative_cost_tol', 'kappa', 'batch_size', 'inverse_iterations']:
         if hasattr(args, field) and getattr(args, field) <= 0:
             parser.error(field+' must be positive')
     if args.stage == 'compare' and args.fold == 'full':

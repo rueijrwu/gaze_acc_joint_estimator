@@ -242,7 +242,6 @@ def noise_covariance(y, frames, groups):
 class ProfiledProblem:
     def __init__(self, y, frames, groups, targets, demands, p, initial_coef, W, prior_W=None,
                  coefficient_map=None, curvature=False, curvature_strength=0., curvature_scale_output=1.,
-                 theta_anchor_scale_deg=1.,
                  previous_means=None, previous_mean_strength=0., previous_mean_scale_deg=1.,
                  previous_mean_provenance=None):
         self.y, self.frames, self.groups = np.asarray(y), np.asarray(frames), np.asarray(groups)
@@ -259,9 +258,6 @@ class ProfiledProblem:
             raise ValueError('Invalid curvature penalty')
         self.curvature_strength = float(curvature_strength)
         self.curvature_scale_output = float(curvature_scale_output)
-        if not np.isfinite(theta_anchor_scale_deg) or theta_anchor_scale_deg <= 0:
-            raise ValueError('Invalid theta anchor scale')
-        self.theta_anchor_scale_deg = float(theta_anchor_scale_deg)
         self.free_coefficient_count = self.coefficient_count
         if coefficient_map is not None:
             E = np.asarray(coefficient_map, dtype=float)
@@ -331,7 +327,7 @@ class ProfiledProblem:
         th,a,A,dA = self.decode(x)
         mt = np.bincount(self.groups,weights=th)/self.counts
         ma = np.bincount(self.groups,weights=A)/self.counts
-        anchor = np.column_stack([(mt-self.targets)/(self.theta_anchor_scale_deg*np.sqrt(self.J)),
+        anchor = np.column_stack([(mt-self.targets)/np.sqrt(self.J),
                                   (ma-self.demands)/(.25*np.sqrt(self.J))]).ravel()
         temporal = np.column_stack([(th[self.right]-th[self.left])*self.link_scale,
                                      (A[self.right]-A[self.left])*self.link_scale/.25]).ravel()
@@ -342,7 +338,7 @@ class ProfiledProblem:
 
     def penalty_jv(self, v, dA):
         q=v.reshape(-1,2); dt=15*q[:,0]; dA=dA*q[:,1]
-        anchor=np.column_stack([np.bincount(self.groups,weights=dt)/self.counts/(self.theta_anchor_scale_deg*np.sqrt(self.J)),
+        anchor=np.column_stack([np.bincount(self.groups,weights=dt)/self.counts/np.sqrt(self.J),
                                np.bincount(self.groups,weights=dA)/self.counts/(.25*np.sqrt(self.J))]).ravel()
         temporal=np.column_stack([(dt[self.right]-dt[self.left])*self.link_scale,
                                   (dA[self.right]-dA[self.left])*self.link_scale/.25]).ravel()
@@ -354,7 +350,7 @@ class ProfiledProblem:
     def penalty_jtv(self,w,dA):
         anchors=w[:2*self.J].reshape(-1,2); end=2*self.J+2*len(self.left)
         temporal=w[2*self.J:end].reshape(-1,2)
-        dt=anchors[self.groups,0]/(self.counts[self.groups]*self.theta_anchor_scale_deg*np.sqrt(self.J))
+        dt=anchors[self.groups,0]/(self.counts[self.groups]*np.sqrt(self.J))
         dAa=anchors[self.groups,1]/(self.counts[self.groups]*.25*np.sqrt(self.J))
         if self.previous_mean_strength > 0:
             dt += w[end:][self.groups]*np.sqrt(self.previous_mean_strength/self.J)/(self.previous_mean_scale_deg*self.counts[self.groups])
@@ -549,7 +545,6 @@ def save(output,problem,initial,x,coef,history,converged,meta,records,selected,p
                           minimum_singular_quantiles=np.quantile(grid_sv[:,1],[.05,.5,.95]).tolist(),
                           near_singular_fraction=float(np.mean(grid_sv[:,1]<1e-3*grid_sv[:,0])))
     effective_settings = SETTINGS.copy()
-    effective_settings.update(theta_anchor_scale_deg=problem.theta_anchor_scale_deg)
     if problem.curvature:
         effective_settings.update(curvature_prior=problem.curvature_strength,
                                   curvature_scale_output=problem.curvature_scale_output)
