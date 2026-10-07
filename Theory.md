@@ -22,6 +22,24 @@ The square root belongs in the displacement denominator, not in `rho_4`. Area is
 
 ## 1. Correspondence, calibration convention, and physical state
 
+The retained y components must be interpreted using their actual geometry.
+For excluded point j and retained a,b, the centered P1 contexts satisfy
+`r_a+r_b=-r_j`. Thus retained-pair common y is
+`(v_a,y+v_b,y)/2 = D_y - T_y*r_j/2`; it is not pure translation. Differential
+y is `v_a,y-v_b,y = T_y*(r_a-r_b)` and cancels the shared displacement.
+Poor common-y cross-prediction may reflect displacement, deformation, context,
+weighting or state confounding; it does not establish that shared image motion
+is intrinsically useless.
+
+A targeted discrepancy candidate adds a shared vertical mode to the full
+normalized residual covariance: `R_tau=R_0+(tau_px/ell1)^2 a a^T`, with
+`a=[0,1,0,1,0,1]`. Marginalize this covariance before each subset transformation.
+Tau is declared/estimated from training or inner validation, never held-point
+error. Eliminating an unrestricted retained shared-y residual offset in the
+quadratic cost is equivalent to retaining x and differential y. This algebra
+motivates a small covariance continuum; it does not prove a free offset is the
+true discrepancy. Keep raw excluded-coordinate prediction as the scientific test.
+
 Let
 
 $$

@@ -477,6 +477,38 @@ A later source-coordinate/ray-traced model can predict both reflections directly
 
 ### Phase 8.3 audit implementation contract
 
+The subsequent `LATEST_RESULTS_AUDIT.md` requires an immutable scheduled-frame
+manifest before nested scoring, with every source-frame ID and three held-P4
+slots validated exactly. `selection.choose` now requires that manifest and
+predeclared minimum shared-frame fractions overall and per exposure. An exposure
+missing from the shared complete cohort prevents promotion even when both
+candidates individually retain that exposure. Explicit unavailable outcomes may
+remain in the fixed schedule; omitted outcomes are rejected. Nested callbacks
+now supply a candidate-independent schedule and consume it during evaluation.
+Explicit inner partitions can hold whole captures or the same horizontal-gaze
+condition across captures; leave-one-fixation-out is not capture-transfer evidence.
+
+`full_position.latest_audit` directly pairs saved differential-y against xy on
+full common, joint interior, joint empirical-state, joint measured-P1, and joint
+state/P1 support. It preserves expected exposure rosters and separate point/frame
+cohorts, axis/worst/tail changes, coverage and exact memberships. Its training-only
+diagnosis separates common/differential and point residuals, uses measured P1,
+frozen state, nominal horizontal gaze and capture interactions, and standardizes
+fixed ridge regressors within each training block. These are descriptive residual
+diagnostics of an already jointly fitted response, not new nested calibration
+evidence or permission to fit a free correction to a held-out capture.
+
+Retained-pair common y equals `D_y - T_y*r_held/2`, so it includes deformation.
+Differential y cancels shared displacement. A finite candidate shared-y discrepancy
+covariance is `R_tau = R_0 + (tau_px/ell1)^2 a a^T`, `a=[0,1,0,1,0,1]`.
+The helper is implemented and algebraically tested; tau=0 is the reference,
+while x/differential-y annihilates the added direction. Choose or estimate tau
+only within training/inner selection, and continue scoring raw excluded pixels.
+Do not launch or promote this candidate automatically: predictable context bias
+and unpredictable shared variation need different treatments. Keep baseline27 xy
+as reference and baseline27 differential-y as the primary challenger; broader
+capacity and captures 5/6 remain deferred until guards and grouping are frozen.
+
 Use the shared `full_position.scorecard` in calibration evaluation, sensitivity,
 retained-channel studies and optional application holdouts. Primary outcomes are
 excluded-P4 equal-exposure squared loss/RMS, raw physical cross-subset gaze and

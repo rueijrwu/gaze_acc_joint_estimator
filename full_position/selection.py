@@ -6,16 +6,35 @@ It cannot retroactively turn development folds into independent final data.
 from __future__ import annotations
 import numpy as np
 from .scorecard import build
+from .population import PopulationManifest, frame_id
 
 REQUIRED_GUARDS = ("minimum_scored_fraction", "minimum_complete_fraction", "maximum_G_theta_deg",
                    "maximum_G_A_D", "maximum_worst_point_px", "maximum_x_axis_rms_px",
                    "maximum_y_axis_rms_px", "minimum_known_support_fraction")
 REQUIRED_GUARDS += ("maximum_p95_E_px", "maximum_p95_worst_point_px",
-                    "maximum_unsupported_fraction", "maximum_bound_slot_fraction")
+                    "maximum_unsupported_fraction", "maximum_bound_slot_fraction",
+                    "minimum_shared_frame_fraction", "minimum_shared_frame_fraction_per_exposure")
 
 
-def choose(inner_records, guards=None, reference=None):
+def transfer_splits(group_ids, metadata, question):
+    """Partition supplied fixation IDs by the predeclared transfer question."""
+    if question not in ("capture", "horizontal_gaze"):
+        raise ValueError("Declare capture or horizontal_gaze transfer")
+    field = "capture" if question == "capture" else "target_theta_deg"
+    partition = {}
+    for gi in group_ids:
+        value = metadata[gi][field]
+        partition.setdefault(value, []).append(gi)
+    return [(f"{question}_{value}", sorted(ids)) for value, ids in sorted(partition.items())]
+
+
+def choose(inner_records, guards=None, reference=None, population=None):
     """No nominal labels, training costs, outer predictions or outer scores enter."""
+    if not isinstance(population, PopulationManifest):
+        raise ValueError("Selection requires an immutable scheduled-population manifest")
+    # Validate denominators and slots even when selection guards are missing.
+    for rows in inner_records.values():
+        population.validate(rows)
     if not guards or any(k not in guards for k in REQUIRED_GUARDS) or not guards.get("provenance"):
         return dict(status="no_promotion_decision", selected=None, reference=reference,
                     reason="complete predeclared cross-check guards and their provenance are required")
@@ -23,7 +42,7 @@ def choose(inner_records, guards=None, reference=None):
         raise ValueError("Selection guards must be finite nonnegative values")
     if any(guards[k] > 1 for k in REQUIRED_GUARDS if "fraction" in k):
         raise ValueError("Fraction guards must be in [0,1]")
-    cards = {name: build(rows, purpose="inner_validation") for name, rows in inner_records.items()}
+    cards = {name: build(rows, purpose="inner_validation", population=population) for name, rows in inner_records.items()}
     eligible, rejected = [], {}
     for name, card in cards.items():
         n = card["coverage"]["scheduled_slots"]
@@ -61,62 +80,102 @@ def choose(inner_records, guards=None, reference=None):
                     reason="no candidate satisfies declared guards", rejected=rejected)
     # Selection compares exactly shared complete frames. Candidate labels do not
     # change the frame identity, and surviving-only single-candidate means cannot rank.
-    def key(f):
-        return tuple(f[k] for k in ("fold", "capture", "fixation", "row"))
-    tables = {n: {key(f): f for f in inner_records[n] if f["complete_triple"]} for n in eligible}
+    tables = {n: {frame_id(f): f for f in inner_records[n] if f["complete_triple"]} for n in eligible}
     if any(len(tables[n]) != sum(f["complete_triple"] for f in inner_records[n]) for n in eligible):
         raise ValueError("Duplicate scientific frame IDs inside an inner candidate")
     shared = set.intersection(*(set(t) for t in tables.values()))
     if not shared:
         return dict(status="no_promotion_decision", selected=None, reference=reference, reason="no shared complete cohort")
+    expected = population.exposures
+    per_exposure = {k: dict(scheduled=sum(i[:3] == k for i in population.frame_ids),
+                           shared=sum(i[:3] == k for i in shared)) for k in expected}
+    fractions = {k: v["shared"]/v["scheduled"] for k, v in per_exposure.items()}
+    absent = [k for k, v in per_exposure.items() if not v["shared"]]
+    shared_coverage = dict(shared_frames=len(shared), scheduled_frames=len(population.frame_ids),
+        overall_fraction=len(shared)/len(population.frame_ids),
+        per_exposure=[dict(exposure_id=k, **v, fraction=fractions[k]) for k, v in per_exposure.items()],
+        absent_exposure_ids=absent)
+    if (absent or shared_coverage["overall_fraction"] < guards["minimum_shared_frame_fraction"] or
+            any(v < guards["minimum_shared_frame_fraction_per_exposure"] for v in fractions.values())):
+        return dict(status="no_promotion_decision", selected=None, reference=reference,
+            reason="shared cohort fails predeclared population/exposure coverage", shared_coverage=shared_coverage,
+            rejected=rejected)
     losses = {}
     for name, table in tables.items():
-        card = build([table[k] for k in sorted(shared)], purpose="inner_validation")
+        card = build([table[k] for k in sorted(shared)], expected_exposures=expected, purpose="inner_validation")
         losses[name] = card["outcomes"]["E_cross_px"]["squared_error_aggregation"]["mean"]
     selected = min(eligible, key=lambda n: (losses[n], n != reference, n))
     return dict(status="inner_selection", selected=selected, reference=reference, shared_frame_ids=sorted(shared),
-                paired_inner_L_cross=losses, rejected=rejected, guards=dict(guards))
+                paired_inner_L_cross=losses, rejected=rejected, guards=dict(guards), shared_coverage=shared_coverage)
 
 
 def nested_grouped(group_data, outer_splits, candidates, fit_candidate, evaluate_candidate,
-                   reference, guards=None):
+                   reference, guards=None, schedule_validation=None, inner_splits=None):
     """fit_candidate(train_groups,candidate) never receives sealed outer groups.
 
-    evaluate_candidate(model,validation_groups) returns joined cross-check frames.
+    schedule_validation(validation_groups,split_id) fixes an immutable manifest.
+    evaluate_candidate(model,validation_groups,population) returns every scheduled
+    frame and its three slots, including explicit unavailable outcomes.
     Fit callbacks own train-only pilot/noise/prior construction. One whole group
     is inner-held at a time, without slicing an outer group into the training pool.
     The outer evaluator is called only after the inner decision is frozen.
     """
     if reference not in candidates or len(set(candidates)) != len(candidates):
         raise ValueError("Declare a unique candidate list containing its reference")
+    if schedule_validation is None:
+        raise ValueError("A candidate-independent scheduled-population callback is required")
     all_ids = set(group_data)
     results = {}
     for fold, held in outer_splits:
+        if fold in results:
+            raise ValueError("Duplicate outer split identifier")
         held = set(held)
         if not held or not held <= all_ids:
             raise ValueError("Outer held groups must be nonempty known groups")
         develop = all_ids-held
         if len(develop) < 2:
             raise ValueError("Nested selection needs at least two development groups")
+        outer_validation = {k: group_data[k] for k in sorted(held)}
+        outer_population = schedule_validation(outer_validation, fold)
+        if not isinstance(outer_population, PopulationManifest):
+            raise ValueError("Schedule callback must return an immutable population manifest")
+        splits = list(inner_splits(sorted(develop))) if inner_splits is not None else [
+            (f"{fold}/inner_{gi}", [gi]) for gi in sorted(develop)]
+        names = [name for name, _ in splits]
+        members = [gi for _, ids in splits for gi in ids]
+        if len(set(names)) != len(names) or len(members) != len(set(members)) or set(members) != develop:
+            raise ValueError("Inner splits must uniquely partition all development groups")
         cards = {name: [] for name in candidates}
-        for gi in sorted(develop):
-            train = {k: group_data[k] for k in sorted(develop-{gi})}
-            validation = {gi: group_data[gi]}
+        scheduled = []
+        for split_id, validation_ids in splits:
+            validation_ids = set(validation_ids)
+            if not validation_ids or not validation_ids < develop:
+                raise ValueError("Inner validation must leave nonempty training and validation groups")
+            train = {k: group_data[k] for k in sorted(develop-validation_ids)}
+            validation = {k: group_data[k] for k in sorted(validation_ids)}
+            population = schedule_validation(validation, split_id)
+            if not isinstance(population, PopulationManifest):
+                raise ValueError("Schedule callback must return an immutable population manifest")
+            scheduled.extend(population.frame_ids)
             for name in candidates:
                 model = fit_candidate(train, name)
-                frames = evaluate_candidate(model, validation)
-                if set(f["fixation"] for f in frames) != {gi}:
+                frames = evaluate_candidate(model, validation, population)
+                if set(f["fixation"] for f in frames) != validation_ids:
                     raise ValueError("Inner evaluator returned a group outside its validation split")
+                population.validate(frames)
                 cards[name].extend(frames)
-        decision = choose(cards, guards, reference)
+        combined_population = PopulationManifest(tuple(sorted(scheduled)))
+        decision = choose(cards, guards, reference, combined_population)
         selected = decision["selected"] or reference
         model = fit_candidate({k: group_data[k] for k in sorted(develop)}, selected)
-        outer = evaluate_candidate(model, {k: group_data[k] for k in sorted(held)})
+        outer = evaluate_candidate(model, outer_validation, outer_population)
         if set(f["fixation"] for f in outer) != held:
             raise ValueError("Outer evaluator returned a group outside the sealed test split")
         results[fold] = dict(decision=decision, evaluated_candidate=selected,
-            fallback_reference=decision["selected"] is None, outer_scorecard=build(outer, purpose="outer_evaluation"),
-            inner_scorecards={n: build(rows, purpose="inner_validation") for n, rows in cards.items()},
+            fallback_reference=decision["selected"] is None, outer_scorecard=build(outer, purpose="outer_evaluation", population=outer_population),
+            inner_scorecards={n: build(rows, purpose="inner_validation", population=combined_population) for n, rows in cards.items()},
+            inner_grouping="explicit_predeclared_partition" if inner_splits is not None else "leave_one_supplied_group_out",
+            inner_split_group_ids=[dict(split_id=n, group_ids=list(ids)) for n, ids in splits],
             training_group_ids=sorted(develop), sealed_outer_group_ids=sorted(held),
             interpretation="nested execution; independence additionally requires data not previously used for development")
     return results

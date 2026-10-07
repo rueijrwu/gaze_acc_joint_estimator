@@ -38,8 +38,14 @@ def equal_exposure(records, values, expected):
         per_exposure={json.dumps(k): dict(count=len(v), mean=float(np.mean(v))) for k, v in sorted(groups.items())})
 
 
-def build(frames, expected_exposures=None, purpose="development", individual_decoder=True):
+def build(frames, expected_exposures=None, purpose="development", individual_decoder=True, population=None):
     from .crosscheck import stats, vector_metrics
+    if population is not None:
+        from .population import PopulationManifest
+        if not isinstance(population, PopulationManifest):
+            raise ValueError("An immutable population manifest is required")
+        population.validate(frames)
+        expected_exposures = sorted(set(population.exposures) | set(tuple(k) for k in (expected_exposures or [])))
     unique(frames)
     slots = [s for f in frames for s in f["slots"]]
     unique(slots, True)

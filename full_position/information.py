@@ -8,6 +8,23 @@ from .noise import marginal, reference_covariance
 MASKS = ("x", "x_y_common", "x_y_difference", "x_y_common_difference")
 
 
+def shared_y_covariance(full_cov, ell, tau_px=0.):
+    """Train-declared shared vertical discrepancy, distinct from localization noise.
+
+    a has equal y loading at all three points. Differential-y annihilates a;
+    finite tau is an interpretable candidate, not an established correction.
+    """
+    if not np.isfinite(tau_px) or tau_px < 0 or not np.isfinite(ell) or ell <= 0:
+        raise ValueError("Positive P1 scale and finite nonnegative discrepancy are required")
+    R = np.asarray(full_cov, float)
+    if R.shape != (6, 6):
+        raise ValueError("Shared-y discrepancy requires the six-coordinate covariance")
+    if tau_px == 0:
+        return R.copy()
+    a = np.array([0., 1., 0., 1., 0., 1.])
+    return R+(tau_px/ell)**2*np.outer(a, a)
+
+
 def retained_transform(held, mask):
     if held not in range(3) or mask not in (*MASKS, "xy"):
         raise ValueError("Unknown excluded point or retained mask")
@@ -76,7 +93,7 @@ def predict_transformed(model, ctx, held, retained, full_cov, mask, starts=START
 
 
 def predict_raw_holdout(model, p, q, point_valid, held, pilot, reference, sigma,
-                        mask="x", starts=STARTS):
+                        mask="x", starts=STARTS, discrepancy_tau_px=0.):
     """Raw-array prediction boundary. No labels or all-three states are accepted.
 
     Validity is an explicit fixed mask; only retained coordinates are normalized.
@@ -93,6 +110,9 @@ def predict_raw_holdout(model, p, q, point_valid, held, pilot, reference, sigma,
     raw = np.asarray(q)[kept//2, kept % 2]
     retained = (raw-ctx.c[kept % 2])/ctx.ell
     cov = reference_covariance(np.asarray(p)[None], pilot, np.asarray(reference), np.asarray(sigma))[0]
+    cov = shared_y_covariance(cov, ctx.ell, discrepancy_tau_px)
     result = predict_transformed(model, ctx, held, retained, cov, mask, starts)
     result.update(retained_image_channels=mask, retained_indices=kept.tolist())
+    if discrepancy_tau_px:
+        result["shared_y_discrepancy_tau_px"] = float(discrepancy_tau_px)
     return result

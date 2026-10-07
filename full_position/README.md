@@ -369,12 +369,38 @@ excluded coordinates. Finite multistart branch sets and diagnostic polynomial
 profiles remain visible; neither supplies a global completeness proof.
 
 `selection.nested_grouped(group_data, outer_splits, candidates, fit_callback,
-evaluate_callback, reference, guards)` provides a nested coordinator. Fitting
+evaluate_callback, reference, guards, schedule_validation, inner_splits)` provides a nested coordinator. Fitting
 receives only training-group payloads and must construct pilot/noise/prior/anchor
 policies from those payloads. Evaluation returns joined records only for its
-supplied validation groups. Externally predeclared guards must cover availability,
+supplied validation groups. A mandatory `schedule_validation(groups, split_id)`
+callback constructs a `population.PopulationManifest` from the fixed sampler,
+before candidate evaluation. `evaluate_callback(model, groups, population)` must
+return every scheduled source-frame ID and all three held-P4 slots, including
+unavailable outcomes; omissions are rejected. `choose` also requires this immutable
+manifest. Optional explicit inner partitions can use `selection.transfer_splits`
+for whole-capture or horizontal-gaze-condition transfer. Externally predeclared guards must cover availability,
 state agreement, axes, tails, support knowledge/support violations and bounds,
-with provenance. Missing guards produce no promotion decision and a reference
+with provenance, plus minimum shared-frame fractions overall and per exposure.
+Losing any expected exposure in a shared cohort prevents promotion.
+Missing guards produce no promotion decision and a reference
 fallback. This tested coordinator has not been used for a new nested calibration
 study. The frozen-mask study is exploratory, retains the existing eight-frame
 population per fixation, and does not access captures 5/6.
+
+The latest audit's direct differential-y versus xy comparison and training-only
+residual diagnosis run without new calibration:
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+  python -m full_position.latest_audit \
+  --output experiments/full_position/latest_results_audit_reproduction --workers 12
+```
+
+The direct report compares exact full/common, interior and joint support cohorts,
+including per-axis and worst/tail changes. Training diagnosis separates retained
+pair common y (which includes deformation), differential y and point residuals.
+Fixed ridge diagnostics use train-block standardization and explicitly retain
+capture/demand confounding. They cannot establish nested calibration performance.
+`information.shared_y_covariance` implements a training-declared finite tau in
+pixels; `predict_raw_holdout(..., discrepancy_tau_px=...)` applies it before
+marginalization. No covariance parameter or new capacity is selected automatically.

@@ -11,6 +11,7 @@ from full_position.diagnostics import enrich_subset_records, subset_support
 from full_position.geometry import context
 from full_position.information import (
     MASKS, TransformedResponse, predict_raw_holdout, predict_transformed, retained_transform,
+    shared_y_covariance,
 )
 from full_position.invert import objective_derivatives, STARTS
 from full_position.model import PositionModel, STATE_SCALE
@@ -108,7 +109,7 @@ class TestInformationMaskContracts(unittest.TestCase):
         valid = np.ones(3, bool)
         starts = np.array([[-10., 1.], [0., 2.], [10., 4.]])
         before = predict_raw_holdout(model, P, q, valid, held, model, [0., 2.], sigma,
-                                     mask="x", starts=starts)
+                                     mask="x", starts=starts, discrepancy_tau_px=1.7)
         # Full covariance input is constructed by the helper from sigma. The
         # held coordinates and unused retained y channels must be unread.
         changed = q.copy()
@@ -116,7 +117,7 @@ class TestInformationMaskContracts(unittest.TestCase):
         retained = [j for j in range(3) if j != held]
         changed[retained, 1] = np.nan
         after = predict_raw_holdout(model, P, changed, valid, held, model, [0., 2.], sigma,
-                                    mask="x", starts=starts)
+                                    mask="x", starts=starts, discrepancy_tau_px=1.7)
         self.assertEqual(before.get("available"), after.get("available"))
         self.assertEqual(before.get("reason"), after.get("reason"))
         if before.get("available"):
@@ -125,6 +126,87 @@ class TestInformationMaskContracts(unittest.TestCase):
             self.assertEqual(before["predictions"], after["predictions"])
         args = inspect.signature(predict_raw_holdout).parameters
         self.assertFalse({"nominal_theta", "demand", "all_three_state"} & set(args))
+
+    def test_shared_y_covariance_is_rank_one_and_annihilated_by_retained_differences(self):
+        rng = np.random.default_rng(20261009)
+        root = rng.normal(size=(6, 6))
+        covariance = root@root.T+np.eye(6)*.7
+        zero = shared_y_covariance(covariance, 2.4, 0.)
+        np.testing.assert_array_equal(zero, covariance)
+        tau, ell = 3.1, 2.4
+        adjusted = shared_y_covariance(covariance, ell, tau)
+        delta = adjusted-covariance
+        loading = np.array([0., 1., 0., 1., 0., 1.])
+        expected = (tau/ell)**2*np.outer(loading, loading)
+        np.testing.assert_allclose(delta, expected, rtol=1e-14, atol=1e-14)
+        self.assertEqual(np.linalg.matrix_rank(delta, tol=1e-12), 1)
+        self.assertTrue(np.all(np.linalg.eigvalsh(adjusted) > 0.))
+        self.assertTrue(np.all(delta[::2] == 0.))
+        self.assertTrue(np.all(delta[:, ::2] == 0.))
+        for held in range(3):
+            kept, H = retained_transform(held, "x_y_difference")
+            retained_loading = loading[kept]
+            np.testing.assert_array_equal(H[2]@retained_loading, 0.)
+            R = covariance[np.ix_(kept, kept)]
+            R_adjusted = adjusted[np.ix_(kept, kept)]
+            np.testing.assert_allclose(H@R_adjusted@H.T, H@R@H.T, atol=1e-13, rtol=1e-13)
+            self.assertTrue(np.all(np.linalg.eigvalsh(H@R_adjusted@H.T) > 0.))
+
+    def test_shared_y_marginal_precision_matches_free_scalar_offset_and_large_tau_limit(self):
+        rng = np.random.default_rng(20261010)
+        root = rng.normal(size=(4, 4))
+        covariance = root@root.T+np.eye(4)*.8
+        residual = rng.normal(size=4)
+        shared = np.array([0., 1., 0., 1.])
+        precision = np.linalg.inv(covariance)
+        offset = (shared@precision@residual)/(shared@precision@shared)
+        profiled = (residual-offset*shared)@precision@(residual-offset*shared)
+        H = np.array([[1., 0., 0., 0.], [0., 0., 1., 0.], [0., 1., 0., -1.]])
+        transformed = H@residual
+        transformed_covariance = H@covariance@H.T
+        differential = transformed@np.linalg.solve(transformed_covariance, transformed)
+        self.assertAlmostEqual(profiled, differential, places=12)
+
+        root6 = rng.normal(size=(6, 6))
+        full_covariance = root6@root6.T+np.eye(6)*.8
+        kept, _ = retained_transform(2, "xy")
+        retained_covariance = full_covariance[np.ix_(kept, kept)]
+        large_full = shared_y_covariance(full_covariance, 1., 1e5)
+        large_retained = large_full[np.ix_(kept, kept)]
+        large_precision = np.linalg.inv(large_retained)
+        # The nuisance elimination is over the same two retained y slots.
+        retained_shared = np.array([0., 1., 0., 1.])
+        retained_precision = np.linalg.inv(retained_covariance)
+        retained_eliminated = retained_precision-(retained_precision@retained_shared[:, None]
+            @retained_shared[None, :]@retained_precision)/(retained_shared@retained_precision@retained_shared)
+        np.testing.assert_allclose(large_precision, retained_eliminated, rtol=1e-6, atol=2e-7)
+
+    def test_shared_y_inputs_reject_negative_or_nonfinite_tau_and_invalid_scale(self):
+        covariance = np.eye(6)
+        for tau in (-1., np.nan, np.inf, -np.inf):
+            with self.subTest(tau=tau), self.assertRaisesRegex(ValueError, "finite nonnegative"):
+                shared_y_covariance(covariance, 2., tau)
+        for ell in (0., -1., np.nan, np.inf, -np.inf):
+            with self.subTest(ell=ell), self.assertRaisesRegex(ValueError, "Positive P1 scale"):
+                shared_y_covariance(covariance, ell, 1.)
+
+    def test_retained_pair_masks_use_observed_image_y_despite_zero_nominal_vertical(self):
+        # Nominal vertical gaze is fixed at zero by protocol, while measured
+        # image-y remains nonzero and carries common/differential information.
+        observed_y = np.array([.23, -.11, .47])
+        nominal_vertical_gaze = np.zeros(3)
+        np.testing.assert_array_equal(nominal_vertical_gaze, np.zeros(3))
+        self.assertTrue(np.any(observed_y != 0.))
+        for held in range(3):
+            kept, H_common_diff = retained_transform(held, "x_y_common_difference")
+            retained = np.array([0., observed_y[kept[0]//2], 0., observed_y[kept[2]//2]])
+            a, b = sorted(kept[::2]//2)
+            self.assertAlmostEqual((H_common_diff@retained)[3], observed_y[a]-observed_y[b])
+            _, H_common = retained_transform(held, "x_y_common")
+            D_y = (H_common@retained)[2]
+            self.assertAlmostEqual(D_y-.5*observed_y[held],
+                                   .5*(observed_y[a]+observed_y[b])-.5*observed_y[held])
+            self.assertNotEqual(D_y, 0.)
 
     def test_random_spd_common_difference_transform_matches_xy_objective_gradient_hessian(self):
         rng = np.random.default_rng(20261008)
