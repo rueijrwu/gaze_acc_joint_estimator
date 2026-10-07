@@ -482,4 +482,33 @@ Repository facts are grounded in the linked baseline/interval files. [Theory.md]
 - [SciPy, least_squares](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least_squares.html): bounded trust-region optimization and Jacobian operators.
 - [scikit-learn, Cross-validation](https://scikit-learn.org/stable/modules/cross_validation.html): training/model-selection separation and grouped evaluation.
 
-The implemented conditional prototype, exploratory evaluation, saved-record three-way cross-check, and Phase 8.2 joint-training sensitivity study are documented in [CURRENT_STATUS.md](CURRENT_STATUS.md). The cross-check post-processes frozen predictions; the separate sensitivity study jointly refits latent states and coefficients across fixation anchors, coefficient priors, and reference covariance. All 144 planned fit outcomes were recorded, with 143 certified calibrations and one rejected checkpoint. Its exact pre-run design documents are preserved in [joint_sensitivity_v1/design_snapshot](experiments/full_position/joint_sensitivity_v1/design_snapshot/). Runtime, detector behavior, and physiological accuracy remain separate evidence questions. The next scientific phase is the controlled retained-x versus retained-x/y information comparison using the same frozen response, excluding the tested P4 point and reporting rank, coverage, and state agreement. No prior or threshold was selected from this sensitivity study. Preserve the frozen estimator until comparative evidence supports a replacement.
+The implemented conditional prototype, exploratory evaluation, saved-record cross-check,
+Phase 8.2 joint-training sensitivity and audit follow-up, and completed Phase 8.3
+are documented in [CURRENT_STATUS.md](CURRENT_STATUS.md). The original 144 fit
+outcomes remain preserved: 143 certified and one rejected checkpoint, with exact
+[pre-run design snapshots](experiments/full_position/joint_sensitivity_v1/design_snapshot/).
+The audit follow-up adds matched training-scale and boundary-transition diagnostics,
+two separate anchor-axis conditions (36/36 certified fits), and a strict training-only
+continuation that certifies the old failed trajectory without rewriting its original
+evaluation record. The theory now states the optical scale symmetry explicitly.
+
+[Phase 8.3](experiments/full_position/phase83_retained_channels_v1/RESULTS.md)
+compares retained x and retained x/y under frozen baseline27 and strong-anchor37
+responses across all nine folds, keeping all P1 references and excluding the same
+P4 point. Retained-y information improves held-point error and subset-state
+agreement on exact shared interior support. Rank, ambiguity, bounds, worst-point
+and axis error, and unavailable slots remain visible. Baseline27 remains the
+development reference; no setting or threshold is selected for deployment.
+
+The optional `fit(..., curvature_strength=...)` implementation penalizes only the
+ten extra conditional37 t²/t²L coefficients toward zero and jointly refits the
+shared coefficients/states. The zero-extra-coefficient response is functionally
+nested27; its nominal coefficient-prior center remains the declared37 initialization,
+so this is not an assertion of identical27 calibration objectives. Its experiment
+is deferred until training residual evidence supports retaining richer capacity;
+it was not enabled in the anchor-axis or Phase 8.3 runs. Next inspect signed-gaze,
+capture, and axis residuals, then predeclare a training-selected comparison if
+justified. Final ranking requires nested grouped or new independent evaluation.
+Captures 5/6 remain untouched until choices are frozen. Runtime, detector behavior,
+and physiological accuracy remain separate evidence questions. Preserve the frozen
+estimator until comparative evidence supports a replacement.

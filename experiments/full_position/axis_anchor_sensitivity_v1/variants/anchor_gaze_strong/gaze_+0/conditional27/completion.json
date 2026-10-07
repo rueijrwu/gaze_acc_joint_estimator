@@ -1,0 +1,639 @@
+{
+  "complete": true,
+  "calibration_converged": true,
+  "calibration": {
+    "converged": true,
+    "selected_start": 0,
+    "alternatives": [
+      {
+        "start": 0,
+        "cost": 1955.425001184941,
+        "nfev": 18,
+        "initialization": "nominal",
+        "status": -2,
+        "message": "Stopped because `callback` function raised `StopIteration` or returned `True`",
+        "converged": true,
+        "projected_stationarity_encoded": 0.0007492765579089067,
+        "projected_stationarity_physical": 0.00013220310103623234,
+        "stable_step_cost_certificate": true,
+        "acceptance_reason": "stable_step_cost_and_stationarity",
+        "objective_components": {
+          "optical": 1919.80723121447,
+          "prior": 16.136869064327673,
+          "extra_curvature": 0.0,
+          "anchor": 19.480900906143045
+        },
+        "inner_stationarity_scaled": 2.2342370503277072e-12,
+        "seconds": 5.791419567998673,
+        "continuation_history": []
+      },
+      {
+        "start": 1,
+        "cost": 1955.4250013183696,
+        "nfev": 21,
+        "initialization": "perturbed_nominal",
+        "status": -2,
+        "message": "Stopped because `callback` function raised `StopIteration` or returned `True`",
+        "converged": true,
+        "projected_stationarity_encoded": 0.001571364826081556,
+        "projected_stationarity_physical": 0.00022917458098237198,
+        "stable_step_cost_certificate": true,
+        "acceptance_reason": "stable_step_cost_and_stationarity",
+        "objective_components": {
+          "optical": 1919.8071364874222,
+          "prior": 16.13652239331259,
+          "extra_curvature": 0.0,
+          "anchor": 19.481342437634908
+        },
+        "inner_stationarity_scaled": 4.185696376088242e-12,
+        "seconds": 6.812895540002501,
+        "continuation_history": []
+      },
+      {
+        "start": 2,
+        "cost": 1955.425001208844,
+        "nfev": 17,
+        "initialization": "additional_training_states",
+        "status": -2,
+        "message": "Stopped because `callback` function raised `StopIteration` or returned `True`",
+        "converged": true,
+        "projected_stationarity_encoded": 0.001046798300130547,
+        "projected_stationarity_physical": 0.00016471139513329902,
+        "stable_step_cost_certificate": true,
+        "acceptance_reason": "stable_step_cost_and_stationarity",
+        "objective_components": {
+          "optical": 1919.8072297199064,
+          "prior": 16.136778592115473,
+          "extra_curvature": 0.0,
+          "anchor": 19.480992896822134
+        },
+        "inner_stationarity_scaled": 3.190319557596691e-12,
+        "seconds": 5.578168922998884,
+        "continuation_history": []
+      }
+    ],
+    "coefficient_design_rank_nominal": 27,
+    "coefficient_count": 27,
+    "nominal_design_singular_values": [
+      1.9724651702046567,
+      1.811869227893321,
+      1.4916238388771732,
+      1.4798920758209027,
+      1.4169243093547765,
+      1.4136398055830741,
+      1.3711268529413734,
+      1.3669917695892628,
+      1.2600693706331059,
+      1.2504374640531506,
+      1.2339958468623988,
+      1.1977449689485242,
+      0.5273044172327614,
+      0.4593886347890996,
+      0.3969417300292234,
+      0.3181727040294581,
+      0.3157159733511902,
+      0.3023555693349437,
+      0.3015919858985663,
+      0.2929665650883554,
+      0.2919373161873849,
+      0.2744773984814042,
+      0.2685875239997635,
+      0.26683024797122096,
+      0.26526811811119105,
+      0.20451012519035977,
+      0.12732842987840476
+    ],
+    "column_scale": [
+      7316.308741737611,
+      19767.393041182982,
+      5782.023690283444,
+      6971.825894598109,
+      5329.8831171651545,
+      6424.187368238515,
+      5210.721453364484,
+      9347.448492133852,
+      7387.209043085231,
+      11280.071211169741,
+      8907.321065690052,
+      6406.8833466088845,
+      5061.811865784682,
+      7731.426896509683,
+      6104.475552507279,
+      4547.1999222056575,
+      3594.7438259447026,
+      5487.450528993627,
+      4333.80424773558,
+      7404.210435442752,
+      5849.74818198015,
+      8934.950415864945,
+      7054.714104463617,
+      6264.886891498779,
+      4952.614431198669,
+      7560.296883614258,
+      5970.8209005653525
+    ],
+    "prior_strength": 0.001,
+    "prior_center": [
+      0.22148047334298374,
+      -0.0467139497261745,
+      0.7625631141917224,
+      -0.10746058795308935,
+      -0.031469456465014416,
+      0.03070695311486663,
+      0.000241493909072341,
+      0.1608694653095758,
+      0.020805696529328524,
+      0.005617989599074852,
+      -0.008145662889472589,
+      -0.7279171452919473,
+      -0.0037577120088839386,
+      0.03184092342486532,
+      0.0006548091368962008,
+      -0.014504124391815709,
+      0.007634242356752303,
+      0.002497607588027938,
+      -0.0018661153198361773,
+      -0.005522942477864917,
+      0.014325419558391339,
+      -0.001750997343715058,
+      -0.002560549864419277,
+      -0.8253461796208387,
+      -0.011352276138541756,
+      0.046459474915871025,
+      0.0033373034930457833
+    ],
+    "temporal_strength": 0.0,
+    "anchor_scales": [
+      0.05,
+      0.25
+    ],
+    "weighting": "equal_fixation_1/(K*n_k)",
+    "projected_stationarity_tolerance_physical": 0.001,
+    "continuation_stages": 2,
+    "curvature_strength": 0.0,
+    "curvature_policy": "ten added conditional37 t2/t2L coefficients toward zero; shared beta/states jointly refit",
+    "inner_stationarity_tolerance_scaled": 1e-07,
+    "objective": "fixed_covariance_quadratic_variable_projection"
+  },
+  "settings": {
+    "anchor_scales": [
+      0.05,
+      0.25
+    ],
+    "anchor_precision_factor": [
+      4.0,
+      1.0
+    ],
+    "prior_strength": 0.001,
+    "covariance_factor": 1.0,
+    "reference_state": [
+      0.0,
+      2.5
+    ],
+    "reference_policy": "median",
+    "temporal_strength": 0.0
+  },
+  "seconds": 52.5175656240026,
+  "evaluation_complete": true,
+  "training_diagnostics": {
+    "group_means": [
+      {
+        "original_group": 0,
+        "count": 43,
+        "nominal_anchor": [
+          -10.0,
+          0.36036036036036034
+        ],
+        "mean_state": [
+          -10.269133491234975,
+          0.8436153355545917
+        ],
+        "mean_minus_anchor": [
+          -0.26913349123497454,
+          0.48325497519423133
+        ],
+        "signed_residual_mean_normalized": [
+          -0.0010419454342682447,
+          -0.0032659166527419094,
+          0.0020307008615059133,
+          -0.004367314212739591,
+          6.914474662441119e-06,
+          -0.00040046340532681746
+        ]
+      },
+      {
+        "original_group": 1,
+        "count": 48,
+        "nominal_anchor": [
+          -5.0,
+          0.36036036036036034
+        ],
+        "mean_state": [
+          -5.203912780855775,
+          0.8997322960112184
+        ],
+        "mean_minus_anchor": [
+          -0.20391278085577458,
+          0.5393719356508581
+        ],
+        "signed_residual_mean_normalized": [
+          0.002491812506127178,
+          0.0029909462485285935,
+          -0.0016288631015971278,
+          -0.001821080307231648,
+          -0.001481976961068843,
+          -0.0017158012607033756
+        ]
+      },
+      {
+        "original_group": 3,
+        "count": 48,
+        "nominal_anchor": [
+          5.0,
+          0.36036036036036034
+        ],
+        "mean_state": [
+          4.936075822060345,
+          0.3682446586112305
+        ],
+        "mean_minus_anchor": [
+          -0.0639241779396551,
+          0.00788429825087017
+        ],
+        "signed_residual_mean_normalized": [
+          -0.004831302098089703,
+          -0.0012698183565080748,
+          0.0004717851033553359,
+          0.0043546742459916925,
+          0.00420866859689453,
+          -0.0015833670562087215
+        ]
+      },
+      {
+        "original_group": 4,
+        "count": 48,
+        "nominal_anchor": [
+          10.0,
+          0.36036036036036034
+        ],
+        "mean_state": [
+          10.470393419988092,
+          0.4265940142116737
+        ],
+        "mean_minus_anchor": [
+          0.4703934199880919,
+          0.06623365385131336
+        ],
+        "signed_residual_mean_normalized": [
+          0.002148277086537286,
+          0.0017223088278127778,
+          -0.0024224547008819403,
+          0.0008119794874361722,
+          -0.0009667106423545216,
+          0.0025525387738266196
+        ]
+      },
+      {
+        "original_group": 5,
+        "count": 38,
+        "nominal_anchor": [
+          -10.0,
+          4.0
+        ],
+        "mean_state": [
+          -9.966085877198173,
+          4.118727877513608
+        ],
+        "mean_minus_anchor": [
+          0.03391412280182671,
+          0.11872787751360825
+        ],
+        "signed_residual_mean_normalized": [
+          -0.0038584695594155822,
+          -0.005478325919027881,
+          0.002300549496833413,
+          -0.01099815175016547,
+          0.0022933750657361603,
+          -0.004930996730176645
+        ]
+      },
+      {
+        "original_group": 6,
+        "count": 42,
+        "nominal_anchor": [
+          -5.0,
+          4.0
+        ],
+        "mean_state": [
+          -4.9343031005076,
+          4.3127481047805025
+        ],
+        "mean_minus_anchor": [
+          0.06569689949239965,
+          0.3127481047805025
+        ],
+        "signed_residual_mean_normalized": [
+          -0.0035544895177450605,
+          -0.005057244636241679,
+          0.002461036560052015,
+          -0.010035417151702475,
+          0.0019768318192492098,
+          -0.005998071057694462
+        ]
+      },
+      {
+        "original_group": 8,
+        "count": 45,
+        "nominal_anchor": [
+          5.0,
+          4.0
+        ],
+        "mean_state": [
+          5.233337267399606,
+          4.172549356282126
+        ],
+        "mean_minus_anchor": [
+          0.23333726739960614,
+          0.17254935628212564
+        ],
+        "signed_residual_mean_normalized": [
+          -0.0029346299188766894,
+          -0.0029508458520780285,
+          -0.007292972670291932,
+          0.001965041837190931,
+          0.00536730873713317,
+          -0.0018792758875353988
+        ]
+      },
+      {
+        "original_group": 9,
+        "count": 39,
+        "nominal_anchor": [
+          10.0,
+          4.0
+        ],
+        "mean_state": [
+          9.484036162038082,
+          2.9507955993295756
+        ],
+        "mean_minus_anchor": [
+          -0.5159638379619178,
+          -1.0492044006704244
+        ],
+        "signed_residual_mean_normalized": [
+          0.0011389730844210218,
+          0.003231386379693332,
+          0.007183605578313286,
+          0.00022838564492036259,
+          -0.003735846762932263,
+          0.000838517179056559
+        ]
+      },
+      {
+        "original_group": 10,
+        "count": 47,
+        "nominal_anchor": [
+          -10.0,
+          3.0
+        ],
+        "mean_state": [
+          -9.879117445682253,
+          3.8268549546826898
+        ],
+        "mean_minus_anchor": [
+          0.12088255431774719,
+          0.8268549546826898
+        ],
+        "signed_residual_mean_normalized": [
+          0.0012652405749593598,
+          0.0030487572066874536,
+          0.001949106433437895,
+          0.007610125367730772,
+          -0.0016437046365568875,
+          0.003462034322816893
+        ]
+      },
+      {
+        "original_group": 11,
+        "count": 39,
+        "nominal_anchor": [
+          -5.0,
+          3.0
+        ],
+        "mean_state": [
+          -4.370810492953735,
+          4.409420634760023
+        ],
+        "mean_minus_anchor": [
+          0.6291895070462648,
+          1.409420634760023
+        ],
+        "signed_residual_mean_normalized": [
+          0.0035875855552140925,
+          0.0026304730982812654,
+          -0.0030763701674723586,
+          0.0007697494810313022,
+          -0.001765476378166287,
+          0.0021724276675577003
+        ]
+      },
+      {
+        "original_group": 13,
+        "count": 41,
+        "nominal_anchor": [
+          5.0,
+          3.0
+        ],
+        "mean_state": [
+          4.820070888223424,
+          2.552589465335606
+        ],
+        "mean_minus_anchor": [
+          -0.179929111776576,
+          -0.4474105346643942
+        ],
+        "signed_residual_mean_normalized": [
+          -0.0015101025714935891,
+          -0.004197353192104363,
+          -0.0005186274652167248,
+          -0.0023648162521964088,
+          0.0012761110991499867,
+          -0.0009358887934672099
+        ]
+      },
+      {
+        "original_group": 14,
+        "count": 20,
+        "nominal_anchor": [
+          10.0,
+          3.0
+        ],
+        "mean_state": [
+          9.63745262690484,
+          1.9953934325825755
+        ],
+        "mean_minus_anchor": [
+          -0.3625473730951594,
+          -1.0046065674174245
+        ],
+        "signed_residual_mean_normalized": [
+          0.0018486773217735065,
+          0.004433676829149051,
+          0.0017316293217160383,
+          0.004422033213724324,
+          -0.0023400145494837446,
+          0.004283604593150692
+        ]
+      },
+      {
+        "original_group": 15,
+        "count": 44,
+        "nominal_anchor": [
+          -10.0,
+          2.0
+        ],
+        "mean_state": [
+          -10.013832504722812,
+          2.2392166332738297
+        ],
+        "mean_minus_anchor": [
+          -0.013832504722811834,
+          0.2392166332738297
+        ],
+        "signed_residual_mean_normalized": [
+          0.0021660663450281635,
+          0.0033261205342857525,
+          -0.001800529515603227,
+          0.008887459389432669,
+          -0.0011902974240308123,
+          0.004316310393160001
+        ]
+      },
+      {
+        "original_group": 16,
+        "count": 48,
+        "nominal_anchor": [
+          -5.0,
+          2.0
+        ],
+        "mean_state": [
+          -4.81896751950632,
+          2.399863124240419
+        ],
+        "mean_minus_anchor": [
+          0.1810324804936796,
+          0.39986312424041914
+        ],
+        "signed_residual_mean_normalized": [
+          0.003160939370430741,
+          0.0064500873166313,
+          -0.0013161413163416968,
+          0.009366152005307014,
+          -0.0020193614558026243,
+          0.00435538339119856
+        ]
+      },
+      {
+        "original_group": 18,
+        "count": 48,
+        "nominal_anchor": [
+          5.0,
+          2.0
+        ],
+        "mean_state": [
+          4.925247219052916,
+          1.430755220233018
+        ],
+        "mean_minus_anchor": [
+          -0.07475278094708404,
+          -0.569244779766982
+        ],
+        "signed_residual_mean_normalized": [
+          -0.0010681649702197805,
+          -0.002694071479847735,
+          -0.0013830539828729182,
+          -0.001750785834890518,
+          0.0013737530762888417,
+          -0.001286971714129652
+        ]
+      },
+      {
+        "original_group": 19,
+        "count": 39,
+        "nominal_anchor": [
+          10.0,
+          2.0
+        ],
+        "mean_state": [
+          10.047606309146339,
+          1.1316646166112958
+        ],
+        "mean_minus_anchor": [
+          0.04760630914633879,
+          -0.8683353833887042
+        ],
+        "signed_residual_mean_normalized": [
+          0.0010307291344820175,
+          -0.0029228855970195524,
+          0.0015301958143974974,
+          -0.006863922175323324,
+          -0.0014841337509456248,
+          -0.0032495722303140227
+        ]
+      }
+    ],
+    "training_state_shift_theta_deg": {
+      "n": 677,
+      "mean": -0.0442377464503502,
+      "median": -0.06982317750067679,
+      "rms": 0.19180975016553495,
+      "p90": 0.22116078462948216,
+      "p95": 0.3634748553186408
+    },
+    "training_state_shift_A_D": {
+      "n": 677,
+      "mean": -0.07863590386837158,
+      "median": -0.07378537881866609,
+      "rms": 0.17906660394199633,
+      "p90": 0.17269234288917779,
+      "p95": 0.19710225275316662
+    },
+    "training_fixation_mean_gaze_anchor_discrepancy_deg": {
+      "n": 16,
+      "mean": 0.006128531384500091,
+      "median": 0.010040809039507437,
+      "rms": 0.282911899713622,
+      "p90": 0.35186534369384903,
+      "p95": 0.5100924417526351
+    },
+    "training_fixation_mean_accommodation_demand_discrepancy_D": {
+      "n": 16,
+      "mean": 0.039832742660783876,
+      "median": 0.14563861689786695,
+      "rms": 0.6588884869829017,
+      "p90": 0.683113445166774,
+      "p95": 0.9724963747020231
+    },
+    "training_equal_fixation_point_vector_rms_px": 1.987444510450532,
+    "response_shift_at_fixed_frozen_training_states_px": {
+      "n": 2031,
+      "mean": 1.5003663355789332,
+      "median": 1.5033217973082893,
+      "rms": 1.7897824936474682,
+      "p90": 2.9157306365502174,
+      "p95": 3.199088527377619
+    },
+    "response_shift_at_fixed_states_normalized": {
+      "n": 2031,
+      "mean": 0.005238126269439287,
+      "median": 0.005246085859182916,
+      "rms": 0.0062431687599905404,
+      "p90": 0.010155454870837667,
+      "p95": 0.011110398177282549
+    },
+    "training_bound_state_count": 0,
+    "raw_training_residual_rms_normalized": 0.004865091330459967,
+    "state_parametrization": "theta degrees; accommodation diopters; optimizer encoding [theta/10,A/4]",
+    "uncertainty_definition": "local fixed-calibration conditional covariance; excludes coefficient uncertainty and model discrepancy"
+  }
+}

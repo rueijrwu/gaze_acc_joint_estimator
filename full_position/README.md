@@ -14,6 +14,35 @@ new coefficients at scale 10. The frozen coefficients are never loaded into it.
 
 ## Verification and experiments
 
+The Phase 8.2 audit follow-up adds training-only state-scale diagnostics,
+paired squared-error boundary transitions, separate gaze/accommodation anchor
+conditions, and strict preconditioned calibration continuation. Phase 8.3 freezes
+baseline27 and strong-anchor37 responses and compares retained x with retained
+x/y for each excluded P4 point. Both methods retain all three P1 references;
+the prediction API receives only retained coordinates.
+
+```bash
+rtk proxy env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m full_position.audit_followup \
+  --output experiments/full_position/my_transitions
+rtk proxy env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m full_position.sensitivity \
+  --variants anchor_gaze_strong anchor_accommodation_strong --workers 8 \
+  --output experiments/full_position/my_axis_anchors
+rtk proxy env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m full_position.phase83 \
+  --workers 10 --output experiments/full_position/my_retained_channels
+rtk proxy env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m full_position.retry_calibration \
+  --output experiments/full_position/my_strict_retry
+```
+
+Use new output directories to preserve historical results. The calibration
+`fit(..., continuation_stages=2)` option resumes uncertified starts with a frozen
+Jacobian-norm preconditioner, tighter linear solves, and the same acceptance
+gates. `fit(..., curvature_strength=...)` selectively penalizes the ten extra
+conditional37 curvature coefficients toward zero while jointly fitting all
+coefficients/states. Its experiment remains conditional on evidence supporting
+the richer response; it is not enabled in the anchor or Phase 8.3 studies.
+`invert(..., objective_scale=...)` changes numerical solver units while keeping
+statistical costs and branch thresholds in the supplied covariance units.
+
 From the repository root:
 
 ```bash

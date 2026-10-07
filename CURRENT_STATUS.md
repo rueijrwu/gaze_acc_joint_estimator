@@ -1,7 +1,7 @@
 # Current status — 2026-10-07
 
-The conditional full-position prototype and its frozen-model audit are complete,
-and the saved-model three-way cross-check has now been reported. The primary
+The conditional full-position prototype, Phase 8.2 audit follow-up, and Phase 8.3
+retained-channel comparison are complete. The primary
 comparison evaluates excluded-P4 coordinate prediction and subset-state
 agreement separately. The two-channel control has no individual-P4 decoder, so
 its nominal-anchor consistency is a secondary calibration diagnostic and cannot
@@ -324,16 +324,111 @@ remained unchanged. Exact pre-run copies of [Theory.md](experiments/full_positio
 and [ESTIMATOR_PLAN.md](experiments/full_position/joint_sensitivity_v1/design_snapshot/ESTIMATOR_PLAN.md)
 are retained with hashes matching the run config.
 
+## Phase 8.2 audit implementation and Phase 8.3 (complete, 2026-10-07)
+
+The [Phase 8.2 audit](PHASE_8_2_AUDIT.md) recommendations have been implemented.
+[Theory.md](Theory.md) now describes the exact optical state-scale symmetry;
+both capacities have prediction/derivative regression tests. Descriptive positive
+gains and residual trajectory differences use matched training rows only.
+Evaluation states are never rescaled. Numerical inverse objective scaling now
+keeps statistical branch costs unchanged; a real two-minimum regression shows
+that changing covariance can instead change ambiguity.
+
+The [saved-result decomposition](experiments/full_position/phase82_audit_transitions_v1/RESULTS.md)
+retains all four bound/interior transitions, exact point/frame memberships, and
+paired squared changes by fixation, signed gaze, and capture. Strong-anchor37
+gaze gains concentrate in bound-related strata. Its 107 shared-interior gaze
+frames have equal-fixation changes in E²/Gθ²/GA² of -0.8544 px²/-0.00245 deg²/
++0.00009 D². Capture bound-to-interior transitions worsen pixel error, while the
+126 shared-interior capture frames improve E²/Gθ²/GA² by -0.1400/-0.03720/-0.03359
+in their respective squared units. These are descriptive strata, not a causal
+decomposition or independent validation. Training-only strong-anchor37 gains
+range from 0.9788 to 1.0258 for gaze and 0.8871 to 1.2170 for `1+A`.
+
+The [strict training-only retry](experiments/full_position/phase82_strict_retry_v1/RESULTS.md)
+uses an explicit preconditioned continuation with tighter linear solves and the
+unchanged acceptance gates. From the preserved failed trajectory, 12 continuation
+evaluations reduce physical projected stationarity from 0.00318374 to 0.00099793
+(limit 0.001); inner stationarity is 2.40e-12 (limit 1e-7). Independent reconstruction
+matches coefficients, objective components, and stationarity. The original
+143/144 study and its missing evaluation coverage remain unchanged; this retry
+does not add evaluation scores to that historical study.
+
+The [two missing anchor conditions](experiments/full_position/axis_anchor_sensitivity_v1/RESULTS.md)
+jointly refit both capacities on all nine frozen folds: **36/36 certified fits**,
+126 archived starts, and the same 429 scored slots per family/condition/capacity.
+Eight parallel CPU workers with BLAS/OMP=1 completed the run in **634 seconds**.
+Only the indicated soft fixation-mean penalty scale changes; the training-only
+pilot, covariance, populations, seed, and prior policy remain fixed.
+
+| Family | Capacity | Anchor condition | E (px) | Gθ (deg) | GA (D) |
+|---|---|---|---:|---:|---:|
+| Gaze | 27 | gaze-only strong | 3.421 | 0.287 | 0.331 |
+| Gaze | 27 | accommodation-only strong | 3.426 | 0.267 | 0.315 |
+| Gaze | 37 | gaze-only strong | 4.700 | 0.398 | 0.436 |
+| Gaze | 37 | accommodation-only strong | 4.760 | 0.420 | 0.450 |
+| Capture | 27 | gaze-only strong | 4.170 | 0.292 | 0.324 |
+| Capture | 27 | accommodation-only strong | 4.172 | 0.278 | 0.315 |
+| Capture | 37 | gaze-only strong | 4.323 | 0.278 | 0.351 |
+| Capture | 37 | accommodation-only strong | 4.312 | 0.338 | 0.408 |
+
+All table metrics use equal-fixation complete-frame RMS. The gaze-only scales are
+(0.05 deg, 0.25 D); accommodation-only scales are (0.10 deg, 0.125 D). These are
+penalty scales, not physiological uncertainty estimates. In conditional37 capture
+folds, gaze-only strengthening improves state agreement, while accommodation-only
+strengthening slightly worsens it relative to baseline37. On 126 matched interior
+capture frames, gaze-only ΔGθ²/ΔGA² is -0.03639/-0.04062; accommodation-only is
++0.00494/+0.00333. Thus stabilization is mainly associated with gaze anchoring in
+this population, with no uniformly better setting or replacement for baseline27.
+
+[Phase 8.3](experiments/full_position/phase83_retained_channels_v1/RESULTS.md)
+compares retained x with retained x/y under the same frozen baseline27 or
+strong-anchor37 response, all three P1 references, and exactly the same excluded
+P4 point. The inverse API receives only the two retained x coordinates or four
+retained x/y coordinates and their covariance marginal. All 18 response/fold
+tasks completed in **57 seconds with 10 CPU workers**, reusing certified frozen
+x/y holdouts and computing the x inverses with the same 49-start scalar policy.
+The 84,084 x start candidates are archived; 1,716 selected branches pass
+independent stationarity, correction, curvature, and stable-cost checks.
+
+| Family | Frozen response | Retained | E (px) | Gθ (deg) | GA (D) | Scores / 480 | Complete / 160 | Bound slots |
+|---|---|---|---:|---:|---:|---:|---:|---:|
+| Gaze | baseline27 | x | 4.203 | 0.930 | 1.010 | 429 | 143 | 39 |
+| Gaze | baseline27 | x/y | 3.421 | 0.269 | 0.311 | 429 | 143 | 23 |
+| Capture | baseline27 | x | 4.149 | 0.721 | 0.906 | 429 | 143 | 40 |
+| Capture | baseline27 | x/y | 4.014 | 0.281 | 0.319 | 429 | 143 | 8 |
+| Gaze | strong-anchor37 | x | 5.550 | 1.141 | 1.379 | 423 | 137 | 82 |
+| Gaze | strong-anchor37 | x/y | 4.764 | 0.440 | 0.530 | 429 | 143 | 29 |
+| Capture | strong-anchor37 | x | 4.692 | 0.745 | 1.135 | 418 | 132 | 41 |
+| Capture | strong-anchor37 | x/y | 4.293 | 0.276 | 0.366 | 429 | 143 | 30 |
+
+Each cell retains 51 invalid slots. X-only strong-anchor37 additionally loses
+6 gaze and 11 capture scores to rank/ambiguity; these remain visible. The raw
+RMS rows have different support for this response, so comparisons use exact
+paired memberships. On jointly interior complete frames, x/y minus x
+equal-fixation ΔE²/ΔGθ²/ΔGA² is negative in all four response/family cells
+(121/112 baseline27 gaze/capture frames; 84/110 strong-anchor37 frames).
+This supports additional retained-y information beyond boundary effects. It
+does not prove physiological accuracy or superiority of conditional37. Worst
+point and axis error, rank, branches, and coverage remain separate diagnostics;
+baseline27 capture worst-point RMS slightly increases despite lower average E.
+
+All **59 regression tests pass**. New fits and Phase 8.3 preserve source hashes
+and implementation/design snapshots; saved-result diagnostics also have
+standalone verification scripts. Earlier
+result files and captures 5/6 remain untouched. Parallel CPU execution meets the
+acceleration preference; no GPU calibration or inverse policy was introduced.
+
 ## Next work, in order
 
-1. **Phase 8.3, controlled information ablations (P2):** extend retained-x
-   versus retained-x/y tests across development populations with rank, coverage,
-   and excluded-point leakage checked. Evaluate measurement compression as a
-   separate experiment.
-2. **Targeted response/context work (P3):** inspect signed-gaze curvature,
-   accommodation coupling, P1-context dependence, capture geometry, and
-   detector selection. Add response/context terms only when residual evidence
-   and supported rank justify them.
+1. **Training residual diagnosis:** inspect the richer response's remaining
+   signed-gaze/capture/axis errors before another calibration experiment.
+2. **Selective curvature test (audit P3, conditional):** the tested
+   `fit(..., curvature_strength=...)` option shrinks only the ten added
+   conditional37 t²/t²L coefficients toward zero while jointly fitting shared
+   coefficients/states. It is not enabled in these runs. Run a predeclared,
+   training-selected nested comparison only if residual evidence justifies
+   retaining the richer capacity; current evidence keeps baseline27 as reference.
 3. **Nested evaluation and transfer (P4):** use denser grouped evaluation and
    reserve captures 5/6 for untouched transfer checks. Independent detector
    review and physiological references remain separate requirements for
@@ -344,6 +439,15 @@ transfer checks. Neither the new estimator nor geometric agreement establishes
 independent physiological accuracy. No new model has replaced the baseline.
 
 ## Where to resume
+
+- [Phase 8.3 results](experiments/full_position/phase83_retained_channels_v1/RESULTS.md),
+  [verification](experiments/full_position/phase83_retained_channels_v1/verification.json),
+  and [plot](experiments/full_position/phase83_retained_channels_v1/phase83_metrics.png).
+- [Anchor-axis results](experiments/full_position/axis_anchor_sensitivity_v1/RESULTS.md),
+  [verification](experiments/full_position/axis_anchor_sensitivity_v1/verification.json),
+  and [matched transitions](experiments/full_position/axis_anchor_transitions_v1/summary.json).
+- [Saved boundary/gauge diagnostics](experiments/full_position/phase82_audit_transitions_v1/RESULTS.md)
+  and [strict retry](experiments/full_position/phase82_strict_retry_v1/RESULTS.md).
 
 - [Implementation and run commands](full_position/README.md).
 - [Audit implementation results](experiments/full_position/audit_polished_v1/RESULTS.md),
