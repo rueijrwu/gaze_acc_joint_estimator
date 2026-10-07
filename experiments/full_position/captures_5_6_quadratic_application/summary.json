@@ -1,0 +1,59 @@
+{
+  "model": "/workspace/ximea/gaze_acc_joint_estimator/models/quadratic_model.json",
+  "model_sha256": "cebe47f67852a8ed987b016195ee16a6c63d4b22cfe39c7b2fb794a9852af92b",
+  "solver": "frozen M2 bounded multistart Gauss-Newton, 100 iterations",
+  "backend": "numpy",
+  "model_family": "m2",
+  "slope_deg_per_px": 0.04838772198701595,
+  "intercept_deg": -2.5061171953292125,
+  "linear_formula": "gaze_deg = slope * (mean(P4_x) - mean(P1_x)) + intercept",
+  "calibration": "capture 1 full fixation intervals; equal-weight fixation means; no accommodation term",
+  "difference": "60 * (linear gaze deg - joint gaze deg); model difference, not ground-truth error",
+  "plotting": {
+    "method": "centered 0.3-second local median; common mask across panels",
+    "thresholds": {
+      "gaze_deg": 1.0,
+      "accommodation_D": 0.5,
+      "difference_arcmin": 30.0
+    },
+    "excluded_rows": {
+      "5": 182,
+      "6": 612
+    },
+    "removed_samples": "NaN gaps; no interpolation of displayed values"
+  },
+  "captures": {
+    "5": {
+      "rows": 26370,
+      "joint_estimates": 25226,
+      "linear_estimates": 25226,
+      "compared": 25226,
+      "bound_estimates": 7,
+      "scalar_fallbacks": 0,
+      "source_sha256": "da4fc57a3cc24c802f82f25139f6938508ae02f07fb507abfc82c2b42612905a",
+      "stationarity_unverified": 7,
+      "accommodation_quantiles_D": [
+        0.7223782186502572,
+        0.8063947480476842,
+        3.1416582369124604
+      ],
+      "difference_rms_arcmin": 18.834754380667583
+    },
+    "6": {
+      "rows": 35001,
+      "joint_estimates": 34080,
+      "linear_estimates": 34080,
+      "compared": 34080,
+      "bound_estimates": 10,
+      "scalar_fallbacks": 0,
+      "source_sha256": "37f18b451faaf23592acb0f5628562c8b617826c11845d999cfff22ec8cb653a",
+      "stationarity_unverified": 11,
+      "accommodation_quantiles_D": [
+        0.7221474549279738,
+        0.9541395487434835,
+        2.791216522763702
+      ],
+      "difference_rms_arcmin": 18.672297391129284
+    }
+  }
+}

@@ -1,0 +1,2424 @@
+{
+  "schema": "three_pair_crosscheck_scorecard_v1",
+  "purpose": "development",
+  "protocol": {
+    "state_variables": [
+      "theta_x_deg",
+      "A_D"
+    ],
+    "calibration_theta_y_nominal_deg": 0.0,
+    "calibration_theta_y_role": "protocol_constraint_not_framewise_ground_truth",
+    "image_axis_convention": "stored pixel x/y axes; P1 normalization without rotation; image-y is not vertical gaze",
+    "protocol_provenance": "user clarification recorded in PHASE_8_3_AUDIT.md, 2026-10-07"
+  },
+  "status": "available",
+  "scientific_criterion": "excluded-P4 prediction with cross-subset state agreement, coverage, support and tails",
+  "weighting": "equal exposure: mean within-exposure squared values, equal mean across contributing exposures, square root",
+  "outcomes": {
+    "E_cross_px": {
+      "equal_exposure_rms": 4.04636722613743,
+      "squared_error_aggregation": {
+        "mean": 16.37308772875912,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 7,
+            "mean": 30.457532484324055
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 7,
+            "mean": 18.763727719674087
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 7,
+            "mean": 11.391148288292943
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 8,
+            "mean": 13.941601365082041
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 7.311428786422487
+          }
+        }
+      },
+      "distribution": {
+        "n": 34,
+        "mean": 3.89181942838027,
+        "median": 3.7532409056145344,
+        "rms": 4.103000388162181,
+        "p90": 5.126494315389257,
+        "p95": 5.657262710784859
+      }
+    },
+    "G_theta_cross_deg": {
+      "equal_exposure_rms": 0.3564845974828318,
+      "squared_error_aggregation": {
+        "mean": 0.1270812682424966,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 7,
+            "mean": 0.03445524494208701
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 7,
+            "mean": 0.12212849133832329
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 7,
+            "mean": 0.13719722841422527
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 8,
+            "mean": 0.23351090274471964
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 0.10811447377312777
+          }
+        }
+      },
+      "distribution": {
+        "n": 34,
+        "mean": 0.3285361074128685,
+        "median": 0.3016576154991354,
+        "rms": 0.3623910117573625,
+        "p90": 0.5241325591027648,
+        "p95": 0.5593632045002261
+      }
+    },
+    "G_A_cross_D": {
+      "equal_exposure_rms": 0.44524293821235117,
+      "squared_error_aggregation": {
+        "mean": 0.19824127402796754,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 7,
+            "mean": 0.09457485172891046
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 7,
+            "mean": 0.3793769079312936
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 7,
+            "mean": 0.24734692284041776
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 8,
+            "mean": 0.19154053494761036
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 0.07836715269160552
+          }
+        }
+      },
+      "distribution": {
+        "n": 34,
+        "mean": 0.4074980954152274,
+        "median": 0.38148548561715345,
+        "rms": 0.45287483079645696,
+        "p90": 0.668105507453172,
+        "p95": 0.7188869172001712
+      }
+    },
+    "worst_point_px": {
+      "equal_exposure_rms": 5.208773422130699,
+      "squared_error_aggregation": {
+        "mean": 27.13132056309516,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 7,
+            "mean": 51.720735132305435
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 7,
+            "mean": 29.126161798925693
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 7,
+            "mean": 19.949901496053464
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 8,
+            "mean": 22.54788592115268
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 12.311918467038527
+          }
+        }
+      },
+      "distribution": {
+        "n": 34,
+        "mean": 5.019247323121232,
+        "median": 4.887486508534634,
+        "rms": 5.279038093907233,
+        "p90": 6.437152815434446,
+        "p95": 7.453855631484349
+      }
+    },
+    "E_cross_normalized": {
+      "equal_exposure_rms": 0.014113644198610782,
+      "squared_error_aggregation": {
+        "mean": 0.00019919495256497978,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 7,
+            "mean": 0.00037028285459904224
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 7,
+            "mean": 0.00022756538743658614
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 7,
+            "mean": 0.00013922917871339886
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 8,
+            "mean": 0.00016858127266410446
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 9.03160694117671e-05
+          }
+        }
+      },
+      "distribution": {
+        "n": 34,
+        "mean": 0.013574492400867128,
+        "median": 0.013049566982769257,
+        "rms": 0.014307312480002565,
+        "p90": 0.017887616355713183,
+        "p95": 0.01972682028250443
+      }
+    }
+  },
+  "axis_errors": {
+    "x": {
+      "equal_exposure_rms": 2.708091754711523,
+      "equal_exposure_bias": -0.060242337255057885,
+      "signed_distribution": {
+        "n": 102,
+        "mean": -0.06634355164846387,
+        "median": -0.46918788326809135,
+        "rms": 2.768149340034708,
+        "p90": 3.821312217614557,
+        "p95": 4.797659468034691
+      },
+      "squared_error_aggregation": {
+        "mean": 7.333760951936536,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 21,
+            "mean": 12.801154125289393
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 21,
+            "mean": 4.700562644751851
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 21,
+            "mean": 3.6516422573259075
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 24,
+            "mean": 11.626461427942772
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 15,
+            "mean": 3.888984304372752
+          }
+        }
+      },
+      "bias_aggregation": {
+        "mean": -0.060242337255057885,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 21,
+            "mean": 0.1527271106051774
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 21,
+            "mean": -0.2721533238676665
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 21,
+            "mean": -0.05666992797874367
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 24,
+            "mean": -0.13247668072961952
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 15,
+            "mean": 0.007361135695562856
+          }
+        }
+      }
+    },
+    "y": {
+      "equal_exposure_rms": 3.006547318241073,
+      "equal_exposure_bias": -1.519868663373256,
+      "signed_distribution": {
+        "n": 102,
+        "mean": -1.6032415192084843,
+        "median": -1.4073101340227652,
+        "rms": 3.0285246270295416,
+        "p90": 1.5521821488376135,
+        "p95": 2.549377627162134
+      },
+      "squared_error_aggregation": {
+        "mean": 9.039326776822588,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 21,
+            "mean": 17.656378359034658
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 21,
+            "mean": 14.063165074922237
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 21,
+            "mean": 7.7395060309670365
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 24,
+            "mean": 2.3151399371392696
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 15,
+            "mean": 3.4224444820497353
+          }
+        }
+      },
+      "bias_aggregation": {
+        "mean": -1.519868663373256,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 21,
+            "mean": -3.028586929112104
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 21,
+            "mean": -3.4442934146899127
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 21,
+            "mean": -2.255345952982474
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 24,
+            "mean": 0.3143191749373055
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 15,
+            "mean": 0.8145638049809046
+          }
+        }
+      }
+    }
+  },
+  "per_point_axis": {
+    "count": 102,
+    "vector_norm_px": {
+      "n": 102,
+      "mean": 3.749976499633229,
+      "median": 3.5536161035142757,
+      "rms": 4.103000388162181,
+      "p90": 5.790256595121256,
+      "p95": 6.4505821376142185
+    },
+    "axis_px": {
+      "x": {
+        "n": 102,
+        "mean": -0.06634355164846387,
+        "median": -0.46918788326809135,
+        "rms": 2.768149340034708,
+        "p90": 3.821312217614557,
+        "p95": 4.797659468034691
+      },
+      "y": {
+        "n": 102,
+        "mean": -1.6032415192084843,
+        "median": -1.4073101340227652,
+        "rms": 3.0285246270295416,
+        "p90": 1.5521821488376135,
+        "p95": 2.549377627162134
+      }
+    },
+    "bias_px": [
+      -0.06634355164846387,
+      -1.6032415192084843
+    ],
+    "vector_norm_normalized": {
+      "n": 102,
+      "mean": 0.013079522652946037,
+      "median": 0.012410831519690895,
+      "rms": 0.014307312480002565,
+      "p90": 0.020119882057864392,
+      "p95": 0.022492952693203307
+    },
+    "axis_normalized": {
+      "x": {
+        "n": 102,
+        "mean": -0.0002308429530360745,
+        "median": -0.0016446246195493631,
+        "rms": 0.009650091949917745,
+        "p90": 0.013288951081703193,
+        "p95": 0.016689084279639582
+      },
+      "y": {
+        "n": 102,
+        "mean": -0.005588371117576887,
+        "median": -0.004896062130598852,
+        "rms": 0.010562902809292996,
+        "p90": 0.005394993970525664,
+        "p95": 0.008956446050466384
+      }
+    },
+    "bias_normalized": [
+      -0.0002308429530360745,
+      -0.005588371117576887
+    ],
+    "per_point": {
+      "0": {
+        "n": 34,
+        "mean": 3.229217266032435,
+        "median": 3.158163995588347,
+        "rms": 3.4702630735391375,
+        "p90": 4.6791055786828935,
+        "p95": 5.051646437445996
+      },
+      "1": {
+        "n": 34,
+        "mean": 4.577195717298544,
+        "median": 4.61236083199296,
+        "rms": 4.9772414233801445,
+        "p90": 6.437152815434446,
+        "p95": 7.453855631484349
+      },
+      "2": {
+        "n": 34,
+        "mean": 3.443516515568711,
+        "median": 3.6410352709706566,
+        "rms": 3.6997538525686435,
+        "p90": 4.89471633071136,
+        "p95": 5.194516297717539
+      }
+    },
+    "per_point_axis_px": {
+      "0": {
+        "x": {
+          "n": 34,
+          "mean": -2.750992017571421,
+          "median": -2.8150807020615503,
+          "rms": 3.030444115707045,
+          "p90": -0.9951145762205444,
+          "p95": -0.8448069723322648
+        },
+        "y": {
+          "n": 34,
+          "mean": -0.7548615433064353,
+          "median": -1.063981429907102,
+          "rms": 1.690897472097539,
+          "p90": 1.3982863408334136,
+          "p95": 2.1565163832554597
+        }
+      },
+      "1": {
+        "x": {
+          "n": 34,
+          "mean": 0.9542709931791248,
+          "median": 1.4685506166532036,
+          "rms": 2.236105026313677,
+          "p90": 2.7060693818638812,
+          "p95": 2.7777078276645626
+        },
+        "y": {
+          "n": 34,
+          "mean": -2.503712642071996,
+          "median": -2.477578249781743,
+          "rms": 4.4466579020547465,
+          "p90": 2.508166930003233,
+          "p95": 2.992380558401214
+        }
+      },
+      "2": {
+        "x": {
+          "n": 34,
+          "mean": 1.5976903694469045,
+          "median": 1.2562340321938166,
+          "rms": 2.9671863910234935,
+          "p90": 4.868129921100388,
+          "p95": 5.085783945858241
+        },
+        "y": {
+          "n": 34,
+          "mean": -1.5511503722470215,
+          "median": -1.3551848105349222,
+          "rms": 2.209973640232277,
+          "p90": 0.48750486867058945,
+          "p95": 0.81123686009792
+        }
+      }
+    },
+    "per_point_axis_normalized": {
+      "0": {
+        "x": {
+          "n": 34,
+          "mean": -0.00959033632794004,
+          "median": -0.009784654823997221,
+          "rms": 0.010561695435217238,
+          "p90": -0.0034968579933713287,
+          "p95": -0.002969435983160334
+        },
+        "y": {
+          "n": 34,
+          "mean": -0.002625109589442392,
+          "median": -0.003698919139678597,
+          "rms": 0.005905202645303644,
+          "p90": 0.0048793056985021715,
+          "p95": 0.007579686546522716
+        }
+      },
+      "1": {
+        "x": {
+          "n": 34,
+          "mean": 0.0033457557674319875,
+          "median": 0.0051040885738560405,
+          "rms": 0.007810601131769469,
+          "p90": 0.009509141128057274,
+          "p95": 0.009762991564406675
+        },
+        "y": {
+          "n": 34,
+          "mean": -0.008729596319781862,
+          "median": -0.008687711862292329,
+          "rms": 0.015506060080607195,
+          "p90": 0.00878991031593119,
+          "p95": 0.010446948008855456
+        }
+      },
+      "2": {
+        "x": {
+          "n": 34,
+          "mean": 0.0055520517013998285,
+          "median": 0.004375399925987669,
+          "rms": 0.010335275681843932,
+          "p90": 0.01693154706511076,
+          "p95": 0.017675685043299715
+        },
+        "y": {
+          "n": 34,
+          "mean": -0.005410407443506409,
+          "median": -0.004721940556308065,
+          "rms": 0.007708140487186813,
+          "p90": 0.0017088672385587654,
+          "p95": 0.0028357271351633776
+        }
+      }
+    }
+  },
+  "coverage": {
+    "input_eligible": 102,
+    "certified": 102,
+    "identifiable": 102,
+    "unambiguous": 102,
+    "scored": 102,
+    "scheduled_frames": 40,
+    "scheduled_slots": 120,
+    "complete_triples": 34,
+    "bound_slots": 3,
+    "shared_clipping_frames": 1
+  },
+  "support_counts": {
+    "theta_anchor": {
+      "true": 100,
+      "unknown": 18,
+      "false": 2
+    },
+    "A_anchor": {
+      "false": 89,
+      "unknown": 18,
+      "true": 13
+    },
+    "theta_empirical": {
+      "true": 102,
+      "unknown": 18
+    },
+    "A_empirical": {
+      "true": 99,
+      "unknown": 18,
+      "false": 3
+    },
+    "P1_context_valid": {
+      "true": 120
+    },
+    "context_outside_training_extrema": {
+      "false": 75,
+      "true": 45
+    },
+    "p1_parity_seen_in_training": {
+      "true": 120
+    }
+  },
+  "membership": {
+    "scheduled": [
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        2660
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        3186
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        3711
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        4237
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        4762
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        5288
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        5813
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        6339
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        7300
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        7871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        8443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        9014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        9585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        10156
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        10728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        11299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        12300
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        12871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        13443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        14014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        14585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        15156
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        15728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        16299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        17300
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        17871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        18443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        19014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        19585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        20156
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        20728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        21299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        22329
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        22933
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        23538
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        24142
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        24747
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        25351
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        25956
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        26560
+      ]
+    ],
+    "complete": [
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        2660
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        3186
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        3711
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        4237
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        5288
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        5813
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        6339
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        7871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        8443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        9014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        9585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        10156
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        10728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        11299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        12300
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        12871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        13443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        14014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        14585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        15728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        16299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        17300
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        17871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        18443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        19014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        19585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        20156
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        20728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        21299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        22329
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        22933
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        23538
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        24142
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        25956
+      ]
+    ],
+    "complete_interior": [
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        2660
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        3186
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        3711
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        4237
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        5288
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        6339
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        7871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        8443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        9014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        9585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        10156
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        10728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        11299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        12300
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        12871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        13443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        14014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        14585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        15728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        16299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        17300
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        17871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        18443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        19014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        19585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        20156
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        20728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        21299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        22329
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        22933
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        23538
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        24142
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        25956
+      ]
+    ],
+    "scored_points": [
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        2660,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        2660,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        2660,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        3186,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        3186,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        3186,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        3711,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        3711,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        3711,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        4237,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        4237,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        4237,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        5288,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        5288,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        5288,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        5813,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        5813,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        5813,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        6339,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        6339,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        5,
+        6339,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        7871,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        7871,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        7871,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        8443,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        8443,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        8443,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        9014,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        9014,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        9014,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        9585,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        9585,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        9585,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        10156,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        10156,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        10156,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        10728,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        10728,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        10728,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        11299,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        11299,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        6,
+        11299,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        12300,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        12300,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        12300,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        12871,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        12871,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        12871,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        13443,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        13443,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        13443,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        14014,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        14014,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        14014,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        14585,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        14585,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        14585,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        15728,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        15728,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        15728,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        16299,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        16299,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        7,
+        16299,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        17300,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        17300,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        17300,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        17871,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        17871,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        17871,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        18443,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        18443,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        18443,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        19014,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        19014,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        19014,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        19585,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        19585,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        19585,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        20156,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        20156,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        20156,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        20728,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        20728,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        20728,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        21299,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        21299,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        8,
+        21299,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        22329,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        22329,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        22329,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        22933,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        22933,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        22933,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        23538,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        23538,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        23538,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        24142,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        24142,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        24142,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        25956,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        25956,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_log",
+        "capture_2_detections.pkl",
+        9,
+        25956,
+        2
+      ]
+    ]
+  },
+  "expected_exposure_ids": [
+    [
+      "capture_2",
+      "capture_2_detections.pkl",
+      5
+    ],
+    [
+      "capture_2",
+      "capture_2_detections.pkl",
+      6
+    ],
+    [
+      "capture_2",
+      "capture_2_detections.pkl",
+      7
+    ],
+    [
+      "capture_2",
+      "capture_2_detections.pkl",
+      8
+    ],
+    [
+      "capture_2",
+      "capture_2_detections.pkl",
+      9
+    ]
+  ],
+  "absent_scheduled_exposure_ids": [],
+  "failure_reasons": {
+    "invalid_input": 18
+  },
+  "promotion": {
+    "status": "no_promotion_decision",
+    "reason": "development scorecard; no declared selection guards"
+  }
+}

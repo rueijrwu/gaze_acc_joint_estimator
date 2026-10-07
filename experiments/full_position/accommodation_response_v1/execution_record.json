@@ -1,0 +1,23 @@
+{
+  "command": "PYTHONPATH=. OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python -m full_position.accommodation_study --output experiments/full_position/accommodation_response_v1 --source-commit 9b93b4f1b6ce22a27351ef8e294365e437682358 --workers 12",
+  "source_commit": "9b93b4f1b6ce22a27351ef8e294365e437682358",
+  "wall_seconds": 246.12952360899362,
+  "fit_tasks": 36,
+  "certified_fits": 36,
+  "historical_files_unchanged": 3163,
+  "workers": 12,
+  "blas_threads": 1,
+  "run_stdout": "run_stdout.log",
+  "prelaunch_checks": [
+    "py_compile passed",
+    "--help passed"
+  ],
+  "tests_run_by_inventory_agent": false,
+  "test_logs": [
+    "test_logs/accommodation_tests_corrected.txt",
+    "test_logs/accommodation_tests_initial.txt",
+    "test_logs/accommodation_tests_postfix.txt",
+    "test_logs/accommodation_tests_speed.txt"
+  ],
+  "gpu_access": "see gpu_access_check.json; visible outside sandbox, family parity unvalidated"
+}

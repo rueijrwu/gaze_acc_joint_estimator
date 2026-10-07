@@ -1,0 +1,22 @@
+{
+  "schema": "accommodation_response_independent_verification_v1",
+  "status": "passed",
+  "scope": "sampled development screen only; not nested selection or deployment promotion",
+  "interval_sha256": "51c4c7514b31dab44b7eb898e7e640c624bf02133cf8324ae605998b455bf015",
+  "counters": {
+    "folds": 9,
+    "fit_tasks": 36,
+    "scored_slots": 3432,
+    "scheduled_slots": 3840,
+    "verified_training_rows": 6055,
+    "verified_holdouts": 3840,
+    "converged_fits": 36,
+    "failed_fits": 0,
+    "checks": 2,
+    "paired_cohort_cells": 30
+  },
+  "verification_limits": [
+    "historical used groups remain development evidence",
+    "local finite-difference covariance/objective checks are numerical consistency checks, not optical accuracy validation"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "outside_sandbox": true,
+  "nvidia_smi": [
+    "GPU 0: NVIDIA RTX PRO 2000 Blackwell",
+    "GPU 1: NVIDIA GeForce RTX 5070 Ti"
+  ],
+  "cupy_device_count": 2,
+  "minimal_cupy_operation": {
+    "device": 0,
+    "operation": "arange(4)**2 then host copy",
+    "result": [
+      0.0,
+      1.0,
+      4.0,
+      9.0
+    ]
+  },
+  "accommodation_family_gpu_parity_validated": false,
+  "used_for_screen": false,
+  "reason": "Power-family forward/derivative/branch/certificate parity is not validated; all 36 fits ran on CPU."
+}

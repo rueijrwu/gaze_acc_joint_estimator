@@ -1,0 +1,2304 @@
+{
+  "schema": "three_pair_crosscheck_scorecard_v1",
+  "purpose": "development",
+  "protocol": {
+    "state_variables": [
+      "theta_x_deg",
+      "A_D"
+    ],
+    "calibration_theta_y_nominal_deg": 0.0,
+    "calibration_theta_y_role": "protocol_constraint_not_framewise_ground_truth",
+    "image_axis_convention": "stored pixel x/y axes; P1 normalization without rotation; image-y is not vertical gaze",
+    "protocol_provenance": "user clarification recorded in PHASE_8_3_AUDIT.md, 2026-10-07"
+  },
+  "status": "available",
+  "scientific_criterion": "excluded-P4 prediction with cross-subset state agreement, coverage, support and tails",
+  "weighting": "equal exposure: mean within-exposure squared values, equal mean across contributing exposures, square root",
+  "outcomes": {
+    "E_cross_px": {
+      "equal_exposure_rms": 2.758584300873328,
+      "squared_error_aggregation": {
+        "mean": 7.609787345024787,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_3\", \"capture_3_detections.pkl\", 10]": {
+            "count": 7,
+            "mean": 10.432902597043604
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 11]": {
+            "count": 7,
+            "mean": 8.451249372646481
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 12]": {
+            "count": 7,
+            "mean": 5.5771761819138685
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 13]": {
+            "count": 8,
+            "mean": 8.302047440986772
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 14]": {
+            "count": 2,
+            "mean": 5.285561132533202
+          }
+        }
+      },
+      "distribution": {
+        "n": 31,
+        "mean": 2.5530065262525117,
+        "median": 2.5085014943422945,
+        "rms": 2.8296631445148077,
+        "p90": 3.8574438870581678,
+        "p95": 4.377637493745148
+      }
+    },
+    "G_theta_cross_deg": {
+      "equal_exposure_rms": 0.23398394320195523,
+      "squared_error_aggregation": {
+        "mean": 0.05474848567633581,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_3\", \"capture_3_detections.pkl\", 10]": {
+            "count": 7,
+            "mean": 0.01367258333159997
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 11]": {
+            "count": 7,
+            "mean": 0.02631027685932642
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 12]": {
+            "count": 7,
+            "mean": 0.042774919297505744
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 13]": {
+            "count": 8,
+            "mean": 0.11052114366212193
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 14]": {
+            "count": 2,
+            "mean": 0.08046350523112497
+          }
+        }
+      },
+      "distribution": {
+        "n": 31,
+        "mean": 0.1816959247987497,
+        "median": 0.14009847735021883,
+        "rms": 0.22891050626111015,
+        "p90": 0.3561556903599159,
+        "p95": 0.4195358825823965
+      }
+    },
+    "G_A_cross_D": {
+      "equal_exposure_rms": 0.2902572824061961,
+      "squared_error_aggregation": {
+        "mean": 0.08424928998983028,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_3\", \"capture_3_detections.pkl\", 10]": {
+            "count": 7,
+            "mean": 0.13971688250762204
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 11]": {
+            "count": 7,
+            "mean": 0.07607508549909345
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 12]": {
+            "count": 7,
+            "mean": 0.06545191796117246
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 13]": {
+            "count": 8,
+            "mean": 0.09398362989948286
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 14]": {
+            "count": 2,
+            "mean": 0.04601893408178058
+          }
+        }
+      },
+      "distribution": {
+        "n": 31,
+        "mean": 0.2622506100432422,
+        "median": 0.21718084948297153,
+        "rms": 0.3012133585872977,
+        "p90": 0.44049547196073546,
+        "p95": 0.5236657588213981
+      }
+    },
+    "worst_point_px": {
+      "equal_exposure_rms": 3.5424193766356398,
+      "squared_error_aggregation": {
+        "mean": 12.548735039963635,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_3\", \"capture_3_detections.pkl\", 10]": {
+            "count": 7,
+            "mean": 18.38744755332391
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 11]": {
+            "count": 7,
+            "mean": 13.61377559645644
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 12]": {
+            "count": 7,
+            "mean": 9.385928318369702
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 13]": {
+            "count": 8,
+            "mean": 13.624161479117245
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 14]": {
+            "count": 2,
+            "mean": 7.732362252550873
+          }
+        }
+      },
+      "distribution": {
+        "n": 31,
+        "mean": 3.2979782660619317,
+        "median": 3.2474334270189127,
+        "rms": 3.6551690160607686,
+        "p90": 4.805878993144651,
+        "p95": 5.808159880998826
+      }
+    },
+    "E_cross_normalized": {
+      "equal_exposure_rms": 0.009630921684932623,
+      "squared_error_aggregation": {
+        "mean": 9.275465250130543e-05,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_3\", \"capture_3_detections.pkl\", 10]": {
+            "count": 7,
+            "mean": 0.00012675072076773767
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 11]": {
+            "count": 7,
+            "mean": 0.0001017494276551934
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 12]": {
+            "count": 7,
+            "mean": 6.819378408525534e-05
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 13]": {
+            "count": 8,
+            "mean": 0.00010180822703631633
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 14]": {
+            "count": 2,
+            "mean": 6.527110296202442e-05
+          }
+        }
+      },
+      "distribution": {
+        "n": 31,
+        "mean": 0.008906931140459314,
+        "median": 0.008773764951339302,
+        "rms": 0.009873172431574827,
+        "p90": 0.013444067304669686,
+        "p95": 0.015256893865017072
+      }
+    }
+  },
+  "axis_errors": {
+    "x": {
+      "equal_exposure_rms": 1.426001689269075,
+      "equal_exposure_bias": 0.08583987419292471,
+      "signed_distribution": {
+        "n": 93,
+        "mean": 0.09936372533193526,
+        "median": 0.001109944490849557,
+        "rms": 1.494685966116072,
+        "p90": 1.873530245757115,
+        "p95": 2.7066454654259307
+      },
+      "squared_error_aggregation": {
+        "mean": 2.0334808177982557,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_3\", \"capture_3_detections.pkl\", 10]": {
+            "count": 21,
+            "mean": 1.0227069924090268
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 11]": {
+            "count": 21,
+            "mean": 4.0156750576519755
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 12]": {
+            "count": 21,
+            "mean": 2.431124984538473
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 13]": {
+            "count": 24,
+            "mean": 1.929054484242412
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 14]": {
+            "count": 6,
+            "mean": 0.768842570149391
+          }
+        }
+      },
+      "bias_aggregation": {
+        "mean": 0.08583987419292471,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_3\", \"capture_3_detections.pkl\", 10]": {
+            "count": 21,
+            "mean": 0.11697435713361821
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 11]": {
+            "count": 21,
+            "mean": 0.0237705828784664
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 12]": {
+            "count": 21,
+            "mean": 0.0770235424027825
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 13]": {
+            "count": 24,
+            "mean": 0.1888390552144017
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 14]": {
+            "count": 6,
+            "mean": 0.02259183333535475
+          }
+        }
+      }
+    },
+    "y": {
+      "equal_exposure_rms": 2.3614204469400466,
+      "equal_exposure_bias": 0.9374398776322488,
+      "signed_distribution": {
+        "n": 93,
+        "mean": 0.9197169406189363,
+        "median": 0.9572750714805238,
+        "rms": 2.4026875315198795,
+        "p90": 3.7139876245516903,
+        "p95": 4.487017345538879
+      },
+      "squared_error_aggregation": {
+        "mean": 5.57630652722653,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_3\", \"capture_3_detections.pkl\", 10]": {
+            "count": 21,
+            "mean": 9.410195604634577
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 11]": {
+            "count": 21,
+            "mean": 4.435574314994506
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 12]": {
+            "count": 21,
+            "mean": 3.146051197375396
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 13]": {
+            "count": 24,
+            "mean": 6.372992956744362
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 14]": {
+            "count": 6,
+            "mean": 4.516718562383809
+          }
+        }
+      },
+      "bias_aggregation": {
+        "mean": 0.9374398776322488,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_3\", \"capture_3_detections.pkl\", 10]": {
+            "count": 21,
+            "mean": 2.7558259818371873
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 11]": {
+            "count": 21,
+            "mean": 1.386908388667028
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 12]": {
+            "count": 21,
+            "mean": 0.41661076007838593
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 13]": {
+            "count": 24,
+            "mean": -0.609983211674745
+          },
+          "[\"capture_3\", \"capture_3_detections.pkl\", 14]": {
+            "count": 6,
+            "mean": 0.7378374692533877
+          }
+        }
+      }
+    }
+  },
+  "per_point_axis": {
+    "count": 93,
+    "vector_norm_px": {
+      "n": 93,
+      "mean": 2.4376303289057715,
+      "median": 2.214080994599851,
+      "rms": 2.8296631445148073,
+      "p90": 4.247735336063708,
+      "p95": 4.782815987228653
+    },
+    "axis_px": {
+      "x": {
+        "n": 93,
+        "mean": 0.09936372533193526,
+        "median": 0.001109944490849557,
+        "rms": 1.494685966116072,
+        "p90": 1.873530245757115,
+        "p95": 2.7066454654259307
+      },
+      "y": {
+        "n": 93,
+        "mean": 0.9197169406189363,
+        "median": 0.9572750714805238,
+        "rms": 2.4026875315198795,
+        "p90": 3.7139876245516903,
+        "p95": 4.487017345538879
+      }
+    },
+    "bias_px": [
+      0.09936372533193526,
+      0.9197169406189363
+    ],
+    "vector_norm_normalized": {
+      "n": 93,
+      "mean": 0.008504336547005916,
+      "median": 0.00770637909010419,
+      "rms": 0.009873172431574827,
+      "p90": 0.01486207770460722,
+      "p95": 0.016693616035787652
+    },
+    "axis_normalized": {
+      "x": {
+        "n": 93,
+        "mean": 0.0003473916982025417,
+        "median": 3.879836931995683e-06,
+        "rms": 0.005206206194882017,
+        "p90": 0.006506073164560227,
+        "p95": 0.009478973914933462
+      },
+      "y": {
+        "n": 93,
+        "mean": 0.003200803926636811,
+        "median": 0.003321200122795153,
+        "rms": 0.008388977942513693,
+        "p90": 0.012963598625724031,
+        "p95": 0.01563581085256733
+      }
+    },
+    "bias_normalized": [
+      0.0003473916982025417,
+      0.003200803926636811
+    ],
+    "per_point": {
+      "0": {
+        "n": 31,
+        "mean": 2.182403227219081,
+        "median": 1.9180641407086694,
+        "rms": 2.5043717802511805,
+        "p90": 3.502557543730168,
+        "p95": 4.142154085013834
+      },
+      "1": {
+        "n": 31,
+        "mean": 3.0653561468540698,
+        "median": 2.4974249339803682,
+        "rms": 3.526934777742653,
+        "p90": 4.805878993144651,
+        "p95": 5.808159880998826
+      },
+      "2": {
+        "n": 31,
+        "mean": 2.0651316126441643,
+        "median": 1.8209995185951269,
+        "rms": 2.304307617074421,
+        "p90": 3.1041117374621914,
+        "p95": 4.148676210901678
+      }
+    },
+    "per_point_axis_px": {
+      "0": {
+        "x": {
+          "n": 31,
+          "mean": 0.9475263419691446,
+          "median": 1.1220553403667282,
+          "rms": 1.6141195089093523,
+          "p90": 2.2371317721925834,
+          "p95": 3.447700023376683
+        },
+        "y": {
+          "n": 31,
+          "mean": 0.47113049253985373,
+          "median": 0.40281896593404554,
+          "rms": 1.914809709782332,
+          "p90": 2.8124248982799713,
+          "p95": 2.9003513027101064
+        }
+      },
+      "1": {
+        "x": {
+          "n": 31,
+          "mean": -0.48846945670452846,
+          "median": -0.4854550209219042,
+          "rms": 1.5957389776557274,
+          "p90": 1.0844057033692707,
+          "p95": 1.9499234193463622
+        },
+        "y": {
+          "n": 31,
+          "mean": 1.2432312212820893,
+          "median": 1.0283253378328254,
+          "rms": 3.1452958591587015,
+          "p90": 4.522575092438387,
+          "p95": 5.065109793033685
+        }
+      },
+      "2": {
+        "x": {
+          "n": 31,
+          "mean": -0.16096570926881046,
+          "median": -0.011450355250190114,
+          "rms": 1.2451882339877343,
+          "p90": 1.370238520500834,
+          "p95": 1.9587968394894233
+        },
+        "y": {
+          "n": 31,
+          "mean": 1.0447891080348657,
+          "median": 1.0630616970790356,
+          "rms": 1.9389017138694018,
+          "p90": 2.8614259505649784,
+          "p95": 2.9998991773527166
+        }
+      }
+    },
+    "per_point_axis_normalized": {
+      "0": {
+        "x": {
+          "n": 31,
+          "mean": 0.0032929621753822733,
+          "median": 0.0039090801601244065,
+          "rms": 0.005606535158439299,
+          "p90": 0.007761575055980251,
+          "p95": 0.01192271395585541
+        },
+        "y": {
+          "n": 31,
+          "mean": 0.0016337551388991092,
+          "median": 0.0013975637558463897,
+          "rms": 0.006687908294486515,
+          "p90": 0.00980232412638837,
+          "p95": 0.010106005722545932
+        }
+      },
+      "1": {
+        "x": {
+          "n": 31,
+          "mean": -0.0016969890846731464,
+          "median": -0.0016929840357192444,
+          "rms": 0.005565231734456036,
+          "p90": 0.0037960275256705795,
+          "p95": 0.006811699310218629
+        },
+        "y": {
+          "n": 31,
+          "mean": 0.004328391012966106,
+          "median": 0.0035945352733603563,
+          "rms": 0.010981522421780628,
+          "p90": 0.01580490696579854,
+          "p95": 0.017657585751900358
+        }
+      },
+      "2": {
+        "x": {
+          "n": 31,
+          "mean": -0.000553797996101502,
+          "median": -3.99201152369154e-05,
+          "rms": 0.004348414434005936,
+          "p90": 0.004795479891834352,
+          "p95": 0.006860999882006077
+        },
+        "y": {
+          "n": 31,
+          "mean": 0.003640265628045218,
+          "median": 0.0037184667794502224,
+          "rms": 0.0067677840320456185,
+          "p90": 0.009972013029782833,
+          "p95": 0.01047276822182341
+        }
+      }
+    }
+  },
+  "coverage": {
+    "input_eligible": 93,
+    "certified": 93,
+    "identifiable": 93,
+    "unambiguous": 93,
+    "scored": 93,
+    "scheduled_frames": 40,
+    "scheduled_slots": 120,
+    "complete_triples": 31,
+    "bound_slots": 0,
+    "shared_clipping_frames": 0
+  },
+  "support_counts": {
+    "theta_anchor": {
+      "true": 93,
+      "unknown": 27
+    },
+    "A_anchor": {
+      "false": 42,
+      "unknown": 27,
+      "true": 51
+    },
+    "theta_empirical": {
+      "true": 93,
+      "unknown": 27
+    },
+    "A_empirical": {
+      "true": 93,
+      "unknown": 27
+    },
+    "P1_context_valid": {
+      "true": 102,
+      "false": 18
+    },
+    "context_outside_training_extrema": {
+      "false": 63,
+      "unknown": 18,
+      "true": 39
+    },
+    "p1_parity_seen_in_training": {
+      "true": 102,
+      "unknown": 18
+    }
+  },
+  "membership": {
+    "scheduled": [
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        1770
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        2307
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        2844
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        3381
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        3918
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        4455
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        4992
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        5529
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        6590
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        7150
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        7710
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        8270
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        8829
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        9389
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        9949
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        10509
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        11500
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        12071
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        12643
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        13214
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        13785
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        14356
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        14928
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        15499
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        16500
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        17071
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        17643
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        18214
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        18785
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        19356
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        19928
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        20499
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        21550
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        22178
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        22807
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        23435
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        24064
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        24692
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        25321
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        25949
+      ]
+    ],
+    "complete": [
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        1770
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        2307
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        2844
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        3381
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        4455
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        4992
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        5529
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        6590
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        7710
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        8270
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        8829
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        9389
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        9949
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        10509
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        11500
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        12071
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        13214
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        13785
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        14356
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        14928
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        15499
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        16500
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        17071
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        17643
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        18214
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        18785
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        19356
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        19928
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        20499
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        23435
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        24692
+      ]
+    ],
+    "complete_interior": [
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        1770
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        2307
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        2844
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        3381
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        4455
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        4992
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        5529
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        6590
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        7710
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        8270
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        8829
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        9389
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        9949
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        10509
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        11500
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        12071
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        13214
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        13785
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        14356
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        14928
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        15499
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        16500
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        17071
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        17643
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        18214
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        18785
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        19356
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        19928
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        20499
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        23435
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        24692
+      ]
+    ],
+    "scored_points": [
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        1770,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        1770,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        1770,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        2307,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        2307,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        2307,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        2844,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        2844,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        2844,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        3381,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        3381,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        3381,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        4455,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        4455,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        4455,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        4992,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        4992,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        4992,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        5529,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        5529,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        10,
+        5529,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        6590,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        6590,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        6590,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        7710,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        7710,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        7710,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        8270,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        8270,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        8270,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        8829,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        8829,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        8829,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        9389,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        9389,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        9389,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        9949,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        9949,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        9949,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        10509,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        10509,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        11,
+        10509,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        11500,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        11500,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        11500,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        12071,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        12071,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        12071,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        13214,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        13214,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        13214,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        13785,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        13785,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        13785,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        14356,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        14356,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        14356,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        14928,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        14928,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        14928,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        15499,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        15499,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        12,
+        15499,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        16500,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        16500,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        16500,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        17071,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        17071,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        17071,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        17643,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        17643,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        17643,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        18214,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        18214,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        18214,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        18785,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        18785,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        18785,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        19356,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        19356,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        19356,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        19928,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        19928,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        19928,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        20499,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        20499,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        13,
+        20499,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        23435,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        23435,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        23435,
+        2
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        24692,
+        0
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        24692,
+        1
+      ],
+      [
+        "capture",
+        "capture_3",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        24692,
+        2
+      ]
+    ]
+  },
+  "expected_exposure_ids": [
+    [
+      "capture_3",
+      "capture_3_detections.pkl",
+      10
+    ],
+    [
+      "capture_3",
+      "capture_3_detections.pkl",
+      11
+    ],
+    [
+      "capture_3",
+      "capture_3_detections.pkl",
+      12
+    ],
+    [
+      "capture_3",
+      "capture_3_detections.pkl",
+      13
+    ],
+    [
+      "capture_3",
+      "capture_3_detections.pkl",
+      14
+    ]
+  ],
+  "absent_scheduled_exposure_ids": [],
+  "failure_reasons": {
+    "invalid_input": 27
+  },
+  "promotion": {
+    "status": "no_promotion_decision",
+    "reason": "development scorecard; no declared selection guards"
+  }
+}

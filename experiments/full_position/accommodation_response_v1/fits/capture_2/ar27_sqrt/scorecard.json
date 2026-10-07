@@ -1,0 +1,2424 @@
+{
+  "schema": "three_pair_crosscheck_scorecard_v1",
+  "purpose": "development",
+  "protocol": {
+    "state_variables": [
+      "theta_x_deg",
+      "A_D"
+    ],
+    "calibration_theta_y_nominal_deg": 0.0,
+    "calibration_theta_y_role": "protocol_constraint_not_framewise_ground_truth",
+    "image_axis_convention": "stored pixel x/y axes; P1 normalization without rotation; image-y is not vertical gaze",
+    "protocol_provenance": "user clarification recorded in PHASE_8_3_AUDIT.md, 2026-10-07"
+  },
+  "status": "available",
+  "scientific_criterion": "excluded-P4 prediction with cross-subset state agreement, coverage, support and tails",
+  "weighting": "equal exposure: mean within-exposure squared values, equal mean across contributing exposures, square root",
+  "outcomes": {
+    "E_cross_px": {
+      "equal_exposure_rms": 4.014911371753931,
+      "squared_error_aggregation": {
+        "mean": 16.119513323039037,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 7,
+            "mean": 30.449505229678334
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 7,
+            "mean": 17.891025114748402
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 7,
+            "mean": 10.663081032835795
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 8,
+            "mean": 14.239438181048957
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 7.354517056883691
+          }
+        }
+      },
+      "distribution": {
+        "n": 34,
+        "mean": 3.8525114754665264,
+        "median": 3.72819605167943,
+        "rms": 4.0718306707167535,
+        "p90": 5.134988729346357,
+        "p95": 5.701879091949503
+      }
+    },
+    "G_theta_cross_deg": {
+      "equal_exposure_rms": 0.2971409870909662,
+      "squared_error_aggregation": {
+        "mean": 0.08829276620939375,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 7,
+            "mean": 0.021964376148670136
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 7,
+            "mean": 0.03688858557271168
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 7,
+            "mean": 0.075013077112948
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 8,
+            "mean": 0.19936422472891807
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 0.1082335674837209
+          }
+        }
+      },
+      "distribution": {
+        "n": 34,
+        "mean": 0.261844892938666,
+        "median": 0.2077739907664663,
+        "rms": 0.3006436187625718,
+        "p90": 0.45991156645630527,
+        "p95": 0.5119676312097878
+      }
+    },
+    "G_A_cross_D": {
+      "equal_exposure_rms": 0.3163232300536818,
+      "squared_error_aggregation": {
+        "mean": 0.10006038587159449,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 7,
+            "mean": 0.03859082445439572
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 7,
+            "mean": 0.14822952472454684
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 7,
+            "mean": 0.12768632744907354
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 8,
+            "mean": 0.12456628282897403
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 0.06122896990098233
+          }
+        }
+      },
+      "distribution": {
+        "n": 34,
+        "mean": 0.2936361052914639,
+        "median": 0.2756142176565004,
+        "rms": 0.3210379237508542,
+        "p90": 0.46915632558825937,
+        "p95": 0.5014536862645015
+      }
+    },
+    "worst_point_px": {
+      "equal_exposure_rms": 5.173657351339734,
+      "squared_error_aggregation": {
+        "mean": 26.766730389071665,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 7,
+            "mean": 51.59006805707872
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 7,
+            "mean": 28.041356652167703
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 7,
+            "mean": 19.02137307483304
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 8,
+            "mean": 22.84206748062328
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 12.338786680655584
+          }
+        }
+      },
+      "distribution": {
+        "n": 34,
+        "mean": 4.9801457768312165,
+        "median": 4.9129853512109225,
+        "rms": 5.244044402762221,
+        "p90": 6.405570279576806,
+        "p95": 7.465477214161207
+      }
+    },
+    "E_cross_normalized": {
+      "equal_exposure_rms": 0.014003923748749017,
+      "squared_error_aggregation": {
+        "mean": 0.0001961098803607767,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 7,
+            "mean": 0.00037019645591168914
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 7,
+            "mean": 0.00021699385281384102
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 7,
+            "mean": 0.00013032934024955855
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 8,
+            "mean": 0.00017218152051271874
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 9.084823231607622e-05
+          }
+        }
+      },
+      "distribution": {
+        "n": 34,
+        "mean": 0.01343736333763097,
+        "median": 0.012958415928629247,
+        "rms": 0.014198519877818823,
+        "p90": 0.017917215500764288,
+        "p95": 0.019882392755141157
+      }
+    }
+  },
+  "axis_errors": {
+    "x": {
+      "equal_exposure_rms": 2.7168799691199927,
+      "equal_exposure_bias": -0.03102146727666084,
+      "signed_distribution": {
+        "n": 102,
+        "mean": -0.03581440009368547,
+        "median": -0.42201420195590345,
+        "rms": 2.7772733563216376,
+        "p90": 3.87495051297898,
+        "p95": 4.8345232340420345
+      },
+      "squared_error_aggregation": {
+        "mean": 7.381436766605452,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 21,
+            "mean": 13.129992172568485
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 21,
+            "mean": 4.705965101957628
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 21,
+            "mean": 3.44800347515885
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 24,
+            "mean": 11.71552246348387
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 15,
+            "mean": 3.90770061985843
+          }
+        }
+      },
+      "bias_aggregation": {
+        "mean": -0.03102146727666084,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 21,
+            "mean": 0.15607016095640347
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 21,
+            "mean": -0.1829077235345808
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 21,
+            "mean": -0.008187947662842513
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 24,
+            "mean": -0.12403396692891515
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 15,
+            "mean": 0.003952140786630783
+          }
+        }
+      }
+    },
+    "y": {
+      "equal_exposure_rms": 2.956023774673266,
+      "equal_exposure_bias": -1.464206921200979,
+      "signed_distribution": {
+        "n": 102,
+        "mean": -1.5421340903529028,
+        "median": -1.4365168298779736,
+        "rms": 2.977676563237785,
+        "p90": 1.6999106883247148,
+        "p95": 2.591174145702513
+      },
+      "squared_error_aggregation": {
+        "mean": 8.738076556433583,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 21,
+            "mean": 17.31951305710985
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 21,
+            "mean": 13.185060012790773
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 21,
+            "mean": 7.215077557676945
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 24,
+            "mean": 2.5239157175650875
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 15,
+            "mean": 3.446816437025262
+          }
+        }
+      },
+      "bias_aggregation": {
+        "mean": -1.464206921200979,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_2\", \"capture_2_detections.pkl\", 5]": {
+            "count": 21,
+            "mean": -3.0441375354427116
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 6]": {
+            "count": 21,
+            "mean": -3.336773929485998
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 7]": {
+            "count": 21,
+            "mean": -2.1606673325494294
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 8]": {
+            "count": 24,
+            "mean": 0.41859051766068706
+          },
+          "[\"capture_2\", \"capture_2_detections.pkl\", 9]": {
+            "count": 15,
+            "mean": 0.8019536738125567
+          }
+        }
+      }
+    }
+  },
+  "per_point_axis": {
+    "count": 102,
+    "vector_norm_px": {
+      "n": 102,
+      "mean": 3.707351556187545,
+      "median": 3.444540990834291,
+      "rms": 4.0718306707167535,
+      "p90": 5.722290082882027,
+      "p95": 6.468469003978347
+    },
+    "axis_px": {
+      "x": {
+        "n": 102,
+        "mean": -0.03581440009368547,
+        "median": -0.42201420195590345,
+        "rms": 2.7772733563216376,
+        "p90": 3.87495051297898,
+        "p95": 4.8345232340420345
+      },
+      "y": {
+        "n": 102,
+        "mean": -1.5421340903529028,
+        "median": -1.4365168298779736,
+        "rms": 2.977676563237785,
+        "p90": 1.6999106883247148,
+        "p95": 2.591174145702513
+      }
+    },
+    "bias_px": [
+      -0.03581440009368547,
+      -1.5421340903529028
+    ],
+    "vector_norm_normalized": {
+      "n": 102,
+      "mean": 0.012930818108206442,
+      "median": 0.012012209299123458,
+      "rms": 0.014198519877818824,
+      "p90": 0.01989102734047603,
+      "p95": 0.022555258467117156
+    },
+    "axis_normalized": {
+      "x": {
+        "n": 102,
+        "mean": -0.00012442092852946266,
+        "median": -0.0014794451150161119,
+        "rms": 0.009681854165430149,
+        "p90": 0.013475811810211749,
+        "p95": 0.016817318094794916
+      },
+      "y": {
+        "n": 102,
+        "mean": -0.005375440532943105,
+        "median": -0.0050133543561266414,
+        "rms": 0.010385550858772928,
+        "p90": 0.005912451629258923,
+        "p95": 0.009057368670179814
+      }
+    },
+    "bias_normalized": [
+      -0.00012442092852946266,
+      -0.005375440532943105
+    ],
+    "per_point": {
+      "0": {
+        "n": 34,
+        "mean": 3.186854727759178,
+        "median": 3.0307115618093254,
+        "rms": 3.4397557301812576,
+        "p90": 4.639664030416538,
+        "p95": 5.123823767071384
+      },
+      "1": {
+        "n": 34,
+        "mean": 4.557282141304405,
+        "median": 4.495480122627248,
+        "rms": 4.952019745605755,
+        "p90": 6.405570279576806,
+        "p95": 7.465477214161207
+      },
+      "2": {
+        "n": 34,
+        "mean": 3.377917799499051,
+        "median": 3.4967534278134096,
+        "rms": 3.6585510777881507,
+        "p90": 4.938040319298848,
+        "p95": 5.253088292974956
+      }
+    },
+    "per_point_axis_px": {
+      "0": {
+        "x": {
+          "n": 34,
+          "mean": -2.708832501449378,
+          "median": -2.7583362855186806,
+          "rms": 3.0037182687268382,
+          "p90": -0.9966223154305682,
+          "p95": -0.8586467807549867
+        },
+        "y": {
+          "n": 34,
+          "mean": -0.7786226932792735,
+          "median": -1.0964671499762346,
+          "rms": 1.6761849675472695,
+          "p90": 1.0552948264001087,
+          "p95": 2.1623935559145773
+        }
+      },
+      "1": {
+        "x": {
+          "n": 34,
+          "mean": 0.9364636021009624,
+          "median": 1.4401245615879361,
+          "rms": 2.2379843639462873,
+          "p90": 2.7101116221638675,
+          "p95": 2.775206253648605
+        },
+        "y": {
+          "n": 34,
+          "mean": -2.4134344063979087,
+          "median": -2.4329556165103554,
+          "rms": 4.417456909535305,
+          "p90": 2.587568322930781,
+          "p95": 3.091403112816124
+        }
+      },
+      "2": {
+        "x": {
+          "n": 34,
+          "mean": 1.6649256990673593,
+          "median": 1.0438942709262164,
+          "rms": 3.018086220778117,
+          "p90": 4.908460635898905,
+          "p95": 5.117410080255683
+        },
+        "y": {
+          "n": 34,
+          "mean": -1.434345171381526,
+          "median": -1.3144111961296971,
+          "rms": 2.067885768782722,
+          "p90": 0.5376777348024234,
+          "p95": 0.8828594904135593
+        }
+      }
+    },
+    "per_point_axis_normalized": {
+      "0": {
+        "x": {
+          "n": 34,
+          "mean": -0.00944337065140756,
+          "median": -0.009604299172083464,
+          "rms": 0.010468603091822102,
+          "p90": -0.0035021601251374406,
+          "p95": -0.0030180831222362194
+        },
+        "y": {
+          "n": 34,
+          "mean": -0.0027078585280542705,
+          "median": -0.0038144309113711094,
+          "rms": 0.005854143423531374,
+          "p90": 0.003697755389910765,
+          "p95": 0.007600343909544158
+        }
+      },
+      "1": {
+        "x": {
+          "n": 34,
+          "mean": 0.0032837505949001207,
+          "median": 0.005005284811084304,
+          "rms": 0.007816905412124542,
+          "p90": 0.0095233420977583,
+          "p95": 0.009754198461895945
+        },
+        "y": {
+          "n": 34,
+          "mean": -0.008415196649584318,
+          "median": -0.008532025171291728,
+          "rms": 0.015403887917389725,
+          "p90": 0.009046553572944961,
+          "p95": 0.010825229510064548
+        }
+      },
+      "2": {
+        "x": {
+          "n": 34,
+          "mean": 0.00578635727091905,
+          "median": 0.003631633325059394,
+          "rms": 0.010512813102389013,
+          "p90": 0.017071818119538232,
+          "p95": 0.017785602468046516
+        },
+        "y": {
+          "n": 34,
+          "mean": -0.0050032664211907205,
+          "median": -0.004576473008234357,
+          "rms": 0.007213060496467265,
+          "p90": 0.0018805286272940854,
+          "p95": 0.0030846549263740123
+        }
+      }
+    }
+  },
+  "coverage": {
+    "input_eligible": 102,
+    "certified": 102,
+    "identifiable": 102,
+    "unambiguous": 102,
+    "scored": 102,
+    "scheduled_frames": 40,
+    "scheduled_slots": 120,
+    "complete_triples": 34,
+    "bound_slots": 1,
+    "shared_clipping_frames": 0
+  },
+  "support_counts": {
+    "theta_anchor": {
+      "true": 100,
+      "unknown": 18,
+      "false": 2
+    },
+    "A_anchor": {
+      "false": 95,
+      "unknown": 18,
+      "true": 7
+    },
+    "theta_empirical": {
+      "true": 102,
+      "unknown": 18
+    },
+    "A_empirical": {
+      "true": 99,
+      "unknown": 18,
+      "false": 3
+    },
+    "P1_context_valid": {
+      "true": 120
+    },
+    "context_outside_training_extrema": {
+      "false": 75,
+      "true": 45
+    },
+    "p1_parity_seen_in_training": {
+      "true": 120
+    }
+  },
+  "membership": {
+    "scheduled": [
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        2660
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        3186
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        3711
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        4237
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        4762
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        5288
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        5813
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        6339
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        7300
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        7871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        8443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        9014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        9585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        10156
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        10728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        11299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        12300
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        12871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        13443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        14014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        14585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        15156
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        15728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        16299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        17300
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        17871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        18443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        19014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        19585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        20156
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        20728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        21299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22329
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22933
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        23538
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        24142
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        24747
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        25351
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        25956
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        26560
+      ]
+    ],
+    "complete": [
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        2660
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        3186
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        3711
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        4237
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        5288
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        5813
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        6339
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        7871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        8443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        9014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        9585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        10156
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        10728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        11299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        12300
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        12871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        13443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        14014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        14585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        15728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        16299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        17300
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        17871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        18443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        19014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        19585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        20156
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        20728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        21299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22329
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22933
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        23538
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        24142
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        25956
+      ]
+    ],
+    "complete_interior": [
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        2660
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        3186
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        3711
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        4237
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        5288
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        6339
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        7871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        8443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        9014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        9585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        10156
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        10728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        11299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        12300
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        12871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        13443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        14014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        14585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        15728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        16299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        17300
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        17871
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        18443
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        19014
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        19585
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        20156
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        20728
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        21299
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22329
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22933
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        23538
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        24142
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        25956
+      ]
+    ],
+    "scored_points": [
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        2660,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        2660,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        2660,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        3186,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        3186,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        3186,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        3711,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        3711,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        3711,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        4237,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        4237,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        4237,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        5288,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        5288,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        5288,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        5813,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        5813,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        5813,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        6339,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        6339,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        5,
+        6339,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        7871,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        7871,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        7871,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        8443,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        8443,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        8443,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        9014,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        9014,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        9014,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        9585,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        9585,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        9585,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        10156,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        10156,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        10156,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        10728,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        10728,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        10728,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        11299,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        11299,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        6,
+        11299,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        12300,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        12300,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        12300,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        12871,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        12871,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        12871,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        13443,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        13443,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        13443,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        14014,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        14014,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        14014,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        14585,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        14585,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        14585,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        15728,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        15728,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        15728,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        16299,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        16299,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        7,
+        16299,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        17300,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        17300,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        17300,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        17871,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        17871,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        17871,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        18443,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        18443,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        18443,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        19014,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        19014,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        19014,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        19585,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        19585,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        19585,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        20156,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        20156,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        20156,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        20728,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        20728,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        20728,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        21299,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        21299,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        8,
+        21299,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22329,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22329,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22329,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22933,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22933,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22933,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        23538,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        23538,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        23538,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        24142,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        24142,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        24142,
+        2
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        25956,
+        0
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        25956,
+        1
+      ],
+      [
+        "capture",
+        "capture_2",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        25956,
+        2
+      ]
+    ]
+  },
+  "expected_exposure_ids": [
+    [
+      "capture_2",
+      "capture_2_detections.pkl",
+      5
+    ],
+    [
+      "capture_2",
+      "capture_2_detections.pkl",
+      6
+    ],
+    [
+      "capture_2",
+      "capture_2_detections.pkl",
+      7
+    ],
+    [
+      "capture_2",
+      "capture_2_detections.pkl",
+      8
+    ],
+    [
+      "capture_2",
+      "capture_2_detections.pkl",
+      9
+    ]
+  ],
+  "absent_scheduled_exposure_ids": [],
+  "failure_reasons": {
+    "invalid_input": 18
+  },
+  "promotion": {
+    "status": "no_promotion_decision",
+    "reason": "development scorecard; no declared selection guards"
+  }
+}

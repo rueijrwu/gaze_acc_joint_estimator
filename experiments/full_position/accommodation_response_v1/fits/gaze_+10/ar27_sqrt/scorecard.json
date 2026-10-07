@@ -1,0 +1,1812 @@
+{
+  "schema": "three_pair_crosscheck_scorecard_v1",
+  "purpose": "development",
+  "protocol": {
+    "state_variables": [
+      "theta_x_deg",
+      "A_D"
+    ],
+    "calibration_theta_y_nominal_deg": 0.0,
+    "calibration_theta_y_role": "protocol_constraint_not_framewise_ground_truth",
+    "image_axis_convention": "stored pixel x/y axes; P1 normalization without rotation; image-y is not vertical gaze",
+    "protocol_provenance": "user clarification recorded in PHASE_8_3_AUDIT.md, 2026-10-07"
+  },
+  "status": "available",
+  "scientific_criterion": "excluded-P4 prediction with cross-subset state agreement, coverage, support and tails",
+  "weighting": "equal exposure: mean within-exposure squared values, equal mean across contributing exposures, square root",
+  "outcomes": {
+    "E_cross_px": {
+      "equal_exposure_rms": 3.4962145801212956,
+      "squared_error_aggregation": {
+        "mean": 12.223516390252726,
+        "contributing_exposure_count": 4,
+        "scheduled_exposure_count": 4,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"gaze_+10\", \"capture_1_detections.pkl\", 4]": {
+            "count": 8,
+            "mean": 10.989135661394112
+          },
+          "[\"gaze_+10\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 15.494501286557085
+          },
+          "[\"gaze_+10\", \"capture_3_detections.pkl\", 14]": {
+            "count": 2,
+            "mean": 10.701554839114774
+          },
+          "[\"gaze_+10\", \"capture_4_detections.pkl\", 19]": {
+            "count": 7,
+            "mean": 11.708873773944934
+          }
+        }
+      },
+      "distribution": {
+        "n": 22,
+        "mean": 3.432703299292112,
+        "median": 3.4356343660063473,
+        "rms": 3.495131795016543,
+        "p90": 4.253344268206484,
+        "p95": 4.375617086083259
+      }
+    },
+    "G_theta_cross_deg": {
+      "equal_exposure_rms": 0.3151555717409013,
+      "squared_error_aggregation": {
+        "mean": 0.0993230343993344,
+        "contributing_exposure_count": 4,
+        "scheduled_exposure_count": 4,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"gaze_+10\", \"capture_1_detections.pkl\", 4]": {
+            "count": 8,
+            "mean": 0.020277117388637397
+          },
+          "[\"gaze_+10\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 0.15568504680770912
+          },
+          "[\"gaze_+10\", \"capture_3_detections.pkl\", 14]": {
+            "count": 2,
+            "mean": 0.07263101699351723
+          },
+          "[\"gaze_+10\", \"capture_4_detections.pkl\", 19]": {
+            "count": 7,
+            "mean": 0.14869895640747385
+          }
+        }
+      },
+      "distribution": {
+        "n": 22,
+        "mean": 0.26701918983501677,
+        "median": 0.23138158187719504,
+        "rms": 0.31092215497444753,
+        "p90": 0.4847917378386408,
+        "p95": 0.5715914391268612
+      }
+    },
+    "G_A_cross_D": {
+      "equal_exposure_rms": 0.23106931039047157,
+      "squared_error_aggregation": {
+        "mean": 0.0533930262043281,
+        "contributing_exposure_count": 4,
+        "scheduled_exposure_count": 4,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"gaze_+10\", \"capture_1_detections.pkl\", 4]": {
+            "count": 8,
+            "mean": 0.020356919472775604
+          },
+          "[\"gaze_+10\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 0.06736585759795696
+          },
+          "[\"gaze_+10\", \"capture_3_detections.pkl\", 14]": {
+            "count": 2,
+            "mean": 0.04096108092013674
+          },
+          "[\"gaze_+10\", \"capture_4_detections.pkl\", 19]": {
+            "count": 7,
+            "mean": 0.08488824682644311
+          }
+        }
+      },
+      "distribution": {
+        "n": 22,
+        "mean": 0.2071389645786283,
+        "median": 0.19291337171021883,
+        "rms": 0.2311851416070683,
+        "p90": 0.3688229928368917,
+        "p95": 0.382907543651331
+      }
+    },
+    "worst_point_px": {
+      "equal_exposure_rms": 4.122399348996365,
+      "squared_error_aggregation": {
+        "mean": 16.994176392605652,
+        "contributing_exposure_count": 4,
+        "scheduled_exposure_count": 4,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"gaze_+10\", \"capture_1_detections.pkl\", 4]": {
+            "count": 8,
+            "mean": 15.748970821715742
+          },
+          "[\"gaze_+10\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 21.015420410632835
+          },
+          "[\"gaze_+10\", \"capture_3_detections.pkl\", 14]": {
+            "count": 2,
+            "mean": 14.230325710662832
+          },
+          "[\"gaze_+10\", \"capture_4_detections.pkl\", 19]": {
+            "count": 7,
+            "mean": 16.981988627411205
+          }
+        }
+      },
+      "distribution": {
+        "n": 22,
+        "mean": 4.08160291060065,
+        "median": 4.176470883443708,
+        "rms": 4.147307124344741,
+        "p90": 4.895808051003008,
+        "p95": 4.985261781912203
+      }
+    },
+    "E_cross_normalized": {
+      "equal_exposure_rms": 0.012271554815620058,
+      "squared_error_aggregation": {
+        "mean": 0.00015059105759276784,
+        "contributing_exposure_count": 4,
+        "scheduled_exposure_count": 4,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"gaze_+10\", \"capture_1_detections.pkl\", 4]": {
+            "count": 8,
+            "mean": 0.00013478015973524191
+          },
+          "[\"gaze_+10\", \"capture_2_detections.pkl\", 9]": {
+            "count": 5,
+            "mean": 0.00019139607774833797
+          },
+          "[\"gaze_+10\", \"capture_3_detections.pkl\", 14]": {
+            "count": 2,
+            "mean": 0.00013215182397922136
+          },
+          "[\"gaze_+10\", \"capture_4_detections.pkl\", 19]": {
+            "count": 7,
+            "mean": 0.00014403616890827018
+          }
+        }
+      },
+      "distribution": {
+        "n": 22,
+        "mean": 0.012041561210982626,
+        "median": 0.012016388611392384,
+        "rms": 0.012261874572948682,
+        "p90": 0.014946535475048027,
+        "p95": 0.01538046873817092
+      }
+    }
+  },
+  "axis_errors": {
+    "x": {
+      "equal_exposure_rms": 2.666863048770133,
+      "equal_exposure_bias": 0.1393989076885004,
+      "signed_distribution": {
+        "n": 66,
+        "mean": 0.13684985678010567,
+        "median": 0.7994803678732296,
+        "rms": 2.701676553713969,
+        "p90": 3.66550613850211,
+        "p95": 3.9248959706347932
+      },
+      "squared_error_aggregation": {
+        "mean": 7.112158520895529,
+        "contributing_exposure_count": 4,
+        "scheduled_exposure_count": 4,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"gaze_+10\", \"capture_1_detections.pkl\", 4]": {
+            "count": 24,
+            "mean": 6.550162839714777
+          },
+          "[\"gaze_+10\", \"capture_2_detections.pkl\", 9]": {
+            "count": 15,
+            "mean": 10.77680663378821
+          },
+          "[\"gaze_+10\", \"capture_3_detections.pkl\", 14]": {
+            "count": 6,
+            "mean": 4.711550347536369
+          },
+          "[\"gaze_+10\", \"capture_4_detections.pkl\", 19]": {
+            "count": 21,
+            "mean": 6.410114262542758
+          }
+        }
+      },
+      "bias_aggregation": {
+        "mean": 0.1393989076885004,
+        "contributing_exposure_count": 4,
+        "scheduled_exposure_count": 4,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"gaze_+10\", \"capture_1_detections.pkl\", 4]": {
+            "count": 24,
+            "mean": 0.17738828523647499
+          },
+          "[\"gaze_+10\", \"capture_2_detections.pkl\", 9]": {
+            "count": 15,
+            "mean": 0.19450323710063913
+          },
+          "[\"gaze_+10\", \"capture_3_detections.pkl\", 14]": {
+            "count": 6,
+            "mean": 0.13617087543017684
+          },
+          "[\"gaze_+10\", \"capture_4_detections.pkl\", 19]": {
+            "count": 21,
+            "mean": 0.049533232986710744
+          }
+        }
+      }
+    },
+    "y": {
+      "equal_exposure_rms": 2.260831234160833,
+      "equal_exposure_bias": 0.76390979210552,
+      "signed_distribution": {
+        "n": 66,
+        "mean": 0.600068785056598,
+        "median": 0.7567782576008995,
+        "rms": 2.2174061566721996,
+        "p90": 3.147189133457971,
+        "p95": 3.607012606026359
+      },
+      "squared_error_aggregation": {
+        "mean": 5.111357869357196,
+        "contributing_exposure_count": 4,
+        "scheduled_exposure_count": 4,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"gaze_+10\", \"capture_1_detections.pkl\", 4]": {
+            "count": 24,
+            "mean": 4.438972821679335
+          },
+          "[\"gaze_+10\", \"capture_2_detections.pkl\", 9]": {
+            "count": 15,
+            "mean": 4.717694652768871
+          },
+          "[\"gaze_+10\", \"capture_3_detections.pkl\", 14]": {
+            "count": 6,
+            "mean": 5.990004491578404
+          },
+          "[\"gaze_+10\", \"capture_4_detections.pkl\", 19]": {
+            "count": 21,
+            "mean": 5.298759511402174
+          }
+        }
+      },
+      "bias_aggregation": {
+        "mean": 0.76390979210552,
+        "contributing_exposure_count": 4,
+        "scheduled_exposure_count": 4,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"gaze_+10\", \"capture_1_detections.pkl\", 4]": {
+            "count": 24,
+            "mean": 1.5449289037826546
+          },
+          "[\"gaze_+10\", \"capture_2_detections.pkl\", 9]": {
+            "count": 15,
+            "mean": 1.3835152399235577
+          },
+          "[\"gaze_+10\", \"capture_3_detections.pkl\", 14]": {
+            "count": 6,
+            "mean": 1.393171866328989
+          },
+          "[\"gaze_+10\", \"capture_4_detections.pkl\", 19]": {
+            "count": 21,
+            "mean": -1.265976841613121
+          }
+        }
+      }
+    }
+  },
+  "per_point_axis": {
+    "count": 66,
+    "vector_norm_px": {
+      "n": 66,
+      "mean": 3.323075532206026,
+      "median": 3.446872864256304,
+      "rms": 3.495131795016543,
+      "p90": 4.405141676838223,
+      "p95": 4.714549236460355
+    },
+    "axis_px": {
+      "x": {
+        "n": 66,
+        "mean": 0.13684985678010567,
+        "median": 0.7994803678732296,
+        "rms": 2.701676553713969,
+        "p90": 3.66550613850211,
+        "p95": 3.9248959706347932
+      },
+      "y": {
+        "n": 66,
+        "mean": 0.600068785056598,
+        "median": 0.7567782576008995,
+        "rms": 2.2174061566721996,
+        "p90": 3.147189133457971,
+        "p95": 3.607012606026359
+      }
+    },
+    "bias_px": [
+      0.13684985678010567,
+      0.600068785056598
+    ],
+    "vector_norm_normalized": {
+      "n": 66,
+      "mean": 0.011657252506030964,
+      "median": 0.012090816492134181,
+      "rms": 0.01226187457294868,
+      "p90": 0.015444142911630675,
+      "p95": 0.0165620017091221
+    },
+    "axis_normalized": {
+      "x": {
+        "n": 66,
+        "mean": 0.00048010483738618705,
+        "median": 0.0028073854760160607,
+        "rms": 0.009477372376619666,
+        "p90": 0.012832374794981637,
+        "p95": 0.013795726960824168
+      },
+      "y": {
+        "n": 66,
+        "mean": 0.0021057512963961536,
+        "median": 0.002650253942019286,
+        "rms": 0.007780294395304842,
+        "p90": 0.011061630731766435,
+        "p95": 0.012678679494091087
+      }
+    },
+    "bias_normalized": [
+      0.00048010483738618705,
+      0.0021057512963961536
+    ],
+    "per_point": {
+      "0": {
+        "n": 22,
+        "mean": 3.2270857174341687,
+        "median": 3.222356075089527,
+        "rms": 3.305911680284275,
+        "p90": 4.098019045563266,
+        "p95": 4.331955376784311
+      },
+      "1": {
+        "n": 22,
+        "mean": 3.0000956822387934,
+        "median": 3.0556751601214525,
+        "rms": 3.3730148705255227,
+        "p90": 4.756279460361488,
+        "p95": 4.902014075523791
+      },
+      "2": {
+        "n": 22,
+        "mean": 3.742045196945115,
+        "median": 3.868516576861015,
+        "rms": 3.787024879635778,
+        "p90": 4.383190062964537,
+        "p95": 4.4409110816641455
+      }
+    },
+    "per_point_axis_px": {
+      "0": {
+        "x": {
+          "n": 22,
+          "mean": 2.5987497006894644,
+          "median": 2.713687705610596,
+          "rms": 2.8016590666996493,
+          "p90": 4.006864492869273,
+          "p95": 4.217080905531645
+        },
+        "y": {
+          "n": 22,
+          "mean": 0.8136453116632807,
+          "median": 0.7442319894716718,
+          "rms": 1.7549240757991915,
+          "p90": 3.0909851206229018,
+          "p95": 3.5777325547727568
+        }
+      },
+      "1": {
+        "x": {
+          "n": 22,
+          "mean": 0.8527993299723717,
+          "median": 0.811411289620878,
+          "rms": 1.9817068589153013,
+          "p90": 3.7136797663054044,
+          "p95": 3.7581243773132202
+        },
+        "y": {
+          "n": 22,
+          "mean": -0.025956027377906758,
+          "median": 0.4031792819913562,
+          "rms": 2.7294811305657265,
+          "p90": 3.105116114201122,
+          "p95": 3.891382377727501
+        }
+      },
+      "2": {
+        "x": {
+          "n": 22,
+          "mean": -3.0409994603215194,
+          "median": -3.1052755298576358,
+          "rms": 3.181306807268211,
+          "p90": -1.5204450626400763,
+          "p95": -1.2999348962954855
+        },
+        "y": {
+          "n": 22,
+          "mean": 1.0125170708844202,
+          "median": 1.070417632261325,
+          "rms": 2.0544693808887304,
+          "p90": 3.087094592287179,
+          "p95": 3.3079586498333384
+        }
+      }
+    },
+    "per_point_axis_normalized": {
+      "0": {
+        "x": {
+          "n": 22,
+          "mean": 0.009109616114778996,
+          "median": 0.009517372794414794,
+          "rms": 0.00981654434805331,
+          "p90": 0.014022938495878483,
+          "p95": 0.01475263647684147
+        },
+        "y": {
+          "n": 22,
+          "mean": 0.0028578177670694972,
+          "median": 0.002612888150200158,
+          "rms": 0.006163218787638612,
+          "p90": 0.010863266695352898,
+          "p95": 0.01257527364154009
+        }
+      },
+      "1": {
+        "x": {
+          "n": 22,
+          "mean": 0.0029997274506165985,
+          "median": 0.002846028938701283,
+          "rms": 0.0069614896008601875,
+          "p90": 0.013052051483027153,
+          "p95": 0.013209920707266834
+        },
+        "y": {
+          "n": 22,
+          "mean": -8.935242638856548e-05,
+          "median": 0.0014157427122574837,
+          "rms": 0.009577215044764678,
+          "p90": 0.010914589205930351,
+          "p95": 0.013676279928424951
+        }
+      },
+      "2": {
+        "x": {
+          "n": 22,
+          "mean": -0.010669029053237033,
+          "median": -0.01089810741066872,
+          "rms": 0.011163999332459608,
+          "p90": -0.005329690499153456,
+          "p95": -0.0045581491696802924
+        },
+        "y": {
+          "n": 22,
+          "mean": 0.0035487885485075287,
+          "median": 0.0037623197716254103,
+          "rms": 0.0072035150305158205,
+          "p90": 0.010812504355467408,
+          "p95": 0.01160108275217918
+        }
+      }
+    }
+  },
+  "coverage": {
+    "input_eligible": 66,
+    "certified": 66,
+    "identifiable": 66,
+    "unambiguous": 66,
+    "scored": 66,
+    "scheduled_frames": 32,
+    "scheduled_slots": 96,
+    "complete_triples": 22,
+    "bound_slots": 0,
+    "shared_clipping_frames": 0
+  },
+  "support_counts": {
+    "theta_anchor": {
+      "false": 66,
+      "unknown": 30
+    },
+    "A_anchor": {
+      "true": 65,
+      "false": 1,
+      "unknown": 30
+    },
+    "theta_empirical": {
+      "false": 66,
+      "unknown": 30
+    },
+    "A_empirical": {
+      "true": 66,
+      "unknown": 30
+    },
+    "P1_context_valid": {
+      "true": 81,
+      "false": 15
+    },
+    "context_outside_training_extrema": {
+      "false": 60,
+      "true": 21,
+      "unknown": 15
+    },
+    "p1_parity_seen_in_training": {
+      "true": 81,
+      "unknown": 15
+    }
+  },
+  "membership": {
+    "scheduled": [
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        21020
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        21614
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        22208
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        22802
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        23397
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        23991
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        24585
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        25179
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22329
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22933
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        23538
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        24142
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        24747
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        25351
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        25956
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        26560
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        21550
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        22178
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        22807
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        23435
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        24064
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        24692
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        25321
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        25949
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        20680
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        21343
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22005
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22668
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23331
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23994
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        24656
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        25319
+      ]
+    ],
+    "complete": [
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        21020
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        21614
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        22208
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        22802
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        23397
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        23991
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        24585
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        25179
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22329
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22933
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        23538
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        24142
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        25956
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        23435
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        24692
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        21343
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22005
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22668
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23331
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23994
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        24656
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        25319
+      ]
+    ],
+    "complete_interior": [
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        21020
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        21614
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        22208
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        22802
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        23397
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        23991
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        24585
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        25179
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22329
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22933
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        23538
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        24142
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        25956
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        23435
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        24692
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        21343
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22005
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22668
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23331
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23994
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        24656
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        25319
+      ]
+    ],
+    "scored_points": [
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        21020,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        21020,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        21020,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        21614,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        21614,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        21614,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        22208,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        22208,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        22208,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        22802,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        22802,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        22802,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        23397,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        23397,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        23397,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        23991,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        23991,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        23991,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        24585,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        24585,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        24585,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        25179,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        25179,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_1_detections.pkl",
+        4,
+        25179,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22329,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22329,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22329,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22933,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22933,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        22933,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        23538,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        23538,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        23538,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        24142,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        24142,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        24142,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        25956,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        25956,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_2_detections.pkl",
+        9,
+        25956,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        23435,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        23435,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        23435,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        24692,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        24692,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_3_detections.pkl",
+        14,
+        24692,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        21343,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        21343,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        21343,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22005,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22005,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22005,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22668,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22668,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22668,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23331,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23331,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23331,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23994,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23994,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23994,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        24656,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        24656,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        24656,
+        2
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        25319,
+        0
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        25319,
+        1
+      ],
+      [
+        "gaze",
+        "gaze_+10",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        25319,
+        2
+      ]
+    ]
+  },
+  "expected_exposure_ids": [
+    [
+      "gaze_+10",
+      "capture_1_detections.pkl",
+      4
+    ],
+    [
+      "gaze_+10",
+      "capture_2_detections.pkl",
+      9
+    ],
+    [
+      "gaze_+10",
+      "capture_3_detections.pkl",
+      14
+    ],
+    [
+      "gaze_+10",
+      "capture_4_detections.pkl",
+      19
+    ]
+  ],
+  "absent_scheduled_exposure_ids": [],
+  "failure_reasons": {
+    "invalid_input": 30
+  },
+  "promotion": {
+    "status": "no_promotion_decision",
+    "reason": "development scorecard; no declared selection guards"
+  }
+}

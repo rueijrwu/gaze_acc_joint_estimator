@@ -1,0 +1,2647 @@
+{
+  "schema": "three_pair_crosscheck_scorecard_v1",
+  "purpose": "development",
+  "protocol": {
+    "state_variables": [
+      "theta_x_deg",
+      "A_D"
+    ],
+    "calibration_theta_y_nominal_deg": 0.0,
+    "calibration_theta_y_role": "protocol_constraint_not_framewise_ground_truth",
+    "image_axis_convention": "stored pixel x/y axes; P1 normalization without rotation; image-y is not vertical gaze",
+    "protocol_provenance": "user clarification recorded in PHASE_8_3_AUDIT.md, 2026-10-07"
+  },
+  "status": "available",
+  "scientific_criterion": "excluded-P4 prediction with cross-subset state agreement, coverage, support and tails",
+  "weighting": "equal exposure: mean within-exposure squared values, equal mean across contributing exposures, square root",
+  "outcomes": {
+    "E_cross_px": {
+      "equal_exposure_rms": 3.4749274963793857,
+      "squared_error_aggregation": {
+        "mean": 12.075121105093507,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_4\", \"capture_4_detections.pkl\", 15]": {
+            "count": 8,
+            "mean": 8.085199775838525
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 16]": {
+            "count": 8,
+            "mean": 11.797376367067205
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 17]": {
+            "count": 8,
+            "mean": 22.206791748575554
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 18]": {
+            "count": 8,
+            "mean": 4.384077510190853
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 19]": {
+            "count": 7,
+            "mean": 13.902160123795397
+          }
+        }
+      },
+      "distribution": {
+        "n": 39,
+        "mean": 2.671071913457993,
+        "median": 2.4361992975351057,
+        "rms": 3.468180207366367,
+        "p90": 4.504746212601037,
+        "p95": 5.109119406756612
+      }
+    },
+    "G_theta_cross_deg": {
+      "equal_exposure_rms": 0.240015618903095,
+      "squared_error_aggregation": {
+        "mean": 0.05760749731743573,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_4\", \"capture_4_detections.pkl\", 15]": {
+            "count": 8,
+            "mean": 0.0016034179804339716
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 16]": {
+            "count": 8,
+            "mean": 0.015215862303545359
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 17]": {
+            "count": 8,
+            "mean": 0.03925339753164427
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 18]": {
+            "count": 8,
+            "mean": 0.026594164554141875
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 19]": {
+            "count": 7,
+            "mean": 0.20537064421741316
+          }
+        }
+      },
+      "distribution": {
+        "n": 39,
+        "mean": 0.1587282332214948,
+        "median": 0.10261594594908037,
+        "rms": 0.23198857445782706,
+        "p90": 0.47744793106198496,
+        "p95": 0.5551195432654982
+      }
+    },
+    "G_A_cross_D": {
+      "equal_exposure_rms": 0.2571691216527047,
+      "squared_error_aggregation": {
+        "mean": 0.06613595713162364,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_4\", \"capture_4_detections.pkl\", 15]": {
+            "count": 8,
+            "mean": 0.0478665733732418
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 16]": {
+            "count": 8,
+            "mean": 0.0663685193887382
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 17]": {
+            "count": 8,
+            "mean": 0.11237988840252133
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 18]": {
+            "count": 8,
+            "mean": 0.02287682869692098
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 19]": {
+            "count": 7,
+            "mean": 0.0811879757966959
+          }
+        }
+      },
+      "distribution": {
+        "n": 39,
+        "mean": 0.20416692168931455,
+        "median": 0.18167360643271188,
+        "rms": 0.2564176435721289,
+        "p90": 0.34667527088087596,
+        "p95": 0.36181126278037395
+      }
+    },
+    "worst_point_px": {
+      "equal_exposure_rms": 4.801360996108496,
+      "squared_error_aggregation": {
+        "mean": 23.05306741495197,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_4\", \"capture_4_detections.pkl\", 15]": {
+            "count": 8,
+            "mean": 17.007336345517704
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 16]": {
+            "count": 8,
+            "mean": 21.29598946057356
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 17]": {
+            "count": 8,
+            "mean": 43.93972531051805
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 18]": {
+            "count": 8,
+            "mean": 7.421539535295025
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 19]": {
+            "count": 7,
+            "mean": 25.600746422855508
+          }
+        }
+      },
+      "distribution": {
+        "n": 39,
+        "mean": 3.638468912206466,
+        "median": 3.542841915718219,
+        "rms": 4.794553400702219,
+        "p90": 6.162636113304746,
+        "p95": 6.823093789356214
+      }
+    },
+    "E_cross_normalized": {
+      "equal_exposure_rms": 0.012162256604877826,
+      "squared_error_aggregation": {
+        "mean": 0.0001479204857228943,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_4\", \"capture_4_detections.pkl\", 15]": {
+            "count": 8,
+            "mean": 9.83516524640032e-05
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 16]": {
+            "count": 8,
+            "mean": 0.0001437998936469826
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 17]": {
+            "count": 8,
+            "mean": 0.0002725369422756909
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 18]": {
+            "count": 8,
+            "mean": 5.3887491395282633e-05
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 19]": {
+            "count": 7,
+            "mean": 0.00017102644883251235
+          }
+        }
+      },
+      "distribution": {
+        "n": 39,
+        "mean": 0.009343917689816465,
+        "median": 0.008500003367983766,
+        "rms": 0.012137875643222749,
+        "p90": 0.015800978056036762,
+        "p95": 0.017909355560205172
+      }
+    }
+  },
+  "axis_errors": {
+    "x": {
+      "equal_exposure_rms": 0.9754843377309897,
+      "equal_exposure_bias": 0.00942018483033889,
+      "signed_distribution": {
+        "n": 117,
+        "mean": 0.007159632070921229,
+        "median": -0.08950218010215849,
+        "rms": 0.96924127454879,
+        "p90": 1.3544269911936686,
+        "p95": 1.5018271214788226
+      },
+      "squared_error_aggregation": {
+        "mean": 0.9515696931584676,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_4\", \"capture_4_detections.pkl\", 15]": {
+            "count": 24,
+            "mean": 1.0606537898506467
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 16]": {
+            "count": 24,
+            "mean": 1.4807710673617898
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 17]": {
+            "count": 24,
+            "mean": 0.32051848153963713
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 18]": {
+            "count": 24,
+            "mean": 0.47083468397112666
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 19]": {
+            "count": 21,
+            "mean": 1.4250704430691374
+          }
+        }
+      },
+      "bias_aggregation": {
+        "mean": 0.00942018483033889,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_4\", \"capture_4_detections.pkl\", 15]": {
+            "count": 24,
+            "mean": -0.02485672754103992
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 16]": {
+            "count": 24,
+            "mean": -0.24782214020499774
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 17]": {
+            "count": 24,
+            "mean": 0.14020845572093302
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 18]": {
+            "count": 24,
+            "mean": 0.0819895937291714
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 19]": {
+            "count": 21,
+            "mean": 0.0975817424476277
+          }
+        }
+      }
+    },
+    "y": {
+      "equal_exposure_rms": 3.3351988564304587,
+      "equal_exposure_bias": -0.007407709877932156,
+      "signed_distribution": {
+        "n": 117,
+        "mean": 0.0682786040751544,
+        "median": 0.5882940497884306,
+        "rms": 3.329991787148859,
+        "p90": 3.5090593279833913,
+        "p95": 4.320662931973031
+      },
+      "squared_error_aggregation": {
+        "mean": 11.123551411935038,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_4\", \"capture_4_detections.pkl\", 15]": {
+            "count": 24,
+            "mean": 7.024545985987878
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 16]": {
+            "count": 24,
+            "mean": 10.316605299705415
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 17]": {
+            "count": 24,
+            "mean": 21.886273267035918
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 18]": {
+            "count": 24,
+            "mean": 3.913242826219726
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 19]": {
+            "count": 21,
+            "mean": 12.477089680726259
+          }
+        }
+      },
+      "bias_aggregation": {
+        "mean": -0.007407709877932156,
+        "contributing_exposure_count": 5,
+        "scheduled_exposure_count": 5,
+        "absent_exposure_ids": [],
+        "status": "complete_exposure_support",
+        "per_exposure": {
+          "[\"capture_4\", \"capture_4_detections.pkl\", 15]": {
+            "count": 24,
+            "mean": 2.290125534842422
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 16]": {
+            "count": 24,
+            "mean": 2.7603806797846695
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 17]": {
+            "count": 24,
+            "mean": -1.6204343968093937
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 18]": {
+            "count": 24,
+            "mean": -0.5079364131590509
+          },
+          "[\"capture_4\", \"capture_4_detections.pkl\", 19]": {
+            "count": 21,
+            "mean": -2.9591739540483077
+          }
+        }
+      }
+    }
+  },
+  "per_point_axis": {
+    "count": 117,
+    "vector_norm_px": {
+      "n": 117,
+      "mean": 2.53571334659331,
+      "median": 1.8355545549231111,
+      "rms": 3.468180207366367,
+      "p90": 5.034562170994503,
+      "p95": 6.162636113304743
+    },
+    "axis_px": {
+      "x": {
+        "n": 117,
+        "mean": 0.007159632070921229,
+        "median": -0.08950218010215849,
+        "rms": 0.96924127454879,
+        "p90": 1.3544269911936686,
+        "p95": 1.5018271214788226
+      },
+      "y": {
+        "n": 117,
+        "mean": 0.0682786040751544,
+        "median": 0.5882940497884306,
+        "rms": 3.329991787148859,
+        "p90": 3.5090593279833913,
+        "p95": 4.320662931973031
+      }
+    },
+    "bias_px": [
+      0.007159632070921229,
+      0.0682786040751544
+    ],
+    "vector_norm_normalized": {
+      "n": 117,
+      "mean": 0.008870554923572345,
+      "median": 0.006407652411951108,
+      "rms": 0.012137875643222745,
+      "p90": 0.01762092612433739,
+      "p95": 0.021616237396589518
+    },
+    "axis_normalized": {
+      "x": {
+        "n": 117,
+        "mean": 2.5874436617628726e-05,
+        "median": -0.0003131785010847613,
+        "rms": 0.003389625561151755,
+        "p90": 0.004749195593782824,
+        "p95": 0.005257512407528007
+      },
+      "y": {
+        "n": 117,
+        "mean": 0.00022310404252230706,
+        "median": 0.0020517380569888546,
+        "rms": 0.011654975919560136,
+        "p90": 0.012238452455438885,
+        "p95": 0.015069232786390776
+      }
+    },
+    "bias_normalized": [
+      2.5874436617628726e-05,
+      0.00022310404252230706
+    ],
+    "per_point": {
+      "0": {
+        "n": 39,
+        "mean": 1.9980042204156565,
+        "median": 1.7031575636904774,
+        "rms": 2.597613694809129,
+        "p90": 3.4924243140885496,
+        "p95": 3.852870621433589
+      },
+      "1": {
+        "n": 39,
+        "mean": 3.615899082280754,
+        "median": 3.542841915718219,
+        "rms": 4.791045178558203,
+        "p90": 6.162636113304746,
+        "p95": 6.823093789356214
+      },
+      "2": {
+        "n": 39,
+        "mean": 1.9932367370835193,
+        "median": 1.7627376223691427,
+        "rms": 2.526481949640193,
+        "p90": 3.6740948761458068,
+        "p95": 3.8599524495304824
+      }
+    },
+    "per_point_axis_px": {
+      "0": {
+        "x": {
+          "n": 39,
+          "mean": 0.7323568523532563,
+          "median": 1.0651274812709062,
+          "rms": 1.0677479326624386,
+          "p90": 1.531943248198013,
+          "p95": 1.5640156255717101
+        },
+        "y": {
+          "n": 39,
+          "mean": -0.07646335264285962,
+          "median": 0.10726300695057489,
+          "rms": 2.3680184247076754,
+          "p90": 2.7573620654998647,
+          "p95": 2.983997726433319
+        }
+      },
+      "1": {
+        "x": {
+          "n": 39,
+          "mean": -0.2121967783866767,
+          "median": -0.2614694531089299,
+          "rms": 0.6309792177945565,
+          "p90": 0.6376293800978605,
+          "p95": 0.7487185164123048
+        },
+        "y": {
+          "n": 39,
+          "mean": 0.21917680423697944,
+          "median": 0.9026676527004156,
+          "rms": 4.7493135429972595,
+          "p90": 5.073564624135907,
+          "p95": 5.470706420212946
+        }
+      },
+      "2": {
+        "x": {
+          "n": 39,
+          "mean": -0.49868117775381593,
+          "median": -0.6173038038522236,
+          "rms": 1.1313998072623788,
+          "p90": 1.085518647944128,
+          "p95": 1.3088212368593533
+        },
+        "y": {
+          "n": 39,
+          "mean": 0.06212236063134341,
+          "median": 0.6934481506759766,
+          "rms": 2.258992146507899,
+          "p90": 2.0250341714653817,
+          "p95": 2.217620362980841
+        }
+      }
+    },
+    "per_point_axis_normalized": {
+      "0": {
+        "x": {
+          "n": 39,
+          "mean": 0.002558375435498992,
+          "median": 0.0037142523877393956,
+          "rms": 0.00373189747872747,
+          "p90": 0.005343749973563341,
+          "p95": 0.005458708358508997
+        },
+        "y": {
+          "n": 39,
+          "mean": -0.00027936587575590357,
+          "median": 0.0003764455566534782,
+          "rms": 0.008288820398198745,
+          "p90": 0.009626161251806157,
+          "p95": 0.010418925942286546
+        }
+      },
+      "1": {
+        "x": {
+          "n": 39,
+          "mean": -0.0007391280116675123,
+          "median": -0.000917426500731635,
+          "rms": 0.002205673816116231,
+          "p90": 0.0022345040122045087,
+          "p95": 0.002625333652641481
+        },
+        "y": {
+          "n": 39,
+          "mean": 0.0007420716613268279,
+          "median": 0.00316967287820137,
+          "rms": 0.01662120611793375,
+          "p90": 0.017708802447281093,
+          "p95": 0.019101872818527807
+        }
+      },
+      "2": {
+        "x": {
+          "n": 39,
+          "mean": -0.0017416241139785937,
+          "median": -0.002153623402232576,
+          "rms": 0.003959372243122245,
+          "p90": 0.003810914000281987,
+          "p95": 0.004587565878239756
+        },
+        "y": {
+          "n": 39,
+          "mean": 0.00020660634199599695,
+          "median": 0.002435008930541605,
+          "rms": 0.007908625332391596,
+          "p90": 0.007062031250317374,
+          "p95": 0.007744752365632584
+        }
+      }
+    }
+  },
+  "coverage": {
+    "input_eligible": 117,
+    "certified": 117,
+    "identifiable": 117,
+    "unambiguous": 117,
+    "scored": 117,
+    "scheduled_frames": 40,
+    "scheduled_slots": 120,
+    "complete_triples": 39,
+    "bound_slots": 0,
+    "shared_clipping_frames": 0
+  },
+  "support_counts": {
+    "theta_anchor": {
+      "false": 15,
+      "true": 102,
+      "unknown": 3
+    },
+    "A_anchor": {
+      "true": 117,
+      "unknown": 3
+    },
+    "theta_empirical": {
+      "true": 117,
+      "unknown": 3
+    },
+    "A_empirical": {
+      "true": 117,
+      "unknown": 3
+    },
+    "P1_context_valid": {
+      "true": 117,
+      "false": 3
+    },
+    "context_outside_training_extrema": {
+      "false": 117,
+      "unknown": 3
+    },
+    "p1_parity_seen_in_training": {
+      "true": 117,
+      "unknown": 3
+    }
+  },
+  "membership": {
+    "scheduled": [
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        980
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        1528
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        2077
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        2625
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        3174
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        3722
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        4271
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        4819
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        5790
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        6350
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        6910
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        7470
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        8029
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        8589
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        9149
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        9709
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        10700
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        11271
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        11843
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        12414
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        12985
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        13556
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        14128
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        14699
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        15690
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        16250
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        16810
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        17370
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        17929
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        18489
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        19049
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        19609
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        20680
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        21343
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22005
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22668
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23331
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23994
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        24656
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        25319
+      ]
+    ],
+    "complete": [
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        980
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        1528
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        2077
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        2625
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        3174
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        3722
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        4271
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        4819
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        5790
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        6350
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        6910
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        7470
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        8029
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        8589
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        9149
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        9709
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        10700
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        11271
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        11843
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        12414
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        12985
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        13556
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        14128
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        14699
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        15690
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        16250
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        16810
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        17370
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        17929
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        18489
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        19049
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        19609
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        21343
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22005
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22668
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23331
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23994
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        24656
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        25319
+      ]
+    ],
+    "complete_interior": [
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        980
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        1528
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        2077
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        2625
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        3174
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        3722
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        4271
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        4819
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        5790
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        6350
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        6910
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        7470
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        8029
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        8589
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        9149
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        9709
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        10700
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        11271
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        11843
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        12414
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        12985
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        13556
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        14128
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        14699
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        15690
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        16250
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        16810
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        17370
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        17929
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        18489
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        19049
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        19609
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        21343
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22005
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22668
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23331
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23994
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        24656
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        25319
+      ]
+    ],
+    "scored_points": [
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        980,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        980,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        980,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        1528,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        1528,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        1528,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        2077,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        2077,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        2077,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        2625,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        2625,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        2625,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        3174,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        3174,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        3174,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        3722,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        3722,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        3722,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        4271,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        4271,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        4271,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        4819,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        4819,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        15,
+        4819,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        5790,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        5790,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        5790,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        6350,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        6350,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        6350,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        6910,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        6910,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        6910,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        7470,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        7470,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        7470,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        8029,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        8029,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        8029,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        8589,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        8589,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        8589,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        9149,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        9149,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        9149,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        9709,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        9709,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        16,
+        9709,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        10700,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        10700,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        10700,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        11271,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        11271,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        11271,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        11843,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        11843,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        11843,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        12414,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        12414,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        12414,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        12985,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        12985,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        12985,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        13556,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        13556,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        13556,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        14128,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        14128,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        14128,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        14699,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        14699,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        17,
+        14699,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        15690,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        15690,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        15690,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        16250,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        16250,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        16250,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        16810,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        16810,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        16810,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        17370,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        17370,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        17370,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        17929,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        17929,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        17929,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        18489,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        18489,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        18489,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        19049,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        19049,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        19049,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        19609,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        19609,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        18,
+        19609,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        21343,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        21343,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        21343,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22005,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22005,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22005,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22668,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22668,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        22668,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23331,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23331,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23331,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23994,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23994,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        23994,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        24656,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        24656,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        24656,
+        2
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        25319,
+        0
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        25319,
+        1
+      ],
+      [
+        "capture",
+        "capture_4",
+        "ar27_sqrt",
+        "capture_4_detections.pkl",
+        19,
+        25319,
+        2
+      ]
+    ]
+  },
+  "expected_exposure_ids": [
+    [
+      "capture_4",
+      "capture_4_detections.pkl",
+      15
+    ],
+    [
+      "capture_4",
+      "capture_4_detections.pkl",
+      16
+    ],
+    [
+      "capture_4",
+      "capture_4_detections.pkl",
+      17
+    ],
+    [
+      "capture_4",
+      "capture_4_detections.pkl",
+      18
+    ],
+    [
+      "capture_4",
+      "capture_4_detections.pkl",
+      19
+    ]
+  ],
+  "absent_scheduled_exposure_ids": [],
+  "failure_reasons": {
+    "invalid_input": 3
+  },
+  "promotion": {
+    "status": "no_promotion_decision",
+    "reason": "development scorecard; no declared selection guards"
+  }
+}

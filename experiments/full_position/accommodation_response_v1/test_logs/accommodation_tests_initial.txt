@@ -1,0 +1,212 @@
+....FFFFF..............F..F.F........................................... [ 60%]
+................................................                         [100%]
+=================================== FAILURES ===================================
+____________ test_logarithmic_limit_invalid_domain_and_no_clamping _____________
+
+    def test_logarithmic_limit_invalid_domain_and_no_clamping():
+        A = np.array([0., 1e-7, .7, 6.])
+        phi, pa, paa = response(A, 0.)
+        np.testing.assert_allclose(phi, np.log1p(A), atol=0., rtol=0.)
+        for exponent in (.5, 1., 2.):
+>           np.testing.assert_allclose(response(A, exponent)[0],
+                                       np.log1p(A)+.5*exponent*np.log1p(A)**2,
+                                       atol=2e-13, rtol=2e-7)
+E           AssertionError: 
+E           Not equal to tolerance rtol=2e-07, atol=2e-13
+E           
+E           Mismatched elements: 2 / 4 (50%)
+E           Mismatch at indices:
+E            [2]: 0.6076809620810595 (ACTUAL), 0.6010198362684948 (DESIRED)
+E            [3]: 3.291502622129181 (ACTUAL), 2.892551726104431 (DESIRED)
+E           Max absolute difference among violations: 0.3989509
+E           Max relative difference among violations: 0.13792351
+E            ACTUAL: array([0.000000e+00, 1.000000e-07, 6.076810e-01, 3.291503e+00])
+E            DESIRED: array([0.000000e+00, 1.000000e-07, 6.010198e-01, 2.892552e+00])
+
+tests/test_accommodation_response_contracts.py:86: AssertionError
+___ test_model_prediction_jacobian_hessian_and_27_coefficient_contract[0.0] ____
+
+exponent = 0.0
+
+    @pytest.mark.parametrize("exponent", CANDIDATES.values())
+    def test_model_prediction_jacobian_hessian_and_27_coefficient_contract(exponent):
+        model = PowerResponseModel(exponent, coefficients())
+        assert model.size == model.capacity == 27
+        assert model.channels == 6
+        assert model.width == 4
+>       assert model.intercepts == [0, 7, 11, 15, 19, 23]
+E       ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+tests/test_accommodation_response_contracts.py:105: ValueError
+___ test_model_prediction_jacobian_hessian_and_27_coefficient_contract[0.5] ____
+
+exponent = 0.5
+
+    @pytest.mark.parametrize("exponent", CANDIDATES.values())
+    def test_model_prediction_jacobian_hessian_and_27_coefficient_contract(exponent):
+        model = PowerResponseModel(exponent, coefficients())
+        assert model.size == model.capacity == 27
+        assert model.channels == 6
+        assert model.width == 4
+>       assert model.intercepts == [0, 7, 11, 15, 19, 23]
+E       ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+tests/test_accommodation_response_contracts.py:105: ValueError
+___ test_model_prediction_jacobian_hessian_and_27_coefficient_contract[1.0] ____
+
+exponent = 1.0
+
+    @pytest.mark.parametrize("exponent", CANDIDATES.values())
+    def test_model_prediction_jacobian_hessian_and_27_coefficient_contract(exponent):
+        model = PowerResponseModel(exponent, coefficients())
+        assert model.size == model.capacity == 27
+        assert model.channels == 6
+        assert model.width == 4
+>       assert model.intercepts == [0, 7, 11, 15, 19, 23]
+E       ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+tests/test_accommodation_response_contracts.py:105: ValueError
+___ test_model_prediction_jacobian_hessian_and_27_coefficient_contract[2.0] ____
+
+exponent = 2.0
+
+    @pytest.mark.parametrize("exponent", CANDIDATES.values())
+    def test_model_prediction_jacobian_hessian_and_27_coefficient_contract(exponent):
+        model = PowerResponseModel(exponent, coefficients())
+        assert model.size == model.capacity == 27
+        assert model.channels == 6
+        assert model.width == 4
+>       assert model.intercepts == [0, 7, 11, 15, 19, 23]
+E       ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+tests/test_accommodation_response_contracts.py:105: ValueError
+____ test_linear_conditional_accommodation_against_bounded_numeric_profile _____
+
+    def test_linear_conditional_accommodation_against_bounded_numeric_profile():
+        model = PowerResponseModel(1., coefficients(27))
+        theta = 4.2
+        full = model.predict([theta, 0.], CTX.r)
+        slope = model.predict([theta, 1.], CTX.r)-full
+        indices = np.array([0, 1, 4, 5])
+        covariance = np.array([[3., .2, .1, 0.], [.2, 2., 0., .1],
+                               [.1, 0., 2.5, .3], [0., .1, .3, 1.8]])*1e-4
+        for true_A in (0., 2.7, 6.):
+            observed = (full+true_A*slope)[indices]
+            analytic = linear_accommodation(model, CTX.r, observed, covariance, indices, theta)
+            numeric = minimize_scalar(
+                lambda A: (observed-model.predict([theta, A], CTX.r)[indices]) @
+                          np.linalg.solve(covariance,
+                            observed-model.predict([theta, A], CTX.r)[indices]),
+                bounds=(0., 6.), method="bounded", options={"xatol": 1e-12})
+            assert analytic["observable"]
+            assert analytic["A_D"] == pytest.approx(np.clip(numeric.x, 0., 6.), abs=2e-5)
+            assert analytic["A_D"] == pytest.approx(true_A, abs=1e-10)
+    
+        no_accommodation = model.beta.copy()
+        no_accommodation[[1, 9]] = 0.
+        for k in range(5):
+            no_accommodation[7+4*k+2] = 0.
+            no_accommodation[7+4*k+3] = 0.
+        unobservable = PowerResponseModel(1., no_accommodation)
+        out = linear_accommodation(unobservable, CTX.r, full[indices], covariance, indices, theta)
+>       assert not out["observable"]
+E       assert not True
+
+tests/test_accommodation_response_contracts.py:253: AssertionError
+__ test_power_schema_roundtrip_and_strict_family_exponent_scale_order_checks ___
+
+tmp_path = PosixPath('/tmp/pytest-of-aplab/pytest-26/test_power_schema_roundtrip_an0')
+
+    def test_power_schema_roundtrip_and_strict_family_exponent_scale_order_checks(tmp_path):
+        obj = _power_artifact()
+        model, loaded = from_object(deepcopy(obj))
+        assert model.exponent == .5
+        np.testing.assert_array_equal(model.beta, obj["coefficients"])
+        path = tmp_path/"power.json"
+        import json
+>       path.write_text(json.dumps(obj))
+                        ^^^^^^^^^^^^^^^
+
+tests/test_accommodation_response_contracts.py:328: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib64/python3.14/json/__init__.py:235: in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib64/python3.14/json/encoder.py:202: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib64/python3.14/json/encoder.py:263: in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.encoder.JSONEncoder object at 0x7f45f51170e0>
+o = array([-0.08700728,  0.03      ,  0.04484212,  0.0551055 ,  0.03425059,
+        0.08530257, -0.02456902,  0.04722553, ... -0.03602824,
+        0.02446257, -0.01521964, -0.04623982,  0.20032781,  0.04729813,
+       -0.17      ,  0.01954025])
+
+    def default(self, o):
+        """Implement this method in a subclass such that it returns
+        a serializable object for ``o``, or calls the base implementation
+        (to raise a ``TypeError``).
+    
+        For example, to support arbitrary iterators, you could
+        implement default like this::
+    
+            def default(self, o):
+                try:
+                    iterable = iter(o)
+                except TypeError:
+                    pass
+                else:
+                    return list(iterable)
+                # Let the base class default method raise the TypeError
+                return super().default(o)
+    
+        """
+>       raise TypeError(f'Object of type {o.__class__.__name__} '
+                        f'is not JSON serializable')
+E       TypeError: Object of type ndarray is not JSON serializable
+E       when serializing dict item 'coefficients'
+
+/usr/lib64/python3.14/json/encoder.py:182: TypeError
+_____ test_selector_preserves_missing_scheduled_frames_and_lost_exposures ______
+
+    def test_selector_preserves_missing_scheduled_frames_and_lost_exposures():
+        keys = [("inner", cap, 1, i, i) for cap, i in (("capA", 10), ("capB", 20))]
+        population = manifest([dict(zip(FIELDS, key)) for key in keys])
+        full = [_selection_frame(key, "ar27_log", 10.) for key in keys]
+        missing = [_selection_frame(keys[0], "ar27_linear", 1.)]
+        with pytest.raises(ValueError, match="Scheduled population mismatch"):
+            choose_power({"ar27_log": full, "ar27_linear": missing}, declared_policy(),
+                         "ar27_log", population)
+    
+        # A scheduled exposure with explicitly unavailable slots remains in the
+        # denominator and makes the candidate ineligible; it cannot disappear.
+        unavailable = _selection_frame(keys[1], "ar27_linear", 1., complete=False)
+        for slot in unavailable["slots"]:
+            slot.update(scored=False, available=False, testable=False, certified=False,
+                        identifiable=False, unambiguous=False, error_px=None, error_normalized=None,
+                        state=None, failure_reason="missing exposure data")
+        unavailable["E_px"] = unavailable["E_normalized"] = None
+        decision = choose_power({"ar27_log": full,
+            "ar27_linear": [full[0] | {"model": "ar27_linear", "slots": [dict(s, model="ar27_linear") for s in full[0]["slots"]]}, unavailable]},
+            declared_policy(), "ar27_log", population)
+>       assert decision["status"] == "inconclusive"
+E       AssertionError: assert 'selected_for...er_evaluation' == 'inconclusive'
+E         
+E         - inconclusive
+E         + selected_for_outer_evaluation
+
+tests/test_accommodation_response_contracts.py:444: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_accommodation_response_contracts.py::test_logarithmic_limit_invalid_domain_and_no_clamping
+FAILED tests/test_accommodation_response_contracts.py::test_model_prediction_jacobian_hessian_and_27_coefficient_contract[0.0]
+FAILED tests/test_accommodation_response_contracts.py::test_model_prediction_jacobian_hessian_and_27_coefficient_contract[0.5]
+FAILED tests/test_accommodation_response_contracts.py::test_model_prediction_jacobian_hessian_and_27_coefficient_contract[1.0]
+FAILED tests/test_accommodation_response_contracts.py::test_model_prediction_jacobian_hessian_and_27_coefficient_contract[2.0]
+FAILED tests/test_accommodation_response_contracts.py::test_linear_conditional_accommodation_against_bounded_numeric_profile
+FAILED tests/test_accommodation_response_contracts.py::test_power_schema_roundtrip_and_strict_family_exponent_scale_order_checks
+FAILED tests/test_accommodation_response_contracts.py::test_selector_preserves_missing_scheduled_frames_and_lost_exposures
+8 failed, 112 passed in 13.24s

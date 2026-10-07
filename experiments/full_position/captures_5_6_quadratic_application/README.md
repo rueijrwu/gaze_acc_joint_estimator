@@ -1,0 +1,11 @@
+# Captures 5 and 6: frozen full-calibration M2 application
+
+Run `OPENBLAS_NUM_THREADS=1 python apply_full_position_captures_5_6.py` from the repository root. The script applies `models/quadratic_model.json`, the frozen quadratic M2 fit trained on 71,729 retained calibration observations from captures 1–4. It performs no joint calibration or accommodation rescaling. Estimates are computed from fresh capture observations, without reusing the earlier CSV cache.
+
+`joint_gaze_accommodation.png` has capture 5 in the first column and capture 6 in the second; gaze (degrees) is on the top row and accommodation (diopters) on the bottom. `linear_gaze_comparison.png` has capture 5 on the first row and capture 6 on the second; linear gaze is on the left and signed linear-minus-M2 gaze difference (arcminutes) on the right. Both use elapsed timestamp time in seconds. Figures exclude brief spikes using a centered 0.3-second local median and a shared mask across panels. Thresholds are 1 degree for either gaze trace, 0.5 D for accommodation, or 30 arcminutes for the difference. Excluded samples leave gaps in the lines; displayed values are not smoothed. Raw estimate CSVs retain all estimates. Per-row masks and exclusion counts are saved in capture_*_plot_mask.csv and plot_filter.json.
+
+The linear mapping uses the five capture-1 full fixation means of horizontal mean(P4) − mean(P1), with equal fixation weights and no accommodation term. This separate requested linear fit does not alter the joint model.
+
+Both capture estimate CSVs preserve every original row. Missing estimates remain NaN; bound and unverified-stationarity flags are exported. The default M2 inverse is the existing bounded multistart Gauss-Newton implementation with 100 iterations; all three valid P4 points are required. `summary.json` records hashes, coverage, accommodation quantiles and linear coefficients. Differences are between two estimators, not ground-truth errors.
+
+Use `python apply_full_position_captures_5_6.py --plots-only` to redraw without estimating again. `--model PATH --output PATH` can explicitly apply a saved conditional27/37 model; those six-coordinate models differ from M2. The earlier `../captures_5_6_application` used an exploratory conditional27 calibration with collapsed training accommodation and is superseded. Its diagnosis is retained there.
