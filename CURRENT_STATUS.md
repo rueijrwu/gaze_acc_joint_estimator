@@ -54,6 +54,17 @@ validated noise variance. There is no outer-score tuning or promotion. The
 zero-τ reference is exact; profiling an unrestricted shared-y offset gives the
 x-plus-differential-y retained objective.
 
+The shared-y covariance trial completed nine folds in **34.42 seconds**.
+Its training-only τ values ranged from **1.267 to 1.712 px**. Independent
+verification recomputed 1,827 retained objectives, checked 27 analytic
+interior certificates and 10 exact paired cohorts. Across all nine folds, 54
+held-point slots on 18 frames were unavailable because retained P4 input was
+insufficient; this is an input-availability outcome, not solver failure. The
+slots are reflected in per-family schedule coverage: 143/160 complete frames
+and 429/480 scored points for gaze, and the same counts for capture. The final
+repository suite passed **90 tests**. These results remain a sensitivity
+analysis; the development challenger and reference are unchanged.
+
 The primary paired reporting and 18 training-diagnosis tasks finished in
 **3.78 seconds with 12 CPU workers and BLAS/OMP=1**. Independent reconstruction
 checked 2,689 historical source hashes, 35 implementation/design snapshots,
@@ -595,7 +606,10 @@ independent physiological accuracy. No new model has replaced the baseline.
   [independent verification](experiments/full_position/latest_results_followup_v1/verification.json),
   [paired comparisons](experiments/full_position/latest_results_followup_v1/direct_comparison.json),
   [training diagnostics](experiments/full_position/latest_results_followup_v1/training_diagnosis.json),
-  and [single shared-y covariance trial](experiments/full_position/latest_results_followup_v1/covariance_trial/summary.json).
+  [signed point tails](experiments/full_position/latest_results_followup_v1/point_signed_tails.csv),
+  [final test evidence](experiments/full_position/latest_results_followup_v1/tests_final.txt),
+  and [single shared-y covariance trial](experiments/full_position/latest_results_followup_v1/covariance_trial/summary.json)
+  with its [independent verification](experiments/full_position/latest_results_followup_v1/verification.json).
 - [Phase 8.3 results](experiments/full_position/phase83_retained_channels_v1/RESULTS.md),
   [verification](experiments/full_position/phase83_retained_channels_v1/verification.json),
   and [plot](experiments/full_position/phase83_retained_channels_v1/phase83_metrics.png).

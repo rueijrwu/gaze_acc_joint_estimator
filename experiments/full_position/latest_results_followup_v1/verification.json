@@ -2,6 +2,20 @@
   "checks": {
     "covariance_trial": {
       "exact_paired_cohort_checks": 10,
+      "family_coverage": {
+        "capture": {
+          "complete_triples": 143,
+          "scheduled_frames": 160,
+          "scheduled_slots": 480,
+          "scored": 429
+        },
+        "gaze": {
+          "complete_triples": 143,
+          "scheduled_frames": 160,
+          "scheduled_slots": 480,
+          "scored": 429
+        }
+      },
       "fold_tau_px": {
         "capture_1": 1.4950161949829497,
         "capture_2": 1.2672837600015345,
@@ -239,7 +253,9 @@
       "status": "pass",
       "tau_max_px": 1.7119042216002327,
       "tau_min_px": 1.2672837600015345,
-      "unavailable_holdouts_preserved": 3
+      "unavailable_holdout_frames_preserved": 18,
+      "unavailable_holdout_reason": "insufficient_retained_P4 (input availability; not solver failure)",
+      "unavailable_holdouts_preserved": 54
     },
     "direct_pairing": {
       "cohort_checks": 20,

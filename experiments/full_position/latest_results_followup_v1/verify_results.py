@@ -407,6 +407,8 @@ def check_covariance_trial(root):
     tau_by_fold = {}
     objective_count = 0
     prediction_count = 0
+    unavailable_holdouts = 0
+    unavailable_holdout_frames = set()
     certificate_checks = []
     all_trial_frames = {}
     all_trial_tau = {}
@@ -442,12 +444,14 @@ def check_covariance_trial(root):
         with open(folder/"holdouts.jsonl") as stream:
             kept_records = [json.loads(line) for line in stream if line.strip()]
         sampled_certificate_points = set()
-        unavailable_holdouts = 0
         for h in kept_records:
             if not h.get("available"):
+                require(h.get("reason") == "insufficient_retained_P4",
+                        f"unexpected unavailable holdout reason {fold}/{h.get('row')}/{h.get('held_point')}")
                 require(h.get("state") is None and h.get("cost") is None,
                         f"unavailable holdout carries a selected solution {fold}/{h.get('row')}/{h.get('held_point')}")
                 unavailable_holdouts += 1
+                unavailable_holdout_frames.add((fold, h.get("capture"), int(h["row"])))
                 continue
             cap = captures[h["capture"]]
             i, held = int(h["row"]), int(h["held_point"])
@@ -590,12 +594,20 @@ def check_covariance_trial(root):
             report = card["cohorts"][cohort]
             check_delta_report(report, points, frames, exposures, f"trial/{family}/{cohort}")
             pair_checks += 1
+    family_coverage = {
+        family: {key: summary["families"][family]["candidate"]["coverage"][key]
+                 for key in ("scheduled_frames", "scheduled_slots", "complete_triples", "scored")}
+        for family in ("gaze", "capture")
+    }
     return {"status": "pass", "source_hash_count": len(cfg["source_hashes"]),
             "snapshot_count": len(cfg["implementation_hashes"]), "fold_tau_px": tau_by_fold,
             "tau_min_px": float(min(tau_by_fold.values())), "tau_max_px": float(max(tau_by_fold.values())),
             "saved_branch_objectives_recomputed": objective_count,
             "omitted_point_predictions_recomputed": prediction_count,
             "unavailable_holdouts_preserved": unavailable_holdouts,
+            "unavailable_holdout_frames_preserved": len(unavailable_holdout_frames),
+            "unavailable_holdout_reason": "insufficient_retained_P4 (input availability; not solver failure)",
+            "family_coverage": family_coverage,
             "selected_interior_certificates_recomputed": certificate_checks,
             "exact_paired_cohort_checks": pair_checks,
             "scope": "training-only tau; no candidate fitting; held-out P4 used only for final scoring"}
@@ -619,6 +631,165 @@ def scalar_profile_check():
     return {"test": "test_shared_y_marginal_precision_matches_free_scalar_offset_and_large_tau_limit",
             "profiled_quadratic": profiled, "differential_quadratic": differential,
             "absolute_difference": abs(profiled-differential), "tolerance": TOL}
+
+
+def write_signed_tail_csv(direct):
+    import csv
+    rows = []
+    for label in direct["comparisons"]:
+        response, family = label.split("/")
+        folds = [f for f in load(OUT/"config.json")["folds"] if f.startswith(family+"_")]
+        ref = []
+        with gzip.open(BASE/"phase83_audit_followup_v1"/"scorecard_frames.jsonl.gz", "rt") as stream:
+            for line in stream:
+                item = json.loads(line)
+                parts = item["candidate"].split("/")
+                if parts[0] == "phase83" and parts[1] == response and parts[2] in folds and parts[3] == "xy":
+                    ref.append(item["frame"])
+        cand = [f for fold in folds for f in load(BASE/"phase83_audit_followup_v1"/"information"/response/fold/
+                                                  "x_y_difference"/"frames.json")]
+        rmap, cmap = ({frame_key(f): f for f in values} for values in (ref, cand))
+        membership = None
+        with gzip.open(OUT/"direct_paired_membership.jsonl.gz", "rt") as stream:
+            for line in stream:
+                item = json.loads(line)
+                if item["comparison"] == label and item["cohort"] == "full_common":
+                    membership = item
+                    break
+        require(membership is not None, f"missing full shared membership for tail table {label}")
+        grouped = defaultdict(lambda: defaultdict(list))
+        exposures = defaultdict(set)
+        for point_id in membership["point_ids"]:
+            key, held = tuple(point_id[:5]), int(point_id[5])
+            old, new = rmap[key], cmap[key]
+            for side, frame in (("xy", old), ("differential_y", new)):
+                slot = next(s for s in frame["slots"] if int(s["held_point"]) == held)
+                groups = (("all", "all"), ("capture", frame["capture"]),
+                          ("signed_gaze_deg", str(frame["nominal_theta"])),
+                          ("held_point", str(held)))
+                exposure_id = (frame["fold"], frame["capture"], int(frame["fixation"]))
+                for kind, value in groups:
+                    exposures[(kind, value, side)].add(exposure_id)
+                    for axis, index in (("x", 0), ("y", 1)):
+                        grouped[(kind, value, side, axis)]["values"].append(float(slot["error_px"][index]))
+        for (kind, value, side, axis), values in sorted(grouped.items()):
+            x = np.asarray(values["values"], float)
+            rows.append({"comparison": label, "stratum": kind, "value": value, "arm": side,
+                         "axis": axis, "n_shared_scored": len(x),
+                         "exposure_count": len(exposures[(kind, value, side)]),
+                         "signed_mean_px": float(x.mean()), "signed_median_px": float(np.median(x)),
+                         "signed_p90_px": float(np.percentile(x, 90)),
+                         "signed_p95_px": float(np.percentile(x, 95)),
+                         "absolute_p95_px": float(np.percentile(np.abs(x), 95)),
+                         "rms_px": float(np.sqrt(np.mean(x*x)))})
+    dest = OUT/"point_signed_tails.csv"
+    columns = ("comparison", "stratum", "value", "arm", "axis", "n_shared_scored", "exposure_count",
+               "signed_mean_px", "signed_median_px", "signed_p90_px", "signed_p95_px",
+               "absolute_p95_px", "rms_px")
+    with dest.open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=columns)
+        writer.writeheader()
+        writer.writerows(rows)
+    return len(rows)
+
+
+def write_results_report(checks):
+    direct = load(OUT/"direct_comparison.json")
+    trial = load(OUT/"covariance_trial/summary.json")
+    support = load(BASE/"phase83_audit_followup_v1"/"support_cohorts.json")
+    verification = load(OUT/"verification.json") if (OUT/"verification.json").exists() else None
+    tail_rows = write_signed_tail_csv(direct)
+
+    def n(x, digits=3):
+        return "—" if x is None else f"{x:.{digits}f}"
+
+    lines = ["# Latest frozen-result follow-up", "",
+        "This is a paired development comparison of saved baseline27/strong_anchor37 predictions using xy versus x plus differential-y, followed by one training-scaled shared-y covariance sensitivity. It does not recalibrate either response or promote a new model.", "",
+        "The schedule was rebuilt from the selected rows in each frozen `population.csv.gz`. Every comparison uses exact shared scheduled frame and held-point identities; paired errors are candidate minus reference and equal-weight exposures. Joint support means both arms meet the cohort rule at the same point/frame IDs.", "",
+        "## Direct differential-y versus xy", "",
+        "The signed-tail file reports x and y residual mean, signed quantiles, absolute 95th percentile and RMS by arm, capture, signed gaze and held point, using exact shared full-cohort scored points.", "",
+        f"[Detailed signed point tails by capture, gaze and held point](point_signed_tails.csv) ({tail_rows} rows).", "",
+        "| Response | Family | Cohort | Shared complete frames / points | ΔE² | ΔGθ² | ΔG_A² | Δworst² | Δx² | Δy² |",
+        "|---|---|---|---:|---:|---:|---:|---:|---:|---:|"]
+    cohort_labels = (("full_common", "Full shared"), ("joint_interior", "Joint interior"),
+                     ("joint_state_and_P1", "Joint state + P1 support"))
+    for key, cell in direct["comparisons"].items():
+        response, family = key.split("/")
+        for cohort, label in cohort_labels:
+            c = cell["cohorts"][cohort]
+            d = [c["frame_changes"][f]["squared_change"]["mean"] for f in
+                 ("E_px", "G_theta_deg", "G_A_D", "worst_point_px")]
+            dx = c["point_changes"]["x"]["squared_change"]["mean"]
+            dy = c["point_changes"]["y"]["squared_change"]["mean"]
+            lines.append(f"| {response} | {family} | {label} | {c['shared_complete_frames']} / {c['shared_scored_points']} | "
+                f"{n(d[0])} | {n(d[1],4)} | {n(d[2],4)} | {n(d[3])} | {n(dx)} | {n(dy)} |")
+    lines += ["", "Negative squared changes favor differential-y. The four comparisons share the same 160-frame/480-slot schedule per response-family cell. Full scoring coverage is 429/480 points and 143/160 complete triples in every arm; the following table shows the model-specific bound slots and empirically supported complete-frame counts.", "",
+        "| Response | Family | Arm | Scored / scheduled points | Complete / scheduled frames | Bound slots | Interior complete | Empirical-state complete | Measured-P1 complete | Joint state+P1 complete |",
+        "|---|---|---|---:|---:|---:|---:|---:|---:|---:|"]
+    for response in RESPONSES:
+        for family in ("gaze", "capture"):
+            for mask, arm in (("xy", "xy"), ("x_y_difference", "differential-y")):
+                cell = support["conditions"][f"{response}/{family}/{mask}"]
+                cov = cell["scheduled_coverage"]
+                cohorts = cell["cohorts"]
+                source_key = f"{response}/{family}"
+                card = direct["comparisons"][source_key]["full_reference" if mask == "xy" else "full_candidate"]
+                lines.append(f"| {response} | {family} | {arm} | {card['coverage']['scored']}/480 | "
+                    f"{card['coverage']['complete_triples']}/160 | {card['coverage']['bound_slots']} | "
+                    f"{len(cohorts['interior']['complete_frame_ids'])} | "
+                    f"{len(cohorts['empirical_state']['complete_frame_ids'])} | "
+                    f"{len(cohorts['measured_P1']['complete_frame_ids'])} | "
+                    f"{len(cohorts['empirical_state_and_P1']['complete_frame_ids'])} |")
+    lines += ["", "The detailed tail table preserves signed x/y behavior by capture, gaze and held point. Complete-frame support counts above are per arm; the paired cohort table uses their exact intersection, so paired counts can be smaller than either arm's independent count.", "",
+        "## Training-only common-y diagnosis", "",
+        "The fixed ridge diagnostic predicts the common-all-three-y residual from frozen state features or state plus measured P1 context. Standardization and ridge coefficients are refit inside each group-blocked training split. Values are fold-equal mean skill relative to the training-block mean predictor; negative values indicate worse blocked prediction. These are development diagnostics, not untouched test estimates.", "",
+        "| Response | Held-out training block | State-only skill | State + P1 skill |",
+        "|---|---|---:|---:|"]
+    skills = checks["training_summary"]["skill"]
+    for response in RESPONSES:
+        for scheme, label in (("fixation", "Fixation"), ("capture", "Capture"),
+                              ("horizontal_gaze", "Signed gaze")):
+            state = skills[f"{response}/{scheme}/state"]["equal_fold_mean"]
+            state_p1 = skills[f"{response}/{scheme}/state_P1"]["equal_fold_mean"]
+            lines.append(f"| {response} | {label} | {n(state,3)} | {n(state_p1,3)} |")
+    lines += ["", "Capture-specific signed common-y residual means remain after conditioning on state and P1. Each value below is the equal-fold mean over the eight outer folds where that capture remains in training.", "",
+        "| Response | Capture | Raw common-y mean (px) | After state + P1 (px) |",
+        "|---|---|---:|---:|"]
+    cap_means = checks["training_summary"]["capture_common_y_means"]
+    for response in RESPONSES:
+        for capture in ("capture_1_detections.pkl", "capture_2_detections.pkl",
+                        "capture_3_detections.pkl", "capture_4_detections.pkl"):
+            raw = cap_means[f"{response}/{capture}/raw"]["equal_fold_mean_px"]
+            after = cap_means[f"{response}/{capture}/after_state_P1"]["equal_fold_mean_px"]
+            lines.append(f"| {response} | {capture.split('_')[1]} | {n(raw,3)} | {n(after,3)} |")
+    lines += ["", "## Training-scaled shared-y covariance sensitivity", "",
+        "One xy trial used one training-only τ per fold, set to the equal-fixation RMS of the common-y training residual. It adds a shared y-mode term to the frozen localization covariance while leaving the response, pilot and calibration unchanged. This RMS includes systematic bias and variation; it is not a validated noise variance and may double-count the existing covariance.", "",
+        "| Family | Reference E RMS | Trial E RMS | Reference worst RMS | Trial worst RMS | Full ΔE² | Full ΔGθ² | Full ΔG_A² | Full Δworst² | τ range (px) | Runtime |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
+    trial_checks = verification["checks"]["covariance_trial"] if verification else None
+    trial_done = load(OUT/"covariance_trial/completion.json")
+    for family, label in (("gaze", "Gaze"), ("capture", "Capture")):
+        cell = trial["families"][family]
+        d = cell["cohorts"]["full_common"]
+        lines.append(f"| {label} | {n(cell['reference']['outcomes']['E_cross_px']['equal_exposure_rms'])} | "
+            f"{n(cell['candidate']['outcomes']['E_cross_px']['equal_exposure_rms'])} | "
+            f"{n(cell['reference']['outcomes']['worst_point_px']['equal_exposure_rms'])} | "
+            f"{n(cell['candidate']['outcomes']['worst_point_px']['equal_exposure_rms'])} | "
+            f"{n(d['frame_changes']['E_px']['squared_change']['mean'])} | "
+            f"{n(d['frame_changes']['G_theta_deg']['squared_change']['mean'],4)} | "
+            f"{n(d['frame_changes']['G_A_D']['squared_change']['mean'],4)} | "
+            f"{n(d['frame_changes']['worst_point_px']['squared_change']['mean'])} | "
+            f"{n(trial_checks['tau_min_px'])}–{n(trial_checks['tau_max_px'])} | {trial_done['seconds']:.1f}s |")
+    lines += ["", "The saved covariance trial closely reproduces the differential-y aggregate prediction results, consistent with downweighting a shared-y residual direction. This is not independent confirmation and does not validate the covariance model. The differential-y response remains the challenger; xy remains the reference. No automatic promotion was made.", "",
+        "## Verification and provenance", "",
+        f"- Primary audit: 12 workers, {load(OUT/'completion.json')['seconds']:.2f}s, 4 direct cells, 18 training reports.",
+        f"- Covariance sensitivity: 12 workers, {trial_done['seconds']:.2f}s, 9 fold-specific τ values; {trial_checks['saved_branch_objectives_recomputed']} retained objectives, {len(trial_checks['selected_interior_certificates_recomputed'])} analytic certificate samples, and {trial_checks['exact_paired_cohort_checks']} exact paired cohorts checked.",
+        f"- Input availability: {trial_checks['unavailable_holdouts_preserved']} held-point slots across {trial_checks['unavailable_holdout_frames_preserved']} frames were unavailable because retained P4 input was insufficient; these are not solver failures. This is already reflected in the scheduled coverage: gaze {trial_checks['family_coverage']['gaze']['complete_triples']}/{trial_checks['family_coverage']['gaze']['scheduled_frames']} complete frames and {trial_checks['family_coverage']['gaze']['scored']}/{trial_checks['family_coverage']['gaze']['scheduled_slots']} scored points; capture {trial_checks['family_coverage']['capture']['complete_triples']}/{trial_checks['family_coverage']['capture']['scheduled_frames']} frames and {trial_checks['family_coverage']['capture']['scored']}/{trial_checks['family_coverage']['capture']['scheduled_slots']} points.",
+        f"- Independent verifier: [verification.json](verification.json); reproducible command: `python verify_results.py`.",
+        f"- Final test evidence: [tests_final.txt](tests_final.txt) (90 passed); initial 87-pass record remains in [tests.txt](tests.txt).",
+        "- Execution metadata: [execution.json](execution.json). The initial sandbox forkserver bind failure is recorded in `run_forkserver_failure.log`; the successful run used an explicit fork context.",
+        "- All results use historical development folds. Independent nested recalibration needs externally declared guards and grouping; this report makes no final-transfer claim.", ""]
+    (OUT/"RESULTS.md").write_text("\n".join(lines))
 
 
 def main():
@@ -742,6 +913,7 @@ def main():
         "interpretation_scope": "descriptive; fold-equal means/ranges, no uncertainty claim"}
     result = {"schema": "latest_results_followup_verification_v1", "status": "pass", "checks": checks}
     (OUT/"verification.json").write_text(json.dumps(result, indent=2, sort_keys=True)+"\n")
+    write_results_report(checks)
     print(json.dumps({"status": "pass", "source_hashes": checks["source_hashes"]["count"],
         "snapshots": checks["implementation_snapshots"]["count"], "cohort_checks": pair_checks,
         "training_reports": training["report_count"], "blocked_metrics": training["blocked_metric_count"],
