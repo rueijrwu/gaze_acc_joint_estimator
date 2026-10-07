@@ -1,12 +1,106 @@
 # Current status — 2026-10-07
 
-The conditional full-position prototype, Phase 8.2 audit follow-up, and Phase 8.3
-retained-channel comparison are complete. The primary
+The conditional full-position prototype, Phase 8.2 audit follow-up, Phase 8.3
+retained-channel comparison, and Phase 8.3 audit follow-up are complete. The primary
 comparison evaluates excluded-P4 coordinate prediction and subset-state
 agreement separately. The two-channel control has no individual-P4 decoder, so
 its nominal-anchor consistency is a secondary calibration diagnostic and cannot
 rank it on the primary cross-check task. None of these geometric results
 establishes physiological accuracy.
+
+## Phase 8.3 audit follow-up (latest)
+
+[Results](experiments/full_position/phase83_audit_followup_v1/RESULTS.md) implement
+the [Phase 8.3 audit](PHASE_8_3_AUDIT.md). The common scorecard now reports
+excluded-P4 equal-exposure squared loss/RMS, physical subset-state disagreement,
+coverage, signed axes, worst point, tails, exact paired cohorts and absent
+exposures. Each subset's own state is checked against frozen nominal anchors
+and empirical training extrema; measured P1 context/parity and explicit unknown
+reasons accompany it. Historical scores and files remain unchanged. Backfill
+contains 243 fold scorecards (234 decoder candidates and nine explicitly
+inapplicable summary controls), 52 family scorecards and 8,320 scheduled frames.
+The rejected weak-prior calibration still has zero scored slots and five missing
+exposures. Bounds and empirical support remain distinct.
+
+The two estimated variables remain horizontal gaze and accommodation. Every
+calibration fixation has nominal vertical gaze zero, from the user's protocol
+clarification; artifacts identify this as a protocol constraint, not framewise
+truth. Measured image-y and its state derivatives remain intact.
+
+The new study freezes baseline27 and strong-anchor37 responses across nine
+folds and compares x plus common y, differential y, or both, with x/xy references.
+It transforms retained observations, model values/Jacobians/Hessians and the
+marginal covariance together. Both excluded coordinates are predicted. The
+54 new tasks completed in **172.53 seconds**, using **12 CPU workers**, each
+with one BLAS/OMP thread. New transformed masks have 1,920 scheduled frames,
+5,760 scheduled slots, 5,148 scored slots and 1,716 complete triples. Sampling
+remains the original eight rows per fixation, before validity filtering.
+
+For baseline27, equal-exposure complete-frame results are:
+
+| Family | Retained information | E (px) | G_theta (deg) | G_A (D) | Worst point (px) |
+|---|---|---:|---:|---:|---:|
+| Gaze | x | 4.203 | 0.930 | 1.010 | 5.417 |
+| Gaze | x + common y | 5.087 | 0.986 | 1.096 | 6.820 |
+| Gaze | x + differential y | 3.326 | 0.371 | 0.370 | 3.954 |
+| Gaze | xy / x + both y components | 3.421 | 0.269 | 0.311 | 4.385 |
+| Capture | x | 4.149 | 0.721 | 0.906 | 5.130 |
+| Capture | x + common y | 7.593 | 1.436 | 1.438 | 9.668 |
+| Capture | x + differential y | 3.586 | 0.278 | 0.302 | 4.146 |
+| Capture | xy / x + both y components | 4.014 | 0.281 | 0.319 | 5.222 |
+
+Each baseline row has 143 complete triples and 429 scored slots out of 160/480
+scheduled. Common y alone worsens prediction in all four response/family cells.
+Differential y improves E, state disagreement and worst-point squared changes
+against x on exact shared interior cohorts in all four cells. Its lower E versus
+xy is a tradeoff: gaze-family state disagreement is worse, and baseline27 capture
+has **99** triples inside empirical state support versus **111** for xy. These
+candidate-specific support cohorts have different memberships and cannot be
+ranked as paired comparisons. The baseline27 capture xy y-axis/worst regressions
+remain explicit: y RMS **3.411 → 3.565 px**, worst **5.130 → 5.222 px** versus x.
+
+Combined common/differential y is an invertible control: all **1,920** slot
+comparisons match xy availability, rank, ambiguity and discovered branch clusters.
+Maximum selected-state differences are 4.39e-8 degrees and 5.30e-8 D; maximum
+statistical-cost difference is 2.76e-10. No new y-mask case triggered the
+rank/ambiguity profile diagnostic. A separate retained-only 65-grid profile of
+**17** prior x-only cases (three rank-weak, 15 ambiguous, with overlap) found no
+new branches or lower costs in 2.30 seconds. Original scores were not replaced.
+Finite multistart/profiling is not a global completeness proof; cost gap two
+remains heuristic. The regression suite passes **73 tests**.
+
+[Independent verification](experiments/full_position/phase83_audit_followup_v1/verification.json)
+passes with zero errors: 5,148 transformed-covariance checks, 5,750 retained
+objectives, 5,733 branch certificates, 1,716 new frame E/G checks, 30,720 subset
+support records and 12 exact paired-membership checks. All 2,309 historical
+source hashes match, and all 8,320 backfilled primary frame/state records are
+preserved. Three representative inversions rerun the full 49 starts; the other
+numerical checks recompute retained objectives/certificates at saved states.
+
+Signed in-sample training residual diagnostics retain capture structure:
+baseline27 mean y residuals for captures 2/3/4 are approximately -0.848/+0.529/
++0.324 px; strong-anchor37 gives -0.860/+0.586/+0.351 px. These overlapping
+training folds are correlated, and this secondary diagnostic does not select
+weights or prove the cause. Common-y sensitivity motivates checking capture/
+context discrepancy before adding capacity or changing the covariance.
+
+The nested grouped-selection coordinator is implemented and tested: fitting gets
+only its training groups; inner cross-check selection precedes the outer refit
+and one sealed outer evaluation. Fitting callbacks must construct pilot/noise/
+prior/anchor policies solely from those training groups. Externally predeclared
+coverage, physical-state, axis, tail, support and bound guards are required.
+Missing guards give **no promotion decision** and retain the reference. A real
+nested calibration study has not been run, and historical development results
+cannot become independent validation retroactively.
+
+Next predeclare those guards and the grouping/uncertainty policy, freeze a denser
+evaluation population, then execute train-only nested calibration comparisons.
+Test the common-y discrepancy using training-only residual evidence before any
+justified covariance/context or conditional37 curvature candidate; never tune
+from outer scores. **Baseline27 with xy remains the development reference.**
+Captures 5/6, detector outputs, historical studies and model coefficients remain
+untouched. Necessary scripts, branch archives, scorecards, snapshots and verifier
+evidence are retained under `phase83_audit_followup_v1/`.
 
 ## Three-way cross-check reporting (Phase 8.1)
 

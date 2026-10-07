@@ -342,3 +342,39 @@ completed run's [results](../experiments/full_position/joint_sensitivity_v1/RESU
 root [audit report](../AUDIT_REPORT.md), and root [current status](../CURRENT_STATUS.md)
 document the outcomes and remaining limits; see the
 [Phase 8.2 index entry](../experiments/full_position/README.md#phase-82-joint-training-sensitivity).
+
+## Phase 8.3 audit follow-up
+
+The shared `scorecard.build` reports excluded-P4 prediction, raw cross-subset
+state disagreement, coverage, support, signed axes, worst point and tails. It
+records exact cohorts and per-exposure counts; missing support stays unknown.
+Optional application holdouts now use this scorecard too. No combined scalar
+mixes pixels, degrees and diopters. The calibration slice has nominal vertical
+gaze zero, with two estimated states; image-y measurements remain intact.
+
+Reproduce the frozen-response common/differential-y study in a new directory:
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+  python -m full_position.audit83 \
+  --output experiments/full_position/phase83_audit_reproduction --workers 12
+```
+
+The runner backfills prior development scorecards without changing their source
+files, records each subset's own training support, and runs 54 frozen-mask tasks.
+Common y is the mean of the two retained y coordinates; differential y is their
+difference. Values, derivatives and marginalized covariance use the same linear
+transform. Both together are an invertible xy control. All masks predict both
+excluded coordinates. Finite multistart branch sets and diagnostic polynomial
+profiles remain visible; neither supplies a global completeness proof.
+
+`selection.nested_grouped(group_data, outer_splits, candidates, fit_callback,
+evaluate_callback, reference, guards)` provides a nested coordinator. Fitting
+receives only training-group payloads and must construct pilot/noise/prior/anchor
+policies from those payloads. Evaluation returns joined records only for its
+supplied validation groups. Externally predeclared guards must cover availability,
+state agreement, axes, tails, support knowledge/support violations and bounds,
+with provenance. Missing guards produce no promotion decision and a reference
+fallback. This tested coordinator has not been used for a new nested calibration
+study. The frozen-mask study is exploratory, retains the existing eight-frame
+population per fixation, and does not access captures 5/6.
