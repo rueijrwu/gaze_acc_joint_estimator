@@ -6,7 +6,7 @@ from unittest.mock import patch
 import numpy as np
 
 from full_position.population import FIELDS, PopulationManifest, manifest
-from full_position.selection import choose, nested_grouped
+from full_position.selection import choose, nested_grouped, transfer_splits
 from test_phase83_information_contracts import _frame
 
 
@@ -163,6 +163,29 @@ class NestedSelectionContracts(unittest.TestCase):
         self.assertIsNone(fold["decision"]["selected"])
         self.assertTrue(fold["fallback_reference"])
         self.assertEqual(fold["evaluated_candidate"], "a")
+
+    def test_duplicate_outer_split_names_are_rejected(self):
+        groups = _raw_groups(4)
+        fit = lambda train, candidate: candidate
+        evaluate = lambda model, val, population: [_scheduled_frame(k) for k in population.frame_ids]
+        with self.assertRaisesRegex(ValueError, "Duplicate outer split identifier"):
+            nested_grouped(groups, [("same", [3]), ("same", [2])], ["a"], fit,
+                evaluate, "a", None, schedule_validation=_schedule)
+
+    def test_transfer_splits_partition_only_requested_inner_ids(self):
+        metadata = {
+            0: {"capture": "outer-capture-a", "target_theta_deg": -99., "label": "outer"},
+            1: {"capture": "capA", "target_theta_deg": -5., "label": "inner"},
+            2: {"capture": "capA", "target_theta_deg": 5., "label": "inner"},
+            3: {"capture": "capB", "target_theta_deg": 5., "label": "inner"},
+        }
+        capture = transfer_splits([1, 2, 3], metadata, "capture")
+        gaze = transfer_splits([1, 2, 3], metadata, "horizontal_gaze")
+        metadata[0].update(capture="changed", target_theta_deg=1e9, label="changed outer metadata")
+        self.assertEqual(capture, transfer_splits([1, 2, 3], metadata, "capture"))
+        self.assertEqual(gaze, transfer_splits([1, 2, 3], metadata, "horizontal_gaze"))
+        self.assertEqual([set(ids) for _, ids in capture], [{1, 2}, {3}])
+        self.assertEqual([set(ids) for _, ids in gaze], [{1}, {2, 3}])
 
 
 class ChooseContracts(unittest.TestCase):

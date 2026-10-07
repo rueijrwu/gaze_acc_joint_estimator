@@ -1,0 +1,958 @@
+{
+  "response": "baseline27",
+  "fold": "gaze_-10",
+  "frozen_model_sha256": "4a67759ad683beccfaa2a314b341a223ea64617dca477d1303a9db4fb727522d",
+  "training_group_ids": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    7,
+    8,
+    9,
+    11,
+    12,
+    13,
+    14,
+    16,
+    17,
+    18,
+    19
+  ],
+  "outer_group_ids": [
+    0,
+    5,
+    10,
+    15
+  ],
+  "target_names": [
+    "common_all_y",
+    "pair_common_held0",
+    "pair_common_held1",
+    "pair_common_held2",
+    "diff_y01",
+    "diff_y02",
+    "diff_y12",
+    "point_y0",
+    "point_y1",
+    "point_y2",
+    "point_x0",
+    "point_x1",
+    "point_x2"
+  ],
+  "ridge_strength": 1.0,
+  "blocked_diagnostic_metrics": {
+    "fixation": {
+      "state": {
+        "common_all_y": {
+          "mse_px2": 3.15115508338205,
+          "baseline_mse_px2": 2.1106320433324823,
+          "skill_vs_train_mean": -0.4929912076984688
+        },
+        "pair_common_held0": {
+          "mse_px2": 3.8858087160239716,
+          "baseline_mse_px2": 2.570086366834273,
+          "skill_vs_train_mean": -0.5119370174358582
+        },
+        "pair_common_held1": {
+          "mse_px2": 2.2035434552617965,
+          "baseline_mse_px2": 1.5032745968752985,
+          "skill_vs_train_mean": -0.465828970862725
+        },
+        "pair_common_held2": {
+          "mse_px2": 3.68987349819857,
+          "baseline_mse_px2": 2.480265147471986,
+          "skill_vs_train_mean": -0.4876931613378026
+        },
+        "diff_y01": {
+          "mse_px2": 2.031766170844637,
+          "baseline_mse_px2": 1.3987662608017626,
+          "skill_vs_train_mean": -0.4525415916738249
+        },
+        "diff_y02": {
+          "mse_px2": 0.2940455031473996,
+          "baseline_mse_px2": 0.3027467435495118,
+          "skill_vs_train_mean": 0.028740987599390033
+        },
+        "diff_y12": {
+          "mse_px2": 1.5833133580662437,
+          "baseline_mse_px2": 0.9592467698580276,
+          "skill_vs_train_mean": -0.6505798172253221
+        },
+        "point_y0": {
+          "mse_px2": 2.1932328164178436,
+          "baseline_mse_px2": 1.5990199361363233,
+          "skill_vs_train_mean": -0.37161067654810087
+        },
+        "point_y1": {
+          "mse_px2": 6.2023972654016175,
+          "baseline_mse_px2": 4.06089348920853,
+          "skill_vs_train_mean": -0.527347930174467
+        },
+        "point_y2": {
+          "mse_px2": 2.3608768456794516,
+          "baseline_mse_px2": 1.55890262938903,
+          "skill_vs_train_mean": -0.5144479207176229
+        },
+        "point_x0": {
+          "mse_px2": 0.8285916732762847,
+          "baseline_mse_px2": 0.5314931026469423,
+          "skill_vs_train_mean": -0.5589885722876402
+        },
+        "point_x1": {
+          "mse_px2": 2.4312999381689235,
+          "baseline_mse_px2": 1.225622839924584,
+          "skill_vs_train_mean": -0.9837260362400948
+        },
+        "point_x2": {
+          "mse_px2": 0.9461178905884305,
+          "baseline_mse_px2": 0.5653191684319478,
+          "skill_vs_train_mean": -0.6735995229256455
+        }
+      },
+      "state_P1": {
+        "common_all_y": {
+          "mse_px2": 8.089235986755705,
+          "baseline_mse_px2": 2.1106320433324823,
+          "skill_vs_train_mean": -2.8326130849333593
+        },
+        "pair_common_held0": {
+          "mse_px2": 10.0144339459513,
+          "baseline_mse_px2": 2.570086366834273,
+          "skill_vs_train_mean": -2.896535958940037
+        },
+        "pair_common_held1": {
+          "mse_px2": 5.340140422961276,
+          "baseline_mse_px2": 1.5032745968752985,
+          "skill_vs_train_mean": -2.552338630654222
+        },
+        "pair_common_held2": {
+          "mse_px2": 9.390282704117325,
+          "baseline_mse_px2": 2.480265147471986,
+          "skill_vs_train_mean": -2.785999538673672
+        },
+        "diff_y01": {
+          "mse_px2": 3.160019881276045,
+          "baseline_mse_px2": 1.3987662608017626,
+          "skill_vs_train_mean": -1.2591479147236115
+        },
+        "diff_y02": {
+          "mse_px2": 0.1959975016952731,
+          "baseline_mse_px2": 0.3027467435495118,
+          "skill_vs_train_mean": 0.35260244454712264
+        },
+        "diff_y12": {
+          "mse_px2": 2.3697719701821764,
+          "baseline_mse_px2": 0.9592467698580276,
+          "skill_vs_train_mean": -1.4704508210467182
+        },
+        "point_y0": {
+          "mse_px2": 4.962550534324594,
+          "baseline_mse_px2": 1.5990199361363233,
+          "skill_vs_train_mean": -2.1034950985761287
+        },
+        "point_y1": {
+          "mse_px2": 15.39802481454808,
+          "baseline_mse_px2": 4.06089348920853,
+          "skill_vs_train_mean": -2.7917824871464836
+        },
+        "point_y2": {
+          "mse_px2": 5.815729062445603,
+          "baseline_mse_px2": 1.55890262938903,
+          "skill_vs_train_mean": -2.730655752838727
+        },
+        "point_x0": {
+          "mse_px2": 0.9244118435125624,
+          "baseline_mse_px2": 0.5314931026469423,
+          "skill_vs_train_mean": -0.7392734522965698
+        },
+        "point_x1": {
+          "mse_px2": 1.9706718137516346,
+          "baseline_mse_px2": 1.225622839924584,
+          "skill_vs_train_mean": -0.6078941657719885
+        },
+        "point_x2": {
+          "mse_px2": 0.21972665075127662,
+          "baseline_mse_px2": 0.5653191684319478,
+          "skill_vs_train_mean": 0.6113228366893295
+        }
+      },
+      "state_P1_gaze": {
+        "common_all_y": {
+          "mse_px2": 7.631438378003099,
+          "baseline_mse_px2": 2.1106320433324823,
+          "skill_vs_train_mean": -2.615712365455137
+        },
+        "pair_common_held0": {
+          "mse_px2": 9.34578535213261,
+          "baseline_mse_px2": 2.570086366834273,
+          "skill_vs_train_mean": -2.6363701518888507
+        },
+        "pair_common_held1": {
+          "mse_px2": 5.080645137373763,
+          "baseline_mse_px2": 1.5032745968752985,
+          "skill_vs_train_mean": -2.3797186142401223
+        },
+        "pair_common_held2": {
+          "mse_px2": 8.90635305499147,
+          "baseline_mse_px2": 2.480265147471986,
+          "skill_vs_train_mean": -2.5908874759092932
+        },
+        "diff_y01": {
+          "mse_px2": 2.84111124744413,
+          "baseline_mse_px2": 1.3987662608017626,
+          "skill_vs_train_mean": -1.0311551165207726
+        },
+        "diff_y02": {
+          "mse_px2": 0.1746281473375758,
+          "baseline_mse_px2": 0.3027467435495118,
+          "skill_vs_train_mean": 0.42318736350332775
+        },
+        "diff_y12": {
+          "mse_px2": 2.245881531080896,
+          "baseline_mse_px2": 0.9592467698580276,
+          "skill_vs_train_mean": -1.3412969442819134
+        },
+        "point_y0": {
+          "mse_px2": 4.833677306157837,
+          "baseline_mse_px2": 1.5990199361363233,
+          "skill_vs_train_mean": -2.02289996323457
+        },
+        "point_y1": {
+          "mse_px2": 14.399584427547106,
+          "baseline_mse_px2": 4.06089348920853,
+          "skill_vs_train_mean": -2.545915317851292
+        },
+        "point_y2": {
+          "mse_px2": 5.414927042258514,
+          "baseline_mse_px2": 1.55890262938903,
+          "skill_vs_train_mean": -2.47355052212642
+        },
+        "point_x0": {
+          "mse_px2": 0.974710739304145,
+          "baseline_mse_px2": 0.5314931026469423,
+          "skill_vs_train_mean": -0.8339104203796623
+        },
+        "point_x1": {
+          "mse_px2": 2.0877983901441244,
+          "baseline_mse_px2": 1.225622839924584,
+          "skill_vs_train_mean": -0.7034591084093964
+        },
+        "point_x2": {
+          "mse_px2": 0.24519169906075122,
+          "baseline_mse_px2": 0.5653191684319478,
+          "skill_vs_train_mean": 0.5662774008869169
+        }
+      },
+      "state_P1_capture": {
+        "common_all_y": {
+          "mse_px2": 3.524868317742752,
+          "baseline_mse_px2": 2.1106320433324823,
+          "skill_vs_train_mean": -0.6700534462545773
+        },
+        "pair_common_held0": {
+          "mse_px2": 3.5763514362782916,
+          "baseline_mse_px2": 2.570086366834273,
+          "skill_vs_train_mean": -0.39152967092055135
+        },
+        "pair_common_held1": {
+          "mse_px2": 2.670070241559555,
+          "baseline_mse_px2": 1.5032745968752985,
+          "skill_vs_train_mean": -0.7761693353360417
+        },
+        "pair_common_held2": {
+          "mse_px2": 4.544140902017032,
+          "baseline_mse_px2": 2.480265147471986,
+          "skill_vs_train_mean": -0.8321190001192633
+        },
+        "diff_y01": {
+          "mse_px2": 0.6833048260478068,
+          "baseline_mse_px2": 1.3987662608017626,
+          "skill_vs_train_mean": 0.5114946326656882
+        },
+        "diff_y02": {
+          "mse_px2": 0.6529276714461744,
+          "baseline_mse_px2": 0.3027467435495118,
+          "skill_vs_train_mean": -1.1566794205315483
+        },
+        "diff_y12": {
+          "mse_px2": 1.2552590220255975,
+          "baseline_mse_px2": 0.9592467698580276,
+          "skill_vs_train_mean": -0.3085882188702922
+        },
+        "point_y0": {
+          "mse_px2": 3.6581030761653937,
+          "baseline_mse_px2": 1.5990199361363233,
+          "skill_vs_train_mean": -1.2877157398077146
+        },
+        "point_y1": {
+          "mse_px2": 5.771831140892614,
+          "baseline_mse_px2": 4.06089348920853,
+          "skill_vs_train_mean": -0.4213204941796065
+        },
+        "point_y2": {
+          "mse_px2": 2.008501242676815,
+          "baseline_mse_px2": 1.55890262938903,
+          "skill_vs_train_mean": -0.2884071171680511
+        },
+        "point_x0": {
+          "mse_px2": 0.9771298132802425,
+          "baseline_mse_px2": 0.5314931026469423,
+          "skill_vs_train_mean": -0.8384618886189492
+        },
+        "point_x1": {
+          "mse_px2": 1.6698078727234715,
+          "baseline_mse_px2": 1.225622839924584,
+          "skill_vs_train_mean": -0.36241575983213514
+        },
+        "point_x2": {
+          "mse_px2": 0.5200770193642165,
+          "baseline_mse_px2": 0.5653191684319478,
+          "skill_vs_train_mean": 0.08002939152624466
+        }
+      }
+    },
+    "capture": {
+      "state": {
+        "common_all_y": {
+          "mse_px2": 4.376257737131499,
+          "baseline_mse_px2": 2.1110258933502584,
+          "skill_vs_train_mean": -1.0730478725612658
+        },
+        "pair_common_held0": {
+          "mse_px2": 5.524051113887695,
+          "baseline_mse_px2": 2.5886651320998983,
+          "skill_vs_train_mean": -1.1339380846863887
+        },
+        "pair_common_held1": {
+          "mse_px2": 2.8747364212235205,
+          "baseline_mse_px2": 1.5169673156879047,
+          "skill_vs_train_mean": -0.8950549504225167
+        },
+        "pair_common_held2": {
+          "mse_px2": 5.168547835898259,
+          "baseline_mse_px2": 2.4364013671955758,
+          "skill_vs_train_mean": -1.1213860349485545
+        },
+        "diff_y01": {
+          "mse_px2": 2.4328783282635293,
+          "baseline_mse_px2": 1.3090791089735376,
+          "skill_vs_train_mean": -0.8584654751470093
+        },
+        "diff_y02": {
+          "mse_px2": 0.49333922313882805,
+          "baseline_mse_px2": 0.3158156845320765,
+          "skill_vs_train_mean": -0.5621112164513824
+        },
+        "diff_y12": {
+          "mse_px2": 2.336528363977279,
+          "baseline_mse_px2": 0.882578825685624,
+          "skill_vs_train_mean": -1.6473877414429996
+        },
+        "point_y0": {
+          "mse_px2": 2.666655440090355,
+          "baseline_mse_px2": 1.5502825427385798,
+          "skill_vs_train_mean": -0.7201093133511638
+        },
+        "point_y1": {
+          "mse_px2": 8.886879395837944,
+          "baseline_mse_px2": 3.9770597461393398,
+          "skill_vs_train_mean": -1.2345350492822553
+        },
+        "point_y2": {
+          "mse_px2": 3.3294870139260944,
+          "baseline_mse_px2": 1.6415599309032678,
+          "skill_vs_train_mean": -1.0282457869777835
+        },
+        "point_x0": {
+          "mse_px2": 0.9198784826512141,
+          "baseline_mse_px2": 0.5422709777116976,
+          "skill_vs_train_mean": -0.6963446698419369
+        },
+        "point_x1": {
+          "mse_px2": 1.6260128527350168,
+          "baseline_mse_px2": 1.1744767534170768,
+          "skill_vs_train_mean": -0.38445724702870465
+        },
+        "point_x2": {
+          "mse_px2": 0.6585996905977834,
+          "baseline_mse_px2": 0.5237315608927572,
+          "skill_vs_train_mean": -0.25751384826824064
+        }
+      },
+      "state_P1": {
+        "common_all_y": {
+          "mse_px2": 7.958684197052392,
+          "baseline_mse_px2": 2.1110258933502584,
+          "skill_vs_train_mean": -2.7700552239185154
+        },
+        "pair_common_held0": {
+          "mse_px2": 9.950854904347288,
+          "baseline_mse_px2": 2.5886651320998983,
+          "skill_vs_train_mean": -2.8440100965377697
+        },
+        "pair_common_held1": {
+          "mse_px2": 5.189235909973479,
+          "baseline_mse_px2": 1.5169673156879047,
+          "skill_vs_train_mean": -2.4207961215171583
+        },
+        "pair_common_held2": {
+          "mse_px2": 9.26763975819184,
+          "baseline_mse_px2": 2.4364013671955758,
+          "skill_vs_train_mean": -2.8038230822614314
+        },
+        "diff_y01": {
+          "mse_px2": 3.5836354549482836,
+          "baseline_mse_px2": 1.3090791089735376,
+          "skill_vs_train_mean": -1.7375239818457184
+        },
+        "diff_y02": {
+          "mse_px2": 0.23863215173207047,
+          "baseline_mse_px2": 0.3158156845320765,
+          "skill_vs_train_mean": 0.24439423556294815
+        },
+        "diff_y12": {
+          "mse_px2": 2.5578681695844216,
+          "baseline_mse_px2": 0.882578825685624,
+          "skill_vs_train_mean": -1.898175318898415
+        },
+        "point_y0": {
+          "mse_px2": 4.822120623092015,
+          "baseline_mse_px2": 1.5502825427385798,
+          "skill_vs_train_mean": -2.1104785677156124
+        },
+        "point_y1": {
+          "mse_px2": 15.504976620765806,
+          "baseline_mse_px2": 3.9770597461393398,
+          "skill_vs_train_mean": -2.8986028901921794
+        },
+        "point_y2": {
+          "mse_px2": 5.675667272720966,
+          "baseline_mse_px2": 1.6415599309032678,
+          "skill_vs_train_mean": -2.4574840466518526
+        },
+        "point_x0": {
+          "mse_px2": 0.8553699062693075,
+          "baseline_mse_px2": 0.5422709777116976,
+          "skill_vs_train_mean": -0.5773846313495155
+        },
+        "point_x1": {
+          "mse_px2": 1.5511231995967945,
+          "baseline_mse_px2": 1.1744767534170768,
+          "skill_vs_train_mean": -0.32069297675231545
+        },
+        "point_x2": {
+          "mse_px2": 0.24016656842512238,
+          "baseline_mse_px2": 0.5237315608927572,
+          "skill_vs_train_mean": 0.5414319350628165
+        }
+      },
+      "state_P1_gaze": {
+        "common_all_y": {
+          "mse_px2": 6.840165135351072,
+          "baseline_mse_px2": 2.1110258933502584,
+          "skill_vs_train_mean": -2.240209017282841
+        },
+        "pair_common_held0": {
+          "mse_px2": 8.56874901518096,
+          "baseline_mse_px2": 2.5886651320998983,
+          "skill_vs_train_mean": -2.3101033072709876
+        },
+        "pair_common_held1": {
+          "mse_px2": 4.477627118940959,
+          "baseline_mse_px2": 1.5169673156879047,
+          "skill_vs_train_mean": -1.9516965017209178
+        },
+        "pair_common_held2": {
+          "mse_px2": 7.942927513706754,
+          "baseline_mse_px2": 2.4364013671955758,
+          "skill_vs_train_mean": -2.260106327575031
+        },
+        "diff_y01": {
+          "mse_px2": 3.176841268228445,
+          "baseline_mse_px2": 1.3090791089735376,
+          "skill_vs_train_mean": -1.426775621466787
+        },
+        "diff_y02": {
+          "mse_px2": 0.2505849460772816,
+          "baseline_mse_px2": 0.3158156845320765,
+          "skill_vs_train_mean": 0.2065468615070306
+        },
+        "diff_y12": {
+          "mse_px2": 2.1982726869991702,
+          "baseline_mse_px2": 0.882578825685624,
+          "skill_vs_train_mean": -1.4907380768980727
+        },
+        "point_y0": {
+          "mse_px2": 4.159093999293394,
+          "baseline_mse_px2": 1.5502825427385798,
+          "skill_vs_train_mean": -1.6827974157190337
+        },
+        "point_y1": {
+          "mse_px2": 13.315181662234323,
+          "baseline_mse_px2": 3.9770597461393398,
+          "skill_vs_train_mean": -2.34799638732101
+        },
+        "point_y2": {
+          "mse_px2": 4.921452711627148,
+          "baseline_mse_px2": 1.6415599309032678,
+          "skill_vs_train_mean": -1.9980341375164539
+        },
+        "point_x0": {
+          "mse_px2": 0.7907036968060596,
+          "baseline_mse_px2": 0.5422709777116976,
+          "skill_vs_train_mean": -0.458133902247011
+        },
+        "point_x1": {
+          "mse_px2": 1.5135148367551094,
+          "baseline_mse_px2": 1.1744767534170768,
+          "skill_vs_train_mean": -0.2886715998010345
+        },
+        "point_x2": {
+          "mse_px2": 0.2444389811147713,
+          "baseline_mse_px2": 0.5237315608927572,
+          "skill_vs_train_mean": 0.5332742966681279
+        }
+      },
+      "state_P1_capture": {
+        "common_all_y": {
+          "mse_px2": 22.897929233304534,
+          "baseline_mse_px2": 2.1110258933502584,
+          "skill_vs_train_mean": -9.846825377856861
+        },
+        "pair_common_held0": {
+          "mse_px2": 26.993741729405883,
+          "baseline_mse_px2": 2.5886651320998983,
+          "skill_vs_train_mean": -9.427668451465115
+        },
+        "pair_common_held1": {
+          "mse_px2": 15.491805895322194,
+          "baseline_mse_px2": 1.5169673156879047,
+          "skill_vs_train_mean": -9.212353117375551
+        },
+        "pair_common_held2": {
+          "mse_px2": 27.51286898961859,
+          "baseline_mse_px2": 2.4364013671955758,
+          "skill_vs_train_mean": -10.29242060034112
+        },
+        "diff_y01": {
+          "mse_px2": 7.3403125253583354,
+          "baseline_mse_px2": 1.3090791089735376,
+          "skill_vs_train_mean": -4.60723372257766
+        },
+        "diff_y02": {
+          "mse_px2": 1.2626173312456057,
+          "baseline_mse_px2": 0.3158156845320765,
+          "skill_vs_train_mean": -2.9979563811605607
+        },
+        "diff_y12": {
+          "mse_px2": 7.052617116554756,
+          "baseline_mse_px2": 0.882578825685624,
+          "skill_vs_train_mean": -6.99092037028646
+        },
+        "point_y0": {
+          "mse_px2": 16.39851134054476,
+          "baseline_mse_px2": 1.5502825427385798,
+          "skill_vs_train_mean": -9.57775656273387
+        },
+        "point_y1": {
+          "mse_px2": 42.29738290136971,
+          "baseline_mse_px2": 3.9770597461393398,
+          "skill_vs_train_mean": -9.635340075649893
+        },
+        "point_y2": {
+          "mse_px2": 15.216409115721083,
+          "baseline_mse_px2": 1.6415599309032678,
+          "skill_vs_train_mean": -8.269481320336723
+        },
+        "point_x0": {
+          "mse_px2": 1.5587278868894752,
+          "baseline_mse_px2": 0.5422709777116976,
+          "skill_vs_train_mean": -1.8744446060290256
+        },
+        "point_x1": {
+          "mse_px2": 2.3153985324978854,
+          "baseline_mse_px2": 1.1744767534170768,
+          "skill_vs_train_mean": -0.9714298522821829
+        },
+        "point_x2": {
+          "mse_px2": 0.8003506147734496,
+          "baseline_mse_px2": 0.5237315608927572,
+          "skill_vs_train_mean": -0.5281695328980467
+        }
+      }
+    },
+    "horizontal_gaze": {
+      "state": {
+        "common_all_y": {
+          "mse_px2": 2.6350486356786798,
+          "baseline_mse_px2": 2.047047194573487,
+          "skill_vs_train_mean": -0.2872437150760003
+        },
+        "pair_common_held0": {
+          "mse_px2": 4.616851655149239,
+          "baseline_mse_px2": 2.483381857146123,
+          "skill_vs_train_mean": -0.859098568294639
+        },
+        "pair_common_held1": {
+          "mse_px2": 1.4584305910750384,
+          "baseline_mse_px2": 1.4864110839359237,
+          "skill_vs_train_mean": 0.01882419551581571
+        },
+        "pair_common_held2": {
+          "mse_px2": 3.6609532387591344,
+          "baseline_mse_px2": 2.422346217011791,
+          "skill_vs_train_mean": -0.5113253477346813
+        },
+        "diff_y01": {
+          "mse_px2": 12.79024793440189,
+          "baseline_mse_px2": 1.622234091260258,
+          "skill_vs_train_mean": -6.884341725592504
+        },
+        "diff_y02": {
+          "mse_px2": 0.7013941936449163,
+          "baseline_mse_px2": 0.3526399747317691,
+          "skill_vs_train_mean": -0.9889809548064492
+        },
+        "diff_y12": {
+          "mse_px2": 8.481432807321752,
+          "baseline_mse_px2": 1.0370968264885008,
+          "skill_vs_train_mean": -7.178052994375635
+        },
+        "point_y0": {
+          "mse_px2": 1.755084504866192,
+          "baseline_mse_px2": 1.6598197536774737,
+          "skill_vs_train_mean": -0.05739463636196107
+        },
+        "point_y1": {
+          "mse_px2": 11.961945939853042,
+          "baseline_mse_px2": 3.99598972597624,
+          "skill_vs_train_mean": -1.9934876614155157
+        },
+        "point_y2": {
+          "mse_px2": 1.5124737741063456,
+          "baseline_mse_px2": 1.4893224015602586,
+          "skill_vs_train_mean": -0.015544903186732961
+        },
+        "point_x0": {
+          "mse_px2": 3.021478503709369,
+          "baseline_mse_px2": 0.5928397607471526,
+          "skill_vs_train_mean": -4.096619194200835
+        },
+        "point_x1": {
+          "mse_px2": 5.922748590804346,
+          "baseline_mse_px2": 1.2470634292971574,
+          "skill_vs_train_mean": -3.749356329166349
+        },
+        "point_x2": {
+          "mse_px2": 6.23940163266292,
+          "baseline_mse_px2": 0.7197688604467494,
+          "skill_vs_train_mean": -7.66861846286351
+        }
+      },
+      "state_P1": {
+        "common_all_y": {
+          "mse_px2": 11.79072147220876,
+          "baseline_mse_px2": 2.047047194573487,
+          "skill_vs_train_mean": -4.759867922666736
+        },
+        "pair_common_held0": {
+          "mse_px2": 15.916098355848542,
+          "baseline_mse_px2": 2.483381857146123,
+          "skill_vs_train_mean": -5.409041891825351
+        },
+        "pair_common_held1": {
+          "mse_px2": 6.610002258832142,
+          "baseline_mse_px2": 1.4864110839359237,
+          "skill_vs_train_mean": -3.446954365631659
+        },
+        "pair_common_held2": {
+          "mse_px2": 14.209414452678912,
+          "baseline_mse_px2": 2.422346217011791,
+          "skill_vs_train_mean": -4.865971739666373
+        },
+        "diff_y01": {
+          "mse_px2": 9.470012098827024,
+          "baseline_mse_px2": 1.622234091260258,
+          "skill_vs_train_mean": -4.837635979817251
+        },
+        "diff_y02": {
+          "mse_px2": 0.48976567348958966,
+          "baseline_mse_px2": 0.3526399747317691,
+          "skill_vs_train_mean": -0.3888546636328549
+        },
+        "diff_y12": {
+          "mse_px2": 6.400430036481937,
+          "baseline_mse_px2": 1.0370968264885008,
+          "skill_vs_train_mean": -5.1714874378249815
+        },
+        "point_y0": {
+          "mse_px2": 5.793155289621108,
+          "baseline_mse_px2": 1.6598197536774737,
+          "skill_vs_train_mean": -2.490231560858264
+        },
+        "point_y1": {
+          "mse_px2": 27.360679665150037,
+          "baseline_mse_px2": 3.99598972597624,
+          "skill_vs_train_mean": -5.847034537473864
+        },
+        "point_y2": {
+          "mse_px2": 7.6717320647879115,
+          "baseline_mse_px2": 1.4893224015602586,
+          "skill_vs_train_mean": -4.151156026895705
+        },
+        "point_x0": {
+          "mse_px2": 0.8963910826390805,
+          "baseline_mse_px2": 0.5928397607471526,
+          "skill_vs_train_mean": -0.5120292901902597
+        },
+        "point_x1": {
+          "mse_px2": 3.5038629420116174,
+          "baseline_mse_px2": 1.2470634292971574,
+          "skill_vs_train_mean": -1.8096910387199694
+        },
+        "point_x2": {
+          "mse_px2": 0.5647041781739675,
+          "baseline_mse_px2": 0.7197688604467494,
+          "skill_vs_train_mean": 0.21543677532331096
+        }
+      },
+      "state_P1_gaze": {
+        "common_all_y": {
+          "mse_px2": 15.528722554936603,
+          "baseline_mse_px2": 2.047047194573487,
+          "skill_vs_train_mean": -6.585913307764305
+        },
+        "pair_common_held0": {
+          "mse_px2": 20.48452261816412,
+          "baseline_mse_px2": 2.483381857146123,
+          "skill_vs_train_mean": -7.248639877600107
+        },
+        "pair_common_held1": {
+          "mse_px2": 8.776730343128142,
+          "baseline_mse_px2": 1.4864110839359237,
+          "skill_vs_train_mean": -4.904645382411915
+        },
+        "pair_common_held2": {
+          "mse_px2": 18.99131404127812,
+          "baseline_mse_px2": 2.422346217011791,
+          "skill_vs_train_mean": -6.840049414862681
+        },
+        "diff_y01": {
+          "mse_px2": 11.160000418033476,
+          "baseline_mse_px2": 1.622234091260258,
+          "skill_vs_train_mean": -5.879401979133391
+        },
+        "diff_y02": {
+          "mse_px2": 0.3764809951390631,
+          "baseline_mse_px2": 0.3526399747317691,
+          "skill_vs_train_mean": -0.06760725418446478
+        },
+        "diff_y12": {
+          "mse_px2": 8.460310639951842,
+          "baseline_mse_px2": 1.0370968264885008,
+          "skill_vs_train_mean": -7.1576863643460875
+        },
+        "point_y0": {
+          "mse_px2": 8.052564459547115,
+          "baseline_mse_px2": 1.6598197536774737,
+          "skill_vs_train_mean": -3.8514692283339587
+        },
+        "point_y1": {
+          "mse_px2": 35.510063832025416,
+          "baseline_mse_px2": 3.99598972597624,
+          "skill_vs_train_mean": -7.886425208050337
+        },
+        "point_y2": {
+          "mse_px2": 9.689136724278569,
+          "baseline_mse_px2": 1.4893224015602586,
+          "skill_vs_train_mean": -5.505734899393134
+        },
+        "point_x0": {
+          "mse_px2": 1.2443185354503092,
+          "baseline_mse_px2": 0.5928397607471526,
+          "skill_vs_train_mean": -1.0989120801919587
+        },
+        "point_x1": {
+          "mse_px2": 3.4710519835672478,
+          "baseline_mse_px2": 1.2470634292971574,
+          "skill_vs_train_mean": -1.7833804616686786
+        },
+        "point_x2": {
+          "mse_px2": 0.6483605634550321,
+          "baseline_mse_px2": 0.7197688604467494,
+          "skill_vs_train_mean": 0.09921003938319206
+        }
+      },
+      "state_P1_capture": {
+        "common_all_y": {
+          "mse_px2": 2.9867815385067265,
+          "baseline_mse_px2": 2.047047194573487,
+          "skill_vs_train_mean": -0.4590682356637301
+        },
+        "pair_common_held0": {
+          "mse_px2": 3.5513015756674937,
+          "baseline_mse_px2": 2.483381857146123,
+          "skill_vs_train_mean": -0.4300263833563691
+        },
+        "pair_common_held1": {
+          "mse_px2": 1.626932395715841,
+          "baseline_mse_px2": 1.4864110839359237,
+          "skill_vs_train_mean": -0.0945373142723247
+        },
+        "pair_common_held2": {
+          "mse_px2": 4.394624511288896,
+          "baseline_mse_px2": 2.422346217011791,
+          "skill_vs_train_mean": -0.8142016531023009
+        },
+        "diff_y01": {
+          "mse_px2": 2.8238559672885217,
+          "baseline_mse_px2": 1.622234091260258,
+          "skill_vs_train_mean": -0.7407203944868184
+        },
+        "diff_y02": {
+          "mse_px2": 0.4488306487315917,
+          "baseline_mse_px2": 0.3526399747317691,
+          "skill_vs_train_mean": -0.27277302884617294
+        },
+        "diff_y12": {
+          "mse_px2": 4.077479789805078,
+          "baseline_mse_px2": 1.0370968264885008,
+          "skill_vs_train_mean": -2.9316288370209262
+        },
+        "point_y0": {
+          "mse_px2": 2.269057037890941,
+          "baseline_mse_px2": 1.6598197536774737,
+          "skill_vs_train_mean": -0.36705026727369017
+        },
+        "point_y1": {
+          "mse_px2": 7.932119968330843,
+          "baseline_mse_px2": 3.99598972597624,
+          "skill_vs_train_mean": -0.9850201107293857
+        },
+        "point_y2": {
+          "mse_px2": 1.209223077906518,
+          "baseline_mse_px2": 1.4893224015602586,
+          "skill_vs_train_mean": 0.18807165148412475
+        },
+        "point_x0": {
+          "mse_px2": 0.603374082810395,
+          "baseline_mse_px2": 0.5928397607471526,
+          "skill_vs_train_mean": -0.017769256991073012
+        },
+        "point_x1": {
+          "mse_px2": 1.2644327201878383,
+          "baseline_mse_px2": 1.2470634292971574,
+          "skill_vs_train_mean": -0.013928153518598663
+        },
+        "point_x2": {
+          "mse_px2": 0.6644907212102448,
+          "baseline_mse_px2": 0.7197688604467494,
+          "skill_vs_train_mean": 0.07679984822098906
+        }
+      }
+    }
+  },
+  "capture_summary": {
+    "capture_1_detections.pkl": {
+      "count": 192,
+      "common_y_raw": {
+        "n": 192,
+        "mean": 0.03726906308130725,
+        "median": 0.13731267868818628,
+        "rms": 1.0824205646560805,
+        "p90": 1.153030889025822,
+        "p95": 1.6247889767370298
+      },
+      "common_y_after_state_P1": {
+        "n": 192,
+        "mean": 0.03925233865371373,
+        "median": 0.025116154031586665,
+        "rms": 1.100030076745449,
+        "p90": 1.2200918479284042,
+        "p95": 1.6603679754534697
+      },
+      "per_point_y_mean": [
+        0.07066102543747883,
+        0.10044265386598895,
+        -0.05929649005954577
+      ]
+    },
+    "capture_2_detections.pkl": {
+      "count": 171,
+      "common_y_raw": {
+        "n": 171,
+        "mean": -0.6613696395617353,
+        "median": -0.8876397279358349,
+        "rms": 1.4096071358212905,
+        "p90": 0.884900625714154,
+        "p95": 1.5366429588182182
+      },
+      "common_y_after_state_P1": {
+        "n": 171,
+        "mean": -0.5917054276248843,
+        "median": -0.6339696522957257,
+        "rms": 1.3665624663355433,
+        "p90": 0.9240267331313109,
+        "p95": 1.411703582528084
+      },
+      "per_point_y_mean": [
+        -0.4575750867386788,
+        -0.7827907593710148,
+        -0.7437430725755135
+      ]
+    },
+    "capture_3_detections.pkl": {
+      "count": 147,
+      "common_y_raw": {
+        "n": 147,
+        "mean": 0.4426529584518423,
+        "median": 0.43042319452637373,
+        "rms": 1.1791810539859653,
+        "p90": 1.90916521141871,
+        "p95": 2.2940376096890627
+      },
+      "common_y_after_state_P1": {
+        "n": 147,
+        "mean": 0.5213612586567796,
+        "median": 0.526896888903049,
+        "rms": 1.2298609485821272,
+        "p90": 1.993689514225232,
+        "p95": 2.362059386583089
+      },
+      "per_point_y_mean": [
+        0.22839839098648082,
+        0.4978850359144321,
+        0.6016754484546144
+      ]
+    },
+    "capture_4_detections.pkl": {
+      "count": 183,
+      "common_y_raw": {
+        "n": 183,
+        "mean": 0.13766737331064022,
+        "median": 0.053323805802113204,
+        "rms": 1.805829604900249,
+        "p90": 2.5351478057805137,
+        "p95": 2.6217253781207206
+      },
+      "common_y_after_state_P1": {
+        "n": 183,
+        "mean": 0.0929239020747626,
+        "median": 0.09085054193238334,
+        "rms": 1.6829335050997736,
+        "p90": 2.093501578652154,
+        "p95": 2.2159683795039338
+      },
+      "per_point_y_mean": [
+        0.007316206971022351,
+        0.2105306804069251,
+        0.19515523255397302
+      ]
+    }
+  },
+  "scope": "training-only residual diagnosis of frozen jointly fitted response/states; blocked regression is not nested calibration validation",
+  "caveats": "capture and accommodation demand are confounded; capture regressors diagnostic only, never free held-capture correction",
+  "tau_selection": "none; predictable context/capture bias and unpredictable shared variation require separate evidence"
+}

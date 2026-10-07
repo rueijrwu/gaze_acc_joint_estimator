@@ -1,0 +1,28 @@
+{
+  "schema": "latest_results_followup_execution_v1",
+  "started_utc": "2026-10-07T15:17:43.025803+00:00",
+  "finished_utc": "2026-10-07T15:17:46.802002+00:00",
+  "elapsed_seconds": 3.776199036001344,
+  "command": "python -c multiprocessing.set_start_method(\\\"fork\\\"); import full_position.latest_audit.run; run(root=., output=experiments/full_position/latest_results_followup_v1, workers=12)",
+  "runner": "full_position.latest_audit.run",
+  "workers": 12,
+  "multiprocessing_start_method": "fork (explicitly set before importing runner)",
+  "thread_limits": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "python": "3.14.5 (main, May 11 2026, 00:00:00) [GCC 16.1.1 20260501 (Red Hat 16.1.1-1)]",
+  "platform": "Linux-7.2.7-200.fc44.x86_64-x86_64-with-glibc2.43",
+  "success_log": "run.log",
+  "initial_failed_attempt_log": "run_forkserver_failure.log",
+  "test_record": "tests.txt",
+  "completion": {
+    "complete": true,
+    "seconds": 3.776199036001344,
+    "source_files_unchanged": 2689,
+    "direct_comparison_cells": 4,
+    "training_diagnosis_tasks": 18,
+    "workers": 12
+  }
+}\n
