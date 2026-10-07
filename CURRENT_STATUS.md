@@ -8,7 +8,63 @@ its nominal-anchor consistency is a secondary calibration diagnostic and cannot
 rank it on the primary cross-check task. None of these geometric results
 establishes physiological accuracy.
 
-## Phase 8.3 audit follow-up (latest)
+## Latest-results audit implementation (latest)
+
+The [latest-results audit](LATEST_RESULTS_AUDIT.md) is implemented in
+[the follow-up study](experiments/full_position/latest_results_followup_v1/RESULTS.md).
+Selection now requires an immutable, independently declared frame schedule with
+three held-point slots per frame. Missing rows or slots cannot shrink coverage
+denominators. Shared complete-frame comparisons preserve the expected exposure
+roster and enforce predeclared overall and per-exposure shared-coverage guards;
+an exposure lost from the intersection prevents promotion. Inner partitions can
+explicitly hold out whole captures or horizontal-gaze conditions across captures.
+The nested coordinator requires a separate schedule callback and still returns
+no promotion decision when external guards have not been declared.
+
+Direct differential-y versus xy comparisons use exact shared point and frame
+memberships, with joint interior, empirical-state and P1-support cohorts kept
+separate. On all 143 common complete baseline27 frames per family,
+differential-y minus xy has equal-exposure changes in E²/Gθ²/GA² of
+**−0.641/+0.0649/+0.0403** for gaze and
+**−3.258/−0.0013/−0.0109** for capture, in px²/deg²/D².
+The gaze prediction gain therefore retains a state-agreement tradeoff. On
+jointly interior frames, ΔE² remains negative: **−0.845** for gaze and
+**−2.878** for capture. Candidate-specific supported cohorts cannot establish
+superiority. Baseline27 differential-y remains a development challenger;
+baseline27 xy remains the reference.
+
+Training-only residual diagnosis uses saved training states, measured P1,
+nominal gaze and capture structure, with fixed-ridge regressions and separate
+fixation/capture/horizontal-gaze blocked predictions. For baseline27, the
+state-plus-P1 common-y predictor has mean blocked skill versus the training-mean
+baseline of **−1.962/−3.500/−7.761**, respectively, across the nine correlated
+outer training sets. Capture 2/3 common-y means remain approximately
+**−0.664/+0.398 px** after conditioning on state and P1. Capture and demand are
+confounded; these results justify neither a free held-capture correction nor
+added response capacity. These blocked regression checks are diagnostic:
+the frozen response calibration already used their groups, so they are not a
+fresh nested calibration validation.
+
+Retained-pair common y includes a state-dependent deformation term and is not
+pure translation. An additional nine-fold exploratory baseline27 xy trial uses
+`Rτ = R0 + (τ_px/ell)² aaᵀ`, with each τ fixed from the equal-training-fixation
+RMS of three-point common-y residuals before evaluation. This single rule is a
+robust-weighting proxy containing bias and variation, not an independently
+validated noise variance. There is no outer-score tuning or promotion. The
+zero-τ reference is exact; profiling an unrestricted shared-y offset gives the
+x-plus-differential-y retained objective.
+
+The primary paired reporting and 18 training-diagnosis tasks finished in
+**3.78 seconds with 12 CPU workers and BLAS/OMP=1**. Independent reconstruction
+checked 2,689 historical source hashes, 35 implementation/design snapshots,
+all 20 paired cohort memberships, 12,110 training component rows and 2,808
+blocked regression target metrics. Historical files, model coefficients,
+detectors and captures 5/6 remain unchanged. Full nested recalibration and
+untouched transfer remain future work: predeclare physical-state, axis, tail,
+coverage, support and bound guards, grouping and uncertainty policy, then freeze
+a denser population before running that study.
+
+## Phase 8.3 audit follow-up
 
 [Results](experiments/full_position/phase83_audit_followup_v1/RESULTS.md) implement
 the [Phase 8.3 audit](PHASE_8_3_AUDIT.md). The common scorecard now reports
@@ -515,8 +571,9 @@ acceleration preference; no GPU calibration or inverse policy was introduced.
 
 ## Next work, in order
 
-1. **Training residual diagnosis:** inspect the richer response's remaining
-   signed-gaze/capture/axis errors before another calibration experiment.
+1. **Predeclare nested selection:** fix the capture or horizontal-gaze transfer
+   question, complete frame schedule, shared-coverage guards and physical-state,
+   axis, tail, support and bound limits before fresh calibration comparisons.
 2. **Selective curvature test (audit P3, conditional):** the tested
    `fit(..., curvature_strength=...)` option shrinks only the ten added
    conditional37 t²/t²L coefficients toward zero while jointly fitting shared
@@ -534,6 +591,11 @@ independent physiological accuracy. No new model has replaced the baseline.
 
 ## Where to resume
 
+- [Latest-results audit follow-up](experiments/full_position/latest_results_followup_v1/RESULTS.md),
+  [independent verification](experiments/full_position/latest_results_followup_v1/verification.json),
+  [paired comparisons](experiments/full_position/latest_results_followup_v1/direct_comparison.json),
+  [training diagnostics](experiments/full_position/latest_results_followup_v1/training_diagnosis.json),
+  and [single shared-y covariance trial](experiments/full_position/latest_results_followup_v1/covariance_trial/summary.json).
 - [Phase 8.3 results](experiments/full_position/phase83_retained_channels_v1/RESULTS.md),
   [verification](experiments/full_position/phase83_retained_channels_v1/verification.json),
   and [plot](experiments/full_position/phase83_retained_channels_v1/phase83_metrics.png).

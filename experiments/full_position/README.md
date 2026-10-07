@@ -1,8 +1,11 @@
 # Full-position experiment index
 
-The latest audit follow-up is in
-[phase83_audit_followup_v1/RESULTS.md](phase83_audit_followup_v1/RESULTS.md), with
-support-enriched cross-check scorecards and frozen common/differential-y tests.
+The latest saved-response follow-up and exploratory shared-y covariance trial
+are recorded in [latest_results_followup_v1/verification.json](latest_results_followup_v1/verification.json)
+and [covariance_trial/summary.json](latest_results_followup_v1/covariance_trial/summary.json).
+The covariance trial uses one equal-fixation training residual scale per fold;
+it is a training misfit proxy, not validated noise variance, and makes no
+promotion decision.
 The original saved-model cross-check is in
 [crosscheck_v1/RESULTS.md](crosscheck_v1/RESULTS.md). Its source is the frozen
 polished evaluation in [audit_polished_v1/RESULTS.md](audit_polished_v1/RESULTS.md).
@@ -22,6 +25,7 @@ modified.
 | `axis_anchor_sensitivity_v1/` | Separate gaze/accommodation anchor strengthening, 36 accepted fits |
 | `phase83_retained_channels_v1/` | Frozen baseline27/strong-anchor37 retained-x versus xy comparison; original eight-frame population and branch archives |
 | `phase83_audit_followup_v1/` | Shared scorecard/support backfill, 54 common/differential-y tasks, exact xy equivalence control, signed residual and support cohorts, supplemental x profiles, scripts and verification; no model promotion |
+| `latest_results_followup_v1/` | Direct paired frozen-response follow-up, training-only residual diagnosis, and a single training-scaled shared-y covariance trial across nine grouped folds; exploratory, no promotion decision |
 | `prior_reference_v2/` | Full-development, 24 original rows per fixation, prior 0.001; converged models |
 | `zero_prior_v2/` | Matched development sampling without a coefficient prior; all fits reached their evaluation budgets and remain failed checkpoints |
 | `gpu_check27/` | Optional CuPy solver versus scalar reference, 32 real-data full/subset checks; agreement on these cases |
