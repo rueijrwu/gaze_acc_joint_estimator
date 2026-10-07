@@ -1,167 +1,106 @@
-# Full-calibration accommodation-law comparison — execution and verification plan
+# Full calibration: compare accommodation models with the same fitting algorithm
 
-**Status:** PROPOSED execution plan for the already committed `full_position/accommodation_full.py`; **no real-data full-calibration results are claimed here**.  
-**Repository/branch:** `rueijrwu/gaze_acc_joint_estimator` / `exp5_full`  
-**Companion:** [full-calibration runner](full_position/accommodation_full.py), [accommodation-response theory](ACCOMMODATION_RESPONSE_THEORY.md), [original law-comparison plan](ACCOMMODATION_RESPONSE_PLAN.md).  
-**Scope:** fit all reviewed calibration conditions together; compare log and fixed shifted powers by **same-frame three-pair cross-agreement**, not transfer to unseen conditions.
+**Runner:** [full_position/accommodation_full.py](full_position/accommodation_full.py)  
+**Branch:** `exp5_full`  
+**Revision:** 2026-10-07, following the user's clarification.  
+**Execution status:** this plan describes the full-calibration comparison; editing the runner is not evidence that the real-data fits have run.
 
-## 1. Scientific objective and distinctions
+## 1. Required experiment
 
-The main task is **one complete joint calibration per accommodation law**, using all 20 reviewed fixation conditions from captures 1–4. Do not hold out a gaze condition, fixation, or capture to construct the calibration. There are four laws, **four global fits total**, not the historical nine-fold × four-law screen.
+**Keep the existing algorithm. Change the accommodation response model. Run a fresh full calibration for every model. Compare the resulting calibrations using cross-agreement.**
 
-For each law `lambda`, calibrate 27 global response coefficients `beta_lambda` and a separate latent state `x_i=(theta_x_i,A_i)` for every valid frame. Every frame contributes all three corresponding P4 x/y measurements, conditional on all three measured P1 points. Different frames within a fixation are allowed to have different gaze and accommodation. Nominal target and demand are **soft fixation-mean anchors**, not instantaneous ground truth.
+Reuse `accommodation_study._fit_task`, which constructs the requested `PowerResponseModel` and calls the existing `calibrate.fit`. Reuse its existing same-frame P4 cross-check, numerical certification, covariance handling and scorecards. Do not write another optimizer, change its objective, or replace this task with new numerical-method development.
 
-After fitting a law, freeze its coefficients. Within each calibration frame, perform three **temporary, per-frame P4 exclusions**: estimate the state from all P1 points plus the other two P4 points, then predict both coordinates of the excluded P4. This is an **internal agreement** check using already calibrated conditions, not independent validation. No coefficient refit occurs during these checks.
+**Reusing the algorithm does not mean reusing a previously fitted model.** All 27 coefficients and all framewise gaze/accommodation states must be re-estimated separately for each response law on the complete calibration data. Do not copy coefficients from the old log fit, reinterpret coefficients under a different exponent, freeze old latent trajectories, or merely apply historical fold models to more frames.
 
-The principal evidence is whether one shared state explains three simultaneous P1/P4 pair responses. Keep distinct:
-- **Full-model fit residual:** prediction minus measured P4 using all three P4 in the fitted frame.
-- **Within-frame cross-prediction error:** prediction of one temporarily omitted P4 with coefficients frozen.
-- **Subset-state disagreement:** differences among the three state estimates of that same frame.
-- **Temporal variation:** actual or estimated gaze/accommodation changes across frames during fixation. This is not automatically error.
-- **Nominal-label discrepancy:** descriptive difference to stimulus labels, not measured physiological accuracy.
+The requested experiment has four fresh candidate calibrations, not 36 grouped fits:
 
-No absolute RMS accuracy ceiling, nominal-target error cutoff, or fixation-flatness criterion is used to accept or rank laws. **Hard gates concern data integrity, numerical certification, and honest accounting**, not physical accuracy.
-
-## 2. Locked four-model comparison
-
-Use the current `PowerResponseModel` names and registry exactly:
-
-| Candidate | lambda | phi_lambda(A) |
+| Candidate | Fixed exponent | Accommodation basis, with a = A / (1 D) |
 |---|---:|---|
-| `ar27_log` | 0 | `log(1 + A)` |
-| `ar27_sqrt` | 0.5 | `2*(sqrt(1+A)-1)` |
-| `ar27_linear` | 1 | `A` |
-| `ar27_quadratic` | 2 | `A + A*A/2` |
+| `ar27_log` | 0 | `log(1+a)` |
+| `ar27_sqrt` | 0.5 | `2*(sqrt(1+a)-1)` |
+| `ar27_linear` | 1 | `a` |
+| `ar27_quadratic` | 2 | `a+a*a/2` |
 
-`A` is in diopters, with the dimensionless 1-D scale from the accompanying theory. All four models use `t=theta_x/10`, the same conditional27 geometry, 27 coefficients, 2 free states/frame, and image channels x/y. `Dx` retains its separate linear-`A` term. Do not change P1 correspondence, P1 centroid, `sqrt(P1 triangle area)` normalizer, coefficient prior policy, detector, or measurement mask in this study.
+The last three are the existing shifted-power alternatives, not newly fitted per-point exponents. Each candidate has 27 global coefficients and two unknown states per valid frame. The direct linear-accommodation term in `Dx` remains unchanged. See [the response theory](ACCOMMODATION_RESPONSE_THEORY.md) for the basis definitions.
 
-Calibration settings: same training-only log27 pilot and reference covariance across all four candidates; coefficient prior strength 0.001 (column-normalized); soft fixation-mean scales 0.10 degrees and 0.25 D; temporal strength 0; computational bounds theta in [-20,20] degrees and A in [0,6] D. These are **experimental conventions and numerical bounds**, not physiological tolerances. Use the same starts, convergence certification, and multistart subset inverse policy for all laws.
+## 2. Data and controls held identical
 
-Nominal horizontal gaze targets are [-10,-5,0,5,10] degrees within each capture. The calibration protocol's vertical target is nominally zero; pixel y remains a valid image measurement and **there is no vertical-gaze state**.
+Use all 20 reviewed fixation conditions from captures 1-4 together: horizontal targets -10, -5, 0, 5 and 10 degrees in every capture. No capture, fixation or gaze condition is excluded from calibration. The nominal vertical target is zero; image-y measurements remain intact and no vertical-gaze state is added.
 
-## 3. Stage FC0 — Audit and harden the committed runner before any costly run
+`training_data(..., count=0)` uses all valid frames in the existing central-80% reviewed windows. Retain the existing window/validity policy: "full" means every eligible row in those declared windows, not a return to the prior 48-row-per-fixation screen. The agreement schedule includes original rows before validity filtering, preserving invalid and unavailable outcomes.
 
-Start by fetching the current branch head, re-reading `full_position/accommodation_full.py` and imported `accommodation_study._fit_task`, and recording actual source/data hashes. Treat the runner as an initial implementation, **not as previously verified full-scale execution**.
+Keep unchanged across candidates:
 
-Required checks and likely integration issues:
+- All three P1 references and all three P4 x/y measurements in calibration, their correspondence, and the square-root P1 triangle-area normalization.
+- The existing joint optimizer, two nominal/perturbed starts, numerical certification and continuation policy, seed, and iteration budget.
+- Soft fixation-mean anchor scales 0.10 degree / 0.25 D, column-normalized prior strength 0.001, zero temporal penalty, and numerical bounds [-20,20] degrees / [0,6] D.
+- One fresh log27 weighting pilot, reference state and coordinate/residual covariance constructed from the complete calibration population and shared by all four laws.
 
-1. **All-condition/all-row semantics:** verify `training_data(..., count=0)` actually uses all baseline-valid frames within the reviewed central-80% intervals. Verify `schedule(..., agreement_per_fixation=0)` produces every original central-80% row, including invalid rows as explicit unscored identities; `fixed_sample(rows,0)` is intended to return all rows. Preserve counts per capture/fixation. “Full calibration” means all valid frames in these declared windows; the excluded edge 20% is a pre-existing window policy, not an outcome-driven holdout.
-2. **No inadvertent data leakage:** the full fit consumes all three P4 observations and may use all calibration conditions, by design. During each temporary P4 holdout, the withheld point must not enter the inverse, starts, covariance marginal, branch selection or reconstruction except the final scorer; global coefficients have already seen the point, so do not call this independent prediction.
-3. **Shared reference/noise:** `pilot_fit`, `noise_blocks` and `reference_covariance` must be computed once and reused identically for all laws; verify frozen pilot, reference state, coordinate covariance and actual frame covariance.
-4. **Runner/module contract:** `_fit_task` was originally written for grouped development screens. Confirm it accepts `full_calibration`, a full set of training-group IDs, all rows, and the policy metadata. Check any assumptions that evaluation IDs are disjoint from training IDs; the deliberate overlap here must be clearly recorded as **internal agreement**, never presented as a sealed evaluation.
-5. **Exact candidate registry:** `tuple(CANDIDATES) == NAMES` is order-sensitive. Assert both the exact IDs/exponents and a stable declared order; do not silently map wrong coefficients to exponent labels.
-6. **Memory/runtime risk:** the profile solver works with a latent state for *each* valid frame. Previous 48-row/fixation fits do not establish memory or runtime feasibility for many thousands of frames. Before production, measure number of states, weighted-design workspace, Jacobian-vector products, QR workspace, pilot construction and actual peak resident memory. Four simultaneous full fits can multiply memory pressure; serial or reduced concurrency is acceptable.
-7. **Source integrity and outputs:** the current runner writes a new output directory and later checks historical hashes. Confirm any output/scratch paths are excluded from source-hash scans; compare exact source commit and live working-source hashes. On interrupted runs preserve failed checkpoints and do not claim completion.
-8. **Rerun/recovery:** assess whether `_fit_task` can be safely restarted without overwriting partial `dest` directories. The committed runner creates task directories with `exist_ok=False`, so a failed run is **not automatically resumable**; document a safe new-run / explicit verified-resume procedure before launch.
+The weighting pilot is not the fitted log candidate. Even `ar27_log` must receive its own fresh full joint fit. Candidate-specific coefficient initializers and column scales are recomputed by the existing algorithm for that law's basis; equal numerical prior strength is not a guarantee of identical function-space regularization.
 
-**FC0 exit:** code contracts, memory feasibility, run provenance and failure/restart policy checked. Fix genuine script defects in a separate clearly described implementation commit if necessary. Preserve original research data and previously saved results.
+Each frame retains its own state `(theta_x_i, A_i)`. Gaze and accommodation may vary during fixation. Nominal demand/target labels are finite mean-anchor penalties, not instantaneous truth, allowed-motion limits, or required RMS values. Do not flatten trajectories or strengthen anchors simply to reduce nominal-target RMS.
 
-## 4. Stage FC1 — Tests and bounded rehearsal
+## 3. Execution with the existing implementation
 
-### Unit/synthetic requirements
-- For lambda=0, identical coefficients, states and P1 context reproduce existing conditional27 values, Jacobians and Hessians.
-- Four-law basis/derivative/Hessian finite-difference tests, including A=0 and A=6.
-- All framewise states remain free; zero-mean within-fixation state motion changes optical residuals but not the mean-anchor term.
-- Exact three-pair mapping, normalization and withheld-point noninterference on every P4 point and x/y coordinate.
-- All scheduled frame IDs and exactly three slot IDs per frame; no missing/duplicate outcomes disappear from the denominator.
-- Equal-exposure aggregation and paired differences reconstruct saved point/frame residuals; absent exposures are explicitly marked inconclusive rather than averaging over survivors.
-- Candidate log-vs-log paired difference is identically zero on the same masks (numerical rounding aside).
-- All four laws use identical pilot/covariance policies and solver thresholds; rank/ambiguity/bounds remain visible.
-- Nominal-label RMS and temporal spread cannot trigger hard failure or select a law.
+1. Read the current branch and record source/data hashes. Run the applicable existing tests plus the wrapper's population/comparison checks. These verify integration; they are not a requirement to invent a new fitting algorithm.
+2. Prepare one full-data input and one immutable agreement schedule, shared by all candidates. The configuration records all calibration and internal-agreement group IDs, `fresh_calibration_per_law=true`, and `reused_previous_fitted_models=false`.
+3. Call the unchanged `accommodation_study._fit_task` once per candidate in a new output directory. Each call constructs a fresh model and jointly refits coefficients and framewise states. The wrapper does not load any historical candidate model to initialize or replace these fits.
+4. Once a candidate fit is certified, freeze that newly fitted coefficient set for the existing three-way cross-check. Retain failed calibrations/checkpoints and all their scheduled slots; do not manufacture scores or borrow another model's fit.
+5. Generate the individual and exact-common-frame comparison tables below. No nested selector or condition-held-out study is needed for this task.
 
-### Rehearsal requirements
-Run a representative **bounded** end-to-end rehearsal of the actual full-run path (not merely syntax or `--help`) using a separately named scratch output. Choose a bounded subset of rows spread across all 20 conditions *only for the rehearsal*, with exactly the same four response laws and unchanged code path. This subset is **not** reported as full calibration. Observe peak memory, wall-clock, certified convergence, logging, and independent recomputation of a few P4 cross-checks.
+Use serial execution by default, or up to four concurrent model fits when memory permits. Reducing worker count does not change the calibration algorithm or data. Do not silently reduce calibration rows because a full fit is larger than an old fold fit. Any demonstrated runtime defect should be fixed narrowly; do not turn this plan into a solver redesign.
 
-Then check enough real full-window metadata to make an informed resource decision before full fitting. Do not extrapolate the previous 246-second 36 small-fit benchmark to a full-data run as a promise.
-
-**FC1 exit:** all numerical/contracts tests pass and a representative rehearsal completes or produces actionable failure diagnostics. Inability to run the entire data here is a blocker to claiming measured full-data results, not a reason to invent them.
-
-## 5. Stage FC2 — Four full joint calibrations
-
-Freeze the source commit and one run manifest before fitting. Use exactly the same all-condition calibration population and noise/pilot for each law. Store frame IDs, fixation IDs, source hashes, correspondence and validity reasons.
-
-For each of the four models:
-
-1. Fit all 27 shared coefficients and the two per-frame latent states, with **all three P4 coordinate pairs per valid frame**.
-2. Keep the inherited finite soft mean anchors and 0 temporal regularization. Gaze and accommodation may vary within fixation.
-3. Preserve starts, objective components, stationarity, curvature/physical correction certificates, unsuccessful checkpoints and full-frame state trajectories.
-4. Require numerical certification before labeling a fit usable. An optimizer stopping by budget is not automatically a certified calibration.
-5. Do not discard a law because of large nominal-target RMS, temporal variability, bounds count or relatively large descriptive cross-check RMS. Those are observed outcomes and must be included.
-6. If a calibration fails, preserve the failure and its entire scheduled population; do not borrow another law's coefficients/states or fill prediction scores by interpolation.
-
-Four full fits are the only main experiment tasks. If compute/time pressure is excessive, implement a documented staged all-row solver or limited-iteration checkpointing that preserves the same declared final objective; do **not** quietly revert to the old 48-row screen and call it full calibration.
-
-**FC2 exit:** four certified full calibrations or explicit individual failures with status/provenance. No law is promoted by training cost alone.
-
-## 6. Stage FC3 — Same-frame three-pair agreement
-
-For each certified frozen full-calibration model, apply the three-way point exclusion across the **same complete manifest of calibration-window frames**, including explicit unavailable/invalid slots. In every frame i, for j=1,2,3:
-
-- use all P1 as measured context;
-- use only P4 points k != j (both x/y coordinates), their exact covariance marginal and the same 49-start scalar inversion policy;
-- freeze the chosen state and branch diagnostics;
-- reconstruct the excluded P4 x/y and compare with the measured excluded point only in scoring.
-
-For all three complete subset estimates `xhat_i,-1`, `xhat_i,-2`, `xhat_i,-3`, report:
-
-`E_i^2=(||e_i1||^2+||e_i2||^2+||e_i3||^2)/3`
-
-`G_theta,i^2=((theta_i,-1-theta_i,-2)^2+(theta_i,-1-theta_i,-3)^2+(theta_i,-2-theta_i,-3)^2)/3`
-
-and the corresponding `G_A,i^2` in D squared. These compare **simultaneous estimates of the same frame**, not states from different frames.
-
-Primary reporting: equal-fixation/exposure mean of E-squared, plus RMS `sqrt(mean(E^2))` as a readable summary; separately report `G_theta`, `G_A`, signed x/y error, per-P4 error, worst-point and tail distributions. No absolute RMS value is a pass/fail threshold.
-
-Critically, the full calibration's in-sample residual and frozen-coefficient leave-one-P4 cross-reconstruction are **different metrics**, and the latter reuses observations during coefficient fitting. Report both distinctly. Neither gives independently measured gaze/accommodation accuracy.
-
-## 7. Stage FC4 — Compare laws on exact common frames
-
-Use `ar27_log` as the declared **reference**, not a presumed winner. For each alternative, compare on exact same frame identities where both have a complete triple. Keep all scheduled, input-valid, scored, interior, boundary, ambiguous and failed counts. Do not subtract separately filtered candidate RMS values.
-
-Calculate candidate-minus-log paired differences in equal-exposure E-squared, `G_theta^2`, `G_A^2`, axes and worst-point squared. A negative difference means better internal cross-prediction/agreement in the corresponding quantity, not a universal physiological success. Report `N` and exposure counts for every pair. If an exposure has no shared complete triple, mark the equal-exposure comparison incomplete; do not silently omit it or treat it as zero.
-
-Show per-capture, nominal horizontal gaze, fixation, accommodation-demand label and P4 index. Preserve dynamic time traces: compare all-three and three subset states at **the same timestamps**. Include mean-anchor deviations and temporal spread separately as descriptive context only, never as accuracy/flatness gates.
-
-If one law wins on P4 reconstruction but loses on state agreement, describe the tradeoff rather than forcing a scalar mixture of px, degrees and diopters. Do not use residual thresholds to remove difficult observations post hoc. State bounds are numerical flags and do not establish incorrect physical behavior.
-
-**Decision language:** `internal_agreement_preferred`, `tradeoff`, `inconclusive`, or `numerically_unavailable`, based on recorded paired evidence. The plan defines **no automatic deployment promotion** and no hard performance threshold. Avoid claiming that fitting and checking the same calibration population proves transfer or a physical accommodation law.
-
-## 8. Outputs and verification
-
-Use a fresh directory, e.g. `experiments/full_position/accommodation_full_v1/`, with:
-
-- `config.json`: exact version/parameters, all-condition IDs, coefficient/noise/pilot hashes and data source hashes.
-- `splits/full_calibration/`: all-row calibration inputs, full agreement schedule and immutable manifest (the directory name is legacy runner structure, not a held-out split).
-- `fits/full_calibration/<candidate>/`: accepted model or failed checkpoint, complete training states, numerical candidates/certificates, cross-check frame and holdout records, and trajectory diagnostics.
-- `summary.json` and `RESULTS.md`: cross-agreement scorecards and paired comparisons, with absent outcomes and no hard RMS gates.
-- `verification.json`: independent source hashes, model/derivative invariants, per-condition row counts, valid/invalid point accounting, 4 fit outcomes, same-frame subset noninterference and paired aggregation checks.
-- `completion.json`: completed versus certified counts and actual resource usage, without claiming physiological validation.
-
-Before publication, independently recompute several full-frame model predictions and three rotating holdouts, verify all frame/slot IDs and the 20 exposure roster, and check equal-exposure paired squared changes from saved raw records. Run full repository tests, record actual results, and verify frozen input files remain unchanged.
-
-## 9. Suggested command after FC0/FC1
-
-From a checkout whose current source matches the pinned manifest:
+From the repository root:
 
 ```bash
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
 python -m full_position.accommodation_full \
-  --output experiments/full_position/accommodation_full_v1 \
+  --output experiments/full_position/accommodation_full_v2 \
   --workers 1 \
   --agreement-per-fixation 0
 ```
 
-`--agreement-per-fixation 0` requests all calibration-window rows for internal agreement. **It does not mean no P4 points are excluded within a frame.** The runner's current `--workers` setting applies to whole candidate fits; increase concurrency only after peak-memory evidence. The output path must not exist.
+The output directory must be new. Every invocation recalibrates all four candidates; there is no saved-fit reuse mode. `--agreement-per-fixation 0` checks all original core rows. A positive value samples only the internal checks for a separately labeled diagnostic run; it never reduces the calibration population. Do not compare two candidates using different diagnostic schedules.
 
-**Do not execute a full experiment based on this plan alone if FC0 reveals a runner contract defect or memory infeasibility.** Fix the script, retest, and rerun in a new hashed output directory. The script is the implementation starting point; the plan does not claim it has already completed real full-data calibration.
+## 4. Cross-agreement metrics
 
-## 10. Scope boundaries
+After each full calibration, keep its global coefficients fixed. Within frame i, temporarily exclude P4 point j, estimate the shared state from all three P1 points and the other two P4 x/y points, then reconstruct P4 j. Repeat for j=1,2,3. Use the existing retained-only covariance, 49-start inverse and scorer. No coefficient refit or condition exclusion happens during this check.
 
-- No whole-gaze or whole-capture holdouts in this experiment.
-- No 37-coefficient model, y-only/differential-y mask, shared-y covariance trial or learned exponent in the first comparison.
-- No framewise constant fixation assumption, hard nominal RMS criterion or temporal flattening.
-- Captures 5/6 remain untouched.
-- No independent physiological accommodation accuracy or generalization claim.
-- Subsequent validation, alternative masks and capacity changes require separately declared experiments; they are not prerequisites for reporting the full-calibration internal-agreement comparison.
+For the three reconstruction errors `e_ij` and three simultaneous subset states:
 
-**Successful deliverable:** a reproducible, numerically certified all-condition comparison of log/sqrt/linear/quadratic calibrations, with full-population same-frame cross-agreement for each law and exact paired comparisons, including failures and tradeoffs.
+- `E_i^2 = (||e_i1||^2 + ||e_i2||^2 + ||e_i3||^2)/3` measures P4 cross-reconstruction disagreement.
+- `G_theta,i^2` is the average of the three squared pairwise differences between subset gaze estimates.
+- `G_A,i^2` is the analogous same-frame accommodation disagreement.
+
+Compute these per frame first, then average their squares within each fixation/exposure and equally across the 20 exposures. RMS is simply the square root used to display that disagreement. The common scorecard retains signed axes, per-point errors, tails, worst point, coverage, bounds, ambiguity and support.
+
+**There are no hard RMS accuracy thresholds, nominal-target error cutoffs, or fixation-flatness requirements.** Numerical certification, finite geometry and honest population accounting remain required. A state change between frames is not the same as disagreement among measurements of the same frame.
+
+The calibrated coefficients already used these observations. Accordingly, the metrics describe **internal calibration consistency**, not independent validation or physiological accuracy. Full-fit residuals and nominal/temporal trajectory diagnostics are secondary; they cannot replace cross-agreement when comparing the response models.
+
+## 5. Decide which response gives better agreement
+
+The script writes three complementary views:
+
+1. **Individual scorecards:** every law's coverage, E, G_theta and G_A on its available full-calibration rows. These show failures and missing measurements, not a ranking of differently filtered populations.
+2. **Each law versus freshly fitted log:** use the existing `paired_summary` on exact common point/frame identities. Store candidate-minus-log squared changes, per-exposure contributions and exact memberships. A missing shared exposure makes the primary comparative delta unavailable rather than silently dropping that exposure.
+3. **One shared cohort across all certified laws:** compare E, G_theta and G_A on exactly the same complete frames and the same expected exposures. The report orders laws by P4 cross-prediction loss and stores separate metric orderings. If the fresh log reference is uncertified, fewer than two candidates are certified, or an exposure disappears from this common cohort, report an incomplete comparison instead of a winner.
+
+Use lower E/loss as the primary optical cross-check comparison, accompanied by the two state-agreement metrics. A law with lower E but higher G has a reported tradeoff, not an automatic rejection or an unqualified overall win. Do not add quantities in pixels, degrees and diopters into an arbitrary composite score. Log is a reference, not a presumed winner.
+
+`summary.json` records `lowest_cross_prediction_model` only when that common comparison is available; it does not automatically select a deployment model. Companion flags identify increased G_theta, G_A or worst-point RMS versus log; inspect the complete axis/tail/bound/support scorecards as well. No law must improve every observation or satisfy an absolute error ceiling.
+
+Keep the initial model comparison isolated: no y-mask change, shared-y covariance adjustment, new coefficient capacity, or retuning of anchors only for a favored exponent. Those would be different experiments, not a reason to postpone this full-calibration comparison.
+
+## 6. Outputs and completion
+
+The existing worker saves fresh model artifacts or failed checkpoints, calibration candidates, full framewise training states, trajectory diagnostics, three-way holdout records, inverse candidates and per-law scorecards under `fits/full_calibration/<candidate>/`. `splits/full_calibration/` holds the common data/covariance and schedule; its name is just the inherited directory structure, not a held-out split.
+
+The wrapper saves `config.json`, `outcomes.json`, `summary.json`, `paired_memberships.jsonl.gz`, `RESULTS.md` and `completion.json`. Report four planned candidate outcomes, completed versus certified counts, actual calibration rows per condition, complete/scored versus scheduled counts, and runtime. Failed or interrupted runs are not successful experiments. Use a new directory for another run rather than overwriting old results.
+
+Verify the lambda=0 adapter against the existing log evaluator, preserve dynamic-state and excluded-point noninterference tests, and check same-population aggregation, absent exposures, exponent/artifact identity and the four fresh worker calls. Run the repository's existing numerical tests without changing their tolerances. Do not claim real-data results based only on mocked orchestration tests.
+
+**Scope precedence:** this plan replaces the previous full-calibration plan's emphasis on new staged numerical work. It also supersedes condition-held-out/nested-selection instructions in the older [accommodation-response plan](ACCOMMODATION_RESPONSE_PLAN.md) for this specific task. Those historical experiments remain unchanged. Existing algorithm modules, detectors, fitted historical models and captures 5/6 are not modified.
+
+**Deliverable:** four fresh full calibrations using the same existing algorithm, followed by cross-agreement evidence showing which accommodation model fits the shared three-pair state more consistently and where the models trade off.
