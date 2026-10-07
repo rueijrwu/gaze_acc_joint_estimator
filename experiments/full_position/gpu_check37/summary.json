@@ -1,0 +1,102 @@
+{
+  "device": 1,
+  "gpu_name": "NVIDIA RTX PRO 2000 Blackwell",
+  "cupy_version": "14.2.0",
+  "model": "experiments/full_position/grouped_v2/gaze_-10/conditional37/model.json",
+  "physical_forward_max_error": 3.3306690738754696e-16,
+  "physical_derivative_max_error": 2.7755575615628914e-17,
+  "reference_cases": 32,
+  "comparable_cases": 29,
+  "scalar_agreement": false,
+  "timings": [
+    {
+      "held_point": null,
+      "backend": "numpy",
+      "seconds": 0.8998862970001937,
+      "rows": 8,
+      "converged_starts": 144,
+      "iterations": 120
+    },
+    {
+      "held_point": null,
+      "backend": "cupy",
+      "seconds": 5.477323041999625,
+      "rows": 8,
+      "converged_starts": 123,
+      "iterations": 120
+    },
+    {
+      "held_point": null,
+      "backend": "scalar_scipy",
+      "rows": 8,
+      "seconds": 2.847383901997091
+    },
+    {
+      "held_point": 0,
+      "backend": "numpy",
+      "seconds": 0.8747426820009423,
+      "rows": 8,
+      "converged_starts": 196,
+      "iterations": 120
+    },
+    {
+      "held_point": 0,
+      "backend": "cupy",
+      "seconds": 5.442556001999037,
+      "rows": 8,
+      "converged_starts": 216,
+      "iterations": 120
+    },
+    {
+      "held_point": 0,
+      "backend": "scalar_scipy",
+      "rows": 8,
+      "seconds": 3.3174404759993195
+    },
+    {
+      "held_point": 1,
+      "backend": "numpy",
+      "seconds": 0.8756166259991005,
+      "rows": 8,
+      "converged_starts": 175,
+      "iterations": 120
+    },
+    {
+      "held_point": 1,
+      "backend": "cupy",
+      "seconds": 5.457866936998471,
+      "rows": 8,
+      "converged_starts": 170,
+      "iterations": 120
+    },
+    {
+      "held_point": 1,
+      "backend": "scalar_scipy",
+      "rows": 8,
+      "seconds": 2.626107743999455
+    },
+    {
+      "held_point": 2,
+      "backend": "numpy",
+      "seconds": 0.8803942640006426,
+      "rows": 8,
+      "converged_starts": 189,
+      "iterations": 120
+    },
+    {
+      "held_point": 2,
+      "backend": "cupy",
+      "seconds": 5.513422345000436,
+      "rows": 8,
+      "converged_starts": 180,
+      "iterations": 120
+    },
+    {
+      "held_point": 2,
+      "backend": "scalar_scipy",
+      "rows": 8,
+      "seconds": 2.654731829999946
+    }
+  ],
+  "policy": "Acceleration is optional; scalar reference retained, especially for nonagreement cases"
+}

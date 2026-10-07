@@ -4,6 +4,11 @@ This folder is a compact, standalone snapshot of the exp5 gaze/accommodation est
 
 See [HANDOFF.md](HANDOFF.md) for the current baseline, consolidated measurement theory, validation limits, and proposed full-position estimator work.
 
+The separate Python prototype in [full_position/README.md](full_position/README.md)
+implements the current [Theory.md](Theory.md) and [ESTIMATOR_PLAN.md](ESTIMATOR_PLAN.md),
+including both coordinate-model capacities, fold-local calibration, and withheld
+P4 predictions. Its experiments write only under `experiments/full_position/`.
+
 The `.pkl` files contain detector outputs; the `.mkv` source videos are not needed to run this package. The estimator consumes the stored detections directly and does not rerun detection.
 
 ## Run
