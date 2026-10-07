@@ -64,35 +64,15 @@ class ProfiledProblem:
         self.residual = np.r_[self.optical_residual, anchor.ravel()]
         self.S = np.einsum("ncpz,p->ncz", self.C, self.beta)
 
-    def hsolve(self, t):
-        q = solve_triangular(self.R.T, t/self.column_scale, lower=True)
-        return solve_triangular(self.R, q)/self.column_scale
-
     def fun(self, z):
         self.update(z)
         return self.residual.copy()
 
     def jvp(self, v):
-        v = np.asarray(v).reshape(self.n, 2)
-        a = np.einsum("ncz,nz->nc", self.S, v).ravel()
-        dB = np.einsum("ncpz,nz->ncp", self.C, v).reshape(-1, self.model.size)
-        t = dB.T@self.optical_residual[:self.n*self.c] + self.B[:self.n*self.c].T@a
-        dbeta = -self.hsolve(t)
-        optical = np.r_[a, np.zeros(self.model.size)] + self.B@dbeta
-        anchor = self.mean_states(v*STATE_SCALE)/self.anchor_scales/np.sqrt(self.k)
-        return np.r_[optical, anchor.ravel()]
+        return self.jac(self.last_z).matvec(v)
 
     def vjp(self, w):
-        w = np.asarray(w).ravel()
-        optical, anchor = w[:len(self.b)], w[len(self.b):].reshape(self.k, 2)
-        u = self.hsolve(self.B.T@optical)
-        projected = (optical-self.B@u)[:self.n*self.c].reshape(self.n, self.c)
-        answer = np.einsum("ncz,nc->nz", self.S, projected)
-        answer -= np.einsum("ncpz,p,nc->nz", self.C, u,
-                           self.optical_residual[:self.n*self.c].reshape(self.n, self.c))
-        answer += anchor[self.groups]*STATE_SCALE/(self.counts[self.groups, None]*
-                                                   self.anchor_scales*np.sqrt(self.k))
-        return answer.ravel()
+        return self.jac(self.last_z).rmatvec(w)
 
     def jac(self, z):
         self.update(z)
@@ -126,7 +106,7 @@ class ProfiledProblem:
         return LinearOperator((len(self.residual), 2*n), matvec=jvp, rmatvec=vjp, dtype=float)
 
 
-def projected_gradient(x, g, lower, upper, tolerance=1e-7):
+def projected_gradient(x, g, lower, upper):
     """Unit-step projected gradient mapping in the caller's declared units.
 
     Unlike clipping signs only at exact bounds, this remains continuous for

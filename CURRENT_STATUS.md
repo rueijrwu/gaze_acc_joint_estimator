@@ -35,7 +35,7 @@ detector changes, and physiological validation have not been implemented.
 
 ## Verification
 
-**12 acceptance tests pass.** They cover geometry identities and feature rank;
+**14 acceptance tests pass.** They cover geometry identities and feature rank;
 physical and profiled derivatives; fixed optimizer linearizations; covariance
 propagation against finite differences and Monte Carlo; subset marginals;
 excluded-point noninterference for every point/axis; synthetic latent calibration
@@ -161,10 +161,32 @@ independent physiological accuracy. No new model has replaced the baseline.
 - [Prediction plot](experiments/full_position/grouped_v2/heldout_prediction.png) and
   [accommodation plot](experiments/full_position/grouped_v2/accommodation_anchors.png).
 - [Experiment index](experiments/full_position/README.md), distinguishing primary,
-  sensitivity, GPU-audit, and superseded debug/interrupted runs.
+  sensitivity, and GPU-audit evidence retained after cleanup.
 - [GPU branch refinement audit](experiments/full_position/gpu_check37/cpu_refinement_audit.json).
 
 The implementation and results supersede statements that the full-position
 prototype is unimplemented in the earlier handoff/design documents. Those
 documents remain sources for the baseline history and original design; use this
 file and the linked results for current execution status.
+
+## Code and result cleanup (2026-10-07)
+
+The full-position result tree was reduced from **53.6 MiB to 12.2 MiB** by
+removing superseded debug/interrupted runs, duplicate worker outputs, and empty
+sensitivity plots. All 27 primary fitted models, frame/holdout results, reports,
+prior-sensitivity checkpoints, and GPU/CPU branch audits remain. The frozen
+baseline and original detection files were preserved.
+
+Identical per-model population CSVs now share one losslessly compressed
+`population.csv.gz` per fold; original hashes are in the
+[cleanup manifest](experiments/full_position/cleanup_manifest.json). Unique
+worker configuration/completion moved to fold `execution.json` files.
+Future parallel runs collect one authoritative summary and delete successful
+scratch outputs while retaining failed-worker logs. Calibration Jacobian
+products share the existing frozen implementation; reporting skips empty
+holdout plots. Scripts and acceptance tests remain available for reproduction.
+
+Verification: all 27 primary models load, all nine compressed populations match
+their original hashes, and regenerated metrics, point errors, fixation means,
+and matched-support summaries are byte-for-byte unchanged. All 14 tests pass,
+including shared-population serialization and parallel output collection.

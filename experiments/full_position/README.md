@@ -14,10 +14,13 @@ modified.
 | `blas_benchmark.json` | Calibration-kernel thread-count benchmark |
 | `gpu_batch_benchmark.json` | Batch-size timing on representative repeated rows; not new validation observations |
 
-`smoke*`, `initial_grouped`, `grouped_v1`, and `zero_prior_development` are earlier
-debug/interrupted runs retained for numerical audit. They are superseded by the
-named primary runs. Their solver stopping policies differed. They must not be
-pooled with the primary evaluation or treated as selected models.
+Superseded debug/interrupted runs and duplicate worker outputs were removed.
+All 27 primary fitted models, frame/point results, sensitivity checkpoints,
+GPU audits, and reproduction scripts remain. Identical evaluation-population
+CSVs were consolidated into one losslessly compressed `population.csv.gz` per
+fold. Worker configuration/completion is retained in fold `execution.json`
+files where available. [Cleanup manifest](cleanup_manifest.json) records the
+removed runs and the original population SHA-256 hashes.
 
 The initial study is sampled and exploratory. It does not select a final
 deployment model or establish physiological accuracy. Captures 5/6 have not been

@@ -50,7 +50,10 @@ evaluation rows. A core is the central 80% of the reviewed interval. No jump or
 residual filter is applied. Training uses all-three-valid sampled observations;
 noise estimation uses the complete contiguous valid training cores, never
 differences between downsampled frames. Fixed evaluation populations and sampling
-membership are recorded in `population.csv`.
+membership are recorded once per fold in `population.csv.gz` (read with
+`gzip.open` or `pandas.read_csv`). Successful parallel runs retain worker
+configuration/completion in each fold's `execution.json` and remove scratch
+outputs; failed workers retain their logs for diagnosis.
 
 Gaze folds withhold one complete nominal condition across all four captures.
 Capture folds withhold all five fixations of a capture/demand. Both capacities

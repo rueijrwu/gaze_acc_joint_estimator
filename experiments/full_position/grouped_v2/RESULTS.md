@@ -185,8 +185,11 @@ stability, branch coverage, and uncertainty calibration rather than training los
 - [Detailed metrics](metrics.csv), [per-point errors](heldout_errors.csv),
   [fixation means](fixation_means.csv), [matched-support summary](matched_holdout_summary.json).
 - Each fold/model directory contains `model.json`, `training_states.json`,
-  `frames.json`, `frame_uncertainty.json`, `holdouts.jsonl`, `population.csv`,
-  `summary.json`, and a determinant audit for coordinate models.
+  `frames.json`, `frame_uncertainty.json`, and `summary.json`, with
+  `holdouts.jsonl` and a determinant audit for coordinate models.
+- Each fold shares one `population.csv.gz`; worker configuration/completion
+  is in `execution.json` where available. Duplicate populations and superseded
+  debug runs were removed; fitted models and numerical results are preserved.
 - [Implementation and commands](../../../full_position/README.md).
 - GPU checks and CPU-refinement evidence are in sibling `gpu_check27/` and
   `gpu_check37/` directories; thread/batch benchmarks are in the parent directory.

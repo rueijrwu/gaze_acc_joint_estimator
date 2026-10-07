@@ -3,14 +3,14 @@
   "blas_threads": 1,
   "independent_processes": true,
   "reused_fold": "gaze_-10",
-  "worker_config_paths": [
-    "experiments/full_position/grouped_v2/worker_runs/gaze_-5/config.json",
-    "experiments/full_position/grouped_v2/worker_runs/gaze_+0/config.json",
-    "experiments/full_position/grouped_v2/worker_runs/gaze_+5/config.json",
-    "experiments/full_position/grouped_v2/worker_runs/gaze_+10/config.json",
-    "experiments/full_position/grouped_v2/worker_runs/capture_1/config.json",
-    "experiments/full_position/grouped_v2/worker_runs/capture_2/config.json",
-    "experiments/full_position/grouped_v2/worker_runs/capture_3/config.json",
-    "experiments/full_position/grouped_v2/worker_runs/capture_4/config.json"
+  "fold_execution_paths": [
+    "capture_1/execution.json",
+    "capture_2/execution.json",
+    "capture_3/execution.json",
+    "capture_4/execution.json",
+    "gaze_+0/execution.json",
+    "gaze_+10/execution.json",
+    "gaze_+5/execution.json",
+    "gaze_-5/execution.json"
   ]
 }

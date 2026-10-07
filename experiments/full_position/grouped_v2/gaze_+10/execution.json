@@ -1,0 +1,31 @@
+{
+  "config": {
+    "train_per_fixation": 48,
+    "eval_per_fixation": 8,
+    "folds": [
+      "gaze"
+    ],
+    "starts": 2,
+    "max_nfev": 300,
+    "prior": 0.001,
+    "seed": 17,
+    "purpose": "exploratory_paired_capacity_test_not_nested_model_selection",
+    "candidates": [
+      "conditional27",
+      "conditional37",
+      "two_channel13"
+    ],
+    "temporal_strength": 0.0,
+    "jump_filter": false,
+    "detector_rerun": false,
+    "runtime": {
+      "python": "3.14.5",
+      "numpy": "2.4.6",
+      "scipy": "1.16.2"
+    }
+  },
+  "completion": {
+    "seconds": 132.81716199199946,
+    "complete": true
+  }
+}

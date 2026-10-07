@@ -1,6 +1,8 @@
 """Grouped experiments and diagnostic summaries (no physiological claims)."""
 from __future__ import annotations
 import csv
+from contextlib import ExitStack
+import gzip
 import json
 import platform
 import time
@@ -80,18 +82,25 @@ def evaluate(model, captures, groups, test_ids, pilot, reference, sigma, output,
     output.mkdir(parents=True, exist_ok=True)
     rows, holdouts = [], []
     # Record full fixed evaluation population before looking at model residuals.
-    with (output/"population.csv").open("w") as population, (output/"holdouts.jsonl").open("w") as hf:
-        writer = csv.writer(population)
-        writer.writerow(["fixation", "capture", "row", "frame", "timestamp_ms", "selected_for_evaluation",
-                         "p1_valid_geometry", "p4_1_valid", "p4_2_valid", "p4_3_valid", "baseline_valid"])
+    with ExitStack() as stack:
+        # Population membership is model-independent: keep one compressed copy per fold.
+        population_path = output.parent/"population.csv.gz"
+        writer = None
+        if not population_path.exists():
+            population = stack.enter_context(gzip.open(population_path, "wt", newline=""))
+            writer = csv.writer(population)
+            writer.writerow(["fixation", "capture", "row", "frame", "timestamp_ms", "selected_for_evaluation",
+                             "p1_valid_geometry", "p4_1_valid", "p4_2_valid", "p4_3_valid", "baseline_valid"])
+        hf = stack.enter_context((output/"holdouts.jsonl").open("w")) if model.channels == 6 else None
         for gi in test_ids:
             g, cap = groups[gi], captures[groups[gi]["capture"]]
             core = core_rows(g)
             selected = fixed_sample(core, count)
             selected_set = set(selected.tolist())
-            for i in core:
-                writer.writerow([gi, cap.name, i, cap.frame[i], cap.timestamp[i], i in selected_set,
-                    bool(cap.ctx.valid[i]), *cap.point_valid[i].tolist(), bool(cap.baseline_valid[i])])
+            if writer is not None:
+                for i in core:
+                    writer.writerow([gi, cap.name, i, cap.frame[i], cap.timestamp[i], i in selected_set,
+                        bool(cap.ctx.valid[i]), *cap.point_valid[i].tolist(), bool(cap.baseline_valid[i])])
             progress(f"  evaluating {model.name} fixation={gi} selected={len(selected)}", flush=True)
             good = selected[cap.ctx.valid[selected]]
             covs = reference_covariance(cap.p[good], pilot, reference, sigma, model.channels == 2) if len(good) else []

@@ -258,6 +258,75 @@ class Acceptance(unittest.TestCase):
                 self.assertTrue(result["available"])
                 np.testing.assert_allclose(result["state"], state, atol=1e-3)
 
+    def test_shared_evaluation_population_and_control_outputs(self):
+        import csv
+        import gzip
+        from types import SimpleNamespace
+        from full_position.validate import evaluate
+        p = np.broadcast_to(self.p, (1, 3, 2))
+        cap = SimpleNamespace(name="synthetic", p=p, q=self.q[None],
+            v=self.v.reshape(1, 3, 2), ctx=context(p), frame=np.array([7]),
+            timestamp=np.array([12.]), point_valid=np.ones((1, 3), bool),
+            baseline_valid=np.ones(1, bool))
+        groups = [dict(capture=cap.name, start_row=0, end_row_exclusive=1,
+                       target_theta_deg=3., demand_diopters_label=2.)]
+        control = SummaryModel(np.zeros(13))
+        control.beta[2] = .5
+        control.beta[7] = .6
+        control.beta[9] = .1
+        with tempfile.TemporaryDirectory() as folder:
+            fold = Path(folder)/"fold"
+            for model in [self.model, control]:
+                model.training_range = [[-10., 0.], [10., 6.]]
+                summary = evaluate(model, {cap.name: cap}, groups, [0], self.model,
+                    self.x, np.eye(12)*.01, fold/model.name, count=1,
+                    progress=lambda *args, **kwargs: None)
+                self.assertEqual(summary["estimated_rows"], 1)
+                if model.channels == 6:
+                    self.assertEqual(summary["holdout_tests"], 3)
+                    population = (fold/"population.csv.gz").read_bytes()
+                else:
+                    self.assertEqual(summary["holdout_tests"], 0)
+                    self.assertFalse((fold/model.name/"holdouts.jsonl").exists())
+                    self.assertEqual((fold/"population.csv.gz").read_bytes(), population)
+                self.assertFalse((fold/model.name/"population.csv").exists())
+            with gzip.open(fold/"population.csv.gz", "rt") as stream:
+                rows = list(csv.DictReader(stream))
+            self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]["frame"], "7")
+            self.assertEqual(rows[0]["selected_for_evaluation"], "True")
+
+    def test_parallel_collection_preserves_outputs_and_execution(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        from full_position.parallel import main
+        from full_position.schema import write_json
+        def worker(cmd, **kwargs):
+            output = Path(cmd[cmd.index("--output")+1])
+            name = cmd[cmd.index("--only-fold")+1]
+            (output/name).mkdir(parents=True)
+            (output/name/"payload.txt").write_text(name)
+            write_json(output/"summary.json", {f"{name}/conditional27": {"fold": name}})
+            write_json(output/"config.json", {"fold": name})
+            write_json(output/"completion.json", {"complete": True})
+            self.assertEqual(kwargs["env"]["OPENBLAS_NUM_THREADS"], "1")
+            return SimpleNamespace(returncode=0)
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder)/"run"
+            with patch("sys.argv", ["parallel", "--output", str(output), "--workers", "2"]), \
+                 patch("full_position.parallel.subprocess.run", side_effect=worker):
+                main()
+            saved = json.loads((output/"summary.json").read_text())
+            self.assertEqual(len(saved), 9)
+            self.assertFalse((output/".workers").exists())
+            config = json.loads((output/"parallel_config.json").read_text())
+            self.assertEqual(len(config["fold_execution_paths"]), 9)
+            for relative in config["fold_execution_paths"]:
+                execution = output/relative
+                metadata = json.loads(execution.read_text())
+                self.assertTrue(metadata["completion"]["complete"])
+                self.assertEqual((execution.parent/"payload.txt").read_text(), metadata["config"]["fold"])
+
 
 if __name__ == "__main__":
     unittest.main()

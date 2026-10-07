@@ -41,7 +41,10 @@ def generate(path):
                         theta=np.mean([r["theta"] for r in selected]), A=np.mean([r["A"] for r in selected]),
                         theta_std=np.std([r["theta"] for r in selected]), A_std=np.std([r["A"] for r in selected]),
                         nominal_theta=selected[0]["nominal_theta"], demand=selected[0]["demand"]))
-            for line in (dest/"holdouts.jsonl").read_text().splitlines():
+            holdout_path = dest/"holdouts.jsonl"
+            if summary["holdout_tests"] and not holdout_path.exists():
+                raise ValueError(f"Missing recorded holdout results: {holdout_path}")
+            for line in holdout_path.read_text().splitlines() if holdout_path.exists() else []:
                 h = json.loads(line)
                 if h.get("score_available"):
                     errors.append(dict(fold=fold, model=name, fixation=h["fixation"], row=h["row"],
@@ -73,9 +76,18 @@ def generate(path):
         common = sorted(a.keys() & b.keys())
         matched[family] = dict(count=len(common), conditional27=stats([a[k]["error"] for k in common]),
                               conditional37=stats([b[k]["error"] for k in common]))
-    write_json(path/"matched_holdout_summary.json", matched)
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4), constrained_layout=True)
+    if errors:
+        write_json(path/"matched_holdout_summary.json", matched)
     colors = {"conditional27": "#2674a8", "conditional37": "#db7a29"}
+    if errors:
+        prediction_plot(path, metrics, errors, colors)
+    if any(r["calibration_converged"] for r in training_means):
+        anchor_plot(path, training_means, colors)
+    return metrics, matched
+
+
+def prediction_plot(path, metrics, errors, colors):
+    fig, axes = plt.subplots(1, 2, figsize=(12, 4), constrained_layout=True)
     for ax, family in zip(axes, ["gaze", "capture"]):
         labels = sorted({r["fold"] for r in metrics if r["fold"].startswith(family+"_")},
                         key=lambda s: float(s.split("_")[1]))
@@ -95,6 +107,9 @@ def generate(path):
         ax.set_ylim(bottom=0)
         ax.grid(alpha=.2); ax.legend()
     fig.savefig(path/"heldout_prediction.png", dpi=180); plt.close(fig)
+
+
+def anchor_plot(path, training_means, colors):
     fig, axes = plt.subplots(1, 2, figsize=(11, 4), constrained_layout=True)
     for ax, role in zip(axes, ["training", "evaluation"]):
         for name, color in {**colors, "two_channel13": "#55864d"}.items():
@@ -105,7 +120,6 @@ def generate(path):
                title=role.capitalize()+" means; demand is a soft anchor")
         ax.legend(fontsize=8); ax.grid(alpha=.2)
     fig.savefig(path/"accommodation_anchors.png", dpi=180); plt.close(fig)
-    return metrics, matched
 
 
 if __name__ == "__main__":
