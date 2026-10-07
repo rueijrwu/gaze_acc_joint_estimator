@@ -217,37 +217,3 @@ def free_inverse_m2(coef, W, observation):
                 conditioning=dict(physical_derivative_defined=True, scaled_singular_values=sv.tolist(),
                                   condition=float(sv[0]/max(sv[1], 1e-14))),
                 theta_bound=bool(abs(chosen[1]) >= 20-1e-5), A_bound=bool(chosen[2] <= 1e-5 or chosen[2] >= 6-1e-5))
-
-
-def grid_audit_m2(coef, W):
-    """Sampled optical geometry/branches (no global uniqueness certificate); no knot scopes."""
-    L = np.linalg.cholesky(W).T
-    rows = []
-    for scope, th_values, A_values in [('calibrated_grid', np.linspace(-15, 15, 17), np.linspace(CAL_A_RANGE[0], 4., 25)),
-                                     ('full_bounds_grid', np.linspace(-20, 20, 17), np.linspace(0., 6., 25))]:
-        for theta in th_values:
-            for A in A_values:
-                J = forward_jac_m2(np.array([theta]), np.array([A]), coef)[1][0]
-                sv = np.linalg.svd(L@J@np.diag([1., .25]), compute_uv=False)
-                slope = J[1, 1]-J[1, 0]*J[0, 1]/J[0, 0] if abs(J[0, 0]) > 1e-14 else np.nan
-                rows.append(dict(scope=scope, theta_deg=float(theta), A_diopters=float(A), side='ordinary', derivative_defined=True,
-                    determinant=float(np.linalg.det(J)), fixed_displacement_ratio_A_slope=float(slope),
-                    condition=float(sv[0]/max(sv[1], 1e-14)), minimum_scaled_singular_value=float(sv[1])))
-    theta, A = np.meshgrid(np.linspace(-15, 15, 9), np.unique(np.r_[np.linspace(CAL_A_RANGE[0], 4., 13), [2., 3., 4.]]))
-    true_states = np.column_stack([theta.ravel(), A.ravel()])
-    obs = forward_jac_m2(true_states[:, 0], true_states[:, 1], coef)[0]
-    states, diagnostics = invert_batch_m2(obs, coef, W, maxiter=100)
-    stationarity = physical_optimality_m2(states, obs, coef, W)
-    roundtrip_error = np.linalg.norm((states-true_states)/np.array([1., .25]), axis=1)
-    return dict(scope=f'finite sampled Jacobian grids and {len(states)} calibrated-support roundtrip probes; inverse searches full bounds; not global coverage or uniqueness proof',
-        model_type=MODEL_TYPE,
-        sample_counts_by_scope={scope: sum(row['scope'] == scope for row in rows) for scope in {row['scope'] for row in rows}},
-        branch_probe_count=len(states), roundtrip_selected_state_mismatch_count=int(np.sum(roundtrip_error > 1e-4)),
-        branch_probe_missing_root_count=int(np.sum(diagnostics['minimum_candidate_cost'] > 1e-10)),
-        branch_probe_ambiguous_count=int(np.sum(diagnostics['equivalent_minima_count'] > 1)),
-        branch_probe_stationarity_unverified_count=int(np.sum(stationarity > 1e-5)),
-        physical_jacobian_samples=rows,
-        synthetic_branch_probes=[dict(input_theta_deg=float(t), input_A_diopters=float(a), inferred_theta_deg=float(s[0]),
-            inferred_A_diopters=float(s[1]), equivalent_minima_count=int(diagnostics['equivalent_minima_count'][i]),
-            weighted_cost=float(diagnostics['weighted_cost'][i]), physical_projected_stationarity=float(stationarity[i]),
-            reference_scaled_roundtrip_distance=float(roundtrip_error[i])) for i, ((t, a), s) in enumerate(zip(true_states, states))])

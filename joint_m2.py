@@ -21,7 +21,7 @@ ROOT = HERE
 EXP2 = HERE / "lib"
 sys.path.insert(0, str(EXP2))
 from calibrate_profiled import ProfiledProblem, noise_covariance  # noqa: E402
-from calibrate_continuation import array_hash, atomic_json, continue_fit, make_manifest  # noqa: E402
+from calibrate_continuation import atomic_json, continue_fit, make_manifest  # noqa: E402
 import m2_model  # noqa: E402
 
 FOLDS = {"full": None, "holdout3": 3, "holdout2": 4}

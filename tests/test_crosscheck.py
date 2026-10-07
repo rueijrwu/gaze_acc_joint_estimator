@@ -1,10 +1,9 @@
 import math
 
-import numpy as np
 import pytest
 
 from full_position.crosscheck import (
-    _paired, _summarize, _triple_metrics, _slot, join_records, vector_metrics,
+    _paired, _summarize, _triple_metrics, join_records, vector_metrics,
 )
 
 
