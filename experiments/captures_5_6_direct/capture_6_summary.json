@@ -1,0 +1,64 @@
+{
+  "capture": 6,
+  "source_file": "capture_6_detections.pkl",
+  "source_sha256": "37f18b451faaf23592acb0f5628562c8b617826c11845d999cfff22ec8cb653a",
+  "row_count": 35001,
+  "valid_detection_count": 34080,
+  "invalid_detection_count": 921,
+  "valid_rows_inverted": 34080,
+  "cached_inverse_reused": true,
+  "retained_estimate_count": 34080,
+  "ambiguous_count_equivalent_minima_gt_1": 0,
+  "ambiguous_fraction": 0.0,
+  "outside_training_anchor_support_count": {
+    "theta": 12637,
+    "accommodation": 13
+  },
+  "gaze_theta_deg": {
+    "min": -12.023146882592457,
+    "q05": -11.012736141243018,
+    "median": -0.09434702555764296,
+    "mean": -4.096136834756637,
+    "q95": 0.6092267411798897,
+    "max": 16.614851817486333
+  },
+  "accommodation_diopters": {
+    "min": 0.0,
+    "q05": 0.7221474549279738,
+    "median": 0.9541395487434835,
+    "mean": 1.2763328059080534,
+    "q95": 2.791216522763702,
+    "max": 6.0
+  },
+  "bound_estimates_count": {
+    "theta_lower": 0,
+    "theta_upper": 0,
+    "accommodation_lower": 2,
+    "accommodation_upper": 8
+  },
+  "stationarity_projected": {
+    "median": 0.0,
+    "q95": 2.601919124600726e-10,
+    "max": 30.81382926499743,
+    "count_above_1e-3": 11
+  },
+  "input_observable_range": {
+    "d_min": -0.6397934310567255,
+    "d_max": 0.9917163190732162,
+    "rho_min": 0.0037431803885732947,
+    "rho_max": 0.6459335318428093
+  },
+  "fixation_label": "unknown; no reviewed target intervals for captures 5 and 6",
+  "nominal_reference": "none available; plots show physical inverse bounds only",
+  "training_anchor_support": {
+    "theta_deg": [
+      -10.0,
+      10.0
+    ],
+    "accommodation_diopters": [
+      0.36036036036036034,
+      4.0
+    ],
+    "source": "min/max of reviewed c1-c4 nominal fixation labels; coverage indicator, not c5/c6 reference labels"
+  }
+}

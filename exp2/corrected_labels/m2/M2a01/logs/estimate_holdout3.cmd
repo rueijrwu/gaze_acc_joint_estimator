@@ -1,1 +1,0 @@
-[M2a01] estimate_holdout3: python3 -B exp2/reduced_calibration/experiment.py estimate --fold holdout3 --model m2 --target-overrides exp2/corrected_labels/target_overrides_v1.json --model-dir exp2/corrected_labels/m2/M2a01/training/holdout3/robust --output-dir exp2/corrected_labels/m2/M2a01/predictions/holdout3

@@ -1,49 +1,32 @@
-# XRecorder calibration
+# exp5 single-estimator package
 
-This repository contains the maintained calibration code, selected capture
-detection data, fixation intervals, existing model artifacts, and research
-notes. It is prepared to upload to GitHub and open in GitHub Codespaces.
+This folder is a compact, standalone snapshot of the exp5 gaze/accommodation estimator and its capture 5/6 comparison plots. It contains the six stored detection outputs, capture 1 fixation intervals used for the gaze-only calibration, the frozen converged quadratic model, the estimator scripts, and the Python modules needed to import the estimator without the surrounding repository.
 
-## Open in a cloud environment
+See [HANDOFF.md](HANDOFF.md) for the current baseline, consolidated measurement theory, validation limits, and proposed full-position estimator work.
 
-Create a GitHub repository from this folder and push its contents. On GitHub,
-choose **Code → Codespaces → Create codespace on main**. The dev container
-installs the pinned numerical dependencies and opens a shell at the repository
-root. The same environment can be built locally with `docker build -t xrecorder .`.
+The `.pkl` files contain detector outputs; the `.mkv` source videos are not needed to run this package. The estimator consumes the stored detections directly and does not rerun detection.
 
-To verify the environment after it opens:
+## Run
+
+From this folder, install the listed Python dependencies and run:
 
 ```bash
-python --version
-python -c 'import numpy, scipy, matplotlib; print(numpy.__version__, scipy.__version__, matplotlib.__version__)'
+python apply_quadratic_captures_5_6.py
+python compare_gaze_corrections.py
 ```
 
-The existing workflow documentation starts at [exp2/README.md](exp2/README.md).
-The current scientific status, preserved results, and steps to revisit before
-resuming work are in [documents/FULL_INFORMATION_HANDOFF.md](documents/FULL_INFORMATION_HANDOFF.md).
-That handoff records that implementation and scientific runs are paused. The
-container setup only installs dependencies; it does not run fits or diagnostics.
+The first command estimates gaze and accommodation for every valid detection in captures 5 and 6 and writes state CSVs, summaries, and trace plots to `experiments/captures_5_6_direct/`. The second command fits the capture 1 linear gaze baseline and writes comparison CSVs and figures to `experiments/gaze_linear_vs_corrected/`.
 
-The four stored detection pickles are about 5.8–6.1 MB each. They contain
-frame-aligned measurements and candidate detections from roughly 29,000 frames
-per capture. Videos are not included. Files are kept as ordinary Git files; the
-largest is below GitHub's 100 MiB per-file limit.
+The committed `experiments/` outputs are the latest results from the source exp5 workspace. Running the commands regenerates them. The comparison figures show the estimator discrepancy between the linear baseline and joint-model gaze; captures 5 and 6 have no reviewed gaze or accommodation reference labels.
 
-Redundant per-frame state CSV exports are omitted to keep the cloud checkout
-small. Their canonical state arrays remain in the corresponding `checkpoint.npz`
-files. Model metadata, histories, diagnostics, held-out predictions, and summary
-tables remain available for resuming and reviewing the preserved runs.
+## Contents
 
-## Local setup
+- `data/detections/`: `capture_1` through `capture_6` stored detections.
+- `data/fixations/fixation_intervals.json`: reviewed fixation intervals and nominal labels for captures 1–4.
+- `models/quadratic_model.json`: converged 13-coefficient joint gaze/accommodation model.
+- `apply_quadratic_captures_5_6.py`: bounded inverse applied independently to valid rows in captures 5 and 6.
+- `compare_gaze_corrections.py`: capture 1 linear calibration and capture 5/6 comparison plots.
+- `joint_m2.py` and `lib/`: measurement, inverse, and supporting model/calibration code.
+- `experiments/`: copied state estimates, summaries, calibration/comparison CSVs, and plots.
 
-Python 3.14.5 is pinned in the dev container. To create a matching environment
-without Docker:
-
-```bash
-python3.14 -m venv .venv
-.venv/bin/python -m pip install -r requirements.lock
-```
-
-Calibration uses the pinned NumPy, SciPy, and Matplotlib dependencies. Native
-video detection additionally requires OpenCV and `pkj_image_process_py`, and
-the source videos are not part of this repository.
+The model was trained on reviewed fixation data from captures 1–4. Its nominal accommodation labels are calibration anchors, not measured accommodation ground truth. The per-frame optical fit and the capture 5/6 comparison do not establish physiological accuracy.
