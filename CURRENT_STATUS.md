@@ -730,3 +730,51 @@ folds and 36 fits, including 3,840 holdouts and 6,055 training rows; all fits
 converged. The persisted counters and completed continuation log are linked
 from the accommodation results page. The screen remains development evidence,
 not a nested evaluation or physiological exponent claim.
+
+## Full accommodation calibration (running; results pending)
+
+The [full-calibration runner](full_position/accommodation_full.py) and
+[experiment plan](ACCOMMODATION_FULL_CALIBRATION_PLAN.md) specify four fresh
+fits, one per fixed response law, using the existing joint optimizer and
+three-way frozen-coefficient P4 agreement check. Each law uses the same 20
+reviewed conditions. The prior sampled screen above is unchanged and supplies
+no coefficients or latent states to these fits. The real-data run is active;
+no calibration outcomes or agreement results are available yet.
+The required suite passed (54 tests) before launch, and exactly one final review
+found no substantive issues. The run's launch check is recorded in
+[launch_verification.json](experiments/full_position/accommodation_full_v2/launch_verification.json).
+
+The `core` training-window and agreement-window defaults remain unchanged:
+71,784 central-80% training rows and 80,072 core agreement frames per law.
+The active run explicitly sets both windows to `fixation_period`, using 89,175
+valid training rows and scheduling 100,090 raw frames per law (300,270 P4 slots
+per law; 1,201,080 slots across four laws). Invalid or unavailable measurements
+remain tracked. These counts are persisted in the shared training input and
+schedule manifest.
+
+The run started at 2026-10-07 21:37:51 UTC with four CPU fit workers, each
+using one BLAS, OpenMP and MKL thread. Runner PID: 9986; managed execution
+session: 7482. Output: [accommodation_full_v2](experiments/full_position/accommodation_full_v2/).
+Stdout/stderr log: `/tmp/accommodation_full_v2.log`. GPU value, derivative,
+branch and certificate parity remains unverified; the configured inverse backend
+is the existing scalar CPU path. This is an internal-consistency comparison,
+not independent validation or a physiological accuracy test, and it defines no
+absolute RMS gate or deployment choice. Run completion and certification have
+not yet been established.
+
+At the latest check (~4 minutes after start), all four calibration workers were
+active at about 99% CPU each, with roughly 1.5–2.1 GiB RSS per worker. The four
+`calibration_candidates.jsonl.gz` files had not emitted their first flushed
+start/stage checkpoint yet; no candidate certification is available. The output
+tree was 77 MiB and workspace/tmp each had 1.3 TiB free. The tracked PID file is
+`/tmp/accommodation_full_v2.pid` (9986); managed session ID is 7482. Monitor with:
+
+```bash
+rtk proxy ps -p 9986,10058,10061,10062,10063 -o pid,stat,etime,pcpu,rss
+rtk ls -lh experiments/full_position/accommodation_full_v2/fits/full_calibration/*/calibration_candidates.jsonl.gz
+```
+
+Expected final report paths are
+[summary.json](experiments/full_position/accommodation_full_v2/summary.json),
+[RESULTS.md](experiments/full_position/accommodation_full_v2/RESULTS.md), and
+[completion.json](experiments/full_position/accommodation_full_v2/completion.json).

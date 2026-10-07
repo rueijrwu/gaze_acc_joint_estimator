@@ -1,0 +1,52 @@
+{
+  "scope": "implementation_and_launch_population",
+  "numerical_results_verified": false,
+  "tests": {
+    "command": "PYTHONPATH=. OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 pytest -q tests/test_accommodation_full_contracts.py tests/test_accommodation_response_contracts.py tests/test_full_position.py",
+    "result": "54 passed in 5.81s",
+    "outside_sandbox": true
+  },
+  "final_review": {
+    "count": 1,
+    "substantive_issues": [],
+    "status": "no substantive implementation or launch-population issues found"
+  },
+  "launch_population": {
+    "training_window": "fixation_period",
+    "agreement_window": "fixation_period",
+    "calibration_rows": 89175,
+    "scheduled_agreement_frames": 100090,
+    "schedule_identity_mismatches": 0,
+    "training_row_membership_mismatches": 0,
+    "exposure_count": 20,
+    "captures": [
+      "capture_1_detections.pkl",
+      "capture_2_detections.pkl",
+      "capture_3_detections.pkl",
+      "capture_4_detections.pkl"
+    ],
+    "workers": 4,
+    "thread_limits": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    },
+    "fresh_calibration_per_law": true,
+    "reused_previous_fitted_models": false
+  },
+  "source_snapshot": {
+    "files_checked": 44,
+    "hash_matches": 44,
+    "hash_mismatches": 0
+  },
+  "minor_metadata_notes": [
+    "protected_hashes also includes capture 5 and 6 detection files; the separate captures_5_6_standalone experiment directory is excluded",
+    "training window and sampling fields are nested under training.json provenance"
+  ],
+  "run_status": {
+    "complete": false,
+    "completion_file_present": false,
+    "numerical_results_present": false
+  },
+  "evidence_note": "Values recorded from the single final implementation and launch-population review; no additional checks were run for this record."
+}\n

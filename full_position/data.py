@@ -72,11 +72,20 @@ def fixed_sample(rows, count):
     return rows[np.linspace(0, len(rows)-1, count).round().astype(int)]
 
 
-def training_data(captures, groups, group_ids, count=48):
+def window_rows(group, window="core"):
+    """Select reviewed interval rows; validity is applied by the caller."""
+    if window == "core":
+        return core_rows(group)
+    if window == "fixation_period":
+        return np.arange(int(group["start_row"]), int(group["end_row_exclusive"]))
+    raise ValueError(f"Unknown fixation window: {window}")
+
+
+def training_data(captures, groups, group_ids, count=48, window="core"):
     parts, anchors = [], []
     for local, gi in enumerate(group_ids):
         g, cap = groups[gi], captures[groups[gi]["capture"]]
-        rows = fixed_sample(core_rows(g), count)
+        rows = fixed_sample(window_rows(g, window), count)
         rows = rows[cap.baseline_valid[rows]]
         if not len(rows):
             raise ValueError(f"Empty sampled training fixation {gi}")
@@ -90,11 +99,11 @@ def training_data(captures, groups, group_ids, count=48):
     return data, np.asarray(anchors)
 
 
-def noise_blocks(captures, groups, group_ids):
+def noise_blocks(captures, groups, group_ids, window="core"):
     blocks = []
     for gi in group_ids:
         cap = captures[groups[gi]["capture"]]
-        rows = core_rows(groups[gi])
+        rows = window_rows(groups[gi], window)
         rows = rows[cap.baseline_valid[rows]]
         # Split on original frame gaps AND row gaps, never bridge missing points.
         split = np.flatnonzero((np.diff(rows) != 1) | (np.diff(cap.frame[rows]) != 1))+1

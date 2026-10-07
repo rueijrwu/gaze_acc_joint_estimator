@@ -35,6 +35,39 @@ Prediction loss and same-frame state disagreement are reported separately.
 Full, shared interior and shared support cohorts use exact frame and point
 identities. The frame cohort and point cohort can have different memberships.
 
+## Full-population calibration
+
+`full_position.accommodation_full` runs four fresh calibrations, one for each
+fixed response law, on the same 20 reviewed conditions and all 89,175 valid
+rows in the full fixation periods. It uses the existing joint optimizer and
+scalar CPU inverse; four fit workers use one BLAS, OpenMP and MKL thread each.
+The GPU path remains unavailable until response value, derivative, branch and
+certificate parity is verified. The old sampled screen fits are not reused.
+The `core` training and agreement windows remain the CLI defaults; each window
+can be set independently.
+
+The core defaults use the central-80% training rows (71,784 rows) and all
+80,072 core frames for agreement per law. This run explicitly sets both windows
+to `fixation_period`: it fits all 89,175 valid rows per law and schedules all
+100,090 raw frames per law for agreement. Invalid or unavailable measurements
+remain accounted for in the schedule; the complete schedule contains
+1,201,080 P4 slots across four laws. Positive `--agreement-per-fixation`
+values sample only agreement checks and never reduce calibration rows.
+
+```sh
+rtk proxy env PYTHONPATH=. OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+  python -m full_position.accommodation_full \
+  --output experiments/full_position/accommodation_full_v2 \
+  --workers 4 --agreement-per-fixation 0 \
+  --training-window fixation_period --agreement-window fixation_period
+```
+
+Use a new output directory for every invocation; each run refits all four
+laws. This comparison measures internal cross-agreement, not independent
+validation or physiological accuracy. It has no absolute RMS acceptance gate
+and does not select a deployment model. Results are pending until the run
+completes.
+
 ## Selection policy
 
 `accommodation_selection.choose` provides a versioned inner selection policy.

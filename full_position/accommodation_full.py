@@ -24,7 +24,7 @@ import numpy as np
 from .accommodation import CANDIDATES
 from .accommodation_schema import load_model
 from .accommodation_study import _fit_task, schedule
-from .data import training_data, noise_blocks
+from .data import training_data, noise_blocks, window_rows
 from .latest_audit import paired_summary
 from .audit83 import reviewed
 from .geometry import context
@@ -41,6 +41,29 @@ NAMES = tuple(EXPECTED_CANDIDATES)
 REFERENCE = "ar27_log"
 SCHEMA = "full_calibration_internal_agreement_v2"
 METRICS = ("E_cross_px", "G_theta_cross_deg", "G_A_cross_D", "worst_point_px")
+
+
+def agreement_schedule(captures, groups, ids, count=0, window="core"):
+    """Freeze the agreement population before any validity filtering."""
+    if window == "core":
+        return schedule(captures, groups, ids, FOLD, count)
+    if window != "fixation_period" or count != 0:
+        raise ValueError("Full fixation-period agreement requires count=0")
+    rows, identities = [], []
+    for gi in ids:
+        group = groups[gi]
+        cap = captures[group["capture"]]
+        for i in map(int, window_rows(group, window)):
+            rows.append(dict(
+                fixation=gi, capture=cap.name, row=i, frame=int(cap.frame[i]),
+                timestamp_ms=float(cap.timestamp[i]), selected_for_evaluation=True,
+                p1_valid_geometry=bool(cap.ctx.valid[i]),
+                baseline_valid=bool(cap.baseline_valid[i]),
+                **{f"p4_{j+1}_valid": bool(cap.point_valid[i, j]) for j in range(3)},
+            ))
+            identities.append(dict(fold=FOLD, capture=cap.name, fixation=gi, row=i,
+                                   source_frame_index=int(cap.frame[i])))
+    return rows, manifest(identities)
 
 
 def load(path):
@@ -148,12 +171,36 @@ def summarize(output):
                    independent_validation=False, selected_model=None,
                    candidates=results, paired_internal_agreement=comparisons,
                    common_model_comparison=common)
+    config = load(output / "config.json") if (output / "config.json").exists() else {}
+    outcomes = load(output / "outcomes.json") if (output / "outcomes.json").exists() else []
+    summary["run_counts"] = dict(
+        planned_fits=len(NAMES), completed_fits=len(outcomes),
+        certified_fits=sum(rec["certified"] for rec in results.values()),
+        calibration_rows=config.get("calibration_rows"),
+        calibration_rows_per_group=config.get("calibration_rows_per_group"),
+        calibration_sampling=config.get("calibration_sampling"),
+        training_window=config.get("training_window"),
+        scheduled_agreement_frames_per_law=config.get("scheduled_agreement_frames"),
+        agreement_sampling=config.get("agreement_sampling"),
+    )
+    training_file = output / "splits" / FOLD / "training.json"
+    training_info = load(training_file) if training_file.exists() else {}
+    groups = training_info.get("provenance", {}).get("training_groups", [])
+    condition_counts = [dict(group_id=gi, capture=group["capture"],
+                             target_theta_deg=group["target_theta_deg"],
+                             calibration_rows=config.get("calibration_rows_per_group", {}).get(str(gi)))
+                        for gi, group in enumerate(groups)]
+    summary["run_counts"]["calibration_rows_per_condition"] = condition_counts
     write_json(output / "summary.json", summary)
     lines = ["# Fresh full calibrations: log versus power accommodation laws", "",
              "Same fitting algorithm and calibration data; a new coefficient set and new framewise states for each law.",
-             "All 20 conditions and all valid central-80% rows participate. No condition is withheld.",
+             "All 20 conditions and all valid rows in the configured calibration window participate. No condition is withheld.",
              "Cross-checks use each law's newly fitted coefficients, frozen only after that full calibration.",
              "RMS summarizes internal agreement, not nominal-label accuracy or an acceptance threshold.", "",
+             f"Planned fits: {len(NAMES)}. Completed fit tasks: {len(outcomes)}. Certified fits: {summary['run_counts']['certified_fits']}.",
+             f"Calibration rows per law: {config.get('calibration_rows', 'unavailable')}. Calibration window: {config.get('training_window', 'unavailable')}.",
+             f"Agreement schedule: {config.get('agreement_sampling', 'unavailable')}.",
+             "Per-condition calibration row counts are in summary.json and config.json.", "",
              "## Individual full-population scorecards", "",
              "| Law | Certified | P4 cross-prediction (px) | Gaze agreement (deg) | Accommodation agreement (D) | Complete frames | Scored slots |",
              "|---|---|---:|---:|---:|---:|---:|"]
@@ -192,12 +239,19 @@ def summarize(output):
     lines += ["", "Negative paired differences mean lower cross-prediction loss; each pair's exact cohort and exposure contributions are preserved.",
               "Gaze and accommodation may change during fixation. Nominal RMS and temporal spread never rank a law.",
               "The coefficients were calibrated on these observations: this measures internal consistency, not independent physiological accuracy.", ""]
+    lines += ["## Calibration population", "",
+              "| Group | Capture | Target gaze (deg) | Calibration rows per law |",
+              "|---:|---|---:|---:|"]
+    for condition in condition_counts:
+        lines.append(f"| {condition['group_id']} | {condition['capture']} | "
+                     f"{condition['target_theta_deg']:g} | {condition['calibration_rows']} |")
+    lines.append("")
     (output / "RESULTS.md").write_text("\n".join(lines), encoding="utf-8")
     return summary
 
 
 def run(root, output, workers=1, max_nfev=300, seed=17, agreement_per_fixation=0,
-        source_commit=None):
+        source_commit=None, agreement_window="core", training_window="core"):
     root, output = Path(root).resolve(), Path(output).resolve()
     if output.exists():
         raise FileExistsError("Choose a new output directory; every run recalibrates all laws")
@@ -205,8 +259,9 @@ def run(root, output, workers=1, max_nfev=300, seed=17, agreement_per_fixation=0
         raise ValueError("Use 1..4 workers")
     if max_nfev < 1 or agreement_per_fixation < 0:
         raise ValueError("Invalid iteration budget or diagnostic sampling")
-    if os.environ.get("OPENBLAS_NUM_THREADS") != "1" or os.environ.get("OMP_NUM_THREADS") != "1":
-        raise ValueError("Set OPENBLAS_NUM_THREADS=1 and OMP_NUM_THREADS=1")
+    if any(os.environ.get(key) != "1" for key in
+           ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS")):
+        raise ValueError("Set OPENBLAS_NUM_THREADS=1, OMP_NUM_THREADS=1 and MKL_NUM_THREADS=1")
     if source_commit is None:
         source_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
     if len(source_commit) != 40 or any(c not in "0123456789abcdefABCDEF" for c in source_commit):
@@ -216,16 +271,29 @@ def run(root, output, workers=1, max_nfev=300, seed=17, agreement_per_fixation=0
     captures, groups, interval_hash = reviewed(str(root))
     ids = verify_conditions(groups)
     # count=0 is the existing loader's all-valid-core-rows mode, not a new fit algorithm.
-    data, anchors = training_data(captures, groups, ids, count=0)
+    data, anchors = training_data(captures, groups, ids, count=0, window=training_window)
     if set(map(int, data["original_group"])) != set(ids):
         raise ValueError("A calibration condition has no valid rows")
-    population, pop = schedule(captures, groups, ids, FOLD, agreement_per_fixation)
+    population, pop = agreement_schedule(captures, groups, ids, agreement_per_fixation, agreement_window)
     source_hash = source_hashes(root)
+    for name in ("ACCOMMODATION_FULL_CALIBRATION_PLAN.md",
+                 "ACCOMMODATION_RESPONSE_THEORY.md", "ACCOMMODATION_RESPONSE_PLAN.md"):
+        path = root / name
+        if path.exists():
+            source_hash[name] = digest(path)
+    # This separate, active study is not an input to captures 1--4.
+    concurrent_study = root / "experiments" / "full_position" / "captures_5_6_standalone"
     protected = {str(p.relative_to(root)): digest(p)
                  for directory in (root / "data", root / "models", root / "experiments")
                  if directory.exists() for p in directory.rglob("*")
-                 if p.is_file() and "__pycache__" not in p.parts}
+                 if p.is_file() and "__pycache__" not in p.parts
+                 and not p.is_relative_to(concurrent_study)}
     output.mkdir(parents=True)
+    snapshot = output / "source_snapshot"
+    for name in source_hash:
+        destination = snapshot / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes((root / name).read_bytes())
     policy = dict(scope="internal_full_calibration_cross_agreement",
                   absolute_accuracy_thresholds=None, nominal_error_is_acceptance_gate=False,
                   temporal_strength=0, condition_holdouts=False, independent_validation=False)
@@ -237,16 +305,32 @@ def run(root, output, workers=1, max_nfev=300, seed=17, agreement_per_fixation=0
                   fitting_algorithm="calibrate.fit (unchanged)", crosscheck_algorithm="existing predict_raw_holdout/score_holdout",
                   calibration_rows=len(data["rows"]), scheduled_agreement_frames=len(pop.frame_ids),
                   calibration_rows_per_group={str(gi): int(np.sum(data["original_group"] == gi)) for gi in ids},
-                  calibration_sampling="all_valid_central80_rows", agreement_per_fixation=agreement_per_fixation,
+                  calibration_sampling=("all_valid_fixation_period_rows" if training_window == "fixation_period"
+                                        else "all_valid_central80_rows"),
+                  training_window=training_window, agreement_per_fixation=agreement_per_fixation,
+                  agreement_window=agreement_window,
+                  agreement_sampling=("all_fixation_period_frames" if agreement_window == "fixation_period"
+                                      else "all_core_frames" if agreement_per_fixation == 0
+                                      else "diagnostic_sample_per_fixation"),
+                  planned_fits=len(NAMES),
+                  protection_exclusions=[str(concurrent_study.relative_to(root))],
                   anchor_scales=[0.1, 0.25], prior_strength=0.001, calibration_starts=2,
+                  calibration_start_policy=["nominal", "perturbed_nominal"],
+                  state_bounds={"theta_x_deg": [-20, 20], "accommodation_D": [0, 6]},
+                  temporal_strength=0,
                   continuation_stages=2, workers=workers, max_nfev=max_nfev, seed=seed,
-                  policy=policy, runtime={"python": platform.python_version()})
+                  policy=policy, runtime={"python": platform.python_version(),
+                      "numpy": np.__version__, "cpu_count": os.cpu_count(),
+                      "threads": {key: os.environ.get(key) for key in
+                                  ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS")},
+                      "fit_workers": workers, "inverse_backend": "existing_scalar_cpu",
+                      "gpu_power_response_parity_verified": False})
     write_json(output / "config.json", config)
     started = time.monotonic()
     # Shared weighting pilot only. It is NOT a previously fitted candidate and
     # is NOT substituted for the fresh ar27_log calibration performed below.
     pilot = pilot_fit(data, anchors)
-    sigma, noise_meta = coordinate_covariance(noise_blocks(captures, groups, ids))
+    sigma, noise_meta = coordinate_covariance(noise_blocks(captures, groups, ids, window=training_window))
     reference = np.median(anchors, axis=0)
     covariance = reference_covariance(data["p"], pilot, reference, sigma)
     split = output / "splits" / FOLD
@@ -261,7 +345,8 @@ def run(root, output, workers=1, max_nfev=300, seed=17, agreement_per_fixation=0
         training_group_ids=ids, evaluation_group_ids=[], internal_agreement_group_ids=ids,
         fresh_calibration_per_law=True, reused_previous_fitted_models=False,
         training_groups=groups, sampled_training_rows=data["rows"].tolist(),
-        sampled_training_group=data["original_group"].tolist(), sampling_policy="all_valid_core_rows",
+        sampled_training_group=data["original_group"].tolist(), sampling_policy=config["calibration_sampling"],
+        training_window=training_window, agreement_window=agreement_window,
         shared_training_input_sha256=digest(split / "training_inputs.npz"), noise=noise_meta,
         correspondence={name: cap.metadata["pair_index"] for name, cap in captures.items()},
         anchor_range=[anchors.min(0).tolist(), anchors.max(0).tolist()],
@@ -285,8 +370,23 @@ def run(root, output, workers=1, max_nfev=300, seed=17, agreement_per_fixation=0
     changed = [path for path, h in {**protected, **source_hash}.items() if digest(root / path) != h]
     if changed:
         raise RuntimeError(f"Input files changed during run: {changed}")
+    elapsed = time.monotonic() - started
+    certified_count = sum(bool(x["converged"]) for x in outcomes)
+    experiment_success = (len(outcomes) == len(NAMES) and certified_count == len(NAMES)
+                          and summary["common_model_comparison"]["status"]
+                          == "internal_cross_agreement_comparison")
+    summary["run_counts"]["seconds"] = elapsed
+    summary["experiment_success"] = experiment_success
+    summary["experiment_status"] = "successful" if experiment_success else "completed_incomplete"
+    write_json(output / "summary.json", summary)
+    with (output / "RESULTS.md").open("a", encoding="utf-8") as report:
+        report.write(f"\nExperiment status: {summary['experiment_status']}. Total runtime: {elapsed:.3f} seconds.\n")
     write_json(output / "completion.json", dict(complete=True, fit_tasks=len(jobs),
-        certified=sum(bool(x["converged"]) for x in outcomes), seconds=time.monotonic() - started,
+        planned_fits=len(NAMES), completed_fit_tasks=len(outcomes),
+        calibration_rows=config["calibration_rows"],
+        scheduled_agreement_frames_per_law=config["scheduled_agreement_frames"],
+        experiment_success=experiment_success, experiment_status=summary["experiment_status"],
+        certified=certified_count, seconds=elapsed,
         scope="full_calibration_internal_agreement", fresh_calibration_per_law=True))
     return summary
 
@@ -301,9 +401,13 @@ def main():
     parser.add_argument("--agreement-per-fixation", type=int, default=0,
                         help="0 checks all core rows; a positive count samples only checks, never calibration")
     parser.add_argument("--source-commit")
+    parser.add_argument("--agreement-window", choices=("core", "fixation_period"), default="core",
+                        help="Use the plan's core window or every frame in each full fixation period")
+    parser.add_argument("--training-window", choices=("core", "fixation_period"), default="core",
+                        help="Use all valid calibration rows in the selected window")
     args = parser.parse_args()
     run(args.root, args.output, args.workers, args.max_nfev,
-        args.seed, args.agreement_per_fixation, args.source_commit)
+        args.seed, args.agreement_per_fixation, args.source_commit, args.agreement_window, args.training_window)
 
 
 if __name__ == "__main__":
