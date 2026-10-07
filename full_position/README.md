@@ -221,8 +221,95 @@ rtk proxy env OPENBLAS_NUM_THREADS=1 python -m full_position.diagnostics \
   experiments/full_position/my_run
 ```
 
-The initial 27-coefficient acceleration audit matched 32 scalar cases. The
-37-coefficient audit found differing availability and a lower-cost branch, which
-CPU refinement confirmed. Neither finite multistart policy guarantees exhaustive
-branches. This is evidence to strengthen inversion before relying on accelerated
-application or declaring larger-capacity generalization conclusively worse.
+Saved small-batch benchmarks favor CPU for the current inverse workload; GPU
+batching can still help with larger inverse batches. The saved 27-coefficient
+acceleration audit matched 32 scalar cases, while the 37-coefficient audit
+showed branch differences, including a lower-cost branch confirmed by CPU
+refinement. This does not establish that GPU is incorrect or that scalar
+finite-start inversion is exhaustive. The controlled sensitivity study retains
+the frozen audit's scalar inversion policy. See
+`experiments/full_position/gpu_batch_benchmark.json` for the saved batch-size
+timing and `experiments/full_position/gpu_check27/` and
+`experiments/full_position/gpu_check37/` for the branch audits.
+
+## Phase 8.2: joint-training sensitivity (completed)
+
+`full_position.sensitivity` refits the two conditional position capacities under
+predeclared, one-factor changes to joint calibration. It starts from the frozen
+Phase 8.1 grouped folds in `audit_polished_v1/`; it does not change those source
+results. The study is a grouped development sensitivity analysis, not a final
+model-selection step. Its outer folds hold out one nominal gaze condition or an
+entire capture/demand group. Evaluation measurements do not enter fitting,
+initialization, or the fixed covariance calculation.
+
+Reproduce the completed study from the repository root using a new output
+directory:
+
+```bash
+rtk proxy env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m full_position.sensitivity \
+  --source experiments/full_position/audit_polished_v1 \
+  --output experiments/full_position/joint_sensitivity_reproduction \
+  --workers 6 --starts 2 --max-nfev 300 --seed 17
+```
+
+The defaults select all eight predeclared variants and available outer folds.
+`--variants` and `--folds` can select a subset for a targeted reproduction;
+`--starts`, `--max-nfev`, `--seed`, and `--workers` control calibration and
+execution. The current run uses six CPU workers with BLAS and OMP set to one;
+the saved calibration benchmark favored one BLAS thread
+(`experiments/full_position/blas_benchmark.json`).
+An existing output can be resumed only when its saved source and implementation
+hashes and settings match. Use a new output path to reproduce the published
+`joint_sensitivity_v1/` run. The source tree is hashed before fitting and
+checked again at completion.
+
+The variants are: `baseline`; weaker/stronger mean-anchor scales
+(`anchor_weak`, `anchor_strong`); weaker/stronger coefficient prior
+(`prior_weak`, `prior_strong`); fourfold coordinate covariance
+(`covariance_4x`); and lower/upper quartile reference states
+(`reference_q25`, `reference_q75`). Anchor-scale changes also change anchor
+precision by the inverse square. The covariance is recomputed from the frozen
+pilot model at the selected reference state. Temporal strength remains zero.
+Every variant is a new joint fit; failed calibrations remain visible as
+checkpoints and are not treated as successful models. Uniformly scaling
+covariance scales both optical and normalized coefficient-prior terms, changing
+their weight relative to mean anchors; `covariance_4x` and `anchor_strong` differ
+by an overall factor four under the current normalization. For a fixed model,
+the no-prior inverse minimizers are invariant to uniform covariance scaling.
+These are design facts, not evidence that covariance inflation improves
+performance.
+
+The run directory contains `config.json` (source and implementation hashes,
+fold/variant settings and runtime), copied compressed fold populations,
+`completion.json` (task accounting; completion does not imply convergence),
+`summary.json`, `paired_comparisons.json.gz`, and
+`grouped_refit_dispersion.json`. Per variant/fold/model outputs are under
+`variants/<variant>/<fold>/<model>/`: `completion.json`, calibration candidate
+records, accepted `model.json` or a `failed_checkpoint.json`, training states
+and diagnostics, and—only when calibration is certified—evaluation frames,
+holdouts, and conditional frame-uncertainty diagnostics. The cross-check CSVs
+retain scheduled frame/point slots, including unavailable or unscored slots.
+`summary.json` groups the existing Phase 8.1 physical-unit error metrics by
+split family and variant. `paired_comparisons.json.gz` records comparisons
+against both frozen Phase 8.1 fits and the freshly fit joint baseline, using
+identical frame, point, and interior IDs within each comparison. Coverage,
+failures, and conditional calibration diagnostics must be read alongside
+conditional errors.
+
+The completed study also records its exact design copies under
+`design_snapshot/`, `verification.json`, a per-task
+`calibration_diagnostics.csv` (including the uncertified selected checkpoint),
+and `paired_interior_vs_baseline.png`. See the linked results and verification
+record for the study's denominators and artifact hashes.
+
+The conditional covariance is a local fixed-calibration quantity. It excludes
+coefficient uncertainty and model discrepancy. `grouped_refit_dispersion.json`
+describes response variation across accepted grouped training refits at fixed
+states and context; folds are correlated, so this quantity is neither total
+predictive uncertainty nor an independent jackknife confidence interval.
+Failed calibrations and their diagnostics must remain in any summary. The
+completed run's [results](../experiments/full_position/joint_sensitivity_v1/RESULTS.md),
+[verification record](../experiments/full_position/joint_sensitivity_v1/verification.json),
+root [audit report](../AUDIT_REPORT.md), and root [current status](../CURRENT_STATUS.md)
+document the outcomes and remaining limits; see the
+[Phase 8.2 index entry](../experiments/full_position/README.md#phase-82-joint-training-sensitivity).

@@ -287,19 +287,57 @@ The finite-grid scalar solver can therefore miss a better branch. The primary
 tables retain the original scalar results; GPU audit results were not substituted
 silently. Optional acceleration is not yet a universally equivalent replacement.
 
+## Phase 8.2 joint-training sensitivity (complete, 2026-10-07)
+
+The grouped sensitivity run refit both conditional capacities across eight
+predeclared calibration/reference settings and nine frozen outer folds. It
+recorded **144 task outcomes: 143 accepted and one uncertified**
+(`prior_weak/capture_1/conditional27`), with no task exceptions. The failed fit
+contributes no scores; the aggregate capture/27 prior-weak result retains its
+312/429 valid-slot coverage and reports the 117 otherwise-valid unavailable
+slots. The run also retains all 504 calibration-start records and 13,611 scored
+holdout records. No setting was selected for deployment.
+
+The strongest positive development finding is `anchor_strong/conditional37`:
+all three equal-fixation metrics improve against baseline in both split families
+on full-population support, with the same 429 scores and fewer bound slots. Its
+capture/37 result also improves on exact shared-interior support. Other settings
+show meaningful tradeoffs; for example, `prior_weak/conditional37` reduces
+capture point error while increasing state disagreement, and performs worse on
+all three gaze/37 matched-interior metrics. The matched-support plot and tables
+keep these measures separate. These are development results, not physiological
+accuracy or a final setting selection.
+
+The completed [results](experiments/full_position/joint_sensitivity_v1/RESULTS.md),
+[verification](experiments/full_position/joint_sensitivity_v1/verification.json),
+and per-task [calibration diagnostics](experiments/full_position/joint_sensitivity_v1/calibration_diagnostics.csv)
+retain failures, support denominators, and weighted objective components. The
+[audit report](AUDIT_REPORT.md) records the provenance and supplemental stop
+check. The 144-task run took 53 minutes and used six parallel CPU workers with
+BLAS and OMP set to one, matching the measured calibration benchmark
+([benchmark](experiments/full_position/blas_benchmark.json)). The user's
+parallel-CPU-or-verified-GPU preference was met with parallel CPU execution;
+the saved small-batch inverse benchmark favored CPU, while large GPU batches
+remain a separate acceleration option. All 52 repository tests passed in 9.72
+seconds; 219 frozen-source hashes matched and the original result artifacts
+remained unchanged. Exact pre-run copies of [Theory.md](experiments/full_position/joint_sensitivity_v1/design_snapshot/Theory.md)
+and [ESTIMATOR_PLAN.md](experiments/full_position/joint_sensitivity_v1/design_snapshot/ESTIMATOR_PLAN.md)
+are retained with hashes matching the run config.
+
 ## Next work, in order
 
-1. **Phase 8.2, joint training sensitivity:** jointly refit latent states and
-   coefficients while varying fixation-anchor constraints, coefficient priors,
-   and reference covariance. Diagnose endpoint point/axis bias,
-   capture/demand confounding, and P1-context dependence before changing the
-   response basis. This phase has not been run.
-2. **Discrepancy and context:** extend independent branch/profile checks and
-   controlled measurement ablations across development populations. Audit
-   capture-dependent geometry and detector selection; add targeted basis or
-   context terms only when residual patterns and supported rank justify them.
-3. **Evaluation:** use nested selection and denser grouped evaluation, then reserve
-   captures 5/6 for untouched transfer checks.
+1. **Phase 8.3, controlled information ablations (P2):** extend retained-x
+   versus retained-x/y tests across development populations with rank, coverage,
+   and excluded-point leakage checked. Evaluate measurement compression as a
+   separate experiment.
+2. **Targeted response/context work (P3):** inspect signed-gaze curvature,
+   accommodation coupling, P1-context dependence, capture geometry, and
+   detector selection. Add response/context terms only when residual evidence
+   and supported rank justify them.
+3. **Nested evaluation and transfer (P4):** use denser grouped evaluation and
+   reserve captures 5/6 for untouched transfer checks. Independent detector
+   review and physiological references remain separate requirements for
+   accuracy claims.
 
 Captures 5/6 remain unused by this study and available for later untouched
 transfer checks. Neither the new estimator nor geometric agreement establishes
@@ -317,6 +355,11 @@ independent physiological accuracy. No new model has replaced the baseline.
   [frame metrics](experiments/full_position/crosscheck_v1/crosscheck_frames.csv),
   [point records](experiments/full_position/crosscheck_v1/crosscheck_points.jsonl.gz),
   and [verification](experiments/full_position/crosscheck_v1/verification.json).
+- [Phase 8.2 sensitivity results](experiments/full_position/joint_sensitivity_v1/RESULTS.md),
+  [verification](experiments/full_position/joint_sensitivity_v1/verification.json),
+  [paired-interior plot](experiments/full_position/joint_sensitivity_v1/paired_interior_vs_baseline.png),
+  [calibration diagnostics](experiments/full_position/joint_sensitivity_v1/calibration_diagnostics.csv),
+  and [run config](experiments/full_position/joint_sensitivity_v1/config.json).
 - [Detailed results and next experiment](experiments/full_position/grouped_v2/RESULTS.md).
 - [Metrics](experiments/full_position/grouped_v2/metrics.csv),
   [point errors](experiments/full_position/grouped_v2/heldout_errors.csv), and

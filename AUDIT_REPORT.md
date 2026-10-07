@@ -2,9 +2,9 @@
 
 **Repository:** `rueijrwu/gaze_acc_joint_estimator`  
 **Branch:** `exp5_full`  
-**Evidence snapshot:** `c2584292d13393a4c5a8bb34afdea9c19f90e67f`  
+**Historical audit snapshot:** `c2584292d13393a4c5a8bb34afdea9c19f90e67f`
 **Revision date:** 2026-10-07  
-**Revision scope:** audit and evaluation contract, reconciled with the implemented frozen-record three-way cross-check. The cross-check adds no retraining, inverse runs, or physiological measurements.
+**Revision scope:** audit and evaluation contract, the Phase 8.1 frozen-record three-way cross-check (post-processing only), and the Phase 8.2 grouped joint-calibration refits. Only the Phase 8.1 cross-check adds no retraining, inverse runs, or physiological measurements; Phase 8.2 refits latent states and coefficients.
 
 ## Executive assessment
 
@@ -12,7 +12,7 @@
 
 The setup contains **three P1 points and three corresponding P4 points**, each measured in x and y: six image points and twelve raw coordinates. There are **two unknown states**, horizontal gaze and accommodation. The historical **two-channel** estimator compresses the same measured geometry into displacement and area ratio; it does not mean that this experiment measured only two pairs.
 
-The implementation substantially follows the conditional full-position theory. It preserves the three-point P1 reference, fits all six P4 coordinate responses, and predicts each excluded P4 point from a state inferred without that point. Inverse certification and the principal reporting/compatibility findings from the original audit have been addressed. The latest results support `conditional27` over `conditional37` on the measured cross-prediction criterion. They do not establish adequate uncertainty calibration, superior physiological accuracy, or a direct cross-prediction advantage over a two-channel model that does not itself predict individual P4 points.
+The implementation substantially follows the conditional full-position theory. It preserves the three-point P1 reference, fits all six P4 coordinate responses, and predicts each excluded P4 point from a state inferred without that point. Inverse certification and the principal reporting/compatibility findings from the original audit have been addressed. The Phase 8.1 saved-model results support `conditional27` over `conditional37` on the measured cross-prediction criterion. The later Phase 8.2 joint-refit sensitivity found positive full-population `conditional37` strong-anchor results in both split families, while other settings show tradeoffs; neither study selects a deployment model. They do not establish adequate uncertainty calibration, superior physiological accuracy, or a direct cross-prediction advantage over a two-channel model that does not itself predict individual P4 points.
 
 The evaluation priorities are now:
 
@@ -26,9 +26,9 @@ Nominal accommodation demand is not measured accommodation. Better agreement wit
 
 This revision reconciles the [current status](CURRENT_STATUS.md), [polished frozen-model results](experiments/full_position/audit_polished_v1/RESULTS.md), the previous audit, and the current inversion/reporting implementation. The original numerical audit concerned commit `88f3ac5556f1a4aa3ca1e42db356853ab8c48f53`. Its report is preserved in [the pre-rewrite file at the evidence snapshot](https://github.com/rueijrwu/gaze_acc_joint_estimator/blob/c2584292d13393a4c5a8bb34afdea9c19f90e67f/AUDIT_REPORT.md).
 
-The original audit's targeted numerical findings are historical evidence. The three-way scorecard now has a separately versioned post-processing result in [crosscheck_v1](experiments/full_position/crosscheck_v1/RESULTS.md), computed from frozen frame and holdout records without recalibration, refitting, or prediction. The original 21-test count and source/model preservation checks remain historical evidence; the current 42-test verification and source-tree check are recorded in the cross-check verification artifact.
+The original audit's targeted numerical findings and commit are historical evidence, not the provenance identifier for the later Phase 8.2 run. The three-way scorecard has a separately versioned post-processing result in [crosscheck_v1](experiments/full_position/crosscheck_v1/RESULTS.md), computed from frozen frame and holdout records without recalibration, refitting, or prediction. The original 21-test count remains historical evidence; the Phase 8.1 42-test verification and source-tree check are recorded in [crosscheck verification](experiments/full_position/crosscheck_v1/verification.json). Phase 8.2's separate 52-test check and joint-refit provenance are recorded in its [verification file](experiments/full_position/joint_sensitivity_v1/verification.json) and [config](experiments/full_position/joint_sensitivity_v1/config.json), including exact copies of the design documents used during that run.
 
-The old report's recommendations to implement polishing and fix basic reporting are resolved. The saved-record reporting step in Section 8.1 is also complete. Joint latent-state/coefficient sensitivity and the later scientific experiments remain open; completing the scorecard does not complete those studies.
+The old report's recommendations to implement polishing and fix basic reporting are resolved. The saved-record reporting step in Section 8.1 and joint latent-state/coefficient sensitivity in Phase 8.2 are complete; see Sections 8 and 9. Phase 8.3 controlled information ablations and later scientific experiments remain open. Completing the scorecard does not complete those studies.
 
 Original `grouped_v2` outputs remain historical. Use `audit_polished_v1` for the latest fixed-model comparison; do not silently combine different supports or original and revised branches.
 
@@ -290,7 +290,7 @@ Report raw predictive disagreement before deciding how to model its uncertainty.
 
 Saved training diagnostics report median absolute signed group bias 0.497 px and a 95th percentile of 1.845 px. These are aggregated in-sample fixation/point/axis biases with observations reused across folds, not directly comparable to pooled held-out 2D point RMS and not independent evidence of generalization.
 
-The saved coefficient-sensitivity refits hold latent states fixed. A tenfold prior-strength change modifies training predictions by 0.053-0.142 px RMS for `conditional27` and 0.083-0.174 px for `conditional37`; changing reference-state quartiles gives smaller reported changes. This does not establish that jointly refitted states, anchors, or cross-prediction results are insensitive. The pending experiment must refit states and coefficients together within training groups.
+The earlier saved coefficient-sensitivity refits hold latent states fixed. A tenfold prior-strength change modifies training predictions by 0.053-0.142 px RMS for `conditional27` and 0.083-0.174 px for `conditional37`; changing reference-state quartiles gives smaller reported changes. Those fixed-state results do not establish that jointly refitted states, anchors, or cross-prediction results are insensitive. The completed Phase 8.2 joint refits are summarized below and in the [versioned results](experiments/full_position/joint_sensitivity_v1/RESULTS.md).
 
 The two original difficult audit frames had well-conditioned P1 triangles, so they did not motivate replacing square-root area first. That local observation does not rule out normalization sensitivity elsewhere. Preserve normalization in the next controlled comparison.
 
@@ -304,13 +304,36 @@ Each family/model has 160 scheduled frames and 480 scheduled point slots, with 1
 
 The report keeps prediction error and state disagreement as separate metrics. It does not introduce a pass threshold or combine degrees with diopters. Shared clipping can produce small state spread while coordinate prediction remains poor.
 
-### P1 — Joint calibration sensitivity, selected by predictive agreement
+### P1 — Joint calibration sensitivity (complete; reported as Phase 8.2)
 
-Refit latent states and coefficients while varying anchors, coefficient priors, and reference covariance inside grouped training/development splits. Compare cross-prediction, state disagreement, coverage, and identification together; retain nominal-mean diagnostics separately. Preserve the current corrected solver and all failed starts/checkpoints.
+The [Phase 8.2 study](experiments/full_position/joint_sensitivity_v1/RESULTS.md)
+refit latent states and coefficients over eight predeclared anchor, prior, and
+reference-covariance settings on the frozen grouped folds. Its
+[verification record](experiments/full_position/joint_sensitivity_v1/verification.json)
+retains 144 task outcomes, including one uncertified calibration and its failed
+checkpoint; the report separates all-testable and exact matched-interior
+support. Strong anchors with `conditional37` lower all three full-population
+metrics in both split families at the same 429 scored slots, and also improve
+the capture/37 exact shared-interior metrics. Other settings show tradeoffs;
+there is no final prior choice or deployment model selected from these
+development folds. The results preserve the corrected solver and all failed
+starts/checkpoints. The [paired-interior plot](experiments/full_position/joint_sensitivity_v1/paired_interior_vs_baseline.png)
+uses each comparison's own matched complete-interior frames; the
+[calibration diagnostics table](experiments/full_position/joint_sensitivity_v1/calibration_diagnostics.csv)
+preserves the selected start and weighted objective components for all 144
+tasks. Do not use these evaluation outcomes to set thresholds or branch rules
+for final claims.
 
-Do not use the final evaluation P4 errors to set priors, thresholds, or branch choices. If existing outer results are used to choose the next design, call them development evidence and use a new untouched evaluation protocol for final claims.
+The supplemental numerical stop check continued the selected failed
+`prior_weak/capture_1/conditional27` training trajectory for 100 additional
+evaluations with `gtol` disabled. Physical projected stationarity decreased
+from `0.0031837354` to `0.0018793984` but remained above the `0.001` gate; the
+fit remains unaccepted. The rejected continuation is preserved in
+[supplemental_stop_checkpoint.json.gz](experiments/full_position/joint_sensitivity_v1/supplemental_stop_checkpoint.json.gz),
+with its summary in
+[supplemental_stop_check.json](experiments/full_position/joint_sensitivity_v1/supplemental_stop_check.json).
 
-### P2 — Extend controlled information tests without leakage
+### P2 — Phase 8.3 controlled information tests without leakage
 
 The saved same-response ablations are useful but targeted: on two audit rows, coordinate versus derived-summary inversion changed the selected states substantially; retained x/y improved five of six excluded-point predictions relative to retained x only and worsened one. That is not yet a population conclusion.
 
@@ -336,11 +359,16 @@ Keep captures 5/6 untouched by the full-position study until choices are frozen.
 
 The current implementation already performs the essential P4 cross-prediction. Its numerical certification is materially improved. `conditional27` currently cross-predicts better than `conditional37`, but their remaining errors and uncertainty mismatch require further diagnosis. Better solver cost, better nominal-demand agreement, and better cross-measurement agreement are different claims and must remain separate.
 
-The next step is the Phase 8.2 joint calibration sensitivity study: refit latent states and coefficients while varying anchors, coefficient priors, and reference covariance inside grouped training/development splits. Evaluate prediction, state disagreement, coverage, and identification together. Keep later controlled information tests, response/context hypotheses, and denser transfer evaluation in their stated order. Do not use current evaluation errors to select priors or thresholds.
+Phase 8.2 has completed the joint calibration sensitivity refits. The next
+planned work is Phase 8.3/P2: extend controlled information tests across
+development populations, with rank, coverage, and excluded-point leakage
+checked. Keep response/context hypotheses and denser transfer evaluation in
+their stated order. Do not use current evaluation errors to select priors or
+thresholds.
 
 ## Source map
 
-Repository facts in this report refer to the evidence snapshot identified above. Relative links are convenient navigation; preserve the snapshot when reproducing this audit.
+Historical numerical facts refer to the commit identified above; Phase 8.2 uses the linked run configuration, source hashes, and pre-run design snapshots. Relative links provide navigation.
 
 - [CURRENT_STATUS.md](CURRENT_STATUS.md): latest execution status, fixes, verification, and remaining work.
 - [Theory.md](Theory.md) and [ESTIMATOR_PLAN.md](ESTIMATOR_PLAN.md): normalization, source-pattern interpretation, model scope, calibration, and holdout contracts.
@@ -349,7 +377,11 @@ Repository facts in this report refer to the evidence snapshot identified above.
 - [full_position/invert.py](full_position/invert.py): retained candidates, polishing, subset prediction, and separate scoring.
 - [full_position/validate.py](full_position/validate.py) and [report.py](full_position/report.py): implemented aggregates and the reporting extension point.
 - [audit_checks_v1](experiments/full_position/audit_checks_v1/): targeted profiles, controlled measurement ablations, and conditional training-sensitivity evidence.
+- [Phase 8.2 joint-training sensitivity](experiments/full_position/joint_sensitivity_v1/RESULTS.md), [verification](experiments/full_position/joint_sensitivity_v1/verification.json), [configuration and run hashes](experiments/full_position/joint_sensitivity_v1/config.json), archived [Theory.md](experiments/full_position/joint_sensitivity_v1/design_snapshot/Theory.md) and [ESTIMATOR_PLAN.md](experiments/full_position/joint_sensitivity_v1/design_snapshot/ESTIMATOR_PLAN.md) design copies, and the [paired-interior figure](experiments/full_position/joint_sensitivity_v1/paired_interior_vs_baseline.png).
 - [grouped_v2/RESULTS.md](experiments/full_position/grouped_v2/RESULTS.md): archived original results, not the latest corrected population.
 - [Original audit before this rewrite](https://github.com/rueijrwu/gaze_acc_joint_estimator/blob/c2584292d13393a4c5a8bb34afdea9c19f90e67f/AUDIT_REPORT.md): historical numerical findings and targeted reconstruction methods.
 
-The three-way metric definitions and results are in the linked `crosscheck_v1` report. Joint calibration sensitivity and physiological accuracy remain untested; no physiological accuracy claim is made here.
+The three-way metric definitions and results are in the linked `crosscheck_v1`
+report. Joint calibration sensitivity is reported in the completed Phase 8.2
+study; Phase 8.3 information ablations and physiological accuracy remain
+untested. No physiological accuracy claim is made here.

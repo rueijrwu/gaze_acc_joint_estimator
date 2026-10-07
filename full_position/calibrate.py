@@ -15,6 +15,11 @@ class ProfiledProblem:
         self.model, self.y, self.r = model, np.asarray(y), np.asarray(r)
         _, self.groups = np.unique(groups, return_inverse=True)
         self.anchors, self.anchor_scales = np.asarray(anchors), np.asarray(anchor_scales)
+        if (self.anchor_scales.shape != (2,) or not np.isfinite(self.anchor_scales).all()
+                or np.any(self.anchor_scales <= 0)):
+            raise ValueError("Anchor scales must be two finite positive physical-unit values")
+        if not np.isfinite(prior_strength) or prior_strength < 0:
+            raise ValueError("Prior strength must be finite and nonnegative")
         self.n, self.c = y.shape
         self.k = len(anchors)
         self.counts = np.bincount(self.groups, minlength=self.k)
@@ -117,8 +122,11 @@ def projected_gradient(x, g, lower, upper):
 
 
 def fit(model, y, r, cov, groups, anchors, prior_strength=.001, starts=2,
-        max_nfev=300, seed=17, progress=None, additional_initial_states=None):
-    problem = ProfiledProblem(model, y, r, cov, groups, anchors, prior_strength)
+        max_nfev=300, seed=17, progress=None, additional_initial_states=None,
+        anchor_scales=(.1, .25), checkpoint=None):
+    problem = ProfiledProblem(model, y, r, cov, groups, anchors, prior_strength, anchor_scales)
+    if starts < 1 or max_nfev < 1:
+        raise ValueError("Starts and evaluation budget must be positive")
     lower = np.tile(LOWER/STATE_SCALE, problem.n)
     upper = np.tile(UPPER/STATE_SCALE, problem.n)
     rng = np.random.default_rng(seed)
@@ -127,7 +135,10 @@ def fit(model, y, r, cov, groups, anchors, prior_strength=.001, starts=2,
     for start in range(starts+len(extra)):
         z = problem.anchors[problem.groups]/STATE_SCALE
         if start >= starts:
-            z = np.asarray(extra[start-starts])/STATE_SCALE
+            initial = np.asarray(extra[start-starts], float)
+            if initial.shape != (problem.n, 2) or not np.isfinite(initial).all():
+                raise ValueError("Additional initial states must match finite training trajectories")
+            z = initial/STATE_SCALE
             z = np.clip(z, lower.reshape(-1, 2)+1e-9, upper.reshape(-1, 2)-1e-9)
         elif start:
             # Zero-mean within-fixation perturbations; no baseline state penalty.
@@ -179,6 +190,8 @@ def fit(model, y, r, cov, groups, anchors, prior_strength=.001, starts=2,
                       inner_stationarity_scaled=inner, seconds=time.monotonic()-begun)
         alternatives.append(record)
         solutions.append((converged, result.cost, problem.beta.copy(), problem.x.copy()))
+        if checkpoint:
+            checkpoint(record, problem.beta.copy(), problem.x.copy())
         if progress:
             progress(record)
     # Failed fits are checkpoint candidates only, never accepted models.
@@ -189,6 +202,6 @@ def fit(model, y, r, cov, groups, anchors, prior_strength=.001, starts=2,
         alternatives=alternatives, coefficient_design_rank_nominal=int(problem.design_rank),
         coefficient_count=model.size, nominal_design_singular_values=problem.design_singular.tolist(),
         column_scale=problem.column_scale.tolist(), prior_strength=prior_strength,
-        prior_center=problem.beta0.tolist(), temporal_strength=0., anchor_scales=[.1, .25],
+        prior_center=problem.beta0.tolist(), temporal_strength=0., anchor_scales=problem.anchor_scales.tolist(),
         weighting="equal_fixation_1/(K*n_k)", projected_stationarity_tolerance_physical=1e-3,
         inner_stationarity_tolerance_scaled=1e-7, objective="fixed_covariance_quadratic_variable_projection")

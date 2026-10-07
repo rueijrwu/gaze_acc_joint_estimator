@@ -13,6 +13,7 @@ modified.
 | `audit_polished_v1/` | All 27 original models reevaluated after inverse polishing; original results preserved; comparison and candidate archives |
 | `crosscheck_v1/` | Post-processing of frozen audit frames/holdouts into three excluded-P4 scores per frame, subset-state disagreement, full scheduled-slot coverage, and exact matched interior cohorts; no refits or new predictions |
 | `audit_checks_v1/` | Recorded regressions, independent polynomial profiles, fixed-response measurement ablations, training residuals and conditional coefficient sensitivity |
+| `joint_sensitivity_v1/` | Completed Phase 8.2 grouped joint-calibration sensitivity: 144 task outcomes, 143 accepted and one retained uncertified calibration; see [`RESULTS.md`](joint_sensitivity_v1/RESULTS.md), [`verification.json`](joint_sensitivity_v1/verification.json), and the [root audit](../../AUDIT_REPORT.md) |
 | `prior_reference_v2/` | Full-development, 24 original rows per fixation, prior 0.001; converged models |
 | `zero_prior_v2/` | Matched development sampling without a coefficient prior; all fits reached their evaluation budgets and remain failed checkpoints |
 | `gpu_check27/` | Optional CuPy solver versus scalar reference, 32 real-data full/subset checks; agreement on these cases |
@@ -36,3 +37,14 @@ The standalone two-channel estimator has no individual-P4 decoder, so it has
 no score on the excluded-P4 cross-prediction metric. Nominal-anchor consistency
 remains a separate secondary diagnostic. Read the versioned cross-check report
 for metric conventions, matched support, boundaries, and missing-slot counts.
+
+## Phase 8.2: joint-training sensitivity (run complete)
+
+The `joint_sensitivity_v1/` study refit the conditional 27- and 37-coefficient
+models over the frozen grouped folds from `audit_polished_v1/` under eight
+predeclared calibration/reference settings. It retains the uncertified fit,
+compares exact matched support against the frozen models and a fresh joint
+baseline, and leaves model selection open. See the [results](joint_sensitivity_v1/RESULTS.md),
+[verification record](joint_sensitivity_v1/verification.json), root
+[audit report](../../AUDIT_REPORT.md), and root [current status](../../CURRENT_STATUS.md), plus
+[reproduction and output-schema notes](../../full_position/README.md#phase-82-joint-training-sensitivity).
