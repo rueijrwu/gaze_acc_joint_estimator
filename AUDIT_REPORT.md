@@ -4,7 +4,39 @@
 **Branch:** `exp5_full`  
 **Historical audit snapshot:** `c2584292d13393a4c5a8bb34afdea9c19f90e67f`
 **Revision date:** 2026-10-07  
-**Revision scope:** audit and evaluation contract, the Phase 8.1 frozen-record three-way cross-check (post-processing only), and the Phase 8.2 grouped joint-calibration refits. Only the Phase 8.1 cross-check adds no retraining, inverse runs, or physiological measurements; Phase 8.2 refits latent states and coefficients.
+**Revision scope:** audit and evaluation contract, Phase 8.1 frozen-record cross-check, Phase 8.2 grouped joint calibration and its audit follow-up, and Phase 8.3 frozen-response retained-channel comparison. Phase 8.2 refits shared states and coefficients; Phase 8.3 keeps responses fixed and computes retained-x inverses. No physiological measurements are added.
+
+## Phase 8.2 audit response and Phase 8.3 completion
+
+The recommendations in [PHASE_8_2_AUDIT.md](PHASE_8_2_AUDIT.md) are addressed by
+the exact state-scale symmetry and real branch-cost scaling regressions,
+[saved transition/gauge diagnostics](experiments/full_position/phase82_audit_transitions_v1/RESULTS.md),
+[strict preconditioned continuation](experiments/full_position/phase82_strict_retry_v1/RESULTS.md),
+[two anchor-axis conditions](experiments/full_position/axis_anchor_sensitivity_v1/RESULTS.md),
+and [Phase 8.3](experiments/full_position/phase83_retained_channels_v1/RESULTS.md).
+All 36 added joint fits are certified, retaining 429 scored slots per family and
+condition/capacity; the training-only failed-fit retry passes the original gate
+without changing the historical failure or its evaluation denominator.
+
+Phase 8.3 keeps all P1 references and excludes the same P4 point for retained-x
+and retained-x/y inversion. The two methods receive exactly their retained
+coordinates and covariance marginals. Retained-y information reduces E and raw
+state disagreement on exactly paired interior frames for both frozen responses.
+The richer x-only response has additional rank/ambiguity failures (6 gaze and
+11 capture slots). The independently verified run retains all scheduled slots,
+84,084 x start candidates, and all branch/bound evidence. Its 18 tasks took 57
+seconds with ten CPU workers; the 36 joint fits took 634 seconds with eight.
+BLAS/OMP are one per worker, consistent with the measured benchmark.
+
+Gaze-only strengthening appears more useful for conditional37 capture-state
+agreement than accommodation-only strengthening. Neither establishes a new
+overall winner: baseline27 still has lower held-point error. Selective shrinkage
+of only the ten extra conditional37 curvature terms is implemented and tested,
+but its experiment remains conditional on residual evidence supporting richer
+capacity, as the audit requires. Captures 5/6 remain untouched; this is reused
+development evidence rather than physiological or independent final validation.
+All 59 regression tests pass. [CURRENT_STATUS.md](CURRENT_STATUS.md) provides
+the weighted tables, paired squared changes, verification links, and next work.
 
 ## Executive assessment
 
