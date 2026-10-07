@@ -1,204 +1,357 @@
-# Implementation and results audit — exp5_full
+# Implementation and results audit: three-pair predictive agreement
 
 **Repository:** `rueijrwu/gaze_acc_joint_estimator`  
-**Audited commit:** `88f3ac5556f1a4aa3ca1e42db356853ab8c48f53`  
-**Audit date:** 2026-10-07  
-**Repository changes:** None. This report and numerical experiments are local audit artifacts.
+**Branch:** `exp5_full`  
+**Evidence snapshot:** `c2584292d13393a4c5a8bb34afdea9c19f90e67f`  
+**Revision date:** 2026-10-07  
+**Revision scope:** documentation and evaluation contract; no code changes, retraining, new inverse runs, or new physiological measurements.
 
 ## Executive assessment
 
-The implementation substantially follows the mathematical core of `Theory.md` and `ESTIMATOR_PLAN.md`. It is a faithful first **conditional six-coordinate prototype**, not a completed validation program. The optional nine-coordinate joint P1/P4 model was explicitly deferred and its absence is not a defect.
+**The main question is whether different parts of the three-pair measurements support one shared gaze/accommodation state and predict the remaining measured geometry.** Agreement means consistency with the same optical state, not equality of the three P4 positions and not preservation of triangle similarity.
 
-The saved study does not establish improved gaze/accommodation accuracy over the two-channel control. It does establish working overdetermined geometric diagnostics and identifies important model/noise mismatch. A targeted numerical audit additionally demonstrates a concrete improvement: recover and polish lower-cost inverse candidates **before discarding them using the current gradient threshold**.
+The setup contains **three P1 points and three corresponding P4 points**, each measured in x and y: six image points and twelve raw coordinates. There are **two unknown states**, horizontal gaze and accommodation. The historical **two-channel** estimator compresses the same measured geometry into displacement and area ratio; it does not mean that this experiment measured only two pairs.
 
-The most important refinement to CURRENT_STATUS.md is that some apparent inverse-search failures are not failures to enter the correct basin. The current scalar solver can reach the better minimum from several starts, reject every one of those candidates on its final stationarity threshold, and retain a worse branch. Adding starts or GPU candidates alone does not address this certification problem reliably.
+The implementation substantially follows the conditional full-position theory. It preserves the three-point P1 reference, fits all six P4 coordinate responses, and predicts each excluded P4 point from a state inferred without that point. Inverse certification and the principal reporting/compatibility findings from the original audit have been addressed. The latest results support `conditional27` over `conditional37` on the measured cross-prediction criterion. They do not establish adequate uncertainty calibration, superior physiological accuracy, or a direct cross-prediction advantage over a two-channel model that does not itself predict individual P4 points.
 
-## 1. Scope and evidence boundary
+The evaluation priorities are now:
 
-Reviewed source includes geometry, model bases/derivatives, coordinate-noise propagation, variable-projection calibration, scalar inversion, P4 holdout prediction/scoring, grouped loading/evaluation, reporting, schema handling, application, optional batched inversion, and all 14 acceptance-test definitions. Reviewed results include RESULTS.md, metrics excerpts, saved model parameters, frame outputs, and uncertainty records.
+1. **Primary predictive evidence:** three-way held-out P4 prediction errors on matched, declared populations.
+2. **Complementary shared-state evidence:** disagreement among the three subset gaze/accommodation estimates, with rank, ambiguity, bounds, and coverage.
+3. **Supporting diagnostics:** all-three fit residuals, nominal fixation-mean agreement, calibration sensitivity, and uncertainty calibration.
 
-The repository archive could not be cloned into the execution environment. The complete 14-test suite and 27 fold/model calibrations were **not rerun**. Instead, targeted numerical experiments used:
+Nominal accommodation demand is not measured accommodation. Better agreement with demand is not the primary definition of success for this experiment. Equally, low subset-state disagreement alone is insufficient: a biased or uninformative model can make all subsets agree while predicting the measurements poorly.
 
-- The exact `full_position/model.py`, copied from the connector and verified against Git blob SHA `f66f1339de6213432f1bbe60010121a5b77c8112`.
-- The saved `gaze_-10/conditional37` coefficients and two frames from capture 1, rows 1380 and 1928.
-- P1/P4 coordinates reconstructed algebraically from saved predicted points, predicted translation/map, and point errors. No missing data values were guessed.
-- The saved reference residual covariances. No noise model or coefficients were refitted.
-- NumPy 2.3.5 and SciPy 1.17.0 in the audit runtime.
+## 1. Evidence, provenance, and historical boundary
 
-The reconstruction uses `p_j-c1 = T^{-1}(qhat_j-mean(qhat))`, obtains `ell1` from that centered P1 triangle, then `c1=mean(qhat)-ell1*D` and `q_j=qhat_j+error_j`. Reconstructed summaries were checked against saved summaries, and the saved row-1928 weighted cost was reproduced. Tiny reconstruction/solver-environment differences can change the current pass/fail decision, which is part of the numerical brittleness being investigated.
+This revision reconciles the [current status](CURRENT_STATUS.md), [polished frozen-model results](experiments/full_position/audit_polished_v1/RESULTS.md), the previous audit, and the current inversion/reporting implementation. The original numerical audit concerned commit `88f3ac5556f1a4aa3ca1e42db356853ab8c48f53`. Its report is preserved in [the pre-rewrite file at the evidence snapshot](https://github.com/rueijrwu/gaze_acc_joint_estimator/blob/c2584292d13393a4c5a8bb34afdea9c19f90e67f/AUDIT_REPORT.md).
 
-The evidence package contains code, fixtures, every scalar-start result, profile candidates, polished results, and derivative verification. These are two targeted rows, not a newly evaluated population or an independent physiological reference.
+The original audit's targeted numerical findings are historical evidence, not new calculations performed for this revision. Likewise, the 21 passing tests, source/model preservation checks, objective reconstruction, and profile comparisons below are **reported by the saved implementation audit**, not independently rerun during this documentation update.
 
-## 2. What follows the theory and plan
+The old report's recommendations to implement polishing and fix basic reporting must not remain listed as unresolved defects. Conversely, the new metric aggregation and experiments proposed below are **not implemented merely because this report specifies them**. Statements in `CURRENT_STATUS.md` that the audit fixes are implemented refer to the earlier numerical/reporting findings, not blanket completion of this revised evaluation contract.
 
-### Geometry and state
+Original `grouped_v2` outputs remain historical. Use `audit_polished_v1` for the latest fixed-model comparison; do not silently combine different supports or original and revised branches.
 
-`model.py` and `geometry.py` implement the prescribed P1 centroid and square-root P1 triangle-area normalization. All six P4 coordinates are retained. P4 flags and coordinates are reordered together. The new basis uses `theta/10` and the data loader checks `[-10,-5,0,5,10]` targets. The separately fitted summary control uses the equivalent baseline functional family at scale 10, without reinterpreting frozen scale-15 coefficients.
+## 2. What is measured, estimated, and cross-checked
 
-Predictions have the required form `vhat_j=D(theta,A)+T(theta,A)r_j`. The matrix is state dependent, not independently adjusted per frame. P4 centering does not absorb a prediction error. Area and centroids are derived summaries rather than duplicated residual blocks.
+### 2.1 All three pairs remain in the experiment
 
-### Calibration
+After applying correspondence metadata, write the measured positions as
 
-`calibrate.py` fits globally shared coefficients and framewise states, with soft fixation-mean anchors and equal-fixation optical weighting. The coefficient solve uses a scaled QR factorization. The profiled derivative includes the dependence of optimal coefficients on states, including the residual-dependent term. Jacobian operators capture the current arrays instead of following a mutable trial-state cache. These are important correct details.
+$$
+\mathbf p_j=\mathbf P_{1,j},\qquad
+\mathbf q_j=\mathbf P_{4,\pi(j)},\qquad j=1,2,3.
+$$
 
-Both coordinate capacities and the fold-local summary control use zero temporal regularization in the primary experiment. This is the intended first geometry-isolation policy. Failed calibration starts remain separate from accepted model artifacts.
+The recorded zero-based correspondence is `pair_index=[2,1,0]`. Coordinates and validity flags must be reordered together. The reference quantities are
 
-### Noise and held-out measurements
+$$
+\mathbf c_1=\frac13\sum_j\mathbf p_j,\qquad
+\mathcal A_1=\frac12\left|\det[\mathbf p_2-\mathbf p_1,\mathbf p_3-\mathbf p_1]\right|,
+\qquad \ell_1=\sqrt{\mathcal A_1},
+$$
 
-`noise.py` propagates the complete residual's dependence on P1 and P4, rather than treating measured P1 context as exact. Reference weights depend on P1 and training-only pilot information, not observed held-out P4 coordinates. Subset solves use covariance marginals before inversion. Predictive covariance includes cross terms due to shared P1 errors.
+$$
+\mathbf r_j=\frac{\mathbf p_j-\mathbf c_1}{\ell_1},\qquad
+\mathbf v_j=\frac{\mathbf q_j-\mathbf c_1}{\ell_1},\qquad
+\mathbf u_j=\mathbf v_j-\mathbf r_j.
+$$
 
-`predict_holdout` has no argument containing the excluded P4 measurement; scoring is separate. The reviewed integration does not use an all-three baseline estimate to initialize a subset inverse. Prediction branches are determined before observing the excluded point. This is consistent with the intended conditional-on-stored-detections test.
+The required summaries remain exactly
 
-## 3. High-priority numerical finding: certification can discard the better inverse
+$$
+\boxed{d_x=\frac{c_{4,x}-c_{1,x}}{\sqrt{\mathcal A_1}},\qquad
+\rho_4=\frac{\mathcal A_4}{\mathcal A_1}.}
+$$
 
-### Source behavior
+Area means the triangle formed by reflection centers, not blob area. Keep this normalization while isolating the value of additional coordinate information.
 
-`invert.py::invert` runs 49 bounded least-squares solves, then discards a candidate if `result.success` is false or the encoded unit-step projected-gradient mapping exceeds `1e-4`. It stores only a count for discarded starts, not their final states, costs, or termination reasons. Clustering and branch ranking occur after this rejection.
+The current nominal gaze targets are **-10, -5, 0, 5, 10 degrees**. New models use `theta_deg/10`. The frozen baseline retains its original `theta_deg/15` coefficient convention; 15 is not a calibration endpoint. The computational box `theta in [-20,20]`, `A in [0,6]` is not a statement of calibrated coverage. Sources: [Theory.md](Theory.md), [ESTIMATOR_PLAN.md](ESTIMATOR_PLAN.md), and [current status](CURRENT_STATUS.md).
 
-SciPy's small-step termination and the application's post-check are different criteria. A solver can stop with an essentially stable state while still failing a stringent absolute gradient test in a high-curvature, high-residual problem. It is correct not to equate solver success with validation; it is not robust to discard the candidate before an independent polishing/certification attempt.
+### 2.2 One state predicts different pair responses
 
-### Targeted reproduction: capture 1, row 1380, exclude P4 index 1
+The implemented conditional prediction is
 
-The audit used only the retained four P4 coordinates in the inverse. In the local 49-start run, **eight starts reached the lower-cost minimum**, with state spreads below approximately `4e-7` in physical units, but none passed the post-check. An accepted higher-cost branch was selected instead.
+$$
+\boxed{\widehat{\mathbf q}_j(x)
+=\mathbf c_1+\ell_1[\mathbf D(x)+\mathcal T(x)\mathbf r_j]},
+\qquad x=(\theta,A).
+$$
 
-| Quantity | Selected scalar branch | Lower branch after polishing |
-|---|---:|---:|
-| Gaze, degrees | -11.114328 | -11.000176 |
-| Accommodation, D | 4.516246 | 0.961266 |
-| Retained-coordinate weighted cost | 26,295.892702 | 24,441.696646 |
-| Withheld-point prediction error, px | 5.958522 | 2.695215 |
+The coefficients defining `D` and `T` are shared across calibration observations and frozen during application. Only two state components vary in a frame; there are no freely fitted framewise displacement/deformation coefficients.
 
-Two exact-Hessian Newton polishing steps reduced the lower branch's encoded gradient below `7e-9`, satisfying the **existing** `1e-4` threshold. No tolerance relaxation or held-out-point branch selection was used. This recovers the same better minimum described in the repository GPU audit while exposing a more specific mechanism: a basin can be reached and then rejected by certification.
+P1 and P4 sample different, state-dependent images of the source pattern. Expected unequal magnification, orientation, and shape changes belong in the prediction. The residual is disagreement with the **predicted distorted pattern**, not departure from a similarity transform. Three sampled pairs admit an effective affine representation without establishing a globally affine optical mapping or identifying unique physical aberration coefficients.
 
-### Second case and limits
+The model implies `dhat=D` and `rhohat=abs(det(T))`. Area and centroid summaries must not be appended as independent observations to the six coordinate residuals. The predictive formula uses the P1 centroid, not the measured P4 centroid.
 
-For row 1928, all 49 local starts reached essentially the same full-frame minimum, but none passed the post-check in this environment. Their state spread was below approximately `3e-7`. Polishing recovered the saved state and cost, with gradient around `6e-9`.
+### 2.3 What the conditional model does not claim
 
-Across the two rows' full and three subset solves, all eight best profile candidates passed the original gradient criterion after two polishing steps. The exact model Hessians were checked by finite differences; maximum absolute discrepancy was about `2.4e-12`.
+Twelve raw coordinates have nine continuous geometric degrees of freedom after removal of common translation and positive scale on a nondegenerate branch. The current model treats normalized P1 geometry as noisy measured context and predicts six P4 components. It is a **six-residual conditional model**, not nine independent state observations or twelve independent residuals.
 
-Several polished withheld errors still ranged from roughly 4.7 to 10.2 pixels. Fixing numerical acceptance does not make the larger response model adequate or establish physiological accuracy.
+All three P1 points are used, but this procedure does not separately hold out and validate every P1 point. Shared P1 error can affect all three cross-checks. The optional joint nine-component model, or a genuine P1-point holdout with a different reference construction, is a separate experiment; neither is required to define the current P4 test.
 
-### Recommended numerical change
+## 3. Primary experiment: three-way P4 cross-prediction
 
-Retain all finite final candidates and their diagnostics, including rejected candidates. Distinguish budget exhaustion, small-step termination with unresolved stationarity, weak rank, invalid geometry, and a genuinely unlocated branch. Add a safeguarded polishing stage before final rejection and branch clustering. Check feasibility, projected stationarity, local curvature/minimum status, stable cost, and a declared physical state-correction tolerance.
+For each evaluation frame, freeze the calibrated model and perform all three tests:
 
-For an interior fixed-covariance least-squares objective, use the exact Hessian
+| Test | P1 reference | P4 inputs to the state solve | Predicted/tested measurement |
+|---|---|---|---|
+| Exclude P4_1 | All three P1 points | P4_2 and P4_3, x and y | P4_1, x and y |
+| Exclude P4_2 | All three P1 points | P4_1 and P4_3, x and y | P4_2, x and y |
+| Exclude P4_3 | All three P1 points | P4_1 and P4_2, x and y | P4_3, x and y |
 
-`H = J^T R^-1 J + sum_k (R^-1 e)_k Hessian(e_k)`.
+**Two retained P4 points are used only inside one cross-check. The experiment still has all three pairs, and every P4 point is tested in turn.** All P1 points remain available, so the prescribed normalizer is unchanged.
 
-A production polish must handle active bounds and indefinite Hessians; the supplied audit polish is deliberately limited to the tested interior cases.
+Let `I_j` contain the four coordinates of the other two P4 points. Solve
 
-## 4. Independent branch-check opportunity from the existing bases
+$$
+\widehat x_{-j}=\arg\min_{x\in\mathcal B}
+ e_{I_j}(x)^\top R_{I_jI_j}^{-1}e_{I_j}(x),
+\qquad e(x)=v-F(x,r),
+$$
 
-At a fixed accommodation value and fixed P1 context, every predicted coordinate is cubic or lower in `t=theta/10`. Thus the fixed-weight cost is polynomial of degree at most six in t, and its derivative has degree at most five.
+then, without changing the selected state/branch using the excluded observation, compute
 
-For each accommodation value, enumerate the real stationary gaze roots in `[-2,2]`, include both endpoints, and evaluate their costs. This checks the best gaze candidate conditional on that accommodation without depending solely on 2D optimizer paths. Sweep and adaptively refine accommodation, track distinct branches, and polish candidates in two dimensions.
+$$
+\boxed{\mathbf e_j^{\rm cross}
+=\mathbf q_j-\widehat{\mathbf q}_j(\widehat x_{-j}).}
+$$
 
-The targeted audit implemented this calculation and checked its coordinate polynomials against the exact model. It exposed the low- and high-accommodation minima in row 1380. Root finding has numerical tolerances, and a finite accommodation grid is **not** a proof of global completeness. This should first be a reference audit method, not an unqualified production global solver.
+This is the relevant cross-check agreement between measurements: a state supported by the retained measurements predicts the excluded response. Four retained scalar observations can locally identify two states, but subset rank, conditioning, and branch uniqueness must be checked, not assumed.
 
-## 5. What the saved real-data results establish
+### 3.1 Two different holdouts must remain distinct
 
-### Reported matched-support prediction errors
+An **outer fixation/gaze/capture holdout** keeps evaluation observations out of coefficient fitting, noise estimation, prior construction, and model selection. The **within-frame P4 holdout** keeps one measurement out of that frame's state solve. A strong predictive test uses both.
 
-| Model | Gaze-holdout RMS, px | Capture-holdout RMS, px | Gaze-holdout nominal gaze-mean RMSE, degrees | Gaze-holdout nominal accommodation-mean RMSE, D |
-|---|---:|---:|---:|---:|
-| conditional27 | 3.423 | 4.067 | 0.761 | 1.135 |
-| conditional37 | 6.197 | 4.354 | 0.742 | 1.450 |
-| two_channel13 | Not a coordinate predictor | Not a coordinate predictor | 0.564 | 0.536 |
+An in-sample P4 exclusion can still reveal internal inconsistency, but its global calibration may already have seen the tested frame. Do not label that as the same evidence as prediction on a genuinely withheld condition.
 
-The coordinate RMS comparisons use 426 matching point tests per split family. The means are saved report values, not recalculated physiological errors. The study has 160 sampled rows per split family, 143 baseline-valid complete rows, only 20 fixation intervals, and four recordings. The two split families reuse observations.
+### 3.2 Leakage and branch rules
 
-`conditional27` is the more stable current coordinate candidate. `conditional37` is substantially worse at endpoint gaze holdouts, which are extrapolations relative to their training anchors. Its slightly better median at -5 degrees is not uniform improvement; the saved RMS in that fold is worse. Neither model improves overall agreement with nominal anchors in the saved study.
+The excluded P4 point must not influence its subset solve through the full P4 centroid, area, observed map, all-three initializer, weights, validity gates, state penalties, or branch choice. Use the retained covariance marginal before whitening. Changing the excluded raw coordinate must leave preprocessing, starts, subset branches, and predictions unchanged until scoring.
 
-However, nominal accommodation demand is not measured accommodation. These results do not prove that the two-channel estimates are physiologically more accurate. Likewise, two observations and two states can yield near-zero optical residual without validating the physical state. Raw residual magnitudes across different measurement dimensions are not comparable accuracy scores.
+**Do not select a subset branch by making it agree with the other subset estimates or the all-three estimate.** Those estimates generally use the excluded P4 point, so that would leak it back into its own test. State agreement is evaluated after independently freezing the subset results.
 
-The experiment does show that the additional geometry exposes failures of the shared-state response/noise model that two summary channels cannot expose. That is useful diagnostic capability, but not yet a validated detector-error classifier.
+Ambiguous subsets retain their prediction sets and are marked inconclusive for a single-prediction score. Weakly identified subsets are not evidence that the excluded point is wrong. A branch selected using all measurements may be useful operationally, but it is a different result and not an untouched holdout.
 
-## 6. Uncertainty and model discrepancy must be separated
+The checks are conditional on stored detections. Upstream detector selection can already share point history or geometric assumptions; leave-one-P4-out inference does not make the image-localization pipeline independent.
 
-The shared-input propagation formulas are implemented correctly in the inspected code. The statistical problem is that their input covariance describes short-timescale effective coordinate noise, not total prediction error.
+## 4. Metric contract: prediction, state agreement, and coverage
 
-Saved median held-out squared Mahalanobis scores around 1,531 and 2,521 indicate that the declared covariance does not describe the observed predictive errors. Calibration-coefficient uncertainty and systematic response discrepancy are excluded from the current local covariance and have not been established by the primary experiment.
+The current code reports point errors and retains subset states. It does not yet provide the explicit per-frame three-way shared-state scorecard specified here. These are reporting additions to derive from saved outputs first, not a request to retrain or force subset agreement.
 
-Second differences remove slow changes. They cannot alone estimate slow pose drift, repeatable field-dependent bias, or uncertainty of a fitted response surface. A synthetic Monte Carlo test under the assumed covariance checks propagation mathematics, not validity of that covariance for the actual recordings.
+### 4.1 Point-prediction agreement
 
-Do not simply inflate noise until the scores look acceptable. Uniform covariance scaling does not change a no-prior fixed-model framewise minimizer; it does change uncertainty numbers and can change calibration's optical-versus-anchor/prior tradeoff. Those are different experiments.
+For a frame with three testable, unambiguous checks, report
 
-Add training-only grouped prediction residual analyses, coefficient refit sensitivity, and a separately declared discrepancy model. Plot signed residuals by point, coordinate axis, gaze, demand/capture, and P1 context. Report optical, anchor, and prior objective components separately. Investigate systematic patterns before treating them as random noise.
+$$
+E_{\rm cross,px}
+=\sqrt{\frac13\sum_{j=1}^3\|\mathbf e_j^{\rm cross}\|^2},
+\qquad
+E_{\rm cross,norm}=E_{\rm cross,px}/\ell_1,
+$$
 
-There is no immediate evidence that replacing triangle-area normalization fixes this problem. The two targeted difficult frames have P1 edge condition numbers about 1.88 and reported area signal-to-noise about 8,600: they are not near-collinear P1 triangles. This observation is local, not a guarantee about every frame.
+$$
+E_{\max,px}=\max_j\|\mathbf e_j^{\rm cross}\|,
+\qquad
+E_x=\sqrt{\frac13\sum_j(e_{j,x}^{\rm cross})^2},\quad
+E_y=\sqrt{\frac13\sum_j(e_{j,y}^{\rm cross})^2}.
+$$
 
-## 7. The present comparisons do not isolate extra information
+`E_cross,px` is RMS of three **2D point distances**, not coordinate-component RMS; its divisor is 3, not 6, and `E_cross,px^2=E_x^2+E_y^2`. Keep signed point/axis errors to distinguish repeatable bias from random spread. Use pixel and normalized versions together; numerical thresholds must identify which units they use.
 
-The plan calls for comparisons that separate geometry, model capacity, weighting, and priors. The implementation currently compares separate 13-, 27-, and 37-coefficient model families. It uses a common pilot/noise policy for the two coordinate capacities, which is helpful, but it does not implement the planned reduction of the **same** full-model prediction to centroid/area or the optional similarity-restricted comparison.
+Across a fixed complete-frame set, the pooled point RMS is `sqrt(mean(E_cross,px^2))`, not `mean(E_cross,px)`. Also report medians, tails, and results by point, gaze, fixation, and capture/demand. Preserve the original pooled statistic for reproducibility and add a clearly labeled equal-fixation aggregate so unequal valid-frame counts do not silently change weighting. Record membership for every aggregate.
 
-Add a fixed-response controlled study: freeze one training-only full response, then compare state inversion from its six coordinates versus its derived summaries, with appropriate transformed covariance. This isolates measurement choice from coefficient changes, although it is a state-estimation diagnostic rather than a valid withheld-point baseline if the summaries include that point.
+### 4.2 Shared-state agreement
 
-For an untouched P4 prediction, compare retained-coordinate subsets that all exclude the tested P4 point—for example retained x-only versus retained x/y components, only where both subsets identify the two states. Never use an all-three triangle area in a held-out-P4 inverse.
+The three tests produce
 
-Nested grouped selection, adequate within-support tests, denser evaluation, and matched state-comparison populations remain unfinished. The current code honestly labels its fixed-setting run exploratory. Choosing conditional27 using these outer folds now makes those results development evidence for the choice; do not relabel them an untouched selection test. Keep captures 5/6 for final transfer after the numerical and modeling choices are frozen.
+$$
+\widehat x_{23}=\widehat x_{-1},\qquad
+\widehat x_{13}=\widehat x_{-2},\qquad
+\widehat x_{12}=\widehat x_{-3}.
+$$
 
-## 8. Optical interpretation and model updates
+For three identifiable, unambiguous results, define descriptive centers
 
-The theory's central interpretation should remain: reproducible translation and distortion are state signal, and unexplained residuals test the shared-state model. Do not force similarity or add arbitrary framewise affine parameters to eliminate disagreement.
+$$
+\bar\theta=\frac13\sum_j\widehat\theta_{-j},\qquad
+\bar A=\frac13\sum_j\widehat A_{-j},
+$$
 
-After correcting inversion and characterizing residuals, test targeted missing response terms rather than increasing every polynomial indiscriminately. For example, both current capacities use an accommodation-independent cubic coefficient in Dx; neither includes `t^3 log(1+A)`. In the illustrative field model with an accommodation-dependent cubic distortion coefficient, such a mixed common-translation term can arise. That motivates a bounded ablation, not proof that it is the cause of the real-data errors.
+and report separately
 
-Inspect P1-context dependence and source/eye/camera geometry before adding nuisance states. The exact ability of three pairs to define an affine map does not establish that a low-degree state-only map transfers across different P1 contexts. Capture and demand are confounded in these recordings.
+$$
+\boxed{S_\theta=\sqrt{\frac13\sum_j(\widehat\theta_{-j}-\bar\theta)^2}},
+\qquad
+\boxed{S_A=\sqrt{\frac13\sum_j(\widehat A_{-j}-\bar A)^2}}.
+$$
 
-Audit detector selection before calling the measurements independent optical checks. The estimator preserves selected coordinates; it does not independently localize the underlying reflections. If selection already enforces approximate similarity, the available distortions can be biased or truncated. This is an unresolved measurement-pipeline issue, not a demonstrated current detector bug.
+Also report the ranges `max(theta_-j)-min(theta_-j)` and `max(A_-j)-min(A_-j)`, every signed pairwise state difference, and subset-versus-all-three differences. The all-three estimate is an operational reference, not ground truth. The descriptive centers above are not a replacement estimator.
 
-## 9. Reporting and application defects/gaps
+`S_theta` is in degrees and `S_A` in diopters. Do not add their raw squares into one unitless score. A combined score requires predeclared physical reference increments and separate component reporting. The divisor 3 describes dispersion of these three results; it is not an independence-based variance or standard-error estimate.
 
-### Misleading metric names
+These inverses share P1 and overlapping P4 measurements, so their errors are correlated. For example, uncertainty of a difference requires
 
-`validate.py::summarize` computes the fields named `gaze_mean_anchor_discrepancy_deg` and `accommodation_mean_demand_discrepancy_D` from **individual estimated frames**. Their RMS is not RMS of fixation means. `report.py` separately writes fixation means, and RESULTS.md labels its table as fixation-mean RMSE. Do not assume the published table is wrong; the per-frame summary/metrics names are misleading and invite an incorrect comparison.
+$$
+\operatorname{Cov}(\widehat x_a-\widehat x_b)
+=C_a+C_b-C_{ab}-C_{ba}.
+$$
 
-Rename per-frame statistics explicitly and emit separately computed fixation-mean statistics, including group membership, weighting, counts, and common-support versions.
+Do not add two marginal state covariances and silently assume zero cross-covariance. Simple descriptive differences can be reported now; calibrated statistical consistency probabilities require the joint error model, calibration uncertainty, and model discrepancy.
 
-### Calibration cost selection in reports
+A separately inverted single pair could be another diagnostic only when its two coordinate responses identify both states. The current reference intentionally uses two retained P4 points for redundancy; it does not claim that every single pair has a regular two-state inverse.
 
-`report.py::generate` reports the minimum cost over every calibration start, including failed ones. The applied model is selected from accepted starts when any exist. Report `alternatives[selected_start].cost`, plus a separately labeled best rejected-start cost. This is a definite code-path risk; the audit did not establish that it changes the saved aggregate result table.
+### 4.3 Coverage and failure are inseparable from agreement
 
-### Incomplete model compatibility checks
+Retain the entire preselected population, all raw-valid subsets, and all solver outcomes. Report counts of complete three-check frames, partial checks, missing geometry, numerical failure, weak rank, ambiguity, bound-active solutions, and state/context extrapolation. A missing or ambiguous check is not zero error and not successful agreement.
 
-`schema.py::load_model` checks schema, gaze/state scales, targets, coefficient shape, and convergence, but does not validate all declared normalization, coordinate/coefficient order, bounds, pilot, or covariance semantics. Execution uses hard-coded definitions. Reject incompatible metadata explicitly rather than silently applying the hard-coded convention. Existing files were not shown to be incompatible.
+A frame missing any of the three tests has no complete-frame `E_cross`, `S_theta`, or `S_A`; keep its individually available errors with explicit partial support. Do not silently recompute a three-way score from two surviving tests.
 
-### Application misses diagnostics required for transfer
+Bound-active unique predictions may retain geometric errors, but must have a separate stratum. Shared clipping at `A=0` or `A=6` can manufacture small state spread. Local Gaussian scores must remain unavailable where their regular-interior assumptions fail. Declare physical-unit sensitivity and conditioning policies before judging state agreement; rank two alone need not mean useful precision.
 
-`apply.py` preserves rows and inverse diagnostics but does not emit the same anchor/context support and uncertainty fields added by `diagnostics.py` to grouped results. The enrichment tool loads the reviewed capture set; it is not a general replacement for application diagnostics on new captures. Share one evaluator so captures 5/6 and future recordings receive the same support, parity, uncertainty, and failure contract.
+For the saved study, 429 scored point tests refer to the 143 complete valid rows per split family. Each family originally selected 160 rows; 17 invalid rows remain part of coverage reporting. Do not present 429/429 valid-point scoring as complete coverage of every originally selected frame.
 
-### Convergence documentation and tests
+### 4.4 Metrics that support, but do not replace, the cross-check
 
-The calibration callback can certify stable cost/step, but acceptance also permits `result.success` plus stationarity without that certificate. Either make the acceptance contract explicitly allow sufficient stationarity termination or enforce every stated convergence condition; do not claim every accepted fit has a stable-step/cost certificate.
+All-three fitted residuals describe how well all observations can be fitted together, not untouched prediction. Retained-subset optimization cost assesses the solver's own inputs, not the excluded measurement. Nominal fixation means assess calibration conventions and plausibility, not independently measured accommodation. Small uncertainty estimates, smooth traces, or agreement with the baseline are not standalone success criteria.
 
-The 14 existing test definitions cover valuable mathematics and clean synthetic recovery. Add high-residual recorded-candidate regressions, rejected-low-cost candidate retention, bounded polishing, end-to-end raw-input holdout noninterference, compatibility rejection, and report-aggregation tests. RESULTS.md still says twelve tests while CURRENT_STATUS.md and the current test definitions say fourteen.
+Select with a scorecard: predictive agreement, state consistency, testable coverage, identification, and robustness across grouped conditions. Do not train a constant/overconstrained state response, impose equality between subset estimates, or apply strong state priors merely to reduce the displayed agreement metric. Calibration anchors still provide approximate physical state meaning; they are not discarded, but their influence must be measured.
 
-## 10. Recommended next sequence
+## 5. Latest results under the corrected objective
 
-1. **Numerical reliability:** retain and polish candidate solutions, use branch profiling as an independent check, add high-residual regressions, and reevaluate the existing fitted models without retraining. Keep original results intact and report transitions in coverage, branches, and point errors.
-2. **Reporting consistency:** fix metric names, selected-start costs, acceptance status semantics, and application/schema diagnostics.
-3. **Error diagnosis:** separate measurement covariance, coefficient uncertainty, and response discrepancy; decompose objective terms and run grouped training-only sensitivity to anchors/priors/reference covariance.
-4. **Information ablations:** compare measurement subsets with controlled forward capacity, and test only physically motivated basis additions supported by residual patterns.
-5. **Stronger evaluation:** nested grouped selection, denser matched evaluation, detector/context audits, and then untouched capture-5/6 transfer. Independent references are still needed for physiological accuracy claims.
+The [frozen-model reevaluation](experiments/full_position/audit_polished_v1/RESULTS.md) reused all 27 saved models, their coefficients/covariances, and the original sampled populations. No retraining was performed. The following are saved results, not recalculated metrics from this rewrite.
 
-## Improvement assessment
+| Split family | Common scored P4 tests | conditional27 cross-prediction RMS, px | conditional37 cross-prediction RMS, px |
+|---|---:|---:|---:|
+| Held-out gaze condition | 429 | **3.423** | 6.620 |
+| Held-out capture/demand | 429 | **4.062** | 4.353 |
 
-- **Demonstrated locally in this audit:** a lower-cost, properly certified subset inverse and a withheld error reduction from 5.96 to 2.70 pixels in one case; robust certification of eight targeted interior inverses.
-- **Implemented diagnostic improvement:** multiple coordinate responses can disagree with the shared state; the baseline's two channels cannot provide that same residual redundancy.
-- **Saved computational improvement:** the repository reports a 14.8x CuPy-versus-batched-NumPy speedup for a large repeated-input timing batch. This audit did not benchmark a GPU and this is not an accuracy or end-to-end calibration-speed result.
-- **Not established:** superior full-study gaze/accommodation estimation, physiological accuracy, calibrated artifact thresholds, or universal CPU/GPU inverse equivalence.
+Both coordinate models now score all 429 valid-population tests per family. `conditional37` full-frame coverage recovered from 139 to 143 gaze frames and from 142 to 143 capture frames. Previously reported 426-point comparisons must not be mixed with this expanded support. On its unchanged 426-point gaze support, `conditional37` RMS changed from 6.197 to 6.632 px; support expansion does not explain that deterioration.
+
+**The relevant comparison favors `conditional27` because it predicts excluded measurements better, not because it is closer to nominal accommodation demand.** It is the current development reference, not a physiologically validated winner or proof that extra curvature is always harmful.
+
+Explicit distributions of `S_theta` and `S_A` are not established by the headline reports. Extract them from the saved subset states and report them alongside point errors before declaring strong three-way state agreement. Existing subset-versus-all-three differences do not replace this full comparison.
+
+### 5.1 Better retained fit can mean worse cross-check agreement
+
+Polishing recovered eight lower-cost gaze-subset branches. One improved the excluded-point prediction; seven worsened it. Six worsened predictions concentrate in the capture-2, -10-degree fixation, with errors approximately 23.9-25.3 px.
+
+The original targeted success is preserved: capture 1, row 1380, excluding zero-based P4 index 1, improved from **5.959 to 2.695 px**, while retained-coordinate cost fell from **26,295.893 to 24,441.697**. But that one case cannot represent the other transitions.
+
+The lesson is **not** to retain a known inferior numerical solution because its withheld prediction happens to look better. The corrected solver more reliably exposes that the calibrated response and retained observations can support a state inconsistent with another measured point. Keep the honest worse prediction, then investigate the response/calibration assumptions. A lower training or retained cost is not the cross-check metric.
+
+Independent profile checks agree with the eight recovered transition minima within a reported maximum cost difference of `4.1e-10`. Finite profile grids and local certificates still do not prove global inverse completeness.
+
+### 5.2 Nominal-anchor comparisons have a secondary role
+
+The latest common-support gaze-fold fixation-mean discrepancy RMS is 0.761/0.748/0.564 degrees and 1.135/1.407/0.536 D for `conditional27`/`conditional37`/`two_channel13`, respectively. These numbers belong in the calibration-diagnostic section, not as the primary shared-state success ranking.
+
+The two-channel control is not an individual-coordinate predictor and has no directly comparable held-out-P4 error in these tables. It cannot be declared the cross-check winner from its smaller demand discrepancy or near-zero two-channel residual. Conversely, coordinate models have not established superior absolute state accuracy merely by offering a cross-check the control lacks.
+
+### 5.3 What has improved and what remains unproven
+
+**Demonstrated in the saved audit:** numerical certification and valid-population coverage improved, and the cross-prediction diagnostic is operational. **Favored on the current development comparison:** `conditional27` over `conditional37` for excluded-point prediction. **Not established:** population-level benefit of each added coordinate, calibrated pass/fail thresholds, accurate localization of a faulty point, or independent physiological gaze/accommodation accuracy.
+
+The within-frame tests are correlated. The gaze and capture split families reuse observations. Endpoint gaze holdouts are extrapolations relative to their remaining anchors. Do not pool all point tests as independent recording replications or infer that poor endpoint holdout performance proves failure after training on the full five-target grid.
+
+## 6. Implementation compliance and resolved audit findings
+
+The mathematical core remains aligned with the theory: correspondence-safe six-point input, prescribed area normalization, shared two-state coordinate prediction, state-dependent deformation, fold-local calibration, correlated shared-P1 residual propagation, and leakage-safe P4 exclusion. The optional joint P1-response model remains deferred rather than accidentally omitted.
+
+| Original finding | Status at the evidence snapshot | Remaining boundary |
+|---|---|---|
+| Better candidates discarded before certification | Addressed: candidates retained and bounded exact-Hessian polishing precedes acceptance/clustering | Maintain independent branch checks; no global completeness claim |
+| Per-frame versus fixation-mean metrics confused | Addressed in `validate.py` and `report.py` | Add the explicit three-way prediction/state aggregation in Section 4 |
+| Report could use a rejected start's cost | Addressed: selected and rejected costs separated | Preserve selection provenance in every new run |
+| Compatibility validation and application diagnostics incomplete | Reported addressed in the polished audit; shared support/parity/uncertainty contract | Unavailable uncertainty components remain explicitly unavailable |
+| Numerical regressions and convergence semantics incomplete | Saved suite reports 21 tests, including high-residual and raw-input leakage checks | Add new metric and branch-to-state-agreement regression tests |
+
+Sources: [current inversion](full_position/invert.py), [reporting](full_position/report.py), [evaluation summaries](full_position/validate.py), and [latest audit results](experiments/full_position/audit_polished_v1/RESULTS.md).
+
+The exact-Hessian and polynomial-profile findings from the original audit remain useful numerical safeguards. At fixed accommodation/context, the implemented gaze response is cubic or lower, so the fixed-weight objective is at most degree six in scaled gaze. Stationary-root enumeration plus accommodation refinement provides an independent targeted check; it must not be relabeled a complete global certificate.
+
+The saved verification reports byte-identical copies of 27 models, nine round-tripped populations, 199 matching source hashes, and 21 passing tests. These preservation checks establish reproducibility of the reported update, not physiological correctness or adequacy of the learned response surface.
+
+## 7. What the disagreement teaches us
+
+### 7.1 Separate expected distortion from unexplained disagreement
+
+The optical hypothesis remains appropriate: different source sites can have different gaze/accommodation responses. A correct P4 triangle need not be a uniformly scaled P1 triangle. Investigate error relative to predicted translation and deformation; do not gate away non-similarity or add unrestricted framewise affine parameters to make errors vanish.
+
+The concentrated capture-2 endpoint errors are a useful diagnostic target. Examine signed point/axis residuals, all three subset states, branch transitions, and P1 context at those frame IDs. Neither the concentration nor a large single-point error alone identifies the cause: calibration/extrapolation, response capacity, capture-dependent geometry, and detector selection can all contribute.
+
+### 7.2 Measurement noise is not total prediction uncertainty
+
+The implemented shared-input covariance propagation is consistent with the conditional model. Its short-timescale noise input does not include all response discrepancy or global coefficient uncertainty. Revised median squared Mahalanobis scores remain approximately 1,531/2,315 in gaze folds and 2,521/2,743 in capture folds for `conditional27`/`conditional37`. They are not calibrated artifact probabilities.
+
+Report raw predictive disagreement before deciding how to model its uncertainty. Do not enlarge noise until every cross-check passes, nor discard high-error evaluation rows and report only survivors. Uniform covariance scaling leaves an otherwise fixed, no-prior framewise minimizer unchanged, while calibration anchor/prior tradeoffs can change. Noise propagation, noise assumptions, and calibration uncertainty are separate issues.
+
+### 7.3 Current sensitivity results have a narrower meaning than a calibration audit
+
+Saved training diagnostics report median absolute signed group bias 0.497 px and a 95th percentile of 1.845 px. These are aggregated in-sample fixation/point/axis biases with observations reused across folds, not directly comparable to pooled held-out 2D point RMS and not independent evidence of generalization.
+
+The saved coefficient-sensitivity refits hold latent states fixed. A tenfold prior-strength change modifies training predictions by 0.053-0.142 px RMS for `conditional27` and 0.083-0.174 px for `conditional37`; changing reference-state quartiles gives smaller reported changes. This does not establish that jointly refitted states, anchors, or cross-prediction results are insensitive. The pending experiment must refit states and coefficients together within training groups.
+
+The two original difficult audit frames had well-conditioned P1 triangles, so they did not motivate replacing square-root area first. That local observation does not rule out normalization sensitivity elsewhere. Preserve normalization in the next controlled comparison.
+
+## 8. Required updates and next experiments
+
+### P0 — Extract the agreement scorecard from existing outputs
+
+No new model training is needed to start. Extend reporting to join the three holdout records by `(run, fold, model, capture, original frame/row)` and calculate the Section 4 metrics where all checks are valid. Retain unique point IDs, subset states/branches, bounds, rank/conditioning, and complete/partial population membership.
+
+Suggested versioned outputs are `crosscheck_frames.csv`, `crosscheck_points.csv`, and `crosscheck_summary.json` in a **new reporting output directory**. These are proposed outputs, not existing artifacts or permission to overwrite historical results. Include `cross_prediction_rms_px`, `cross_prediction_rms_normalized`, `cross_prediction_max_px`, `subset_gaze_sd_deg`, `subset_accommodation_sd_D`, both state ranges, `testable_point_count`, `complete_threeway`, and all reason/support flags. Summaries must identify weighting, denominators, and contributing IDs.
+
+Keep point-prediction agreement and subset-state agreement on the same declared complete-frame population, with partial populations reported separately. Add paired model differences and a separate bound-active stratum. Compute aggregates from stored errors/states, not from rounded summary tables.
+
+Acceptance checks should cover point-label permutation invariance of aggregate scores; exact known three-state dispersions; the distinction between RMS and mean frame error; correlated-state interpretation; missing/ambiguous/bound cases; duplicate ID rejection; shared-bound artificial agreement; and consistent aggregation on fixed versus common populations. Repeat raw excluded-coordinate noninterference for any new branch or preprocessing logic.
+
+### P1 — Joint calibration sensitivity, selected by predictive agreement
+
+Refit latent states and coefficients while varying anchors, coefficient priors, and reference covariance inside grouped training/development splits. Compare cross-prediction, state disagreement, coverage, and identification together; retain nominal-mean diagnostics separately. Preserve the current corrected solver and all failed starts/checkpoints.
+
+Do not use the final evaluation P4 errors to set priors, thresholds, or branch choices. If existing outer results are used to choose the next design, call them development evidence and use a new untouched evaluation protocol for final claims.
+
+### P2 — Extend controlled information tests without leakage
+
+The saved same-response ablations are useful but targeted: on two audit rows, coordinate versus derived-summary inversion changed the selected states substantially; retained x/y improved five of six excluded-point predictions relative to retained x only and worsened one. That is not yet a population conclusion.
+
+Extend the retained-x versus retained-x/y comparison across development populations using the same frozen calibrated response, with rank and coverage checked for both. Both methods must exclude the tested P4 point. A derived full-triangle area that contains that point is not a valid input to its holdout inverse.
+
+Use full-coordinate versus same-response centroid/area inversion separately as a measurement-compression/state-sensitivity experiment. It does not supply an independent held-out-P4 baseline when the summaries contain the excluded point. Declare model-capacity and weighting changes rather than attributing all differences to extra geometry.
+
+### P3 — Add only response/context terms supported by residual evidence
+
+After P0-P2, inspect reproducible signed-gaze curvature, accommodation coupling, and P1-context dependence. A targeted mixed term such as `t^3 log(1+A)` in common displacement is an example of a hypothesis to test, not an established missing optical law or a predetermined fix. Compare it within grouped training; do not expand every basis indiscriminately or fit arbitrary per-frame distortion states.
+
+Audit stored detector selection and capture/source/eye geometry. A pattern selected under geometric constraints may already have its deformation biased or truncated. This remains a measurement-pipeline question, not a demonstrated detector bug. Capture and demand are confounded in the current recordings.
+
+### P4 — Denser grouped evaluation and final transfer
+
+Use nested grouped selection and denser evaluation, distinguish interpolation from endpoint extrapolation, and keep fixations/recordings rather than adjacent frames as grouping units. Predeclare tolerable predictive errors, state disagreement, and coverage tradeoffs using development evidence or an experiment-specific precision requirement; no calibrated acceptance threshold is supplied by the present results.
+
+Keep captures 5/6 untouched by the full-position study until choices are frozen. Their lack of independent target/reference labels does not prevent predictive geometry checks, but does prevent claiming physiological error from those checks alone. Independent reference acquisitions are a separate requirement for absolute physiological accuracy, not a prerequisite for improving the internal cross-check.
+
+## 9. Final interpretation
+
+**The purpose of three pairs is that the same gaze and accommodation must explain several different measured responses.** The primary improvement criterion is better prediction of each excluded P4 measurement; the companion criterion is agreement among the states inferred from different retained subsets, with adequate identification and coverage.
+
+The current implementation already performs the essential P4 cross-prediction. Its numerical certification is materially improved. `conditional27` currently cross-predicts better than `conditional37`, but their remaining errors and uncertainty mismatch require further diagnosis. Better solver cost, better nominal-demand agreement, and better cross-measurement agreement are different claims and must remain separate.
+
+The immediate update is therefore to **report the three-way measurement and state agreement explicitly from existing results**, then use that scorecard to evaluate jointly refitted calibration assumptions and controlled information/model extensions. Do not revert the numerical fixes, remove expected distortion, or force the three subset states to agree.
 
 ## Source map
 
-All repository paths below refer to the audited commit.
+Repository facts in this report refer to the evidence snapshot identified above. Relative links are convenient navigation; preserve the snapshot when reproducing this audit.
 
-- `Theory.md`; `ESTIMATOR_PLAN.md`; `CURRENT_STATUS.md`.
-- `full_position/model.py`, `geometry.py`, `noise.py`, `calibrate.py`, `invert.py`.
-- `full_position/data.py`, `validate.py`, `report.py`, `schema.py`, `apply.py`, `diagnostics.py`, `accelerated.py`.
-- `tests/test_full_position.py`.
-- `experiments/full_position/grouped_v2/RESULTS.md` and `metrics.csv`.
-- `experiments/full_position/grouped_v2/gaze_-10/conditional37/model.json`, `frames.json`, `frame_uncertainty.json`.
-- `experiments/full_position/grouped_v2/gaze_-10/conditional27/frames.json`.
+- [CURRENT_STATUS.md](CURRENT_STATUS.md): latest execution status, fixes, verification, and remaining work.
+- [Theory.md](Theory.md) and [ESTIMATOR_PLAN.md](ESTIMATOR_PLAN.md): normalization, source-pattern interpretation, model scope, calibration, and holdout contracts.
+- [audit_polished_v1/RESULTS.md](experiments/full_position/audit_polished_v1/RESULTS.md): latest paired/expanded-support errors, state diagnostics, sensitivity, and verification boundaries.
+- [comparison.json](experiments/full_position/audit_polished_v1/comparison.json) and [verification.json](experiments/full_position/audit_polished_v1/verification.json): saved transition and preservation evidence.
+- [full_position/invert.py](full_position/invert.py): retained candidates, polishing, subset prediction, and separate scoring.
+- [full_position/validate.py](full_position/validate.py) and [report.py](full_position/report.py): implemented aggregates and the reporting extension point.
+- [audit_checks_v1](experiments/full_position/audit_checks_v1/): targeted profiles, controlled measurement ablations, and conditional training-sensitivity evidence.
+- [grouped_v2/RESULTS.md](experiments/full_position/grouped_v2/RESULTS.md): archived original results, not the latest corrected population.
+- [Original audit before this rewrite](https://github.com/rueijrwu/gaze_acc_joint_estimator/blob/c2584292d13393a4c5a8bb34afdea9c19f90e67f/AUDIT_REPORT.md): historical numerical findings and targeted reconstruction methods.
 
-SciPy's official `least_squares` documentation distinguishes small-step (`xtol`) termination, method-dependent gradient (`gtol`) termination, and the returned success/status fields. The audit's polynomial-cost and exact-Hessian formulas are derived from the inspected fixed-covariance model, not claims about arbitrary nonlinear optical models.
+Metric formulas and the new reporting contract are definitions/proposals in this revision. No new subset-state dispersion values, fit results, test executions, or physiological accuracy claims are asserted.
