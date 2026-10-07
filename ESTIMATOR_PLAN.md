@@ -1,10 +1,10 @@
-# Full-position shared-state estimator: proposed algorithm
+# Full-position shared-state estimator: optical grid-distortion algorithm plan
 
 ## Status and objective
 
-**This is a proposal, not an implemented or evaluated estimator.** It accompanies [Theory.md](Theory.md). Preserve `joint_m2.py`, `models/quadratic_model.json`, stored detections, and existing result directories as the historical baseline. New code, models, and results must have separate paths and schemas.
+**This is a proposal, not an implemented or evaluated estimator.** It accompanies [Theory.md](Theory.md). Preserve `joint_m2.py`, `models/quadratic_model.json`, stored detections, and existing result directories as the historical baseline. New code, coefficients, schemas, and outputs must be separate.
 
-The objective is to estimate one horizontal gaze/accommodation state per frame while requiring that state to predict the positions of all three P4 reflections relative to their corresponding P1 reflections. Extra geometry provides both potential state information and testable prediction residuals. Do not reduce the new data back to just centroid displacement and triangle area.
+Treat P1 and P4 as two differently distorted images of one fixed source pattern. Estimate one horizontal gaze/accommodation state per frame that predicts both common displacement and the different coordinate responses of all three P4 samples relative to P1. Reproducible state-dependent deformation is signal. The diagnostic is unexplained position error under that calibrated response, not departure from an undistorted or similar triangle.
 
 The required normalization is unchanged:
 
@@ -14,44 +14,67 @@ $$
  \rho_4=\mathcal A_4/\mathcal A_1.
 $$
 
-`rho_4` is an area ratio, not its square root. Area means the triangle formed by reflection centers, not blob area.
+`rho_4` is an area ratio, not its square root; area is formed by reflection centers, not blob areas. Fit full coordinates rather than compressing them to centroid displacement and area. Similarity-fit magnification is a reduced comparison only. Changing the P1 normalizer is a separate later experiment.
 
-## 1. Baseline inspection and implications
+**Current nominal gaze targets: `[-10,-5,0,5,10]` degrees. Proposed candidate gaze scaling: `theta_deg/10`. The frozen baseline's `theta_deg/15` convention is retained only in its own adapter and does not mean this experiment calibrated to 15 degrees.**
 
-This proposal was prepared against branch commit `9fabb3cdfe6b4651c7b5b16cb9df573fe91b63cf`. The following are **saved repository results**, not results regenerated for this proposal.
+## 1. Baseline inspection and calibration contract
+
+The original saved-result inspection was performed at commit `9fabb3cdfe6b4651c7b5b16cb9df573fe91b63cf`. This documentation revision starts from `5017ede8ddd26097960c350bc75090b566cada4c`, adds the grid-distortion interpretation, and incorporates the explicitly confirmed five-target protocol. The following are saved results, not newly regenerated results.
 
 | Item | Stored status |
 |---|---|
 | Baseline | 13-coefficient model of `[d_x,rho_4]` |
 | Calibration | 20 reviewed fixations, captures 1–4, central 80% of each interval |
+| Nominal gaze targets in each capture | `[-10,-5,0,5,10]` degrees |
 | Retained calibration observations | 71,729 after 55 jump-filter rejections |
 | Selected training stage | Quadratic fit; 17 accepted iterations; recorded as converged |
-| Later robust stage | Handoff reports that weight convergence was not achieved |
+| Later robust stage | Handoff reports weight convergence was not achieved |
 | Capture 5 | 25,226 retained estimates / 26,370 rows |
 | Capture 6 | 34,080 retained estimates / 35,001 rows |
-| Equivalent-minimum ambiguity | Saved counts are zero for both captures |
+| Equivalent-minimum ambiguity | Saved counts zero in both captures |
 | Accommodation-bound counts | Capture 5: 7 upper; capture 6: 2 lower and 8 upper |
 | Gaze outside nominal anchor range | Capture 5: 8,747; capture 6: 12,637 |
 | Accommodation outside nominal anchor range | Capture 5: 23; capture 6: 13 |
 | Saved projected-stationarity value above `1e-3` | Capture 5: 7; capture 6: 11 |
 
-Sources: [model and training diagnostics](models/quadratic_model.json), [capture summaries](experiments/captures_5_6_direct/summary.json), [HANDOFF.md](HANDOFF.md), and the measurement/training/inversion functions in [joint_m2.py](joint_m2.py).
+Sources: [frozen model](models/quadratic_model.json), [capture summaries](experiments/captures_5_6_direct/summary.json), [fixation intervals](data/fixations/fixation_intervals.json), [HANDOFF.md](HANDOFF.md), and [joint_m2.py](joint_m2.py).
 
-A retained detection or estimate is not necessarily a numerically satisfactory inverse. The saved stationarity threshold is a diagnostic of that implementation, not a universal tolerance for a new objective. The summaries record reused inverse caches; packaging did not independently rerun the workflow. Historical source paths in provenance are not necessarily available here.
+A retained estimate is not necessarily a numerically satisfactory inverse. The saved stationarity threshold is implementation-specific. Summaries record reused inverse caches; packaging did not independently rerun the workflow. Historical provenance paths are not necessarily locally available.
 
-The baseline training uses soft fixation-mean anchors, a coefficient prior, and temporal regularization. `joint_m2.py` sets gaze-anchor scale to 0.1 degree, accommodation-anchor scale to 0.25 D, and temporal strength to 0.1 with scales 1 degree / 0.25 D. Its application inverse is independent per frame. Do not assume the defaults or old two-pair loading rules in `lib/` describe exp5; reuse mathematics only after auditing channel-count and data-policy assumptions.
+Baseline calibration uses soft fixation-mean anchors, a coefficient prior, and temporal regularization. `joint_m2.py` sets gaze-anchor scale to 0.1 degree, accommodation-anchor scale to 0.25 D, and temporal strength to 0.1 with scales 1 degree / 0.25 D. Application inversion is independent per frame. Do not assume legacy `lib/` defaults or two-pair loading rules describe exp5. Captures 5/6 have no reviewed target intervals and cannot establish accommodation accuracy from their stored estimates alone.
 
-Captures 5/6 have no reviewed target intervals. Their trajectories and geometric predictions can be assessed, but accommodation accuracy cannot be inferred from these stored estimates alone.
+### 1.1 Targets, parameterization, and support
+
+Read interval labels from the stored fixation file and verify the configured five-target protocol `[-10,-5,0,5,10]` degrees. Do not import older `[-15,-7.5,0,7.5,15]` constants, manufacture target overrides, or change the stored observations to match a legacy loader. Read accommodation demands from the same metadata; this revision changes no demand labels.
+
+Keep these quantities distinct:
+
+| Quantity | Proposed convention |
+|---|---|
+| Nominal gaze calibration grid | `[-10,-5,0,5,10]` degrees |
+| Full-data nominal gaze anchor range | `[-10,10]` degrees |
+| Candidate dimensionless gaze | `t=theta_deg/10` |
+| Nominal values of `t` | `[-1,-0.5,0,0.5,1]` |
+| Optimizer state encoding | `(theta_deg/10,A_diopters/4)` |
+| Computational inversion bounds | `theta_deg in [-20,20]`, `A_diopters in [0,6]` |
+| Frozen baseline basis/encoding | Keep its recorded `theta/15` conventions unchanged |
+
+Store fold-specific anchor/support information separately from full-data support and computational bounds. A solution at 15 degrees is outside the full-data nominal gaze anchor range, not an additional calibration point. Holding out -10 or +10 narrows the remaining training-anchor range; report extrapolation relative to that fold. State estimates and nominal anchors need not coincide framewise, so retain both nominal-support and empirical-training-state diagnostics.
+
+The gaze calibration grid is not the illuminator/source grid. Source field angles, source offsets, and camera/eye axis alignment require their own metadata. Do not infer that straight-ahead gaze is on-axis illumination.
+
+### 1.2 Optical interpretation to preserve in implementation
+
+The conceptual mappings are `p_j=F1(s_j;theta,A,eta)` and `q_j=F4(s_j;theta,A,eta)` for fixed source identity `s_j`. Eye rotation changes field sampling and viewing geometry; accommodation changes the P4 optical system, potentially including both magnification and field-dependent deformation. These motivate the model, not predetermined coefficient values.
+
+Do not silently undistort P4 to a similarity template, remove orientation/shape variation, or reject a point merely because it violates constant triangle angles or edge-scale ratios. First model reproducible state dependence. Use residuals after that prediction for consistency checks. The conditional candidate does not assert that P1 shape is state-independent; it uses that measured shape as context.
 
 ## 2. Data contract and feature construction
 
-Read each payload's correspondence metadata. The recorded zero-based map is `pair_index=[2,1,0]`. Reorder P4 coordinates and their flags together into P1 correspondence; do not separately sort triangles and assume illuminator identity.
+Read each payload's correspondence metadata. The recorded zero-based map is `pair_index=[2,1,0]`. Reorder coordinates and flags together into P1 correspondence; sorting the two images independently does not establish source identity.
 
-For each frame retain:
-
-- Original frame index, timestamp, capture/fixation membership, all six coordinates, selected-point flags, correspondence metadata, and detector diagnostics.
-- All three P1 points as the common reference geometry.
-- Each P4 point as an individually maskable observation.
+Retain original frame index, timestamp, capture/fixation labels, all six image points, validity flags, correspondence metadata, and detector diagnostics. Keep all P1 points as reference geometry and each P4 point as an individually maskable observation. Store physical source coordinates/directions when actually available; otherwise mark them unknown and use the three correspondences without inventing metric source positions.
 
 Define
 
@@ -62,111 +85,141 @@ $$
 \mathbf u_j=\mathbf v_j-\mathbf r_j.
 $$
 
-The optimization residual uses six components of `v`, ordered `[v1x,v1y,v2x,v2y,v3x,v3y]`. The model receives the three `r_j` as measured context. This is equivalent to using all six normalized pair-displacement components `u`; subtracting the same measured `r` from observation and prediction leaves the residual identical.
+Use six residual components in the order `[v1x,v1y,v2x,v2y,v3x,v3y]`, with measured `r_j` as context. This is equivalent to using all six normalized pair displacements `u`: subtracting the same measured `r` from observation and prediction leaves the residual unchanged.
 
-Keep the measured P1 centroid and scale for pixel-space reconstruction and auditing. Do not feed them as additional state observations in the first candidate. No per-frame P4 centering, rotation normalization, or normalization by P4 area is allowed in this representation.
+Keep measured P1 centroid and scale for pixel reconstruction and auditing, not as additional state residuals in the first candidate. No per-frame P4 centering, P4 rotation normalization, or P4-area normalization is allowed in this representation. Compute an observed affine map only for separately identified full-frame diagnostics; it is not required to construct the coordinate residual and must not enter a P4 holdout solve.
 
-**Validity:** reproduce the baseline mask separately. The baseline requires finite P1/P4 coordinates, all `p4_found`, and a numerically nondegenerate P1 triangle; it has no pupil gate and does not explicitly gate on `p1_valid`. A proposed stricter P1-confidence or triangle-conditioning gate must have its own mask and an explicit common-support comparison. Do not silently change the baseline's support.
+**Validity:** reproduce the baseline mask separately. It requires finite P1/P4 coordinates, all `p4_found`, and a numerically nondegenerate P1 triangle; it has no pupil gate and does not explicitly gate on `p1_valid`. Any stricter P1 confidence/conditioning gate must have a separate mask and a common-support comparison. Do not silently change baseline coverage.
 
-A P1 triangle that is missing or unstable relative to localization uncertainty invalidates this normalization. With two valid P4 points the candidate may produce a separately labeled partial estimate if rank and branch checks pass. With fewer than two P4 points, the first implementation rejects for insufficient redundant support; this is a design policy, not a universal rank theorem. Never fabricate a missing P4 point or a missing area ratio.
+A missing or uncertainty-unstable P1 triangle invalidates this normalization. With two valid P4 points, a separately labeled partial estimate may be produced if rank and branch checks pass. With fewer than two P4 points, the first implementation rejects for insufficient redundant support; this is a design policy, not a universal rank theorem. Missing P4 points and area ratios must not be fabricated.
 
-## 3. Recommended first model: conditional full-P4 geometry
+The stored detector may already use similarity, triangle geometry, or temporal history to select points. Audit those assumptions and raw candidates before treating a narrow distribution of selected triangle shapes as optical evidence. This plan does not change or rerun the detector. Predictions remain conditional on the stored detection pipeline unless independently localized observations are evaluated.
+
+## 3. Recommended model: a state-dependent map of sampled grid images
 
 Use globally calibrated functions
 
 $$
 \widehat{\mathbf v}_j=\mathbf D(x;\beta)+\mathcal T(x;\beta)\mathbf r_j,
-\qquad x=(\theta,A).
+\qquad x=(\theta,A),
 $$
 
-Thus
+so
 
 $$
 \widehat{\mathbf u}_j=\mathbf D+(\mathcal T-I)\mathbf r_j,
+\qquad
+\widehat{\mathbf q}_j=\mathbf c_1+\ell_1[\mathbf D+\mathcal T\mathbf r_j].
 $$
 
-$$
-\widehat{\mathbf q}_j=\mathbf c_1+\ell_1\bigl[\mathbf D+\mathcal T\mathbf r_j\bigr].
-$$
+All predictions share one state. `D` has two components and `T` four entries, but their values are determined by `theta,A` and fixed global coefficients. They are not six additional framewise unknowns.
 
-All three predictions share **one** state. `D` has two components and `T` has four entries, but their per-frame values are determined by that state and fixed calibration coefficients. They are not six additional framewise unknowns.
+`D` models relative common translation. `T` is an effective state-dependent deformation map for the three sampled source locations, including unequal directional magnification, shear, and orientation changes when supported. Three samples admit an exact affine representation even if the continuous source-field mapping is nonlinear. This fact does not guarantee a low-degree `T(theta,A)` transfers across arbitrary poses/P1 contexts or identifies physical aberration coefficients.
 
-In particular, the prediction uses the P1 centroid, not the measured P4 centroid. The latter would absorb the displacement being tested and leak a withheld P4 point.
-
-The model implies
+Use the P1 centroid in predictions, not the measured P4 centroid; the latter absorbs displacement error and leaks a withheld P4 point. The implied summaries are
 
 $$
 \widehat d_x=D_x,\qquad \widehat d_y=D_y,\qquad
 \widehat\rho_4=|\det\mathcal T|.
 $$
 
-Retain these summaries for comparison. Do not append area or centroid residuals to the six coordinate residuals as independently weighted observations.
+Retain them for reporting, but do not add independently weighted centroid/area residuals to the six coordinate residuals. Fit the coordinates directly instead of treating all entries of an observed `E4 E1^-1` map as independent low-noise measurements.
 
-### 3.1 A bounded, explicit initial capacity
+### 3.1 Explicit capacities and new gaze scale
 
-Let `t=theta/15`, `L=log1p(A)`, where numerical accommodation is in diopters. For `D_x`, use the same seven-term basis as the baseline displacement model:
+For every new candidate use `t=theta_deg/10` and `L=log1p(A_diopters)`. For `D_x` use the baseline displacement model's seven-term functional family, with newly fitted coefficients:
 
 $$
 \phi_d=[1,A,t,tL,t^2,t^2L,t^3]^\top,\qquad D_x=\beta_d^\top\phi_d.
 $$
 
-For each of `D_y,T11,T12,T21,T22`, initially use
+The two required capacity comparisons are:
+
+| Candidate | Basis for each of `D_y,T11,T12,T21,T22` | Global coefficients |
+|---|---|---:|
+| `conditional27` | `[1,t,L,tL]` | `7+5*4=27` |
+| `conditional37` | `[1,t,L,tL,t^2,t^2L]` | `7+5*6=37` |
+
+Start numerical implementation/debugging with `conditional27`; require the paired `conditional37` evaluation before deciding whether state-dependent deformation has been adequately modeled. The cubic-field example in Theory.md shows why field translation can induce quadratic spacing changes, motivating `t^2,t^2L`. It does not prove that either capacity is sufficient or that the larger model should always win.
+
+Select using training-only grouped predictions and stability, then evaluate the selected design on untouched outer folds. Coefficients and sensitivities need not be equal between matrix entries or pairs. Do not enforce mirror symmetry about zero gaze unless justified by actual source/eye/camera alignment. Do not freeze the determinant-one part of `T` or penalize departure from similarity as though it were necessarily noise.
+
+Direct matrix-entry prediction preserves linear coefficient fitting at fixed states. It does not enforce determinant sign. Audit correspondence parity and inspect the predicted determinant over training-supported states and P1 contexts; audit the larger computational box separately. Flag unsupported sign changes, near-singular predictions, and extrapolation. Do not silently repair them by reordering points. A determinant-constrained parameterization is a separately versioned nonlinear coefficient problem, not an unchanged linear profiler.
+
+If both capacities leave repeatable state-dependent residual structure, report model inadequacy. A further basis extension must be specified and selected within development/training data rather than added after examining final transfer results. Do not absorb the pattern with framewise distortion freedoms.
+
+### 3.2 Compatibility with the frozen baseline
+
+`conditional27/37` describe capacity, not compatibility with old coefficient arrays. Store a new model schema with `theta_scale_deg=10`, physical coefficient/basis definitions, state encoding, and the exact target grid. Missing or incompatible scale metadata must cause an explicit load error for new artifacts.
+
+Evaluate `models/quadratic_model.json` with its original adapter, including `t_b=theta_deg/15`. Do not edit that JSON or reinterpret its coefficients at `theta/10`. A nominal-range change is not a coefficient conversion.
+
+If an explicit conversion of a polynomial initializer is ever needed, a term `c_15*(theta/15)^n` becomes `c_10*(theta/10)^n` with
 
 $$
-\phi_0=[1,t,L,tL]^\top.
+\boxed{c_{10}=(10/15)^n c_{15}.}
 $$
 
-This gives **27 global coefficients**: seven plus five groups of four. Call this candidate `conditional27`. It does not presume that vertical motion, shear, and area have identical coefficients or sensitivities.
+Apply the same factor to mixed terms carrying that power of gaze; degree-zero terms are unchanged. Transform coefficient priors/covariance consistently if claiming equivalent fitting assumptions, and verify predictions plus physical-degree derivatives. The preferred first candidate fits fresh coefficients; conversion must never happen implicitly in the baseline path. All new state Jacobians include `dt/dtheta_deg=1/10`.
 
-A predeclared capacity extension adds `t^2,t^2L` to those five functions, giving **37 global coefficients**, `conditional37`. Select between these using grouped held-out predictions, not training residual alone. These are proposed empirical bases, not optical laws or evidence that their coefficients are identifiable. Preserve design-rank and regularization diagnostics.
+### 3.3 Meaning of full information and conditional derivatives
 
-Direct matrix-entry prediction makes coefficient fitting linear at fixed states. It does not automatically preserve determinant sign. Audit correspondence parity and test the predicted determinant over the calibrated support. A model with unsupported sign changes or near-singular predicted triangles must not be silently accepted or fixed by sorting points. Reduce capacity or separately evaluate a determinant-constrained parameterization; that change is a different fitting problem.
+This is a **six-residual conditional full-position model**: it consumes every point and retains all P4 geometry relative to measured P1, but does not count P1's three normalized shape/orientation dimensions as separately modeled state evidence. Section 11 defines the optional nine-component model.
 
-### 3.2 What “full information” means here
+For a state derivative at fixed observed P1 context,
 
-This candidate consumes every P1/P4 coordinate and retains all P4 information relative to the observed P1 triangle. It conditions on normalized P1 shape/orientation instead of claiming that their three geometric dimensions are separately calibrated physiological state measurements.
+$$
+\left.\partial_z\widehat{\mathbf v}_j\right|_r
+=\partial_z\mathbf D+(\partial_z\mathcal T)\mathbf r_j.
+$$
 
-It is therefore a **six-residual conditional full-position model**, not a nine-channel joint likelihood. Section 11 specifies the optional nine-dimensional extension. State explicitly which version produced each result; do not advertise six conditional residuals as nine independent constraints.
+A total physical derivative along a state-dependent P1 trajectory also has `T partial_z r_j`. Keep those derivatives conceptually separate. Source optical sensitivities, conditional inverse sensitivities, and noise derivatives of the shared measured context are not interchangeable.
 
-## 4. Noise and shared-input uncertainty
+The conditional mapping can fail when nuisance geometry changes the response beyond what observed P1 context and two states explain. Test such dependence; a complete source-coordinate optical model or extra context terms are later hypotheses requiring calibration, not automatic consequences of having three pairs.
 
-The P1 coordinates occur in `v`, `r`, and the common denominator. For
+## 4. Measurement noise and shared-input uncertainty
+
+The measurement is the detector-reported point position. Record its definition and detector version/configuration where available; mark missing provenance explicitly. Geometric chief-ray intersections, intensity centroids, peaks, and fitted centers must not be silently interchanged. A synthetic-image/ray-tracing validation should distinguish optical position changes from the actual localization pipeline's response.
+
+The P1 coordinates occur in `v`, `r`, and the denominator. For
 
 $$
 e(P;x,\beta)=v(P)-F(x,r(P);\beta),
 $$
 
-propagate uncertainty through the entire residual:
+propagate the complete residual:
 
 $$
 R_e\approx J_{e,P}\Sigma_PJ_{e,P}^\top,
-\quad J_{e,P}=J_{v,P}-J_{F,r}J_{r,P}.
+\qquad J_{e,P}=J_{v,P}-J_{F,r}J_{r,P}.
 $$
 
-Using only `cov(v)` while treating measured `r` as exact omits their shared-input error. This is a first-order errors-in-variables treatment, not an exact nonlinear likelihood.
+Using `cov(v)` while treating `r` as exact omits shared-input error. This is first-order errors-in-variables propagation, not an exact nonlinear likelihood.
 
-A provisional coordinate-noise estimate can use second differences of the 12 coordinates inside contiguous, correspondence-stable training-fixation cores. Division of their covariance by six assumes independent localization noise and locally linear true motion. Actual eye acceleration, temporal detector correlation, and selection errors violate that assumption. Label the result a short-timescale effective covariance unless independently justified. Never bridge gaps or fixation boundaries, and do not estimate noise from residuals after fitting free per-frame states, which can remove noise along the fitted state directions.
+A provisional coordinate-noise estimate can use second differences of all 12 coordinates within contiguous, correspondence-stable training-fixation cores. Dividing their covariance by six assumes independent localization noise and locally linear true motion. Acceleration, temporal correlation, and selection errors violate that assumption; label it a short-timescale effective covariance unless independently justified. Never bridge gaps or fixation boundaries. Do not estimate noise from residuals after fitting free states, which can remove variation along fitted state directions.
 
-Use robust covariance estimation with a declared, training-only positive-definite shrinkage/floor policy. A numerical floor regularizes a noise estimate; it does not create geometric information. Record sensitivity to pointwise versus correlated coordinate-noise assumptions.
+Use a declared training-only robust covariance/shrinkage/floor policy and report sensitivity to pointwise versus correlated assumptions. A numerical floor stabilizes a noise estimate but does not create information. Systematic field-dependent residuals require model-discrepancy analysis, not automatic inflation of peripheral noise or rejection of distorted triangles.
 
-### 4.1 A concrete fixed-weight first implementation
+### 4.1 Fixed-reference weights for the first implementation
 
 To preserve an auditable quadratic/profiled objective:
 
-1. Fit a pilot coefficient model from training data only, initialized at nominal states.
-2. Choose one reference state from the training anchors, for example their componentwise medians, and freeze it with the pilot coefficients.
-3. For each frame's P1 geometry, generate noise-free reference P4 points at that state. Evaluate `J_e,P` there and propagate the frozen coordinate covariance. Consequently the frame's weight matrix depends on P1 geometry and frozen calibration information, not observed P4 values.
-4. Freeze these matrices throughout the final calibration and all state solves. Store the reference-state/pilot/covariance provenance. Use principal covariance submatrices for P4 subsets.
+1. Fit a pilot coefficient model using training data only, initialized at nominal states.
+2. Freeze a training-supported reference state, for example componentwise median training anchors, and the pilot coefficients.
+3. For each frame's P1 geometry, generate reference P4 points at that state and evaluate `J_e,P` there. Propagate the frozen coordinate covariance. The weights then depend on P1 and frozen calibration, not observed P4 coordinates.
+4. Freeze these matrices throughout final calibration and state inversion; store their provenance. Use principal covariance submatrices for subsets.
 
-This is a declared reference-covariance approximation. Check its sensitivity to other training-supported reference states and to small-noise Monte Carlo. It is not maximum-likelihood estimation with an exactly known state-dependent covariance. A future state-dependent Gaussian likelihood must include the log-determinant term and its derivatives, or explicitly document a different feasible-GLS objective; do not update weights silently while calling the old coefficient profiling exact.
+For capacity-isolation comparisons, use a common fold-local reference-weight construction where feasible, and separately report sensitivity to capacity-specific pilots. Otherwise changes in noise weights and response capacity are confounded.
 
-The quadratic candidate comes first. Optional robustness must be separately tested. A whole-frame robust loss may operate on the complete Mahalanobis norm with a scalar frame weight. Componentwise robust losses after full whitening do not correspond to independent physical P4-point downweighting. Point exclusion is handled by the subset inversions below, not by pretending correlated point residuals are independent.
+This is a reference-covariance approximation, not exact state-dependent maximum likelihood. Check sensitivity to other training-supported gaze/reference demands, including central and peripheral training anchors, and to small-noise Monte Carlo. Never use an excluded endpoint or demand to learn a fold's reference weights. A future state-dependent Gaussian likelihood needs the log determinant and derivatives, or an explicitly declared feasible-GLS objective; changing weights silently invalidates the claimed exact profiling of a fixed objective.
 
-## 5. Calibration: shared coefficients, latent framewise states
+The quadratic candidate comes first. Optional robustness is separate. A whole-frame robust loss may use the full Mahalanobis norm with one scalar frame weight. Componentwise robustness after full whitening is not independent physical-point downweighting. Point exclusion is handled by subset inversions. Neither robust weighting nor covariance floors may be used to hide unmodeled reproducible distortion.
 
-Split data into training and evaluation groups **before** any fitting, noise estimation, model selection, or learned initialization. Each training frame has its own two states; only its fixation mean receives a nominal anchor. Never assign demand as an exact framewise accommodation label.
+## 5. Calibration: global responses and latent framewise states
 
-For `K` training fixations with retained counts `n_k`, propose
+Split into training and evaluation groups before fitting, covariance estimation, model selection, or learned initialization. Each frame has its own two states; only its fixation mean receives a nominal anchor. Demand is not an exact per-frame accommodation label.
+
+For `K` training fixations with retained counts `n_k`, use
 
 $$
 \begin{aligned}
@@ -180,198 +233,224 @@ $$
 \end{aligned}
 $$
 
-The nominal anchors set an approximate physical state convention; they do not independently measure accommodation. Start anchor-scale comparisons at the baseline's 0.1 degree and 0.25 D, then assess weaker/stronger choices. Equal-fixation weighting prevents long intervals from dominating calibration.
+The nominal anchors set an approximate physical-state convention; they do not independently measure accommodation. Start anchor-scale sensitivity at 0.1 degree and 0.25 D, then examine weaker/stronger choices. Equal-fixation optical weights prevent long intervals from dominating.
 
-Initialize `beta_0` by regularized regression at nominal states. Normalize design columns using training data; document the coefficient penalty in these scaled coordinates and do not penalize unidentifiable directions merely to claim identification. A provisional prior can shrink non-intercept coefficients toward this initializer, with an explicit zero-prior comparison. Prior strength must be selected inside training folds; the baseline's numeric strength is not automatically comparable after changing the number of channels.
+Initialize `beta_0` by regularized regression at nominal states using the new basis and actual five-target assignments. Normalize design columns using training data and document penalties in those coordinates. A provisional prior may shrink non-intercept coefficients toward this initializer, with a zero-prior comparison. Do not shrink shape change to zero merely because it is non-similarity, or use regularization to claim identification of unsupported directions. Select prior strength within training folds; baseline numeric strength is not automatically comparable after changing channel count/scaling.
 
-Initialize latent states from nominal anchors or a **training-fold-only** baseline fit. Baseline states are initialization, not ground truth and not an extra per-frame penalty. Multi-start calibration is required to investigate dependence on initialization.
+Initialize states from nominal anchors or a training-fold-only baseline fit. Baseline estimates are initialization, not ground truth or extra per-frame penalties. Use multiple calibration starts to assess dependence on initialization.
 
-For the first geometry-isolation experiment set `J_time=0` and retrain a matched two-channel control with the same no-time policy. Separately compare both models under the baseline-like temporal policy; the latter must define its normalization, original-time gaps, and within-fixation links explicitly. Do not compare a smoothed new model against an unsmoothed control and attribute the difference to extra geometry. Application and P4 holdout inversion remain independent per frame.
+For the first geometry-isolation experiment set `J_time=0` and retrain a matched two-channel control without temporal regularization. Separately compare both under a baseline-like temporal policy with declared normalization, original-time gaps, and within-fixation links. Do not compare smoothed new states against unsmoothed controls and attribute the difference to geometry. Application and P4 holdouts remain independent per frame.
 
 ### 5.1 Variable projection
 
-At fixed `X` and measured P1 context, the predictions are linear in `beta`. Solve the weighted, regularized coefficient least-squares problem by QR/SVD; include the coefficient prior in that solve. Then minimize the profiled objective over all bounded framewise states.
+At fixed states and measured P1 context, predictions are linear in `beta`. Solve the weighted regularized coefficient problem by QR/SVD including its prior, then optimize the profiled objective over bounded framewise states. The existing `ProfiledProblem` architecture may be reused only after generalizing channel count and auditing old loader/model assumptions. This is not a knot model.
 
-The existing `ProfiledProblem` architecture is a possible starting point, but it must be generalized from two channels and audited for legacy model/loading assumptions. The residual count and basis are new; there is no historical knot model in this candidate.
-
-The profiled derivative must include the dependence of the optimal coefficients on the states. For a stacked augmented linear system `B(X) beta ~= b`, define `r=B beta*-b`. With fixed `b` and full column rank after the declared regularization,
+The profiled derivative must include the dependence of optimal coefficients on states. For an augmented linear system `B(X) beta ~= b`, with `r=B beta*-b`, fixed `b`, and full column rank under the declared regularization,
 
 $$
-(B^\top B)\,d\beta^*=-\bigl[(dB)^\top r+B^\top(dB)\beta^*\bigr],
+(B^\top B)\,d\beta^*=-[(dB)^\top r+B^\top(dB)\beta^*],
 \qquad dr=(dB)\beta^*+B\,d\beta^*.
 $$
 
-Use factorized solves, not an explicitly formed inverse. Include any state dependence of a changed right-hand side if the implementation changes this formulation. Anchors and temporal penalties have their own derivatives. Test these derivatives against finite differences on small problems.
+Use factorized solves rather than explicit inverses. Include derivatives of a changed right-hand side if the implementation alters this formulation. Anchors and temporal penalties have their own derivatives. Verify the complete derivative with finite differences on small problems.
 
-Use scaled states `(theta/15,A/4)` with computational bounds `theta in [-20,20]`, `A in [0,6]`. A matrix-free profiled Jacobian avoids a dense matrix over roughly 140,000 latent variables. Profiling introduces global low-rank coupling; do not falsely declare the profiled Jacobian frame-block-diagonal. A bounded trust-region solve with Jacobian/vector products is a suitable reference implementation.
+Encode new optimizer states as `(theta_deg/10,A_diopters/4)`, with physical bounds `[-20,20]` degrees and `[0,6]` D. This gives encoded bounds `[-2,2]` and `[0,1.5]`, not the nominal calibration domain. Record the encoding independently of the legacy baseline.
 
-Require physical-unit or declared-scaled projected stationarity, stable steps and cost, accurate inner solves, and any robust-weight convergence. An iteration/evaluation limit is a nonconverged result, not permission to export it as the selected model. Preserve checkpoints and failed fits separately.
+A matrix-free profiled Jacobian avoids a dense matrix over roughly 140,000 latent variables. Profiling introduces global low-rank coupling; its Jacobian is not frame-block-diagonal. Bounded trust-region least squares with Jacobian/vector products is a suitable reference.
 
-## 6. Framewise estimation after calibration
+Require declared-unit projected stationarity, stable steps/cost, accurate inner solves, and any robust-weight convergence. An evaluation limit is a nonconverged result, not a selected model. Preserve checkpoints and failed alternatives separately.
 
-Freeze coefficients, covariance construction, model capacity, and preprocessing. For available P4 indices `I`, solve
+## 6. Independent framewise estimation
+
+Freeze coefficients, covariance construction, capacity, and preprocessing. For available P4 indices `I`, solve
 
 $$
 \widehat x_I=\arg\min_{x\in\mathcal B}
  e_I(x)^\top[R_e]_{II}^{-1}e_I(x).
 $$
 
-Use the covariance principal submatrix before inversion. In general, `[R_e^{-1}]_II` is not `[R_e]_{II}^{-1}`; selecting rows from a fully whitened vector can mix in excluded P4 observations.
+Use the covariance principal submatrix before inversion: `[R_e^-1]_II` generally differs from `[R_e]_II^-1`. Selecting rows of a fully whitened residual can mix excluded P4 observations into the solve.
 
-A simple offline reference uses a declared Cartesian start grid covering the box, for example gaze `[-20,-10,0,10,20]` and accommodation `[0,1,2,3,4,5,6]`. Refine with bounded trust-region least squares and analytic state Jacobians. This is a proposed starting policy, not a proof that all inverse branches are found. Check denser/adaptive grids on validation cases. Optimize speed only after agreeing with the scalar reference.
+An initial offline start grid can use gaze `[-20,-10,-5,0,5,10,20]` degrees and accommodation `[0,1,2,3,4,5,6]` D. The ±20 starts cover the computational box; they are not calibration targets. Refine using bounded trust-region least squares and analytic state derivatives. Test denser/adaptive grids on development cases because a finite grid does not guarantee every branch. Optimize speed only after matching the scalar reference.
 
-Cluster converged solutions by declared physical-state tolerances. Report minimum cost, numerical ties, other plausible branches, bound activity, projected stationarity, and noise-scaled Jacobian singular values. The old smallest-accommodation tie-break may be retained for a reproducible representative, but ambiguity must remain visible. A near-equal-cost threshold is not automatically a confidence interval.
+Cluster converged solutions by declared physical tolerances. Report minimum cost, numerical ties, other plausible branches, bounds, projected stationarity, and noise-scaled Jacobian singular values. A smallest-accommodation tie-break may provide a reproducible representative but must not conceal ambiguity; numerical ties are not confidence intervals.
 
-The all-three solution is the primary unsmoothed estimate. Extra coordinate residuals, predicted area ratio, and predicted pixel positions are diagnostics. Do not automatically force the new states toward the baseline trajectory.
+The all-three result is the primary unsmoothed estimate. Coordinate residuals and implied centroid/area are diagnostics of the shared optical response. Do not force the result toward the baseline trajectory, repair it to a similarity pattern, or silently reject peripheral states with expected deformation.
 
 ## 7. Three P4-point holdout checks
 
-With coefficients trained outside the evaluation fixation/capture, repeat for `j=1,2,3`:
+With coefficients learned outside the evaluation fixation/capture, repeat for each P4 point `j`:
 
-1. Build an estimator input containing all three P1 points and only the other two P4 points. Use their marginal covariance and subset-only validity.
-2. Solve for the shared state from that subset, including rank, stationarity, bounds, and branch checks.
-3. Before accessing the held-out measurement, predict `qhat_j=c1+ell1*(D+T*r_j)` for every retained plausible branch.
-4. Compare with measured `q_j`; store pixel and normalized prediction errors, predictive uncertainty, and the difference from the all-three state.
+1. Build input containing all P1 points and only the other two P4 points. Use their marginal covariance and subset-only validity.
+2. Solve for the shared state with rank, stationarity, bounds, and branch diagnostics.
+3. Before accessing the excluded value, predict `qhat_j=c1+ell1*(D+T*r_j)` for every retained plausible branch, including the calibrated distortion response.
+4. Compare with observed `q_j` and store pixel/normalized errors, predictive uncertainty, and differences from the all-three state.
 
-**Do not select a branch using the held-out P4 point.** When the subset is ambiguous, report its prediction set or an untestable/ambiguous result rather than picking the branch that makes the test pass. A poor subset rank also yields an inconclusive test, not proof that the withheld point is wrong.
+Do not use the excluded point to choose a branch. If the subset is ambiguous, report its prediction set or an inconclusive result. Weak rank is not proof that the point is wrong. If insufficient P4 observations remain, record an unavailable subset test rather than inventing a prediction.
 
-The holdout may use all P1 points because only a P4 measurement is withheld. Holding out an entire P1/P4 pair is a different experiment: the original P1 triangle normalizer is then unavailable.
+All three P1 points remain allowed because only a P4 point is held out. Holding out a whole P1/P4 pair removes the original triangle normalizer and is a different experiment.
 
 ### 7.1 Leakage prohibition
 
-The subset state solve must not depend on the excluded P4 point through any of the following: its coordinate, full P4 centroid/area/map, all-three baseline inverse, all-three warm start or previous-state penalty, full-data whitening, confidence/weight/gating computed from full P4 geometry, branch selection, or a model trained on the evaluation frame. Fixed dataset membership can be reported separately from state-input validity.
+The excluded point must not affect state estimation through its coordinate, full P4 centroid/area/map, similarity magnification, all-three baseline inverse, all-three warm start, state penalty, full-data whitening, geometry-derived confidence/gates, branch choice, or a model trained on the evaluation frame. Fixed evaluation-population membership may be reported separately from subset-input validity.
 
-A mandatory unit test perturbs the excluded P4 coordinate arbitrarily and verifies unchanged subset preprocessing, weights, starts, fitted states, branch sets, and predicted point. Only the subsequent score may change.
+A mandatory unit test perturbs the excluded coordinate arbitrarily and checks unchanged subset preprocessing, weights, starts, states, branch sets, and predicted point. Only the later score may change. Perform this test for every point and axis, not only one synthetic case.
 
-Upstream detector selection may already use the other points or triangle assumptions. These tests establish prediction conditional on stored detections, not independence of the entire image-detection pipeline. Raw-candidate or independently localized checks are separate evidence.
+Upstream detector selection may already use all points or triangle assumptions. These tests validate predictions conditional on stored detections, not independence of the full image-detection pipeline. A similarity-constrained detector can suppress real optical deformation; raw candidates or independently localized measurements are separate evidence.
 
 ### 7.2 Correlated predictive uncertainty
 
-For a regular interior subset inverse, let `J_I` and `J_j` be prediction derivatives, with P1 context fixed in state differentiation but its noise already included in `R_e`. Define
+For a regular interior subset inverse, let `J_I,J_j` be state derivatives at fixed P1 context, with its localization error already propagated into `R_e`. Define
 
 $$
 K_I=(J_I^\top R_{II}^{-1}J_I)^{-1}J_I^\top R_{II}^{-1},\qquad M_j=J_jK_I.
 $$
 
-To first order, the withheld prediction error is `epsilon_j-M_j epsilon_I`, with covariance
+The first-order held-out error is `epsilon_j-M_j epsilon_I`, with covariance
 
 $$
 V_j=R_{jj}+M_jR_{II}M_j^\top-R_{jI}M_j^\top-M_jR_{Ij}.
 $$
 
-The cross terms matter because all pairs share noisy P1 geometry. This expression excludes calibration-coefficient uncertainty and systematic model error; assess those with grouped refits/sensitivity or an explicitly propagated calibration covariance. Near bounds, weak rank, or multiple branches, use simulation/profile prediction sets rather than a single Gaussian ellipse.
+Cross terms matter because P1 geometry is shared. This excludes coefficient uncertainty and systematic model error; assess them through grouped refits/sensitivity or explicitly propagated calibration covariance. Bounds, weak rank, and multiple branches require profiles/simulation or prediction sets instead of a single Gaussian ellipse.
 
-A score such as `e_j^T V_j^-1 e_j` is useful, but its alarm threshold needs training-only held-out calibration and a policy for the maximum of three tests. Without verified clean reference data, an empirical percentile is a reference exceedance rate, not a validated detector false-positive rate.
+A Mahalanobis score `e_j^T V_j^-1 e_j` needs training-only held-out threshold calibration and a policy for the maximum of three tests. Without verified clean references, an empirical percentile is an exceedance rate, not validated detector false-positive probability. Large expected deformation is not itself the score.
 
-## 8. Interpretation and optional partial estimates
+## 8. Interpretation, model inadequacy, and optional partial estimates
 
-Keep the all-three estimate and all three subset results. Do not turn a disagreement into an automatic claim that one point is an artifact. Distinguish numerical failure, insufficient subset identification, geometry inconsistency, and suspected point-localized inconsistency.
+Keep the all-three estimate and every subset result. Distinguish numerical failure, insufficient identification, unexplained geometry, repeatable field-dependent model discrepancy, and suspected point-localized error. A good detection can disagree with an underfit model, especially at an off-center gaze. A distorted pattern can be correct when predicted by the calibrated state.
 
-A future two-pair recovery policy may select a subset under a predeclared decision rule, but must preserve the original all-three result and label the exclusion. Selecting the best subset after inspecting all three scores is an operational decision, not an untouched held-out validation result. With only three points, evidence can be insufficient to isolate the faulty point.
+A later recovery policy may choose a two-P4 subset under a declared rule, preserving and labeling the original all-three result. Choosing a subset after inspecting all three scores is an operational decision, not an untouched validation test. Three points may be insufficient to isolate the faulty point.
 
-Do not add unrestricted per-frame offsets, scale, shear, or triangle maps to make the residual vanish. A new nuisance parameter needs supported identifiability and reduces residual redundancy. Shared calibration bias or a perturbation along the model's state directions can still produce mutually consistent but incorrect estimates.
+Do not introduce unrestricted framewise offsets, scale, shear, radial coefficients, or affine maps to erase errors. A new nuisance state requires identifiable support and consumes residual redundancy. Shared calibration/localization bias or perturbations along state directions can remain mutually consistent but wrong.
 
 ## 9. Evaluation design
 
-### 9.1 Preserve separate comparisons
+### 9.1 Separate geometry, capacity, normalization, and priors
 
-Keep the frozen all-data 13-coefficient baseline as a historical reference. For honest held-out evaluation on captures 1–4, retrain a two-channel control inside every training fold; the frozen all-data model has already seen those evaluation conditions.
+Retain the frozen 13-coefficient baseline as historical reference. For captures 1–4 held-out evaluation, retrain the two-channel control within each fold; the all-data frozen model has seen those conditions. Keep its adapter's declared basis scale separate from new candidate scaling.
 
-Compare `conditional27`, `conditional37`, and the fold-local two-channel model under matched data support, mean anchors, temporal policy, and noise assumptions. Compare added geometry against added capacity explicitly. An area/centroid-only control is a nonlinear reduction of point predictions; its covariance must be propagated rather than reusing six independent coordinate weights.
+Compare `conditional27`, `conditional37`, and fold-local two-channel controls under matched support, mean anchors, temporal policies, and declared noise assumptions. Include a reduction of the same full-model predictions to centroid/area when testing which measurements matter; propagate that reduction's covariance rather than reusing independent coordinate weights. Capacity and regularization changes must be reported, not attributed solely to extra geometry.
 
-As a diagnostic only, a geometry decoder fitted at frozen baseline states can show what those states predict. It is not independent confirmation of the baseline and must not replace latent-state calibration.
+An optional similarity-restricted model can test whether unequal stretching/orientation response beyond that restriction improves prediction. Declare its state functions, coefficient count, parity, priors, and fitting objective. It is a reduced ablation, not a preprocessing standard or detector validity rule. A nonlinear determinant/similarity parameterization must not be mislabeled as the unchanged linear coefficient profiler.
 
-### 9.2 Grouped splits
+Keep square-root P1 area in the first comparison. Fitted magnification, singular-value summaries, and RMS-spread normalization are separately labeled later alternatives. Do not treat deterministic summaries as extra independent coordinates.
 
-Use entire reviewed fixations as the minimum split unit, never random adjacent frames. A useful initial outer scheme with these 20 intervals withholds one nominal gaze target across all four captures, producing five gaze-condition folds. Inner grouped splits select capacity, priors, and thresholds without consulting the outer evaluation data.
+A geometry decoder fitted at frozen baseline states is a diagnostic of those states, not independent confirmation; it cannot replace joint latent-state calibration.
 
-Also evaluate whole-capture/demand holdouts, including the two interior demands. Endpoint-demand holdouts are extrapolation tests. Capture, demand, time, and drift may be confounded: success or failure cannot isolate demand generalization from recording changes. With only four captures, uncertainty estimates and nuisance discrimination remain limited.
+### 9.2 Grouped splits and exact gaze conditions
 
-Inside each outer evaluation fold, perform both all-three inversion and the three P4-point holdouts. Freeze the selected design before inspecting captures 5/6 as final unlabeled transfer checks. Repeated tuning on their outputs makes them development data, which must be disclosed.
+Use entire fixations as the minimum split unit. The initial outer scheme holds out one nominal gaze across all four captures, giving five folds at `-10,-5,0,5,10` degrees. Inner grouped splits select capacity, priors, covariance policy, and thresholds without consulting the outer data. Holding out ±10 is extrapolation relative to the remaining gaze anchors; report it accordingly.
 
-For stringent holdout scores, report both the full fixed evaluation population and any baseline-matched comparison subset. Do not remove difficult evaluation rows using the new model's residuals and then report only the survivors.
+Also evaluate whole-capture/demand holdouts, including interior demands. Endpoint-demand holdouts are extrapolation. Capture, demand, time, and drift may be confounded; four captures provide limited evidence to separate them. Read demand labels from metadata rather than old experiment constants.
+
+In every outer fold perform all-three inversion and each P4 holdout. Freeze the selected design before final unlabeled transfer checks on captures 5/6. Repeated tuning on those results makes them development data and must be disclosed.
+
+Report the fixed evaluation population and any baseline-matched subset separately. Do not exclude difficult rows using candidate residuals and report only survivors.
 
 ### 9.3 Required outcomes
 
-Report held-out point prediction error by point/axis/fixation/capture; predictive-interval calibration where justified; all-three geometry residuals; subset/all-three state discrepancies; nominal fixation-mean agreement; fixation spread; numerical convergence; rank/conditioning; branch ambiguity; bound hits; state/context extrapolation; and coverage/rejection/partial-estimate rates.
+Report point/axis prediction errors by fixation, capture, nominal gaze, and demand; predictive uncertainty calibration where justified; all-three residuals; subset/full-state differences; nominal fixation means; fixation spread; numerical convergence; rank/conditioning; branches; bounds; state/P1-context support; coverage; rejection; and partial estimates.
 
-Synthetic point perturbations test failure sensitivity and leakage, not real detector accuracy. Separately test area-preserving distortions, incorrect correspondence, common-scale/translation changes, and perturbations that resemble genuine state motion. The last can evade geometric residuals and should be documented.
+The main selection question is whether a state inferred without one P4 point predicts its response reproducibly on unseen conditions without unacceptable loss of stability or coverage. Lower training error, smoother traces, or smaller linear-versus-joint discrepancies are insufficient.
 
-Do not select a model just because it has smaller training residuals, smoother traces, or smaller linear-versus-joint discrepancy. The main selection question is whether a state inferred without a P4 point predicts that point reproducibly on unseen conditions without unacceptable loss of coverage or stability.
+### 9.4 Distortion-specific diagnostics and controlled tests
+
+For each of the five nominal gaze conditions and each capture/demand, report observed and predicted common displacement, all four effective-map entries where measurable, area ratio, and optional stretch/orientation descriptors. These are correlated diagnostics derived from coordinates, not extra likelihood terms. Evaluate expected maps at nominal-state probes separately from estimates at inferred states; nominal demand is not a measured accommodation reference.
+
+Inspect signed-gaze asymmetry, central versus peripheral prediction errors, and residual dependence on P1 shape/context. Source-grid offsets can make zero gaze off-axis, so do not pool positive/negative gaze under an assumed symmetry. Do not infer an optical field angle from a gaze label alone.
+
+Compare `conditional27` and `conditional37` specifically on held-out coordinate errors and noise-scaled state sensitivity/conditioning. Repeatable residual curvature can indicate insufficient response capacity; isolated errors may suggest localization/selection issues, but neither pattern proves its cause. Check sensitivity to priors before claiming the new shape channels add state information.
+
+Required synthetic distinctions:
+
+- Use a known shared-state coordinate model with non-similarity and gaze/accommodation curvature. Correct state predictions should explain its deformation without triggering a similarity-based rejection. Verify rank before expecting accurate state recovery.
+- Separately sample a nonlinear source-field mapping at three sites. Demonstrate exact three-site affine reconstruction without claiming recovery of the continuous mapping; an additional simulated site can expose non-affine spatial structure. This is a geometry test, not proof that either empirical capacity fits all optical systems.
+- Perturb one P4 point, including area-preserving perturbations, and test held-out noninterference and error sensitivity. Compare with a freely fitted per-frame affine map that can absorb a corrupted triangle exactly.
+- Perturb along genuine state-response directions, introduce incorrect correspondence, and apply common translation/scale. Some state-like errors can evade residuals; document that limit rather than promising universal artifact detection.
+
+Synthetic tests assess mathematics and failure sensitivity, not real detector accuracy or physiological validation. Any optical/image simulation must declare source geometry, coordinate units, eye/relay model, and localization definition.
 
 ## 10. Proposed implementation and output contract
 
-New implementation paths, not files already implemented:
+These are proposed paths, not already implemented files:
 
 ```text
-full_position/geometry.py       # P1 context; pair mapping; mask-safe observations
-full_position/model.py          # conditional27/37; derivatives; implied d/rho
-full_position/noise.py          # shared-input covariance and subset marginals
+full_position/geometry.py       # mapping; P1 context; mask-safe coordinate data
+full_position/model.py          # conditional27/37, theta_scale_deg=10; derivatives
+full_position/noise.py          # shared-input covariance; subset marginals
 full_position/calibrate.py      # fold-local initialization and profiled fitting
 full_position/invert.py         # bounded multistart reference and diagnostics
-full_position/validate.py       # grouped evaluation and P4-point holdouts
-full_position/schema.py         # model, result, and provenance validation
+full_position/validate.py       # grouped tests; P4 holdouts; distortion ablations
+full_position/schema.py         # basis/scale, provenance, and result validation
 experiments/full_position/<run_id>/
 ```
 
-These are logical responsibilities, not a requirement for extra services or processes. Reuse existing utilities only when their semantics match.
+These responsibilities do not require additional services/processes. Reuse utilities only where semantics match; specifically audit legacy target arrays, degree scaling, two-channel assumptions, pupil gates, and knot-model defaults.
 
-A model artifact must identify its schema, source hashes, correspondence and parity, measurement order, normalization, bases/coefficient order, noise model/reference covariance, coefficient prior, anchors, temporal policy, computational bounds, training groups, calibration support, software versions, seed, convergence, and failed alternatives.
+Model artifacts must identify schema/version, source hashes, point order and correspondence/parity, normalization, exact gaze/demand labels, `theta_scale_deg=10`, state encoding, coefficient basis/order, source-grid geometry or its absence, measurement/localization definition, noise/reference weights, prior, anchors, temporal policy, computational bounds, training groups/support, software/seed, convergence, and failed alternatives. Baseline artifacts remain unchanged and separately identified.
 
-Frame outputs retain every original row and include validity/support flags; primary state; predicted points; observed/predicted `d_x,d_y,rho_4`; covariance/conditioning; costs; branch/bound/stationarity flags; all three subset states and predictions; withheld-point scores and reasons for inconclusive tests. Missing quantities remain explicitly missing, not interpolated silently. Plot masks never modify estimation data.
+Frame outputs preserve every original row with validity/support flags, primary state, predicted coordinates, observed/predicted `d_x,d_y,rho_4`, covariance/conditioning, costs, branches/bounds/stationarity, all subset states/predictions, held-out errors, and reasons for inconclusive tests. Optional map/stretch diagnostics are computed only when available and labeled as such. Missing values remain missing; plot masks do not modify estimator inputs.
 
 Pseudocode:
 
 ```python
-for outer_fold in grouped_folds:
+for outer_fold in grouped_folds([-10, -5, 0, 5, 10]):
     train, test = split_before_preprocessing(outer_fold)
-    config = select_inside_training_groups(train)
+    config = select_inside_training_groups(train)  # compare 27/37; gaze scale 10
     model = calibrate_shared_state_geometry(train, config)
     for frame in test:
         p1 = build_p1_context(frame.p1, frame.p1_flags, model)
         all_result = invert_with_only_available_p4(p1, frame.p4, model)
         for j in range(3):
             kept = build_subset_input(p1, frame.p4_except(j), model)
-            subset = invert_multistart(kept, model)
-            prediction = predict_excluded_p4(p1, j, subset, model)
-            score = score_after_prediction(prediction, frame.p4[j], model)
+            subset = invert_or_report_insufficient_support(kept, model)
+            prediction = predict_excluded_p4_or_report_inconclusive(p1, j, subset, model)
+            score = score_available_point_after_prediction(prediction, frame.p4[j], model)
             save_holdout_result(j, subset, prediction, score)
         save_primary_result_without_repair(all_result)
 ```
 
-Acceptance tests before real-data claims: exact normalization and permutation identities; coordinate-reconstruction tests; complete feature-rank tests; analytic/finite-difference derivatives including profiled coefficients; shared-input covariance propagation; subset marginal covariance; held-out perturbation noninterference; ambiguous/rank-deficient subset handling; P1 degeneracy; bound handling; and persistence of invalid rows. Compare any accelerated solver with the scalar reference.
+Acceptance tests before real-data claims:
 
-## 11. Optional extension: use P1 geometry as state evidence too
+1. Validate exact target labels and normalization; reject legacy target substitutions. Verify nominal encoded gazes `[-1,-0.5,0,0.5,1]`, physical/encoded bounds, and schema-required gaze scale.
+2. Test permutation, reconstruction, nonredundant geometry rank, and area identities. Confirm invariance only to the declared common transformations and preserve distortion responses.
+3. Compare analytic state and profiled-coefficient derivatives with finite differences, including `dt/dtheta_deg=1/10`. Verify any explicit 15-to-10 coefficient conversion preserves predictions/physical derivatives; preserve frozen baseline outputs through its unchanged adapter.
+4. Test complete residual covariance and subset marginals, all-point holdout noninterference, weak-rank/multibranch subsets, P1 degeneracy, bounds, and invalid-row persistence.
+5. Run the distortion-specific tests in section 9.4 and compare any accelerated solver with the scalar reference. A documentation-only change does not constitute passing these implementation tests.
 
-The conditional model preserves P1 geometry but does not predict it. A genuine nine-dimensional normalized joint model can add a calibrated P1-shape response, without double-counting redundant coordinates.
+## 11. Optional joint P1/P4 and optical extensions
 
-On a fixed P1 orientation branch, write `H1=E1/ell1`, whose determinant is `2s`, `s=+1` or `-1`. A local three-coordinate chart is `chi=(phi,kappa,b)`:
+The conditional model retains P1 shape as context. It does not assume its optical mapping is invariant. A genuine nine-component normalized model can also predict three P1 shape/orientation coordinates without double-counting them.
 
-$$
-H_1=\left[e^\kappa\mathbf e_\phi\;\;b\mathbf e_\phi+2s e^{-\kappa}\mathbf e_\phi^\perp\right].
-$$
-
-Recover `phi` from the first edge, `kappa=log(norm(first edge))`, and `b` by projecting the second edge onto that edge's unit direction. Handle angle wrapping on a declared local branch.
-
-Calibrate `chi=G_1(x;gamma)` and predict
+On a fixed branch write `H1=E1/ell1`, with determinant `2s`, `s=+1` or `-1`. A local chart `chi=(phi,kappa,b)` is
 
 $$
-y_{joint}=[\chi_{obs};v_{obs}],\quad
+H_1=[e^\kappa\mathbf e_\phi\;\;b\mathbf e_\phi+2s e^{-\kappa}\mathbf e_\phi^\perp].
+$$
+
+Recover `phi` from the first edge, `kappa=log(norm(first edge))`, and `b` by projecting the second edge onto its unit direction. Handle angle wrapping on a declared branch.
+
+Calibrate `chi=G1(x;gamma)` and predict
+
+$$
+y_{joint}=[\chi_{obs};v_{obs}],\qquad
 F_{joint}(x)=[G_1(x);\{D(x)+T(x)r_j(G_1(x))\}_{j=1}^3].
 $$
 
-This supplies nine nonredundant normalized components with their full joint covariance. It assumes that normalized P1 shape/orientation are predictable from the declared states/conditions. If that assumption fails, retain them as context/diagnostics or introduce only identifiable nuisance effects. Do not force a P1 response to fit by arbitrarily moving accommodation.
+This uses nine nonredundant components with full joint covariance and assumes a supported P1 response to the declared states/conditions. If unsupported, retain P1 as context/diagnostics or introduce only identifiable nuisance effects. Do not force accommodation to account for arbitrary P1 changes.
 
-This extension changes the calibration problem; shape-chart functions and derivatives must enter the optimizer, and the first conditional model's six-residual profiler cannot simply be relabeled. Evaluate its incremental held-out benefit against the conditional model before adopting it. Without such evidence, the conditional full-P4 model is the recommended first implementation.
+This changes coefficient fitting and derivatives; the conditional six-residual profiler cannot simply be relabeled. Use explicit new basis/scale metadata and test incremental held-out benefit before adoption.
+
+A later source-coordinate/ray-traced model can predict both reflections directly from actual source positions/directions and an optical prescription. It requires source and camera geometry, measurement-definition compatibility, and identifiable global/nuisance parameters. Three sites alone do not justify unrestricted per-frame radial, polynomial, or Seidel coefficients. Denser sources or controlled field variations could test spatial nonlinearity, but are not prerequisites for the current sampled shared-state estimator.
 
 ## 12. References and completion boundary
 
-Repository facts are grounded in the linked files at the inspected commit. The geometric identities and proposed model/holdout formulas are derived in [Theory.md](Theory.md).
+Repository facts are grounded in the linked baseline/interval files. [Theory.md](Theory.md) derives the geometry, illustrative field-distortion example, conditional model, and holdout covariance.
 
-External method references:
+- [Wu et al. (2023), High-resolution eye-tracking via digital imaging of Purkinje reflections](https://pmc.ncbi.nlm.nih.gov/articles/PMC10166114/): reflection paths and angular optical response; not validation of the proposed accommodation model.
+- [NIST, Combining uncertainty components](https://physics.nist.gov/cuu/Uncertainty/combination.html): first-order covariance propagation.
+- [SciPy, least_squares](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least_squares.html): bounded trust-region optimization and Jacobian operators.
+- [scikit-learn, Cross-validation](https://scikit-learn.org/stable/modules/cross_validation.html): training/model-selection separation and grouped evaluation.
 
-- [NIST: Combining uncertainty components](https://physics.nist.gov/cuu/Uncertainty/combination.html), for first-order covariance propagation.
-- [SciPy: least_squares](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least_squares.html), for bounded trust-region optimization, Jacobian operators, and solver termination semantics.
-- [scikit-learn: Cross-validation](https://scikit-learn.org/stable/modules/cross_validation.html), for separating training/model selection from grouped evaluation.
-
-This document does not claim that candidate coefficients, real-data residuals, runtime, or physiological accuracy have been established. The next implementation deliverable is a reproducible geometry/noise/inversion prototype with the leakage tests above, followed by fold-local calibration and held-out comparison—not replacement of the frozen model before evidence is available.
+This revision changes documents only. It establishes neither fitted candidate coefficients nor new real-data performance, runtime, detector behavior, or physiological accuracy. The next implementation deliverable is a reproducible geometry/noise/inversion prototype with target/scale and leakage tests, followed by fold-local calibration and distortion-aware held-out comparison. Preserve the frozen estimator until comparative evidence supports a replacement.
