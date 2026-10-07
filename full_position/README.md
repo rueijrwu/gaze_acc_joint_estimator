@@ -17,14 +17,17 @@ new coefficients at scale 10. The frozen coefficients are never loaded into it.
 From the repository root:
 
 ```bash
-rtk proxy python -m pip install -r full_position/requirements.txt
-rtk proxy env OPENBLAS_NUM_THREADS=1 python -m unittest discover -s tests -v
+rtk proxy python -m pip install -r requirements-dev.txt
+rtk proxy env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=.:tests python -m pytest -q tests
 rtk proxy env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m full_position \
   --output experiments/full_position/my_run \
   --folds gaze capture --train-per-fixation 48 --eval-per-fixation 8 \
   --calibration-starts 2 --max-nfev 500
 rtk proxy python -m full_position.report experiments/full_position/my_run
 ```
+
+Run the full pytest suite so both the class-based acceptance tests and the
+function-based cross-check contract tests are collected.
 
 Independent folds can run concurrently while keeping small BLAS kernels single
 threaded:
@@ -148,6 +151,23 @@ same-response centroid/area diagnostics, retained-x versus retained-x/y P4
 prediction, and training-only signed residual/objective decomposition. All-three
 summaries never enter excluded-P4 validation. These targeted ablations do not
 constitute population-wide information or accuracy comparisons.
+
+Post-process the frozen polished audit into the explicit three-point cross-check
+report with a new output directory:
+
+```bash
+rtk proxy env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m full_position.crosscheck \
+  experiments/full_position/audit_polished_v1 \
+  experiments/full_position/crosscheck_v1_reproduction
+```
+
+This command joins the saved population, frame, and holdout records. It does not
+refit or predict. The join preserves all scheduled point slots, including null
+unscored slots, and the report includes both all-testable and exact matched
+interior-only cohorts. Paired model comparisons use shared frame/point IDs; the
+two-channel control has no individual-P4 prediction metric. See the checked-in
+[crosscheck results](../experiments/full_position/crosscheck_v1/RESULTS.md) for
+the current saved-record evaluation and its support definitions.
 
 ## Outputs and application
 

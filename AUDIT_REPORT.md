@@ -4,7 +4,7 @@
 **Branch:** `exp5_full`  
 **Evidence snapshot:** `c2584292d13393a4c5a8bb34afdea9c19f90e67f`  
 **Revision date:** 2026-10-07  
-**Revision scope:** documentation and evaluation contract; no code changes, retraining, new inverse runs, or new physiological measurements.
+**Revision scope:** audit and evaluation contract, reconciled with the implemented frozen-record three-way cross-check. The cross-check adds no retraining, inverse runs, or physiological measurements.
 
 ## Executive assessment
 
@@ -26,9 +26,9 @@ Nominal accommodation demand is not measured accommodation. Better agreement wit
 
 This revision reconciles the [current status](CURRENT_STATUS.md), [polished frozen-model results](experiments/full_position/audit_polished_v1/RESULTS.md), the previous audit, and the current inversion/reporting implementation. The original numerical audit concerned commit `88f3ac5556f1a4aa3ca1e42db356853ab8c48f53`. Its report is preserved in [the pre-rewrite file at the evidence snapshot](https://github.com/rueijrwu/gaze_acc_joint_estimator/blob/c2584292d13393a4c5a8bb34afdea9c19f90e67f/AUDIT_REPORT.md).
 
-The original audit's targeted numerical findings are historical evidence, not new calculations performed for this revision. Likewise, the 21 passing tests, source/model preservation checks, objective reconstruction, and profile comparisons below are **reported by the saved implementation audit**, not independently rerun during this documentation update.
+The original audit's targeted numerical findings are historical evidence. The three-way scorecard now has a separately versioned post-processing result in [crosscheck_v1](experiments/full_position/crosscheck_v1/RESULTS.md), computed from frozen frame and holdout records without recalibration, refitting, or prediction. The original 21-test count and source/model preservation checks remain historical evidence; the current 42-test verification and source-tree check are recorded in the cross-check verification artifact.
 
-The old report's recommendations to implement polishing and fix basic reporting must not remain listed as unresolved defects. Conversely, the new metric aggregation and experiments proposed below are **not implemented merely because this report specifies them**. Statements in `CURRENT_STATUS.md` that the audit fixes are implemented refer to the earlier numerical/reporting findings, not blanket completion of this revised evaluation contract.
+The old report's recommendations to implement polishing and fix basic reporting are resolved. The saved-record reporting step in Section 8.1 is also complete. Joint latent-state/coefficient sensitivity and the later scientific experiments remain open; completing the scorecard does not complete those studies.
 
 Original `grouped_v2` outputs remain historical. Use `audit_polished_v1` for the latest fixed-model comparison; do not silently combine different supports or original and revised branches.
 
@@ -230,7 +230,7 @@ Both coordinate models now score all 429 valid-population tests per family. `con
 
 **The relevant comparison favors `conditional27` because it predicts excluded measurements better, not because it is closer to nominal accommodation demand.** It is the current development reference, not a physiologically validated winner or proof that extra curvature is always harmful.
 
-Explicit distributions of `S_theta` and `S_A` are not established by the headline reports. Extract them from the saved subset states and report them alongside point errors before declaring strong three-way state agreement. Existing subset-versus-all-three differences do not replace this full comparison.
+The saved-record three-way state disagreement is now reported alongside coordinate prediction in [crosscheck_v1](experiments/full_position/crosscheck_v1/RESULTS.md). On the full eligible population and exact matched interior population, `conditional27` has lower equal-fixation RMS for both state components in both split families. These are descriptive, correlated subset comparisons with no calibrated agreement tolerance; they do not establish physiological accuracy.
 
 ### 5.1 Better retained fit can mean worse cross-check agreement
 
@@ -261,16 +261,16 @@ The mathematical core remains aligned with the theory: correspondence-safe six-p
 | Original finding | Status at the evidence snapshot | Remaining boundary |
 |---|---|---|
 | Better candidates discarded before certification | Addressed: candidates retained and bounded exact-Hessian polishing precedes acceptance/clustering | Maintain independent branch checks; no global completeness claim |
-| Per-frame versus fixation-mean metrics confused | Addressed in `validate.py` and `report.py` | Add the explicit three-way prediction/state aggregation in Section 4 |
+| Per-frame versus fixation-mean metrics confused | Addressed in `validate.py` and `report.py` | Preserve aggregation labels and matched-support membership |
 | Report could use a rejected start's cost | Addressed: selected and rejected costs separated | Preserve selection provenance in every new run |
 | Compatibility validation and application diagnostics incomplete | Reported addressed in the polished audit; shared support/parity/uncertainty contract | Unavailable uncertainty components remain explicitly unavailable |
-| Numerical regressions and convergence semantics incomplete | Saved suite reports 21 tests, including high-residual and raw-input leakage checks | Add new metric and branch-to-state-agreement regression tests |
+| Numerical regressions and convergence semantics incomplete | Earlier saved suite reported 21 tests; the current full pytest suite passes 42, including cross-check contract and perturbation regressions | Retain certification and leakage checks for future changes |
 
 Sources: [current inversion](full_position/invert.py), [reporting](full_position/report.py), [evaluation summaries](full_position/validate.py), and [latest audit results](experiments/full_position/audit_polished_v1/RESULTS.md).
 
 The exact-Hessian and polynomial-profile findings from the original audit remain useful numerical safeguards. At fixed accommodation/context, the implemented gaze response is cubic or lower, so the fixed-weight objective is at most degree six in scaled gaze. Stationary-root enumeration plus accommodation refinement provides an independent targeted check; it must not be relabeled a complete global certificate.
 
-The saved verification reports byte-identical copies of 27 models, nine round-tripped populations, 199 matching source hashes, and 21 passing tests. These preservation checks establish reproducibility of the reported update, not physiological correctness or adequacy of the learned response surface.
+The earlier implementation audit reports byte-identical copies of 27 models, nine round-tripped populations, 199 matching source hashes, and 21 tests. The current cross-check verification reports 42 passing tests and an unchanged frozen source tree. These preservation checks establish reproducibility of the reported updates, not physiological correctness or adequacy of the learned response surface.
 
 ## 7. What the disagreement teaches us
 
@@ -294,17 +294,15 @@ The saved coefficient-sensitivity refits hold latent states fixed. A tenfold pri
 
 The two original difficult audit frames had well-conditioned P1 triangles, so they did not motivate replacing square-root area first. That local observation does not rule out normalization sensitivity elsewhere. Preserve normalization in the next controlled comparison.
 
-## 8. Required updates and next experiments
+## 8. Completed reporting update and next experiments
 
-### P0 — Extract the agreement scorecard from existing outputs
+### P0 — Three-way agreement scorecard (complete)
 
-No new model training is needed to start. Extend reporting to join the three holdout records by `(run, fold, model, capture, original frame/row)` and calculate the Section 4 metrics where all checks are valid. Retain unique point IDs, subset states/branches, bounds, rank/conditioning, and complete/partial population membership.
+The versioned [crosscheck_v1 report](experiments/full_position/crosscheck_v1/RESULTS.md) joins frozen holdouts by split, fold, model, capture, fixation, row, and excluded point. It reports per-point errors and support, complete-frame prediction/state metrics, scheduled coverage, bounds, and full and exact matched interior populations. The [summary JSON](experiments/full_position/crosscheck_v1/crosscheck_summary.json) retains exact membership IDs; [verification](experiments/full_position/crosscheck_v1/verification.json) records source immutability and the 42-test run. This is post-processing only: no predictions, branch selection, or refits were rerun.
 
-Suggested versioned outputs are `crosscheck_frames.csv`, `crosscheck_points.csv`, and `crosscheck_summary.json` in a **new reporting output directory**. These are proposed outputs, not existing artifacts or permission to overwrite historical results. Include `cross_prediction_rms_px`, `cross_prediction_rms_normalized`, `cross_prediction_max_px`, `subset_gaze_sd_deg`, `subset_accommodation_sd_D`, both state ranges, `testable_point_count`, `complete_threeway`, and all reason/support flags. Summaries must identify weighting, denominators, and contributing IDs.
+Each family/model has 160 scheduled frames and 480 scheduled point slots, with 17 invalid frames retained as 51 unscored slots; the valid population has 143 complete frames and 429 scored points. Equal-fixation complete-frame `E`/`G_theta`/`G_A` RMS values are 3.421 px/0.269°/0.311 D and 6.700 px/0.509°/0.929 D for gaze `conditional27`/`conditional37`; capture values are 4.014 px/0.281°/0.319 D and 4.307 px/0.325°/0.392 D. On the exact shared interior complete-frame support (110 gaze, 125 capture frames), the corresponding values are 3.198/0.241/0.258 versus 4.699/0.408/0.377 for gaze, and 3.924/0.276/0.317 versus 4.097/0.339/0.413 for capture. See the linked report for boundary summaries, pooled point RMS, and matched point-level masks.
 
-Keep point-prediction agreement and subset-state agreement on the same declared complete-frame population, with partial populations reported separately. Add paired model differences and a separate bound-active stratum. Compute aggregates from stored errors/states, not from rounded summary tables.
-
-Acceptance checks should cover point-label permutation invariance of aggregate scores; exact known three-state dispersions; the distinction between RMS and mean frame error; correlated-state interpretation; missing/ambiguous/bound cases; duplicate ID rejection; shared-bound artificial agreement; and consistent aggregation on fixed versus common populations. Repeat raw excluded-coordinate noninterference for any new branch or preprocessing logic.
+The report keeps prediction error and state disagreement as separate metrics. It does not introduce a pass threshold or combine degrees with diopters. Shared clipping can produce small state spread while coordinate prediction remains poor.
 
 ### P1 — Joint calibration sensitivity, selected by predictive agreement
 
@@ -338,7 +336,7 @@ Keep captures 5/6 untouched by the full-position study until choices are frozen.
 
 The current implementation already performs the essential P4 cross-prediction. Its numerical certification is materially improved. `conditional27` currently cross-predicts better than `conditional37`, but their remaining errors and uncertainty mismatch require further diagnosis. Better solver cost, better nominal-demand agreement, and better cross-measurement agreement are different claims and must remain separate.
 
-The immediate update is therefore to **report the three-way measurement and state agreement explicitly from existing results**, then use that scorecard to evaluate jointly refitted calibration assumptions and controlled information/model extensions. Do not revert the numerical fixes, remove expected distortion, or force the three subset states to agree.
+The next step is the Phase 8.2 joint calibration sensitivity study: refit latent states and coefficients while varying anchors, coefficient priors, and reference covariance inside grouped training/development splits. Evaluate prediction, state disagreement, coverage, and identification together. Keep later controlled information tests, response/context hypotheses, and denser transfer evaluation in their stated order. Do not use current evaluation errors to select priors or thresholds.
 
 ## Source map
 
@@ -354,4 +352,4 @@ Repository facts in this report refer to the evidence snapshot identified above.
 - [grouped_v2/RESULTS.md](experiments/full_position/grouped_v2/RESULTS.md): archived original results, not the latest corrected population.
 - [Original audit before this rewrite](https://github.com/rueijrwu/gaze_acc_joint_estimator/blob/c2584292d13393a4c5a8bb34afdea9c19f90e67f/AUDIT_REPORT.md): historical numerical findings and targeted reconstruction methods.
 
-Metric formulas and the new reporting contract are definitions/proposals in this revision. No new subset-state dispersion values, fit results, test executions, or physiological accuracy claims are asserted.
+The three-way metric definitions and results are in the linked `crosscheck_v1` report. Joint calibration sensitivity and physiological accuracy remain untested; no physiological accuracy claim is made here.

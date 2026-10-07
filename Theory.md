@@ -8,7 +8,7 @@ The three pairs need not move equally or preserve triangle similarity. Their res
 
 > Estimate gaze and accommodation from part of the measured geometry, then ask whether that same state predicts the remaining P4 point, including its expected distorted position.
 
-This document defines the optical interpretation, measurement geometry, shared-state model, and meaning of that test. [ESTIMATOR_PLAN.md](ESTIMATOR_PLAN.md) specifies the proposed algorithm. The full-position estimator is **proposed, not implemented or validated**. The frozen 13-coefficient two-channel estimator remains the baseline in [HANDOFF.md](HANDOFF.md) and [models/quadratic_model.json](models/quadratic_model.json).
+This document defines the optical interpretation, measurement geometry, shared-state model, and meaning of that test. [ESTIMATOR_PLAN.md](ESTIMATOR_PLAN.md) records the design and implementation scope. The conditional six-residual full-position estimator has been implemented and evaluated as an exploratory prototype; see [CURRENT_STATUS.md](CURRENT_STATUS.md) for execution status and results. The optional nine-component joint P1/P4 estimator remains deferred. Neither implementation nor geometric agreement establishes physiological accuracy. The frozen 13-coefficient two-channel estimator remains the comparison baseline in [HANDOFF.md](HANDOFF.md) and [models/quadratic_model.json](models/quadratic_model.json).
 
 The required observables remain exactly
 
@@ -592,7 +592,7 @@ Use all coordinate responses for the primary estimate; withhold each P4 point to
 
 [ESTIMATOR_PLAN.md](ESTIMATOR_PLAN.md) specifies the 27-coefficient implementation reference and the required 37-coefficient curvature comparison, both with `theta_deg/10` scaling and new coefficients. Neither capacity is declared sufficient or superior in advance. The plan retains shared-input covariance, bounded variable-projection calibration with soft means, independent multistart inversion, and leakage-safe P4 holdouts. A genuine nine-component P1/P4 extension is separate.
 
-No estimator implementation, new real-data calibration, changed detection output, or new physiological result is asserted by this revision.
+No new calibration, changed detection output, or physiological result is asserted by this design document. See [CURRENT_STATUS.md](CURRENT_STATUS.md) for the implemented conditional estimator and exploratory evaluation; the optional joint nine-component extension remains deferred. Independent physiological references are required for physiological-accuracy claims.
 
 ## Sources and historical boundary
 

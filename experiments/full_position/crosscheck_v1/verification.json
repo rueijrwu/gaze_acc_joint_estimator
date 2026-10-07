@@ -1,0 +1,82 @@
+{
+  "schema": "exp5_crosscheck_verification_v1",
+  "source_root": "experiments/full_position/audit_polished_v1",
+  "source_tree_immutability": {
+    "before": {
+      "files": 219,
+      "bytes": 22490019,
+      "sha256": "d41a8eb678c8afcbf1f17235d758c42a4ab9e61b43a7da34c2f3a848e3d2008a"
+    },
+    "after": {
+      "files": 219,
+      "bytes": 22490019,
+      "sha256": "d41a8eb678c8afcbf1f17235d758c42a4ab9e61b43a7da34c2f3a848e3d2008a"
+    },
+    "unchanged": true,
+    "tree_hash_algorithm": "SHA-256 stream over files sorted by POSIX relative path; for each file append 8-byte unsigned big-endian relative-path byte length, relative-path UTF-8 bytes, then SHA-256 digest of file bytes."
+  },
+  "pytest": {
+    "command": "rtk proxy env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=.:tests python -m pytest -q tests",
+    "collected": 42,
+    "passed": 42,
+    "failed": 0
+  },
+  "grouped_v2_manifest_check": {
+    "manifest": "experiments/full_position/cleanup_manifest.json",
+    "population_files_checked": 9,
+    "uncompressed_sha256_and_size_matches": 9,
+    "all_match": true,
+    "scope": "The task did not write grouped_v2. Existing manifest checks its nine compressed population members; it is not a whole-tree pre-run hash manifest."
+  },
+  "crosscheck_metrics_equal_fixation": {
+    "gaze": {
+      "conditional27": {
+        "point_vector_rms_px": 3.4206949287650152,
+        "complete_frame_E_px": 3.4206949287650152,
+        "G_theta_deg": 0.26937080846847944,
+        "G_A_D": 0.31110667595549407
+      },
+      "conditional37": {
+        "point_vector_rms_px": 6.70039065557666,
+        "complete_frame_E_px": 6.70039065557666,
+        "G_theta_deg": 0.5092668588078157,
+        "G_A_D": 0.9290193143628162
+      }
+    },
+    "capture": {
+      "conditional27": {
+        "point_vector_rms_px": 4.014448576603482,
+        "complete_frame_E_px": 4.014448576603482,
+        "G_theta_deg": 0.28057303805593947,
+        "G_A_D": 0.3194116875763873
+      },
+      "conditional37": {
+        "point_vector_rms_px": 4.306630004289727,
+        "complete_frame_E_px": 4.306630004289727,
+        "G_theta_deg": 0.3249907057297629,
+        "G_A_D": 0.39170973179792823
+      }
+    }
+  },
+  "matched_masks": {
+    "gaze": {
+      "shared_scored_point_count": 429,
+      "shared_scored_interior_point_count": 347,
+      "shared_complete_frame_count": 143,
+      "shared_complete_interior_frame_count": 110
+    },
+    "capture": {
+      "shared_scored_point_count": 429,
+      "shared_scored_interior_point_count": 388,
+      "shared_complete_frame_count": 143,
+      "shared_complete_interior_frame_count": 125
+    }
+  },
+  "source_model_evaluation": "Saved polished frames, holdouts, population flags and model metadata only; no prediction, refit or branch selection was run.",
+  "generated_files": [
+    "crosscheck_frames.csv",
+    "crosscheck_points.jsonl.gz",
+    "crosscheck_summary.json",
+    "crosscheck_agreement.png"
+  ]
+}

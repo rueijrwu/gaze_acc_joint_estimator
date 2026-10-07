@@ -1,16 +1,97 @@
 # Current status — 2026-10-07
 
-The full-position Python prototype and its frozen-model audit are complete.
-Inverse certification is more reliable, but real-data results do **not establish
-an improvement over the two-channel estimator**. Keep the frozen baseline while
-investigating response mismatch and state-estimation sensitivity.
+The conditional full-position prototype and its frozen-model audit are complete,
+and the saved-model three-way cross-check has now been reported. The primary
+comparison evaluates excluded-P4 coordinate prediction and subset-state
+agreement separately. The two-channel control has no individual-P4 decoder, so
+its nominal-anchor consistency is a secondary calibration diagnostic and cannot
+rank it on the primary cross-check task. None of these geometric results
+establishes physiological accuracy.
 
-## Audit implementation and reevaluation (latest)
+## Three-way cross-check reporting (Phase 8.1)
 
-The fixes from [AUDIT_REPORT.md](AUDIT_REPORT.md) are implemented. All 27 saved
-models were reevaluated with their original sampled populations, coefficients,
-and covariances; no models were retrained. The original `grouped_v2` files were
-verified unchanged. Revised outputs and the complete comparison are in
+[The `crosscheck_v1` report](experiments/full_position/crosscheck_v1/RESULTS.md)
+post-processes the frozen `audit_polished_v1` frame and holdout records. It does
+not recalibrate coefficients, refit latent states, or rerun predictions. Each
+frame has three excluded-P4 coordinate checks and, when the triple is complete,
+three pairwise comparisons among the subset-inferred gaze/accommodation states.
+These are correlated checks because they share P1 measurements and overlap in
+their retained P4 inputs.
+
+Each split family contains 160 scheduled frames and 480 P4-check slots. The
+existing saved population has 143 eligible frames and 429 valid point tests;
+the 17 invalid frames and 51 corresponding slots remain visible as unscored.
+Both coordinate models have 143 complete scored triples per split family. The
+table reports equal-fixation RMS across 20 fixation/capture exposures. `E_frame`
+is the RMS of the three 2D point-error norms; `G_theta` and `G_A` are RMS values
+over the three unordered subset-state differences in degrees and diopters.
+The interior mask requires all three subset states to be strictly inside the
+computational bounds (`theta` in [-20, 20] degrees and `A` in [0, 6] D); it does
+not imply that the states or P1 context lie within empirical training support.
+
+| Split family | Model | `E_frame` (px) | `G_theta` (deg) | `G_A` (D) |
+|---|---|---:|---:|---:|
+| Gaze holdout | conditional27 | **3.421** | **0.269** | **0.311** |
+| Gaze holdout | conditional37 | 6.700 | 0.509 | 0.929 |
+| Capture/demand holdout | conditional27 | **4.014** | **0.281** | **0.319** |
+| Capture/demand holdout | conditional37 | 4.307 | 0.325 | 0.392 |
+
+On the exact shared interior-only complete-frame support, there are 110 gaze
+frames and 125 capture/demand frames. Equal-fixation RMS is:
+
+| Split family | Model | `E_frame` (px) | `G_theta` (deg) | `G_A` (D) |
+|---|---|---:|---:|---:|
+| Gaze holdout | conditional27 | **3.198** | **0.241** | **0.258** |
+| Gaze holdout | conditional37 | 4.699 | 0.408 | 0.377 |
+| Capture/demand holdout | conditional27 | **3.924** | **0.276** | **0.317** |
+| Capture/demand holdout | conditional37 | 4.097 | 0.339 | 0.413 |
+
+The separate matched interior point-level intersections contain 347 gaze and
+388 capture/demand point tests; these are not the complete-frame cohorts above.
+The earlier pooled point-vector RMS results remain **3.423/6.620 px** for gaze
+and **4.062/4.353 px** for capture/demand (`conditional27`/`conditional37`).
+Those pooled point scores weight each available point test equally and should
+not be substituted for the equal-fixation complete-frame values.
+
+Boundary counts remain material: conditional27/conditional37 have 23/79 gaze
+and 8/38 capture/demand boundary slots. Shared accommodation clipping appears
+in 3/17 gaze and 1/10 capture/demand frames. Some clipped frames still have
+substantial cross-prediction error. In the gaze `-10` fold for capture 2,
+conditional37 has five frames with `G_A` from 4.22 to 4.47 D and `E_frame` from
+18.71 to 22.47 px. All seven valid frames at this fixation contain a boundary
+subset estimate. The other two have shared accommodation clipping and
+`G_A=0`, while `E_frame` is 13.69 and 16.04 px. Conditional27
+also has three clipped frames with zero or nearly zero `G_A` and `E_frame`
+from 4.02 to 4.44 px. Clipping can create apparent state agreement and is not
+evidence that the estimates are physically correct.
+
+Conditional27 has lower equal-fixation RMS for both coordinate prediction and
+raw subset-state disagreement in both split families, including the matched
+interior complete-frame comparisons. This is evidence for this sampled
+predictive comparison, not a universal ranking: model medians and tails do not
+all order the same way, and model-dependent boundary coverage differs. The
+two-channel control has no individual-P4 prediction score. Nominal-anchor
+consistency remains a secondary diagnostic; independent physiological
+references are still required for accuracy claims. No pass threshold or
+physiological result is established.
+
+The full `pytest` suite now passes **42 tests**, including the function-based
+cross-check and contract regressions. The prior `audit_polished_v1` source tree
+was unchanged by this post-processing run: 219 files and 22,490,019 bytes with
+the same SHA-256 tree digest before and after. The
+[verification record](experiments/full_position/crosscheck_v1/verification.json) documents the hash
+algorithm and confirms all nine compressed population files match the existing
+cleanup manifest.
+
+## Prior implementation audit and reevaluation
+
+The implementation fixes recorded in the prior [audit](AUDIT_REPORT.md) are in
+place. This historical implementation phase reevaluated all 27 saved models
+with their original sampled populations, coefficients, and covariances; no
+models were retrained. The original `grouped_v2` files were verified unchanged.
+Those fixes do not mean that every metric and scientific question in the revised
+audit has been completed. Its cross-check reporting phase is documented below.
+The original revised outputs and comparison are in
 [audit_polished_v1/RESULTS.md](experiments/full_position/audit_polished_v1/RESULTS.md).
 
 Every scalar start is retained in compressed diagnostics and receives bounded,
@@ -54,12 +135,14 @@ untouched.
 
 Verification confirms all **199** source hashes match, all **27** model copies
 are byte-identical and loadable, and all **9** compressed populations round-trip
-exactly. The 21-test suite passes. Eight transition profiles agree within
-**4.1e-10** cost difference. Training objective reconstruction matches within
-**3.2e-12**, and median absolute signed training bias is **0.497 px**. These
-training diagnostics reuse observations across folds. Full latent-state and
-anchor sensitivity, response discrepancy, coefficient uncertainty, and
-physiological accuracy remain unresolved.
+exactly. The 21-test unittest-discovered suite was the count reported at that
+earlier audit stage; it predates the function-based cross-check tests. The
+current full pytest count is recorded in Phase 8.1. Eight transition profiles
+agree within **4.1e-10** cost difference. Training objective reconstruction
+matches within **3.2e-12**, and median absolute signed training bias is
+**0.497 px**. These training diagnostics reuse observations across folds. Full
+latent-state and anchor sensitivity, response discrepancy, coefficient
+uncertainty, and physiological accuracy remain unresolved.
 
 ## What has been implemented
 
@@ -89,9 +172,10 @@ The baseline scripts, `models/quadratic_model.json`, stored detections, and prio
 baseline outputs are unchanged. The optional nine-component joint P1/P4 model,
 detector changes, and physiological validation have not been implemented.
 
-## Verification
+## Initial prototype verification (historical 21-test suite)
 
-**21 acceptance tests pass.** They cover geometry identities and feature rank;
+The initial prototype's **21 acceptance tests passed** at that audit stage. They
+cover geometry identities and feature rank;
 physical and profiled derivatives; fixed optimizer linearizations; covariance
 propagation against finite differences and Monte Carlo; subset marginals;
 excluded-point noninterference for every point/axis; synthetic latent calibration
@@ -106,6 +190,11 @@ raw-application holdout noninterference, and reporting/common-support aggregatio
 rtk proxy env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
   python -m unittest discover -s tests -v
 ```
+
+This historical `unittest` command does not collect the function-based
+cross-check tests. Use the full pytest command in
+[full_position/README.md](full_position/README.md) for the current suite; its
+42 passing tests are recorded in Phase 8.1.
 
 ## Initial real-data experiment
 
@@ -200,10 +289,11 @@ silently. Optional acceleration is not yet a universally equivalent replacement.
 
 ## Next work, in order
 
-1. **Training sensitivity:** jointly refit latent states and coefficients while
-   varying fixation anchors, coefficient priors, and reference covariance.
-   Diagnose endpoint point/axis bias, capture/demand confounding, and P1-context
-   dependence before changing the response basis.
+1. **Phase 8.2, joint training sensitivity:** jointly refit latent states and
+   coefficients while varying fixation-anchor constraints, coefficient priors,
+   and reference covariance. Diagnose endpoint point/axis bias,
+   capture/demand confounding, and P1-context dependence before changing the
+   response basis. This phase has not been run.
 2. **Discrepancy and context:** extend independent branch/profile checks and
    controlled measurement ablations across development populations. Audit
    capture-dependent geometry and detector selection; add targeted basis or
@@ -222,6 +312,11 @@ independent physiological accuracy. No new model has replaced the baseline.
   [original/revised comparison](experiments/full_position/audit_polished_v1/comparison.json),
   [verification](experiments/full_position/audit_polished_v1/verification.json), and
   [audit checks](experiments/full_position/audit_checks_v1/).
+- [Three-way cross-check results](experiments/full_position/crosscheck_v1/RESULTS.md),
+  [summary and matched masks](experiments/full_position/crosscheck_v1/crosscheck_summary.json),
+  [frame metrics](experiments/full_position/crosscheck_v1/crosscheck_frames.csv),
+  [point records](experiments/full_position/crosscheck_v1/crosscheck_points.jsonl.gz),
+  and [verification](experiments/full_position/crosscheck_v1/verification.json).
 - [Detailed results and next experiment](experiments/full_position/grouped_v2/RESULTS.md).
 - [Metrics](experiments/full_position/grouped_v2/metrics.csv),
   [point errors](experiments/full_position/grouped_v2/heldout_errors.csv), and
@@ -257,9 +352,9 @@ holdout plots. Scripts and acceptance tests remain available for reproduction.
 Historical cleanup verification showed all 27 primary models load, all nine
 compressed populations match their original hashes, and regenerated metrics,
 point errors, fixation means, and matched-support summaries are byte-for-byte
-unchanged. The cleanup run reported 14 passing tests; the current audit suite
-reports 21, including shared-population serialization and parallel output
-collection.
+unchanged. The cleanup run reported 14 passing tests; the audit suite at that
+snapshot reported 21, including shared-population serialization and parallel
+output collection.
 
 The final audit cleanup removed a duplicate 185,021-byte CSV of training
 residual groups after verifying that all 1,680 rows match the corresponding JSON

@@ -2,7 +2,7 @@
 
 ## Status and objective
 
-**This is a proposal, not an implemented or evaluated estimator.** It accompanies [Theory.md](Theory.md). Preserve `joint_m2.py`, `models/quadratic_model.json`, stored detections, and existing result directories as the historical baseline. New code, coefficients, schemas, and outputs must be separate.
+**Design history and current scope.** The conditional six-residual full-position estimator described here has been implemented and evaluated as an exploratory prototype. Its conditional model treats normalized P1 shape as measured context. The optional nine-component joint P1/P4 estimator in Section 11 remains deferred. This plan preserves the original design rationale; consult [CURRENT_STATUS.md](CURRENT_STATUS.md), [AUDIT_REPORT.md](AUDIT_REPORT.md), and the versioned [crosscheck_v1 results](experiments/full_position/crosscheck_v1/RESULTS.md) for execution and reporting status. Section 7.1 defines the implemented grouped post-processing contract. Preserve `joint_m2.py`, `models/quadratic_model.json`, stored detections, and prior result directories as the historical baseline.
 
 Treat P1 and P4 as two differently distorted images of one fixed source pattern. Estimate one horizontal gaze/accommodation state per frame that predicts both common displacement and the different coordinate responses of all three P4 samples relative to P1. Reproducible state-dependent deformation is signal. The diagnostic is unexplained position error under that calibrated response, not departure from an undistorted or similar triangle.
 
@@ -16,7 +16,7 @@ $$
 
 `rho_4` is an area ratio, not its square root; area is formed by reflection centers, not blob areas. Fit full coordinates rather than compressing them to centroid displacement and area. Similarity-fit magnification is a reduced comparison only. Changing the P1 normalizer is a separate later experiment.
 
-**Current nominal gaze targets: `[-10,-5,0,5,10]` degrees. Proposed candidate gaze scaling: `theta_deg/10`. The frozen baseline's `theta_deg/15` convention is retained only in its own adapter and does not mean this experiment calibrated to 15 degrees.**
+**Current nominal gaze targets: `[-10,-5,0,5,10]` degrees. The implemented new models use `theta_deg/10`; the frozen baseline's `theta_deg/15` convention is retained only in its own adapter and does not mean this experiment calibrated to 15 degrees.**
 
 ## 1. Baseline inspection and calibration contract
 
@@ -298,6 +298,34 @@ A mandatory unit test perturbs the excluded coordinate arbitrarily and checks un
 
 Upstream detector selection may already use all points or triangle assumptions. These tests validate predictions conditional on stored detections, not independence of the full image-detection pipeline. A similarity-constrained detector can suppress real optical deformation; raw candidates or independently localized measurements are separate evidence.
 
+### 7.1 Reporting supplement: three-way cross-check and state agreement
+
+One frame contains three measured 2D P1 points and three measured 2D P4 points: six points and **12 scalar coordinates**. After removing common translation and positive scale, the normalized six-point geometry has nine continuous dimensions on a nondegenerate correspondence branch. The implemented conditional model uses six P4 coordinate residuals (three 2D points) and treats the three normalized P1 shape/orientation dimensions as measured context. It does not jointly predict all nine dimensions. The optional nine-component joint model remains deferred (Section 11).
+
+The headline check is **three excluded-P4 cross-predictions per frame**. For each omitted point `j`, estimate the shared state from all three P1 points and the other two P4 points, then predict omitted `q_j` under the calibrated state-dependent response. Do not force consensus among the three subset estimates or use the omitted point to select a branch. Preserve shared-P1 covariance and the dependence among overlapping subsets. Because P1 is shared, these checks are not independent; no standalone two-channel individual-P4 score exists.
+
+For a frame with all three checks valid, identifiable, and single-valued, define
+
+$$
+E_{frame}=\sqrt{\frac{1}{3}\sum_{j=1}^3\|\mathbf e_j\|^2},\qquad
+E_{worst}=\max_{j=1,2,3}\|\mathbf e_j\|.
+$$
+
+Here `e_j` is the 2D observed-minus-predicted excluded-point error. Report both values in pixels; dimensionless versions divide each point error by that frame's `ell_1` before aggregation. Do not compute a complete-frame score if any check is unavailable or ambiguous. Any partial score must give its point membership and count and must not replace a missing error by zero or keep dividing by three.
+
+For each complete triple of subset states, report all three unordered pairwise differences and their RMS:
+
+$$
+G_\theta=\sqrt{\frac{1}{3}\sum_{j<k}(\theta_{-j}-\theta_{-k})^2},\qquad
+G_A=\sqrt{\frac{1}{3}\sum_{j<k}(A_{-j}-A_{-k})^2}.
+$$
+
+`G_theta` is in degrees (optionally also report arcminutes as degrees times 60); `G_A` is in diopters. Report max-minus-min ranges too. Keep subset-to-all-three and subset-to-nominal-anchor differences as separate diagnostics. Nominal anchors are calibration references, not framewise physical truth. Do not combine gaze and accommodation in an unlabeled distance, and do not add a consensus penalty that makes the tested estimates agree by construction.
+
+When aggregating, first require matching frame/point IDs across model comparisons. For equal-fixation weighting, calculate the squared point-vector errors within each fixation/capture exposure, average those squared errors across exposures, then take the square root. The exposure key is `(fold, capture, fixation)`; report exposure counts and membership. Show pooled point-vector RMS separately. Pooled point-vector RMS is `sqrt(sum ||e||^2 / N_points)`; scalar-coordinate RMS is `sqrt(sum ||e||^2 / (2*N_points))` and differs by `sqrt(2)`. Label which convention is reported.
+
+Each split family contains **160 scheduled frames (480 P4-check slots)**, **143 eligible frames (429 eligible point tests)**. The reported saved population includes 17 invalid frames and 51 invalid slots; these remain null/unscored. Report all-testable results and interior-only results with the exact evaluation mask and support bounds stated. Keep the full scheduled denominator visible: missing or ambiguous slots remain null/unscored, never zero, and never silently removed from the scheduled coverage count. Report slot, frame, and complete-triple coverage separately. For paired models, compute interior-only summaries on the exact intersection of both models' scored interior IDs. Keep matched complete-frame and matched point-level intersections separate; their memberships differ. The standalone two-channel estimator has no individual withheld-P4 prediction and therefore no score on this metric. Claims of physiological accuracy require independent physiological references. The crosscheck implementation and versioned outputs are documented in [CURRENT_STATUS.md](CURRENT_STATUS.md) and [crosscheck_v1](experiments/full_position/crosscheck_v1/RESULTS.md).
+
 ### 7.2 Correlated predictive uncertainty
 
 For a regular interior subset inverse, let `J_I,J_j` be state derivatives at fixed P1 context, with its localization error already propagated into `R_e`. Define
@@ -371,9 +399,9 @@ Required synthetic distinctions:
 
 Synthetic tests assess mathematics and failure sensitivity, not real detector accuracy or physiological validation. Any optical/image simulation must declare source geometry, coordinate units, eye/relay model, and localization definition.
 
-## 10. Proposed implementation and output contract
+## 10. Implementation and output contract
 
-These are proposed paths, not already implemented files:
+The paths below are the implemented package layout; the subsections record design responsibilities and acceptance criteria:
 
 ```text
 full_position/geometry.py       # mapping; P1 context; mask-safe coordinate data
@@ -383,6 +411,7 @@ full_position/calibrate.py      # fold-local initialization and profiled fitting
 full_position/invert.py         # bounded multistart reference and diagnostics
 full_position/validate.py       # grouped tests; P4 holdouts; distortion ablations
 full_position/schema.py         # basis/scale, provenance, and result validation
+full_position/crosscheck.py    # saved-record joins; three-point metric contract
 experiments/full_position/<run_id>/
 ```
 
@@ -453,4 +482,4 @@ Repository facts are grounded in the linked baseline/interval files. [Theory.md]
 - [SciPy, least_squares](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least_squares.html): bounded trust-region optimization and Jacobian operators.
 - [scikit-learn, Cross-validation](https://scikit-learn.org/stable/modules/cross_validation.html): training/model-selection separation and grouped evaluation.
 
-This revision changes documents only. It establishes neither fitted candidate coefficients nor new real-data performance, runtime, detector behavior, or physiological accuracy. The next implementation deliverable is a reproducible geometry/noise/inversion prototype with target/scale and leakage tests, followed by fold-local calibration and distortion-aware held-out comparison. Preserve the frozen estimator until comparative evidence supports a replacement.
+The implemented conditional prototype, exploratory evaluation, and saved-record three-way cross-check are documented in [CURRENT_STATUS.md](CURRENT_STATUS.md). The cross-check post-processes frozen predictions and does not refit states or coefficients. Runtime, detector behavior, and physiological accuracy remain separate evidence questions. The next scientific experiment is joint latent-state/coefficient training sensitivity across fixation anchors, coefficient priors, and reference covariance. Preserve the frozen estimator until comparative evidence supports a replacement.
