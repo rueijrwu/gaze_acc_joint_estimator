@@ -1,0 +1,60 @@
+{
+  "converged": false,
+  "status": {
+    "status": "not_converged",
+    "elapsed_seconds": 904.5596730789985,
+    "accepted_iterations": 82,
+    "nfev": 128,
+    "termination": "wall budget; last verified accepted checkpoint retained"
+  },
+  "objective": 0.7272459548519469,
+  "parts": {
+    "observations": 0.016153977708861657,
+    "model_prior": 9.399612700221802e-06,
+    "anchors": 0.7106065568464671,
+    "temporal": 0.0004760206839158412,
+    "normalized_function_prior": 9.127743739871064e-06,
+    "log_shape_function_prior": 2.7186896035073675e-07
+  },
+  "continuation_phases": [
+    {
+      "directory": "/workspace/ximea/xrecorder/exp2/full_information/matched/U3_tau01",
+      "status": {
+        "status": "not_converged",
+        "elapsed_seconds": 904.5596730789985,
+        "accepted_iterations": 82,
+        "nfev": 128,
+        "termination": "wall budget; last verified accepted checkpoint retained"
+      },
+      "coefficient_solver": "irls",
+      "checkpoint_sha256": "d99b1730438101b3f75b3b79b7405731a10a91826a5b15cfb858a2437e00222b",
+      "history_sha256": "8efb0dcc52ac5a8b26f140ba501ce71c31395f47ab0894e094fc21c232e16e1c",
+      "lsmr_history_sha256": "3340bd80cdf76b867f4b365c870431c01fccfe476fd480e08435aa12f2fa3157"
+    }
+  ],
+  "cumulative_continuation_totals": {
+    "elapsed_seconds": 904.5596730789985,
+    "nfev": 128.0,
+    "accepted_iterations": 82.0
+  },
+  "validation_status": "not_evaluable_without_independent_references",
+  "training_fixations": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    15,
+    16,
+    18,
+    19
+  ],
+  "heldout_fixations": [
+    17
+  ]
+}

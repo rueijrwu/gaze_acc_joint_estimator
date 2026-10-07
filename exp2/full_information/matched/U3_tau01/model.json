@@ -1,0 +1,1010 @@
+{
+  "schema": "full_information_matched_model_v1",
+  "manifest": {
+    "version": 1,
+    "schema": "full_information_matched_v1",
+    "coefficient_order": "b[4],s[4],rho[1,t,t\u00b2,a,at,at\u00b2]",
+    "states_shape": [
+      54231,
+      2
+    ],
+    "frame_hash": "fe03758a712b780e772e351e7090ac2f099d3929c49a6c59384801c898548f3c",
+    "group_hash": "56b16cce9e55a02d47aab563c81a21c638c26c6d0fedf9e9df08df5c8b419078",
+    "global_group_hash": "08ae7611701e5ba350539fbdd859eaadb5182e5b1a718006d82d7e10df70c7b5",
+    "observation_hash": "a3b65e1477796f2498f87f64b22ec030583b4cdf8a9fc4c8d3f9e40129e2a941",
+    "source_sha256": {
+      "capture_1_detections.pkl": "65eb4ed79d807751634b98d114adb470165642af2c6a349578ce6b79343f2a51",
+      "capture_2_detections.pkl": "96d903e81f31a2265aab0072a0c24e77d0d5b4e9f5ce754d30fa781ef997b357",
+      "capture_3_detections.pkl": "5d67d6d15bd4e48bf481353086d980b74e96cc9dddf097e2a6b2137de1daf349",
+      "capture_4_detections.pkl": "227a3dbeba3db3e5e9565d90364e68389ad3428e13ce5e53f0b6ac58132b0721"
+    },
+    "interval_sha256": "970d4a8215690ac65dc8c1147d1582b06d0bf03be030ad9f8146a4e5c8fc381a",
+    "validity_policy": "measurement_valid AND stored pupil_valid",
+    "training_fixations": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      15,
+      16,
+      18,
+      19
+    ],
+    "heldout_fixation": 17,
+    "capture5_used": false,
+    "targets": [
+      -15.0,
+      -7.5,
+      0.0,
+      7.5,
+      15.0,
+      -15.0,
+      -7.5,
+      0.0,
+      7.5,
+      15.0,
+      -15.0,
+      -7.5,
+      7.5,
+      15.0
+    ],
+    "demands": [
+      0.36036036036036034,
+      0.36036036036036034,
+      0.36036036036036034,
+      0.36036036036036034,
+      0.36036036036036034,
+      4.0,
+      4.0,
+      4.0,
+      4.0,
+      4.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "p": 0.6443274125667704,
+    "knots": [
+      0.36036036036036034,
+      2.0,
+      3.0,
+      4.0
+    ],
+    "initial_coefficients": [
+      0.13902201295855174,
+      0.1273780570428899,
+      0.10909917695880958,
+      0.09082029687472926,
+      0.022705081641652157,
+      0.041902372458378905,
+      0.040097473366358036,
+      0.038292574274337174,
+      0.724115657508533,
+      0.0021177000668340584,
+      0.00016060198335619225,
+      -0.01986243965577085,
+      0.0021461654664479946,
+      0.004617973079456913,
+      6.099599439182252,
+      -0.002882112371190011,
+      0.0014162500565633102
+    ],
+    "basis_description": "d=linear knot b(A)+s(A)*theta; rho=[1,t,t\u00b2,a,at,at\u00b2], t=theta/15,a=A**p; endpoint-linear extrapolation",
+    "prior_grid": {
+      "theta": [
+        -15.0,
+        -11.25,
+        -7.5,
+        -3.75,
+        0.0,
+        3.75,
+        7.5,
+        11.25,
+        15.0
+      ],
+      "A": [
+        0.36036036036036034,
+        0.8153153153153153,
+        1.2702702702702702,
+        1.7252252252252251,
+        2.18018018018018,
+        2.635135135135135,
+        3.09009009009009,
+        3.545045045045045,
+        4.0
+      ]
+    },
+    "prior_matrix_hash": "88321b4142e5a0899d3508738435eb990d781ff6fe248c19ca60dfc1e35f1c1c",
+    "prior_value_hash": "302c4ec0f0ee9ac4678e91f939b1cc88732c8078d8f4605a20384298505ea608",
+    "precision": [
+      [
+        63820331.52873844,
+        -86951.75519698396,
+        186.28904884459368
+      ],
+      [
+        -86951.75519698403,
+        66484809.94280627,
+        971.3861527404282
+      ],
+      [
+        186.28904884459368,
+        971.3861527404281,
+        9999.803378791183
+      ]
+    ],
+    "prior_precision": [
+      [
+        0.5538449109409366,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        371.14774504433365,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        3333.3367128322
+      ]
+    ],
+    "precision_inverse": [
+      [
+        1.566901664467532e-08,
+        2.0496922299355863e-11,
+        -2.938934419245878e-10
+      ],
+      [
+        2.0496922299355882e-11,
+        1.504107784567789e-08,
+        -1.4614800451714866e-09
+      ],
+      [
+        -2.938934419245878e-10,
+        -1.4614800451714866e-09,
+        0.00010000211369470871
+      ]
+    ],
+    "settings": {
+      "theta_bounds_deg": [
+        -20,
+        20
+      ],
+      "A_bounds_diopters": [
+        0,
+        6
+      ],
+      "theta_anchor_strength": 1.0,
+      "A_anchor_strength": 1.0,
+      "smooth_theta_strength": 0.1,
+      "smooth_A_strength": 0.1,
+      "theta_anchor_scale_deg": 1.0,
+      "A_anchor_scale_diopters": 0.25,
+      "smooth_theta_scale_deg": 1.0,
+      "smooth_A_scale_diopters": 0.25,
+      "model_prior_strength": 0.1,
+      "equal_fixation_optical_weight": true,
+      "objective_factor": 0.5,
+      "solver_residual_scale": "sqrt(frame_count)",
+      "curvature_prior": 0.0,
+      "invalid_gap_links": "broken",
+      "extrapolation": "endpoint-linear displacement"
+    },
+    "estimated_noise_covariance": [
+      [
+        1.6105481284568923e-08,
+        1.975389459632363e-11,
+        -3.279673169836909e-10
+      ],
+      [
+        1.975389459632363e-11,
+        1.521823975058781e-08,
+        -1.3156619792054632e-09
+      ],
+      [
+        -3.279673169836909e-10,
+        -1.3156619792054632e-09,
+        2.0976413973629708e-09
+      ]
+    ],
+    "temporal_left_hash": "cf3fd06587c0c32dd11da12396d651a3688d9a13373cde11e8f5fe2425049705",
+    "temporal_right_hash": "9f0adb46615f81ef640322f23e72382440694aa35903bba81cb884412887134c",
+    "loss": "block_soft_l1",
+    "kappa": 2.0,
+    "encoding": {
+      "theta_scale": 15.0,
+      "power_scale": 2.4430016282128433,
+      "residual_scale": 232.87550322006823
+    },
+    "bounds": {
+      "theta": [
+        -20.0,
+        20.0
+      ],
+      "A": [
+        0.0,
+        6.0
+      ]
+    },
+    "coefficient_map": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.5,
+        0.5,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.5,
+        0.5,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "free_coefficient_count": 15,
+    "active_demand_knots": [
+      0.36036036036036034,
+      2.0,
+      4.0
+    ],
+    "experiment": "full_information_matched",
+    "common_policy": {
+      "schema": "full_information_common_policy_v1",
+      "training_fixations": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        15,
+        16,
+        18,
+        19
+      ],
+      "p": 0.6443274125667704,
+      "coefficient_map": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.5,
+          0.5,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.5,
+          0.5,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "normalized_coefficients": [
+        0.13902201295855174,
+        0.1273780570428899,
+        0.10909917695880958,
+        0.09082029687472926,
+        0.022705081641652157,
+        0.041902372458378905,
+        0.040097473366358036,
+        0.038292574274337174,
+        0.724115657508533,
+        0.0021177000668340584,
+        0.00016060198335619225,
+        -0.01986243965577085,
+        0.0021461654664479946,
+        0.004617973079456913
+      ],
+      "log_shape_coefficients": [
+        6.099599439182252,
+        -0.002882112371190011,
+        0.0014162500565633102
+      ],
+      "covariance": [
+        [
+          1.566901664467532e-08,
+          2.0496922299355857e-11,
+          -2.9389344192458777e-10
+        ],
+        [
+          2.0496922299355873e-11,
+          1.504107784567789e-08,
+          -1.4614800451714866e-09
+        ],
+        [
+          -2.9389344192458777e-10,
+          -1.4614800451714864e-09,
+          2.1136947087018625e-09
+        ]
+      ],
+      "raw_covariance": [
+        [
+          0.0031172407078294403,
+          -6.697256484197405e-06,
+          -3.648701955026038e-05
+        ],
+        [
+          -6.697256484197405e-06,
+          0.00042158982763226496,
+          2.7799217097568406e-06
+        ],
+        [
+          -3.648701955026038e-05,
+          2.7799217097568406e-06,
+          0.002798502807301671
+        ]
+      ],
+      "raw_anchor": [
+        55.002489292584904,
+        446.60536060057865,
+        311.74293029529673
+      ],
+      "delta_method_jacobian": [
+        [
+          0.0022391132937930624,
+          -0.0002757620392221012,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0015629631908840515,
+          0.0022391132937930624
+        ],
+        [
+          0.0,
+          0.0022391132937930624,
+          0.0
+        ]
+      ],
+      "prior_precision": [
+        [
+          0.5538449109409366,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          371.14774504433365,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          3333.3367128322
+        ]
+      ],
+      "prior_ranges": [
+        1.3437111324514723,
+        0.051907078596027945,
+        0.017320499295499836
+      ],
+      "training_observation_hash": "a3b65e1477796f2498f87f64b22ec030583b4cdf8a9fc4c8d3f9e40129e2a941",
+      "training_raw_hash": "8402e1de5d7bb0dd4bf0dc540ca4377e8e7c61448f1af4150f490ea2a6644fb4",
+      "training_frame_hash": "fe03758a712b780e772e351e7090ac2f099d3929c49a6c59384801c898548f3c",
+      "training_group_hash": "08ae7611701e5ba350539fbdd859eaadb5182e5b1a718006d82d7e10df70c7b5",
+      "initialization_policy": "equal-fixation ordinary means; constrained normalized least squares; low-order log-shape least squares; fresh per-frame displacement inverse at nominal demand",
+      "noise_policy": "robust adjacent-frame raw differences; includes motion and detector variation; transformed Gaussian delta-method approximation",
+      "prior_policy": "common training-only function center; diagonal inverse squared common frame range; existing strength .1; no previous-mean prior; no curvature",
+      "scale_interpretation": "fixed/finite scale are conditional hypotheses; free scale is exact normalized control",
+      "cost_comparability": "No cross-scale likelihood ranking: no covariance logdet and different prior dimensions"
+    },
+    "common_policy_sha256": "a55c455d678df2729c2219e72885badf00f3bf61834a15580deea575091b5271",
+    "scale_hypothesis": "uncertain",
+    "assumed_log_scale_sd": 0.01,
+    "heldout_fixations": [
+      17
+    ],
+    "training_demand_count": 3,
+    "observation_basis": [
+      "d",
+      "rho",
+      "logS1"
+    ],
+    "conditional_scale": true,
+    "extra_log_shape_coefficients": 3,
+    "independent_accuracy_status": "not_evaluable_without_independent_references"
+  },
+  "p": 0.6443274125667704,
+  "continuation_phases": [
+    {
+      "directory": "/workspace/ximea/xrecorder/exp2/full_information/matched/U3_tau01",
+      "status": {
+        "status": "not_converged",
+        "elapsed_seconds": 904.5596730789985,
+        "accepted_iterations": 82,
+        "nfev": 128,
+        "termination": "wall budget; last verified accepted checkpoint retained"
+      },
+      "coefficient_solver": "irls",
+      "checkpoint_sha256": "d99b1730438101b3f75b3b79b7405731a10a91826a5b15cfb858a2437e00222b",
+      "history_sha256": "8efb0dcc52ac5a8b26f140ba501ce71c31395f47ab0894e094fc21c232e16e1c",
+      "lsmr_history_sha256": "3340bd80cdf76b867f4b365c870431c01fccfe476fd480e08435aa12f2fa3157"
+    }
+  ],
+  "cumulative_continuation_totals": {
+    "elapsed_seconds": 904.5596730789985,
+    "nfev": 128.0,
+    "accepted_iterations": 82.0
+  },
+  "resume_source": null,
+  "resume_initial_objective_verified": false,
+  "coefficient_solver": "irls",
+  "coefficient_profile_certificate": {
+    "converged": true,
+    "iterations": 5,
+    "weight_change": 2.8824498343738014e-11,
+    "objective": 0.7272459548519469,
+    "final_weight_consistency": 3.65285579562169e-12
+  },
+  "final_coefficient_profile_max_difference": 0.0,
+  "coefficients": [
+    0.1306681087439368,
+    0.11904611073022489,
+    0.10958009782863112,
+    0.10011408492703737,
+    0.021929431485387167,
+    0.041376385668196056,
+    0.040396609895836016,
+    0.03941683412347598,
+    0.7237736035580934,
+    0.0037638780145651234,
+    0.0027382643543822738,
+    -0.019685797187438035,
+    0.0011008024063125024,
+    0.003276203409900094,
+    6.099488254099374,
+    -0.00289146226982889,
+    0.0014777018759104036
+  ],
+  "objective": 0.7272459548519469,
+  "objective_parts": {
+    "observations": 0.016153977708861657,
+    "model_prior": 9.399612700221802e-06,
+    "anchors": 0.7106065568464671,
+    "temporal": 0.0004760206839158412,
+    "normalized_function_prior": 9.127743739871064e-06,
+    "log_shape_function_prior": 2.7186896035073675e-07
+  },
+  "converged": false,
+  "status": {
+    "status": "not_converged",
+    "elapsed_seconds": 904.5596730789985,
+    "accepted_iterations": 82,
+    "nfev": 128,
+    "termination": "wall budget; last verified accepted checkpoint retained"
+  },
+  "coefficient_count": 17,
+  "free_coefficient_count": 15,
+  "covariance": [
+    [
+      1.566901664467532e-08,
+      2.0496922299355863e-11,
+      -2.938934419245878e-10
+    ],
+    [
+      2.0496922299355882e-11,
+      1.504107784567789e-08,
+      -1.4614800451714866e-09
+    ],
+    [
+      -2.938934419245878e-10,
+      -1.4614800451714866e-09,
+      0.00010000211369470871
+    ]
+  ],
+  "scale_hypothesis": "uncertain",
+  "physical_diagnostics": {
+    "physical_reference_units": [
+      1.0,
+      0.25
+    ],
+    "physical_projected_optimality": 0.0014075708126052057,
+    "physical_gradient_max": [
+      0.0012781995545368963,
+      0.005630283250420823
+    ],
+    "physical_gradient_rms": [
+      7.803339141262548e-06,
+      3.305269140644748e-05
+    ],
+    "physical_gradient_quantiles": [
+      [
+        6.892999281039026e-08,
+        5.990092071336211e-08
+      ],
+      [
+        4.7641980665807134e-07,
+        1.324919202859156e-06
+      ],
+      [
+        0.0012781995545368963,
+        0.005630283250420823
+      ]
+    ],
+    "zero_A_physical_derivative_undefined_count": 0,
+    "zero_A_feasible_descent_count": 0,
+    "zero_A_stationarity_unverified_count": 0,
+    "exact_knot_count": 0,
+    "near_not_exact_knot_count": 0,
+    "knot_violation_max": 0.0,
+    "one_sided_knot_minus_max": null,
+    "one_sided_knot_plus_min": null,
+    "theta_active_bound_count": 0,
+    "A_active_bound_count": 0,
+    "stationarity_interpretation": "Feasible local first-order test; no global optimum certificate"
+  },
+  "finite_physical_gradient_summary_complete": true,
+  "physical_gradient_scope": "At zero accommodation with p<1, singular physical derivatives are undefined; encoded one-sided bound checks determine feasible descent.",
+  "assumed_log_scale_sd": 0.01
+}

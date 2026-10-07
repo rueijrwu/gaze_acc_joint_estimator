@@ -1,0 +1,25 @@
+{
+  "algorithm": "joint (gaze and accommodation together)",
+  "corrected_labels": true,
+  "target_overrides_sha256": "007fda3d6cb4498e97e6de756928bd0cef3c1f4c81453689e16c73832b1c0898",
+  "holdout3_metrics": {
+    "cohort": "heldout",
+    "demand_diopters": 3.0,
+    "gaze": {
+      "bias_rms_deg": 0.1611139196066425,
+      "pooled_sd_deg": 0.1825536123907113,
+      "rmse_deg": 0.24849689147042817,
+      "frame_count": 19445
+    }
+  },
+  "full_metrics": {
+    "cohort": "in_sample",
+    "demand_diopters": 3.0,
+    "gaze": {
+      "bias_rms_deg": 0.2066040984593925,
+      "pooled_sd_deg": 0.1802404559198879,
+      "rmse_deg": 0.2803033058264133,
+      "frame_count": 19445
+    }
+  }
+}

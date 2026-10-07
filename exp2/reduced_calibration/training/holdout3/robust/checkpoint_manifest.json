@@ -1,0 +1,422 @@
+{
+  "version": 1,
+  "schema": "profiled_piecewise_displacement_power_ratio_v1",
+  "coefficient_order": "b[4],s[4],rho[1,t,t\u00b2,a,at,at\u00b2]",
+  "states_shape": [
+    58311,
+    2
+  ],
+  "frame_hash": "d00c746727c8a18f4f5a0e69b91dbc9bdb10a230114f9501e83c2cc82aa08883",
+  "group_hash": "2e1213aeeec0d9ab41072055e3e9c0585f2d8284a5a7b58b2ac76eee46e370ba",
+  "global_group_hash": "e71e0321905bbec8560bed498e445081155df4967497f6210380f773a487c21e",
+  "observation_hash": "639365132e9983713d305f874f6e7fdffd3e1fdd8b38b2a0b57e39f11754cef2",
+  "source_sha256": {
+    "capture_1_detections.pkl": "65eb4ed79d807751634b98d114adb470165642af2c6a349578ce6b79343f2a51",
+    "capture_2_detections.pkl": "96d903e81f31a2265aab0072a0c24e77d0d5b4e9f5ce754d30fa781ef997b357",
+    "capture_3_detections.pkl": "5d67d6d15bd4e48bf481353086d980b74e96cc9dddf097e2a6b2137de1daf349",
+    "capture_4_detections.pkl": "227a3dbeba3db3e5e9565d90364e68389ad3428e13ce5e53f0b6ac58132b0721"
+  },
+  "interval_sha256": "970d4a8215690ac65dc8c1147d1582b06d0bf03be030ad9f8146a4e5c8fc381a",
+  "validity_policy": "measurement_valid AND stored pupil_valid",
+  "training_fixations": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "heldout_fixation": null,
+  "capture5_used": false,
+  "targets": [
+    -15.0,
+    -7.5,
+    0.0,
+    7.5,
+    15.0,
+    -15.0,
+    -7.5,
+    0.0,
+    7.5,
+    15.0,
+    -15.0,
+    -7.5,
+    0.0,
+    7.5,
+    15.0
+  ],
+  "demands": [
+    0.36036036036036034,
+    0.36036036036036034,
+    0.36036036036036034,
+    0.36036036036036034,
+    0.36036036036036034,
+    4.0,
+    4.0,
+    4.0,
+    4.0,
+    4.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0,
+    2.0
+  ],
+  "p": 0.6970906176316816,
+  "knots": [
+    0.36036036036036034,
+    2.0,
+    3.0,
+    4.0
+  ],
+  "initial_coefficients": [
+    0.13902201295855174,
+    0.12655154279468583,
+    0.10868591983470752,
+    0.09082029687472921,
+    0.022705081641652244,
+    0.04190237245837898,
+    0.04009747336635783,
+    0.03829257427433667,
+    0.7227382402136242,
+    0.0023565432428991964,
+    0.00022742556518620064,
+    -0.017867700356165677,
+    0.00189702288313546,
+    0.004110543626523433
+  ],
+  "basis_description": "d=linear knot b(A)+s(A)*theta; rho=[1,t,t\u00b2,a,at,at\u00b2], t=theta/15,a=A**p; endpoint-linear extrapolation",
+  "prior_grid": {
+    "theta": [
+      -15.0,
+      -11.25,
+      -7.5,
+      -3.75,
+      0.0,
+      3.75,
+      7.5,
+      11.25,
+      15.0
+    ],
+    "A": [
+      0.36036036036036034,
+      0.8153153153153153,
+      1.2702702702702702,
+      1.7252252252252251,
+      2.18018018018018,
+      2.635135135135135,
+      3.09009009009009,
+      3.545045045045045,
+      4.0
+    ]
+  },
+  "prior_matrix_hash": "27dd527bf1fcf48a0119cb88e28e75614a91aee451b3d1fa6f555899ae6617f0",
+  "prior_value_hash": "b4b6a6bf0c48e99cf31203687b7f2d4c6d2a94100119291129e8df32fe403039",
+  "precision": [
+    [
+      61390543.52330597,
+      165672.64565148755
+    ],
+    [
+      165672.64565148755,
+      64373264.071080774
+    ]
+  ],
+  "prior_precision": [
+    [
+      0.5538449109409366,
+      0.0
+    ],
+    [
+      0.0,
+      371.14774504433365
+    ]
+  ],
+  "precision_inverse": [
+    [
+      1.6289266848176948e-08,
+      -4.192246538066893e-11
+    ],
+    [
+      -4.192246538066893e-11,
+      1.55345073740792e-08
+    ]
+  ],
+  "settings": {
+    "theta_bounds_deg": [
+      -20,
+      20
+    ],
+    "A_bounds_diopters": [
+      0,
+      6
+    ],
+    "theta_anchor_strength": 1.0,
+    "A_anchor_strength": 1.0,
+    "smooth_theta_strength": 0.1,
+    "smooth_A_strength": 0.1,
+    "theta_anchor_scale_deg": 1.0,
+    "A_anchor_scale_diopters": 0.25,
+    "smooth_theta_scale_deg": 1.0,
+    "smooth_A_scale_diopters": 0.25,
+    "model_prior_strength": 0.1,
+    "equal_fixation_optical_weight": true,
+    "objective_factor": 0.5,
+    "solver_residual_scale": "sqrt(frame_count)",
+    "curvature_prior": 0.0,
+    "invalid_gap_links": "broken",
+    "extrapolation": "endpoint-linear displacement"
+  },
+  "estimated_noise_covariance": [
+    [
+      1.6289266848176948e-08,
+      -4.1922465380668935e-11
+    ],
+    [
+      -4.1922465380668935e-11,
+      1.55345073740792e-08
+    ]
+  ],
+  "temporal_left_hash": "a8e19453c50e719969aeb26e077477587f2a93dde180910e9819c4139f2d40e5",
+  "temporal_right_hash": "d237017b43a2d7dd93bf481295f5fa38e7d3fc7ba1cf8e6cd8b3404bb1bb6dbe",
+  "loss": "block_soft_l1",
+  "kappa": 2.0,
+  "encoding": {
+    "theta_scale": 15.0,
+    "power_scale": 2.6283934194692646,
+    "residual_scale": 241.47670695120885
+  },
+  "bounds": {
+    "theta": [
+      -20.0,
+      20.0
+    ],
+    "A": [
+      0.0,
+      6.0
+    ]
+  },
+  "coefficient_map": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.5,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.5,
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "free_coefficient_count": 12,
+  "active_demand_knots": [
+    0.36036036036036034,
+    2.0,
+    4.0
+  ],
+  "experiment": "hard_constrained_reduced_demands_v1",
+  "fold": "holdout3",
+  "heldout_fixations": [
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "prior_rule": "diag(1/ptp(retained_training_frame_observations,axis=0)**2); strength0.1"
+}
