@@ -82,6 +82,11 @@ explicit gradient checks. An evaluation limit is a failure regardless of its
 cost. Every calibration start and its diagnostics are saved. Failed checkpoints
 cannot be loaded as application models by default.
 
+An accepted standard solver stop can pass sufficient stationarity without a
+stable-step/cost callback certificate. `acceptance_reason` and
+`stable_step_cost_certificate` distinguish the two paths. New calibration
+records also separate optical, anchor, and coefficient-prior costs.
+
 The larger candidate also receives a start from the converged smaller candidate's
 training states, when available. Those states come from the same training fold;
 evaluation observations and all-three evaluation inverses never enter calibration
@@ -100,11 +105,49 @@ Gaussian likelihood. Monte Carlo and finite-difference tests check the mathemati
 Each frame and each subset uses the scalar reference solver with all 49 declared
 starts: gaze `[-20,-10,-5,0,5,10,20]` crossed with accommodation `[0,...,6]`.
 Only retained coordinates and their covariance marginal enter a subset solve.
+Every finite start is retained and receives safeguarded exact-Hessian polishing
+before clustering. Acceptance requires encoded projected stationarity at most
+`1e-4`, a physical Newton correction at most `1e-5` (degrees/diopters), stable
+cost, and nonnegative critical-face curvature. Active bounds are respected;
+indefinite Hessians receive a descent safeguard. A preceding solver budget stop
+is retained as a diagnostic and requires independent polish certification.
+Near high-residual minima, stable-cost corrections can improve stationarity
+despite floating-point cost cancellation; the gradient threshold is unchanged.
 Branch clustering tolerances are 0.01 degree and 0.01 D; a cost difference of 2
 defines a heuristic plausible-branch set. This is not a confidence region.
 Ambiguous/weak-rank subsets retain their predictions and are inconclusive; the
 excluded measurement never selects a branch. Correlated prediction covariance
 includes the shared-P1 cross terms. Bounds suppress the local Gaussian score.
+
+`full_position.profile` independently enumerates real stationary gaze roots of
+the degree-six fixed-accommodation cost and refines a finite accommodation
+grid. It is an audit check, not a proof of complete/global branch coverage.
+
+Reevaluate saved models without retraining, preserving original results:
+
+```bash
+rtk proxy env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m full_position.reevaluate \
+  --source experiments/full_position/grouped_v2 \
+  --output experiments/full_position/audit_polished_v1 --workers 6
+rtk proxy env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m full_position.audit_checks \
+  --source experiments/full_position/grouped_v2 \
+  --output experiments/full_position/audit_checks_v1 \
+  --revised experiments/full_position/audit_polished_v1
+```
+
+Use new output paths when reproducing. Reevaluation keeps the original eight
+selected rows per fixation and writes every start to compressed
+`inverse_candidates.jsonl.gz`. `comparison.json` records coverage, state/branch
+transitions, errors on matched original/revised support, and common-support
+fixation means across all three candidates. Metric names explicitly distinguish
+per-frame deviations from equally weighted fixation-mean deviations. Reported
+calibration cost comes from the selected start; rejected-start cost is separate.
+
+The audit checks include two recorded high-residual rows, polynomial profiles,
+same-response centroid/area diagnostics, retained-x versus retained-x/y P4
+prediction, and training-only signed residual/objective decomposition. All-three
+summaries never enter excluded-P4 validation. These targeted ablations do not
+constitute population-wide information or accuracy comparisons.
 
 ## Outputs and application
 

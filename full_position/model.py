@@ -22,6 +22,25 @@ def bases(x):
     return d, np.stack((dt, da), -1), s, np.stack((st, sa), -1)
 
 
+def basis_hessians(x):
+    """Exact second derivatives in physical degrees/diopters."""
+    x = np.asarray(x, float)
+    t, A = x[..., 0]/THETA_SCALE, x[..., 1]
+    L, La = np.log1p(A), 1/(1+A)
+    zero, one = np.zeros_like(t), np.ones_like(t)
+    def assemble(tt, ta, aa):
+        tt, ta, aa = map(lambda a: np.stack(a, -1), (tt, ta, aa))
+        return np.stack((np.stack((tt/THETA_SCALE**2, ta/THETA_SCALE), -1),
+                         np.stack((ta/THETA_SCALE, aa), -1)), -2)
+    d = assemble((zero,zero,zero,zero,2*one,2*L,6*t),
+                 (zero,zero,zero,La,zero,2*t*La,zero),
+                 (zero,zero,zero,-t*La**2,zero,-t*t*La**2,zero))
+    s = assemble((zero,zero,zero,zero,2*one,2*L),
+                 (zero,zero,zero,La,zero,2*t*La),
+                 (zero,zero,-La**2,-t*La**2,zero,-t*t*La**2))
+    return d, s
+
+
 class PositionModel:
     channels = 6
 
@@ -65,6 +84,16 @@ class PositionModel:
             self.beta[7+j*self.width:7+(j+1)*self.width] for j in range(5)]
         return np.stack(vals[:2], -1), np.stack(vals[2:], -1).reshape(np.shape(vals[0])+(2, 2))
 
+    def state_hessian(self, x, r):
+        d, s = basis_hessians(x)
+        vals = [np.einsum('...pab,p->...ab', d, self.beta[:7])] + [
+            np.einsum('...pab,p->...ab', s[..., :self.width, :, :],
+                      self.beta[7+j*self.width:7+(j+1)*self.width]) for j in range(5)]
+        D = np.stack(vals[:2], -3)
+        T = np.stack(vals[2:], -3).reshape(np.shape(vals[0])[:-2]+(2,2,2,2))
+        out = D[..., None, :, :, :]+np.einsum('...ijab,...kj->...kiab', T, r)
+        return out.reshape(out.shape[:-4]+(6,2,2))
+
 
 class SummaryModel:
     """Fresh fold-local 13-coefficient two-channel control; theta scale 10.
@@ -93,3 +122,9 @@ class SummaryModel:
             b, db = self.design(x, r, True)
             return b@self.beta, np.einsum("...cpz,p->...cz", db, self.beta)
         return self.design(x, r)@self.beta
+
+    def state_hessian(self, x, r=None):
+        d, s = basis_hessians(x)
+        return np.stack((np.einsum('...pab,p->...ab', d, self.beta[:7]),
+                         np.einsum('...pab,p->...ab', s[..., [0,1,4,2,3,5], :, :],
+                                   self.beta[7:])), -3)

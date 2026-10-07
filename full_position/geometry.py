@@ -67,10 +67,6 @@ def observations(ctx, q, found):
     return np.where(valid[..., None], v, np.nan), valid
 
 
-def pixel_prediction(ctx, v):
-    return ctx.c[..., None, :] + ctx.ell[..., None, None]*np.asarray(v).reshape(ctx.r.shape)
-
-
 def summaries(ctx, q):
     v = (np.asarray(q)-ctx.c[..., None, :])/ctx.ell[..., None, None]
     return np.concatenate((v.mean(-2), (np.abs(signed_area(q))/ctx.ell**2)[..., None]), -1)

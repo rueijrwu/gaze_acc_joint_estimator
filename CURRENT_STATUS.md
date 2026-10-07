@@ -1,9 +1,65 @@
 # Current status — 2026-10-07
 
-The full-position Python prototype is implemented and its first grouped evaluation
-is complete. Synthetic recovery and mathematical checks pass. The real-data
-results do **not yet establish an improvement over the two-channel estimator**.
-Keep the frozen baseline while addressing inverse-search and model/noise issues.
+The full-position Python prototype and its frozen-model audit are complete.
+Inverse certification is more reliable, but real-data results do **not establish
+an improvement over the two-channel estimator**. Keep the frozen baseline while
+investigating response mismatch and state-estimation sensitivity.
+
+## Audit implementation and reevaluation (latest)
+
+The fixes from [AUDIT_REPORT.md](AUDIT_REPORT.md) are implemented. All 27 saved
+models were reevaluated with their original sampled populations, coefficients,
+and covariances; no models were retrained. The original `grouped_v2` files were
+verified unchanged. Revised outputs and the complete comparison are in
+[audit_polished_v1/RESULTS.md](experiments/full_position/audit_polished_v1/RESULTS.md).
+
+Every scalar start is retained in compressed diagnostics and receives bounded,
+descent-safeguarded exact-Hessian polishing before acceptance/clustering. The
+original `1e-4` gradient threshold is preserved; physical correction, stable cost,
+and local curvature are also checked. This addresses candidates that reached a
+good basin but were discarded by certification, rather than only adding starts.
+
+`conditional37` coverage improves from **139 to 143** valid gaze frames and
+**142 to 143** valid capture frames. Both coordinate models now score all **429**
+P4 point tests per split family. The two-channel control and `conditional27`
+remain unchanged. On the same 426 previously scored gaze tests, `conditional37`
+RMS rises from **6.197 to 6.632 px**; on paired capture support it remains
+**4.354 px**. On the expanded common 429-point support, revised RMS is
+**3.423/6.620 px** for gaze and **4.062/4.353 px** for capture
+(`conditional27`/`conditional37`). The audit's row-1380 error reduction
+**5.959 to 2.695 px** is reproduced. Of eight lower-cost subset branches
+recovered, seven have worse withheld predictions. Better inverse certification
+does not establish better accuracy.
+
+Reporting now distinguishes per-frame discrepancies from equal-weight
+fixation-mean discrepancies, includes counts/row membership and common state
+support, and reports selected-start cost separately from rejected-start cost.
+Calibration records separate optical/anchor/prior costs and distinguish stable
+step/cost certificates from ordinary solver stops with sufficient stationarity.
+Compatibility checks validate model conventions, pilot/reference/covariance,
+and declared support. Application and grouped evaluation share support, parity,
+and local uncertainty diagnostics, including explicit unavailable fields.
+
+[Audit checks](experiments/full_position/audit_checks_v1/) reproduce the eight
+targeted full/subset inverses and independently profile their polynomial gaze
+branches. All eight newly selected lower-cost subset transitions were also
+independently profile-checked (maximum cost difference 4.1e-10). Controlled
+measurement ablations use the same frozen response.
+Training-only signed-residual analyses and conditional coefficient refits are
+saved; latent states/anchors were not refitted. Those fixed-state refits are
+conditional coefficient sensitivity analyses, not tests of anchor or latent-state
+sensitivity. Local covariance still excludes coefficient uncertainty and response
+discrepancy. No physiological accuracy has been established. Captures 5/6 remain
+untouched.
+
+Verification confirms all **199** source hashes match, all **27** model copies
+are byte-identical and loadable, and all **9** compressed populations round-trip
+exactly. The 21-test suite passes. Eight transition profiles agree within
+**4.1e-10** cost difference. Training objective reconstruction matches within
+**3.2e-12**, and median absolute signed training bias is **0.497 px**. These
+training diagnostics reuse observations across folds. Full latent-state and
+anchor sensitivity, response discrepancy, coefficient uncertainty, and
+physiological accuracy remain unresolved.
 
 ## What has been implemented
 
@@ -35,13 +91,16 @@ detector changes, and physiological validation have not been implemented.
 
 ## Verification
 
-**14 acceptance tests pass.** They cover geometry identities and feature rank;
+**21 acceptance tests pass.** They cover geometry identities and feature rank;
 physical and profiled derivatives; fixed optimizer linearizations; covariance
 propagation against finite differences and Monte Carlo; subset marginals;
 excluded-point noninterference for every point/axis; synthetic latent calibration
 and recovery; weak rank and multiple branches; bounds and invalid-row persistence;
 distortion and state-like perturbations; baseline scale conversion equivalence;
-and batched numerical formulas.
+and batched numerical formulas. Audit regressions add exact objective/model
+Hessians, polynomial coordinates, two recorded high-residual inverses, bounded
+and indefinite-Hessian polishing, candidate retention, compatibility rejection,
+raw-application holdout noninterference, and reporting/common-support aggregation.
 
 ```bash
 rtk proxy env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
@@ -70,8 +129,12 @@ extrapolation relative to the remaining training anchors.
 
 ### Withheld-point results
 
-Errors below compare exactly matching testable frame/point IDs, with 426 point
-tests in each split family:
+The following is the **historical original `grouped_v2` evaluation**, before the
+polishing audit. It is retained for provenance; the latest paired and expanded
+support results appear above and in
+[audit results](experiments/full_position/audit_polished_v1/RESULTS.md). Errors
+compare exactly matching testable frame/point IDs, with 426 point tests in each
+split family:
 
 | Split family | Model | Median error, px | RMS error, px |
 |---|---|---:|---:|
@@ -85,7 +148,7 @@ The larger model is not consistently better. Its median endpoint errors are
 `conditional27`. Inverse-search limitations prevent attributing all of this
 degradation to model capacity alone.
 
-Coverage and bounds on the fixed sampled population:
+Original coverage and bounds on the fixed sampled population:
 
 | Split family | Model | Estimates / 143 valid full rows | Testable holdouts / 429 attempts | Primary bound hits |
 |---|---|---:|---:|---:|
@@ -137,15 +200,16 @@ silently. Optional acceleration is not yet a universally equivalent replacement.
 
 ## Next work, in order
 
-1. Strengthen branch search using independent CPU/GPU candidates, CPU refinement,
-   and denser/adaptive development starts. Preserve plausible branches and rerun
-   leakage tests. Reevaluate coverage and endpoint predictions first.
-2. Separate response-model discrepancy from noise, anchor, and prior effects
-   through grouped training-only sensitivity runs. Inspect point/axis bias,
-   signed gaze curvature, gaze/accommodation cross-talk, and P1-context dependence.
-3. Audit capture-dependent geometry and stored detector selection. Introduce
-   nuisance/context terms only with supported rank and calibration evidence.
-   Follow with nested selection and denser evaluation.
+1. **Training sensitivity:** jointly refit latent states and coefficients while
+   varying fixation anchors, coefficient priors, and reference covariance.
+   Diagnose endpoint point/axis bias, capture/demand confounding, and P1-context
+   dependence before changing the response basis.
+2. **Discrepancy and context:** extend independent branch/profile checks and
+   controlled measurement ablations across development populations. Audit
+   capture-dependent geometry and detector selection; add targeted basis or
+   context terms only when residual patterns and supported rank justify them.
+3. **Evaluation:** use nested selection and denser grouped evaluation, then reserve
+   captures 5/6 for untouched transfer checks.
 
 Captures 5/6 remain unused by this study and available for later untouched
 transfer checks. Neither the new estimator nor geometric agreement establishes
@@ -154,6 +218,10 @@ independent physiological accuracy. No new model has replaced the baseline.
 ## Where to resume
 
 - [Implementation and run commands](full_position/README.md).
+- [Audit implementation results](experiments/full_position/audit_polished_v1/RESULTS.md),
+  [original/revised comparison](experiments/full_position/audit_polished_v1/comparison.json),
+  [verification](experiments/full_position/audit_polished_v1/verification.json), and
+  [audit checks](experiments/full_position/audit_checks_v1/).
 - [Detailed results and next experiment](experiments/full_position/grouped_v2/RESULTS.md).
 - [Metrics](experiments/full_position/grouped_v2/metrics.csv),
   [point errors](experiments/full_position/grouped_v2/heldout_errors.csv), and
@@ -186,7 +254,19 @@ scratch outputs while retaining failed-worker logs. Calibration Jacobian
 products share the existing frozen implementation; reporting skips empty
 holdout plots. Scripts and acceptance tests remain available for reproduction.
 
-Verification: all 27 primary models load, all nine compressed populations match
-their original hashes, and regenerated metrics, point errors, fixation means,
-and matched-support summaries are byte-for-byte unchanged. All 14 tests pass,
-including shared-population serialization and parallel output collection.
+Historical cleanup verification showed all 27 primary models load, all nine
+compressed populations match their original hashes, and regenerated metrics,
+point errors, fixation means, and matched-support summaries are byte-for-byte
+unchanged. The cleanup run reported 14 passing tests; the current audit suite
+reports 21, including shared-population serialization and parallel output
+collection.
+
+The final audit cleanup removed a duplicate 185,021-byte CSV of training
+residual groups after verifying that all 1,680 rows match the corresponding JSON
+fields; the JSON also retains the `r_mean` context. It also removed an unused
+whitening import and the unreferenced `geometry.pixel_prediction` helper. No
+further redundant outputs were found. Required scripts, all 27 original models
+and result sets, complete candidate archives, sensitivity failures, and GPU
+evidence remain. The cleanup equivalence and updated source hashes are recorded in
+[audit verification](experiments/full_position/audit_polished_v1/verification.json);
+all 21 tests pass after cleanup.

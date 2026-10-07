@@ -171,6 +171,10 @@ class Acceptance(unittest.TestCase):
         fitted, states, diagnostics = fit(PositionModel(37), y, r, cov, groups, anchors,
                                            starts=2, max_nfev=200, prior_strength=1e-4)
         self.assertTrue(diagnostics["converged"])
+        for alternative in diagnostics['alternatives']:
+            self.assertAlmostEqual(sum(alternative['objective_components'].values()),alternative['cost'],places=8)
+            if alternative['converged']:
+                self.assertIn(alternative['acceptance_reason'],['stable_step_cost_and_stationarity','solver_stop_and_stationarity'])
         self.assertLess(np.sqrt(np.mean((states-x)**2)), .02)
         test_x = np.array([2.5, 1.5])
         self.assertLess(np.linalg.norm(fitted.predict(test_x, self.ctx.r)-self.model.predict(test_x, self.ctx.r)), .002)

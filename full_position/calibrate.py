@@ -171,6 +171,11 @@ def fit(model, y, r, cov, groups, anchors, prior_strength=.001, starts=2,
                       projected_stationarity_encoded=stationarity,
                       projected_stationarity_physical=physical_stationarity,
                       stable_step_cost_certificate=certified,
+                      acceptance_reason="stable_step_cost_and_stationarity" if certified and converged else
+                          "solver_stop_and_stationarity" if converged else "not_certified",
+                      objective_components=dict(optical=float(np.sum(problem.optical_residual[:problem.n*problem.c]**2)/2),
+                          prior=float(np.sum(problem.optical_residual[problem.n*problem.c:]**2)/2),
+                          anchor=float(np.sum(problem.residual[len(problem.b):]**2)/2)),
                       inner_stationarity_scaled=inner, seconds=time.monotonic()-begun)
         alternatives.append(record)
         solutions.append((converged, result.cost, problem.beta.copy(), problem.x.copy()))

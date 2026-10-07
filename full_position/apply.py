@@ -5,11 +5,12 @@ import json
 from pathlib import Path
 import numpy as np
 from .data import load_capture
-from .geometry import context, summaries
+from .geometry import context, summaries, signed_area
 from .model import PositionModel
 from .noise import reference_covariance, marginal
 from .invert import invert, predict_holdout, score_holdout
-from .schema import load_model, write_json, json_default
+from .schema import load_model, write_json, json_default, clean_json
+from .diagnostics import frame_diagnostics
 
 
 def apply(model_path, detection_path, output, every=1, holdouts=False):
@@ -30,6 +31,11 @@ def apply(model_path, detection_path, output, every=1, holdouts=False):
     good = selected[cap.ctx.valid[selected]]
     covs = reference_covariance(cap.p[good], pilot, np.array(meta["reference_state"]), sigma)
     covariance = dict(zip(good, covs))
+    empirical_range = None
+    training_path = Path(model_path).parent/'training_states.json'
+    if training_path.exists():
+        states = np.asarray(json.loads(training_path.read_text())['states'])
+        empirical_range = [states.min(0), states.max(0)]
     selected = set(selected.tolist())
     estimated = 0
     with (output/"frames.jsonl").open("w") as f:
@@ -38,11 +44,13 @@ def apply(model_path, detection_path, output, every=1, holdouts=False):
                           baseline_valid=bool(cap.baseline_valid[i]), p4_valid=cap.point_valid[i].tolist(),
                           selected=i in selected, estimated=False, state=None, predicted_q=None,
                           reason="not_sampled" if i not in selected else "invalid_input")
+            inverse = dict(available=False)
             if i in selected and cap.ctx.valid[i]:
                 ctx = context(cap.p[i])
                 ix = np.repeat(cap.point_valid[i], 2).nonzero()[0]
                 result = invert(model, ctx.r, cap.v[i].ravel()[ix], marginal(covariance[i], ix), ix)
                 record["inverse"] = result
+                inverse = result
                 record["reason"] = result["reason"]
                 if result["available"]:
                     x = np.array(result["state"])
@@ -51,7 +59,9 @@ def apply(model_path, detection_path, output, every=1, holdouts=False):
                     record.update(estimated=True, state=result["state"],
                                   estimate_kind="all_three" if cap.baseline_valid[i] else "partial_two_P4",
                                   predicted_q=(ctx.c+ctx.ell*v).tolist(), predicted_d=D.tolist(),
-                                  predicted_rho=float(abs(np.linalg.det(T))))
+                                  predicted_rho=float(abs(np.linalg.det(T))), predicted_T=T.tolist(),
+                                  signed_predicted_det=float(np.linalg.det(T)),
+                                  observed_signed_det=float(signed_area(cap.q[i])/ctx.signed_area) if cap.baseline_valid[i] else None)
                     record["observed_summaries"] = summaries(ctx, cap.q[i]).tolist() if cap.baseline_valid[i] else None
                     estimated += 1
                 if holdouts:
@@ -64,7 +74,10 @@ def apply(model_path, detection_path, output, every=1, holdouts=False):
                             prediction = predict_holdout(model, ctx, j, cap.v[i].ravel()[ix], covariance[i])
                         q = cap.q[i, j] if cap.point_valid[i, j] else np.full(2, np.nan)
                         record["holdouts"].append(score_holdout(prediction, q, ctx.ell))
-            f.write(json.dumps(record, default=json_default, allow_nan=False)+"\n")
+            record['diagnostics'] = frame_diagnostics(model, meta, cap.p[i], cap.point_valid[i],
+                inverse, empirical_range, covariance.get(i))
+            # Clean nonfinite invalid-geometry diagnostics while preserving each row.
+            f.write(json.dumps(clean_json(record), default=json_default, allow_nan=False)+"\n")
     write_json(output/"summary.json", dict(original_rows=len(cap.frame), sampled_rows=len(selected),
         estimated_rows=estimated, every=every, holdouts=holdouts, source_sha256=cap.sha256,
         model_path=str(model_path), model_schema=meta["schema"], physiological_validation=False))

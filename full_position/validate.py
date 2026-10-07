@@ -61,13 +61,24 @@ def stats(values):
 def summarize(rows, holdouts):
     valid = [r for r in rows if r.get("estimated")]
     scored = [r for r in holdouts if r.get("score_available")]
+    fixation_means = []
+    for gi in sorted({r["fixation"] for r in valid}):
+        members = [r for r in valid if r["fixation"] == gi]
+        fixation_means.append(dict(fixation=gi, capture=members[0]["capture"],
+            rows=[r["row"] for r in members], count=len(members),
+            theta=float(np.mean([r["theta"] for r in members])),
+            A=float(np.mean([r["A"] for r in members])),
+            nominal_theta=members[0]["nominal_theta"], demand=members[0]["demand"]))
     return dict(evaluation_rows=len(rows), baseline_valid_rows=sum(r["baseline_valid"] for r in rows),
         estimated_rows=len(valid), inverse_failure_rows=sum(r["baseline_valid"] and not r.get("estimated") for r in rows),
         ambiguous_rows=sum(r.get("ambiguous", False) for r in valid),
         bound_rows=sum(r.get("at_bound", False) for r in valid),
         weak_rank_rows=sum(r.get("rank", 0)<2 for r in valid),
-        gaze_mean_anchor_discrepancy_deg=stats([r["theta"]-r["nominal_theta"] for r in valid]),
-        accommodation_mean_demand_discrepancy_D=stats([r["A"]-r["demand"] for r in valid]),
+        frame_gaze_anchor_discrepancy_deg=stats([r["theta"]-r["nominal_theta"] for r in valid]),
+        frame_accommodation_demand_discrepancy_D=stats([r["A"]-r["demand"] for r in valid]),
+        fixation_mean_gaze_anchor_discrepancy_deg=stats([r["theta"]-r["nominal_theta"] for r in fixation_means]),
+        fixation_mean_accommodation_demand_discrepancy_D=stats([r["A"]-r["demand"] for r in fixation_means]),
+        fixation_means=fixation_means, fixation_weighting="equal_fixation; valid estimated frames equally weighted within fixation",
         geometry_cost=stats([r["cost"] for r in valid]),
         holdout_tests=len(holdouts), testable_holdouts=len(scored),
         inconclusive_holdouts=len(holdouts)-len(scored),
@@ -83,6 +94,11 @@ def evaluate(model, captures, groups, test_ids, pilot, reference, sigma, output,
     rows, holdouts = [], []
     # Record full fixed evaluation population before looking at model residuals.
     with ExitStack() as stack:
+        candidate_file = stack.enter_context(gzip.open(output/"inverse_candidates.jsonl.gz", "wt"))
+        def archive_candidates(result, gi, i, held_point=None):
+            candidates = result.pop("candidates", [])
+            candidate_file.write(json.dumps(dict(fixation=gi, row=int(i), held_point=held_point,
+                candidates=candidates), default=json_default, allow_nan=False)+"\n")
         # Population membership is model-independent: keep one compressed copy per fold.
         population_path = output.parent/"population.csv.gz"
         writer = None
@@ -128,6 +144,8 @@ def evaluate(model, captures, groups, test_ids, pilot, reference, sigma, output,
                     y = summaries(ctx, cap.q[i])[[0, 2]]
                     result = invert(model, ctx.r, y, cov_by_row[i])
                 row["reason"] = result["reason"]
+                archive_candidates(result, gi, i)
+                row["recovered_starts"] = result.get("recovered_starts", 0)
                 if result["available"]:
                     row.update(estimated=True, theta=result["state"][0], A=result["state"][1],
                                estimate_kind="all_three" if cap.baseline_valid[i] else "partial_two_P4")
@@ -160,6 +178,7 @@ def evaluate(model, captures, groups, test_ids, pilot, reference, sigma, output,
                         prediction = dict(available=False, held_point=j, reason="insufficient_retained_P4", branches=[])
                     else:
                         prediction = predict_holdout(model, ctx, j, cap.v[i].ravel()[ix], cov_by_row[i])
+                    archive_candidates(prediction, gi, i, j)
                     score = score_holdout(prediction, cap.q[i, j] if cap.point_valid[i, j] else np.full(2, np.nan), ctx.ell)
                     score.update(fixation=gi, capture=cap.name, row=int(i), nominal_theta=g["target_theta_deg"],
                                  demand=g["demand_diopters_label"])

@@ -1,0 +1,1105 @@
+{
+  "records": [
+    {
+      "row": 1380,
+      "coordinate_state": [
+        -11.02324172497669,
+        1.0481848624518906
+      ],
+      "derived_summaries": {
+        "available": true,
+        "reason": "ok",
+        "state": [
+          -10.321497664363143,
+          5.999999999999999
+        ],
+        "cost": 326.06531838973905,
+        "stationarity_encoded": 1.7326725355815142e-05,
+        "at_bound": true,
+        "rank": 2,
+        "singular_values_physical": [
+          306.78001034742283,
+          61.77165006913772
+        ],
+        "ambiguous": false,
+        "numerical_ties": 1,
+        "branches": [
+          {
+            "state": [
+              -10.321497664363143,
+              5.999999999999999
+            ],
+            "cost": 326.06531838973905,
+            "stationarity_encoded": 1.7326725355815142e-05,
+            "singular_values_physical": [
+              306.78001034742283,
+              61.77165006913772
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 1.7326725355815142e-05,
+              "physical_correction": 2.6016966359065918e-11,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                6659697.271367697
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": true
+          },
+          {
+            "state": [
+              -10.927314522081062,
+              0.9237100009621058
+            ],
+            "cost": 14287.109452561346,
+            "stationarity_encoded": 7.250491762533784e-09,
+            "singular_values_physical": [
+              507.5851539619585,
+              8.458597030655553e-14
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 1,
+              "stationarity_encoded": 7.250491762533784e-09,
+              "physical_correction": 6.439293542825908e-15,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                71569.03715431713,
+                18162360.404548492
+              ],
+              "last_cost_change": 4.001776687800884e-11,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 1,
+            "at_bound": false
+          }
+        ],
+        "plausible_branches": [
+          {
+            "state": [
+              -10.321497664363143,
+              5.999999999999999
+            ],
+            "cost": 326.06531838973905,
+            "stationarity_encoded": 1.7326725355815142e-05,
+            "singular_values_physical": [
+              306.78001034742283,
+              61.77165006913772
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 1.7326725355815142e-05,
+              "physical_correction": 2.6016966359065918e-11,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                6659697.271367697
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": true
+          }
+        ],
+        "failed_starts": 0,
+        "start_count": 49,
+        "plausible_delta": 2.0,
+        "recovered_starts": 8,
+        "acceptance_contract": "projected_gradient_1e-4; physical_correction_1e-5; stable_cost; critical_face_curvature",
+        "measurement_policy": "all_three derived centroid/area; not a withheld-point baseline"
+      },
+      "policy": "same frozen response; all-three diagnostic, not withheld validation"
+    },
+    {
+      "row": 1380,
+      "held_point": 0,
+      "xy_state": [
+        -10.780810578195624,
+        0.9693951748453291
+      ],
+      "xy_rank": 2,
+      "xy_error_px": 8.939387979903017,
+      "retained_x": {
+        "available": true,
+        "reason": "ok",
+        "state": [
+          -9.815219949314699,
+          0.014542999760010618
+        ],
+        "cost": 6.913665320695762e-25,
+        "stationarity_encoded": 1.967259688484546e-09,
+        "at_bound": false,
+        "rank": 2,
+        "singular_values_physical": [
+          809.0190525907275,
+          5.166119948895857
+        ],
+        "ambiguous": false,
+        "numerical_ties": 1,
+        "branches": [
+          {
+            "state": [
+              -9.815219949314699,
+              0.014542999760010618
+            ],
+            "cost": 6.913665320695762e-25,
+            "stationarity_encoded": 1.967259688484546e-09,
+            "singular_values_physical": [
+              809.0190525907275,
+              5.166119948895857
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 1.967259688484546e-09,
+              "physical_correction": 1.1324274851176597e-13,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                1005.4428134234622,
+                27797713.75295347
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": false
+          },
+          {
+            "state": [
+              -10.23752049206756,
+              5.999999999999999
+            ],
+            "cost": 1242.7903866202596,
+            "stationarity_encoded": 2.224901254521683e-05,
+            "singular_values_physical": [
+              288.4399759038824,
+              14.69594589260231
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 2.224901254521683e-05,
+              "physical_correction": 3.680611371237319e-11,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                6044900.999317622
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": true
+          }
+        ],
+        "plausible_branches": [
+          {
+            "state": [
+              -9.815219949314699,
+              0.014542999760010618
+            ],
+            "cost": 6.913665320695762e-25,
+            "stationarity_encoded": 1.967259688484546e-09,
+            "singular_values_physical": [
+              809.0190525907275,
+              5.166119948895857
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 1.967259688484546e-09,
+              "physical_correction": 1.1324274851176597e-13,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                1005.4428134234622,
+                27797713.75295347
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": false
+          }
+        ],
+        "failed_starts": 0,
+        "start_count": 49,
+        "plausible_delta": 2.0,
+        "recovered_starts": 2,
+        "acceptance_contract": "projected_gradient_1e-4; physical_correction_1e-5; stable_cost; critical_face_curvature",
+        "held_point": 0,
+        "testable": true,
+        "predictions": [
+          {
+            "state": [
+              -9.815219949314699,
+              0.014542999760010618
+            ],
+            "pixel": [
+              637.3589783823916,
+              380.0151968095824
+            ]
+          }
+        ],
+        "branch_errors_px": [
+          [
+            -10.88443004254782,
+            0.8283700849488582
+          ]
+        ],
+        "score_available": true,
+        "error_px": [
+          -10.88443004254782,
+          0.8283700849488582
+        ],
+        "error_normalized": [
+          -0.03795238926532816,
+          0.002888403324458585
+        ]
+      },
+      "policy": "both inverses exclude the tested P4 point; no all-three area"
+    },
+    {
+      "row": 1380,
+      "held_point": 1,
+      "xy_state": [
+        -11.000176151481009,
+        0.9612655641670719
+      ],
+      "xy_rank": 2,
+      "xy_error_px": 2.695215367102045,
+      "retained_x": {
+        "available": true,
+        "reason": "ok",
+        "state": [
+          -10.244026152741421,
+          5.999999999999999
+        ],
+        "cost": 1264.4783723110531,
+        "stationarity_encoded": 7.937222108012065e-05,
+        "at_bound": true,
+        "rank": 2,
+        "singular_values_physical": [
+          304.7087510766664,
+          42.208645783603046
+        ],
+        "ambiguous": false,
+        "numerical_ties": 1,
+        "branches": [
+          {
+            "state": [
+              -10.244026152741421,
+              5.999999999999999
+            ],
+            "cost": 1264.4783723110531,
+            "stationarity_encoded": 7.937222108012065e-05,
+            "singular_values_physical": [
+              304.7087510766664,
+              42.208645783603046
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 7.937222108012065e-05,
+              "physical_correction": 1.2610801292112228e-10,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                6294030.952954375
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": true
+          }
+        ],
+        "plausible_branches": [
+          {
+            "state": [
+              -10.244026152741421,
+              5.999999999999999
+            ],
+            "cost": 1264.4783723110531,
+            "stationarity_encoded": 7.937222108012065e-05,
+            "singular_values_physical": [
+              304.7087510766664,
+              42.208645783603046
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 7.937222108012065e-05,
+              "physical_correction": 1.2610801292112228e-10,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                6294030.952954375
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": true
+          }
+        ],
+        "failed_starts": 0,
+        "start_count": 49,
+        "plausible_delta": 2.0,
+        "recovered_starts": 9,
+        "acceptance_contract": "projected_gradient_1e-4; physical_correction_1e-5; stable_cost; critical_face_curvature",
+        "held_point": 1,
+        "testable": true,
+        "predictions": [
+          {
+            "state": [
+              -10.244026152741421,
+              5.999999999999999
+            ],
+            "pixel": [
+              461.30355482659775,
+              677.5716837280281
+            ]
+          }
+        ],
+        "branch_errors_px": [
+          [
+            -2.318264299253997,
+            -4.15481361084062
+          ]
+        ],
+        "score_available": true,
+        "error_px": [
+          -2.318264299253997,
+          -4.15481361084062
+        ],
+        "error_normalized": [
+          -0.008083442932819452,
+          -0.014487217324849104
+        ]
+      },
+      "policy": "both inverses exclude the tested P4 point; no all-three area"
+    },
+    {
+      "row": 1380,
+      "held_point": 2,
+      "xy_state": [
+        -11.171562002708125,
+        0.96011930650403
+      ],
+      "xy_rank": 2,
+      "xy_error_px": 7.460533898794726,
+      "retained_x": {
+        "available": true,
+        "reason": "ok",
+        "state": [
+          -10.721944219377368,
+          5.691665289367397
+        ],
+        "cost": 2.899611969605111e-26,
+        "stationarity_encoded": 2.2795831888799967e-10,
+        "at_bound": false,
+        "rank": 2,
+        "singular_values_physical": [
+          228.13660656731648,
+          16.17441960946023
+        ],
+        "ambiguous": false,
+        "numerical_ties": 1,
+        "branches": [
+          {
+            "state": [
+              -10.721944219377368,
+              5.691665289367397
+            ],
+            "cost": 2.899611969605111e-26,
+            "stationarity_encoded": 2.2795831888799967e-10,
+            "singular_values_physical": [
+              228.13660656731648,
+              16.17441960946023
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 2.2795831888799967e-10,
+              "physical_correction": 5.329070518200751e-15,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                6308.445661979495,
+                3453384.8716414543
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": false
+          },
+          {
+            "state": [
+              -19.999999999999996,
+              5.9999999999999964
+            ],
+            "cost": 236581.39578034868,
+            "stationarity_encoded": 8.881784197001252e-16,
+            "singular_values_physical": [
+              118.76245111775374,
+              16.735666392369563
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 8.881784197001252e-16,
+              "physical_correction": 0.0,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": true
+          }
+        ],
+        "plausible_branches": [
+          {
+            "state": [
+              -10.721944219377368,
+              5.691665289367397
+            ],
+            "cost": 2.899611969605111e-26,
+            "stationarity_encoded": 2.2795831888799967e-10,
+            "singular_values_physical": [
+              228.13660656731648,
+              16.17441960946023
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 2.2795831888799967e-10,
+              "physical_correction": 5.329070518200751e-15,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                6308.445661979495,
+                3453384.8716414543
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": false
+          }
+        ],
+        "failed_starts": 0,
+        "start_count": 49,
+        "plausible_delta": 2.0,
+        "recovered_starts": 0,
+        "acceptance_contract": "projected_gradient_1e-4; physical_correction_1e-5; stable_cost; critical_face_curvature",
+        "held_point": 2,
+        "testable": true,
+        "predictions": [
+          {
+            "state": [
+              -10.721944219377368,
+              5.691665289367397
+            ],
+            "pixel": [
+              306.0245537940976,
+              378.53749502335677
+            ]
+          }
+        ],
+        "branch_errors_px": [
+          [
+            4.43787906723054,
+            -2.876972562419269
+          ]
+        ],
+        "score_available": true,
+        "error_px": [
+          4.43787906723054,
+          -2.876972562419269
+        ],
+        "error_normalized": [
+          0.015474224485213316,
+          -0.010031575577938674
+        ]
+      },
+      "policy": "both inverses exclude the tested P4 point; no all-three area"
+    },
+    {
+      "row": 1928,
+      "coordinate_state": [
+        -10.53199942092511,
+        0.2518757524231838
+      ],
+      "derived_summaries": {
+        "available": true,
+        "reason": "ok",
+        "state": [
+          -10.712107146810222,
+          5.999999999999999
+        ],
+        "cost": 1343.5254900265165,
+        "stationarity_encoded": 3.3550895750522614e-07,
+        "at_bound": true,
+        "rank": 2,
+        "singular_values_physical": [
+          296.1600789282753,
+          60.60710331521973
+        ],
+        "ambiguous": false,
+        "numerical_ties": 1,
+        "branches": [
+          {
+            "state": [
+              -10.712107146810222,
+              5.999999999999999
+            ],
+            "cost": 1343.5254900265165,
+            "stationarity_encoded": 3.3550895750522614e-07,
+            "singular_values_physical": [
+              296.1600789282753,
+              60.60710331521973
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 3.3550895750522614e-07,
+              "physical_correction": 5.306866057708248e-13,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                6315421.708074225
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": true
+          },
+          {
+            "state": [
+              -11.02209268944286,
+              0.7372629895561422
+            ],
+            "cost": 10906.926315827859,
+            "stationarity_encoded": 5.797119229100645e-09,
+            "singular_values_physical": [
+              565.2422476308436,
+              1.3132361608925596e-13
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 1,
+              "stationarity_encoded": 5.797119229100645e-09,
+              "physical_correction": 5.218048215738236e-15,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                86976.44505972229,
+                19999210.865204833
+              ],
+              "last_cost_change": 9.640643838793039e-11,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 1,
+            "at_bound": false
+          }
+        ],
+        "plausible_branches": [
+          {
+            "state": [
+              -10.712107146810222,
+              5.999999999999999
+            ],
+            "cost": 1343.5254900265165,
+            "stationarity_encoded": 3.3550895750522614e-07,
+            "singular_values_physical": [
+              296.1600789282753,
+              60.60710331521973
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 3.3550895750522614e-07,
+              "physical_correction": 5.306866057708248e-13,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                6315421.708074225
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": true
+          }
+        ],
+        "failed_starts": 0,
+        "start_count": 49,
+        "plausible_delta": 2.0,
+        "recovered_starts": 15,
+        "acceptance_contract": "projected_gradient_1e-4; physical_correction_1e-5; stable_cost; critical_face_curvature",
+        "measurement_policy": "all_three derived centroid/area; not a withheld-point baseline"
+      },
+      "policy": "same frozen response; all-three diagnostic, not withheld validation"
+    },
+    {
+      "row": 1928,
+      "held_point": 0,
+      "xy_state": [
+        -10.22726828414719,
+        0.15709132207597842
+      ],
+      "xy_rank": 2,
+      "xy_error_px": 10.212057946801359,
+      "retained_x": {
+        "available": true,
+        "reason": "ok",
+        "state": [
+          -9.995211830366166,
+          1.1508746796863746e-15
+        ],
+        "cost": 2.698059854567608,
+        "stationarity_encoded": 1.426253675163025e-05,
+        "at_bound": true,
+        "rank": 2,
+        "singular_values_physical": [
+          836.203238861105,
+          6.40449349518817
+        ],
+        "ambiguous": false,
+        "numerical_ties": 1,
+        "branches": [
+          {
+            "state": [
+              -9.995211830366166,
+              1.1508746796863746e-15
+            ],
+            "cost": 2.698059854567608,
+            "stationarity_encoded": 1.426253675163025e-05,
+            "singular_values_physical": [
+              836.203238861105,
+              6.40449349518817
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 1.426253675163025e-05,
+              "physical_correction": 6.930012119710227e-12,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                20580489.352501724
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": true
+          },
+          {
+            "state": [
+              -10.610258981276496,
+              5.999999999999999
+            ],
+            "cost": 2453.4958186275326,
+            "stationarity_encoded": 8.548996993340552e-05,
+            "singular_values_physical": [
+              279.7585555127041,
+              14.218916608181615
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 8.548996993340552e-05,
+              "physical_correction": 1.4921841540171954e-10,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                5729164.549765282
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": true
+          }
+        ],
+        "plausible_branches": [
+          {
+            "state": [
+              -9.995211830366166,
+              1.1508746796863746e-15
+            ],
+            "cost": 2.698059854567608,
+            "stationarity_encoded": 1.426253675163025e-05,
+            "singular_values_physical": [
+              836.203238861105,
+              6.40449349518817
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 1.426253675163025e-05,
+              "physical_correction": 6.930012119710227e-12,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                20580489.352501724
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": true
+          }
+        ],
+        "failed_starts": 0,
+        "start_count": 49,
+        "plausible_delta": 2.0,
+        "recovered_starts": 5,
+        "acceptance_contract": "projected_gradient_1e-4; physical_correction_1e-5; stable_cost; critical_face_curvature",
+        "held_point": 0,
+        "testable": true,
+        "predictions": [
+          {
+            "state": [
+              -9.995211830366166,
+              1.1508746796863746e-15
+            ],
+            "pixel": [
+              629.919604505064,
+              380.0159015406816
+            ]
+          }
+        ],
+        "branch_errors_px": [
+          [
+            -10.400927747251444,
+            -2.45636174575975
+          ]
+        ],
+        "score_available": true,
+        "error_px": [
+          -10.400927747251444,
+          -2.45636174575975
+        ],
+        "error_normalized": [
+          -0.0362771060887927,
+          -0.00856747569147634
+        ]
+      },
+      "policy": "both inverses exclude the tested P4 point; no all-three area"
+    },
+    {
+      "row": 1928,
+      "held_point": 1,
+      "xy_state": [
+        -10.444327901174233,
+        0.1472374767692252
+      ],
+      "xy_rank": 2,
+      "xy_error_px": 4.680928520239728,
+      "retained_x": {
+        "available": true,
+        "reason": "ok",
+        "state": [
+          -10.616845724882758,
+          5.999999999999999
+        ],
+        "cost": 2428.0589606406356,
+        "stationarity_encoded": 2.426117134746164e-06,
+        "at_bound": true,
+        "rank": 2,
+        "singular_values_physical": [
+          294.30810427730944,
+          41.83805913755336
+        ],
+        "ambiguous": false,
+        "numerical_ties": 1,
+        "branches": [
+          {
+            "state": [
+              -10.616845724882758,
+              5.999999999999999
+            ],
+            "cost": 2428.0589606406356,
+            "stationarity_encoded": 2.426117134746164e-06,
+            "singular_values_physical": [
+              294.30810427730944,
+              41.83805913755336
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 2.426117134746164e-06,
+              "physical_correction": 4.092282068768327e-12,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                5928736.903771296
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": true
+          },
+          {
+            "state": [
+              -11.268156099788316,
+              0.9958072119071361
+            ],
+            "cost": 19144.627220210732,
+            "stationarity_encoded": 1.6763806343078613e-08,
+            "singular_values_physical": [
+              474.9912464764456,
+              4.4122173779208094e-13
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 1,
+              "stationarity_encoded": 1.6763806343078613e-08,
+              "physical_correction": 5.0182080713057076e-14,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                32088.278558499413,
+                16247605.671945013
+              ],
+              "last_cost_change": 7.457856554538012e-11,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 1,
+            "at_bound": false
+          }
+        ],
+        "plausible_branches": [
+          {
+            "state": [
+              -10.616845724882758,
+              5.999999999999999
+            ],
+            "cost": 2428.0589606406356,
+            "stationarity_encoded": 2.426117134746164e-06,
+            "singular_values_physical": [
+              294.30810427730944,
+              41.83805913755336
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 2.426117134746164e-06,
+              "physical_correction": 4.092282068768327e-12,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                5928736.903771296
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": true
+          }
+        ],
+        "failed_starts": 0,
+        "start_count": 49,
+        "plausible_delta": 2.0,
+        "recovered_starts": 12,
+        "acceptance_contract": "projected_gradient_1e-4; physical_correction_1e-5; stable_cost; critical_face_curvature",
+        "held_point": 1,
+        "testable": true,
+        "predictions": [
+          {
+            "state": [
+              -10.616845724882758,
+              5.999999999999999
+            ],
+            "pixel": [
+              454.8137406929576,
+              678.524065617343
+            ]
+          }
+        ],
+        "branch_errors_px": [
+          [
+            -3.2961320503794695,
+            -7.3513361251555125
+          ]
+        ],
+        "score_available": true,
+        "error_px": [
+          -3.2961320503794695,
+          -7.3513361251555125
+        ],
+        "error_normalized": [
+          -0.011496487138455948,
+          -0.025640520440795792
+        ]
+      },
+      "policy": "both inverses exclude the tested P4 point; no all-three area"
+    },
+    {
+      "row": 1928,
+      "held_point": 2,
+      "xy_state": [
+        -10.354092951326411,
+        0.0064142556859875565
+      ],
+      "xy_rank": 2,
+      "xy_error_px": 7.2251881602766295,
+      "retained_x": {
+        "available": true,
+        "reason": "ok",
+        "state": [
+          -11.304205870734547,
+          5.560619438978592
+        ],
+        "cost": 4.329016681564089e-26,
+        "stationarity_encoded": 2.6005508857451787e-10,
+        "at_bound": false,
+        "rank": 2,
+        "singular_values_physical": [
+          210.30645367196368,
+          16.386196317205293
+        ],
+        "ambiguous": false,
+        "numerical_ties": 1,
+        "branches": [
+          {
+            "state": [
+              -11.304205870734547,
+              5.560619438978592
+            ],
+            "cost": 4.329016681564089e-26,
+            "stationarity_encoded": 2.6005508857451787e-10,
+            "singular_values_physical": [
+              210.30645367196368,
+              16.386196317205293
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 2.6005508857451787e-10,
+              "physical_correction": 6.217248937900877e-15,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                6286.620186962915,
+                3022485.7877985695
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": false
+          },
+          {
+            "state": [
+              -19.999999999999996,
+              5.999999999999999
+            ],
+            "cost": 165377.43727605854,
+            "stationarity_encoded": 2.220446049250313e-16,
+            "singular_values_physical": [
+              118.70500152337372,
+              16.724020460548935
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 2.220446049250313e-16,
+              "physical_correction": 0.0,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": true
+          }
+        ],
+        "plausible_branches": [
+          {
+            "state": [
+              -11.304205870734547,
+              5.560619438978592
+            ],
+            "cost": 4.329016681564089e-26,
+            "stationarity_encoded": 2.6005508857451787e-10,
+            "singular_values_physical": [
+              210.30645367196368,
+              16.386196317205293
+            ],
+            "certificate": {
+              "certified": true,
+              "steps": 0,
+              "stationarity_encoded": 2.6005508857451787e-10,
+              "physical_correction": 6.217248937900877e-15,
+              "stable_cost": true,
+              "local_minimum": true,
+              "free_curvature_eigenvalues": [
+                6286.620186962915,
+                3022485.7877985695
+              ],
+              "last_cost_change": null,
+              "reason": "certified_stationary_minimum"
+            },
+            "rank": 2,
+            "at_bound": false
+          }
+        ],
+        "failed_starts": 0,
+        "start_count": 49,
+        "plausible_delta": 2.0,
+        "recovered_starts": 0,
+        "acceptance_contract": "projected_gradient_1e-4; physical_correction_1e-5; stable_cost; critical_face_curvature",
+        "held_point": 2,
+        "testable": true,
+        "predictions": [
+          {
+            "state": [
+              -11.304205870734547,
+              5.560619438978592
+            ],
+            "pixel": [
+              296.72927363518244,
+              377.5412693052339
+            ]
+          }
+        ],
+        "branch_errors_px": [
+          [
+            6.272618454661313,
+            -5.101877215390175
+          ]
+        ],
+        "score_available": true,
+        "error_px": [
+          6.272618454661313,
+          -5.101877215390175
+        ],
+        "error_normalized": [
+          0.021878091134168345,
+          -0.01779469538605471
+        ]
+      },
+      "policy": "both inverses exclude the tested P4 point; no all-three area"
+    }
+  ],
+  "scope": "two-row diagnostic only; no new population or model selection"
+}

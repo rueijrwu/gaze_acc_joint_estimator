@@ -1,0 +1,90 @@
+{
+  "final_command": "rtk proxy env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m unittest discover -s tests -v",
+  "tests": {
+    "count": 21,
+    "passed": 21,
+    "failed": 0
+  },
+  "git_diff_check": "passed",
+  "source_digest_check": {
+    "count": 199,
+    "all_match": true,
+    "failed": []
+  },
+  "model_copy_check": {
+    "count": 27,
+    "all_byte_identical": true,
+    "schema_load_count": 27,
+    "schema_load_failures": [],
+    "failed": []
+  },
+  "population_decompression_check": {
+    "count": 9,
+    "all_equal": true,
+    "failed": []
+  },
+  "output_counts": {
+    "models": 27,
+    "metrics_rows": 27,
+    "holdout_error_rows": 1716,
+    "fixation_mean_rows": 540,
+    "comparison_sections": [
+      "gaze/conditional27",
+      "gaze/conditional37",
+      "gaze/two_channel13",
+      "gaze/common_state_support",
+      "capture/conditional27",
+      "capture/conditional37",
+      "capture/two_channel13",
+      "capture/common_state_support"
+    ]
+  },
+  "transition_profile_check": {
+    "records": 8,
+    "max_absolute_cost_difference": 4.0745362639427185e-10,
+    "all_match_within_1e-8": true
+  },
+  "markdown_links": {
+    "count": 33,
+    "all_exist": true,
+    "missing": []
+  },
+  "final_postprocessing_implementation_sha256": {
+    "full_position/invert.py": "30a72c9701e0565e0b430427f6d3d5101b01748f53f048442afe7df072395f38",
+    "full_position/schema.py": "4b57da9e8813f0d827d32af4bda32c116496277ed3e4177e2a80b2bea2f29fdb",
+    "full_position/model.py": "d767ef422ab9095ac702f6fa9a1832d8e17273b5fde23ccca88f29dc58ef2ce3",
+    "full_position/reevaluate.py": "2c0b43b328da7feb7bc658d85704c066a46c929e5123b5627b8f1bd2a5891c58",
+    "full_position/audit_checks.py": "27448fe57a99069d504263b1659e47cd962b9b5ca30e5c334cfad3d91aa96f67"
+  },
+  "scope_note": "Existing config.json source_hashes remain the initial-run hashes; verification records final postprocessing source hashes separately.",
+  "cleanup_verification": {
+    "removed_duplicate_output": "experiments/full_position/audit_checks_v1/training_residual_groups.csv",
+    "bytes_removed": 185021,
+    "sha256_removed_file": "79484e896fe6572c44b929c0a534e44ef4e685881bb12a1cc25d4e50933ab25a",
+    "json_equivalence": {
+      "csv_rows": 1680,
+      "all_csv_fields_match_json_records": true,
+      "all_json_records_retain_r_mean_context": true
+    },
+    "reference_search": {
+      "generator_or_consumer_references_after_cleanup": 0,
+      "verification_record_mentions_removed_path": true
+    },
+    "post_cleanup_implementation_sha256": {
+      "full_position/audit_checks.py": "093f0bf7f9497086b02e1877d54dd7694dc23dd3d403267323ed19c3d75483e0",
+      "full_position/geometry.py": "aaa7be68d9f344e090f5d57ae03c9573c67c1cbdd09b222bfa046adb505f579e"
+    },
+    "ast_scan": {
+      "scope": "top-level imports in full_position/*.py; __future__ ignored",
+      "removed_unused_imports": [
+        "full_position/audit_checks.py: whitening"
+      ],
+      "other_candidates": []
+    },
+    "removed_unreferenced_helper": {
+      "path": "full_position/geometry.py",
+      "name": "pixel_prediction",
+      "repository_code_and_docs_references_before_removal": 0
+    }
+  }
+}

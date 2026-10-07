@@ -9,7 +9,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from .schema import write_json
-from .validate import stats
+from .validate import stats, summarize
 
 
 def generate(path):
@@ -22,21 +22,25 @@ def generate(path):
         dest = path/fold/name
         calibration = summary["calibration"]
         row = dict(fold=fold, model=name, calibration_converged=summary["calibration_converged"],
-                   calibration_cost=min(s["cost"] for s in calibration["alternatives"]),
+                   calibration_cost=calibration["alternatives"][calibration["selected_start"]]["cost"],
+                   best_rejected_start_cost=min((s["cost"] for s in calibration["alternatives"] if not s["converged"]), default=None),
                    starts_converged=sum(s["converged"] for s in calibration["alternatives"]))
         if summary["calibration_converged"] and (dest/"frames.json").exists():
             for key2 in ["evaluation_rows", "baseline_valid_rows", "estimated_rows", "inverse_failure_rows",
                          "ambiguous_rows", "bound_rows", "weak_rank_rows", "holdout_tests", "testable_holdouts"]:
                 row[key2] = summary[key2]
-            for key2 in ["heldout_error_px", "geometry_cost", "gaze_mean_anchor_discrepancy_deg",
-                         "accommodation_mean_demand_discrepancy_D"]:
-                for statistic in ["mean", "median", "rms", "p95"]:
-                    row[f"{key2}_{statistic}"] = summary[key2].get(statistic)
             frames = json.loads((dest/"frames.json").read_text())
+            corrected = summarize(frames, [])
+            for key2 in ["heldout_error_px", "geometry_cost", "frame_gaze_anchor_discrepancy_deg",
+                         "frame_accommodation_demand_discrepancy_D", "fixation_mean_gaze_anchor_discrepancy_deg",
+                         "fixation_mean_accommodation_demand_discrepancy_D"]:
+                for statistic in ["mean", "median", "rms", "p95"]:
+                    row[f"{key2}_{statistic}"] = (summary if key2 in ["heldout_error_px", "geometry_cost"] else corrected)[key2].get(statistic)
             for gi in sorted({r["fixation"] for r in frames}):
                 selected = [r for r in frames if r["fixation"] == gi and r.get("estimated")]
                 if selected:
                     training_means.append(dict(fold=fold, model=name, fixation=gi, role="evaluation",
+                        count=len(selected), row_ids=[r['row'] for r in selected],
                         calibration_converged=True,
                         theta=np.mean([r["theta"] for r in selected]), A=np.mean([r["A"] for r in selected]),
                         theta_std=np.std([r["theta"] for r in selected]), A_std=np.std([r["A"] for r in selected]),
@@ -54,9 +58,13 @@ def generate(path):
         metrics.append(row)
         t = json.loads((dest/"training_states.json").read_text())
         x, groups = np.array(t["states"]), np.array(t["groups"])
+        metadata_path = next((dest/name for name in ['model.json','failed_checkpoint.json'] if (dest/name).exists()), None)
+        metadata = json.loads(metadata_path.read_text()) if metadata_path else {}
+        group_ids = metadata.get('provenance',{}).get('training_group_ids',list(range(len(t['nominal_anchors']))))
         for gi, anchor in enumerate(t["nominal_anchors"]):
             selected = x[groups == gi]
-            training_means.append(dict(fold=fold, model=name, fixation=gi, role="training",
+            training_means.append(dict(fold=fold, model=name, fixation=group_ids[gi], role="training",
+                count=len(selected), row_ids=np.asarray(t.get('rows',[None]*len(x)))[groups==gi].tolist(),
                 calibration_converged=summary["calibration_converged"],
                 theta=selected[:, 0].mean(), A=selected[:, 1].mean(),
                 theta_std=selected[:, 0].std(), A_std=selected[:, 1].std(),
