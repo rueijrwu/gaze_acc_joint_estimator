@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 import numpy as np
 from .schema import clean_json, write_json
-from .sensitivity import digest, identity, joined, read_json, stats
+from .sensitivity import digest, joined, read_json, stats
 
 
 def training_gains(reference, candidate):
