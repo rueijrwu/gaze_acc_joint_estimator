@@ -1,0 +1,93 @@
+{
+  "schema": "raw_gpu_torch_benchmark_v1",
+  "model": "ar27_sqrt",
+  "dtype": "float64",
+  "autograd_used": false,
+  "start_count": 49,
+  "row_indices": [
+    0,
+    4095
+  ],
+  "source_sha256": {
+    "full_position/batched_inverse.py": "a7554fd39cb6638b42e5720d2025b77e405c3231469ff81c7475c0bc88ee94c8",
+    "full_position/batched_holdout.py": "2567f44071e0e0c572d5ff69cb2319ebb1d9e2e851e2bb546e76dea6f10dc578",
+    "full_position/torch_arrays.py": "4bfcb3a87f9afc996aa672b46b3a85ae2080d0c59e458e8c4ca75ff596c8c550"
+  },
+  "source_snapshot": {
+    "directory": "experiments/full_position/gpu_vectorization_validation/source_snapshot",
+    "captured_before_benchmark": true
+  },
+  "device": "NVIDIA GeForce RTX 5070 Ti",
+  "batch_results": {
+    "cupy": {
+      "256": {
+        "seconds": 2.5919720159999997,
+        "rows_per_second": 98.76649841114644,
+        "available_rows": 256,
+        "certified_candidates": 12544,
+        "candidate_count": 12544,
+        "status_counts": {
+          "1": 2187,
+          "3": 10357
+        }
+      },
+      "1024": {
+        "seconds": 5.442383741999947,
+        "rows_per_second": 188.15284782246982,
+        "available_rows": 1024,
+        "certified_candidates": 50176,
+        "candidate_count": 50176,
+        "status_counts": {
+          "1": 9276,
+          "3": 40900
+        }
+      },
+      "4096": {
+        "seconds": 17.686144520999733,
+        "rows_per_second": 231.59371988262302,
+        "available_rows": 4096,
+        "certified_candidates": 200704,
+        "candidate_count": 200704,
+        "status_counts": {
+          "1": 42467,
+          "3": 158237
+        }
+      }
+    },
+    "torch": {
+      "256": {
+        "seconds": 2.630235291000645,
+        "rows_per_second": 97.32969551275679,
+        "available_rows": 256,
+        "certified_candidates": 12544,
+        "candidate_count": 12544,
+        "status_counts": {
+          "1": 2179,
+          "3": 10365
+        }
+      },
+      "1024": {
+        "seconds": 5.930716912000207,
+        "rows_per_second": 172.66040770350028,
+        "available_rows": 1024,
+        "certified_candidates": 50176,
+        "candidate_count": 50176,
+        "status_counts": {
+          "1": 9215,
+          "3": 40961
+        }
+      },
+      "4096": {
+        "seconds": 20.857935403000738,
+        "rows_per_second": 196.3760995928066,
+        "available_rows": 4096,
+        "certified_candidates": 200704,
+        "candidate_count": 200704,
+        "status_counts": {
+          "1": 42330,
+          "3": 158374
+        }
+      }
+    }
+  }
+}

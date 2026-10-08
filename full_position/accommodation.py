@@ -11,7 +11,20 @@ CANDIDATES = {"ar27_log": 0., "ar27_sqrt": .5, "ar27_linear": 1., "ar27_quadrati
 COEFFICIENT_ORDER = "Dx[1,a,t,tphi,t2,t2phi,t3]; Dy,T11,T12,T21,T22[1,t,phi,tphi]"
 
 
-def response(A, exponent):
+def response_arrays(A, exponent, xp=np, basis="shifted_boxcox"):
+    """Array response algebra shared by host and FP64 device solvers."""
+    if basis == "literal_power":
+        L = xp.log(A)
+        return (xp.exp(exponent*L), exponent*xp.exp((exponent-1)*L),
+                exponent*(exponent-1)*xp.exp((exponent-2)*L))
+    if basis != "shifted_boxcox":
+        raise ValueError("Unknown accommodation response basis")
+    L = xp.log1p(A)
+    return (L if exponent == 0 else xp.expm1(exponent*L)/exponent,
+            xp.exp((exponent-1)*L), (exponent-1)*xp.exp((exponent-2)*L))
+
+
+def response(A, exponent, basis="shifted_boxcox"):
     """Return phi, dphi/dA and d²phi/dA²; A*=1 D.
 
     The mathematical domain is A>-1 D. The inverse separately enforces its
@@ -26,21 +39,17 @@ def response(A, exponent):
         raise ValueError("A finite real response exponent is required") from exc
     if not np.isfinite(exponent):
         raise ValueError("A finite real response exponent is required")
-    if not np.isfinite(A).all() or np.any(A <= -1.):
+    if not np.isfinite(A).all() or np.any(A <= (0. if basis == "literal_power" else -1.)):
         raise ValueError("Response requires finite A with 1+A/A* > 0")
-    L = np.log1p(A)
-    phi = L if exponent == 0. else np.expm1(exponent*L)/exponent
-    first = np.exp((exponent-1.)*L)
-    second = (exponent-1.)*np.exp((exponent-2.)*L)
-    return phi, first, second
+    return response_arrays(A, exponent, np, basis)
 
 
-def bases(x, exponent, hessians=True):
+def bases(x, exponent, hessians=True, basis="shifted_boxcox"):
     x = np.asarray(x, float)
     if x.ndim < 1 or x.shape[-1] != 2 or not np.isfinite(x).all():
         raise ValueError("States must be finite (...,2) physical theta,A values")
     t, a = x[..., 0]/THETA_SCALE, x[..., 1]
-    phi, pa, paa = response(a, exponent)
+    phi, pa, paa = response(a, exponent, basis)
     o, z = np.ones_like(t), np.zeros_like(t)
     d = np.stack((o, a, t, t*phi, t*t, t*t*phi, t**3), -1)
     dt = np.stack((z,z,o,phi,2*t,2*t*phi,3*t*t), -1)/THETA_SCALE
@@ -94,8 +103,11 @@ class PowerResponseModel:
     def metadata(self):
         return asdict(self._response)
 
+    def _bases(self, x, hessians=True):
+        return bases(x, self.exponent, hessians, getattr(self,"response_basis","shifted_boxcox"))
+
     def design(self, x, r, derivatives=False):
-        d, dd, s, ds = bases(x, self.exponent,hessians=False)
+        d, dd, s, ds = self._bases(x,hessians=False)
         r = np.asarray(r,float)
         if r.shape[-2:] != (3,2) or not np.isfinite(r).all():
             raise ValueError("P1 context must contain three finite normalized points")
@@ -121,13 +133,13 @@ class PowerResponseModel:
         return self.design(x,r)@self.beta
 
     def components(self,x):
-        d,_,s,_ = bases(x,self.exponent,hessians=False)
+        d,_,s,_ = self._bases(x,hessians=False)
         D = np.stack((d@self.beta[:7],s@self.beta[7:11]),-1)
         T = (s@self.beta[11:].reshape(4,4).T).reshape(s.shape[:-1]+(2,2))
         return D,T
 
     def state_hessian(self,x,r):
-        _,_,_,_,dh,sh = bases(x,self.exponent)
+        _,_,_,_,dh,sh = self._bases(x)
         D = np.stack((np.einsum("...buv,b->...uv",dh,self.beta[:7]),
                       np.einsum("...buv,b->...uv",sh,self.beta[7:11])),-3)
         T = np.einsum("...buv,kb->...kuv",sh,self.beta[11:].reshape(4,4))

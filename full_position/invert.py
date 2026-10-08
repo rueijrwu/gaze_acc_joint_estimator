@@ -31,7 +31,7 @@ def polish(model, r, y, W, indices, z, max_steps=20):
     curvature, a physical correction tolerance, and a stable-cost probe.
     Budget termination of the preceding solver is never itself a certificate.
     """
-    lower, upper = LOWER/STATE_SCALE, UPPER/STATE_SCALE
+    lower, upper = getattr(model,"lower",LOWER)/STATE_SCALE, getattr(model,"upper",UPPER)/STATE_SCALE
     z = np.clip(np.asarray(z, float), lower, upper)
     last_change = None
     for iteration in range(max_steps+1):
@@ -113,7 +113,10 @@ def invert(model, r, y, cov, indices=None, starts=STARTS, max_nfev=100,
         return numerical_gain*(W@(model.predict(z*STATE_SCALE, r)[indices]-y))
     def jac(z):
         return numerical_gain*(W@model.predict(z*STATE_SCALE, r, True)[1][indices]*STATE_SCALE)
-    lower, upper = LOWER/STATE_SCALE, UPPER/STATE_SCALE
+    physical_lower,physical_upper=getattr(model,"lower",LOWER),getattr(model,"upper",UPPER)
+    lower, upper = physical_lower/STATE_SCALE, physical_upper/STATE_SCALE
+    if starts is STARTS and hasattr(model,"lower"):
+        starts=np.clip(starts,physical_lower,physical_upper)
     branches, failed, candidates = [], 0, []
     for start_id, physical in enumerate(np.asarray(starts)):
         result = least_squares(fun, physical/STATE_SCALE, jac=jac, bounds=(lower, upper),
@@ -145,7 +148,7 @@ def invert(model, r, y, cov, indices=None, starts=STARTS, max_nfev=100,
                       stationarity_encoded=certificate["stationarity_encoded"], singular_values_physical=sv.tolist(),
                       certificate=certificate,
                       rank=int(np.sum(sv > max(sv[0]*1e-6, 1e-8))),
-                      at_bound=bool(np.any((x-LOWER < 1e-5) | (UPPER-x < 1e-5))))
+                      at_bound=bool(np.any((x-physical_lower < 1e-5) | (physical_upper-x < 1e-5))))
         existing = next((b for b in branches if np.all(np.abs(x-np.array(b["state"])) < cluster_tolerance)), None)
         if existing is None:
             branches.append(record)

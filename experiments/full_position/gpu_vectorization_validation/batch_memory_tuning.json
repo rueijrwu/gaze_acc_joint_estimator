@@ -1,0 +1,447 @@
+{
+  "reserve_gib_per_worker": 3.0,
+  "pool_limit_gib_per_worker": 6.75,
+  "workers_per_gpu": 2,
+  "devices": [
+    0,
+    1
+  ],
+  "start_count": 49,
+  "groups": 20,
+  "trials": [
+    {
+      "batch_size": 8192,
+      "seconds": 153.69675122499757,
+      "workers": [
+        {
+          "batch_size": 8192,
+          "device": 0,
+          "slot": 0,
+          "reserve_gib": 3.0,
+          "pool_limit_gib": 6.75,
+          "passed": true,
+          "seconds": 75.62616542999967,
+          "candidate_count": 401408,
+          "certified_candidates": 401408,
+          "available_rows": 8192,
+          "pool_reserved_gib": 4.349006175994873,
+          "representative": [
+            {
+              "state": [
+                0.5543690829333405,
+                0.4151919521922964
+              ],
+              "cost": 156.44982119279942,
+              "available": true
+            },
+            {
+              "state": [
+                -10.707539810672262,
+                1.0722491124086346
+              ],
+              "cost": 2643.763250852681,
+              "available": true
+            },
+            {
+              "state": [
+                1.4882851707516334,
+                0.08145928126798825
+              ],
+              "cost": 9102.190571586934,
+              "available": true
+            }
+          ],
+          "checks_per_second": 108.32229762571522
+        },
+        {
+          "batch_size": 8192,
+          "device": 0,
+          "slot": 1,
+          "reserve_gib": 3.0,
+          "pool_limit_gib": 6.75,
+          "passed": true,
+          "seconds": 75.74136316499789,
+          "candidate_count": 401408,
+          "certified_candidates": 401408,
+          "available_rows": 8192,
+          "pool_reserved_gib": 4.307136058807373,
+          "representative": [
+            {
+              "state": [
+                0.5543690829333405,
+                0.4151919521922964
+              ],
+              "cost": 156.44982119279942,
+              "available": true
+            },
+            {
+              "state": [
+                -10.707539810672262,
+                1.0722491124086346
+              ],
+              "cost": 2643.763250852681,
+              "available": true
+            },
+            {
+              "state": [
+                1.4882851707516334,
+                0.08145928126798825
+              ],
+              "cost": 9102.190571586934,
+              "available": true
+            }
+          ],
+          "checks_per_second": 108.15754638788627
+        },
+        {
+          "batch_size": 8192,
+          "device": 1,
+          "slot": 0,
+          "reserve_gib": 3.0,
+          "pool_limit_gib": 6.75,
+          "passed": true,
+          "seconds": 148.65916588599794,
+          "candidate_count": 401408,
+          "certified_candidates": 401408,
+          "available_rows": 8192,
+          "pool_reserved_gib": 4.325080394744873,
+          "representative": [
+            {
+              "state": [
+                0.5543690829333405,
+                0.4151919521922964
+              ],
+              "cost": 156.44982119279942,
+              "available": true
+            },
+            {
+              "state": [
+                -10.707539810672262,
+                1.0722491124086346
+              ],
+              "cost": 2643.763250852681,
+              "available": true
+            },
+            {
+              "state": [
+                1.4882851707516334,
+                0.08145928126798825
+              ],
+              "cost": 9102.190571586934,
+              "available": true
+            }
+          ],
+          "checks_per_second": 55.105919309961614
+        },
+        {
+          "batch_size": 8192,
+          "device": 1,
+          "slot": 1,
+          "reserve_gib": 3.0,
+          "pool_limit_gib": 6.75,
+          "passed": true,
+          "seconds": 148.51047707600083,
+          "candidate_count": 401408,
+          "certified_candidates": 401408,
+          "available_rows": 8192,
+          "pool_reserved_gib": 4.414754867553711,
+          "representative": [
+            {
+              "state": [
+                0.5543690829333405,
+                0.4151919521922964
+              ],
+              "cost": 156.44982119279942,
+              "available": true
+            },
+            {
+              "state": [
+                -10.707539810672262,
+                1.0722491124086346
+              ],
+              "cost": 2643.763250852681,
+              "available": true
+            },
+            {
+              "state": [
+                1.4882851707516334,
+                0.08145928126798825
+              ],
+              "cost": 9102.190571586934,
+              "available": true
+            }
+          ],
+          "checks_per_second": 55.161091401030994
+        }
+      ],
+      "peak_memory": [
+        {
+          "index": 0,
+          "name": "NVIDIA RTX PRO 2000 Blackwell",
+          "used_mib": 9620,
+          "free_mib": 6322
+        },
+        {
+          "index": 1,
+          "name": "NVIDIA GeForce RTX 5070 Ti",
+          "used_mib": 10239,
+          "free_mib": 5672
+        }
+      ],
+      "passed": true,
+      "memory_headroom_passed": true
+    },
+    {
+      "batch_size": 16384,
+      "seconds": 313.04685780900036,
+      "workers": [
+        {
+          "batch_size": 16384,
+          "device": 0,
+          "slot": 0,
+          "reserve_gib": 3.0,
+          "pool_limit_gib": 6.75,
+          "passed": true,
+          "seconds": 153.7119150010003,
+          "candidate_count": 802816,
+          "certified_candidates": 802816,
+          "available_rows": 16384,
+          "pool_reserved_gib": 5.137572288513184,
+          "representative": [
+            {
+              "state": [
+                0.5543690829333405,
+                0.4151919521922964
+              ],
+              "cost": 156.44982119279942,
+              "available": true
+            },
+            {
+              "state": [
+                -10.707539810672262,
+                1.0722491124086346
+              ],
+              "cost": 2643.763250852681,
+              "available": true
+            },
+            {
+              "state": [
+                1.4882851707516334,
+                0.08145928126798825
+              ],
+              "cost": 9102.190571586934,
+              "available": true
+            }
+          ],
+          "checks_per_second": 106.58900450165739
+        },
+        {
+          "batch_size": 16384,
+          "device": 0,
+          "slot": 1,
+          "reserve_gib": 3.0,
+          "pool_limit_gib": 6.75,
+          "passed": true,
+          "seconds": 154.39404274099797,
+          "candidate_count": 802816,
+          "certified_candidates": 802816,
+          "available_rows": 16384,
+          "pool_reserved_gib": 5.1853766441345215,
+          "representative": [
+            {
+              "state": [
+                0.5543690829333405,
+                0.4151919521922964
+              ],
+              "cost": 156.44982119279942,
+              "available": true
+            },
+            {
+              "state": [
+                -10.707539810672262,
+                1.0722491124086346
+              ],
+              "cost": 2643.763250852681,
+              "available": true
+            },
+            {
+              "state": [
+                1.4882851707516334,
+                0.08145928126798825
+              ],
+              "cost": 9102.190571586934,
+              "available": true
+            }
+          ],
+          "checks_per_second": 106.11808402144634
+        },
+        {
+          "batch_size": 16384,
+          "device": 1,
+          "slot": 0,
+          "reserve_gib": 3.0,
+          "pool_limit_gib": 6.75,
+          "passed": true,
+          "seconds": 307.4270222399973,
+          "candidate_count": 802816,
+          "certified_candidates": 802816,
+          "available_rows": 16384,
+          "pool_reserved_gib": 5.101765155792236,
+          "representative": [
+            {
+              "state": [
+                0.5543690829333405,
+                0.4151919521922964
+              ],
+              "cost": 156.44982119279942,
+              "available": true
+            },
+            {
+              "state": [
+                -10.707539810672262,
+                1.0722491124086346
+              ],
+              "cost": 2643.763250852681,
+              "available": true
+            },
+            {
+              "state": [
+                1.4882851707516334,
+                0.08145928126798825
+              ],
+              "cost": 9102.190571586934,
+              "available": true
+            }
+          ],
+          "checks_per_second": 53.29394885531433
+        },
+        {
+          "batch_size": 16384,
+          "device": 1,
+          "slot": 1,
+          "reserve_gib": 3.0,
+          "pool_limit_gib": 6.75,
+          "passed": true,
+          "seconds": 306.87558293300026,
+          "candidate_count": 802816,
+          "certified_candidates": 802816,
+          "available_rows": 16384,
+          "pool_reserved_gib": 5.0537848472595215,
+          "representative": [
+            {
+              "state": [
+                0.5543690829333405,
+                0.4151919521922964
+              ],
+              "cost": 156.44982119279942,
+              "available": true
+            },
+            {
+              "state": [
+                -10.707539810672262,
+                1.0722491124086346
+              ],
+              "cost": 2643.763250852681,
+              "available": true
+            },
+            {
+              "state": [
+                1.4882851707516334,
+                0.08145928126798825
+              ],
+              "cost": 9102.190571586934,
+              "available": true
+            }
+          ],
+          "checks_per_second": 53.38971528268216
+        }
+      ],
+      "peak_memory": [
+        {
+          "index": 0,
+          "name": "NVIDIA RTX PRO 2000 Blackwell",
+          "used_mib": 11052,
+          "free_mib": 4890
+        },
+        {
+          "index": 1,
+          "name": "NVIDIA GeForce RTX 5070 Ti",
+          "used_mib": 11931,
+          "free_mib": 3980
+        }
+      ],
+      "passed": true,
+      "memory_headroom_passed": true
+    },
+    {
+      "batch_size": 32768,
+      "seconds": 17.08733522500188,
+      "workers": [
+        {
+          "batch_size": 32768,
+          "device": 0,
+          "slot": 0,
+          "reserve_gib": 3.0,
+          "pool_limit_gib": 6.75,
+          "passed": false,
+          "reason": "allocation_cap_exceeded",
+          "detail": "Out of memory allocating 282,591,232 bytes (allocated so far: 7,166,689,792 bytes, limit set to: 7,247,757,312 bytes)."
+        },
+        {
+          "batch_size": 32768,
+          "device": 0,
+          "slot": 1,
+          "reserve_gib": 3.0,
+          "pool_limit_gib": 6.75,
+          "passed": false,
+          "reason": "allocation_cap_exceeded",
+          "detail": "Out of memory allocating 282,591,232 bytes (allocated so far: 7,063,929,344 bytes, limit set to: 7,247,757,312 bytes)."
+        },
+        {
+          "batch_size": 32768,
+          "device": 1,
+          "slot": 0,
+          "reserve_gib": 3.0,
+          "pool_limit_gib": 6.75,
+          "passed": false,
+          "reason": "allocation_cap_exceeded",
+          "detail": "Out of memory allocating 282,591,232 bytes (allocated so far: 7,063,929,344 bytes, limit set to: 7,247,757,312 bytes)."
+        },
+        {
+          "batch_size": 32768,
+          "device": 1,
+          "slot": 1,
+          "reserve_gib": 3.0,
+          "pool_limit_gib": 6.75,
+          "passed": false,
+          "reason": "allocation_cap_exceeded",
+          "detail": "Out of memory allocating 282,591,232 bytes (allocated so far: 7,063,929,344 bytes, limit set to: 7,247,757,312 bytes)."
+        }
+      ],
+      "peak_memory": [
+        {
+          "index": 0,
+          "name": "NVIDIA RTX PRO 2000 Blackwell",
+          "used_mib": 14224,
+          "free_mib": 1718
+        },
+        {
+          "index": 1,
+          "name": "NVIDIA GeForce RTX 5070 Ti",
+          "used_mib": 14929,
+          "free_mib": 982
+        }
+      ],
+      "passed": false,
+      "memory_headroom_passed": false
+    }
+  ],
+  "source_sha256": {
+    "full_position/batched_inverse.py": "5c6b9968ddf2dafd2eb06abf239717d9d07c68831ea57b0f6431547f3e9e14be",
+    "full_position/batched_holdout.py": "d1fe44a3f8f0f83dcb0063648d6316e51a8e27733af0ab230044f33b4538dde6"
+  },
+  "largest_memory_safe_batch": 16384,
+  "selected_batch_size": 16384,
+  "fastest_measured_batch_size": 8192,
+  "selection_policy": "largest safe tested batch within 5% of best measured throughput"
+}

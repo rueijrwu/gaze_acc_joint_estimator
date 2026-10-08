@@ -1,4 +1,23 @@
-# Current status — 2026-10-07
+# Current status — 2026-10-08
+
+**Literal-power exponent search: STOPPED BY USER.** All 10 coarse calibrations certified. The run stopped during confirmation, before bound-sensitivity checks or full evaluation. Confirmation log and n=2 completed; n=3 is incomplete. The study processes received SIGTERM. No full-stage results exist.
+
+The completed [coarse results](experiments/full_position/literal_power_search_v1/RESULTS.md) compare 1,134 common complete frames across all 20 exposures. A^3 has the lowest P4 RMS: **3.0034 px**, compared with **3.6836 px** for log (18.46% lower). It has higher gaze disagreement (**0.12834 vs 0.07587 degree**) and accommodation disagreement (**0.20055 vs 0.02301 D**). A^2 is second on P4 RMS (**3.2139 px**). A^0.25 gives the lowest state disagreement, but the highest P4 error. Higher tested exponents therefore trade better P4 prediction for worse state agreement.
+
+The development shortlist was n=3 and n=2. Only n=3 was within 5% of the best squared P4 loss. Since n=3 is the upper tested boundary, this does not establish an optimum or a confidence interval. No exponent is confirmed or selected for deployment. Results measure sampled internal agreement.
+
+The [implementation plan](LITERAL_POWER_PLAN.md), scripts, frozen coarse schedules, certified models, frame records and comparisons are retained. Both GPUs used CuPy FP64, four workers, four CPU threads per worker, and batches of 8,192 inverse tasks with 49 starts. The focused suite passed **69 tests in 28.85 seconds**. The work received one final error review. Two existing NumPy diagnostic warnings did not cause repeated tests. See [validation evidence](experiments/full_position/literal_power_validation/validation.json).
+
+**Full GPU calibration run v4: STOPPED with an aggregation error after 87 minutes.** All 100,090 scheduled frames (300,270 slots per law) completed for log, square-root, quadratic, and linear. Log, square-root, and quadratic calibrations are certified; linear is not. The top-level runner failed while joining the linear failed-calibration fallback because its unavailable holdout records have no `held_point`; per-law artifacts remain saved. The user requested comparison of the three finished models, excluding linear.
+
+The audited [three-model common-cohort comparison](experiments/full_position/accommodation_full_v4_gpu/THREE_MODEL_COMPARISON.md) uses 89,172 complete frames across all 20 exposures. Log has the lowest RMS on all four metrics. Square-root has lower P4 prediction, accommodation agreement, and worst-point error than quadratic; quadratic has lower gaze disagreement. RMS values and metric orders were checked against the saved certified model artifacts. This measures internal agreement, not independent accuracy. Machine-readable details are in [THREE_MODEL_COMPARISON.json](experiments/full_position/accommodation_full_v4_gpu/THREE_MODEL_COMPARISON.json). The run has no top-level completion file; its runner exit is recorded in `execution_finished.json`. No comparison or ranking includes linear.
+
+Both GPUs were used during the run, with two law workers per card, batch size 8,192. The full-run progress and partial artifacts are preserved in `experiments/full_position/accommodation_full_v4_gpu`; the earlier stopped v3 run remains in `experiments/full_position/accommodation_full_v3_gpu`.
+
+
+The 8,192-frame concurrent memory test reserved 3 GiB per worker for fitting. Peak free memory was **5,672 MiB on RTX 5070 Ti** and **6,322 MiB on RTX PRO 2000**. It was about 2% faster than the 16,384-frame sampled test. The largest tested safe batch was 16,384, but the user selected 8,192 for this run. The 32,768-frame test exceeded the allocation cap and failed the headroom guard. See [memory tuning](experiments/full_position/gpu_vectorization_validation/batch_memory_tuning.json); its earlier automatic recommendation is superseded by the user-selected 8,192 setting.
+
+The stopped v3 run remains preserved in `experiments/full_position/accommodation_full_v3_gpu`; its agreement is incomplete. No previous fitted models were reused in v4.
 
 The new [accommodation response screen](experiments/full_position/accommodation_response_v1/RESULTS.md)
 is complete. All **36 fits certified** in **246 seconds with 12 CPU workers**.
@@ -731,50 +750,115 @@ converged. The persisted counters and completed continuation log are linked
 from the accommodation results page. The screen remains development evidence,
 not a nested evaluation or physiological exponent claim.
 
-## Full accommodation calibration (running; results pending)
+## Full accommodation calibration (stopped at user request; partial results preserved)
 
-The [full-calibration runner](full_position/accommodation_full.py) and
-[experiment plan](ACCOMMODATION_FULL_CALIBRATION_PLAN.md) specify four fresh
-fits, one per fixed response law, using the existing joint optimizer and
-three-way frozen-coefficient P4 agreement check. Each law uses the same 20
-reviewed conditions. The prior sampled screen above is unchanged and supplies
-no coefficients or latent states to these fits. The real-data run is active;
-no calibration outcomes or agreement results are available yet.
-The required suite passed (54 tests) before launch, and exactly one final review
-found no substantive issues. The run's launch check is recorded in
-[launch_verification.json](experiments/full_position/accommodation_full_v2/launch_verification.json).
+The [full-calibration plan](ACCOMMODATION_FULL_CALIBRATION_PLAN.md) specifies
+four fresh fixed-law fits and a three-way frozen-coefficient P4 agreement check
+for the same 20 reviewed conditions. Both calibration and agreement use the
+full `fixation_period` windows: **89,175 valid training rows** and **100,090
+scheduled raw frames per law** (300,270 agreement slots per law; 1,201,080 total
+slots). Captures 5/6 remain untouched. No previous model coefficients or latent
+states are reused.
 
-The `core` training-window and agreement-window defaults remain unchanged:
-71,784 central-80% training rows and 80,072 core agreement frames per law.
-The active run explicitly sets both windows to `fixation_period`, using 89,175
-valid training rows and scheduling 100,090 raw frames per law (300,270 P4 slots
-per law; 1,201,080 slots across four laws). Invalid or unavailable measurements
-remain tracked. These counts are persisted in the shared training input and
-schedule manifest.
+The first CPU-only execution at
+[accommodation_full_v2](experiments/full_position/accommodation_full_v2/) was
+stopped deliberately on 2026-10-07 at 22:41:45 UTC after 1:03:54, following
+explicit authorization to switch to the verified accelerated path. It is
+recorded as `interrupted_not_successful` in
+[interruption.json](experiments/full_position/accommodation_full_v2/interruption.json),
+not as a fit failure or successful calibration. All four fit tasks had started;
+none completed or certified. All candidate archives contain zero decompressed
+checkpoint records (compressed sizes at stop: 0, 54, 54 and 0 bytes); there are
+no outcome or model files and no summary, results or completion file. All 44
+source hashes and 3,639 protected-file hashes still matched at the switch. The
+old outputs remain preserved.
 
-The run started at 2026-10-07 21:37:51 UTC with four CPU fit workers, each
-using one BLAS, OpenMP and MKL thread. Runner PID: 9986; managed execution
-session: 7482. Output: [accommodation_full_v2](experiments/full_position/accommodation_full_v2/).
-Stdout/stderr log: `/tmp/accommodation_full_v2.log`. GPU value, derivative,
-branch and certificate parity remains unverified; the configured inverse backend
-is the existing scalar CPU path. This is an internal-consistency comparison,
-not independent validation or a physiological accuracy test, and it defines no
-absolute RMS gate or deployment choice. Run completion and certification have
-not yet been established.
+A first accelerated launch under the restricted sandbox failed before creating
+fit workers because multiprocessing could not bind its forkserver socket. The
+failure and empty output are preserved in
+[the failed-start record](experiments/full_position/accommodation_full_v2_gpu_failed_start/launch_status.json).
+The retry ran with the host process and GPU access explicitly requested. The
+initial failure and empty outputs remain at `accommodation_full_v2_gpu_failed_start/`;
+an identical mirror at `accommodation_full_v2_gpu_launch_failed_default_sandbox/`
+preserves the protected-file paths captured in the active config. The fresh
+accelerated run started at 2026-10-07 22:42:49 UTC from current HEAD
+`b0aeba82553697725b15d2ecb5992e4f8f46e569`, with four fit workers and eight CPU
+inverse workers per law. Its [configuration](experiments/full_position/accommodation_full_v2_gpu/config.json)
+records `cupy` float64 fitting products, the unchanged scalar 49-start CPU
+inverse backend, and `reused_previous_fitted_models: false`. Runner PID: 83434;
+managed execution session: 56814. The four fit-worker CUDA contexts are active:
+PIDs 83570 and 83574 use the GeForce RTX 5070 Ti, while PIDs 83573 and 83575 use
+the RTX PRO 2000 Blackwell. GPU utilization is shared with other workloads.
 
-At the latest check (~4 minutes after start), all four calibration workers were
-active at about 99% CPU each, with roughly 1.5–2.1 GiB RSS per worker. The four
-`calibration_candidates.jsonl.gz` files had not emitted their first flushed
-start/stage checkpoint yet; no candidate certification is available. The output
-tree was 77 MiB and workspace/tmp each had 1.3 TiB free. The tracked PID file is
-`/tmp/accommodation_full_v2.pid` (9986); managed session ID is 7482. Monitor with:
+The GPU product tests passed separately (11 tests), and one review found no
+substantive issues. CPU-versus-CuPy products were checked on all 89,175 rows for
+all four laws; maximum relative error was about 5.4e-16. Warmed products were
+about 22x faster in that microbenchmark; this is not a whole-run speed claim.
+The old CPU-path suite passed 54 tests before its run. The accelerated run was
+stopped at the user’s request on 2026-10-08 at 00:58:58 UTC after 2:16:09. All
+four calibration attempts had finished: log, square-root and quadratic models
+are certified; linear exhausted both starts at the fixed 300-evaluation budget
+without certification. Three certified models are preserved. Linear’s
+`failed_checkpoint.json` records `calibration.converged: false`; its 300,270
+inverse records have empty candidate arrays, and all 300,270 holdout rows have
+`score_available: false`. At the last persisted progress snapshot (00:58:14
+UTC), before stop, agreement archives contained 84,103 log, 59,821 square-root
+and 114,902 quadratic records out of 300,270 scheduled slots each. Those three
+gzip archives were still open with partial tails; snapshot counts are
+provisional, and interrupted archive completeness or recovery is not
+guaranteed. No per-law completion, aggregate results, final winner, ranking or
+scientific completion exists. A future three-law comparison may rank only if
+verified on the exact common cohort with all 20 exposures; overall four-law
+`experiment_success` is false because linear is uncertified. The interruption
+record is [here](experiments/full_position/accommodation_full_v2_gpu/interruption.json).
+All 34 verified process identities (runner tree and monitor) were terminated
+with SIGTERM and confirmed gone; SIGKILL was unnecessary. Partial outputs remain
+preserved.
 
-```bash
-rtk proxy ps -p 9986,10058,10061,10062,10063 -o pid,stat,etime,pcpu,rss
-rtk ls -lh experiments/full_position/accommodation_full_v2/fits/full_calibration/*/calibration_candidates.jsonl.gz
+For the next implementation, the user explicitly requires both the optimizer
+and inverse solver to be vectorized and GPU optimized, batching frames and
+starts to avoid the per-frame scalar CPU SciPy bottleneck. Before any full-scale
+execution, verify FP64 scientific and certification parity; use CPU only for
+necessary verification or unsupported operations. The interrupted run used GPU
+for verified fitting products and CPU for inverse solves; it was not resumed.
+
+The new GPU-vectorized implementation and its hash-gated parity reports
+were used in the interrupted full run above. The fitting path
+uses GPU profile QR and inner LSMR products; SciPy retains outer trust-region
+control on the host. The inverse path batches frames and all 49 starts on GPU,
+including refinement and certification. The current inverse parity gate covers
+CuPy and Torch FP64. It passed targeted backend and launcher checks plus 180
+real-frame-law checks sampled across all 20 conditions: there were no final
+candidate certification or branch-count mismatches. Initial termination
+statuses and evaluation counts can differ between the GPU solver and SciPy.
+On a group-stratified 4,096-row mixed-hold benchmark, one RTX 5070 Ti delivered
+187.5 rows/s and using both GPUs delivered 162.9 rows/s; therefore one GPU per
+law is the default and the two-GPU-per-law option remains explicit. The small
+180-check timing sample was slower on GPU than on eight CPU workers. These
+measurements are limited benchmarks, not whole-run speed claims. Reports are
+[profile parity](experiments/full_position/gpu_vectorization_validation/profile_gpu_parity_report.json),
+[inverse parity](experiments/full_position/gpu_vectorization_validation/inverse_parity.json),
+and [stratified throughput](experiments/full_position/gpu_vectorization_validation/groupstratified_benchmark.json).
+The current reports validate software behavior; they do not constitute fit,
+agreement, ranking or scientific results.
+
+The interrupted run used new output and passing reports. The default
+scheduler assigns one GPU to each law; `--inverse-devices` is omitted because
+the stratified two-GPU benchmark was slower. All fixation-period rows and all
+scheduled agreement frames remain selected. The exact launched command was:
+
+```sh
+rtk proxy env PYTHONPATH=. OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+  python -m full_position.accommodation_full_accelerated \
+  --output experiments/full_position/accommodation_full_v3_gpu \
+  --workers 4 --cpu-threads 4 \
+  --linear-backend cupy --parity-report experiments/full_position/gpu_vectorization_validation/profile_gpu_parity_report.json \
+  --inverse-backend cupy --inverse-batch-size 4096 \
+  --inverse-parity-report experiments/full_position/gpu_vectorization_validation/inverse_parity.json \
+  --training-window fixation_period --agreement-window fixation_period \
+  --max-nfev 300 --seed 17 --source-commit <current-40-character-commit>
 ```
 
-Expected final report paths are
-[summary.json](experiments/full_position/accommodation_full_v2/summary.json),
-[RESULTS.md](experiments/full_position/accommodation_full_v2/RESULTS.md), and
-[completion.json](experiments/full_position/accommodation_full_v2/completion.json).
+The output directory was confirmed absent before launch. Both parity gates
+passed against the frozen source hashes, and no previous fitted models were
+reused. The current source commit is recorded in the run config.

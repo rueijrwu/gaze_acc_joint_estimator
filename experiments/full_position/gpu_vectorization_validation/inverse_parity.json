@@ -1,0 +1,99 @@
+{
+  "schema": "batched_inverse_parity_gate_v1",
+  "passed": true,
+  "verified_backends": [
+    "cupy",
+    "torch"
+  ],
+  "source_sha256": {
+    "batched_inverse.py": "5c6b9968ddf2dafd2eb06abf239717d9d07c68831ea57b0f6431547f3e9e14be",
+    "batched_holdout.py": "d1fe44a3f8f0f83dcb0063648d6316e51a8e27733af0ab230044f33b4538dde6",
+    "torch_arrays.py": "4bfcb3a87f9afc996aa672b46b3a85ae2080d0c59e458e8c4ca75ff596c8c550"
+  },
+  "gate_criteria": {
+    "fp64": true,
+    "all_49_starts": true,
+    "candidate_certificate_or_branch_mismatches_allowed": 0,
+    "full_calibration_executed": false
+  },
+  "current_source_test_evidence": {
+    "result": "passed",
+    "tests": 29,
+    "targets": [
+      "tests/test_batched_holdout_parity.py",
+      "tests/test_batched_torch_parity.py",
+      "tests/test_accommodation_full_accelerated_launcher.py"
+    ],
+    "coverage": "NumPy/CuPy/Torch raw holdout parity, mixed held-point sealing, two-device uneven chunking and single-row fallback, invalid device selections, Torch all-start solving and saved real models, and launcher hash/default validation."
+  },
+  "representative_real_parity": {
+    "artifact": "representative_real_parity.json",
+    "laws": [
+      "ar27_log",
+      "ar27_sqrt",
+      "ar27_quadratic"
+    ],
+    "fixation_groups": 20,
+    "input_rows_per_group": 1,
+    "held_slots_per_row": 3,
+    "total_frame_law_checks": 180,
+    "starts_per_check": 49,
+    "cpu_reference": "original scalar inverse, 8 worker processes",
+    "gpu": "CuPy FP64 over runtime devices 0 and 1",
+    "max_abs_final_state_error_by_law": {
+      "ar27_log": 4.4018122480338207e-11,
+      "ar27_sqrt": 2.6883668624577695e-9,
+      "ar27_quadratic": 1.9452507382666795e-8
+    },
+    "max_abs_final_cost_error_by_law": {
+      "ar27_log": 1.6189005691558123e-10,
+      "ar27_sqrt": 2.928572939708829e-10,
+      "ar27_quadratic": 1.3642420526593924e-10
+    },
+    "candidate_certificate_mismatches": 0,
+    "branch_count_mismatches": 0,
+    "initial_status_mismatches": 1424,
+    "initial_nfev_mismatches": 5772,
+    "initial_nfev_max_abs_difference": 13,
+    "elapsed_seconds": {
+      "gpu_two_device": 17.576388728999518,
+      "cpu_eight_workers": 7.79166227099995
+    },
+    "interpretation": "Final states, costs, certified candidates and branches agree to the tolerances recorded in the artifact. Initial SciPy/GPU termination status and evaluation counts can differ. This 180-check sample is slower on GPU and is not a whole-run speed claim."
+  },
+  "stratified_throughput_comparison": {
+    "artifact": "groupstratified_benchmark.json",
+    "model": "ar27_sqrt",
+    "rows": 4096,
+    "fixation_groups": 20,
+    "held_order_mixed": true,
+    "starts_per_row": 49,
+    "candidate_count": 200704,
+    "certified_candidates": 200704,
+    "gpu0_only": {
+      "device": "NVIDIA GeForce RTX 5070 Ti",
+      "seconds": 21.843661240000074,
+      "rows_per_second": 187.51435279079553
+    },
+    "both_devices": {
+      "devices": [
+        "NVIDIA GeForce RTX 5070 Ti",
+        "NVIDIA RTX PRO 2000 Blackwell"
+      ],
+      "seconds": 25.145662540999183,
+      "rows_per_second": 162.89091581188626
+    },
+    "interpretation": "On this group-stratified 4096-row workload, the two-device option was about 15% slower than GPU 0 alone. Default scheduling is one assigned GPU per law; specifying --inverse-devices 0 1 remains an opt-in."
+  },
+  "additional_current_hash_benchmark": {
+    "artifact": "multi_gpu_benchmark.json",
+    "rows": 4096,
+    "starts_per_row": 49,
+    "both_device_seconds": 17.58158852499946,
+    "rows_per_second": 232.9709851971482,
+    "all_rows_available": true,
+    "certified_candidates": 200704,
+    "candidate_count": 200704,
+    "note": "Contiguous input slice; no GPU-0-only paired measurement. The stratified comparison above is the paired device-count result."
+  }
+}

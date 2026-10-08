@@ -28,6 +28,8 @@ class ProfiledProblem:
         self.weights = whitening(cov)/np.sqrt(self.k*self.counts[self.groups])[:, None, None]
         self.bdata = np.einsum("nij,nj->ni", self.weights, y).ravel()
         x0 = self.anchors[self.groups]
+        if hasattr(model,"lower"):
+            x0 = np.clip(x0,model.lower,model.upper)
         A = self.weighted_design(x0)
         self.column_scale = np.maximum(np.linalg.norm(A, axis=0), 1e-12)
         normalized = A/self.column_scale
@@ -137,13 +139,16 @@ def fit(model, y, r, cov, groups, anchors, prior_strength=.001, starts=2,
     problem = ProfiledProblem(model, y, r, cov, groups, anchors, prior_strength, anchor_scales, curvature_strength)
     if starts < 1 or max_nfev < 1 or continuation_stages < 0:
         raise ValueError("Starts and evaluation budget must be positive")
-    lower = np.tile(LOWER/STATE_SCALE, problem.n)
-    upper = np.tile(UPPER/STATE_SCALE, problem.n)
+    physical_lower, physical_upper = getattr(model,"lower",LOWER), getattr(model,"upper",UPPER)
+    lower = np.tile(physical_lower/STATE_SCALE, problem.n)
+    upper = np.tile(physical_upper/STATE_SCALE, problem.n)
     rng = np.random.default_rng(seed)
     alternatives, solutions = [], []
     extra = [] if additional_initial_states is None else additional_initial_states
     for start in range(starts+len(extra)):
         z = problem.anchors[problem.groups]/STATE_SCALE
+        if hasattr(model,"lower"):
+            z = np.clip(z,lower.reshape(-1,2)+1e-9,upper.reshape(-1,2)-1e-9)
         if start >= starts:
             initial = np.asarray(extra[start-starts], float)
             if initial.shape != (problem.n, 2) or not np.isfinite(initial).all():
@@ -182,7 +187,7 @@ def fit(model, y, r, cov, groups, anchors, prior_strength=.001, starts=2,
         grad = problem.vjp(problem.residual)
         stationarity = projected_gradient(result.x, grad, lower, upper)
         physical_stationarity = projected_gradient(problem.x.ravel(), grad/np.tile(STATE_SCALE, problem.n),
-                                                    np.tile(LOWER, problem.n), np.tile(UPPER, problem.n))
+                                                    np.tile(physical_lower, problem.n), np.tile(physical_upper, problem.n))
         inner = float(np.max(np.abs(problem.B.T@problem.optical_residual)/problem.column_scale))
         stages = []
         for stage in range(continuation_stages):
@@ -209,7 +214,7 @@ def fit(model, y, r, cov, groups, anchors, prior_strength=.001, starts=2,
             grad = problem.vjp(problem.residual)
             stationarity = projected_gradient(result.x, grad, lower, upper)
             physical_stationarity = projected_gradient(problem.x.ravel(), grad/np.tile(STATE_SCALE, problem.n),
-                                                        np.tile(LOWER, problem.n), np.tile(UPPER, problem.n))
+                                                        np.tile(physical_lower, problem.n), np.tile(physical_upper, problem.n))
             inner = float(np.max(np.abs(problem.B.T@problem.optical_residual)/problem.column_scale))
             before.update(resumed_cost=float(result.cost), resumed_nfev=int(result.nfev),
                           resumed_status=int(result.status), resumed_projected_stationarity_physical=physical_stationarity,

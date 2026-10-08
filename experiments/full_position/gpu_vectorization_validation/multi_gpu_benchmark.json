@@ -1,0 +1,32 @@
+{
+  "schema": "two_gpu_raw_benchmark_v1",
+  "backend": "cupy",
+  "dtype": "float64",
+  "start_count": 49,
+  "rows": 4096,
+  "seconds": 17.58158852499946,
+  "rows_per_second": 232.9709851971482,
+  "model": "ar27_sqrt",
+  "training_input_rows": [
+    0,
+    4095
+  ],
+  "device_runtime_indices": [
+    0,
+    1
+  ],
+  "device_names": [
+    "NVIDIA GeForce RTX 5070 Ti",
+    "NVIDIA RTX PRO 2000 Blackwell"
+  ],
+  "memory_device0_before_bytes": 821297152,
+  "memory_device0_after_bytes": 1509163008,
+  "available_rows": 4096,
+  "candidate_count": 200704,
+  "certified_candidates": 200704,
+  "source_sha256": {
+    "full_position/batched_inverse.py": "5c6b9968ddf2dafd2eb06abf239717d9d07c68831ea57b0f6431547f3e9e14be",
+    "full_position/batched_holdout.py": "d1fe44a3f8f0f83dcb0063648d6316e51a8e27733af0ab230044f33b4538dde6",
+    "full_position/torch_arrays.py": "4bfcb3a87f9afc996aa672b46b3a85ae2080d0c59e458e8c4ca75ff596c8c550"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "driver_pid": 864611,
+  "runner_pid": 864615,
+  "started_utc": "2026-10-08T12:54:03.391781+00:00",
+  "command": [
+    "/usr/sbin/python",
+    "-u",
+    "-m",
+    "full_position.literal_power_study",
+    "--root",
+    "/workspace/ximea/gaze_acc_joint_estimator",
+    "--output",
+    "/workspace/ximea/gaze_acc_joint_estimator/experiments/full_position/literal_power_search_v1",
+    "--devices",
+    "0",
+    "1",
+    "--workers",
+    "4",
+    "--cpu-threads",
+    "4",
+    "--batch-size",
+    "8192"
+  ],
+  "log": "/tmp/literal_power_search_v1.log"
+}

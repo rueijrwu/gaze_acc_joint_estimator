@@ -41,10 +41,11 @@ identities. The frame cohort and point cohort can have different memberships.
 fixed response law, on the same 20 reviewed conditions and all 89,175 valid
 rows in the full fixation periods. It uses the existing joint optimizer and
 scalar CPU inverse; four fit workers use one BLAS, OpenMP and MKL thread each.
-The GPU path remains unavailable until response value, derivative, branch and
-certificate parity is verified. The old sampled screen fits are not reused.
-The `core` training and agreement windows remain the CLI defaults; each window
-can be set independently.
+The accelerated runner keeps that optimizer and inverse unchanged and offloads
+the verified float64 linear Jacobian products to CuPy. This product parity does
+not verify response-inverse branches, fit certificates or full-run convergence.
+The old sampled screen fits are not reused. The `core` training and agreement
+windows remain the CLI defaults; each window can be set independently.
 
 The core defaults use the central-80% training rows (71,784 rows) and all
 80,072 core frames for agreement per law. This run explicitly sets both windows
@@ -53,6 +54,59 @@ to `fixation_period`: it fits all 89,175 valid rows per law and schedules all
 remain accounted for in the schedule; the complete schedule contains
 1,201,080 P4 slots across four laws. Positive `--agreement-per-fixation`
 values sample only agreement checks and never reduce calibration rows.
+
+The current optional acceleration uses GPU profile QR and inner LSMR products
+for fitting, while SciPy keeps control of the outer trust-region loop on the
+host. It also batches the raw agreement frames and all 49 inverse starts on GPU
+through refinement and certification. Float64 CuPy and Torch are supported by
+the inverse interface; CuPy is the preferred measured backend here. This path
+must pass both source-hash-gated reports before it starts. The profile report
+covers all 89,175 fitting rows for all four response laws. The inverse report
+covers backend tests, 180 representative real frame-law checks across all 20
+conditions and larger throughput samples; it does not establish full-run
+convergence or agreement results.
+
+For a future fresh full-population run, use execution outside the sandbox for
+GPU access and choose a new output directory:
+
+```sh
+rtk proxy env PYTHONPATH=. OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+  python -m full_position.accommodation_full_accelerated \
+  --output experiments/full_position/accommodation_full_v4_gpu \
+  --workers 4 --cpu-threads 4 \
+  --linear-backend cupy \
+  --parity-report experiments/full_position/gpu_vectorization_validation/profile_gpu_parity_report.json \
+  --inverse-backend cupy --inverse-batch-size 8192 \
+  --inverse-parity-report experiments/full_position/gpu_vectorization_validation/inverse_parity.json \
+  --training-window fixation_period --agreement-window fixation_period \
+  --max-nfev 300 --seed 17 --source-commit <current-40-character-commit>
+```
+
+The runner refits all four laws and does not reuse previous models. It includes
+all valid fixation-period training rows and all scheduled fixation-period
+agreement frames. Four workers use both GPUs, with two workers per card. The
+default batch has 8,192 frames and 401,408 start candidates per worker, as
+requested. This was the fastest measured batch in the memory test. A concurrent
+test reserved 3 GiB for fitting per worker; peak free memory remained
+5,672 MiB on the RTX 5070 Ti and 6,322 MiB on the RTX PRO 2000. The 32,768-frame
+batch exceeded the 6.75 GiB per-worker allocation cap and failed the memory
+headroom check. Throughput at 16,384 was about 2% below 8,192 on the sampled
+subsets; larger batches do not establish a speed gain. See the
+[memory report](../experiments/full_position/gpu_vectorization_validation/batch_memory_tuning.json).
+These defaults apply to this two-card, four-worker setup; retune for other
+hardware or worker counts. The default assigns one GPU to each law; `--inverse-devices 0
+1` opts into splitting each law's inverse frames across both devices. On the
+group-stratified 4,096-row comparison, the two-GPU option was slower than GPU 0
+alone, so it is not enabled by default. The small 180-check CPU/GPU timing
+sample was also slower on GPU; these are scoped throughput measurements, not
+whole-run speed estimates. The profile gate is
+[here](../experiments/full_position/gpu_vectorization_validation/profile_gpu_parity_report.json),
+the inverse gate is
+[here](../experiments/full_position/gpu_vectorization_validation/inverse_parity.json),
+and the paired stratified timing record is
+[here](../experiments/full_position/gpu_vectorization_validation/groupstratified_benchmark.json).
+Passing these gates does not imply that a full calibration or agreement run has
+completed, nor does it determine a winning response law.
 
 ```sh
 rtk proxy env PYTHONPATH=. OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
@@ -107,11 +161,9 @@ checkpoints, branches, fixed schedules and source snapshots. It checks that
 historical files and implementation sources did not change during the run.
 The completed screen is in [the results directory](../experiments/full_position/accommodation_response_v1/RESULTS.md).
 
-Use execution outside the sandbox for this machine's GPU access. The new
-response family currently uses the certified scalar CPU solver with parallel
-workers. Legacy acceleration rejects power models. GPU use requires separate
-forward, derivative, branch and certificate parity checks first. This restriction
-also applies to the batched NumPy helper, whose basis is the legacy log basis.
+The previous interrupted run used the earlier product-only acceleration and
+scalar CPU inverses. Its partial results remain an interrupted record and are
+not resumed or reused by the command above.
 
 Captures 5/6, detections and historical studies remain unchanged. These optical
 development comparisons do not identify physiological accommodation accuracy

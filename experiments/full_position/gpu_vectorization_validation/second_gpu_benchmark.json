@@ -1,0 +1,26 @@
+{
+  "schema": "second_cuda_device_raw_benchmark_v1",
+  "backend": "cupy",
+  "dtype": "float64",
+  "start_count": 49,
+  "rows": 4096,
+  "rows_per_second": 155.38438336434155,
+  "seconds": 26.36043540100036,
+  "model": "ar27_sqrt",
+  "training_input_rows": [
+    0,
+    4095
+  ],
+  "device_runtime_index": 1,
+  "device_name": "NVIDIA RTX PRO 2000 Blackwell",
+  "memory_before_bytes": 354811904,
+  "memory_after_bytes": 1191575552,
+  "available_rows": 4096,
+  "candidate_count": 200704,
+  "certified_candidates": 200704,
+  "source_sha256": {
+    "full_position/batched_inverse.py": "a7554fd39cb6638b42e5720d2025b77e405c3231469ff81c7475c0bc88ee94c8",
+    "full_position/batched_holdout.py": "2567f44071e0e0c572d5ff69cb2319ebb1d9e2e851e2bb546e76dea6f10dc578",
+    "full_position/torch_arrays.py": "4bfcb3a87f9afc996aa672b46b3a85ae2080d0c59e458e8c4ca75ff596c8c550"
+  }
+}

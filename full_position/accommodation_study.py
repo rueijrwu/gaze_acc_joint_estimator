@@ -126,7 +126,7 @@ def _fit_task(job):
             for j in range(3):
                 prediction=(predict_raw_holdout(model,cap.p[i],cap.q[i],cap.point_valid[i],j,
                     pilot,reference,sigma,"xy") if accepted else
-                    dict(available=False,reason="calibration_failed",state=None,candidates=[]))
+                    dict(available=False,held_point=j,reason="calibration_failed",state=None,candidates=[]))
                 candidates=prediction.pop("candidates",[])
                 archive.write(json.dumps(clean_json(dict(fixation=gi,row=i,held_point=j,
                     candidates=candidates)),allow_nan=False)+"\n")
