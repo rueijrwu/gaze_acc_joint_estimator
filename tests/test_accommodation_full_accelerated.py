@@ -143,7 +143,7 @@ class AccommodationFullAcceleratedTests(TestCase):
         self.assertEqual(len(rows), 2, "expected two valid reviewed real frames")
 
         for candidate in CANDIDATES:
-            path = root / "experiments/full_position/accommodation_response_v1/fits/capture_4" / candidate / "model.json"
+            path = root / "tests/fixtures/response_inverse/capture_4" / candidate / "model.json"
             model, metadata = load_model(path)
             pilot = PositionModel(27, metadata["pilot_coefficients"])
             reference = np.asarray(metadata["reference_state"], dtype=float)

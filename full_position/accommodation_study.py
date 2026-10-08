@@ -204,7 +204,7 @@ def run(root,output,source_commit,workers=12,max_nfev=300,seed=17):
     captures,groups,interval_hash=reviewed(str(root))
     implementation=source_hashes(root)
     for name in ("ACCOMMODATION_RESPONSE_THEORY.md","ACCOMMODATION_RESPONSE_PLAN.md"):
-        implementation[name]=digest(root/name)
+        implementation[f"docs/{name}"]=digest(root/"docs"/name)
     historic={str(p.relative_to(root)):digest(p) for p in (root/"experiments/full_position").rglob("*")
               if p.is_file() and output not in p.parents and "__pycache__" not in p.parts}
     for rel in implementation:

@@ -62,7 +62,7 @@ def compare(actual, expected):
 
 
 def retained_cases():
-    root = Path("experiments/full_position/accommodation_full_v2_gpu")
+    root = Path(__file__).resolve().parent / "fixtures/gpu_inverse_parity"
     with np.load(root/"splits/full_calibration/training_inputs.npz") as data:
         for name, exponent, row in (("ar27_log", 0., 201),
                                     ("ar27_sqrt", .5, 1201),

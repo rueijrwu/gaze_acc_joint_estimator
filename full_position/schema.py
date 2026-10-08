@@ -123,5 +123,5 @@ def load_model(path, allow_failed=False):
 
 def source_hashes(root):
     root = Path(root)
-    paths = list((root/"full_position").glob("*.py")) + [root/"Theory.md", root/"ESTIMATOR_PLAN.md"]
+    paths = list((root/"full_position").glob("*.py")) + [root/"docs/Theory.md", root/"docs/ESTIMATOR_PLAN.md"]
     return {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(paths)}

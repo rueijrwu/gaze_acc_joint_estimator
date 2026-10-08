@@ -278,9 +278,9 @@ def run(root, output, workers=1, max_nfev=300, seed=17, agreement_per_fixation=0
     source_hash = source_hashes(root)
     for name in ("ACCOMMODATION_FULL_CALIBRATION_PLAN.md",
                  "ACCOMMODATION_RESPONSE_THEORY.md", "ACCOMMODATION_RESPONSE_PLAN.md"):
-        path = root / name
+        path = root / "docs" / name
         if path.exists():
-            source_hash[name] = digest(path)
+            source_hash[f"docs/{name}"] = digest(path)
     # This separate, active study is not an input to captures 1--4.
     concurrent_study = root / "experiments" / "full_position" / "captures_5_6_standalone"
     protected = {str(p.relative_to(root)): digest(p)

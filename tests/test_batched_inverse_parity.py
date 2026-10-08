@@ -107,7 +107,7 @@ def test_weak_ambiguous_case_matches_all_scalar_starts(backend):
 def test_saved_real_model_retained_input_matches_all_scalar_starts(name, exponent, backend):
     if backend == "cupy":
         pytest.importorskip("cupy")
-    root = Path("experiments/full_position/accommodation_full_v2_gpu")
+    root = Path(__file__).resolve().parent / "fixtures/gpu_inverse_parity"
     artifact = json.loads((root/"fits/full_calibration"/name/"model.json").read_text())
     model = PowerResponseModel(exponent, artifact["coefficients"])
     with np.load(root/"splits/full_calibration/training_inputs.npz") as data:

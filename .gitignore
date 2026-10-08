@@ -16,3 +16,9 @@ venv/
 # Large solver archives kept locally (GitHub size limit)
 experiments/full_position/accommodation_full_v2_gpu/fits/full_calibration/*/inverse_candidates.jsonl.gz
 experiments/full_position/accommodation_full_v2_gpu/fits/full_calibration/ar27_linear/holdouts.jsonl
+
+# Temporary local test scripts and outputs
+tests/scratch/*
+!tests/scratch/.gitkeep
+
+.pytest_cache/
