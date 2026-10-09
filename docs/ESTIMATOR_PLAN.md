@@ -14,6 +14,8 @@ This branch currently contains `data/`, `docs/`, a README and ignore rules. It d
 
 Reuse established bounded least-squares, variable-projection, multistart and GPU batching methods. Reuse reviewed implementation pieces from a **pinned donor commit** only when their contracts still apply. A possible donor is `54deab5871b4713f67e2ab6ab86f1f950dc95eee` on the historical line: its `full_position/gpu_profile.py` explicitly constructs the old six-coordinate, 27-column response design [I1]. It is not a drop-in engine for the new radial/projective model. Port small generic helpers/tests with provenance and required licenses; do not copy the old coefficient basis, area normalization, monkey-patch integration, or model-selection pipeline wholesale.
 
+The active model has only two framewise states `(theta,A)` and one derived, not independently fitted, P1 scale. GPU kernels must use the same scale for both reflections, recompute it for each trial gaze, and never introduce a third free scale state. Triangle-area normalization and a separate P4 scale are not fallback modes.
+
 CuPy/PyTorch availability is user-provided. It is not a claim that this documentation session ran a GPU. The implementer must inspect installed versions/devices and record them before choosing backend details.
 
 ## 2. Locked initial design
@@ -26,7 +28,7 @@ CuPy/PyTorch availability is user-provided. It is not a claim that this document
 | Scale policy | `p1_profile_v1`: trial-gaze-conditioned P1-edge GLS scale |
 | Triangle areas | Optional legacy diagnostics only; not residuals, normalizers or automatic gates |
 | Optical core | Explicit radial baseline and rational keystone for each reflection |
-| Nuisance approximation | Same fractional P1/P4 scale; `eta=1`; no free Z or P4 scale |
+| Nuisance approximation | **One scalar `g=g_P1(theta)` from P1 applies to both P1 and P4**; no free Z, `eta`, or P4 nuisance scale |
 | Translation | Removed with same-frame differences; relative centroid signal retained |
 | Initial geometry route | `empirical_incremental` unless a matched paraxial/center calibration is supplied |
 | Candidates | DM0 effective scale; DM1 scale plus linear radial increment; DM2 only after a supported structural need |
@@ -65,7 +67,7 @@ Required semantic interfaces (names can be implemented directly):
 - `relative_observations(p1,p4)` returns y, source identities and the linear native-to-relative map L.
 - `p1_reference(theta,params)` returns reference edges and centered P1 predictions.
 - `p1_scale(theta,observed_edges,cov11,params)` returns scale, validity and derivative-compatible values.
-- `predict_relative(theta,A,scale,params)` returns ten coordinates with full centering and keystone composition.
+- `predict_relative(theta,A,scale,params)` returns ten coordinates with full centering and keystone composition, multiplying **both P1 and P4** by the same P1-derived scale.
 - `residual(theta,A,observations,params,mask)` implements **the same scale and covariance policy** in calibration/application/cross-check.
 - `fit_full(config)` creates fresh parameters/states, never loads a historical fit under another model definition.
 - `infer_retained(calibration,frame,held_point)` receives a masked view excluding the tested P4.
@@ -111,13 +113,13 @@ First parameterization:
 - P4 M(A)=1+m1*a; DM1 additionally `delta_kappa=k1*a` in the incremental route.
 - P4 `sx=1+alpha*t^2`, `sy=1+beta*t^2`, `q=gamma*t/L_ref` in explicitly scaled axes, equivalent to the physical-degree equations.
 - Relative centroid `h=b0+bA*a+(s0+sA*a)*t` in both image axes.
-- `eta=1`; no new physical Z state, A-dependent axial slope, A-dependent keystone, free affine transform or per-frame center.
+- Use the **same** P1-derived `g` in both reflection predictions. No new physical Z state, separate P4 scale, differential `eta`, A-dependent axial slope, A-dependent keystone, free affine transform or per-frame center.
 
 Do not set weak rotation distortion to zero without a same-domain ablation. Reject invalid denominator/radial-domain proposals via the optimizer's domain handling; do not replace them with clipped coordinates with false gradients.
 
 Build `R=L Sigma L^T` from a fixed common native-coordinate noise policy. Use Cholesky solves, not explicit matrix inverses. A second-difference estimate from contiguous full-resolution records is an effective-noise assumption, not pure localization truth; never bridge gaps or remove real fixation variation as though it were detection noise. Check covariance stability and record floors/shrinkage in the manifest. No candidate-specific inflation is allowed in the initial comparison.
 
-Implement `p1_profile_v1` exactly as specified, differentiating through its scale numerator/denominator, predicted means and optical transforms. Use the raw relative residual cost. Do not silently use the full-data `g_joint` formula or detach g in the gaze/global derivatives. Do not claim the plug-in residual covariance equals R; uncertainty diagnostics need the induced correlations. The first implementation does not optimize a Gaussian predictive likelihood or append raw G penalties.
+Implement `p1_profile_v1` exactly as specified, differentiating through its scale numerator/denominator, predicted means and optical transforms. P4 observations or accommodation changes must never be used to estimate an independent nuisance scale; at fixed gaze and P1, the derived scale is unchanged. Use the raw relative residual cost. Do not silently use the full-data `g_joint` formula or detach g in the gaze/global derivatives. Do not claim the plug-in residual covariance equals R; uncertainty diagnostics need the induced correlations. The first implementation does not optimize a Gaussian predictive likelihood or append raw G penalties.
 
 Global regularization uses declared dimensionless parameter scales. Fix essential gauges instead of using an opaque huge prior. Optional departures shrink toward their simpler nested model. Choose one common regularization policy before comparing candidates; report sensitivity rather than tuning each law to its best score. A reasonable inherited exploratory strength is 0.001 after the parameter scales are explicitly defined; it is not comparable numerically to old column-normalized priors by itself.
 

@@ -37,8 +37,8 @@ The source models center-relative grids, not the measured separation of P1 and P
 | P1 and P4 rotation deformation | Keep explicit keystone operators | Weak change is not zero change |
 | Axial scale versus Z | Approximately linear for each reflection | Supported separately over the reported domains |
 | Gaze dependence of axial scale | Omit initially | Five-angle scale variation: P1 0.00019129%, P4 0.00294912% |
-| P4 axial slope dependence on A | Omit initially; retain as an optional correction | Slopes span 0.0818504% of their mean over 0–4 D |
-| P1/P4 fractional scale difference | Set `eta=1` initially | Near-equal slopes motivate this; they do not prove exact cancellation |
+| P4 axial slope dependence on A | No fitted term in the active estimator | The observed slope differences are small over 0–4 D |
+| P1/P4 fractional scale difference | **One P1-derived scale is applied to both reflections** | Near-equal slopes justify the approximation; exact equality is not claimed |
 | A dependence of P4 keystone coefficients | Omit initially | A hypothesis, not an established small-term result |
 | P4 accommodation magnification/radial response | Keep and calibrate | These are the mechanisms of interest |
 
@@ -52,6 +52,8 @@ $$
 The P1 slope is `0.00295165270232 mm^-1`; P4 slopes for A=0,1,2,3,4 D are respectively `0.00295232758`, `0.00295172708`, `0.00295112891`, `0.00295052435`, `0.00294991207 mm^-1`. Linear in Z does not mean linear in A. The P1 linear-scale model has worst coordinate RMSE 0.29549 micrometers at zero rotation; the P4 linear-scale study has worst-state coordinate RMSE about 0.249 micrometers and maximum point error about 0.511 micrometers. These are simulation-model residuals, not experimental error limits [D1–D3].
 
 Do not delete keystone based on the small *Z-scale* variation. A constant P1 pattern differs from the simulated pattern at -20 degrees by about 30.42 micrometers coordinate RMSE. The source's identity/parity simplification changes existing P1 quadratic-transform predictions by only about 0.0521 micrometers pooled coordinate RMS, but does not remove the spatial residual of the keystone family [D1].
+
+**Active reduction:** estimate exactly one positive nuisance scale `g_i=g_P1(theta_i)` from P1. Apply that same scalar to both P1 and P4, without an explicit Z state, a separately fitted P4 scale, an accommodation-dependent axial slope, or an `eta` parameter. P4 accommodation magnification `M(A)` remains a distinct signal. This is a model approximation supported by the optical evidence, not proof of equal behavior in the recordings.
 
 The P4 Z-study lens hash is `fb3937e6763f27e331faa10a4863533e994030cbc0ae74364b186ba0d06d474d`; the older P4 accommodation/rotation study uses `5e0715c70016fbcec8a49956dd2ec824a50f5c4c52ca472b0225a2523db614ac`. Do not splice their numerical fits into a claimed matched joint calibration. Transfer the **structure**, calibrate the actual setup, and label any simulation-constrained parameters. Z is the recorded absolute THI coordinate, not measured eye-camera distance. A shared-scale model removes the need for a free Z state.
 
@@ -123,7 +125,7 @@ Use a real, already distorted zero-gaze template `b1_j`:
 
 $$
 \boxed{\mathbf F_{1j}(\theta)=K_1(\vartheta;\mathbf b_{1j}),\qquad
-\mathbf P_{1j}^{local}(\theta,Z)=g_1(Z)\mathbf F_{1j}(\theta).}
+\mathbf P_{1j}^{local}(\theta,g)=g\mathbf F_{1j}(\theta),\quad g=\widehat g_{P1}(\theta).}
 $$
 
 Expanded in aligned axes,
@@ -156,7 +158,7 @@ Writing `R_j^2=||u4_j||^2` and `B_j(A)=M(A)[1+kappa4(A)M(A)^2 R_j^2]`, the compl
 
 $$
 \boxed{
-\mathbf P_{4j}^{local}(\theta,A,Z)=[1+\alpha_{4Z}(A)Z]
+\mathbf P_{4j}^{local}(\theta,A,g)=g
 \begin{bmatrix}
 \dfrac{s_{x,4}(\vartheta,A)B_j(A)u_{4j,x}}
 {1+q_4(\vartheta,A)B_j(A)u_{4j,y}}\\[5pt]
@@ -172,7 +174,7 @@ $$
 +(\partial_A K_4)_b.
 $$
 
-The second term vanishes only for the minimal keystone; the first does not. `M(A)` is the desired accommodation signal, not the nuisance `g4(A,Z)`. Never normalize it away. Kappa has units L^-2. For a nonfolding cubic radial map, check `1+kappa*r^2` and `1+3*kappa*r^2` across the used radii.
+The second term vanishes only for the minimal keystone; the first does not. `M(A)` is the desired accommodation signal, distinct from the shared P1-derived nuisance scale `g`. Never normalize it away. Kappa has units L^-2. For a nonfolding cubic radial map, check `1+kappa*r^2` and `1+3*kappa*r^2` across the used radii.
 
 ### 4.4 The practical empirical-template route
 
@@ -196,34 +198,34 @@ $$
 \mathbf a_1(\theta)=\begin{bmatrix}\mathbf F_{12}-\mathbf F_{11}\\\mathbf F_{13}-\mathbf F_{11}\end{bmatrix}.
 $$
 
-Let `g=g1`, `eta=g4/g1`, and `delta_g(theta,A,g)` be a **relative optical-origin displacement** in P1-reference units. Introduce an arbitrary `t_i` only to derive cancellation:
+Let `g=g_P1(theta)` be the **single common nuisance scale** and `delta(theta,A)` a relative optical-origin displacement in P1-reference units. Introduce an arbitrary `t_i` only to derive cancellation:
 
 $$
 \mathbf p_j=\mathbf t+g\mathbf F_{1j},\qquad
-\mathbf q_j=\mathbf t+g\boldsymbol\delta_g+g\eta\mathbf F_{4j}.
+\mathbf q_j=\mathbf t+g\boldsymbol\delta+g\mathbf F_{4j}.
 $$
 
 Subtraction removes t. Define the relative-centroid law
 
 $$
-\mathbf h_g=\boldsymbol\delta_g+\eta\overline{\mathbf F}_4-\overline{\mathbf F}_1.
+\mathbf h=\boldsymbol\delta+\overline{\mathbf F}_4-\overline{\mathbf F}_1.
 $$
 
-Fit **h_g or delta_g, not both independently**. Center-relative simulations do not provide their separation. The full measured-vector prediction is
+Fit **h or delta, not both independently**. Center-relative simulations do not provide their separation. The full measured-vector prediction is
 
 $$
 \boxed{\widehat{\mathbf y}(\theta,A,g;\Psi)=
 \begin{bmatrix}
 g\mathbf a_1(\theta)\\
-g[\mathbf h_g+\eta\mathbf S_{41}]\\
-g[\mathbf h_g+\eta\mathbf S_{42}]\\
-g[\mathbf h_g+\eta\mathbf S_{43}]
+g[\mathbf h+\mathbf S_{41}]\\
+g[\mathbf h+\mathbf S_{42}]\\
+g[\mathbf h+\mathbf S_{43}]
 \end{bmatrix}.}
 $$
 
 Both reflections are modeled, not just P4 conditioned on an exact P1. Psi contains shared templates, alignment, keystone, accommodation functions and displacement coefficients. No free framewise deformation map is present.
 
-The **default model** is `eta=1`, `h_g=h(theta,A)`. The scale-corrected expressions are then
+The **required active model** uses the P1-derived `g` for both reflections and `h=h(theta,A)`. The scale-corrected expressions are
 
 $$
 \boxed{\widehat{(\mathbf p_j-\mathbf c_1)/g}=\mathbf S_{1j},\qquad
@@ -270,21 +272,9 @@ $$
 
 An old area ratio is only an optional diagnostic. In a noiseless nondegenerate common-scale example, the fitted g equals `sqrt(area(P1))/sqrt(area(F1(theta)))`; under noise it is a different estimator. Removing the area denominator does not create extra information or justify three independent edge weights.
 
-### Optional differential scale, not another free state
+### Common-scale evidence and boundary
 
-If matched evidence requires unequal fractional scales,
-
-$$
-\eta(A,Z)=\frac{1+\alpha_{4Z}(A)Z}{1+\alpha_{1Z}Z}.
-$$
-
-For a common reference and nonzero alpha1Z, eliminate Z using `c(A)=alpha4Z(A)/alpha1Z`:
-
-$$
-\boxed{g_4=1+c(A)(g-1),\qquad \eta(A,g)=c(A)+[1-c(A)]/g.}
-$$
-
-Use `g[h_g+eta*S4]`, not `g*eta*(h+S4)`. Pattern-scale evidence does not establish centroid scaling. Do not fit eta independently per frame; it can absorb accommodation. Its initial value is one. Any c(A) or residual g dependence of h requires a separately calibrated ablation, with derivatives through g and a declared common reference plane. Source slopes from differing lens revisions are not ready-made experimental corrections.
+The independent optical Z studies support nearly equal fractional P1/P4 scale changes. This branch therefore fixes the differential factor to unity **by model definition**, rather than estimating it. No `Z`, `g4`, `eta`, or accommodation-dependent axial slope enters the active state, forward prediction, objective, or cross-check. The scale is derived from P1 only, even when a P4 point is withheld. This does not assert that P4–P1 optical-origin displacement has independently proven Z invariance: retain `h(theta,A)` as the measured relative-centroid law and audit residual dependence on the fitted P1 scale. If that dependency is reproducible, report model mismatch and propose a separately versioned extension, rather than silently freeing another framewise scale.
 
 ## 7. Reference geometry and identifiability before coefficient expansion
 
