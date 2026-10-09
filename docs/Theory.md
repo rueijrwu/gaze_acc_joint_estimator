@@ -1,430 +1,452 @@
-# Distortion-based joint gaze and accommodation estimator
+# Joint distortion estimator: separate P1/P4 optical zeros and center-based gaze
 
 **Branch:** `exp5_distortion_model` in `rueijrwu/gaze_acc_joint_estimator`.  
-**Status:** Authoritative design for this branch; implementation and new real-data results are not claimed.  
-**Date:** 2026-10-09.  
-**Starting tree:** `bc3e75b595bcf28486d23881354b3fa3c1daacde` (data and documentation only).  
-**Optical evidence:** `rueijrwu/distortion_tracking` at `1d2a0874c79f3f174b36a197c3fbbffd8a32fe60` [D1–D3].  
-**Companion:** [ESTIMATOR_PLAN.md](ESTIMATOR_PLAN.md).
+**Status:** Authoritative proposed mathematics for this branch, not an implemented estimator or a new experimental result.  
+**Revision:** 2026-10-09; replaces the specification at `2fbd742f7cb2ca26eb84ea0a6029dd9de1e10b60`.  
+**Companion:** [ESTIMATOR_PLAN.md](ESTIMATOR_PLAN.md).  
+**Optical evidence:** `distortion_tracking` at `1d2a0874c79f3f174b36a197c3fbbffd8a32fe60` [D1-D3].
 
-## 1. Goal and non-negotiable distinctions
+## 1. Scientific objective and required calibration order
 
-Find a useful **accommodation response model**, not just another exponent that lowers image RMS. One globally calibrated optical model must explain the three P1/P4 pairs with one horizontal gaze and one accommodation value **per frame**. The main estimation cycle is
+Find an accommodation-sensitive optical model whose three simultaneous P1/P4 pairs support the same horizontal gaze and accommodation. Do not reduce the objective to a marginal improvement in pixel RMS. The calibration proceeds from crude centroids to model-corrected reflection centers:
 
-$$
-\boxed{\theta\ \longrightarrow\ g_{P1}(\theta)\ \longrightarrow\ A
-\ \longrightarrow\ \theta\ \longrightarrow\cdots.}
-$$
+1. Use fixation-mean **P4 minus P1** centroid displacement in the reference-accommodation recording to initialize a mostly linear, up-to-cubic gaze mapping.
+2. Find P1's own most symmetric gaze, fit P1 distortion about that optical zero, and calculate a P1-derived scale for every frame across all accommodation conditions.
+3. Independently find P4's most symmetric gaze. It is P4's optical alignment zero; it need not equal visual zero or P1's symmetry zero.
+4. At P4's symmetry reference, initialize accommodation-dependent magnification and barrel deformation across accommodation conditions.
+5. With that baseline available, fit P4 gaze-dependent keystone across the five gaze conditions.
+6. Estimate all frame states, reconstruct distortion-corrected P1/P4 centers, and refit the gaze polynomial to their **P4 minus P1** separation.
+7. Repeat the full calibration cycle, accepting changes against one relative-coordinate objective and assessing complete iterative cross-agreement.
 
-Relative P4–P1 displacement supplies the strong initial gaze signal. P1 supplies reference geometry and nuisance magnification. P4's remaining magnification and deformation supply accommodation information. Gaze and accommodation correct each other; neither is assumed perfectly separable.
+The final fit uses all reviewed calibration conditions. The stages are initialization and block-update order, not held-out-condition experiments. Each frame retains its own gaze and accommodation. Fixation labels provide soft mean anchors, never framewise truth or a requirement for flat trajectories.
 
-All observations are **same-frame differences**. We do not estimate absolute eye position. Common additive image translation cancels exactly; physical translation that also changes scale, field sampling, or the two reflection paths differently requires the corresponding model, not merely a subtraction.
+One positive scale, derived from P1 at each trial gaze, is applied to both reflection patterns. No free axial Z state, second P4 nuisance scale, differential-scale parameter, or required triangle-area normalizer belongs to the active estimator. P4 accommodation magnification remains signal.
 
-The primary normalization is a **positive scalar fitted to reference P1 edges at the trial gaze**. Neither P1 triangle area nor the P4/P1 area ratio is required. Keep all three point identities and full x/y coordinates. Do not replace them with a free per-frame affine map or normalize P4 by its own size, which would remove accommodation information.
+## 2. Measurement contract: P4 minus P1 and only relative observations
 
-All reviewed calibration conditions participate in a fresh full fit for each candidate optical law. Temporary omission of one P4 is an internal same-frame cross-check **after** fitting, not exclusion of a fixation/capture from calibration. No absolute pixel/degree/diopter RMS gate, constant-fixation state, or temporal-flatness penalty is used. Numerical validity and honest coverage accounting remain mandatory.
-
-These two documents supersede inherited area-normalization and held-condition selection requirements for this branch. Historical documents and scores are background, not evidence that this new branch already contains an estimator or an optimum accommodation law.
-
-## 2. What the optical results allow us to simplify
-
-The source models center-relative grids, not the measured separation of P1 and P4 centers. It supports the following starting hypotheses; the evidence levels must remain distinct [D1–D3].
-
-| Component | Initial treatment | Evidence/limit |
-|---|---|---|
-| P1 reference barrel structure | Keep an empirical distorted template; no extra radial correction | Reference distortion is already present |
-| P1 dependence on accommodation | None | Modeling premise; P1 sweep did not vary A |
-| P1 and P4 rotation deformation | Keep explicit keystone operators | Weak change is not zero change |
-| Axial scale versus Z | Approximately linear for each reflection | Supported separately over the reported domains |
-| Gaze dependence of axial scale | Omit initially | Five-angle scale variation: P1 0.00019129%, P4 0.00294912% |
-| P4 axial slope dependence on A | No fitted term in the active estimator | The observed slope differences are small over 0–4 D |
-| P1/P4 fractional scale difference | **One P1-derived scale is applied to both reflections** | Near-equal slopes justify the approximation; exact equality is not claimed |
-| A dependence of P4 keystone coefficients | Omit initially | A hypothesis, not an established small-term result |
-| P4 accommodation magnification/radial response | Keep and calibrate | These are the mechanisms of interest |
-
-The separate source scale laws are
-
-$$
-g_1(Z)\simeq1+\alpha_{1Z}Z,\qquad
-g_4(A,Z)\simeq1+\alpha_{4Z}(A)Z.
-$$
-
-The P1 slope is `0.00295165270232 mm^-1`; P4 slopes for A=0,1,2,3,4 D are respectively `0.00295232758`, `0.00295172708`, `0.00295112891`, `0.00295052435`, `0.00294991207 mm^-1`. Linear in Z does not mean linear in A. The P1 linear-scale model has worst coordinate RMSE 0.29549 micrometers at zero rotation; the P4 linear-scale study has worst-state coordinate RMSE about 0.249 micrometers and maximum point error about 0.511 micrometers. These are simulation-model residuals, not experimental error limits [D1–D3].
-
-Do not delete keystone based on the small *Z-scale* variation. A constant P1 pattern differs from the simulated pattern at -20 degrees by about 30.42 micrometers coordinate RMSE. The source's identity/parity simplification changes existing P1 quadratic-transform predictions by only about 0.0521 micrometers pooled coordinate RMS, but does not remove the spatial residual of the keystone family [D1].
-
-**Active reduction:** estimate exactly one positive nuisance scale `g_i=g_P1(theta_i)` from P1. Apply that same scalar to both P1 and P4, without an explicit Z state, a separately fitted P4 scale, an accommodation-dependent axial slope, or an `eta` parameter. P4 accommodation magnification `M(A)` remains a distinct signal. This is a model approximation supported by the optical evidence, not proof of equal behavior in the recordings.
-
-The P4 Z-study lens hash is `fb3937e6763f27e331faa10a4863533e994030cbc0ae74364b186ba0d06d474d`; the older P4 accommodation/rotation study uses `5e0715c70016fbcec8a49956dd2ec824a50f5c4c52ca472b0225a2523db614ac`. Do not splice their numerical fits into a claimed matched joint calibration. Transfer the **structure**, calibrate the actual setup, and label any simulation-constrained parameters. Z is the recorded absolute THI coordinate, not measured eye-camera distance. A shared-scale model removes the need for a free Z state.
-
-## 3. Measurement contract and units
-
-Let `i` identify a frame, `j=1,2,3` a source correspondence, and
+Let i identify a frame and j=1,2,3 a persistent source correspondence. Write
 
 $$
 \mathbf p_{ij}=P1_{ij},\qquad \mathbf q_{ij}=P4_{i,\pi(j)}.
 $$
 
-Read correspondence/validity from each payload; the inherited convention is zero-based `pair_index=[2,1,0]`. Never independently sort patterns. Define
+Read correspondence and flags from the payload; the inherited zero-based permutation is `[2,1,0]`. Do not independently sort the patterns. Define
 
 $$
-\mathbf c_{1i}=\frac13\sum_j\mathbf p_{ij},\qquad
-\mathbf c_{4i}=\frac13\sum_j\mathbf q_{ij},\qquad
+\mathbf c_{1i}=\tfrac13\sum_j\mathbf p_{ij},\quad
+\mathbf c_{4i}=\tfrac13\sum_j\mathbf q_{ij},\quad
 \mathbf e_{1i}=\begin{bmatrix}\mathbf p_{i2}-\mathbf p_{i1}\\\mathbf p_{i3}-\mathbf p_{i1}\end{bmatrix}.
 $$
 
-Use the nonredundant, linear, translation-free observation
+The ten-component linear relative observation is
 
 $$
-\boxed{\mathbf y_i=
-\begin{bmatrix}\mathbf e_{1i}\\\mathbf q_{i1}-\mathbf c_{1i}\\
-\mathbf q_{i2}-\mathbf c_{1i}\\\mathbf q_{i3}-\mathbf c_{1i}\end{bmatrix}\in\mathbb R^{10}.}
+\boxed{\mathbf y_i=\begin{bmatrix}
+\mathbf e_{1i}\\
+\mathbf q_{i1}-\mathbf c_{1i}\\
+\mathbf q_{i2}-\mathbf c_{1i}\\
+\mathbf q_{i3}-\mathbf c_{1i}
+\end{bmatrix}.}
 $$
 
-The map `y=L P` from the 12 ordered native coordinates has rank 10; its nullspace is precisely the two shared translations. Two edges share P1 noise. No area determinant occurs. Do not append centroid/edge/area summaries as independent residuals. Centering P4 separately is allowed for diagnostics only if the relative centroid displacement is retained.
+The map from the twelve native coordinates to y has rank ten. Adding an arbitrary same-frame translation to all six points leaves y unchanged. Absolute image coordinates are input bookkeeping, not absolute eye-position observations. A fixed camera-origin reference recorded earlier cannot remove later translation.
 
-Use measured pixels and **reference-image pixels** for templates, making the nuisance scale `g` dimensionless. A fixed documented conversion is required for millimeter optical templates. Optical coefficients in inverse millimeters cannot be copied into reference-pixel equations. Corrected coordinates retain reference length units; they are not necessarily dimensionless.
-
-State is `x_i=(theta_i,A_i)` in degrees and diopters. All 20 reviewed conditions in captures 1–4 participate. Nominal horizontal targets are `[-10,-5,0,5,10]` degrees, nominal vertical gaze is zero, and image y remains an observation. The lowest stored demand is about 0.36036 D, not measured A=0. Read labels from the fixation file [G1]. Use all valid rows in its declared full intervals; any trimming/sampling is a separately named population. Captures 5/6 remain reserved.
-
-Define `vartheta=theta-theta_opt` using one shared optical alignment, and `a=(A-A_ref)/(1 D)`. An implementation may encode `t=vartheta/(10 degrees)`, but must transform coefficient units and derivatives consistently. Gaze targets, state bounds, and basis scales are different quantities.
-
-## 4. Explicit optical operators: radial distortion and keystone
-
-### 4.1 Keystone is a rational map, not an unspecified correction
-
-For reflection `r=1,4`, in its declared fixed optical axes,
+The initial gaze signal has the fixed sign
 
 $$
-\boxed{
-K_r(\vartheta,A;\mathbf b)=
+\boxed{\mathbf d_i^{cent}=(\mathbf c_{4i}-\mathbf c_{1i})/g_i.}
+$$
+
+Do not discard the centroid difference when displaying separately centered shapes. Do not append centroid, area and redundant edge summaries to y as independent extra observations. Neither square-root P1 area nor P4/P1 triangle-area ratio is required; historical values may be logged as diagnostics only.
+
+Use camera pixels and explicitly defined reference-image pixels, making g dimensionless. Optical coefficients in inverse millimeters require a fixed documented unit conversion. Corrected coordinates retain reference-length units. Common additive image translation cancels exactly; real translation that changes field sampling, perspective or the two optical paths differently is not thereby guaranteed to cancel.
+
+## 3. Three distinct angular zeros
+
+### 3.1 Visual gaze and two reflection-specific optical alignments
+
+Let theta be horizontal gaze in the experiment's **visual calibration convention**. Its nominal fixation targets remain -10, -5, 0, 5 and 10 degrees. Nominal vertical gaze is zero, but image-y coordinates remain observations. There is no vertical-gaze latent state.
+
+Define two globally shared angular offsets:
+
+$$
+\omega_1=\text{visual gaze at P1's symmetry zero},\qquad
+\omega_4=\text{visual gaze at P4's symmetry zero}.
+$$
+
+The distortion arguments are
+
+$$
+\boxed{\xi_1=\theta-\omega_1,\qquad \xi_4=\theta-\omega_4.}
+$$
+
+There is one physical theta per frame, not separate P1 and P4 gaze states. In general
+
+$$
+\omega_1\ne\omega_4,\qquad \omega_1\ne0,\qquad \omega_4\ne0.
+$$
+
+At visual theta=0 the distortion inputs are -omega1 and -omega4, not zero. At P4's optical zero theta=omega4, P1 usually remains off its own optical zero. The offsets can be substantial; do not impose a near-zero prior solely because the fixation protocol contains a zero-degree target.
+
+Each offset is shared across frames and captures, initially independent of accommodation. The most symmetric pattern defines an **operational optical alignment zero** for that reflection. This is not automatically an independently measured anatomical axis. If a reproducible accommodation-dependent P4 symmetry shift remains, report it and test a separately declared extension rather than assigning a new zero to each frame.
+
+### 3.2 Converting P1 evaluation to P4's angular reference
+
+Define
+
+$$
+\boxed{\Delta_{14}=\omega_4-\omega_1.}
+$$
+
+Then
+
+$$
+\boxed{\xi_1=\xi_4+\Delta_{14},\qquad
+\theta=\xi_1+\omega_1=\xi_4+\omega_4.}
+$$
+
+Thus, when calculations are expressed using P4-local gaze, evaluate P1 at **xi4 + Delta14**, not xi4. For example, omega1=-3 degrees and omega4=+4 degrees imply xi1=+7 degrees and xi4=0 at visual theta=+4 degrees. These are illustrative offsets, not measured results.
+
+Use visual theta as the canonical optimizer/output state to avoid unnecessary conversions. The offsets are two global calibration parameters, not two extra variables in every frame. Camera-axis alignment matrices and radial-center positions are different quantities from these angular offsets.
+
+### 3.3 How the symmetry zeros are initialized
+
+Evaluate P1 and P4 symmetry separately over the five gaze conditions, using many valid frames and the actual source correspondence. P1 can pool across accommodation because its initial model has no direct A dependence. Select P4's reference after P1 scale correction, evaluating the candidate gaze conditions across accommodation recordings.
+
+The symmetry criterion must reflect the real source arrangement, such as its known mirrored source pairing and a fixed optical image axis. Do not equate symmetry with an equilateral triangle or use a freely fitted affine transform that makes every pattern appear symmetric. A dimensionless shape diagnostic may be used for this reference-selection step, but its rescaling is not the estimator's P4 normalization.
+
+The best of five conditions initializes the offset; it need not be the exact continuous symmetry minimum. Preserve the scores, uncertainty, ties and endpoint selections. Refine the two shared offsets against the constrained full model when identifiable. Do not set every frame in a selected fixation to xi=0. If a minimum is broad, keep competing offset candidates or fix a declared reference and report weak alignment information. A possible zero outside the sampled range is not validated merely by extrapolating a symmetry curve.
+
+## 4. Optical evidence and the common-scale simplification
+
+The optical source supports approximately isotropic, nearly common axial magnification for P1 and P4. P1's reported linear Z slope is 0.00295165270232 mm^-1. The separately measured P4 slopes range from 0.00295232758 at 0 D to 0.00294991207 at 4 D. Both studies checked five gaze angles. These findings motivate using the same P1-derived scalar for both reflections [D1-D3].
+
+The active estimator does **not** compute g from Z or fit those published slopes. It obtains g directly from reference P1 geometry. The remaining P4 accommodation magnification M(A) is a different mechanism and must not be normalized away. P1 and P4 retain distinct distortion maps and coefficients; sharing nuisance scale does not mean sharing all optical responses.
+
+Retain P1's empirical barrel-distorted baseline and both keystone operators. Omit extra Z-dependent distortion/scale coefficients in the initial estimator. P1's lack of direct A dependence is a modeling premise, not a conclusion from a P1 accommodation sweep. P4 keystone coefficients initially lack explicit A dependence, but this is an initial hypothesis rather than an established negligible coupling.
+
+The P4 Z dataset and earlier accommodation/rotation dataset use different lens revisions. Their reported residuals, near-equal slopes and the source's approximately 1-micrometer simplification reference are not experimental error guarantees. Do not treat the small difference between slope fits as a bound on all normalization error or assume it establishes Z invariance of the relative center displacement. Audit residual dependence on P1 scale without freeing a second per-frame scale [D1-D3].
+
+## 5. Full distortion transforms about each reflection's own symmetry zero
+
+### 5.1 Explicit keystone operator
+
+In fixed aligned image axes, define for r=1 or 4
+
+$$
+\boxed{K_r(\xi_r,A;\mathbf b)=
 \begin{bmatrix}
-\dfrac{s_{x,r}(\vartheta,A)b_x}{1+q_r(\vartheta,A)b_y}\\[4pt]
-\dfrac{s_{y,r}(\vartheta,A)b_y}{1+q_r(\vartheta,A)b_y}
-\end{bmatrix},\qquad
+\dfrac{s_{x,r}(\xi_r,A)b_x}{1+q_r(\xi_r,A)b_y}\\[4pt]
+\dfrac{s_{y,r}(\xi_r,A)b_y}{1+q_r(\xi_r,A)b_y}
+\end{bmatrix},\quad
 H_r=\begin{bmatrix}s_{x,r}&0&0\\0&s_{y,r}&0\\0&q_r&1\end{bmatrix}.}
 $$
 
-The same projective denominator changes both coordinates. The minimal functions are
+The minimal symmetry-centered functions are
 
 $$
-s_{x,r}=1+\alpha_r\vartheta^2,\quad
-s_{y,r}=1+\beta_r\vartheta^2,\quad
-q_r=\gamma_r\vartheta.
+s_{x,r}=1+\alpha_r\xi_r^2,\qquad
+s_{y,r}=1+\beta_r\xi_r^2,\qquad
+q_r=\gamma_r\xi_r.
 $$
 
-P1 has no direct A dependence; the first P4 keystone has no explicit A dependence either. Optional couplings are, for example, `q4=(gamma40+gamma41*a)*vartheta` or `sx4=1+(alpha40+alpha41*a)*vartheta^2`. Add only a demonstrated necessary term. Preserve `K4(0,A;b)=b` so a free zero-angle scale cannot duplicate the accommodation baseline.
+For P1 these functions have no A dependence. Initially the P4 coefficients are also independent of A, while its baseline depends on A. Optional couplings such as q4=(gamma40+gamma41*a)*xi4 are separate controlled extensions. Identity is enforced at each **native optical zero**: K1(0;b)=b and K4(0,A;b)=b. It is not enforced at visual theta=0 for both reflections.
 
-For reference length L, alpha/beta have units degree^-2, gamma has L^-1 degree^-1, and q has L^-1. When axes differ, use one fixed orthonormal `Q_r` and `Q_r K_r(vartheta,A;Q_r^T b)`. Do not rotate every observed triangle into a fitted orientation.
+If optical axes differ from camera axes, conjugate by a fixed calibrated orthonormal matrix Qr. These image-axis rotations do not replace omega1/omega4 and must not be fitted independently per frame. With xi in degrees and reference length L, alpha/beta have degree^-2, q has L^-1 and gamma has L^-1 degree^-1. Record conversions when using xi/10 numerically.
 
-Require positive directional scales and `1+q_r b_y >= delta_K > 0` on the declared domain. This is a model-domain constraint, not an accuracy limit. Keystone cannot generate nonzero output y from input `b_y=0`; the source shows such a residual. Higher-degree angle coefficients alone cannot repair that spatial deficiency [D1].
+Require positive scales and denominators bounded away from zero over the actual local-angle and field domain. Large offsets shift that domain: a visual bound of +/-20 degrees does not imply both xi ranges are +/-20 degrees. Keystone is a restricted family, not a complete aberration model; higher polynomial order cannot repair spatial components the rational map cannot express [D1].
 
-### 4.2 Full P1 local transformation
+### 5.2 P1: its own baseline, its own angular offset, common scale
 
-Use a real, already distorted zero-gaze template `b1_j`:
-
-$$
-\boxed{\mathbf F_{1j}(\theta)=K_1(\vartheta;\mathbf b_{1j}),\qquad
-\mathbf P_{1j}^{local}(\theta,g)=g\mathbf F_{1j}(\theta),\quad g=\widehat g_{P1}(\theta).}
-$$
-
-Expanded in aligned axes,
+Let b1j be the real, already distorted P1 template at theta=omega1 and reference magnification. Then
 
 $$
-\mathbf P_{1j}^{local}=(1+\alpha_{1Z}Z)
+\boxed{\mathbf F_{1j}(\theta)=K_1(\theta-\omega_1;\mathbf b_{1j}),}
+$$
+
+$$
+\boxed{\mathbf P_{1j}^{local}=g_i
 \begin{bmatrix}
-(1+\alpha_1\vartheta^2)b_{1j,x}/(1+\gamma_1\vartheta b_{1j,y})\\
-(1+\beta_1\vartheta^2)b_{1j,y}/(1+\gamma_1\vartheta b_{1j,y})
-\end{bmatrix}.
-$$
-
-If a matched paraxial P1 template is known, an alternative representation is `b1_j=[1+kappa1_ref*||u1_j||^2]u1_j`. It is not an extra correction to the real template. No per-frame P1 radial coefficient is fitted. External scaling acts **after** keystone: `S(g1)H1`, not `H1S(g1)`.
-
-### 4.3 Full P4 local transformation
-
-For a known/constrained paraxial template `u4_j` about the local radial origin, set
-
-$$
-\mathbf z_j=M(A)\mathbf u_{4j},\qquad M(A_{ref})=1,
-$$
-
-$$
-\boxed{\mathbf B_{4j}(A)=
-[1+\kappa_4(A)\|\mathbf z_j\|^2]\mathbf z_j,\qquad
-\mathbf F_{4j}(\theta,A)=K_4(\vartheta,A;\mathbf B_{4j}(A)).}
-$$
-
-Writing `R_j^2=||u4_j||^2` and `B_j(A)=M(A)[1+kappa4(A)M(A)^2 R_j^2]`, the complete aligned-axis local map is
-
-$$
-\boxed{
-\mathbf P_{4j}^{local}(\theta,A,g)=g
-\begin{bmatrix}
-\dfrac{s_{x,4}(\vartheta,A)B_j(A)u_{4j,x}}
-{1+q_4(\vartheta,A)B_j(A)u_{4j,y}}\\[5pt]
-\dfrac{s_{y,4}(\vartheta,A)B_j(A)u_{4j,y}}
-{1+q_4(\vartheta,A)B_j(A)u_{4j,y}}
+\dfrac{[1+\alpha_1(\theta_i-\omega_1)^2]b_{1j,x}}
+{1+\gamma_1(\theta_i-\omega_1)b_{1j,y}}\\[4pt]
+\dfrac{[1+\beta_1(\theta_i-\omega_1)^2]b_{1j,y}}
+{1+\gamma_1(\theta_i-\omega_1)b_{1j,y}}
 \end{bmatrix}.}
 $$
 
-The order is **accommodation magnification -> radial distortion -> gaze keystone -> external axial scale**. Accommodation changes the keystone denominator even with A-independent alpha4/beta4/gamma4. This is the essential joint coupling. The derivative is
+Do not apply P1's reference barrel distortion again. An absolute paraxial/radial representation is an alternative only if matched reference geometry is available. No free per-frame P1 barrel coefficient is introduced. The external common scale acts after keystone: S(g)H1, not H1S(g).
+
+### 5.3 P4: accommodation baseline at P4 zero, then P4 keystone
+
+For a known or separately constrained paraxial reference template u4j about the P4 local radial origin at theta=omega4, define
 
 $$
-\partial_A\mathbf F_4=(\partial_b K_4)\partial_A\mathbf B_4
-+(\partial_A K_4)_b.
+\mathbf z_j(A)=M(A)\mathbf u_{4j},\qquad M(A_{ref})=1,
 $$
 
-The second term vanishes only for the minimal keystone; the first does not. `M(A)` is the desired accommodation signal, distinct from the shared P1-derived nuisance scale `g`. Never normalize it away. Kappa has units L^-2. For a nonfolding cubic radial map, check `1+kappa*r^2` and `1+3*kappa*r^2` across the used radii.
-
-### 4.4 The practical empirical-template route
-
-The recordings do not supply a paraxial grid or a measured distortion center. Do not assume the observed P4 reference is undistorted. If a reference radial map is known, use `B4(A)=R_A(R_Aref^-1(b4_ref))`. Otherwise the first executable model uses an **incremental empirical deformation**:
-
 $$
-\boxed{\mathbf B^{rel}_{4j}(A)=
-M(A)\left[1+\Delta\kappa(A)M(A)^2\|\mathbf b_{4j}^{ref}\|^2\right]
-\mathbf b_{4j}^{ref},\quad M(A_{ref})=1,\quad\Delta\kappa(A_{ref})=0.}
+\boxed{\mathbf B_{4j}(A)=[1+\kappa_4(A)\|\mathbf z_j(A)\|^2]\mathbf z_j(A),\qquad
+\mathbf F_{4j}(\theta,A)=K_4(\theta-\omega_4,A;\mathbf B_{4j}(A)).}
 $$
 
-Here `b4_ref` is the real template expressed about a declared shared local origin. The increment is exactly identity at the reference, so it does not double-apply baseline barrel distortion. Its delta-kappa is an **effective incremental coefficient**, not an absolute physical radial coefficient. It shares the same keystone, relative-reference and calibration machinery. Record `baseline_mode=empirical_incremental` versus `paraxial_absolute`; never interchange artifacts between these modes.
-
-## 5. Joint transformation in the actual relative reference
-
-Define model means and centered shapes
+Writing Bj(A)=M(A)[1+kappa4(A)M(A)^2||u4j||^2], the full aligned-axis local transformation is
 
 $$
-\overline{\mathbf F}_r=\tfrac13\sum_j\mathbf F_{rj},\quad
-\mathbf S_{rj}=\mathbf F_{rj}-\overline{\mathbf F}_r,\quad
-\mathbf a_1(\theta)=\begin{bmatrix}\mathbf F_{12}-\mathbf F_{11}\\\mathbf F_{13}-\mathbf F_{11}\end{bmatrix}.
-$$
-
-Let `g=g_P1(theta)` be the **single common nuisance scale** and `delta(theta,A)` a relative optical-origin displacement in P1-reference units. Introduce an arbitrary `t_i` only to derive cancellation:
-
-$$
-\mathbf p_j=\mathbf t+g\mathbf F_{1j},\qquad
-\mathbf q_j=\mathbf t+g\boldsymbol\delta+g\mathbf F_{4j}.
-$$
-
-Subtraction removes t. Define the relative-centroid law
-
-$$
-\mathbf h=\boldsymbol\delta+\overline{\mathbf F}_4-\overline{\mathbf F}_1.
-$$
-
-Fit **h or delta, not both independently**. Center-relative simulations do not provide their separation. The full measured-vector prediction is
-
-$$
-\boxed{\widehat{\mathbf y}(\theta,A,g;\Psi)=
+\boxed{\mathbf P_{4j}^{local}=g_i
 \begin{bmatrix}
-g\mathbf a_1(\theta)\\
-g[\mathbf h+\mathbf S_{41}]\\
-g[\mathbf h+\mathbf S_{42}]\\
-g[\mathbf h+\mathbf S_{43}]
+\dfrac{s_{x,4}(\theta_i-\omega_4,A_i)B_j(A_i)u_{4j,x}}
+{1+q_4(\theta_i-\omega_4,A_i)B_j(A_i)u_{4j,y}}\\[4pt]
+\dfrac{s_{y,4}(\theta_i-\omega_4,A_i)B_j(A_i)u_{4j,y}}
+{1+q_4(\theta_i-\omega_4,A_i)B_j(A_i)u_{4j,y}}
 \end{bmatrix}.}
 $$
 
-Both reflections are modeled, not just P4 conditioned on an exact P1. Psi contains shared templates, alignment, keystone, accommodation functions and displacement coefficients. No free framewise deformation map is present.
+The order is accommodation magnification, radial distortion, gaze keystone, common external scale. The radius is evaluated before radial distortion. Kappa has L^-2 units. Inspect both 1+kappa*r^2 and the radial derivative 1+3*kappa*r^2 when requiring a nonfolding radial map.
 
-The **required active model** uses the P1-derived `g` for both reflections and `h=h(theta,A)`. The scale-corrected expressions are
-
-$$
-\boxed{\widehat{(\mathbf p_j-\mathbf c_1)/g}=\mathbf S_{1j},\qquad
-\widehat{(\mathbf q_j-\mathbf c_1)/g}=\mathbf h+\mathbf S_{4j}.}
-$$
-
-Equivalently, the second expression is `delta+K4(vartheta,A;B4_j(A))-mean_l K1(vartheta;b1_l)`: the complete relative barrel/keystone transformation is retained.
-
-### Relative P4–P1 centroid gaze polynomial (up to cubic)
-
-The **mean displacement of P4 relative to P1** is the primary gaze observable, distinct from the center-relative barrel/keystone deformation within each reflection. Define the measured scale-corrected centroid difference
-
-$
-\mathbf d_i=\frac{\mathbf c_{4i}-\mathbf c_{1i}}{\widehat g_{P1,i}(\theta_i)},
-\qquad \widehat{\mathbf d}_i=\mathbf h(\theta_i,A_i).
-$
-
-Use a cubic-capable polynomial in **gaze** with accommodation-dependent offset and gain:
-
-$
-\boxed{
-\mathbf h(\theta,A)=\mathbf b(A)+\mathbf s(A)t+
-\mathbf c_2(A)t^2+\mathbf c_3(A)t^3,
-\qquad t=\frac{\theta-\theta_{opt}}{10\text{ degrees}}.
-}
-$
-
-The default low-complexity candidate is
-
-$
-\boxed{
-\mathbf h(\theta,A)=
-(\mathbf b_0+\mathbf b_A a)+
-(\mathbf s_0+\mathbf s_A a)t+
-\mathbf c_2t^2+\mathbf c_3t^3,
-\qquad a=\frac{A-A_{ref}}{1\,\mathrm D}.
-}
-$
-
-The linear gaze term is expected to dominate. Allow a **small quadratic correction** and a **smaller/optional cubic correction** rather than forcing them to zero or making every coefficient a high-order function of accommodation. Begin with linear-only and linear-plus-quadratic nested controls; retain cubic only if the same-population residual structure and three-pair agreement justify it. The coefficients are vectors because both image axes are observed; \(h_y\) is not a vertical-gaze state. Scale gaze to the nominal \([-10,10]\)-degree interval and use degree-aware coefficient regularization so the higher-order contributions are controlled without imposing a hard numerical size or RMS gate.
-
-The earlier polynomial-based estimator used cubic gaze and accommodation-dependent gain/curvature terms; reuse the **basis concept**, not old fitted coefficients or its area normalizer. The polynomial is a calibrated relative-centroid law, **not** a substitute for the two explicit reflection distortion transforms. Their model-centered shapes satisfy \(\sum_j\mathbf S_{rj}=0\), so the full three-P4 mean equals \(\mathbf h\) exactly and distortion-induced centroid motion is not counted twice.
-
-For a held-out P4 point, the mean of two retained points is **not** the full centroid. Its model prediction is \(\mathbf h+(\mathbf S_{4a}+\mathbf S_{4b})/2\); never construct the full measured P4 centroid or initialize from the omitted point. Fit the polynomial and the optical shape jointly using the same ten-coordinate relative objective, not duplicated centroid residuals. Avoid unrestricted capture-specific offsets when capture and accommodation demand are confounded.
-
-## 6. P1-reference scale: no triangle normalization
-
-For P1-edge covariance `R11`, fixed within an objective, put `W1=R11^-1`. At each trial theta,
+Accommodation affects the keystone denominator through B4 even when alpha4/beta4/gamma4 are A-independent. Use the full chain derivative
 
 $$
-\boxed{\widehat g_{P1}(\theta)=
-\frac{\mathbf a_1^T W_1\mathbf e_1}{\mathbf a_1^T W_1\mathbf a_1}.}
+\partial_A\mathbf F_4=(\partial_b K_4)\partial_A\mathbf B_4+(\partial_A K_4)_b.
 $$
 
-Require nonzero reference edge energy and a finite positive solution. Invalid scale is a reported invalidity, not silently clipped success. Fit one scalar only. Changing edge origin with consistently transformed covariance must preserve this generalized least-squares solution. This estimate does not require a measured center or a nonzero triangle determinant; joint optical identifiability remains a separate requirement.
+### 5.4 Practical empirical accommodation baseline
 
-Correct observations for interpretation as
-
-$$
-\widetilde{\mathbf p}_j=(\mathbf p_j-\mathbf c_1)/\widehat g,
-\qquad\widetilde{\mathbf q}_j=(\mathbf q_j-\mathbf c_1)/\widehat g.
-$$
-
-Do not divide twice, and do not infer scale from a varying fitted P1 barrel coefficient. Include the trial-gaze/global-parameter dependence of g. For fixed W1,
+The recordings do not directly supply paraxial templates or measured distortion centers. The default executable route starts from a real P4 template b4ref at its symmetry reference and Aref and fits a **relative increment**:
 
 $$
-\partial_\theta\widehat g=
-\frac{\mathbf a_{1,\theta}^T W_1\mathbf e_1-
-2\widehat g\,\mathbf a_{1,\theta}^T W_1\mathbf a_1}
-{\mathbf a_1^T W_1\mathbf a_1}.
+\boxed{\mathbf B_{4j}^{rel}(A)=M(A)
+[1+\Delta\kappa(A)M(A)^2\|\mathbf b_{4j}^{ref}\|^2]\mathbf b_{4j}^{ref},\quad
+M(A_{ref})=1,\quad\Delta\kappa(A_{ref})=0.}
 $$
 
-An old area ratio is only an optional diagnostic. In a noiseless nondegenerate common-scale example, the fitted g equals `sqrt(area(P1))/sqrt(area(F1(theta)))`; under noise it is a different estimator. Removing the area denominator does not create extra information or justify three independent edge weights.
+This preserves the already distorted baseline rather than applying its original radial distortion twice. Delta-kappa is an effective incremental coefficient, not an independently measured absolute barrel coefficient. If the reference radial map is known, an alternative is B4(A)=R_A(R_Aref^-1(b4ref)). Record `empirical_incremental` versus `paraxial_absolute` explicitly.
 
-### Common-scale evidence and boundary
+Begin with M=1+m1*a and Delta-kappa=kA*a, where a=(A-Aref)/(1 D). Use effective magnification alone when scale and radial response are not separable. Shared curvature/power/log parameters may later describe these mechanisms; do not reintroduce an arbitrary independent deformation for every frame.
 
-The independent optical Z studies support nearly equal fractional P1/P4 scale changes. This branch therefore fixes the differential factor to unity **by model definition**, rather than estimating it. No `Z`, `g4`, `eta`, or accommodation-dependent axial slope enters the active state, forward prediction, objective, or cross-check. The scale is derived from P1 only, even when a P4 point is withheld. This does not assert that P4–P1 optical-origin displacement has independently proven Z invariance: retain `h(theta,A)` as the measured relative-centroid law and audit residual dependence on the fitted P1 scale. If that dependency is reproducible, report model mismatch and propose a separately versioned extension, rather than silently freeing another framewise scale.
+### 5.5 Re-referencing a P1 transform to P4 zero without changing predictions
 
-## 7. Reference geometry and identifiability before coefficient expansion
-
-Zero-gaze centroids initialize **separate reference origins**, not exact radial/keystone centers. A distorted centroid can shift even with a centered paraxial template because `mean(kappa*M^3*||u||^2*u)` need not vanish. Use multiple near-zero-gaze frames, correspondence and weak P1 symmetry evidence; do not equate the most symmetric noisy triangle with exact visual/optical zero.
-
-Initially freeze center offsets and template geometry after initialization. Refining a shared center requires a constrained, identifiable model and sensitivity analysis; never fit a center per frame. The paraxial template, absolute barrel coefficient, center and magnification cannot all be inferred freely from three reference points.
-
-Fix the reference length, optical zero, `M(A_ref)=1`, and P1 scale convention. A gaze-dependent isotropic rescaling of all reference predictions can trade off against g. Use matched optical constraints or a declared empirical P1 rotation reference and freeze that scale convention; otherwise call g an **effective reference scale**, not a measured pure axial factor. If a gauge changes, transform P4 and the displacement law consistently as well. Fit P1 residuals under the joint state model, but do not let an arbitrary isotropic P1 gauge drift during optimization.
-
-If all three reference radii equal R,
+Usually no spatial rewarp is necessary: simply evaluate K1 at xi1=xi4+Delta14. If a P1 template explicitly referenced to P4 zero is needed, use homogeneous composition:
 
 $$
-\mathbf B_{4j}=M(A)[1+\kappa_4(A)M(A)^2R^2]\mathbf u_{4j}.
-$$
-
-Only the combined scale is identifiable from this spatial pattern. More frames at the same radii do not automatically separate M and kappa. Near-equal radii lead to weak separation. Check the centered scale/radial design rank after permitting centroid motion. Use an **effective-scale-only model** if needed, or fix one mechanism from matched optical evidence. A future source at a different nonzero radius helps; a center point alone does not separate these two effects.
-
-Nominal demands constrain a numerical accommodation convention, not framewise physiological truth. Monotone A warps can be partly absorbed by response functions. Raw G_A or information per diopter cannot alone select a law. Preserve common anchor, bound, center and prior sensitivity tests, and distinguish independent physical accuracy from internal agreement.
-
-## 8. A single, explicit calibration cost
-
-Let native covariance be Sigma and `R_i=L Sigma_i L^T`. Freeze a common covariance policy across candidate fits. Estimate it from appropriate contiguous records or independent localization evidence; temporal differences can contain real motion. Shared P1 errors and cross-reflection correlations remain. Do not compute a P4 holdout covariance from the omitted observed coordinate.
-
-**Default policy: `p1_profile_v1`.** Substitute the P1-only scale into the raw relative forward model,
-
-$$
-\mathbf r_i(x_i,\Psi)=\mathbf y_i-
-\widehat{\mathbf y}(x_i,\widehat g_{P1,i}(\theta_i);\Psi),
+\mathbf b_{1}^{(4)}=\operatorname{dehom}\{H_1(\Delta_{14})[\mathbf b_1;1]\},
 $$
 
 $$
-\boxed{J=\frac1{2K}\sum_{k=1}^K\frac1{N_k}
-\sum_{i\in k}\mathbf r_i^T R_i^{-1}\mathbf r_i
-+\frac1{2K}\sum_k\left\|
-\begin{bmatrix}(\bar\theta_k-\theta_k^{nom})/s_\theta\\
-(\bar A_k-A_k^{demand})/s_A\end{bmatrix}\right\|^2
-+\lambda\,\mathcal P(\Psi).}
+\boxed{H_{1|4}(\xi_4)=H_1(\xi_4+\Delta_{14})H_1(\Delta_{14})^{-1}.}
 $$
 
-The inherited mean-anchor scales `s_theta=0.10 degree`, `s_A=0.25 D` are finite weights, not error limits. There is no temporal penalty. The global regularizer is stated in dimensionless, physically declared parameter scales; use weak shrinkage of optional departures, not arbitrary raw-coefficient norms across incomparable bases.
+Then H1|4(0)=I and applying H1|4 to b1^(4) yields exactly the original P1 prediction. This is a reference change, not a claim that P1 is symmetric at P4 zero. The native P1 coefficients retain parity about omega1; the re-referenced coefficient curves need not have that parity about omega4. Do not set the old coefficients' argument to xi4 and call the result equivalent.
 
-This is a **declared P1-constrained least-squares criterion**, not the maximum likelihood obtained by optimizing g over all ten coordinates. Because g is estimated from noisy P1, R is a fixed metric for this criterion, not automatically the covariance of the plug-in residual. Do not interpret its minimized value as a calibrated chi-square statistic.
+The general same-reflection transfer between two angles is Hr(xi_b,A)Hr(xi_a,A)^-1 at fixed A. A source template at a different accommodation additionally needs the baseline accommodation mapping. Do not use an angle-only transfer to silently change A.
 
-For illustration in common-scale mode, write `f=yhat/g`, `g=l y` at fixed state, with `l=(a1^T W1 E)/(a1^T W1 a1)` and E selecting the four P1 edges. Then `l f=1` and the plug-in residual covariance is `(I-f l)R(I-f l)^T`, of rank at most nine. Treating corrected/normalized components as independent or giving that singular covariance arbitrary diagonal floors would invent information. Propagate measurement dependence for uncertainty diagnostics, or use a nonredundant representation [U1].
+## 6. P1-reference magnification, shared by both reflections
 
-**Optional comparison policy: `joint_profile_v1`.** With common scale and h independent of g, the joint raw Gaussian profile is `g_joint=(f^T R^-1 y)/(f^T R^-1 f)`. This is an analytically convenient nuisance fit, but allows retained P4 to affect scale. It is not silently equivalent to P1 normalization under noise. Keep it as a separately named ablation, initialize from P1, mask it correctly, and do not make it the default. Differential eta or h(g) generally removes the simple joint scalar profile.
-
-Use a new adapter for the composed model. The old 27-column affine-response design is not this model. Linear centroid coefficients can still be solved exactly at fixed states/nonlinear optics; radial terms inside projective denominators are generally nonlinear. Retain the established bounded least-squares/variable-projection approach only where its separability actually holds.
-
-## 9. Full calibration and iterative state correction
-
-### Initialization
-
-Use the lowest-demand capture to initialize a linear mapping from fixation-mean P4–P1 displacement to the five nominal gaze targets, after provisional P1 scale correction. Initialize each frame separately; do not assign its fixation label as truth. Use `A_ref` from the low-demand convention, not a fictitious measured zero-A capture.
-
-Initialize reference geometry from many near-zero-gaze frames. Freeze the length/center/P1-scale convention. Initialize M and the identifiable radial increment using near-zero-gaze samples across all demands. Begin with linear dependence in `a`; estimate actual frame A with soft mean anchors. This staged initialization uses available conditions, not held-condition training.
-
-### Iteration
-
-With shared parameters fixed, recompute g at every trial gaze. Initialize the gaze proposal from the dominant **linear** part of the centroid polynomial:
-
-$
-t_{proposal}=\frac{(c_{4,x}-c_{1,x})/\widehat g-b_x(A)}{s_x(A)},
-\qquad \theta_{proposal}=\theta_{opt}+(10\text{ degrees})t_{proposal}.
-$
-
-Then refine using the **complete cubic-capable** \(h_x=b_x+s_xt+c_{2x}t^2+c_{3x}t^3\), the full relative P1/P4 distortion response and a fresh \(\widehat g_{P1}(\theta)\) at each trial angle. Do not solve the cubic once with a stale P1 scale; preserve multiple real branches where relevant and select them by the common coordinate objective.
-
-Accept/refine updates using the **same J**:
-
-1. Update P1 reference scale at current theta.
-2. Update A conditional on theta through the complete forward radial/keystone model.
-3. Update theta conditional on A, recomputing g and its derivatives.
-4. Revisit scale and use a joint two-state refinement if alternation stalls.
-5. During calibration only, update shared optical/centroid parameters using all frames; repeat.
-
-Apply damping/line search to J. Conditional calibration steps include their contribution to global fixation means; an anchor on every frame is a different objective. Application and per-frame cross-checks have no nominal-label anchor. Do not inverse-warp about an observed centroid as though it were the optical center: centering, radial mapping and keystone generally do not commute.
-
-Stop on recorded scaled stationarity, objective/step stabilization and domain validity, not an arbitrary number of alternations or an RMS target. Multistart can expose competing minima; local convergence is not proof of global uniqueness. Real within-fixation motion remains allowed.
-
-## 10. Compare accommodation models by cross-agreement
-
-After full calibration, freeze all global parameters, templates, centers and shape laws. For each frame omit P4_j and run the **entire** scale/state inference with all P1 and only the other two P4. Select the covariance marginal before whitening. With P1-profile scale there are eight retained scalar coordinates and two states; scale is a P1-derived nuisance, not an independent measured truth.
-
-The omitted point must not enter the initial gaze, measured P4 centroid/area, weights, global-template updates, all-three warm starts, branch choice or diagnostics used to accept that subset. Means over three **predicted** points are allowed. Fixed calibrated parameters have previously seen all frames: the result is internal calibration agreement, not independent validation.
-
-Score in native relative-pixel units:
+Construct reference P1 edges
 
 $$
-\mathbf e_{ij}^{cross}=(\mathbf q_{ij}-\mathbf c_{1i})-
-\widehat g_{i,-j}[\mathbf h_g+\eta\mathbf S_{4j}](\widehat x_{i,-j}).
+\mathbf a_1(\theta,\omega_1)=
+\begin{bmatrix}\mathbf F_{12}(\theta)-\mathbf F_{11}(\theta)\\\mathbf F_{13}(\theta)-\mathbf F_{11}(\theta)\end{bmatrix}.
 $$
 
+With the fixed P1-edge covariance R11 and W1=R11^-1,
+
 $$
-E_i^2=\frac13\sum_j\|\mathbf e_{ij}^{cross}\|^2,\quad
-G_{A,i}^2=\frac13\sum_{j<l}(\widehat A_{i,-j}-\widehat A_{i,-l})^2,
+\boxed{\widehat g_{P1,i}(\theta,\omega_1)=
+\frac{\mathbf a_1^\mathsf TW_1\mathbf e_{1i}}
+{\mathbf a_1^\mathsf TW_1\mathbf a_1}.}
 $$
 
-with analogous G_theta. These compare simultaneous subset states, not different times or nominal demand. Average squares within exposure then equally across exposures; RMS is a display summary. Score all laws on identical populations, retain missing/failed slots, and report signed axes, per-point/worst errors, tails, bounds and branches.
+Use solves instead of forming an inverse in implementation. Require finite positive g and nonzero weighted edge energy; record invalid cases rather than clipping silently. Only P1 is used to derive the scale. At fixed theta, omega1 and P1 observations, changing A or a P4 measurement cannot directly alter g.
 
-E measures optical reconstruction; G_theta/G_A measure compatibility in the declared state convention. Neither alone determines a good accommodation model. In a raw model with explicit scale, accommodation distinguishability can be diagnosed by projecting its whitened derivative away from gaze and scale: `jA_perp=(I-N N^+)W J_A`, `N=[W J_theta,W J_g]`. Report information/rank/conditioning with fixed physical scales and gauge sensitivity. For P1-profile uncertainty, propagate the complete estimator, including its data-dependent g, rather than treating g as noiseless or importing a two-channel formula.
+Reevaluate g at every trial theta or P1/global-offset update. With fixed weights and template,
 
-Subset differences share P1 and overlap in P4. Uncertainty of a difference includes cross-covariance; three differences are not independent replicates. Low raw G_A can be produced by compression or shared clipping. Keep raw E/G, optical response curves and observability diagnostics together. Do not add px^2, degrees^2 and D^2 into an arbitrary cost.
+$$
+\partial_\theta g=
+\frac{\mathbf a_{1,\theta}^\mathsf TW_1\mathbf e_1
+-2g\mathbf a_{1,\theta}^\mathsf TW_1\mathbf a_1}
+{\mathbf a_1^\mathsf TW_1\mathbf a_1},\qquad
+\partial_{\omega_1}g=-\partial_\theta g.
+$$
 
-Candidate-dependent predictive scoring such as `0.5*(e^T V^-1 e+log det V)` is optional only after validating V, its shared correlations and its reference units. It is not the first deliverable and cannot replace raw reconstruction errors or hide model mismatch by covariance inflation.
+Additional template dependencies need their chain terms. At fixed visual theta, omega4 does not enter the P1 scale. When a program uses xi4 as its state instead, changing omega4 changes theta=xi4+omega4; that chain rule must be included.
 
-## 11. Model hierarchy and deliverable
+The interpretation-only corrected coordinates are (p-c1)/g and (q-c1)/g. They use no area denominator and must not be divided by g a second time. Do not normalize P4 by its own fitted size. The scale fit does not locate the distortion center and does not independently measure physical Z.
 
-Start with the same fixed reference/center convention, keystone, centroid law and scale policy:
+## 7. From point centroids to model-corrected centers
 
-- **DM0:** accommodation-dependent effective magnification only. This is the identifiable fallback/control.
-- **DM1:** magnification plus one linear radial increment (or absolute radial slope with a separately constrained paraxial/reference model).
-- **DM2, conditional:** one additional global curvature/shape parameter in the mechanism that leaves reproducible residual structure. Log-to-linear shifted power, literal positive-A power, or one quadratic term are alternative parameterizations of M or the radial increment, not simultaneous freedoms on every output.
+Let mu_r=(1/3)sum_j F_rj and S_rj=F_rj-mu_r. For deriving relative geometry, write the auxiliary local-origin model
 
-For each candidate refit all global parameters and framewise states on all conditions. If the data cannot distinguish M and radial change, report the effective response instead of manufacturing absolute barrel coefficients. Do not resume a broad exponent sweep or add arbitrary nuisance states merely to shave pixel error. The scientific deliverable is a defensible accommodation-sensitive optical response, its cross-agreement, and clearly identified limitations.
+$$
+\mathbf p_{ij}=\mathbf C_{1i}+g_i\mathbf F_{1j},\qquad
+\mathbf q_{ij}=\mathbf C_{4i}+g_i\mathbf F_{4j}.
+$$
 
-## Sources and scope
+C1 and C4 are not independent extra states or measured absolute eye positions. The shared optical model yields the center estimates
 
-- [D1: Distortion theory, pinned](https://github.com/rueijrwu/distortion_tracking/blob/1d2a0874c79f3f174b36a197c3fbbffd8a32fe60/Theory.md).
-- [D2: Optical result summary, pinned](https://github.com/rueijrwu/distortion_tracking/blob/1d2a0874c79f3f174b36a197c3fbbffd8a32fe60/Summary.md).
-- [D3: P4 Z-magnification report, pinned](https://github.com/rueijrwu/distortion_tracking/blob/1d2a0874c79f3f174b36a197c3fbbffd8a32fe60/data/p4_z_magnification/p4_z_magnification.md).
-- [G1: Reviewed fixation metadata](../data/fixations/fixation_intervals.json). Detection arrays/correspondence are in the trusted repository pickles, not regenerated by this document.
+$$
+\widehat{\mathbf C}_{1i}=\mathbf c_{1i}-g_i\boldsymbol\mu_{1i},\qquad
+\widehat{\mathbf C}_{4i}=\mathbf c_{4i}-g_i\boldsymbol\mu_{4i}.
+$$
+
+With the required **P4 minus P1** convention, define
+
+$$
+\boxed{\mathbf D(\theta,A)=\frac{\mathbf C_4-\mathbf C_1}{g},\qquad
+\widehat{\mathbf D}^{obs}_i=
+\frac{\mathbf c_{4i}-\mathbf c_{1i}}{g_i}-\boldsymbol\mu_{4i}+\boldsymbol\mu_{1i}.}
+$$
+
+Thus the total measured centroid law is derived, not independently fitted:
+
+$$
+\boxed{\mathbf h_{cent}(\theta,A)=\mathbf D(\theta,A)+\boldsymbol\mu_4(\theta,A)-\boldsymbol\mu_1(\theta).}
+$$
+
+The initial polynomial uses uncorrected centroid difference. The refined polynomial uses model-corrected center separation D. Once D is fitted, do not also fit a free total-centroid law hcent or add the distortion mean offsets twice. Corrected centers are functions of the same data/state/model; agreement with them is not independent validation.
+
+An angular symmetry zero is not a measured pixel distortion-center coordinate. Use separate local origins for P1/P4 templates, initially estimated from their own reference patterns. Only identifiable shared center/template corrections may be refined. Do not fit unrestricted centers per frame, or simultaneously free all radial centers, templates, absolute barrel coefficients and scale conventions.
+
+## 8. Gaze polynomial: visual convention, up to order three
+
+Use one global forward center-separation law, with t_v=theta/(10 degrees) and a=(A-Aref)/(1 D):
+
+$$
+\boxed{\mathbf D(\theta,A)=
+(\mathbf b_0+\mathbf b_A a)+(\mathbf s_0+\mathbf s_A a)t_v
++\mathbf c_2t_v^2+\mathbf c_3t_v^3.}
+$$
+
+The vector form covers both image axes; D_y is not vertical gaze. Start with dominant linear behavior, a small quadratic correction and optional cubic correction. Add A dependence to curvature only for supported residual structure. Compare degree-1, degree-2 and degree-3 nested variants with consistent weights and accommodation models. Regularize higher-order contributions in this declared visual-angle basis, not arbitrary raw coefficients after an angular shift. There is no hard coefficient hierarchy or RMS limit.
+
+Keep the polynomial in visual gaze by default. Optical parity constraints belong to xi1/xi4, not t_v. No zero polynomial intercept is forced at visual theta=0 or either optical zero. A nonlinear forward cubic and a separately fitted inverse cubic are not generally exact inverses; the inverse polynomial is only a bootstrap/initialization tool.
+
+If the same polynomial is evaluated in P4-local coordinates t4=xi4/(10 degrees), then t_v=t4+w4 with w4=omega4/(10 degrees). For D=sum_n c_n(A)t_v^n, the transformed coefficients must be
+
+$$
+\boxed{\widetilde{\mathbf c}_m(A)=
+\sum_{n=m}^3 {n\choose m}\mathbf c_n(A)w_4^{n-m}.}
+$$
+
+Shifting the polynomial origin without this conversion changes the mapping. A cubic can produce quadratic/linear/intercept terms under a shift. Keeping the canonical polynomial in visual theta avoids repeatedly transforming it when optical-offset estimates change.
+
+## 9. Complete relative forward model with both offsets
+
+Use F1j(theta)=K1(theta-omega1;b1j), F4j(theta,A)=K4(theta-omega4,A;B4j(A)), and a1(theta,omega1) exactly as defined above. F1/F4 accept **visual theta**; the lower-level K1/K4 accept **local xi**. Subtract each offset exactly once.
+
+With mu1(theta)=mean_j F1j(theta), the complete prediction is
+
+$$
+\boxed{\widehat{\mathbf y}_i=g_i
+\begin{bmatrix}
+\mathbf a_1(\theta_i,\omega_1)\\
+\mathbf D(\theta_i,A_i)+\mathbf F_{41}(\theta_i,A_i)-\boldsymbol\mu_1(\theta_i)\\
+\mathbf D(\theta_i,A_i)+\mathbf F_{42}(\theta_i,A_i)-\boldsymbol\mu_1(\theta_i)\\
+\mathbf D(\theta_i,A_i)+\mathbf F_{43}(\theta_i,A_i)-\boldsymbol\mu_1(\theta_i)
+\end{bmatrix},\qquad g_i=\widehat g_{P1,i}(\theta_i,\omega_1).}
+$$
+
+In fully expanded relative form, the P4 block is
+
+$$
+\boxed{\widehat{\mathbf q_{ij}-\mathbf c_{1i}}=g_i\left[
+\mathbf D(\theta_i,A_i)+K_4(\theta_i-\omega_4,A_i;\mathbf B_{4j}(A_i))
+-\tfrac13\sum_lK_1(\theta_i-\omega_1;\mathbf b_{1l})\right].}
+$$
+
+The P1 block is g_i times the differences between its K1 outputs. Equivalently,
+
+$$
+\widehat{\mathbf p_j-\mathbf c_1}=g(\mathbf F_{1j}-\boldsymbol\mu_1),\qquad
+\widehat{\mathbf q_j-\mathbf c_1}=g[\mathbf D+\mathbf F_{4j}-\boldsymbol\mu_1].
+$$
+
+Consequently,
+
+$$
+\widehat{(\mathbf q_j-\mathbf p_j)/g}=\mathbf D+\mathbf F_{4j}-\mathbf F_{1j},\qquad
+\widehat{(\mathbf c_4-\mathbf c_1)/g}=\mathbf D+\boldsymbol\mu_4-\boldsymbol\mu_1.
+$$
+
+The P1 and P4 distortions are each symmetry-centered, while the relative observation remains in one common camera-axis and visual-gaze convention. Applying both operators at the same local angle would be wrong when omega1 differs from omega4. Absolute common translation cancels; neither optical offset creates an absolute eye-position observation.
+
+## 10. One calibration objective, not separate conflicting fits
+
+Let R_i=L Sigma_i L^T be a fixed common weighting covariance for the ten relative coordinates, derived from a declared native-coordinate noise policy. With residual e_i=y_i-yhat_i(theta_i,A_i;Psi), use
+
+$$
+\boxed{J=\frac1{2K}\sum_{k=1}^{K}\frac1{N_k}\sum_{i\in k}\mathbf e_i^\mathsf TR_i^{-1}\mathbf e_i
++\frac1{2K}\sum_k\left[
+\frac{(\bar\theta_k-\theta_k^{nom})^2}{s_\theta^2}+
+\frac{(\bar A_k-A_k^{demand})^2}{s_A^2}\right]+\lambda\mathcal P(\Psi).}
+$$
+
+Psi includes the two shared angular offsets, fixed/constrained reference geometry, optical coefficients and center polynomial. The only independent frame states are theta_i,A_i. Inherited initial mean-anchor scales 0.10 degree and 0.25 D are finite weights, not allowed-motion or accuracy limits. Temporal-flatness regularization is zero. Weak optional-coefficient shrinkage must use declared dimensionless parameter scales.
+
+The policy `p1_profile_v1` derives g from P1 only and substitutes it in the raw relative-pixel cost. This is a P1-constrained criterion, not the Gaussian maximum likelihood obtained by optimizing g over all ten coordinates. Do not detach g when differentiating theta, omega1 or other P1 parameters. A jointly fitted P4-influenced nuisance scale is not an allowed silent fallback.
+
+P1 noise is shared by its edges, every relative P4 coordinate and the plug-in scale. The residual covariance is not automatically R. At a fixed state, if g=l*y and yhat=g*f with l*f=1, its first-order covariance is (I-f*l)R(I-f*l)^T and has rank at most nine. Use R as the declared fixed metric; do not interpret the minimized value as a calibrated chi-square, invent independent normalized errors or add diagonal floors to manufacture information. Center/scale uncertainty and cross-subset correlations must be propagated for uncertainty diagnostics [U1].
+
+At fixed frame states and nonlinear optical parameters the D coefficients are linear, so solve them by weighted linear least squares against the complete relative objective. Shape means and g are fixed in that block. Do not fit a second center-derived-data loss as independent evidence. Radial coefficients inside a projective denominator and angular offsets are nonlinear. Reuse least-squares/variable-projection methods only for genuinely separable blocks.
+
+## 11. Staged initialization and iterative full calibration
+
+The reference condition is denoted Aref. The retained metadata label for the lowest demand is approximately 0.36036 D; do not silently relabel it measured A=0. A relative-accommodation origin may be defined there. The method also applies to a genuine independently specified zero-accommodation reference if such data are supplied [G1].
+
+**Bootstrap gaze:** form the spatial centroids in each frame, then the temporal fixation means of c4x-c1x in the reference recording. Fit an inverse polynomial of degree at most three to the five nominal gaze positions, favoring its linear part. Apply it separately to each frame. Provisional transfer to other accommodation recordings supplies starts, not exact gaze. Once g is available, repeat using the mean of the framewise corrected displacement, not the ratio of two independently averaged quantities.
+
+**P1 first:** select its own most symmetric gaze omega1, build its native baseline there, and fit its gaze response using initial states. Extend the shared P1 fit and scale calculation across all accommodation conditions, using soft gaze means while allowing individual states to change. P1's accommodation independence does not make accommodation-biased bootstrap gaze exact.
+
+**P4 symmetry reference:** after scale correction, separately select/refine omega4 from its five gaze conditions across accommodation. Do not inherit omega1 or nominal zero. At P4 zero, explicitly evaluate the P1 map at xi1=omega4-omega1. Preserve both native baselines rather than relabeling P1's as a symmetric P4-zero template.
+
+**Accommodation baseline, then P4 keystone:** initialize M(A) and the identifiable barrel increment near theta=omega4 across demands, initially treating deviations from that gaze as small. Then fit P4 rotation deformation across all five gazes. Revisit the reference frames with their individual estimated xi4 as soon as keystone is available; no reference fixation remains permanently fixed at xi4=0.
+
+**Centers and gaze recalibration:** estimate all states, calculate the model-informed center differences with Section 7, and refit D. The current optical corrections provide proposals; accept them using J. Only the first bootstrap permanently uses crude centroids as its target. The final forward model uses D plus explicit distortion-mean offsets.
+
+**Repeat the full process:** alternate frame states, P1 response/scale, P4 baseline, P4 keystone, permitted shared alignment/geometry updates and D until the full objective and parameters stabilize. Recompute scales whenever their inputs change. Global offset updates require full derivatives and domain checks; never independently reset each frame's gaze zero. If a template is literally re-referenced, apply the homogeneous baseline/operator conversion together. Do not mix reference relabeling with a physical parameter update.
+
+Use damping, line search and joint two-state refinement when conditional updates stall. For a gaze proposal, first correct the centroid by -mu4+mu1 and use D's dominant linear inverse; then evaluate the complete cubic-capable forward model with new g at every trial theta. During calibration, conditional state updates include their contribution to **full fixation means**. Application has no nominal-frame anchor. Numerical convergence is not proof of a unique physical solution.
+
+## 12. Cross-agreement and identifiability
+
+After each complete calibration checkpoint, freeze all parameters, including both offsets and center/template conventions. For each scheduled frame omit each P4 point in turn, retain all P1 and the other two P4, and rerun the complete state/scale inference. Never use the all-three measured P4 mean, full-fit state, area, or an unmasked warm start. Model-predicted means over all points are permitted.
+
+For retained P4 set I, its model-informed center is
+
+$$
+\widehat{\mathbf C}_{4,I}=\overline{\mathbf q}_I-g\overline{\mathbf F}_{4,I}.
+$$
+
+The retained mean is not the full centroid. Predict the omitted point in native relative pixels using g[D+F4j-mu1], with the state selected without that measurement. Select covariance marginals **before** whitening, not principal blocks of a full precision matrix. Changing the omitted coordinate with calibration fixed must not change starts, scale, state, branch or prediction.
+
+Primary reporting is omitted-P4 reconstruction and same-frame agreement of the three visual-theta/A estimates. For complete triples,
+
+$$
+E_i^2=\tfrac13\sum_j\|\mathbf e_{ij}^{cross}\|^2,\qquad
+G_{A,i}^2=\tfrac13\sum_{j<k}(\widehat A_{i,-j}-\widehat A_{i,-k})^2,
+$$
+
+with analogous G_theta. Average squared quantities within exposure, then equally across all twenty exposures. RMS is a readable summary, not a hard threshold. Preserve exact frame/slot identities, axes, points, tails, bounds, branches, conditioning and missing outcomes. Compare models on identical complete cohorts; absent exposures make that comparison incomplete. The three subset estimates overlap and are correlated.
+
+An additional **P1-omission** diagnostic requires rebuilding scale from the two retained P1 points, using their centroid/reference covariance and the corresponding predicted P1 mean. Do not use the omitted P1 in a full centroid or scale. Predict it from the retained reference after solving the state. This is a separate rank-checked diagnostic, not a substitution for the primary P4 schedule or an independent extra physical truth channel.
+
+Fixed calibration already used the tested observations, so these checks measure internal consistency. Do not force cross-errors to zero, demand monotonic cross-score improvement during optimization, or stop solely because correction loops stop moving. Report numerical convergence and cross-agreement stability separately.
+
+Equal-radius P4 samples can make M and radial change indistinguishable; a free radial center can conceal rather than resolve that problem. Weak P1 gaze deformation can confound angular alignment, reference scaling and framewise g. Fix template/length gauges, profile offset sensitivity, and retain an effective-scale model when separate radial terms are unidentifiable. Symmetry-zero parameters and model-corrected centers are not independent physiological measurements.
+
+Inspect the full two-state Jacobian, including offsets, optical means and the P1 scale derivative. Shared-offset/template uncertainty affects interpretation beyond a fixed-calibration local inverse. Raw G_A can decrease under a compressed A coordinate; optical cross-prediction, state agreement and accommodation-vs-gaze information must be interpreted together. No arbitrary mixed-unit sum establishes the best law.
+
+## 13. Controlled model hierarchy and boundary
+
+DM0 uses accommodation-dependent effective magnification; DM1 adds an identifiable radial increment; DM2 adds one justified curvature/coupling/spatial mechanism. The separate omega1/omega4 and P4-minus-P1 center-separation polynomial are part of every active candidate, not optional corrections reserved for a favored accommodation law. Hold polynomial degree/regularization and alignment policy fixed when comparing accommodation mechanisms; test degree changes separately.
+
+No extra physical Z state, free P4 scale, mandatory area ratio, per-frame center/alignment, or automatic restoration of legacy coefficients is introduced. Each candidate gets a fresh full calibration with natural within-fixation state variation. A defensible effective accommodation response is useful even when its absolute barrel coefficient is not uniquely identified. Independent physical references would be needed for physiological accuracy claims.
+
+This specification supersedes the old single-theta_opt, nominal-zero reference initialization and permanently centroid-based gaze polynomial for this branch. It does not modify data or assert that any new optimizer, GPU run or calibration has been completed.
+
+## Sources
+
+- [D1: Optical distortion theory, pinned](https://github.com/rueijrwu/distortion_tracking/blob/1d2a0874c79f3f174b36a197c3fbbffd8a32fe60/Theory.md).
+- [D2: Optical summary, pinned](https://github.com/rueijrwu/distortion_tracking/blob/1d2a0874c79f3f174b36a197c3fbbffd8a32fe60/Summary.md).
+- [D3: P4 axial magnification report](https://github.com/rueijrwu/distortion_tracking/blob/1d2a0874c79f3f174b36a197c3fbbffd8a32fe60/data/p4_z_magnification/p4_z_magnification.md).
+- [G1: Reviewed fixation metadata](../data/fixations/fixation_intervals.json).
 - [U1: NIST, law of propagation of uncertainty](https://physics.nist.gov/cuu/Uncertainty/combination.html).
-
-Numerical simplification evidence applies only to the source domain and conventions. Centers, source geometry and response coefficients remain experimental calibration choices. This document does not claim a completed combined lens model, a GPU implementation, or physiological accuracy.
