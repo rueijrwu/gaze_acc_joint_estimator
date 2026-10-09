@@ -234,14 +234,42 @@ $$
 
 Equivalently, the second expression is `delta+K4(vartheta,A;B4_j(A))-mean_l K1(vartheta;b1_l)`: the complete relative barrel/keystone transformation is retained.
 
-For initialization use
+### Relative P4–P1 centroid gaze polynomial (up to cubic)
 
-$$
-\mathbf h(\theta,A)=\mathbf b_0+\mathbf b_A a+
-(\mathbf s_0+\mathbf s_A a)t,\qquad t=\vartheta/(10\text{ degrees}).
-$$
+The **mean displacement of P4 relative to P1** is the primary gaze observable, distinct from the center-relative barrel/keystone deformation within each reflection. Define the measured scale-corrected centroid difference
 
-The four vector coefficients allow accommodation-dependent centroid offset and gaze gain (eight scalars). H_y is not vertical gaze. Avoid unrestricted capture-specific offsets when capture and accommodation demand are confounded. This centroid law is calibrated independently of the center-relative optical shape, but the common six-coordinate fit couples their estimates.
+$
+\mathbf d_i=\frac{\mathbf c_{4i}-\mathbf c_{1i}}{\widehat g_{P1,i}(\theta_i)},
+\qquad \widehat{\mathbf d}_i=\mathbf h(\theta_i,A_i).
+$
+
+Use a cubic-capable polynomial in **gaze** with accommodation-dependent offset and gain:
+
+$
+\boxed{
+\mathbf h(\theta,A)=\mathbf b(A)+\mathbf s(A)t+
+\mathbf c_2(A)t^2+\mathbf c_3(A)t^3,
+\qquad t=\frac{\theta-\theta_{opt}}{10\text{ degrees}}.
+}
+$
+
+The default low-complexity candidate is
+
+$
+\boxed{
+\mathbf h(\theta,A)=
+(\mathbf b_0+\mathbf b_A a)+
+(\mathbf s_0+\mathbf s_A a)t+
+\mathbf c_2t^2+\mathbf c_3t^3,
+\qquad a=\frac{A-A_{ref}}{1\,\mathrm D}.
+}
+$
+
+The linear gaze term is expected to dominate. Allow a **small quadratic correction** and a **smaller/optional cubic correction** rather than forcing them to zero or making every coefficient a high-order function of accommodation. Begin with linear-only and linear-plus-quadratic nested controls; retain cubic only if the same-population residual structure and three-pair agreement justify it. The coefficients are vectors because both image axes are observed; \(h_y\) is not a vertical-gaze state. Scale gaze to the nominal \([-10,10]\)-degree interval and use degree-aware coefficient regularization so the higher-order contributions are controlled without imposing a hard numerical size or RMS gate.
+
+The earlier polynomial-based estimator used cubic gaze and accommodation-dependent gain/curvature terms; reuse the **basis concept**, not old fitted coefficients or its area normalizer. The polynomial is a calibrated relative-centroid law, **not** a substitute for the two explicit reflection distortion transforms. Their model-centered shapes satisfy \(\sum_j\mathbf S_{rj}=0\), so the full three-P4 mean equals \(\mathbf h\) exactly and distortion-induced centroid motion is not counted twice.
+
+For a held-out P4 point, the mean of two retained points is **not** the full centroid. Its model prediction is \(\mathbf h+(\mathbf S_{4a}+\mathbf S_{4b})/2\); never construct the full measured P4 centroid or initialize from the omitted point. Fit the polynomial and the optical shape jointly using the same ten-coordinate relative objective, not duplicated centroid residuals. Avoid unrestricted capture-specific offsets when capture and accommodation demand are confounded.
 
 ## 6. P1-reference scale: no triangle normalization
 
@@ -334,12 +362,14 @@ Initialize reference geometry from many near-zero-gaze frames. Freeze the length
 
 ### Iteration
 
-With shared parameters fixed, recompute g at every trial gaze. A convenient gaze proposal for `h_x=b(A)+s(A)*vartheta` is
+With shared parameters fixed, recompute g at every trial gaze. Initialize the gaze proposal from the dominant **linear** part of the centroid polynomial:
 
-$$
-\theta_{proposal}=\theta_{opt}+
-\frac{(c_{4,x}-c_{1,x})/\widehat g-b(A)}{s(A)}.
-$$
+$
+t_{proposal}=\frac{(c_{4,x}-c_{1,x})/\widehat g-b_x(A)}{s_x(A)},
+\qquad \theta_{proposal}=\theta_{opt}+(10\text{ degrees})t_{proposal}.
+$
+
+Then refine using the **complete cubic-capable** \(h_x=b_x+s_xt+c_{2x}t^2+c_{3x}t^3\), the full relative P1/P4 distortion response and a fresh \(\widehat g_{P1}(\theta)\) at each trial angle. Do not solve the cubic once with a stale P1 scale; preserve multiple real branches where relevant and select them by the common coordinate objective.
 
 Accept/refine updates using the **same J**:
 

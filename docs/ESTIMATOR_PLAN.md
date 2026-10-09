@@ -112,7 +112,7 @@ First parameterization:
 - P1 empirical baseline with a fixed/gauge-constrained gaze-reference transformation; retain keystone.
 - P4 M(A)=1+m1*a; DM1 additionally `delta_kappa=k1*a` in the incremental route.
 - P4 `sx=1+alpha*t^2`, `sy=1+beta*t^2`, `q=gamma*t/L_ref` in explicitly scaled axes, equivalent to the physical-degree equations.
-- Relative centroid `h=b0+bA*a+(s0+sA*a)*t` in both image axes.
+- Relative P4–P1 centroid gaze law in both axes: `h=(b0+bA*a)+(s0+sA*a)*t+c2*t**2+c3*t**3`. The **linear** term is dominant; test linear-only, small quadratic, and optional cubic nested variants. Begin with A-independent c2/c3, and add accommodation dependence only if warranted by paired evidence. The centroid law describes the full P4–P1 mean; centered distortion shapes must not double-count it.
 - Use the **same** P1-derived `g` in both reflection predictions. No new physical Z state, separate P4 scale, differential `eta`, A-dependent axial slope, A-dependent keystone, free affine transform or per-frame center.
 
 Do not set weak rotation distortion to zero without a same-domain ablation. Reject invalid denominator/radial-domain proposals via the optimizer's domain handling; do not replace them with clipped coordinates with false gradients.
@@ -131,7 +131,7 @@ Each candidate receives newly estimated global parameters and one free `(theta,A
 
 Initialization sequence:
 
-1. Low-demand fixation means initialize a linear relative-centroid gaze mapping after provisional P1 scale correction.
+1. Low-demand fixation means initialize the dominant **linear** P4–P1 centroid gaze mapping after provisional P1 scale correction. Fit small quadratic and optional cubic corrections with shared coefficients using all conditions; do not force nominal fixation angles on individual frames.
 2. Near-zero-gaze samples across demands initialize M and any identifiable radial increment with soft accommodation means.
 3. Revisit the low-demand frames with estimated A, correct the gaze mapping, then extend joint updates to **all conditions**, not only the reference capture.
 
@@ -142,7 +142,8 @@ instantiate fresh model + framewise initial states
 repeat:
     evaluate trial-gaze reference P1 and g_P1 for all frames
     propose conditional accommodation updates through full radial/keystone model
-    propose gaze updates with accommodation-corrected centroid gain/offset
+    propose gaze updates from accommodation-corrected linear centroid inverse
+    refine using the full up-to-cubic centroid polynomial and complete optical response
     reevaluate g_P1 at every trial gaze
     accept/damp against the SAME full objective
     update shared optical parameters using all calibration frames
@@ -158,6 +159,11 @@ Use at least the nominal initialized and a reproducible perturbed-state/global s
 State bounds are numerical exploration limits. No law fails merely because G, E, nominal RMS or within-fixation variation is large. Bound/rank/ambiguity behavior is reported, not used to hide difficult states.
 
 **D2 exit:** independently certified full-calibration artifacts or explicit unsuccessful outcomes. No condition-held-out study or nested model selection is required for this deliverable.
+
+
+### Polynomial gaze model verification
+
+The centroid polynomial is a **distinct translation/displacement component** and must not be absorbed into radial/keystone deformation. Check that averaging the three complete predicted P4 points after P1-scale correction recovers `h(theta,A)` exactly. For a two-P4 omission, predict the retained mean with the corresponding **two predicted centered shape terms**; the full observed P4 mean is forbidden. Verify analytic/autodiff gradients through `g_P1(theta)` and all cubic coefficients. Compare nested linear, quadratic and cubic gaze laws on exactly matched calibration/cross-check populations, reporting higher-order contributions across the nominal gaze range and preserving the same accommodation response and covariance. Do not promote a cubic law for a marginal numerical reduction alone.
 
 ## 7. GPU optimization using PyTorch/CuPy
 
