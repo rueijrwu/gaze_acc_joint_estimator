@@ -1,0 +1,352 @@
+{
+  "certificate": {
+    "KKT_complementarity_inf": 1.8876670508356725e-13,
+    "KKT_complementarity_threshold": 1e-06,
+    "KKT_multipliers": [
+      34.402896410037044,
+      3.2934983366831103,
+      10.495427934250738
+    ],
+    "active_physical_inequality_count": 3,
+    "constrained_tangent_dimension": 16,
+    "constraint_curvature": {
+      "active_branch_status": "SMOOTH",
+      "method": "selected-endpoint forward automatic differentiation, order2",
+      "nonsmooth_rows": []
+    },
+    "constraint_derivative_method": "selected-endpoint forward automatic differentiation",
+    "constraint_derivative_status": "SMOOTH_ACTIVE_BRANCH",
+    "domain": {
+      "P1": {
+        "local_theta_bounds_deg": [
+          -9.979095888413074,
+          30.020904111586926
+        ],
+        "min_denominator": 0.9792389940747869,
+        "min_sx": 1.0,
+        "min_sy": 0.972252489961042,
+        "valid_domain": true
+      },
+      "P4": {
+        "max_M": 1.0049914803825557,
+        "min_M": 0.9218833320130043,
+        "min_denominator": 0.9925731668786885,
+        "min_sx": 1.0,
+        "min_sy": 1.0,
+        "valid_domain": true
+      }
+    },
+    "fit_certified": false,
+    "free_state_curvature_normalization": "observed per-frame Hessian divided by positive objective row weight; sign-only comparison with weighted historical census",
+    "free_state_eigenvalue_count": 169935,
+    "free_state_observed_curvature_positive": true,
+    "free_state_observed_curvature_status": "PASSED",
+    "global_projected_gradient_inf": 2.5102956584532876e-05,
+    "globals_at_bounds": [],
+    "minimum_free_state_eigenvalue": 124.70747928761858,
+    "negative_free_state_eigenvalue_count": 0,
+    "nonsmooth_active_constraint_rows": [],
+    "observed_profile_curvature_eigenvalues": [
+      4.943033318807251e-05,
+      0.00013034149459829664,
+      0.010755554452111018,
+      0.051001946234177926,
+      0.11994608343633292,
+      0.20302423188110222,
+      0.2532194480692999,
+      0.2887608190097267,
+      0.4889057839491739,
+      0.6359567178653452,
+      0.8080237993371467,
+      1.0255594182243841,
+      1.7492650562461662,
+      2.7556109105856232,
+      3.2380981629094654,
+      4.371692295972158
+    ],
+    "observed_profile_positive": true,
+    "observed_profile_rank": 16,
+    "physical_centroid_constraint": {
+      "A_cell_width_D": 0.25,
+      "accommodation_interval_D": [
+        0.0,
+        4.0
+      ],
+      "allowed_max_accommodation_slope_px_per_D": 2.50675055646294,
+      "bound_deg": 1.0,
+      "certified_max_abs_accommodation_slope_px_per_D": 2.506750556462985,
+      "certified_min_gaze_slope_px_per_deg": 10.02700222585175,
+      "certified_shift_equivalent_upper_bound_deg": 1.0000000000000189,
+      "constraint_derivative_extension_D": [
+        0.0,
+        6.0
+      ],
+      "feasible": true,
+      "interval_cells": 1920,
+      "kind": "user-authorized continuous-domain sufficient 1degree bound",
+      "meaning": "H=D+mu4-mu1 at g=1; bound on horizontal centroid response. Inverse-angle guarantee applies where the monotone inverse lies in the declared theta domain. No bound on individual theta or fixation-mean deviation.",
+      "minimum_normalized_slack": -1.7985612998927536e-14,
+      "reference_interval_min_gaze_slope_px_per_deg": 20.05400445170352,
+      "required_min_gaze_slope_px_per_deg": 10.02700222585176,
+      "theta_cell_width_deg": 0.5,
+      "theta_domain_deg": [
+        -20.0,
+        20.0
+      ]
+    },
+    "profile_curvature_evaluated": true,
+    "profile_curvature_status": "PASSED",
+    "state_data_rank2_count": 89175,
+    "state_projected_gradient_inf": 1.2250697418308976e-11,
+    "states_at_bounds": [
+      0,
+      8415
+    ],
+    "stationarity_threshold": 1e-06
+  },
+  "compact_final": {
+    "ambiguous": 0,
+    "at_bounds": 48,
+    "certified": 270,
+    "retained_input_valid": 270,
+    "slots": 300,
+    "usable_native_coordinate_rms_px": 29.36729701995275,
+    "usable_scored": 270
+  },
+  "components": {
+    "A_anchor": 1.5818595239840283,
+    "cost": 1925.6013386760033,
+    "point": 1880.9906372222158,
+    "regularization": 0.024399751765229304,
+    "temporal": 0.0,
+    "theta_anchor": 43.00444217803816
+  },
+  "elapsed_seconds": 141.9277943829984,
+  "label": "continued",
+  "mean_deviations": [
+    [
+      -0.37592637356794434,
+      -0.25202692421315204
+    ],
+    [
+      0.9352282605488984,
+      -0.021141171341237774
+    ],
+    [
+      1.3595282183039121,
+      -0.3296991156908773
+    ],
+    [
+      1.4101002849835238,
+      -0.24630622234983546
+    ],
+    [
+      0.3227792534268161,
+      0.016179982805819282
+    ],
+    [
+      0.4518415145143013,
+      -0.20702847594096907
+    ],
+    [
+      0.4879977241826383,
+      0.2938769517332238
+    ],
+    [
+      -0.044428441559136236,
+      0.13502795894738284
+    ],
+    [
+      -0.7777215158136066,
+      0.9094526898113182
+    ],
+    [
+      -2.1529962020513773,
+      0.03826790108784017
+    ],
+    [
+      0.4698635761438066,
+      0.47701342253980084
+    ],
+    [
+      0.870005613492336,
+      1.2021508848793179
+    ],
+    [
+      0.29798464462695723,
+      0.6997392573949854
+    ],
+    [
+      -0.23760679585992595,
+      0.38408248847150794
+    ],
+    [
+      -1.510212496239669,
+      0.03364706432326647
+    ],
+    [
+      0.515294468330735,
+      0.16089137579046087
+    ],
+    [
+      1.1366470952622434,
+      0.4677543945375069
+    ],
+    [
+      1.0178325269306818,
+      0.053067743367820164
+    ],
+    [
+      0.5071273882292502,
+      0.09581042223720271
+    ],
+    [
+      -0.5532330945951589,
+      -0.42113834960128327
+    ]
+  ],
+  "means": [
+    [
+      -10.375926373567944,
+      0.10833343614720829
+    ],
+    [
+      -4.064771739451102,
+      0.33921918901912257
+    ],
+    [
+      1.3595282183039121,
+      0.030661244669483067
+    ],
+    [
+      6.410100284983524,
+      0.11405413801052487
+    ],
+    [
+      10.322779253426816,
+      0.3765403431661796
+    ],
+    [
+      -9.548158485485699,
+      3.792971524059031
+    ],
+    [
+      -4.512002275817362,
+      4.293876951733224
+    ],
+    [
+      -0.044428441559136236,
+      4.135027958947383
+    ],
+    [
+      4.222278484186393,
+      4.909452689811318
+    ],
+    [
+      7.847003797948623,
+      4.03826790108784
+    ],
+    [
+      -9.530136423856193,
+      3.477013422539801
+    ],
+    [
+      -4.129994386507664,
+      4.202150884879318
+    ],
+    [
+      0.29798464462695723,
+      3.6997392573949854
+    ],
+    [
+      4.762393204140074,
+      3.384082488471508
+    ],
+    [
+      8.489787503760331,
+      3.0336470643232665
+    ],
+    [
+      -9.484705531669265,
+      2.160891375790461
+    ],
+    [
+      -3.8633529047377566,
+      2.467754394537507
+    ],
+    [
+      1.0178325269306818,
+      2.05306774336782
+    ],
+    [
+      5.50712738822925,
+      2.0958104222372027
+    ],
+    [
+      9.446766905404841,
+      1.5788616503987167
+    ]
+  ],
+  "scaled_global_change": [
+    0.0007815125201378619,
+    0.003263578377210463,
+    0.05226572302786567,
+    -0.00939140107915376,
+    0.01100358256456932,
+    0.010990493563035466,
+    0.0034154939504200668,
+    -0.006077610409551638,
+    -0.02664737997214231,
+    -0.1314576579410032,
+    -0.051196330430102494,
+    -0.015465230944622687,
+    0.0054091852223086675,
+    -0.04980557035731015,
+    -0.023098783260246378,
+    -0.0014904737107397199,
+    0.002762094509164119,
+    0.11929719283382897,
+    0.0029790783486553555
+  ],
+  "scaled_globals": [
+    0.0030787645869144206,
+    0.007056349444775984,
+    -0.13851358061591887,
+    -0.00939140107915376,
+    0.01100358256456932,
+    0.010990493563035466,
+    0.0005933733536614824,
+    0.0027908998618200675,
+    -0.0023805687410827637,
+    0.1261239512541175,
+    0.2174910287275126,
+    -0.013173052651035648,
+    0.009196882416149941,
+    1.0299146888111632,
+    0.023934097763345097,
+    -1.640737566747973e-06,
+    -0.0006514373047384289,
+    0.1256151545838252,
+    0.0036765806050569486
+  ],
+  "state_change": {
+    "A_D": {
+      "count": 89175,
+      "max": 5.114443965554184,
+      "mean": 0.14761436770382652,
+      "min": -1.5167563056551636,
+      "p05": -0.46003399673850903,
+      "p95": 0.7935944484634487,
+      "std": 0.40633562053412564
+    },
+    "theta_deg": {
+      "count": 89175,
+      "max": 7.434971856199932,
+      "mean": 1.190875949791422,
+      "min": -5.761232648684557,
+      "p05": -0.2033315185778026,
+      "p95": 2.2242777379237055,
+      "std": 0.7126350615353965
+    }
+  }
+}

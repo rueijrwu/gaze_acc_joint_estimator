@@ -225,8 +225,23 @@ def main(attempt):
                              'actual': digest(output / 'source_snapshot' / rel),
                              'matches': digest(output / 'source_snapshot' / rel) == expected}
                        for rel, expected in source_files.items()}
+    audit_only_live_change = 'experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_bounded.py'
+    fitting_paths = [rel for rel in source_files if
+        rel.startswith('distortion_model/') or
+        rel.startswith('experiments/distortion_model/stage_03_p4_reference') or
+        rel.startswith('experiments/distortion_model/stage_03_p4_baseline_and_deformation/') or
+        rel in ('experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run.py',
+                'experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run_joint.py',
+                'experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run_joint_bounded.py',
+                'experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/continue_g7_repaired.py',
+                'requirements-stage7.txt')]
     start_details = {}
-    for start in ('common', 'perturbed'):
+    start_labels = [v['label'] for v in summary.get('all_start_outcomes', [])]
+    if not start_labels:
+        start_labels = [summary['selected_start']]
+    if len(start_labels) != len(set(start_labels)):
+        raise ValueError('duplicate start labels in saved summary')
+    for start in start_labels:
         history = json.loads((output / start / 'history.json').read_text())
         accepted = [v for v in history if v.get('accepted')]
         rejected = [v for v in history if not v.get('accepted')]
@@ -265,11 +280,41 @@ def main(attempt):
     fig.savefig(output / 'response_curves_native_xi4.png', dpi=150)
     plt.close(fig)
 
+    # Verify the immutable repair input manifest and the exact compatible warm
+    # start used by this continuation. These checks are mechanical; they do
+    # not change the checkpoint or its scientific status.
+    repair_dir = STAGE / 'results/g7_repair_01'
+    repair_provenance = json.loads((repair_dir / 'provenance.json').read_text())
+    repair_input_checks = {}
+    for rel, expected in repair_provenance.get('input_sha256', {}).items():
+        actual_path = STAGE / 'results/g7_attempt_02' / rel
+        actual = digest(actual_path) if actual_path.is_file() else None
+        repair_input_checks[rel] = {'expected': expected, 'actual': actual, 'matches': actual == expected}
+    continuation_config = json.loads((output / 'config.json').read_text())
+    warm_attempt = ROOT / continuation_config['compatible_warm_start_attempt']
+    warm_label = continuation_config['compatible_warm_start_selected']
+    warm_solution_path = warm_attempt / warm_label / 'solution.npz'
+    continuation_initial_path = output / 'continued/initial.npz'
+    with np.load(warm_solution_path, allow_pickle=False) as old_warm, np.load(continuation_initial_path, allow_pickle=False) as new_warm:
+        warm_state_equal = bool(np.array_equal(old_warm['states'], new_warm['states']))
+        warm_globals_equal = bool(np.array_equal(old_warm['scaled_globals'], new_warm['scaled_globals']))
+    warm_start_integrity = {
+        'attempt': continuation_config['compatible_warm_start_attempt'],
+        'selected_start': warm_label,
+        'recorded_solution_sha256': continuation_config['compatible_warm_start_solution_sha256'],
+        'actual_solution_sha256': digest(warm_solution_path),
+        'solution_sha256_matches': digest(warm_solution_path) == continuation_config['compatible_warm_start_solution_sha256'],
+        'states_bitwise_equal_to_continuation_initial': warm_state_equal,
+        'globals_bitwise_equal_to_continuation_initial': warm_globals_equal,
+    }
+
     report = {
         'source': 'mechanical_inventory', 'method': 'reconstruct saved selected G7 state with same objective implementation; no refit',
         'audit_command': 'OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_bounded.py --attempt experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_02',
         'audit_created_utc': datetime.now(timezone.utc).isoformat(),
         'postfit_audit_script_sha256': digest(Path(__file__).resolve()),
+        'postfit_aggregation_script_sha256': digest(STAGE / 'scripts/summarize_g7_compact.py'),
+        'audit_schema_adaptation': 'After fitting, audit start labels were generalized to read distinct labels from the saved summary; no fitting source or result was changed.',
         'selected_start': label, 'attempt_summary_sha256': digest(output / 'summary.json'), 'population': {'scheduled': len(valid), 'complete_valid': int(valid.sum()),
                                                 'unavailable': int((~valid).sum()), 'evaluated': len(x),
                                                 'counts_by_exposure': [int(np.sum(e == k)) for k in range(20)]},
@@ -284,7 +329,7 @@ def main(attempt):
                       'minimum_free_local_eigenvalue': None if not np.isfinite(global_min) else global_min,
                       'maximum_free_local_eigenvalue': None if not np.isfinite(global_max) else global_max,
                       'by_exposure': exposure_counts,
-                      'profile_rank_interpretation': 'G7 certificate serialized 0 after local curvature failure; this is a NOT_EVALUATED sentinel, not evidence of global rank deficiency.'},
+                      'profile_rank_interpretation': ('Observed constrained profile rank/curvature are reconstructed for this saved fit; any serialized zero after a local-curvature failure is a NOT_EVALUATED sentinel, not evidence of global rank deficiency.')},
         'starts': start_details,
         'compact_schedule': {'rows': len(schedule), 'slots_per_compact_record': 300,
                              'schedule_matches_saved_indices': bool(np.array_equal(schedule, schedule_saved)),
@@ -293,18 +338,22 @@ def main(attempt):
                              'records': compact_records,
                              'input_masking_contract': 'infer_retained accepts only N x 8 retained coordinates and the 8x8 retained covariance marginal; held-point score is read after state/branch solve.'},
         'parent_hashes': parent_hashes,
+        'repair01_input_hashes': {'count': len(repair_input_checks),
+                                  'all_match': all(v['matches'] for v in repair_input_checks.values()),
+                                  'checks': repair_input_checks},
+        'compatible_warm_start_integrity': warm_start_integrity,
         'source_hashes_match': all(v['matches'] for v in source_checks.values()),
         'source_hash_checks': source_checks,
         'source_snapshot_hashes_match': all(v['matches'] for v in snapshot_checks.values()),
         'source_snapshot_hash_checks': snapshot_checks,
         'source_change_classification': {
             'postrun_live_only_changes': [k for k, v in source_checks.items() if not v['matches']],
-            'expected_postrun_live_only_changes': ['docs/stages/04_CENTER_AND_DM0_CALIBRATION.md'],
-            'fitting_code_current_hashes_match': all(v['matches'] for k, v in source_checks.items()
-                if k.startswith(('distortion_model/', 'experiments/distortion_model/stage_03',
-                                 'experiments/distortion_model/stage_04', 'tests/', 'requirements-'))),
+            'expected_postrun_live_only_changes': [audit_only_live_change,
+                'docs/stages/04_CENTER_AND_DM0_CALIBRATION.md'],
+            'fitting_code_paths_checked': fitting_paths,
+            'fitting_code_current_hashes_match': all(source_checks[k]['matches'] for k in fitting_paths),
             'all_archived_bytes_match_original_provenance': all(v['matches'] for v in snapshot_checks.values()),
-            'interpretation': 'The frozen authority status line was updated after G7 review; original fit source hash and archived bytes are unchanged.'},
+            'interpretation': 'Post-run changes are limited to the audit-only start-label adaptation and current stage-authority status text. The source snapshot still matches every archived hash, and fitting source hashes match runtime provenance.'},
         'review_state': {'status': summary.get('status'), 'G7_decision': summary.get('G7_decision'),
                          'fit_complete': bool(checkpoint.get('fit_complete')),
                          'fit_certified': bool(checkpoint.get('fit_certified')),

@@ -1,0 +1,134 @@
+{
+  "certificate": {
+    "KKT_complementarity_inf": 3.0936467021700453e-12,
+    "KKT_complementarity_threshold": 1e-06,
+    "KKT_multipliers": [
+      34.40266518338974,
+      3.2934379929433515,
+      10.495326655449325
+    ],
+    "active_physical_inequality_count": 3,
+    "constrained_tangent_dimension": 16,
+    "constraint_curvature": {
+      "active_branch_status": "SMOOTH",
+      "method": "selected-endpoint forward automatic differentiation, order2",
+      "nonsmooth_rows": []
+    },
+    "constraint_derivative_method": "selected-endpoint forward automatic differentiation",
+    "constraint_derivative_status": "SMOOTH_ACTIVE_BRANCH",
+    "domain": {
+      "P1": {
+        "local_theta_bounds_deg": [
+          -9.979095888413074,
+          30.020904111586926
+        ],
+        "min_denominator": 0.979238962887389,
+        "min_sx": 1.0,
+        "min_sy": 0.9722524566695903,
+        "valid_domain": true
+      },
+      "P4": {
+        "max_M": 1.0049915040428505,
+        "min_M": 0.9218829617293876,
+        "min_denominator": 0.9925526390204624,
+        "min_sx": 1.0,
+        "min_sy": 1.0,
+        "valid_domain": true
+      }
+    },
+    "fit_certified": false,
+    "free_state_eigenvalue_count": 169935,
+    "free_state_observed_curvature_positive": true,
+    "free_state_observed_curvature_status": "PASSED",
+    "global_projected_gradient_inf": 0.0035570411127743423,
+    "globals_at_bounds": [],
+    "minimum_free_state_eigenvalue": 124.70854305104685,
+    "negative_free_state_eigenvalue_count": 0,
+    "nonsmooth_active_constraint_rows": [],
+    "observed_profile_curvature_eigenvalues": [
+      4.943011710807787e-05,
+      0.00013034057120421964,
+      0.0107554640175868,
+      0.05100193771131781,
+      0.11994626809530738,
+      0.2030225533649122,
+      0.2532190136424886,
+      0.2887585408991115,
+      0.48890478142393723,
+      0.635954819243452,
+      0.8080335642483099,
+      1.0255537688837297,
+      1.7492651270851667,
+      2.755617569573885,
+      3.2381148685293613,
+      4.371671952593119
+    ],
+    "observed_profile_positive": true,
+    "observed_profile_rank": 16,
+    "physical_centroid_constraint": {
+      "A_cell_width_D": 0.25,
+      "accommodation_interval_D": [
+        0.0,
+        4.0
+      ],
+      "allowed_max_accommodation_slope_px_per_D": 2.50675055646294,
+      "bound_deg": 1.0,
+      "certified_max_abs_accommodation_slope_px_per_D": 2.506750556462214,
+      "certified_min_gaze_slope_px_per_deg": 10.027002225852131,
+      "certified_shift_equivalent_upper_bound_deg": 0.9999999999996734,
+      "constraint_derivative_extension_D": [
+        0.0,
+        6.0
+      ],
+      "feasible": true,
+      "interval_cells": 1920,
+      "kind": "user-authorized continuous-domain sufficient 1degree bound",
+      "meaning": "H=D+mu4-mu1 at g=1; bound on horizontal centroid response. Inverse-angle guarantee applies where the monotone inverse lies in the declared theta domain. No bound on individual theta or fixation-mean deviation.",
+      "minimum_normalized_slack": 3.708144902248023e-14,
+      "reference_interval_min_gaze_slope_px_per_deg": 20.05400445170352,
+      "required_min_gaze_slope_px_per_deg": 10.02700222585176,
+      "theta_cell_width_deg": 0.5,
+      "theta_domain_deg": [
+        -20.0,
+        20.0
+      ]
+    },
+    "profile_curvature_evaluated": true,
+    "profile_curvature_status": "PASSED",
+    "state_data_rank2_count": 89175,
+    "state_projected_gradient_inf": 1.2024342112282316e-09,
+    "states_at_bounds": [
+      0,
+      8415
+    ],
+    "stationarity_threshold": 1e-06
+  },
+  "component_differences": {
+    "A_anchor": 0.0,
+    "cost": 0.0,
+    "point": 0.0,
+    "regularization": 0.0,
+    "temporal": 0.0,
+    "theta_anchor": 0.0
+  },
+  "components": {
+    "A_anchor": 1.58182794092768,
+    "cost": 1925.6013387428595,
+    "point": 1880.9904763017078,
+    "regularization": 0.024399663093149414,
+    "temporal": 0.0,
+    "theta_anchor": 43.00463483713085
+  },
+  "derivative_regression_passed": true,
+  "elapsed_seconds": 35.34990544500033,
+  "input_selected_start": "perturbed",
+  "next_action": "review repaired same-state certificate before deciding on any bounded continuation",
+  "optimization_performed": false,
+  "original_attempt_unchanged": true,
+  "review_report": "STAGE_REPORT.md",
+  "reviewed_utc": "2026-10-10T04:51:47.484254+00:00",
+  "reviewer": "root implementation/audit agent",
+  "stage": "S7/G7 derivative repair",
+  "states_and_parameters_unchanged": true,
+  "status": "REASSESSED_UNCERTIFIED"
+}

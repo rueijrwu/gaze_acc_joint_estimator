@@ -1,6 +1,6 @@
 # Stage 4 results
 
-**G6 completed: GO_WITH_LIMIT. G7 attempt 02 completed uncertified and is PAUSED.** The forward center polynomial remains a conditionally usable initializer; the full joint model is not certified. Attempt 01 is preserved as the historical unbounded fit.
+**Current status: G6 GO_WITH_LIMIT; G7 attempt 03 COMPLETE_UNCERTIFIED / PAUSE.** The forward center polynomial remains a conditionally usable initializer; the full joint model is not certified. Attempts 01 and 02 are preserved unchanged historical records.
 
 | Evidence | G6 result |
 |---|---:|
@@ -79,7 +79,7 @@ Numerical certification fails independently in two ways. The selected state proj
 
 The predeclared progress-only compact schedule contains 300 slots: 270 are retained-valid and individually certified, 30 unavailable, none unresolved; final native progress RMS is 29.3673 px. This does not certify the shared fit and is not a G8 score. Both starts completed their declared budgets; common accepted 359/390 updates and perturbed 358/390. Their histories record many infeasible physical-bound line-search proposals (4,725 and 5,804) and 30 nonpositive shared proposal-curvature events each. Runtime was 782.62 s; CPU max RSS was 974,220 KiB. GPU and memory-pool values are final snapshots, not peaks.
 
-Independent NumPy reconstruction reproduces objective components within 4.55e−13, predictions within 3.98e−13 px, g within 8.88e−16, and fixation means within 2.49e−14. Parent and archived source hashes match. The live fitting module and bounded runner were restored byte-for-byte from the source snapshot used for the attempt. No automated tests were added or run.
+Independent NumPy reconstruction reproduces objective components within 4.55e−13, predictions within 3.98e−13 px, g within 8.88e−16, and fixation means within 2.49e−14. Parent and archived source hashes match. At the end of attempt02, the live fitting module and bounded runner were restored to that attempt's archived versions. The current fitting code is the repaired version used by attempt03; historical source snapshots remain unchanged. No automated test suite was added or run for attempt02.
 
 **Current decision: PAUSE / COMPLETE_UNCERTIFIED.** Keep fit, cross-check and comparison flags false; G8 is not authorized. The next numerical question is why the active interval-constraint Hessian is unstable near the boundary and whether a smooth equivalent certificate can retain the same physical bound and unchanged objective. Resolve that numerical question before another fit; keep G8 paused.
 
@@ -88,3 +88,21 @@ Independent NumPy reconstruction reproduces objective components within 4.55e−
 - [Attempt 02 checkpoint and arrays](../results/g7_attempt_02/checkpoint.json), [summary](../results/g7_attempt_02/summary.json), [fitted.npz](../results/g7_attempt_02/fitted.npz)
 - [Attempt 02 provenance and source snapshot](../results/g7_attempt_02/provenance.json)
 - [Preflight interval and CPU/GPU proposal evidence](../results/preflight_1degree/preflight.json)
+
+## G7 repair01 and attempt 03 — derivative repair and bounded continuation
+
+Repair01 reassessed attempt02 at the exact same saved states and globals. No optimization occurred; all objective components are unchanged exactly. The deterministic empirical derivative regression passes, the selected active constraint branch is smooth, and constrained profile curvature is positive with rank 16. The repaired global KKT residual is 0.0035570, still above the 1e-6 threshold. The local-state curvature census has zero negative eigenvalues; its reported minimum uses a per-frame Hessian divided by positive exposure row weight, so compare its sign—not magnitude—with the differently normalized attempt02 census. See the [repair report](../results/g7_repair_01/STAGE_REPORT.md), [summary](../results/g7_repair_01/summary.json), and [provenance](../results/g7_repair_01/provenance.json).
+
+One compatible continuation (attempt03) started from attempt02's selected perturbed solution with the G6 reference/template/prior origin, unchanged objective, and same one-degree physical bound. It completed the declared 8 outer updates; although the maximum allowed polish budget was 6, history records only one observed-polish proposal, which was rejected. Attempt03 ends at J=1925.601338676003 from 1925.6013387428595. It remains uncertified because global scaled KKT residual is 2.5103e-5 versus 1e-6. State stationarity, complementarity, active-branch smoothness, local-state curvature, and constrained profile curvature pass; profile rank is 16. The bound is feasible with three active inequalities. No additional fit was run.
+
+The joint history records 62 accepted and 35 rejected update events, with 27 accepted joint outer steps. It records 810 same-objective line-search failures and 5 nonpositive shared-proposal-curvature failures across joint proposals. The single unaccepted polish event contains 36 line-search and 5 nonpositive-curvature failures. Its final gradient was 2.5103e-5 globally and 1.23e-11 for states. These are solver diagnostics, not evidence of a failed optical law.
+
+Attempt03 used 89,175 complete valid rows and retained 10,915 unavailable rows out of 100,090. Equal-exposure native relative-coordinate RMS is 4.678857434 px. Compact progress retains 300 slots: 270 scored, 30 unavailable, zero unresolved; coordinate RMS is 29.3673 px. The saved [compact aggregation report](../results/g7_attempt_03/compact_diagnostics/REPORT.md) includes signed-axis and tail summaries, schedule endpoints, complete triples, and matched checkpoint coverage. It is not G8 and not a calibration certificate.
+
+The independent audit verifies bitwise equality between attempt03's initial states/globals and attempt02's selected solution. All 144 attempt02 input hashes captured by repair01 match. Attempt03's archived source snapshot matches its runtime source hashes; current fitting-source hashes remain unchanged. The only source-hash mismatch is a post-fit audit-only start-label adaptation, documented with its current hash in the [mechanical audit](../results/g7_attempt_03/mechanical_audit.json). The audit and aggregation script hashes are recorded there.
+
+**Decision: PAUSE / COMPLETE_UNCERTIFIED.** Keep fit, cross-check, and comparison flags false; do not run G8 or another fit in this campaign. The next numerical question is why positive constrained profile curvature coexists with rejected full shared proposals and no acceptable same-objective polish step near a 2.51e-5 global residual. Diagnose QP accuracy/scaling and constraint-aware Newton/line-search behavior while preserving the objective and physical bound.
+
+- [Attempt 03 report](../results/g7_attempt_03/STAGE_REPORT.md), [summary](../results/g7_attempt_03/summary.json), [checkpoint](../results/g7_attempt_03/checkpoint.json), [console log](../results/g7_attempt_03/console.log)
+- [Attempt 03 mechanical audit](../results/g7_attempt_03/mechanical_audit.json), [compact aggregation](../results/g7_attempt_03/compact_diagnostics/REPORT.md)
+- [Attempt ledger](STAGE_REPORT.md) and [live progress pointer](PROGRESS.md)

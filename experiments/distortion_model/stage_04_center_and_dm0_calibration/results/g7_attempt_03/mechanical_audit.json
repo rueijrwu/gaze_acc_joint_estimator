@@ -1,0 +1,1927 @@
+{
+  "attempt_summary_sha256": "30eac547d62a0d878747a8a6084b6c60d5e885a402d05a6717dba29c3735be32",
+  "audit_command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_bounded.py --attempt experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_02",
+  "audit_created_utc": "2026-10-10T04:53:37.371568+00:00",
+  "audit_schema_adaptation": "After fitting, audit start labels were generalized to read distinct labels from the saved summary; no fitting source or result was changed.",
+  "compact_schedule": {
+    "input_masking_contract": "infer_retained accepts only N x 8 retained coordinates and the 8x8 retained covariance marginal; held-point score is read after state/branch solve.",
+    "records": [
+      {
+        "certified_inference": 270,
+        "exposures": 20,
+        "held_input_valid": 270,
+        "held_points": 3,
+        "input_unavailable": 30,
+        "path": "compact/continued_final.json",
+        "retained_input_valid": 270,
+        "scored": 270,
+        "slots": 300,
+        "summary": {
+          "ambiguous": 0,
+          "at_bounds": 48,
+          "certified": 270,
+          "retained_input_valid": 270,
+          "slots": 300,
+          "usable_native_coordinate_rms_px": 29.36729701995275,
+          "usable_scored": 270
+        },
+        "unresolved_inference": 0
+      },
+      {
+        "certified_inference": 270,
+        "exposures": 20,
+        "held_input_valid": 270,
+        "held_points": 3,
+        "input_unavailable": 30,
+        "path": "compact/continued_outer_04.json",
+        "retained_input_valid": 270,
+        "scored": 270,
+        "slots": 300,
+        "summary": {
+          "ambiguous": 0,
+          "at_bounds": 48,
+          "certified": 270,
+          "retained_input_valid": 270,
+          "slots": 300,
+          "usable_native_coordinate_rms_px": 29.367297013706988,
+          "usable_scored": 270
+        },
+        "unresolved_inference": 0
+      },
+      {
+        "certified_inference": 270,
+        "exposures": 20,
+        "held_input_valid": 270,
+        "held_points": 3,
+        "input_unavailable": 30,
+        "path": "compact/continued_outer_08.json",
+        "retained_input_valid": 270,
+        "scored": 270,
+        "slots": 300,
+        "summary": {
+          "ambiguous": 0,
+          "at_bounds": 48,
+          "certified": 270,
+          "retained_input_valid": 270,
+          "slots": 300,
+          "usable_native_coordinate_rms_px": 29.36729701995275,
+          "usable_scored": 270
+        },
+        "unresolved_inference": 0
+      }
+    ],
+    "rows": 100,
+    "saved_schedule_semantic_hash": "a09a7411578a4297596daf671c0dec051286d76453d4e32394b095cf3d59d2b2",
+    "schedule_matches_saved_indices": true,
+    "semantic_hash": "af428b58026b59258a4feeb5d0bb098a735d397b8d624a43c135c6d435b27512",
+    "slots_per_compact_record": 300
+  },
+  "compatible_warm_start_integrity": {
+    "actual_solution_sha256": "6ceca207d5b00154ce7b6d06a22e9fae239f3e0bc31d7d280adbc6b7bf7fd72b",
+    "attempt": "experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_02",
+    "globals_bitwise_equal_to_continuation_initial": true,
+    "recorded_solution_sha256": "6ceca207d5b00154ce7b6d06a22e9fae239f3e0bc31d7d280adbc6b7bf7fd72b",
+    "selected_start": "perturbed",
+    "solution_sha256_matches": true,
+    "states_bitwise_equal_to_continuation_initial": true
+  },
+  "curvature": {
+    "by_exposure": [
+      {
+        "capture": "capture_1_detections.pkl",
+        "exposure": 0,
+        "free_state_dimensions": 6697,
+        "maximum_free_local_eigenvalue": 0.028909430382717493,
+        "minimum_free_local_eigenvalue": 0.0014665917910749017,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4433,
+        "two_free_state_rows": 2264,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_1_detections.pkl",
+        "exposure": 1,
+        "free_state_dimensions": 9593,
+        "maximum_free_local_eigenvalue": 0.020298552779619793,
+        "minimum_free_local_eigenvalue": 0.0013731864517797664,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4800,
+        "two_free_state_rows": 4793,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_1_detections.pkl",
+        "exposure": 2,
+        "free_state_dimensions": 5889,
+        "maximum_free_local_eigenvalue": 0.027650614995593216,
+        "minimum_free_local_eigenvalue": 0.0013185479254160107,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4900,
+        "two_free_state_rows": 989,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_1_detections.pkl",
+        "exposure": 3,
+        "free_state_dimensions": 7690,
+        "maximum_free_local_eigenvalue": 0.039303844055918885,
+        "minimum_free_local_eigenvalue": 0.0012582626797037724,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4993,
+        "two_free_state_rows": 2697,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_1_detections.pkl",
+        "exposure": 4,
+        "free_state_dimensions": 10288,
+        "maximum_free_local_eigenvalue": 0.03915074888925598,
+        "minimum_free_local_eigenvalue": 0.0012188807252358938,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 5154,
+        "two_free_state_rows": 5134,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_2_detections.pkl",
+        "exposure": 5,
+        "free_state_dimensions": 7812,
+        "maximum_free_local_eigenvalue": 0.022163549989348864,
+        "minimum_free_local_eigenvalue": 0.001690154862626655,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 3912,
+        "two_free_state_rows": 3900,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_2_detections.pkl",
+        "exposure": 6,
+        "free_state_dimensions": 8690,
+        "maximum_free_local_eigenvalue": 0.025475322458780265,
+        "minimum_free_local_eigenvalue": 0.0015088925014279798,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4345,
+        "two_free_state_rows": 4345,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_2_detections.pkl",
+        "exposure": 7,
+        "free_state_dimensions": 9106,
+        "maximum_free_local_eigenvalue": 0.029789472067785188,
+        "minimum_free_local_eigenvalue": 0.0014322316918254669,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4553,
+        "two_free_state_rows": 4553,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_2_detections.pkl",
+        "exposure": 8,
+        "free_state_dimensions": 9562,
+        "maximum_free_local_eigenvalue": 0.036053254960742374,
+        "minimum_free_local_eigenvalue": 0.0013393722767174009,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4781,
+        "two_free_state_rows": 4781,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_2_detections.pkl",
+        "exposure": 9,
+        "free_state_dimensions": 8870,
+        "maximum_free_local_eigenvalue": 0.03960311187952972,
+        "minimum_free_local_eigenvalue": 0.0014379275361307358,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4435,
+        "two_free_state_rows": 4435,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_3_detections.pkl",
+        "exposure": 10,
+        "free_state_dimensions": 9010,
+        "maximum_free_local_eigenvalue": 0.019309224375585902,
+        "minimum_free_local_eigenvalue": 0.0014956567992424935,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4505,
+        "two_free_state_rows": 4505,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_3_detections.pkl",
+        "exposure": 11,
+        "free_state_dimensions": 7804,
+        "maximum_free_local_eigenvalue": 0.029519071137800924,
+        "minimum_free_local_eigenvalue": 0.0016396608077386325,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 3902,
+        "two_free_state_rows": 3902,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_3_detections.pkl",
+        "exposure": 12,
+        "free_state_dimensions": 9622,
+        "maximum_free_local_eigenvalue": 0.03145308493557952,
+        "minimum_free_local_eigenvalue": 0.0013456012664978237,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4811,
+        "two_free_state_rows": 4811,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_3_detections.pkl",
+        "exposure": 13,
+        "free_state_dimensions": 8502,
+        "maximum_free_local_eigenvalue": 0.04056640662804177,
+        "minimum_free_local_eigenvalue": 0.001501613192863368,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4251,
+        "two_free_state_rows": 4251,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_3_detections.pkl",
+        "exposure": 14,
+        "free_state_dimensions": 4652,
+        "maximum_free_local_eigenvalue": 0.077449546814958,
+        "minimum_free_local_eigenvalue": 0.0026807282735945522,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 2326,
+        "two_free_state_rows": 2326,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_4_detections.pkl",
+        "exposure": 15,
+        "free_state_dimensions": 7828,
+        "maximum_free_local_eigenvalue": 0.02524794608118422,
+        "minimum_free_local_eigenvalue": 0.0016950425444346993,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 3914,
+        "two_free_state_rows": 3914,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_4_detections.pkl",
+        "exposure": 16,
+        "free_state_dimensions": 9798,
+        "maximum_free_local_eigenvalue": 0.020293513199886738,
+        "minimum_free_local_eigenvalue": 0.0013510109821782976,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4899,
+        "two_free_state_rows": 4899,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_4_detections.pkl",
+        "exposure": 17,
+        "free_state_dimensions": 9494,
+        "maximum_free_local_eigenvalue": 0.03244329120823374,
+        "minimum_free_local_eigenvalue": 0.0013557446828359337,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4747,
+        "two_free_state_rows": 4747,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_4_detections.pkl",
+        "exposure": 18,
+        "free_state_dimensions": 9476,
+        "maximum_free_local_eigenvalue": 0.03296829612060988,
+        "minimum_free_local_eigenvalue": 0.0013520036497021693,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4738,
+        "two_free_state_rows": 4738,
+        "zero_free_local_eigenvalues": 0
+      },
+      {
+        "capture": "capture_4_detections.pkl",
+        "exposure": 19,
+        "free_state_dimensions": 9552,
+        "maximum_free_local_eigenvalue": 0.03953718681347367,
+        "minimum_free_local_eigenvalue": 0.001321336256919346,
+        "negative_free_local_eigenvalues": 0,
+        "rows": 4776,
+        "two_free_state_rows": 4776,
+        "zero_free_local_eigenvalues": 0
+      }
+    ],
+    "free_local_eigenvalue_count": 169935,
+    "maximum_free_local_eigenvalue": 0.077449546814958,
+    "method": "finite differences of analytic gradients; state coordinates active exactly per JointDM0.active; free local state subblocks only",
+    "minimum_free_local_eigenvalue": 0.0012188807252358938,
+    "negative_free_local_eigenvalue_count": 0,
+    "profile_rank_interpretation": "Observed constrained profile rank/curvature are reconstructed for this saved fit; any serialized zero after a local-curvature failure is a NOT_EVALUATED sentinel, not evidence of global rank deficiency."
+  },
+  "method": "reconstruct saved selected G7 state with same objective implementation; no refit",
+  "native_local_angle_response_plot": "response_curves_native_xi4.png",
+  "objective_reconstruction": {
+    "components": {
+      "A_anchor": 1.5818595239840283,
+      "cost": 1925.6013386760033,
+      "point": 1880.9906372222158,
+      "regularization": 0.024399751765229304,
+      "temporal": 0.0,
+      "theta_anchor": 43.00444217803816
+    },
+    "differences": {
+      "A_anchor": 0.0,
+      "cost": 0.0,
+      "point": 0.0,
+      "regularization": 0.0,
+      "temporal": 0.0,
+      "theta_anchor": 0.0
+    },
+    "independent_numpy_forward_and_loss": {
+      "all_valid": true,
+      "component_differences_vs_saved_fit": {
+        "A_anchor": -6.661338147750939e-15,
+        "cost": 2.2737367544323206e-13,
+        "point": 2.2737367544323206e-13,
+        "regularization": 3.469446951953614e-18,
+        "temporal": 0.0,
+        "theta_anchor": 7.105427357601002e-14
+      },
+      "component_reconstruction": {
+        "A_anchor": 1.5818595239840216,
+        "cost": 1925.6013386760035,
+        "point": 1880.990637222216,
+        "regularization": 0.024399751765229308,
+        "temporal": 0.0,
+        "theta_anchor": 43.00444217803823
+      },
+      "full_mean_max_abs_difference_vs_saved": 3.907985046680551e-14,
+      "g_max_abs_difference_vs_saved": 7.771561172376096e-16,
+      "prediction_max_abs_difference_vs_saved": 3.410605131648481e-13
+    },
+    "native_relative_coordinate_rms_by_exposure": [
+      {
+        "count": 4433,
+        "exposure": 0,
+        "native_relative_coordinate_rms_px": 3.35831531674192
+      },
+      {
+        "count": 4800,
+        "exposure": 1,
+        "native_relative_coordinate_rms_px": 2.1588198033752497
+      },
+      {
+        "count": 4900,
+        "exposure": 2,
+        "native_relative_coordinate_rms_px": 1.9681347733613126
+      },
+      {
+        "count": 4993,
+        "exposure": 3,
+        "native_relative_coordinate_rms_px": 3.107381168487296
+      },
+      {
+        "count": 5154,
+        "exposure": 4,
+        "native_relative_coordinate_rms_px": 4.4218777269562155
+      },
+      {
+        "count": 3912,
+        "exposure": 5,
+        "native_relative_coordinate_rms_px": 13.945226371929033
+      },
+      {
+        "count": 4345,
+        "exposure": 6,
+        "native_relative_coordinate_rms_px": 8.434184383870209
+      },
+      {
+        "count": 4553,
+        "exposure": 7,
+        "native_relative_coordinate_rms_px": 3.1564580063624317
+      },
+      {
+        "count": 4781,
+        "exposure": 8,
+        "native_relative_coordinate_rms_px": 4.5330341317035865
+      },
+      {
+        "count": 4435,
+        "exposure": 9,
+        "native_relative_coordinate_rms_px": 3.3029884682831274
+      },
+      {
+        "count": 4505,
+        "exposure": 10,
+        "native_relative_coordinate_rms_px": 3.0459928152562905
+      },
+      {
+        "count": 3902,
+        "exposure": 11,
+        "native_relative_coordinate_rms_px": 2.017981036938277
+      },
+      {
+        "count": 4811,
+        "exposure": 12,
+        "native_relative_coordinate_rms_px": 1.7591516025730314
+      },
+      {
+        "count": 4251,
+        "exposure": 13,
+        "native_relative_coordinate_rms_px": 2.1302248014493417
+      },
+      {
+        "count": 2326,
+        "exposure": 14,
+        "native_relative_coordinate_rms_px": 1.7183880936310438
+      },
+      {
+        "count": 3914,
+        "exposure": 15,
+        "native_relative_coordinate_rms_px": 3.0233693154127885
+      },
+      {
+        "count": 4899,
+        "exposure": 16,
+        "native_relative_coordinate_rms_px": 2.348937504739713
+      },
+      {
+        "count": 4747,
+        "exposure": 17,
+        "native_relative_coordinate_rms_px": 1.6975849333850093
+      },
+      {
+        "count": 4738,
+        "exposure": 18,
+        "native_relative_coordinate_rms_px": 1.4691162997687606
+      },
+      {
+        "count": 4776,
+        "exposure": 19,
+        "native_relative_coordinate_rms_px": 6.176795199607999
+      }
+    ],
+    "prediction_arrays": {
+      "D": {
+        "array_equal": true,
+        "max_abs_difference": 0.0,
+        "shape": [
+          89175,
+          2
+        ]
+      },
+      "F1": {
+        "array_equal": true,
+        "max_abs_difference": 0.0,
+        "shape": [
+          89175,
+          3,
+          2
+        ]
+      },
+      "F4": {
+        "array_equal": true,
+        "max_abs_difference": 0.0,
+        "shape": [
+          89175,
+          3,
+          2
+        ]
+      },
+      "M": {
+        "array_equal": true,
+        "max_abs_difference": 0.0,
+        "shape": [
+          89175
+        ]
+      },
+      "g": {
+        "array_equal": true,
+        "max_abs_difference": 0.0,
+        "shape": [
+          89175
+        ]
+      },
+      "mu1": {
+        "array_equal": true,
+        "max_abs_difference": 0.0,
+        "shape": [
+          89175,
+          2
+        ]
+      },
+      "mu4": {
+        "array_equal": true,
+        "max_abs_difference": 0.0,
+        "shape": [
+          89175,
+          2
+        ]
+      },
+      "prediction": {
+        "array_equal": true,
+        "max_abs_difference": 0.0,
+        "shape": [
+          89175,
+          10
+        ]
+      }
+    },
+    "saved_fit_components": {
+      "A_anchor": 1.5818595239840283,
+      "cost": 1925.6013386760033,
+      "point": 1880.9906372222158,
+      "regularization": 0.024399751765229304,
+      "temporal": 0.0,
+      "theta_anchor": 43.00444217803816
+    }
+  },
+  "parent_hashes": {
+    "g5_checkpoint": {
+      "actual": "32100a45ee12e0446b047acac482dd301c94956fc672698a828dabfeed64b98b",
+      "recorded": "32100a45ee12e0446b047acac482dd301c94956fc672698a828dabfeed64b98b"
+    },
+    "g5_summary": {
+      "actual": "1ac3d8c1e0899b03e96513ac7cea006326ad45b96de285230f5fa5a6d5bbc1e3",
+      "recorded": "1ac3d8c1e0899b03e96513ac7cea006326ad45b96de285230f5fa5a6d5bbc1e3"
+    },
+    "g6_checkpoint": {
+      "actual": "ce5605fb06af135ea6a8fa5830b72b6da5146e982126d182e56cf35c15cb074d",
+      "recorded": "ce5605fb06af135ea6a8fa5830b72b6da5146e982126d182e56cf35c15cb074d"
+    },
+    "g6_summary": {
+      "actual": "b48b1d88f18a500af657a7128707058c03105f106327a5b44cc8b1eb672ac3a5",
+      "recorded": "b48b1d88f18a500af657a7128707058c03105f106327a5b44cc8b1eb672ac3a5"
+    }
+  },
+  "physical_constraint_reconstruction": {
+    "KKT_residual_inf": 2.5102956584532876e-05,
+    "active_within_1e-7": 3,
+    "bound_record": {
+      "A_cell_width_D": 0.25,
+      "accommodation_interval_D": [
+        0.0,
+        4.0
+      ],
+      "allowed_max_accommodation_slope_px_per_D": 2.50675055646294,
+      "bound_deg": 1.0,
+      "certified_max_abs_accommodation_slope_px_per_D": 2.506750556462985,
+      "certified_min_gaze_slope_px_per_deg": 10.02700222585175,
+      "certified_shift_equivalent_upper_bound_deg": 1.0000000000000189,
+      "constraint_derivative_extension_D": [
+        0.0,
+        6.0
+      ],
+      "feasible": true,
+      "interval_cells": 1920,
+      "kind": "user-authorized continuous-domain sufficient 1degree bound",
+      "meaning": "H=D+mu4-mu1 at g=1; bound on horizontal centroid response. Inverse-angle guarantee applies where the monotone inverse lies in the declared theta domain. No bound on individual theta or fixation-mean deviation.",
+      "minimum_normalized_slack": -1.7985612998927536e-14,
+      "reference_interval_min_gaze_slope_px_per_deg": 20.05400445170352,
+      "required_min_gaze_slope_px_per_deg": 10.02700222585176,
+      "theta_cell_width_deg": 0.5,
+      "theta_domain_deg": [
+        -20.0,
+        20.0
+      ]
+    },
+    "complementarity_inf": 1.8876670508356725e-13,
+    "dense_public_forward_crosscheck": {
+      "all_optics_valid": true,
+      "finite_grid_within_envelope": true,
+      "max_abs_0_to_4D_horizontal_shift_px": 10.026348631291398,
+      "theta_points": 81,
+      "user_authorized_pixel_envelope_px": 10.02700222585176
+    },
+    "fit_certificate_KKT_residual_inf": 2.5102956584532876e-05,
+    "fit_certificate_complementarity_inf": 1.8876670508356725e-13,
+    "inequality_count": 5760,
+    "minimum_normalized_slack": -1.7985612998927536e-14
+  },
+  "population": {
+    "complete_valid": 89175,
+    "counts_by_exposure": [
+      4433,
+      4800,
+      4900,
+      4993,
+      5154,
+      3912,
+      4345,
+      4553,
+      4781,
+      4435,
+      4505,
+      3902,
+      4811,
+      4251,
+      2326,
+      3914,
+      4899,
+      4747,
+      4738,
+      4776
+    ],
+    "evaluated": 89175,
+    "scheduled": 100090,
+    "unavailable": 10915
+  },
+  "postfit_aggregation_script_sha256": "3b60a7dcec33e2dca8e00131ac389a49ffb0f23af717ee8b221843100e36f6e3",
+  "postfit_audit_script_sha256": "4b9275adf0008cd9581455ea1ee4ce020bf0fb5e78985215f7ab0320d4ffba33",
+  "repair01_input_hashes": {
+    "all_match": true,
+    "checks": {
+      "PROGRESS.md": {
+        "actual": "db6cc931cbe6dd0ffb9580a530c7e511b3e8904decd67a877522388ae21bd1d2",
+        "expected": "db6cc931cbe6dd0ffb9580a530c7e511b3e8904decd67a877522388ae21bd1d2",
+        "matches": true
+      },
+      "STAGE_REPORT.md": {
+        "actual": "8d4d1831c7e72ced33b8212ffcb996424c5ba507ba6d3393cfd08d2eef653d65",
+        "expected": "8d4d1831c7e72ced33b8212ffcb996424c5ba507ba6d3393cfd08d2eef653d65",
+        "matches": true
+      },
+      "backend_audit.json": {
+        "actual": "95497c6e9190f9fb1a5508b70a2b8d9b04b175e6c49d13b465a58c297fea8a6d",
+        "expected": "95497c6e9190f9fb1a5508b70a2b8d9b04b175e6c49d13b465a58c297fea8a6d",
+        "matches": true
+      },
+      "checkpoint.json": {
+        "actual": "2112628bbc9b042214fefda9ffec994bd9f063d2515581f070ca5b95045cfcec",
+        "expected": "2112628bbc9b042214fefda9ffec994bd9f063d2515581f070ca5b95045cfcec",
+        "matches": true
+      },
+      "common/fit.json": {
+        "actual": "aeb8395f5017bf57b591f517da31057bd435fa79ef2d389ddde78052a919e210",
+        "expected": "aeb8395f5017bf57b591f517da31057bd435fa79ef2d389ddde78052a919e210",
+        "matches": true
+      },
+      "common/history.json": {
+        "actual": "f9236ef938cd97985f819a61ab66e7d8cff41d0ac00f589da1ba790f30dffff8",
+        "expected": "f9236ef938cd97985f819a61ab66e7d8cff41d0ac00f589da1ba790f30dffff8",
+        "matches": true
+      },
+      "common/initial.npz": {
+        "actual": "f6c53bbc8d886caea965123f2577459fe483fbb584cc87aa3f6fb99efb20ea76",
+        "expected": "f6c53bbc8d886caea965123f2577459fe483fbb584cc87aa3f6fb99efb20ea76",
+        "matches": true
+      },
+      "common/latest.json": {
+        "actual": "a2d28879d874e17da5561ee7b83bdda144151a91e731114ea3bdf01eee6c868c",
+        "expected": "a2d28879d874e17da5561ee7b83bdda144151a91e731114ea3bdf01eee6c868c",
+        "matches": true
+      },
+      "common/model.json": {
+        "actual": "ee8c376ec95a5ddb1ac021c1f0de31bbe09f0674f713f229db3218e92e0ee053",
+        "expected": "ee8c376ec95a5ddb1ac021c1f0de31bbe09f0674f713f229db3218e92e0ee053",
+        "matches": true
+      },
+      "common/outer_01.npz": {
+        "actual": "df4fc6adb9201e5402e8d5b52d7e6032f9c8a717436ea6a1d84b2569300ddd40",
+        "expected": "df4fc6adb9201e5402e8d5b52d7e6032f9c8a717436ea6a1d84b2569300ddd40",
+        "matches": true
+      },
+      "common/outer_02.npz": {
+        "actual": "09990b5efe5cc2045ce8da35b189f868101f3d642b197c201f1a3c151046b47e",
+        "expected": "09990b5efe5cc2045ce8da35b189f868101f3d642b197c201f1a3c151046b47e",
+        "matches": true
+      },
+      "common/outer_03.npz": {
+        "actual": "6ce0e39d3ff48988061a34a2827949d3288ed6dd2f629e87c29d57241452fed7",
+        "expected": "6ce0e39d3ff48988061a34a2827949d3288ed6dd2f629e87c29d57241452fed7",
+        "matches": true
+      },
+      "common/outer_04.npz": {
+        "actual": "97fbb748b2a45ef80f745d828fe516ba171d1e292641409fcbb74a9643089908",
+        "expected": "97fbb748b2a45ef80f745d828fe516ba171d1e292641409fcbb74a9643089908",
+        "matches": true
+      },
+      "common/outer_05.npz": {
+        "actual": "3fa6b631f240dfe32ef7880a87b06a9fc89f9702e101557a7de9e8b301aa8ddd",
+        "expected": "3fa6b631f240dfe32ef7880a87b06a9fc89f9702e101557a7de9e8b301aa8ddd",
+        "matches": true
+      },
+      "common/outer_06.npz": {
+        "actual": "1da134b95d5e6e1ec8cb2f99752038159671061382ec2a2ad80791ec9f2070d1",
+        "expected": "1da134b95d5e6e1ec8cb2f99752038159671061382ec2a2ad80791ec9f2070d1",
+        "matches": true
+      },
+      "common/outer_07.npz": {
+        "actual": "b4ad84031d3398e475ea7680c8564783a499e750fcfadfa0ad7e0d80c2effa3e",
+        "expected": "b4ad84031d3398e475ea7680c8564783a499e750fcfadfa0ad7e0d80c2effa3e",
+        "matches": true
+      },
+      "common/outer_08.npz": {
+        "actual": "c97fe365ea3c67b3b9089fe6f5b6a3ec54ed2c7643d8beccc9a76721dbf6b658",
+        "expected": "c97fe365ea3c67b3b9089fe6f5b6a3ec54ed2c7643d8beccc9a76721dbf6b658",
+        "matches": true
+      },
+      "common/outer_09.npz": {
+        "actual": "7130ce93e1d6a762715b227c20845f35ca28689e29fbdca19ebbf5baf33bd8c0",
+        "expected": "7130ce93e1d6a762715b227c20845f35ca28689e29fbdca19ebbf5baf33bd8c0",
+        "matches": true
+      },
+      "common/outer_10.npz": {
+        "actual": "dbb9af0d6e20e65a0b848860ad193831644515503137db60edea94a1186b3202",
+        "expected": "dbb9af0d6e20e65a0b848860ad193831644515503137db60edea94a1186b3202",
+        "matches": true
+      },
+      "common/outer_11.npz": {
+        "actual": "095827f54ceffacb88f09fff919b505707fdf08614edaa91af50c6653e316293",
+        "expected": "095827f54ceffacb88f09fff919b505707fdf08614edaa91af50c6653e316293",
+        "matches": true
+      },
+      "common/outer_12.npz": {
+        "actual": "126c2a92535672940ee3237a5470a5d51c7fe1106edb1edeb63cda95540637b0",
+        "expected": "126c2a92535672940ee3237a5470a5d51c7fe1106edb1edeb63cda95540637b0",
+        "matches": true
+      },
+      "common/outer_13.npz": {
+        "actual": "cf258905addd328665f12644cce9c7235bfa19d5a267c8c0bd62655a1bcb612c",
+        "expected": "cf258905addd328665f12644cce9c7235bfa19d5a267c8c0bd62655a1bcb612c",
+        "matches": true
+      },
+      "common/outer_14.npz": {
+        "actual": "7a8ac948a46589e870d2b4265a62f9624ee71bd82b82435fc2d3dc7f7d71ba9d",
+        "expected": "7a8ac948a46589e870d2b4265a62f9624ee71bd82b82435fc2d3dc7f7d71ba9d",
+        "matches": true
+      },
+      "common/outer_15.npz": {
+        "actual": "869cd1f05438aa1ee8896aca17ba05c973f67615a080db125466a843777ba38a",
+        "expected": "869cd1f05438aa1ee8896aca17ba05c973f67615a080db125466a843777ba38a",
+        "matches": true
+      },
+      "common/outer_16.npz": {
+        "actual": "291349d511410a43e346d07d84a89e3277f7651a22866382a0593ff0bf4cf1f1",
+        "expected": "291349d511410a43e346d07d84a89e3277f7651a22866382a0593ff0bf4cf1f1",
+        "matches": true
+      },
+      "common/outer_17.npz": {
+        "actual": "445a6cf3be2d8e6790446751e5aa8f1c6407ef09491bb2c16ae4e872adf6b027",
+        "expected": "445a6cf3be2d8e6790446751e5aa8f1c6407ef09491bb2c16ae4e872adf6b027",
+        "matches": true
+      },
+      "common/outer_18.npz": {
+        "actual": "f68edcfa7a4cdb81e7efd3e37c77d352a612f73a054d7b3586fb53f411fc989a",
+        "expected": "f68edcfa7a4cdb81e7efd3e37c77d352a612f73a054d7b3586fb53f411fc989a",
+        "matches": true
+      },
+      "common/outer_19.npz": {
+        "actual": "a72ee46dc446f50a417a4003ecf1cb83f9292bbfb57b5c89335739b4aafa546c",
+        "expected": "a72ee46dc446f50a417a4003ecf1cb83f9292bbfb57b5c89335739b4aafa546c",
+        "matches": true
+      },
+      "common/outer_20.npz": {
+        "actual": "494a667962b835ad4097292e8a2c109f8a9ef741c54e0d9374faabc6c5dc7433",
+        "expected": "494a667962b835ad4097292e8a2c109f8a9ef741c54e0d9374faabc6c5dc7433",
+        "matches": true
+      },
+      "common/outer_21.npz": {
+        "actual": "c982927eda4df50385c665538a65afe3b6ae810b9a464000640dbbe15e661e5e",
+        "expected": "c982927eda4df50385c665538a65afe3b6ae810b9a464000640dbbe15e661e5e",
+        "matches": true
+      },
+      "common/outer_22.npz": {
+        "actual": "08b98a3618607d80fcc98ab7609e11df67eb7a90ca4028cf99bf47d2e6e1c388",
+        "expected": "08b98a3618607d80fcc98ab7609e11df67eb7a90ca4028cf99bf47d2e6e1c388",
+        "matches": true
+      },
+      "common/outer_23.npz": {
+        "actual": "a5d62cad6461daf46f3047db78f3917e3e21495bfc64d1cc190e18f06192851f",
+        "expected": "a5d62cad6461daf46f3047db78f3917e3e21495bfc64d1cc190e18f06192851f",
+        "matches": true
+      },
+      "common/outer_24.npz": {
+        "actual": "fe16de8f3a6c764b55bca4194d0f3a03d5538d7d92891bebfb2fff3599b881c1",
+        "expected": "fe16de8f3a6c764b55bca4194d0f3a03d5538d7d92891bebfb2fff3599b881c1",
+        "matches": true
+      },
+      "common/outer_25.npz": {
+        "actual": "f8fdabf9d5f530f828123b2f0e06062395950d45f690473e456d8170ad312d36",
+        "expected": "f8fdabf9d5f530f828123b2f0e06062395950d45f690473e456d8170ad312d36",
+        "matches": true
+      },
+      "common/outer_26.npz": {
+        "actual": "59aec23b9c0c23c6c2865e5ddbb8d626050aa593f18022ed6a5dc815d0ff0d9e",
+        "expected": "59aec23b9c0c23c6c2865e5ddbb8d626050aa593f18022ed6a5dc815d0ff0d9e",
+        "matches": true
+      },
+      "common/outer_27.npz": {
+        "actual": "e781c1ac277905b91e22c8192accecacbe78f36923c57985f1c7802a5256cb1e",
+        "expected": "e781c1ac277905b91e22c8192accecacbe78f36923c57985f1c7802a5256cb1e",
+        "matches": true
+      },
+      "common/outer_28.npz": {
+        "actual": "c7ee2ac6f17b9e9959a763aefa3751de2038ee39dc433f56be2e074d7224454f",
+        "expected": "c7ee2ac6f17b9e9959a763aefa3751de2038ee39dc433f56be2e074d7224454f",
+        "matches": true
+      },
+      "common/outer_29.npz": {
+        "actual": "c8208b0a1aaaf8571bf37b0f900f94440c86209460aa1db2a5dbd7299bfce439",
+        "expected": "c8208b0a1aaaf8571bf37b0f900f94440c86209460aa1db2a5dbd7299bfce439",
+        "matches": true
+      },
+      "common/outer_30.npz": {
+        "actual": "967d08160d80ba3c298177d8963c60a9da6d0c7cad8f89b6bb6d10099f4037a8",
+        "expected": "967d08160d80ba3c298177d8963c60a9da6d0c7cad8f89b6bb6d10099f4037a8",
+        "matches": true
+      },
+      "common/outer_31.npz": {
+        "actual": "5b8487333464cdb78f380bf105ded9bbd9479778d9905626c7dff05aed68cc82",
+        "expected": "5b8487333464cdb78f380bf105ded9bbd9479778d9905626c7dff05aed68cc82",
+        "matches": true
+      },
+      "common/outer_32.npz": {
+        "actual": "2c16eedf3239f830a4426962779dc31fd13ddf2a31034bb898b173be26c64e57",
+        "expected": "2c16eedf3239f830a4426962779dc31fd13ddf2a31034bb898b173be26c64e57",
+        "matches": true
+      },
+      "common/solution.npz": {
+        "actual": "7dc082b7bec3449b3adc8a8481e8898918e6128f23a9499a90bb7d1f31861c04",
+        "expected": "7dc082b7bec3449b3adc8a8481e8898918e6128f23a9499a90bb7d1f31861c04",
+        "matches": true
+      },
+      "compact/common_final.json": {
+        "actual": "1cbc9640a3fc65128380b7522fb4c83daed1226116efea5fbb4e55b209a8e125",
+        "expected": "1cbc9640a3fc65128380b7522fb4c83daed1226116efea5fbb4e55b209a8e125",
+        "matches": true
+      },
+      "compact/common_outer_08.json": {
+        "actual": "d27f1286ffc3c6a11f030e88a20106102c7023f6ae6fdd01c6298f5818b6a7ca",
+        "expected": "d27f1286ffc3c6a11f030e88a20106102c7023f6ae6fdd01c6298f5818b6a7ca",
+        "matches": true
+      },
+      "compact/common_outer_16.json": {
+        "actual": "cc4762e1b73e3a85c9855cbe111511998f601fe7f42ae8163bde2d7c1daa0df4",
+        "expected": "cc4762e1b73e3a85c9855cbe111511998f601fe7f42ae8163bde2d7c1daa0df4",
+        "matches": true
+      },
+      "compact/common_outer_24.json": {
+        "actual": "3a5d66b2189a4bc3a41d627d8e4a076d9796473732fea92dec8e635ceccad8d7",
+        "expected": "3a5d66b2189a4bc3a41d627d8e4a076d9796473732fea92dec8e635ceccad8d7",
+        "matches": true
+      },
+      "compact/common_outer_32.json": {
+        "actual": "cde964a70dc1ac7645d9b369cf8b229e31b9b67260d05ab6cc30249568dd2b74",
+        "expected": "cde964a70dc1ac7645d9b369cf8b229e31b9b67260d05ab6cc30249568dd2b74",
+        "matches": true
+      },
+      "compact/perturbed_final.json": {
+        "actual": "ecb50a5a6c71b6733155e36fa86464ecc2f92bfd2405482a645c4e7639112998",
+        "expected": "ecb50a5a6c71b6733155e36fa86464ecc2f92bfd2405482a645c4e7639112998",
+        "matches": true
+      },
+      "compact/perturbed_outer_08.json": {
+        "actual": "bf98f18eddccf491ac16b9ed3b148baf964825071c936e90f94c98f4014ae53b",
+        "expected": "bf98f18eddccf491ac16b9ed3b148baf964825071c936e90f94c98f4014ae53b",
+        "matches": true
+      },
+      "compact/perturbed_outer_16.json": {
+        "actual": "84280dc4675001da04c0ede2cd348e39f4a0b7450cf250c72bda8eb15989a90a",
+        "expected": "84280dc4675001da04c0ede2cd348e39f4a0b7450cf250c72bda8eb15989a90a",
+        "matches": true
+      },
+      "compact/perturbed_outer_24.json": {
+        "actual": "643551cf0064542a6954bf035194018f799e6df8957743c8c6acde74e1f3c78d",
+        "expected": "643551cf0064542a6954bf035194018f799e6df8957743c8c6acde74e1f3c78d",
+        "matches": true
+      },
+      "compact/perturbed_outer_32.json": {
+        "actual": "f351c67cc15821d1af6d61f8c3583d97648ca55c507c34e591c783a8da926c94",
+        "expected": "f351c67cc15821d1af6d61f8c3583d97648ca55c507c34e591c783a8da926c94",
+        "matches": true
+      },
+      "compact_schedule.npz": {
+        "actual": "b81d7d78a834061c51de29868775f0f6b129d262332d83a6eedffe1a8d14df28",
+        "expected": "b81d7d78a834061c51de29868775f0f6b129d262332d83a6eedffe1a8d14df28",
+        "matches": true
+      },
+      "conditions.json": {
+        "actual": "2d5300fc7619d9eb51f779d190d76a96e3033447eacfe3396031629623fa1b9b",
+        "expected": "2d5300fc7619d9eb51f779d190d76a96e3033447eacfe3396031629623fa1b9b",
+        "matches": true
+      },
+      "config.json": {
+        "actual": "14f1a61edee2e6f2ce1004034224575e9bf11e7fe2e32d3fbedf8db7b1778d30",
+        "expected": "14f1a61edee2e6f2ce1004034224575e9bf11e7fe2e32d3fbedf8db7b1778d30",
+        "matches": true
+      },
+      "console.log": {
+        "actual": "b6341dcac82dda4b283996403b4a290a33b4a3692d83987d7050d98baa42e320",
+        "expected": "b6341dcac82dda4b283996403b4a290a33b4a3692d83987d7050d98baa42e320",
+        "matches": true
+      },
+      "fitted.npz": {
+        "actual": "2f2eb81919f428d7c31fad405187dcf1a85c408c7dea3eb513a917390b91d814",
+        "expected": "2f2eb81919f428d7c31fad405187dcf1a85c408c7dea3eb513a917390b91d814",
+        "matches": true
+      },
+      "mechanical_audit.json": {
+        "actual": "f47a312810fab9ca6af6429914d2638d24a19de0f54663a27c301997d81ab0af",
+        "expected": "f47a312810fab9ca6af6429914d2638d24a19de0f54663a27c301997d81ab0af",
+        "matches": true
+      },
+      "model.json": {
+        "actual": "3de345689ec2e385a7337d2d4c2d98da404fc7ef9e1218f3a4d3b0f45db045ea",
+        "expected": "3de345689ec2e385a7337d2d4c2d98da404fc7ef9e1218f3a4d3b0f45db045ea",
+        "matches": true
+      },
+      "perturbed/fit.json": {
+        "actual": "783aa0ef3de0caf85bbb4870fc2fdcef221e1d5c12b20b617e58e6bfe29cbf34",
+        "expected": "783aa0ef3de0caf85bbb4870fc2fdcef221e1d5c12b20b617e58e6bfe29cbf34",
+        "matches": true
+      },
+      "perturbed/history.json": {
+        "actual": "aff6a5964b6e388fe4a304d28e94ee2ed7ffecb4cea6fcb9b78cf70ba2db3195",
+        "expected": "aff6a5964b6e388fe4a304d28e94ee2ed7ffecb4cea6fcb9b78cf70ba2db3195",
+        "matches": true
+      },
+      "perturbed/initial.npz": {
+        "actual": "0d3665841df5ddc40148f136d95fb1df62bec6b57c485e89338f9bf1823bcd05",
+        "expected": "0d3665841df5ddc40148f136d95fb1df62bec6b57c485e89338f9bf1823bcd05",
+        "matches": true
+      },
+      "perturbed/latest.json": {
+        "actual": "418bff8a5aa2c2cad9bd8121ce06a3cbe2d273ab0f6430f56d06f25947550b31",
+        "expected": "418bff8a5aa2c2cad9bd8121ce06a3cbe2d273ab0f6430f56d06f25947550b31",
+        "matches": true
+      },
+      "perturbed/model.json": {
+        "actual": "3de345689ec2e385a7337d2d4c2d98da404fc7ef9e1218f3a4d3b0f45db045ea",
+        "expected": "3de345689ec2e385a7337d2d4c2d98da404fc7ef9e1218f3a4d3b0f45db045ea",
+        "matches": true
+      },
+      "perturbed/outer_01.npz": {
+        "actual": "bb61cf9cb49e5691ca89afac0387f0cd0d58c453f2b6ccae0e442ff49b06a939",
+        "expected": "bb61cf9cb49e5691ca89afac0387f0cd0d58c453f2b6ccae0e442ff49b06a939",
+        "matches": true
+      },
+      "perturbed/outer_02.npz": {
+        "actual": "d7629ed1a5df4fdf4b3234b1e79abaa02b8d60456291b4d43c542524a6ef18f1",
+        "expected": "d7629ed1a5df4fdf4b3234b1e79abaa02b8d60456291b4d43c542524a6ef18f1",
+        "matches": true
+      },
+      "perturbed/outer_03.npz": {
+        "actual": "a23d8a3e8df7d48a57b67af213e4648f285b107e89709d0d604515176114ac41",
+        "expected": "a23d8a3e8df7d48a57b67af213e4648f285b107e89709d0d604515176114ac41",
+        "matches": true
+      },
+      "perturbed/outer_04.npz": {
+        "actual": "cba0f9581d943ced5e6d8b37b210085f12a5555279b1e1c33d77e631865385c0",
+        "expected": "cba0f9581d943ced5e6d8b37b210085f12a5555279b1e1c33d77e631865385c0",
+        "matches": true
+      },
+      "perturbed/outer_05.npz": {
+        "actual": "d260c4a8d56eeeb4936f53ffb4128d726fbcce2b0d4cb57b7aee8e39a194d924",
+        "expected": "d260c4a8d56eeeb4936f53ffb4128d726fbcce2b0d4cb57b7aee8e39a194d924",
+        "matches": true
+      },
+      "perturbed/outer_06.npz": {
+        "actual": "54dadb2e4191556db878958291064506929fbdd5809fbeca028aa080314b8ca0",
+        "expected": "54dadb2e4191556db878958291064506929fbdd5809fbeca028aa080314b8ca0",
+        "matches": true
+      },
+      "perturbed/outer_07.npz": {
+        "actual": "3759c94b5cdaf2ea214a7331ef750399e78b9da96680f2649e5c32237a3a5d24",
+        "expected": "3759c94b5cdaf2ea214a7331ef750399e78b9da96680f2649e5c32237a3a5d24",
+        "matches": true
+      },
+      "perturbed/outer_08.npz": {
+        "actual": "4cfcb4064172e27b3ee0a90e6352769386bbaa286893fb7b9ea7ad85d7a2b139",
+        "expected": "4cfcb4064172e27b3ee0a90e6352769386bbaa286893fb7b9ea7ad85d7a2b139",
+        "matches": true
+      },
+      "perturbed/outer_09.npz": {
+        "actual": "332d7a2964c662c908fc13bae4fcb30522294a8b00dcebd2169fe6d80d080059",
+        "expected": "332d7a2964c662c908fc13bae4fcb30522294a8b00dcebd2169fe6d80d080059",
+        "matches": true
+      },
+      "perturbed/outer_10.npz": {
+        "actual": "07c046eb1e83baf00b12f293cc671682a3db99dfb6e3008fa2ad307277cf7f94",
+        "expected": "07c046eb1e83baf00b12f293cc671682a3db99dfb6e3008fa2ad307277cf7f94",
+        "matches": true
+      },
+      "perturbed/outer_11.npz": {
+        "actual": "e386688b1fba758ce909fb1a504fc88e52a7d67831455ebf22b6f057943c6122",
+        "expected": "e386688b1fba758ce909fb1a504fc88e52a7d67831455ebf22b6f057943c6122",
+        "matches": true
+      },
+      "perturbed/outer_12.npz": {
+        "actual": "5860e5340770b120955d374f6c4b996f51868cf239e4ccc7495e2733e6033fa2",
+        "expected": "5860e5340770b120955d374f6c4b996f51868cf239e4ccc7495e2733e6033fa2",
+        "matches": true
+      },
+      "perturbed/outer_13.npz": {
+        "actual": "0fd2f6af1e0689d2a17b41e4f458b6d43e03bc9d8f1252715f69ef681e31e9d0",
+        "expected": "0fd2f6af1e0689d2a17b41e4f458b6d43e03bc9d8f1252715f69ef681e31e9d0",
+        "matches": true
+      },
+      "perturbed/outer_14.npz": {
+        "actual": "cb08e9bf748c6c89e6f7a6a08e2190838422bdb8ffd29101e5ae5385284af6ed",
+        "expected": "cb08e9bf748c6c89e6f7a6a08e2190838422bdb8ffd29101e5ae5385284af6ed",
+        "matches": true
+      },
+      "perturbed/outer_15.npz": {
+        "actual": "7fad30159bd693f1b64b4a13f92e05b3ff16268bafa9934e618c1232423f490c",
+        "expected": "7fad30159bd693f1b64b4a13f92e05b3ff16268bafa9934e618c1232423f490c",
+        "matches": true
+      },
+      "perturbed/outer_16.npz": {
+        "actual": "ff08498f064ba9f83f45c37673a8cb604ca6728ddc1d797c96fd59d8451fe9ab",
+        "expected": "ff08498f064ba9f83f45c37673a8cb604ca6728ddc1d797c96fd59d8451fe9ab",
+        "matches": true
+      },
+      "perturbed/outer_17.npz": {
+        "actual": "700c0784f1ef72dbabe7a72a690315db97b961df4e3fd36e267905d4c8d5b8c4",
+        "expected": "700c0784f1ef72dbabe7a72a690315db97b961df4e3fd36e267905d4c8d5b8c4",
+        "matches": true
+      },
+      "perturbed/outer_18.npz": {
+        "actual": "e9f87b8e973ad231a5082a865484568903fbb0837b42608f74f2b108b93fa871",
+        "expected": "e9f87b8e973ad231a5082a865484568903fbb0837b42608f74f2b108b93fa871",
+        "matches": true
+      },
+      "perturbed/outer_19.npz": {
+        "actual": "d5f76d4d40e4c75a3db553d36f9dcc714dbfe79cd1b2ff4b19a6fc0853e25792",
+        "expected": "d5f76d4d40e4c75a3db553d36f9dcc714dbfe79cd1b2ff4b19a6fc0853e25792",
+        "matches": true
+      },
+      "perturbed/outer_20.npz": {
+        "actual": "3dd25d88c9c0aec196c91fd9c42aae859ea89263e8bfcf4bc71e550a6bf27e38",
+        "expected": "3dd25d88c9c0aec196c91fd9c42aae859ea89263e8bfcf4bc71e550a6bf27e38",
+        "matches": true
+      },
+      "perturbed/outer_21.npz": {
+        "actual": "6173c224bb45de372d6de1c008c8ac53a38d361439e62fda9879d3f3c1b56fec",
+        "expected": "6173c224bb45de372d6de1c008c8ac53a38d361439e62fda9879d3f3c1b56fec",
+        "matches": true
+      },
+      "perturbed/outer_22.npz": {
+        "actual": "189cccc1cb1dca475c41e027e4fb5c34190d966c4833fa5e761356a60bc7cba9",
+        "expected": "189cccc1cb1dca475c41e027e4fb5c34190d966c4833fa5e761356a60bc7cba9",
+        "matches": true
+      },
+      "perturbed/outer_23.npz": {
+        "actual": "2127ca8e270fa497f6b9e86efa13d545df7cd1bb733d9a2f12cce95756a221de",
+        "expected": "2127ca8e270fa497f6b9e86efa13d545df7cd1bb733d9a2f12cce95756a221de",
+        "matches": true
+      },
+      "perturbed/outer_24.npz": {
+        "actual": "b5a9bf59d2e3bfcca3aeb78b63cc0135d544a9eb78232b399d047049dc90f5d8",
+        "expected": "b5a9bf59d2e3bfcca3aeb78b63cc0135d544a9eb78232b399d047049dc90f5d8",
+        "matches": true
+      },
+      "perturbed/outer_25.npz": {
+        "actual": "604fea437fc752ef581734a926c0f23b0997c75ae3e6c62e9202154f70f9a83d",
+        "expected": "604fea437fc752ef581734a926c0f23b0997c75ae3e6c62e9202154f70f9a83d",
+        "matches": true
+      },
+      "perturbed/outer_26.npz": {
+        "actual": "595ff17ef613f75bb7392286356c0832aeaca2cf3b9871cada6dfdd0373e952e",
+        "expected": "595ff17ef613f75bb7392286356c0832aeaca2cf3b9871cada6dfdd0373e952e",
+        "matches": true
+      },
+      "perturbed/outer_27.npz": {
+        "actual": "a3849109f81aa37ba6e4a4ce9290c5973f2a22e12395d87a2d5a4d213bfd9d9f",
+        "expected": "a3849109f81aa37ba6e4a4ce9290c5973f2a22e12395d87a2d5a4d213bfd9d9f",
+        "matches": true
+      },
+      "perturbed/outer_28.npz": {
+        "actual": "11a232bbd92f198b617e843de6aac609125ad09d764306b6dbae18035b2b04ec",
+        "expected": "11a232bbd92f198b617e843de6aac609125ad09d764306b6dbae18035b2b04ec",
+        "matches": true
+      },
+      "perturbed/outer_29.npz": {
+        "actual": "b4200ac5f30a5789b9630244354fe68e5a84710427b4dc022711ae75b3d8d9fd",
+        "expected": "b4200ac5f30a5789b9630244354fe68e5a84710427b4dc022711ae75b3d8d9fd",
+        "matches": true
+      },
+      "perturbed/outer_30.npz": {
+        "actual": "a77e4552fdf3392b6220e5d48e4919372a64dcb2af826695504b2c8e5532e417",
+        "expected": "a77e4552fdf3392b6220e5d48e4919372a64dcb2af826695504b2c8e5532e417",
+        "matches": true
+      },
+      "perturbed/outer_31.npz": {
+        "actual": "2ebcda16bd52b4b7f397e53483156c8a181ea67f7f99fa337105ef7f579396cb",
+        "expected": "2ebcda16bd52b4b7f397e53483156c8a181ea67f7f99fa337105ef7f579396cb",
+        "matches": true
+      },
+      "perturbed/outer_32.npz": {
+        "actual": "bd9dfdfceccb27350161eab2d0204b1709a0dc17dcace3a2b37ae480365f3753",
+        "expected": "bd9dfdfceccb27350161eab2d0204b1709a0dc17dcace3a2b37ae480365f3753",
+        "matches": true
+      },
+      "perturbed/solution.npz": {
+        "actual": "6ceca207d5b00154ce7b6d06a22e9fae239f3e0bc31d7d280adbc6b7bf7fd72b",
+        "expected": "6ceca207d5b00154ce7b6d06a22e9fae239f3e0bc31d7d280adbc6b7bf7fd72b",
+        "matches": true
+      },
+      "provenance.json": {
+        "actual": "669b6f8917e90f6f94467a9471a9ee5f257c3ec8d4398ba865e55b0e05cfcc8b",
+        "expected": "669b6f8917e90f6f94467a9471a9ee5f257c3ec8d4398ba865e55b0e05cfcc8b",
+        "matches": true
+      },
+      "response_curves.png": {
+        "actual": "6a7e398d7cdb3ceddcf12b53c99a659299c7e44dfb6085fbba84621c11e3a780",
+        "expected": "6a7e398d7cdb3ceddcf12b53c99a659299c7e44dfb6085fbba84621c11e3a780",
+        "matches": true
+      },
+      "response_curves_native_xi4.png": {
+        "actual": "f149a7ff31fd9ee37ada358f3e44acc7cc46f36cb350134fa57e3fbdcf261117",
+        "expected": "f149a7ff31fd9ee37ada358f3e44acc7cc46f36cb350134fa57e3fbdcf261117",
+        "matches": true
+      },
+      "source_snapshot/README.md": {
+        "actual": "79ef6b1308f01c5dd84bf79ff7f2310ccc071d82f737ca25bb1533fe2811c369",
+        "expected": "79ef6b1308f01c5dd84bf79ff7f2310ccc071d82f737ca25bb1533fe2811c369",
+        "matches": true
+      },
+      "source_snapshot/distortion_model/__init__.py": {
+        "actual": "a1ca7fdcdb759b80bc949f8d826cd9f137ae9244e10ebd7eb4b9d236b951eabd",
+        "expected": "a1ca7fdcdb759b80bc949f8d826cd9f137ae9244e10ebd7eb4b9d236b951eabd",
+        "matches": true
+      },
+      "source_snapshot/distortion_model/accommodation.py": {
+        "actual": "688393dc6e7cb2bc3e48cd9b8f3159ff720b814a611fa4e4f1c64967f32f87af",
+        "expected": "688393dc6e7cb2bc3e48cd9b8f3159ff720b814a611fa4e4f1c64967f32f87af",
+        "matches": true
+      },
+      "source_snapshot/distortion_model/alignment.py": {
+        "actual": "f0f99d1029f343998bd19cd107b03985a0e6e4ea83ff1dd908d99b50b9d0da7a",
+        "expected": "f0f99d1029f343998bd19cd107b03985a0e6e4ea83ff1dd908d99b50b9d0da7a",
+        "matches": true
+      },
+      "source_snapshot/distortion_model/centers.py": {
+        "actual": "064f51e4261d2f7c51ff13ab63a2bfb577bafb9b949438b093d06f8d9cfdd04b",
+        "expected": "064f51e4261d2f7c51ff13ab63a2bfb577bafb9b949438b093d06f8d9cfdd04b",
+        "matches": true
+      },
+      "source_snapshot/distortion_model/centroid_bound.py": {
+        "actual": "7e2440d5a9a9da908d96a826f188a257d95994f6afcb92a844bc7c7ccc891cd5",
+        "expected": "7e2440d5a9a9da908d96a826f188a257d95994f6afcb92a844bc7c7ccc891cd5",
+        "matches": true
+      },
+      "source_snapshot/distortion_model/data.py": {
+        "actual": "34d30a0bfae63bfa5f8d2f8e5a2e83dd746489af3127cd6d6658aaece940f716",
+        "expected": "34d30a0bfae63bfa5f8d2f8e5a2e83dd746489af3127cd6d6658aaece940f716",
+        "matches": true
+      },
+      "source_snapshot/distortion_model/gaze.py": {
+        "actual": "7cc65372d7936fb1eda602cc9579a747617f3b108c8cd2fc640d0c7eac1d946a",
+        "expected": "7cc65372d7936fb1eda602cc9579a747617f3b108c8cd2fc640d0c7eac1d946a",
+        "matches": true
+      },
+      "source_snapshot/distortion_model/geometry.py": {
+        "actual": "e0421ce58e9f87a38de51975799f87a1cbedc7256c6caa6de49119412aad34e1",
+        "expected": "e0421ce58e9f87a38de51975799f87a1cbedc7256c6caa6de49119412aad34e1",
+        "matches": true
+      },
+      "source_snapshot/distortion_model/inference.py": {
+        "actual": "fea7e822588a550164f5f9ba4838eed25c665efacca6d0ac604896627c027a54",
+        "expected": "fea7e822588a550164f5f9ba4838eed25c665efacca6d0ac604896627c027a54",
+        "matches": true
+      },
+      "source_snapshot/distortion_model/joint.py": {
+        "actual": "8e491a760ccbf3db107603b2cdcf60634a936aa19a7eb00740798d14bfb46560",
+        "expected": "8e491a760ccbf3db107603b2cdcf60634a936aa19a7eb00740798d14bfb46560",
+        "matches": true
+      },
+      "source_snapshot/distortion_model/optics.py": {
+        "actual": "ac0e8e785f39c31c0da049f2a52bcc0add18a274779e7eb100d1626a10329f6b",
+        "expected": "ac0e8e785f39c31c0da049f2a52bcc0add18a274779e7eb100d1626a10329f6b",
+        "matches": true
+      },
+      "source_snapshot/distortion_model/p1.py": {
+        "actual": "cd8995a57772df1e79f4a1923f2fe4db64b1194530535a37189f789b1d020cfb",
+        "expected": "cd8995a57772df1e79f4a1923f2fe4db64b1194530535a37189f789b1d020cfb",
+        "matches": true
+      },
+      "source_snapshot/distortion_model/p4.py": {
+        "actual": "74558adf60e3ae1794caa242a1bf3f132a0eb0ea11bea7a393ad9b38299ac7d6",
+        "expected": "74558adf60e3ae1794caa242a1bf3f132a0eb0ea11bea7a393ad9b38299ac7d6",
+        "matches": true
+      },
+      "source_snapshot/docs/ESTIMATOR_PLAN.md": {
+        "actual": "74c78372474bd453e295590009804fdc2d08833ec1fa705541ab0805c2dde8b7",
+        "expected": "74c78372474bd453e295590009804fdc2d08833ec1fa705541ab0805c2dde8b7",
+        "matches": true
+      },
+      "source_snapshot/docs/STAGE_GATES.md": {
+        "actual": "2b5aadbed756beb0f7d68e29c5ecd47020bc2606fec54a199d5c1c3cf93e7b01",
+        "expected": "2b5aadbed756beb0f7d68e29c5ecd47020bc2606fec54a199d5c1c3cf93e7b01",
+        "matches": true
+      },
+      "source_snapshot/docs/Theory.md": {
+        "actual": "8a807332a55c2ac6a786cb2311bbb62895ce37dab9a0c0bf0f3fa884b4200a80",
+        "expected": "8a807332a55c2ac6a786cb2311bbb62895ce37dab9a0c0bf0f3fa884b4200a80",
+        "matches": true
+      },
+      "source_snapshot/docs/stages/01_DATA_AND_BOOTSTRAP.md": {
+        "actual": "c160b1bd49546d8df5e1f0b87da0617d05b87ed5426f7192902a04af48960784",
+        "expected": "c160b1bd49546d8df5e1f0b87da0617d05b87ed5426f7192902a04af48960784",
+        "matches": true
+      },
+      "source_snapshot/docs/stages/02_P1_REFERENCE_AND_SCALE.md": {
+        "actual": "e90336604b8391342437286606b1c3db960bfe6c37296a72908a9e1515631ce3",
+        "expected": "e90336604b8391342437286606b1c3db960bfe6c37296a72908a9e1515631ce3",
+        "matches": true
+      },
+      "source_snapshot/docs/stages/03_P4_BASELINE_AND_DEFORMATION.md": {
+        "actual": "754126b3a7ecf56e1461a69744c2204fef98a53b6495057b560433efcecd4a9e",
+        "expected": "754126b3a7ecf56e1461a69744c2204fef98a53b6495057b560433efcecd4a9e",
+        "matches": true
+      },
+      "source_snapshot/docs/stages/04_CENTER_AND_DM0_CALIBRATION.md": {
+        "actual": "b0c3a9c7e4424c764a204f52a1916e14a72fd99c188e6770eb53ca7bbf0e4110",
+        "expected": "b0c3a9c7e4424c764a204f52a1916e14a72fd99c188e6770eb53ca7bbf0e4110",
+        "matches": true
+      },
+      "source_snapshot/docs/stages/05_CROSSCHECK_AND_MODEL_DECISION.md": {
+        "actual": "2f89f59bb1e142dd0882f1ee7fdf007007a4b042b88912434f4ffb9218305bd1",
+        "expected": "2f89f59bb1e142dd0882f1ee7fdf007007a4b042b88912434f4ffb9218305bd1",
+        "matches": true
+      },
+      "source_snapshot/experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/g45_common.py": {
+        "actual": "a61bbeff832ec4f3747864649f1a1b7080be6d8d04ce019357a1409c5acee83a",
+        "expected": "a61bbeff832ec4f3747864649f1a1b7080be6d8d04ce019357a1409c5acee83a",
+        "matches": true
+      },
+      "source_snapshot/experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/run.py": {
+        "actual": "9b488a6c35bf18647e3cd5db73f467b7765b25c49248943d2eac48a4ba6e0b27",
+        "expected": "9b488a6c35bf18647e3cd5db73f467b7765b25c49248943d2eac48a4ba6e0b27",
+        "matches": true
+      },
+      "source_snapshot/experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/run_accommodation.py": {
+        "actual": "2ae8e04991e258343bfec0abdd6913fa96672c9c4ef1ccc5940171138df55ed2",
+        "expected": "2ae8e04991e258343bfec0abdd6913fa96672c9c4ef1ccc5940171138df55ed2",
+        "matches": true
+      },
+      "source_snapshot/experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/run_deformation.py": {
+        "actual": "d3bb0547ba88ff6c4901f0aa4b6adb941db7b9d92637b0fbe7551dc6d0309ad5",
+        "expected": "d3bb0547ba88ff6c4901f0aa4b6adb941db7b9d92637b0fbe7551dc6d0309ad5",
+        "matches": true
+      },
+      "source_snapshot/experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7.py": {
+        "actual": "6d527862a963c62d4757f4e816861cbd4a8828e3409b071068296f95e51241f1",
+        "expected": "6d527862a963c62d4757f4e816861cbd4a8828e3409b071068296f95e51241f1",
+        "matches": true
+      },
+      "source_snapshot/experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/compare_centroid_g6_g7.py": {
+        "actual": "4cd61b5e7c89fa3147febdb9f17a4ca08498faf50517db7801b8729ea15254cf",
+        "expected": "4cd61b5e7c89fa3147febdb9f17a4ca08498faf50517db7801b8729ea15254cf",
+        "matches": true
+      },
+      "source_snapshot/experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run.py": {
+        "actual": "263a7fc6629bfa3651782f0a3898caf33d80bebf206400dedb9b4770e30fb9bc",
+        "expected": "263a7fc6629bfa3651782f0a3898caf33d80bebf206400dedb9b4770e30fb9bc",
+        "matches": true
+      },
+      "source_snapshot/experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run_joint.py": {
+        "actual": "0259ff464cf2ec32ff0ffc627e58a7e22cb8ea443391bb30f21df9c17b5cc204",
+        "expected": "0259ff464cf2ec32ff0ffc627e58a7e22cb8ea443391bb30f21df9c17b5cc204",
+        "matches": true
+      },
+      "source_snapshot/experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run_joint_bounded.py": {
+        "actual": "b39e84793e5c87b3c7efc19acd4da60d9d4604bfd3e5051e6c6dfc30d1fc9d22",
+        "expected": "b39e84793e5c87b3c7efc19acd4da60d9d4604bfd3e5051e6c6dfc30d1fc9d22",
+        "matches": true
+      },
+      "source_snapshot/requirements-stage7.txt": {
+        "actual": "69a3bd9bded8b1719d5ad1c9d54275368f5fffa2fa9bcef1042f52c323725b5b",
+        "expected": "69a3bd9bded8b1719d5ad1c9d54275368f5fffa2fa9bcef1042f52c323725b5b",
+        "matches": true
+      },
+      "source_snapshot/tests/run_stage1.py": {
+        "actual": "99b850e6b2653ced4571a95f2ddb6f1b19d30f48d44f2e6b1770ecadaa760239",
+        "expected": "99b850e6b2653ced4571a95f2ddb6f1b19d30f48d44f2e6b1770ecadaa760239",
+        "matches": true
+      },
+      "source_snapshot/tests/run_stage2.py": {
+        "actual": "d90c87a62da459f8ac3c15c4ccb23a95e4ac12a42bdf9b0658339950f88dea9a",
+        "expected": "d90c87a62da459f8ac3c15c4ccb23a95e4ac12a42bdf9b0658339950f88dea9a",
+        "matches": true
+      },
+      "source_snapshot/tests/run_stage3.py": {
+        "actual": "0946f3efb2bfb68288945e0b397f5d8d4a659918515185623e11b28bd1069c18",
+        "expected": "0946f3efb2bfb68288945e0b397f5d8d4a659918515185623e11b28bd1069c18",
+        "matches": true
+      },
+      "source_snapshot/tests/run_stage4.py": {
+        "actual": "f03a1a2842b17fa23d54f9d7248d74a3e73125d4ae1490681299b54a2b1e801b",
+        "expected": "f03a1a2842b17fa23d54f9d7248d74a3e73125d4ae1490681299b54a2b1e801b",
+        "matches": true
+      },
+      "source_snapshot/tests/run_stage5.py": {
+        "actual": "c2145ef17318f58636ebd5298af3109c2f74672bc861488eb92791655cd5ff1b",
+        "expected": "c2145ef17318f58636ebd5298af3109c2f74672bc861488eb92791655cd5ff1b",
+        "matches": true
+      },
+      "source_snapshot/tests/test_stage1.py": {
+        "actual": "24801a7e07f423daa69b28bd5dfb473ba0cf14053dea5896f2106700e77a9437",
+        "expected": "24801a7e07f423daa69b28bd5dfb473ba0cf14053dea5896f2106700e77a9437",
+        "matches": true
+      },
+      "source_snapshot/tests/test_stage2.py": {
+        "actual": "bdcdb5fc294817dd2487121a27155e93349674da9d4a7bf293213e09e65b88d7",
+        "expected": "bdcdb5fc294817dd2487121a27155e93349674da9d4a7bf293213e09e65b88d7",
+        "matches": true
+      },
+      "source_snapshot/tests/test_stage3.py": {
+        "actual": "dcb40d0a4d1e93167af565af151ff954f3227c2456c40e14fa4a9e7a64cd95a9",
+        "expected": "dcb40d0a4d1e93167af565af151ff954f3227c2456c40e14fa4a9e7a64cd95a9",
+        "matches": true
+      },
+      "source_snapshot/tests/test_stage4.py": {
+        "actual": "fc71de393f94b8b09fb55409728fd0c21df2de2262b14730fac99acd37209acb",
+        "expected": "fc71de393f94b8b09fb55409728fd0c21df2de2262b14730fac99acd37209acb",
+        "matches": true
+      },
+      "source_snapshot/tests/test_stage5.py": {
+        "actual": "e197195c49abefdaa489d15559255028c060f35843df035a2328385f8f63f21a",
+        "expected": "e197195c49abefdaa489d15559255028c060f35843df035a2328385f8f63f21a",
+        "matches": true
+      },
+      "states_and_residuals.png": {
+        "actual": "67df248f4288497254f2336c25e5a7e5a9395a6de711893af83818e3437465eb",
+        "expected": "67df248f4288497254f2336c25e5a7e5a9395a6de711893af83818e3437465eb",
+        "matches": true
+      },
+      "summary.json": {
+        "actual": "c956d2005f54a57e57e68d81b315870b067e0c999f37e7002d239fb8c1ff426c",
+        "expected": "c956d2005f54a57e57e68d81b315870b067e0c999f37e7002d239fb8c1ff426c",
+        "matches": true
+      }
+    },
+    "count": 144
+  },
+  "review_state": {
+    "G7_decision": "PAUSE",
+    "G8_authorized": false,
+    "comparison_complete": false,
+    "crosscheck_complete": false,
+    "fit_certified": false,
+    "fit_complete": false,
+    "status": "COMPLETE_UNCERTIFIED"
+  },
+  "selected_start": "continued",
+  "source": "mechanical_inventory",
+  "source_change_classification": {
+    "all_archived_bytes_match_original_provenance": true,
+    "expected_postrun_live_only_changes": [
+      "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_bounded.py",
+      "docs/stages/04_CENTER_AND_DM0_CALIBRATION.md"
+    ],
+    "fitting_code_current_hashes_match": true,
+    "fitting_code_paths_checked": [
+      "distortion_model/__init__.py",
+      "distortion_model/accommodation.py",
+      "distortion_model/alignment.py",
+      "distortion_model/centers.py",
+      "distortion_model/centroid_bound.py",
+      "distortion_model/data.py",
+      "distortion_model/gaze.py",
+      "distortion_model/geometry.py",
+      "distortion_model/inference.py",
+      "distortion_model/interval_ad.py",
+      "distortion_model/joint.py",
+      "distortion_model/optics.py",
+      "distortion_model/p1.py",
+      "distortion_model/p4.py",
+      "experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/g45_common.py",
+      "experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/run.py",
+      "experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/run_accommodation.py",
+      "experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/run_deformation.py",
+      "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/continue_g7_repaired.py",
+      "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run.py",
+      "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run_joint.py",
+      "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run_joint_bounded.py",
+      "requirements-stage7.txt"
+    ],
+    "interpretation": "Post-run changes are limited to the audit-only start-label adaptation and current stage-authority status text. The source snapshot still matches every archived hash, and fitting source hashes match runtime provenance.",
+    "postrun_live_only_changes": [
+      "docs/stages/04_CENTER_AND_DM0_CALIBRATION.md",
+      "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_bounded.py"
+    ]
+  },
+  "source_hash_checks": {
+    "distortion_model/__init__.py": {
+      "actual": "a1ca7fdcdb759b80bc949f8d826cd9f137ae9244e10ebd7eb4b9d236b951eabd",
+      "matches": true,
+      "recorded": "a1ca7fdcdb759b80bc949f8d826cd9f137ae9244e10ebd7eb4b9d236b951eabd"
+    },
+    "distortion_model/accommodation.py": {
+      "actual": "688393dc6e7cb2bc3e48cd9b8f3159ff720b814a611fa4e4f1c64967f32f87af",
+      "matches": true,
+      "recorded": "688393dc6e7cb2bc3e48cd9b8f3159ff720b814a611fa4e4f1c64967f32f87af"
+    },
+    "distortion_model/alignment.py": {
+      "actual": "f0f99d1029f343998bd19cd107b03985a0e6e4ea83ff1dd908d99b50b9d0da7a",
+      "matches": true,
+      "recorded": "f0f99d1029f343998bd19cd107b03985a0e6e4ea83ff1dd908d99b50b9d0da7a"
+    },
+    "distortion_model/centers.py": {
+      "actual": "064f51e4261d2f7c51ff13ab63a2bfb577bafb9b949438b093d06f8d9cfdd04b",
+      "matches": true,
+      "recorded": "064f51e4261d2f7c51ff13ab63a2bfb577bafb9b949438b093d06f8d9cfdd04b"
+    },
+    "distortion_model/centroid_bound.py": {
+      "actual": "87f24f2b7d28ac0d3af70cbb43f2e2b6d1861ec4c5e9d62432a503ced30a50c7",
+      "matches": true,
+      "recorded": "87f24f2b7d28ac0d3af70cbb43f2e2b6d1861ec4c5e9d62432a503ced30a50c7"
+    },
+    "distortion_model/data.py": {
+      "actual": "34d30a0bfae63bfa5f8d2f8e5a2e83dd746489af3127cd6d6658aaece940f716",
+      "matches": true,
+      "recorded": "34d30a0bfae63bfa5f8d2f8e5a2e83dd746489af3127cd6d6658aaece940f716"
+    },
+    "distortion_model/gaze.py": {
+      "actual": "7cc65372d7936fb1eda602cc9579a747617f3b108c8cd2fc640d0c7eac1d946a",
+      "matches": true,
+      "recorded": "7cc65372d7936fb1eda602cc9579a747617f3b108c8cd2fc640d0c7eac1d946a"
+    },
+    "distortion_model/geometry.py": {
+      "actual": "e0421ce58e9f87a38de51975799f87a1cbedc7256c6caa6de49119412aad34e1",
+      "matches": true,
+      "recorded": "e0421ce58e9f87a38de51975799f87a1cbedc7256c6caa6de49119412aad34e1"
+    },
+    "distortion_model/inference.py": {
+      "actual": "fea7e822588a550164f5f9ba4838eed25c665efacca6d0ac604896627c027a54",
+      "matches": true,
+      "recorded": "fea7e822588a550164f5f9ba4838eed25c665efacca6d0ac604896627c027a54"
+    },
+    "distortion_model/interval_ad.py": {
+      "actual": "ce871dc33da068ab9bba0753a9bf4d6683f251a437ec433f67d8bf79cf97f6ac",
+      "matches": true,
+      "recorded": "ce871dc33da068ab9bba0753a9bf4d6683f251a437ec433f67d8bf79cf97f6ac"
+    },
+    "distortion_model/joint.py": {
+      "actual": "8e491a760ccbf3db107603b2cdcf60634a936aa19a7eb00740798d14bfb46560",
+      "matches": true,
+      "recorded": "8e491a760ccbf3db107603b2cdcf60634a936aa19a7eb00740798d14bfb46560"
+    },
+    "distortion_model/optics.py": {
+      "actual": "ac0e8e785f39c31c0da049f2a52bcc0add18a274779e7eb100d1626a10329f6b",
+      "matches": true,
+      "recorded": "ac0e8e785f39c31c0da049f2a52bcc0add18a274779e7eb100d1626a10329f6b"
+    },
+    "distortion_model/p1.py": {
+      "actual": "cd8995a57772df1e79f4a1923f2fe4db64b1194530535a37189f789b1d020cfb",
+      "matches": true,
+      "recorded": "cd8995a57772df1e79f4a1923f2fe4db64b1194530535a37189f789b1d020cfb"
+    },
+    "distortion_model/p4.py": {
+      "actual": "74558adf60e3ae1794caa242a1bf3f132a0eb0ea11bea7a393ad9b38299ac7d6",
+      "matches": true,
+      "recorded": "74558adf60e3ae1794caa242a1bf3f132a0eb0ea11bea7a393ad9b38299ac7d6"
+    },
+    "docs/ESTIMATOR_PLAN.md": {
+      "actual": "74c78372474bd453e295590009804fdc2d08833ec1fa705541ab0805c2dde8b7",
+      "matches": true,
+      "recorded": "74c78372474bd453e295590009804fdc2d08833ec1fa705541ab0805c2dde8b7"
+    },
+    "docs/STAGE_GATES.md": {
+      "actual": "2b5aadbed756beb0f7d68e29c5ecd47020bc2606fec54a199d5c1c3cf93e7b01",
+      "matches": true,
+      "recorded": "2b5aadbed756beb0f7d68e29c5ecd47020bc2606fec54a199d5c1c3cf93e7b01"
+    },
+    "docs/Theory.md": {
+      "actual": "8a807332a55c2ac6a786cb2311bbb62895ce37dab9a0c0bf0f3fa884b4200a80",
+      "matches": true,
+      "recorded": "8a807332a55c2ac6a786cb2311bbb62895ce37dab9a0c0bf0f3fa884b4200a80"
+    },
+    "docs/stages/01_DATA_AND_BOOTSTRAP.md": {
+      "actual": "c160b1bd49546d8df5e1f0b87da0617d05b87ed5426f7192902a04af48960784",
+      "matches": true,
+      "recorded": "c160b1bd49546d8df5e1f0b87da0617d05b87ed5426f7192902a04af48960784"
+    },
+    "docs/stages/02_P1_REFERENCE_AND_SCALE.md": {
+      "actual": "e90336604b8391342437286606b1c3db960bfe6c37296a72908a9e1515631ce3",
+      "matches": true,
+      "recorded": "e90336604b8391342437286606b1c3db960bfe6c37296a72908a9e1515631ce3"
+    },
+    "docs/stages/03_P4_BASELINE_AND_DEFORMATION.md": {
+      "actual": "754126b3a7ecf56e1461a69744c2204fef98a53b6495057b560433efcecd4a9e",
+      "matches": true,
+      "recorded": "754126b3a7ecf56e1461a69744c2204fef98a53b6495057b560433efcecd4a9e"
+    },
+    "docs/stages/04_CENTER_AND_DM0_CALIBRATION.md": {
+      "actual": "b6fe64cf8e60ca2911df90609098b88ea63904d071a97d053128923aa23ecb84",
+      "matches": false,
+      "recorded": "c6d5f7df1e4f3ba8112ba737890339a4ac4f79c4d1c02a3bfd3d64b8a01097d1"
+    },
+    "docs/stages/05_CROSSCHECK_AND_MODEL_DECISION.md": {
+      "actual": "2f89f59bb1e142dd0882f1ee7fdf007007a4b042b88912434f4ffb9218305bd1",
+      "matches": true,
+      "recorded": "2f89f59bb1e142dd0882f1ee7fdf007007a4b042b88912434f4ffb9218305bd1"
+    },
+    "experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/g45_common.py": {
+      "actual": "a61bbeff832ec4f3747864649f1a1b7080be6d8d04ce019357a1409c5acee83a",
+      "matches": true,
+      "recorded": "a61bbeff832ec4f3747864649f1a1b7080be6d8d04ce019357a1409c5acee83a"
+    },
+    "experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/run.py": {
+      "actual": "9b488a6c35bf18647e3cd5db73f467b7765b25c49248943d2eac48a4ba6e0b27",
+      "matches": true,
+      "recorded": "9b488a6c35bf18647e3cd5db73f467b7765b25c49248943d2eac48a4ba6e0b27"
+    },
+    "experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/run_accommodation.py": {
+      "actual": "2ae8e04991e258343bfec0abdd6913fa96672c9c4ef1ccc5940171138df55ed2",
+      "matches": true,
+      "recorded": "2ae8e04991e258343bfec0abdd6913fa96672c9c4ef1ccc5940171138df55ed2"
+    },
+    "experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/run_deformation.py": {
+      "actual": "d3bb0547ba88ff6c4901f0aa4b6adb941db7b9d92637b0fbe7551dc6d0309ad5",
+      "matches": true,
+      "recorded": "d3bb0547ba88ff6c4901f0aa4b6adb941db7b9d92637b0fbe7551dc6d0309ad5"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7.py": {
+      "actual": "6d527862a963c62d4757f4e816861cbd4a8828e3409b071068296f95e51241f1",
+      "matches": true,
+      "recorded": "6d527862a963c62d4757f4e816861cbd4a8828e3409b071068296f95e51241f1"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_bounded.py": {
+      "actual": "4b9275adf0008cd9581455ea1ee4ce020bf0fb5e78985215f7ab0320d4ffba33",
+      "matches": false,
+      "recorded": "d56ff26ed0f92806b24c6d83c76e0a18a438ff04588eb8ef7f9ff31c7b3f844b"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/compare_centroid_g6_g7.py": {
+      "actual": "4cd61b5e7c89fa3147febdb9f17a4ca08498faf50517db7801b8729ea15254cf",
+      "matches": true,
+      "recorded": "4cd61b5e7c89fa3147febdb9f17a4ca08498faf50517db7801b8729ea15254cf"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/continue_g7_repaired.py": {
+      "actual": "4cb13412c300de892ab4413ade697977aa50e9082e675d546dc8057e6935a125",
+      "matches": true,
+      "recorded": "4cb13412c300de892ab4413ade697977aa50e9082e675d546dc8057e6935a125"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/repair_g7.py": {
+      "actual": "276649633d0b11b09d8008a1c50485a6705c2442586c04b443fffc2be9ec7df6",
+      "matches": true,
+      "recorded": "276649633d0b11b09d8008a1c50485a6705c2442586c04b443fffc2be9ec7df6"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run.py": {
+      "actual": "263a7fc6629bfa3651782f0a3898caf33d80bebf206400dedb9b4770e30fb9bc",
+      "matches": true,
+      "recorded": "263a7fc6629bfa3651782f0a3898caf33d80bebf206400dedb9b4770e30fb9bc"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run_joint.py": {
+      "actual": "0067a4f1abbc9965e22c1e0987984d4486326c42a583c628ac32d917a1d1fe3d",
+      "matches": true,
+      "recorded": "0067a4f1abbc9965e22c1e0987984d4486326c42a583c628ac32d917a1d1fe3d"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run_joint_bounded.py": {
+      "actual": "94e96bdb58945d3fd6c3fc2cf8ef8b65a586472b16ef4a1385884679342697c6",
+      "matches": true,
+      "recorded": "94e96bdb58945d3fd6c3fc2cf8ef8b65a586472b16ef4a1385884679342697c6"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/summarize_g7_compact.py": {
+      "actual": "3b60a7dcec33e2dca8e00131ac389a49ffb0f23af717ee8b221843100e36f6e3",
+      "matches": true,
+      "recorded": "3b60a7dcec33e2dca8e00131ac389a49ffb0f23af717ee8b221843100e36f6e3"
+    },
+    "requirements-stage7.txt": {
+      "actual": "69a3bd9bded8b1719d5ad1c9d54275368f5fffa2fa9bcef1042f52c323725b5b",
+      "matches": true,
+      "recorded": "69a3bd9bded8b1719d5ad1c9d54275368f5fffa2fa9bcef1042f52c323725b5b"
+    },
+    "tests/run_stage1.py": {
+      "actual": "99b850e6b2653ced4571a95f2ddb6f1b19d30f48d44f2e6b1770ecadaa760239",
+      "matches": true,
+      "recorded": "99b850e6b2653ced4571a95f2ddb6f1b19d30f48d44f2e6b1770ecadaa760239"
+    },
+    "tests/run_stage2.py": {
+      "actual": "d90c87a62da459f8ac3c15c4ccb23a95e4ac12a42bdf9b0658339950f88dea9a",
+      "matches": true,
+      "recorded": "d90c87a62da459f8ac3c15c4ccb23a95e4ac12a42bdf9b0658339950f88dea9a"
+    },
+    "tests/run_stage3.py": {
+      "actual": "0946f3efb2bfb68288945e0b397f5d8d4a659918515185623e11b28bd1069c18",
+      "matches": true,
+      "recorded": "0946f3efb2bfb68288945e0b397f5d8d4a659918515185623e11b28bd1069c18"
+    },
+    "tests/run_stage4.py": {
+      "actual": "f03a1a2842b17fa23d54f9d7248d74a3e73125d4ae1490681299b54a2b1e801b",
+      "matches": true,
+      "recorded": "f03a1a2842b17fa23d54f9d7248d74a3e73125d4ae1490681299b54a2b1e801b"
+    },
+    "tests/run_stage5.py": {
+      "actual": "c2145ef17318f58636ebd5298af3109c2f74672bc861488eb92791655cd5ff1b",
+      "matches": true,
+      "recorded": "c2145ef17318f58636ebd5298af3109c2f74672bc861488eb92791655cd5ff1b"
+    },
+    "tests/test_stage1.py": {
+      "actual": "24801a7e07f423daa69b28bd5dfb473ba0cf14053dea5896f2106700e77a9437",
+      "matches": true,
+      "recorded": "24801a7e07f423daa69b28bd5dfb473ba0cf14053dea5896f2106700e77a9437"
+    },
+    "tests/test_stage2.py": {
+      "actual": "bdcdb5fc294817dd2487121a27155e93349674da9d4a7bf293213e09e65b88d7",
+      "matches": true,
+      "recorded": "bdcdb5fc294817dd2487121a27155e93349674da9d4a7bf293213e09e65b88d7"
+    },
+    "tests/test_stage3.py": {
+      "actual": "dcb40d0a4d1e93167af565af151ff954f3227c2456c40e14fa4a9e7a64cd95a9",
+      "matches": true,
+      "recorded": "dcb40d0a4d1e93167af565af151ff954f3227c2456c40e14fa4a9e7a64cd95a9"
+    },
+    "tests/test_stage4.py": {
+      "actual": "fc71de393f94b8b09fb55409728fd0c21df2de2262b14730fac99acd37209acb",
+      "matches": true,
+      "recorded": "fc71de393f94b8b09fb55409728fd0c21df2de2262b14730fac99acd37209acb"
+    },
+    "tests/test_stage5.py": {
+      "actual": "e197195c49abefdaa489d15559255028c060f35843df035a2328385f8f63f21a",
+      "matches": true,
+      "recorded": "e197195c49abefdaa489d15559255028c060f35843df035a2328385f8f63f21a"
+    }
+  },
+  "source_hashes_match": false,
+  "source_snapshot_hash_checks": {
+    "distortion_model/__init__.py": {
+      "actual": "a1ca7fdcdb759b80bc949f8d826cd9f137ae9244e10ebd7eb4b9d236b951eabd",
+      "matches": true,
+      "recorded": "a1ca7fdcdb759b80bc949f8d826cd9f137ae9244e10ebd7eb4b9d236b951eabd"
+    },
+    "distortion_model/accommodation.py": {
+      "actual": "688393dc6e7cb2bc3e48cd9b8f3159ff720b814a611fa4e4f1c64967f32f87af",
+      "matches": true,
+      "recorded": "688393dc6e7cb2bc3e48cd9b8f3159ff720b814a611fa4e4f1c64967f32f87af"
+    },
+    "distortion_model/alignment.py": {
+      "actual": "f0f99d1029f343998bd19cd107b03985a0e6e4ea83ff1dd908d99b50b9d0da7a",
+      "matches": true,
+      "recorded": "f0f99d1029f343998bd19cd107b03985a0e6e4ea83ff1dd908d99b50b9d0da7a"
+    },
+    "distortion_model/centers.py": {
+      "actual": "064f51e4261d2f7c51ff13ab63a2bfb577bafb9b949438b093d06f8d9cfdd04b",
+      "matches": true,
+      "recorded": "064f51e4261d2f7c51ff13ab63a2bfb577bafb9b949438b093d06f8d9cfdd04b"
+    },
+    "distortion_model/centroid_bound.py": {
+      "actual": "87f24f2b7d28ac0d3af70cbb43f2e2b6d1861ec4c5e9d62432a503ced30a50c7",
+      "matches": true,
+      "recorded": "87f24f2b7d28ac0d3af70cbb43f2e2b6d1861ec4c5e9d62432a503ced30a50c7"
+    },
+    "distortion_model/data.py": {
+      "actual": "34d30a0bfae63bfa5f8d2f8e5a2e83dd746489af3127cd6d6658aaece940f716",
+      "matches": true,
+      "recorded": "34d30a0bfae63bfa5f8d2f8e5a2e83dd746489af3127cd6d6658aaece940f716"
+    },
+    "distortion_model/gaze.py": {
+      "actual": "7cc65372d7936fb1eda602cc9579a747617f3b108c8cd2fc640d0c7eac1d946a",
+      "matches": true,
+      "recorded": "7cc65372d7936fb1eda602cc9579a747617f3b108c8cd2fc640d0c7eac1d946a"
+    },
+    "distortion_model/geometry.py": {
+      "actual": "e0421ce58e9f87a38de51975799f87a1cbedc7256c6caa6de49119412aad34e1",
+      "matches": true,
+      "recorded": "e0421ce58e9f87a38de51975799f87a1cbedc7256c6caa6de49119412aad34e1"
+    },
+    "distortion_model/inference.py": {
+      "actual": "fea7e822588a550164f5f9ba4838eed25c665efacca6d0ac604896627c027a54",
+      "matches": true,
+      "recorded": "fea7e822588a550164f5f9ba4838eed25c665efacca6d0ac604896627c027a54"
+    },
+    "distortion_model/interval_ad.py": {
+      "actual": "ce871dc33da068ab9bba0753a9bf4d6683f251a437ec433f67d8bf79cf97f6ac",
+      "matches": true,
+      "recorded": "ce871dc33da068ab9bba0753a9bf4d6683f251a437ec433f67d8bf79cf97f6ac"
+    },
+    "distortion_model/joint.py": {
+      "actual": "8e491a760ccbf3db107603b2cdcf60634a936aa19a7eb00740798d14bfb46560",
+      "matches": true,
+      "recorded": "8e491a760ccbf3db107603b2cdcf60634a936aa19a7eb00740798d14bfb46560"
+    },
+    "distortion_model/optics.py": {
+      "actual": "ac0e8e785f39c31c0da049f2a52bcc0add18a274779e7eb100d1626a10329f6b",
+      "matches": true,
+      "recorded": "ac0e8e785f39c31c0da049f2a52bcc0add18a274779e7eb100d1626a10329f6b"
+    },
+    "distortion_model/p1.py": {
+      "actual": "cd8995a57772df1e79f4a1923f2fe4db64b1194530535a37189f789b1d020cfb",
+      "matches": true,
+      "recorded": "cd8995a57772df1e79f4a1923f2fe4db64b1194530535a37189f789b1d020cfb"
+    },
+    "distortion_model/p4.py": {
+      "actual": "74558adf60e3ae1794caa242a1bf3f132a0eb0ea11bea7a393ad9b38299ac7d6",
+      "matches": true,
+      "recorded": "74558adf60e3ae1794caa242a1bf3f132a0eb0ea11bea7a393ad9b38299ac7d6"
+    },
+    "docs/ESTIMATOR_PLAN.md": {
+      "actual": "74c78372474bd453e295590009804fdc2d08833ec1fa705541ab0805c2dde8b7",
+      "matches": true,
+      "recorded": "74c78372474bd453e295590009804fdc2d08833ec1fa705541ab0805c2dde8b7"
+    },
+    "docs/STAGE_GATES.md": {
+      "actual": "2b5aadbed756beb0f7d68e29c5ecd47020bc2606fec54a199d5c1c3cf93e7b01",
+      "matches": true,
+      "recorded": "2b5aadbed756beb0f7d68e29c5ecd47020bc2606fec54a199d5c1c3cf93e7b01"
+    },
+    "docs/Theory.md": {
+      "actual": "8a807332a55c2ac6a786cb2311bbb62895ce37dab9a0c0bf0f3fa884b4200a80",
+      "matches": true,
+      "recorded": "8a807332a55c2ac6a786cb2311bbb62895ce37dab9a0c0bf0f3fa884b4200a80"
+    },
+    "docs/stages/01_DATA_AND_BOOTSTRAP.md": {
+      "actual": "c160b1bd49546d8df5e1f0b87da0617d05b87ed5426f7192902a04af48960784",
+      "matches": true,
+      "recorded": "c160b1bd49546d8df5e1f0b87da0617d05b87ed5426f7192902a04af48960784"
+    },
+    "docs/stages/02_P1_REFERENCE_AND_SCALE.md": {
+      "actual": "e90336604b8391342437286606b1c3db960bfe6c37296a72908a9e1515631ce3",
+      "matches": true,
+      "recorded": "e90336604b8391342437286606b1c3db960bfe6c37296a72908a9e1515631ce3"
+    },
+    "docs/stages/03_P4_BASELINE_AND_DEFORMATION.md": {
+      "actual": "754126b3a7ecf56e1461a69744c2204fef98a53b6495057b560433efcecd4a9e",
+      "matches": true,
+      "recorded": "754126b3a7ecf56e1461a69744c2204fef98a53b6495057b560433efcecd4a9e"
+    },
+    "docs/stages/04_CENTER_AND_DM0_CALIBRATION.md": {
+      "actual": "c6d5f7df1e4f3ba8112ba737890339a4ac4f79c4d1c02a3bfd3d64b8a01097d1",
+      "matches": true,
+      "recorded": "c6d5f7df1e4f3ba8112ba737890339a4ac4f79c4d1c02a3bfd3d64b8a01097d1"
+    },
+    "docs/stages/05_CROSSCHECK_AND_MODEL_DECISION.md": {
+      "actual": "2f89f59bb1e142dd0882f1ee7fdf007007a4b042b88912434f4ffb9218305bd1",
+      "matches": true,
+      "recorded": "2f89f59bb1e142dd0882f1ee7fdf007007a4b042b88912434f4ffb9218305bd1"
+    },
+    "experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/g45_common.py": {
+      "actual": "a61bbeff832ec4f3747864649f1a1b7080be6d8d04ce019357a1409c5acee83a",
+      "matches": true,
+      "recorded": "a61bbeff832ec4f3747864649f1a1b7080be6d8d04ce019357a1409c5acee83a"
+    },
+    "experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/run.py": {
+      "actual": "9b488a6c35bf18647e3cd5db73f467b7765b25c49248943d2eac48a4ba6e0b27",
+      "matches": true,
+      "recorded": "9b488a6c35bf18647e3cd5db73f467b7765b25c49248943d2eac48a4ba6e0b27"
+    },
+    "experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/run_accommodation.py": {
+      "actual": "2ae8e04991e258343bfec0abdd6913fa96672c9c4ef1ccc5940171138df55ed2",
+      "matches": true,
+      "recorded": "2ae8e04991e258343bfec0abdd6913fa96672c9c4ef1ccc5940171138df55ed2"
+    },
+    "experiments/distortion_model/stage_03_p4_baseline_and_deformation/scripts/run_deformation.py": {
+      "actual": "d3bb0547ba88ff6c4901f0aa4b6adb941db7b9d92637b0fbe7551dc6d0309ad5",
+      "matches": true,
+      "recorded": "d3bb0547ba88ff6c4901f0aa4b6adb941db7b9d92637b0fbe7551dc6d0309ad5"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7.py": {
+      "actual": "6d527862a963c62d4757f4e816861cbd4a8828e3409b071068296f95e51241f1",
+      "matches": true,
+      "recorded": "6d527862a963c62d4757f4e816861cbd4a8828e3409b071068296f95e51241f1"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_bounded.py": {
+      "actual": "d56ff26ed0f92806b24c6d83c76e0a18a438ff04588eb8ef7f9ff31c7b3f844b",
+      "matches": true,
+      "recorded": "d56ff26ed0f92806b24c6d83c76e0a18a438ff04588eb8ef7f9ff31c7b3f844b"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/compare_centroid_g6_g7.py": {
+      "actual": "4cd61b5e7c89fa3147febdb9f17a4ca08498faf50517db7801b8729ea15254cf",
+      "matches": true,
+      "recorded": "4cd61b5e7c89fa3147febdb9f17a4ca08498faf50517db7801b8729ea15254cf"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/continue_g7_repaired.py": {
+      "actual": "4cb13412c300de892ab4413ade697977aa50e9082e675d546dc8057e6935a125",
+      "matches": true,
+      "recorded": "4cb13412c300de892ab4413ade697977aa50e9082e675d546dc8057e6935a125"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/repair_g7.py": {
+      "actual": "276649633d0b11b09d8008a1c50485a6705c2442586c04b443fffc2be9ec7df6",
+      "matches": true,
+      "recorded": "276649633d0b11b09d8008a1c50485a6705c2442586c04b443fffc2be9ec7df6"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run.py": {
+      "actual": "263a7fc6629bfa3651782f0a3898caf33d80bebf206400dedb9b4770e30fb9bc",
+      "matches": true,
+      "recorded": "263a7fc6629bfa3651782f0a3898caf33d80bebf206400dedb9b4770e30fb9bc"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run_joint.py": {
+      "actual": "0067a4f1abbc9965e22c1e0987984d4486326c42a583c628ac32d917a1d1fe3d",
+      "matches": true,
+      "recorded": "0067a4f1abbc9965e22c1e0987984d4486326c42a583c628ac32d917a1d1fe3d"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run_joint_bounded.py": {
+      "actual": "94e96bdb58945d3fd6c3fc2cf8ef8b65a586472b16ef4a1385884679342697c6",
+      "matches": true,
+      "recorded": "94e96bdb58945d3fd6c3fc2cf8ef8b65a586472b16ef4a1385884679342697c6"
+    },
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/summarize_g7_compact.py": {
+      "actual": "3b60a7dcec33e2dca8e00131ac389a49ffb0f23af717ee8b221843100e36f6e3",
+      "matches": true,
+      "recorded": "3b60a7dcec33e2dca8e00131ac389a49ffb0f23af717ee8b221843100e36f6e3"
+    },
+    "requirements-stage7.txt": {
+      "actual": "69a3bd9bded8b1719d5ad1c9d54275368f5fffa2fa9bcef1042f52c323725b5b",
+      "matches": true,
+      "recorded": "69a3bd9bded8b1719d5ad1c9d54275368f5fffa2fa9bcef1042f52c323725b5b"
+    },
+    "tests/run_stage1.py": {
+      "actual": "99b850e6b2653ced4571a95f2ddb6f1b19d30f48d44f2e6b1770ecadaa760239",
+      "matches": true,
+      "recorded": "99b850e6b2653ced4571a95f2ddb6f1b19d30f48d44f2e6b1770ecadaa760239"
+    },
+    "tests/run_stage2.py": {
+      "actual": "d90c87a62da459f8ac3c15c4ccb23a95e4ac12a42bdf9b0658339950f88dea9a",
+      "matches": true,
+      "recorded": "d90c87a62da459f8ac3c15c4ccb23a95e4ac12a42bdf9b0658339950f88dea9a"
+    },
+    "tests/run_stage3.py": {
+      "actual": "0946f3efb2bfb68288945e0b397f5d8d4a659918515185623e11b28bd1069c18",
+      "matches": true,
+      "recorded": "0946f3efb2bfb68288945e0b397f5d8d4a659918515185623e11b28bd1069c18"
+    },
+    "tests/run_stage4.py": {
+      "actual": "f03a1a2842b17fa23d54f9d7248d74a3e73125d4ae1490681299b54a2b1e801b",
+      "matches": true,
+      "recorded": "f03a1a2842b17fa23d54f9d7248d74a3e73125d4ae1490681299b54a2b1e801b"
+    },
+    "tests/run_stage5.py": {
+      "actual": "c2145ef17318f58636ebd5298af3109c2f74672bc861488eb92791655cd5ff1b",
+      "matches": true,
+      "recorded": "c2145ef17318f58636ebd5298af3109c2f74672bc861488eb92791655cd5ff1b"
+    },
+    "tests/test_stage1.py": {
+      "actual": "24801a7e07f423daa69b28bd5dfb473ba0cf14053dea5896f2106700e77a9437",
+      "matches": true,
+      "recorded": "24801a7e07f423daa69b28bd5dfb473ba0cf14053dea5896f2106700e77a9437"
+    },
+    "tests/test_stage2.py": {
+      "actual": "bdcdb5fc294817dd2487121a27155e93349674da9d4a7bf293213e09e65b88d7",
+      "matches": true,
+      "recorded": "bdcdb5fc294817dd2487121a27155e93349674da9d4a7bf293213e09e65b88d7"
+    },
+    "tests/test_stage3.py": {
+      "actual": "dcb40d0a4d1e93167af565af151ff954f3227c2456c40e14fa4a9e7a64cd95a9",
+      "matches": true,
+      "recorded": "dcb40d0a4d1e93167af565af151ff954f3227c2456c40e14fa4a9e7a64cd95a9"
+    },
+    "tests/test_stage4.py": {
+      "actual": "fc71de393f94b8b09fb55409728fd0c21df2de2262b14730fac99acd37209acb",
+      "matches": true,
+      "recorded": "fc71de393f94b8b09fb55409728fd0c21df2de2262b14730fac99acd37209acb"
+    },
+    "tests/test_stage5.py": {
+      "actual": "e197195c49abefdaa489d15559255028c060f35843df035a2328385f8f63f21a",
+      "matches": true,
+      "recorded": "e197195c49abefdaa489d15559255028c060f35843df035a2328385f8f63f21a"
+    }
+  },
+  "source_snapshot_hashes_match": true,
+  "starts": {
+    "continued": {
+      "accepted": 62,
+      "accepted_by_block": {
+        "A": 10,
+        "D": 1,
+        "K4": 0,
+        "P1": 8,
+        "baseline": 4,
+        "joint": 27,
+        "theta": 12
+      },
+      "cost_last_accepted": 1925.6013386760033,
+      "cost_start": 1925.6013387428595,
+      "history_events": 97,
+      "joint_accepted_damping_max": 13,
+      "joint_accepted_damping_median": 0.0,
+      "joint_rejection_counts": {
+        "nonpositive shared proposal curvature": 5,
+        "same_objective_line_search": 810
+      },
+      "last_event": {
+        "accepted": false,
+        "block": "joint",
+        "cost_before": 1925.6013386760033,
+        "gradient_before": {
+          "global_projected_gradient_inf": 2.5102956584532876e-05,
+          "state_projected_gradient_inf": 1.2250697418308976e-11
+        },
+        "observed_curvature": true,
+        "outcome": null,
+        "polish": 0,
+        "rejection_counts": {
+          "nonpositive shared proposal curvature": 5,
+          "same_objective_line_search": 36
+        }
+      },
+      "max_joint_trust_cap": 1.0,
+      "outer_joint_accepted": 27,
+      "polish_events": [
+        {
+          "accepted": false,
+          "iteration": 0,
+          "reason": null
+        }
+      ],
+      "rejected": 35,
+      "rejected_by_block": {
+        "A": 6,
+        "D": 7,
+        "K4": 8,
+        "P1": 0,
+        "baseline": 4,
+        "joint": 6,
+        "theta": 4
+      }
+    }
+  }
+}

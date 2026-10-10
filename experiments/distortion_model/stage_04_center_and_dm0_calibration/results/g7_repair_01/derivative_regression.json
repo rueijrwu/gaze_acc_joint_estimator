@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "kind": "user-authorized deterministic saved-branch regression",
+  "active_rows": [
+    0,
+    3840,
+    5759
+  ],
+  "active_cells": [
+    0,
+    1919
+  ],
+  "saved_p15": -1.6453324575218026e-06,
+  "directions": 22,
+  "both_sign_branches": [
+    {
+      "p15_sign": -1,
+      "p15": -1.6453324575218026e-06,
+      "FD_step_for_regression_only": 5.141663929755633e-08,
+      "maximum_gradient_absolute_error": 5.351914245110834e-09,
+      "maximum_hessian_absolute_error": 1.715568109794674e-08,
+      "value_maximum_absolute_difference": 4.440892098500626e-16
+    },
+    {
+      "p15_sign": 1,
+      "p15": 1.6453324575218026e-06,
+      "FD_step_for_regression_only": 5.141663929755633e-08,
+      "maximum_gradient_absolute_error": 5.235580857743116e-09,
+      "maximum_hessian_absolute_error": 1.715568109794674e-08,
+      "value_maximum_absolute_difference": 4.440892098500626e-16
+    }
+  ],
+  "tie_rows_flagged": [
+    0,
+    3840,
+    5759
+  ],
+  "old_multiplier_weighted_AD_H15_15": 0.0,
+  "historical_crossing_stencils": [
+    {
+      "step": 1e-05,
+      "weighted_H15_15": -3150701.3554126727
+    },
+    {
+      "step": 5e-06,
+      "weighted_H15_15": -5736538.085356346
+    },
+    {
+      "step": 1e-06,
+      "weighted_H15_15": -6088105.407516082
+    },
+    {
+      "step": 5e-07,
+      "weighted_H15_15": -0.0061077116697561
+    },
+    {
+      "step": 2.5e-07,
+      "weighted_H15_15": 0.016949798009591177
+    }
+  ],
+  "tie_policy": "first endpoint selected for a proposal; feasibility always checked; active ties prevent smooth certification"
+}

@@ -1,6 +1,6 @@
 # Stage 4 — corrected centers and full DM0 calibration
 
-**S6/G6: complete, GO_WITH_LIMIT. S7/G7 attempt 02: complete, uncertified, PAUSE.**
+**S6/G6: complete, GO_WITH_LIMIT. S7/G7 attempt 03: complete, uncertified, PAUSE.**
 
 G6 fits the declared forward visual-gaze center polynomial at the immutable G5 state/optical snapshot. It uses all complete frames in all twenty reviewed intervals. Corrected centers are derived diagnostics; the coefficient solve uses the complete ten-coordinate point criterion with all covariance cross-terms.
 
@@ -8,7 +8,7 @@ G6 fits the declared forward visual-gaze center polynomial at the immutable G5 s
 
 - [Estimator mathematics](../../../distortion_model/centers.py): center basis, derivatives, reference conversion, correction ledger, chunked weighted coefficient solve.
 - [Experiment runner](scripts/run.py): compatible parent loading, immutable snapshot checks, empirical fit, full arrays, plots and provenance.
-- [G7 unbounded runner](scripts/run_joint.py), [one-degree bounded runner](scripts/run_joint_bounded.py), and [post-fit mechanical audits](scripts/audit_g7.py) and [bounded-run audit](scripts/audit_g7_bounded.py); see the [current constrained G7 attempt](results/g7_attempt_02/STAGE_REPORT.md), [checkpoint](results/g7_attempt_02/checkpoint.json), and [mechanical audit](results/g7_attempt_02/mechanical_audit.json). The unbounded [attempt 01](results/g7_attempt_01/STAGE_REPORT.md) remains historical evidence.
+- [G7 unbounded runner](scripts/run_joint.py), [one-degree bounded runner](scripts/run_joint_bounded.py), [bounded-run audit](scripts/audit_g7_bounded.py), and [saved compact aggregator](scripts/summarize_g7_compact.py). The current result is [attempt 03](results/g7_attempt_03/STAGE_REPORT.md), one compatible continuation from [attempt 02](results/g7_attempt_02/STAGE_REPORT.md); its [checkpoint](results/g7_attempt_03/checkpoint.json) and [mechanical audit](results/g7_attempt_03/mechanical_audit.json) preserve the evidence. Same-state [repair01](results/g7_repair_01/STAGE_REPORT.md) changed no fit values. Attempts01/02 remain unchanged historical records.
 - [Results](docs/RESULTS.md), [attempt ledger](docs/STAGE_REPORT.md) and [live progress](docs/PROGRESS.md).
 - [Attempt 01](results/g6_attempt_01/STAGE_REPORT.md): retained initial run; reporting repair required.
 - [Attempt 02](results/g6_attempt_02/STAGE_REPORT.md): reviewed result after fixing capture-color legends and adding explicit model provenance fields. Numerical arrays/objectives are unchanged.
@@ -32,4 +32,4 @@ The calculation forms chunked weighted moments and a ten-parameter linear system
 
 The runner saves full point, theta-anchor, A-anchor and regularization components before and after the solve. It records numerical identities against the existing full forward adapter, with no extra center loss. Root reviews scientific findings; independent mechanical reconstruction does not assign a gate decision.
 
-Current next numerical question: diagnose why the active interval-constraint Hessian is unstable near the boundary and whether a smooth equivalent certificate can retain the same physical bound and objective. The selected fit misses the global KKT tolerance; constrained profile curvature was not evaluated. Do not launch G8 or another fit before resolving this question.
+Current next numerical question: why does positive constrained profile curvature coexist with rejected full shared proposals and no acceptable same-objective polish step near a 2.51e-5 global residual? Diagnose QP accuracy/scaling and constraint-aware Newton/line-search behavior. The smooth derivative and profile-curvature checks now pass, but global stationarity still fails. No further fit in this campaign; keep G8 paused.
