@@ -1,6 +1,6 @@
 # Reverse-transform next-step plan: remove keystone size normalization
 
-**Branch:** \`exp5_distortion_model\`  
+**Branch:** `exp5_distortion_model`  
 **Purpose:** Replace the current size-normalized keystone convention with the direct physical/projective keystone transform, then rebuild the Capture-1 calibration chain before evaluating accommodation again.  
 **Status:** Planning document only. Existing Stage 01–05 results remain historical evidence under the old normalized-keystone convention.
 
