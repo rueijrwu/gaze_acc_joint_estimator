@@ -247,6 +247,22 @@ def summarize_frames(frames):
             vals = {"E_i_squared_px2": None, "Gtheta_i_squared_deg2": None, "GA_i_squared_D2": None}
         exposure_records.append({"exposure": exposure, "eligible_frames": len(fs), **vals})
     complete = len(by_exp) == 20 and all(by_exp.get(k) for k in range(20))
+    # A frame contributes its exposure's mean squared metric divided by 20.
+    # This is its exact additive contribution to the equal-exposure scorecard.
+    # Keep the unweighted frame values as well; the weighted contribution is
+    # a descriptive attribution, not a new score or eligibility rule.
+    for frame in eligible_frames:
+        n_exp = len(by_exp[int(frame["exposure"])])
+        frame["equal_exposure_contribution"] = {
+            "E_i_squared_px2": frame["E_i_squared_px2"] / (20 * n_exp),
+            "Gtheta_i_squared_deg2": frame["Gtheta_i_squared_deg2"] / (20 * n_exp),
+            "GA_i_squared_D2": frame["GA_i_squared_D2"] / (20 * n_exp),
+            "exposure_frame_count": n_exp,
+            "exposure_weight": 1 / 20,
+        }
+    for frame in frames:
+        if not frame["complete_eligible_triple"]:
+            frame["equal_exposure_contribution"] = None
     equal_exposure = {}
     for key, root in (("E_i_squared_px2", "E_px"),
                       ("Gtheta_i_squared_deg2", "Gtheta_deg"),
@@ -258,6 +274,32 @@ def summarize_frames(frames):
         else:
             equal_exposure[key] = None
             equal_exposure[root] = None
+    metrics = (("E_i_squared_px2", "E_px", "E_i_px"),
+               ("Gtheta_i_squared_deg2", "Gtheta_deg", "Gtheta_i_deg"),
+               ("GA_i_squared_D2", "GA_D", "GA_i_D"))
+    ranked = {}
+    if complete:
+        for source_key, _, _ in metrics:
+            ordered = sorted(eligible_frames,
+                             key=lambda f: (-f["equal_exposure_contribution"][source_key],
+                                            f["capture"], f["exposure"], f["row"], f["source_frame"]))
+            total = float(np.mean([r[source_key] for r in exposure_records]))
+            cumulative = 0.0
+            entries = []
+            for rank, frame in enumerate(ordered, 1):
+                contribution = frame["equal_exposure_contribution"][source_key]
+                cumulative += contribution
+                entries.append({"rank": rank,
+                                "capture": frame["capture"], "exposure": frame["exposure"],
+                                "row": frame["row"], "source_frame": frame["source_frame"],
+                                "frame_value": frame[source_key],
+                                "weighted_contribution": contribution,
+                                "share_of_equal_exposure_total": contribution / total if total else None,
+                                "cumulative_share_top_k": cumulative / total if total else None,
+                                "at_bounds_count": frame["at_bounds_count"],
+                                "endpoint_count": sum(bool(s.get("schedule_endpoint")) for s in frame["slots"]),
+                                "slots": frame["slots"]})
+            ranked[source_key] = {"total": total, "top_contributors": entries}
     return {"eligible_complete_frames": len(eligible_frames), "all_frame_groups": len(frames),
             "present_exposures": sorted(by_exp), "missing_exposures": sorted(set(range(20)) - set(by_exp)),
             "all_20_exposures_present": complete,
@@ -267,15 +309,25 @@ def summarize_frames(frames):
                 "any_slot_at_bounds": _frame_stratum(eligible_frames, lambda f: f["at_bounds_count"] > 0),
                 "no_slot_at_bounds": _frame_stratum(eligible_frames, lambda f: f["at_bounds_count"] == 0),
             },
+            "endpoint_strata": {
+                "any_slot_endpoint": _frame_stratum(eligible_frames, lambda f: any(bool(s.get("schedule_endpoint")) for s in f["slots"])),
+                "no_slot_endpoint": _frame_stratum(eligible_frames, lambda f: not any(bool(s.get("schedule_endpoint")) for s in f["slots"])),
+            },
+            "ranked_equal_exposure_contributions": ranked,
             "frames": frames}
 
 
 def _frame_stratum(frames, predicate):
     selected = [f for f in frames if predicate(f)]
-    return {"frames": len(selected),
+    result = {"frames": len(selected),
             "E_i_px": float(np.sqrt(np.mean([f["E_i_squared_px2"] for f in selected]))) if selected else None,
             "Gtheta_i_deg": float(np.sqrt(np.mean([f["Gtheta_i_squared_deg2"] for f in selected]))) if selected else None,
             "GA_i_D": float(np.sqrt(np.mean([f["GA_i_squared_D2"] for f in selected]))) if selected else None}
+    for key, metric in (("E_i_px", "E_i_px"), ("Gtheta_i_deg", "Gtheta_i_deg"), ("GA_i_D", "GA_i_D")):
+        values = [f[metric] for f in selected]
+        result[key + "_distribution"] = ({"median": float(np.median(values)), "p95": float(np.quantile(values, .95))}
+                                          if values else {"median": None, "p95": None})
+    return result
 
 
 def compare_to_final(file_summaries):
@@ -343,9 +395,21 @@ def markdown_report(doc):
     for f in doc["files"]:
         a = f["all_slots"]
         lines.append(f"| `{f['input_file']}` | `{f['input_sha256']}` | {a['scheduled_slots']} | {a['scored']} | {a['input_unavailable']} | {a['unresolved']} |")
-    selected = next((f for f in doc["files"] if f["input_file"] == "perturbed_final.json"), None)
+    # Prefer the selected continuation's final record when present, then keep
+    # compatibility with earlier two-start attempts and initial campaigns.
+    candidate = next((f for preferred in ("continued_final.json", "perturbed_final.json", "common_final.json")
+                      for f in doc["files"] if f["input_file"] == preferred), None)
+    required_contribution_keys = ("E_i_squared_px2", "Gtheta_i_squared_deg2", "GA_i_squared_D2")
+    contributions_ready = bool(candidate and candidate["triple_summary"]["all_20_exposures_present"]
+                               and candidate["triple_summary"]["eligible_complete_frames"] >= 2
+                               and all(len(candidate["triple_summary"]["ranked_equal_exposure_contributions"].get(k, {}).get("top_contributors", [])) >= 2
+                                       for k in required_contribution_keys))
+    selected = candidate if contributions_ready else None
+    if candidate is not None and not contributions_ready:
+        lines += ["", "## Selected-final contribution coverage", "",
+                  "Ranked equal-exposure contribution tables require a complete 20-exposure triple scorecard and at least two eligible frames. Those conditions are not met for the preferred final record; the report keeps its slot/triple coverage summaries above and does not rank contributors."]
     if selected is not None:
-        lines += ["", "## Selected perturbed final: pooled descriptive summaries", "",
+        lines += ["", f"## Selected final ({selected['input_file']}): pooled descriptive summaries", "",
                   "These are pooled slot-level descriptions, not equal-exposure scorecards. They retain the saved five schedule positions, including both endpoints.", "",
                   "### By held point", "", "| Held P4 | Scored | Vector median (px) | p95 | max | x bias (px) | y bias (px) | x RMS (px) | y RMS (px) |", "|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
         for held, row in sorted(selected["by_held_point"].items(), key=lambda kv: int(kv[0])):
@@ -375,6 +439,42 @@ def markdown_report(doc):
         m = t["equal_exposure_metrics"]
         v = lambda x: "incomplete" if x is None else f"{x:.6g}"
         lines.append(f"| `{item['input_file']}` | {t['eligible_complete_frames']} | {len(t['present_exposures'])}/20 | {','.join(map(str,t['missing_exposures'])) or 'none'} | {v(m['E_px'])} | {v(m['Gtheta_deg'])} | {v(m['GA_D'])} |")
+    if selected is not None:
+        triple = selected["triple_summary"]
+        ranked = triple["ranked_equal_exposure_contributions"]
+        e_key, t_key, a_key = "E_i_squared_px2", "Gtheta_i_squared_deg2", "GA_i_squared_D2"
+        e_top = ranked[e_key]["top_contributors"]
+        t_top = ranked[t_key]["top_contributors"]
+        a_top = ranked[a_key]["top_contributors"]
+        e_map = {(x["capture"], x["exposure"], x["row"], x["source_frame"]): x for x in e_top}
+        t_map = {(x["capture"], x["exposure"], x["row"], x["source_frame"]): x for x in t_top}
+        a_map = {(x["capture"], x["exposure"], x["row"], x["source_frame"]): x for x in a_top}
+        lines += ["", "### Largest frame contributions to the equal-exposure scorecard", "",
+                  "Each contribution is the frame's squared metric divided by 20 times the number of eligible frames in that exposure. The table is ranked by E²; `Gtheta²` and `GA²` are that same frame's contributions, not their independent rank order. `Share` is fraction of the corresponding equal-exposure total. These are descriptive attributions and do not establish why a frame differs.", "",
+                  "| Rank | Capture / exposure / row / source frame | Endpoint slots | Bound slots | E² (px²) | E² contribution | E² share | Gtheta² (deg²) | Gtheta² contribution | Gtheta² share | GA² (D²) | GA² contribution | GA² share |", "|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
+        for item in e_top[:10]:
+            identity = (item["capture"], item["exposure"], item["row"], item["source_frame"])
+            t = t_map[identity]; a = a_map[identity]
+            slots = item["slots"]
+            lines.append(f"| {item['rank']} | {identity[0]} / {identity[1]} / {identity[2]} / {identity[3]} | {item['endpoint_count']} | {item['at_bounds_count']} | {_fmt(item['frame_value'])} | {_fmt(item['weighted_contribution'])} | {_fmt(100*item['share_of_equal_exposure_total'])}% | {_fmt(t['frame_value'])} | {_fmt(t['weighted_contribution'])} | {_fmt(100*t['share_of_equal_exposure_total'])}% | {_fmt(a['frame_value'])} | {_fmt(a['weighted_contribution'])} | {_fmt(100*a['share_of_equal_exposure_total'])}% |")
+        e2 = e_top[1]
+        t2 = t_top[1]
+        lines += ["", f"The two largest E² rows contribute **{100*(e_top[0]['share_of_equal_exposure_total'] + e2['share_of_equal_exposure_total']):.4f}%** of equal-exposure E². The two largest Gtheta² rows contribute **{100*(t_top[0]['share_of_equal_exposure_total'] + t2['share_of_equal_exposure_total']):.4f}%** of equal-exposure Gtheta².", "",
+                  "#### Independent top contributors by metric", "",
+                  "| Metric | Rank | Capture / exposure / row / source frame | Frame squared metric | Weighted contribution | Share | Cumulative top-k share |", "|---|---:|---|---:|---:|---:|---:|"]
+        for label, key in (("E² (px²)", e_key), ("Gtheta² (deg²)", t_key), ("GA² (D²)", a_key)):
+            for entry in ranked[key]["top_contributors"][:5]:
+                ident = f"{entry['capture']} / {entry['exposure']} / {entry['row']} / {entry['source_frame']}"
+                lines.append(f"| {label} | {entry['rank']} | {ident} | {_fmt(entry['frame_value'])} | {_fmt(entry['weighted_contribution'])} | {_fmt(100*entry['share_of_equal_exposure_total'])}% | {_fmt(100*entry['cumulative_share_top_k'])}% |")
+        lines += ["", "#### Matched triple partitions", "",
+                  "Complete triples are partitioned descriptively by whether any of the three scheduled held slots is an original endpoint (position 1 or 5), and whether any state is at a bound. RMS columns summarize squared frame metrics; median and p95 show the frame-level tails. These partitions are not causal comparisons.", "",
+                  "| Partition | Frames | E RMS (px) | E median / p95 (px) | Gtheta RMS (deg) | Gtheta median / p95 (deg) | GA RMS (D) | GA median / p95 (D) |", "|---|---:|---:|---:|---:|---:|---:|---:|"]
+        for group_name, strata in (("Endpoint", triple["endpoint_strata"]), ("Bound", triple["bound_strata"])):
+            labels = (("any_slot_endpoint", "any endpoint"), ("no_slot_endpoint", "interior only")) if group_name == "Endpoint" else (("any_slot_at_bounds", "any state at bound"), ("no_slot_at_bounds", "no state at bound"))
+            for stratum_key, label in labels:
+                row = strata[stratum_key]
+                e_dist = row["E_i_px_distribution"]; t_dist = row["Gtheta_i_deg_distribution"]; a_dist = row["GA_i_D_distribution"]
+                lines.append(f"| {group_name}: {label} | {row['frames']} | {_fmt(row['E_i_px'])} | {_fmt(e_dist['median'])} / {_fmt(e_dist['p95'])} | {_fmt(row['Gtheta_i_deg'])} | {_fmt(t_dist['median'])} / {_fmt(t_dist['p95'])} | {_fmt(row['GA_i_D'])} | {_fmt(a_dist['median'])} / {_fmt(a_dist['p95'])} |")
     lines += ["", "## Matched checkpoint coverage", "",
               "Each checkpoint is compared with its same-start final snapshot on common eligible slot/frame IDs. Coverage gains/losses are reported separately from matched residual changes.", "",
               "| Start | Checkpoint | Common slots | Lost | Gained | Common frames | Mean ΔE² (px²) |", "|---|---|---:|---:|---:|---:|---:|"]

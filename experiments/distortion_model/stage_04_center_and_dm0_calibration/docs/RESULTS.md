@@ -1,6 +1,10 @@
 # Stage 4 results
 
-**Current status: G6 GO_WITH_LIMIT; G7 attempt 03 COMPLETE_UNCERTIFIED / PAUSE.** The forward center polynomial remains a conditionally usable initializer; the full joint model is not certified. Attempts 01 and 02 are preserved unchanged historical records.
+**Current status: G6 GO_WITH_LIMIT; G7 attempt 04 COMPLETE_CERTIFIED_WITH_LIMIT / GO_WITH_LIMIT.** Attempt04 is one reviewed saved-point correction to attempt03, with the full declared numerical certificate recomputed. It is not a new fit campaign. G8 has not run and awaits separate authorization. Attempts01–03 and repair records remain preserved historical evidence.
+
+Attempt04 uses all 89,175 complete valid rows and retains 10,915 unavailable rows. Global scaled KKT residual is 4.24e-10 against the unchanged 1e-6 threshold; state projected gradient is 1.32e-13, complementarity is 3.15e-14, all state data Jacobians have rank two, constrained profile curvature is positive with rank16, and both optical domains are valid. Independent public-optics reconstruction matches the objective components within 2.28e-13, predictions within 3.41e-13 px, and g within 7.77e-16. All 82 attempt03 files remain hash-identical.
+
+The correction changes J by only −5.9962e-12 and predictions by at most 6.19e-6 px. Native relative-coordinate RMS changes from 4.678857434 px to 4.678857454 px. No material empirical improvement is claimed. `crosscheck_complete=false` and `comparison_complete=false`; compact results below are from the existing attempt03 schedule and were not rerun for attempt04.
 
 | Evidence | G6 result |
 |---|---:|
@@ -81,7 +85,7 @@ The predeclared progress-only compact schedule contains 300 slots: 270 are retai
 
 Independent NumPy reconstruction reproduces objective components within 4.55e−13, predictions within 3.98e−13 px, g within 8.88e−16, and fixation means within 2.49e−14. Parent and archived source hashes match. At the end of attempt02, the live fitting module and bounded runner were restored to that attempt's archived versions. The current fitting code is the repaired version used by attempt03; historical source snapshots remain unchanged. No automated test suite was added or run for attempt02.
 
-**Current decision: PAUSE / COMPLETE_UNCERTIFIED.** Keep fit, cross-check and comparison flags false; G8 is not authorized. The next numerical question is why the active interval-constraint Hessian is unstable near the boundary and whether a smooth equivalent certificate can retain the same physical bound and unchanged objective. Resolve that numerical question before another fit; keep G8 paused.
+**Historical attempt02 decision: PAUSE / COMPLETE_UNCERTIFIED.** The active interval-constraint numerical issue was addressed by the saved-point probe and reviewed correction documented below. Attempt02 remains unchanged.
 
 - [Detailed attempt 02 report](../results/g7_attempt_02/STAGE_REPORT.md)
 - [Mechanical reconstruction, full population and history census](../results/g7_attempt_02/mechanical_audit.json)
@@ -101,8 +105,31 @@ Attempt03 used 89,175 complete valid rows and retained 10,915 unavailable rows o
 
 The independent audit verifies bitwise equality between attempt03's initial states/globals and attempt02's selected solution. All 144 attempt02 input hashes captured by repair01 match. Attempt03's archived source snapshot matches its runtime source hashes; current fitting-source hashes remain unchanged. The only source-hash mismatch is a post-fit audit-only start-label adaptation, documented with its current hash in the [mechanical audit](../results/g7_attempt_03/mechanical_audit.json). The audit and aggregation script hashes are recorded there.
 
-**Decision: PAUSE / COMPLETE_UNCERTIFIED.** Keep fit, cross-check, and comparison flags false; do not run G8 or another fit in this campaign. The next numerical question is why positive constrained profile curvature coexists with rejected full shared proposals and no acceptable same-objective polish step near a 2.51e-5 global residual. Diagnose QP accuracy/scaling and constraint-aware Newton/line-search behavior while preserving the objective and physical bound.
+**Historical attempt03 decision: PAUSE / COMPLETE_UNCERTIFIED.** The one constrained saved-point proposal subsequently passed the recomputed strict full-data certificate in attempt04. Attempt03 itself is unchanged and remains uncertified evidence.
 
 - [Attempt 03 report](../results/g7_attempt_03/STAGE_REPORT.md), [summary](../results/g7_attempt_03/summary.json), [checkpoint](../results/g7_attempt_03/checkpoint.json), [console log](../results/g7_attempt_03/console.log)
 - [Attempt 03 mechanical audit](../results/g7_attempt_03/mechanical_audit.json), [compact aggregation](../results/g7_attempt_03/compact_diagnostics/REPORT.md)
 - [Attempt ledger](STAGE_REPORT.md) and [live progress pointer](PROGRESS.md)
+
+## G7 attempt 04 — one reviewed constrained saved-point correction
+
+Attempt04 applies the approved local proposal once to attempt03's exact selected checkpoint. It does not run a fit loop, change the model, or repeat subset inference. The candidate matches the probe's proposed state bitwise; its certificate is recomputed on the full population. Independent reconstruction through the public optics adapter evaluates every valid row. The adoption record and independent audit preserve full source and parent provenance.
+
+| Measure | Attempt03 | Attempt04 |
+|---|---:|---:|
+| Full objective J | 1925.6013386760033 | 1925.6013386759976 |
+| Global scaled KKT residual | 2.5103e-5 | 4.2363e-10 |
+| State projected gradient | 1.23e-11 | 1.32e-13 |
+| Constraint complementarity | 1.89e-13 | 3.15e-14 |
+| Equal-exposure native relative-coordinate RMS | 4.678857434 px | 4.678857454 px |
+| Fit certified | No | Yes, with limit |
+
+The direct component-based objective change is −5.9962e-12; maximum predicted movement is 6.19e-6 px. This closes the declared numerical certificate under the user-authorized one-degree horizontal accommodation-response bound. It does not establish optical adequacy or physical-zero interpretation.
+
+Existing attempt03 compact records remain 300 scheduled / 270 scored / 30 unavailable, with 90 complete triples across all 20 exposures. Equal-exposure E is 41.8138 px, Gtheta 1.50113 degrees, and GA 1.31867 D. The two largest frame contributions make up 94.3568% of E² and 91.8257% of Gtheta²; no cause is inferred and no rows were trimmed. These records were not rerun on attempt04.
+
+`fit_complete=true`, `fit_certified=true`, `crosscheck_complete=false`, and `comparison_complete=false`. The separate G8 cross-agreement evaluation awaits its own authorization. Empirical omega1/omega4 references remain fixed operational values; omega1 uncertainty, G3 alternatives, and physical zeros remain open.
+
+- [Attempt04 report](../results/g7_attempt_04/STAGE_REPORT.md), [summary](../results/g7_attempt_04/summary.json), [checkpoint](../results/g7_attempt_04/checkpoint.json), [full arrays](../results/g7_attempt_04/fitted.npz), [verification](../results/g7_attempt_04/verification.json), [independent public-optics audit](../results/g7_attempt_04/independent_public_optics_audit.json)
+- [Saved-point probe and N1–N4/E1 report](../results/g7_polish_repair_01/STAGE_REPORT.md), [probe summary](../results/g7_polish_repair_01/summary.json), [expanded compact report](../results/g7_polish_repair_01/empirical_diagnostics/REPORT.md)
+- [One-correction adoption script](../scripts/accept_g7_polish.py), [independent audit script](../scripts/audit_g7_polish.py)

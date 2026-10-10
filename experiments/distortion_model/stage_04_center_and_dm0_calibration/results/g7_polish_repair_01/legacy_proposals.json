@@ -1,0 +1,237 @@
+[
+  {
+    "LM": 0.0,
+    "status": "REJECTED",
+    "reason": "nonpositive shared proposal curvature"
+  },
+  {
+    "LM": 1e-05,
+    "status": "REJECTED",
+    "reason": "nonpositive shared proposal curvature"
+  },
+  {
+    "LM": 0.0001,
+    "status": "REJECTED",
+    "reason": "nonpositive shared proposal curvature"
+  },
+  {
+    "LM": 0.001,
+    "status": "REJECTED",
+    "reason": "nonpositive shared proposal curvature"
+  },
+  {
+    "LM": 0.01,
+    "status": "REJECTED",
+    "reason": "nonpositive shared proposal curvature"
+  },
+  {
+    "LM": 0.1,
+    "status": "PROPOSED",
+    "ledger": {
+      "LM": 0.1,
+      "active_row_rank": 3,
+      "subproblem_scaled_stationarity_inf": 2.5103782134956515e-05,
+      "minimum_linearized_physical_slack": -1.7985612998927536e-14,
+      "multipliers": [
+        34.40289641004604,
+        3.2934983366755763,
+        10.495427934233199
+      ],
+      "subproblem_complementarity_inf": 1.887667050832518e-13,
+      "shared_step": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "shared_step_scaled": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "predicted_reduced_quadratic_change": 0.0
+    },
+    "full_step": {
+      "damping": 0,
+      "step_fraction": 1.0,
+      "minimum_predicted_constraint_slack": -1.7985612998927536e-14,
+      "minimum_actual_constraint_slack": -1.7985612998927536e-14,
+      "maximum_constraint_linearization_error": 0.0,
+      "minimum_actual_box_slack": 0.4218833320130043,
+      "active_physical_rows_before": [
+        0,
+        3840,
+        5759
+      ],
+      "active_physical_rows_after": [
+        0,
+        3840,
+        5759
+      ],
+      "center_sA_x_sign_changed": false,
+      "accepted": false,
+      "reason": "same_objective_acceptance",
+      "stable_objective_change": {
+        "components": {
+          "point": -1.3461393228655345e-12,
+          "theta_anchor": 1.6233585589851923e-12,
+          "A_anchor": -2.44609030715978e-13,
+          "regularization": 0.0,
+          "temporal": 0.0
+        },
+        "total": 3.2610205403679746e-14,
+        "maximum_prediction_change_px": 3.539639692462515e-10
+      },
+      "accumulated_cost_difference": 0.0,
+      "cancellation_difference": -3.2610205403679746e-14,
+      "numerical_allowance": 2.736444086332317e-11,
+      "gradient_after": {
+        "state_projected_gradient_inf": 1.112961719312855e-12,
+        "global_projected_gradient_inf": 2.5103781872815034e-05
+      },
+      "component_accumulated_differences": {
+        "point": -1.3642420526593924e-12,
+        "theta_anchor": 1.6484591469634324e-12,
+        "A_anchor": -2.495781359357352e-13,
+        "regularization": 0.0,
+        "temporal": 0.0
+      }
+    }
+  },
+  {
+    "LM": 1.0,
+    "status": "PROPOSED",
+    "ledger": {
+      "LM": 1.0,
+      "active_row_rank": 3,
+      "subproblem_scaled_stationarity_inf": 2.5103384128747663e-05,
+      "minimum_linearized_physical_slack": -1.7985612998927536e-14,
+      "multipliers": [
+        34.402896410046,
+        3.293498336679063,
+        10.495427934241834
+      ],
+      "subproblem_complementarity_inf": 1.887667050834071e-13,
+      "shared_step": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "shared_step_scaled": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "predicted_reduced_quadratic_change": 0.0
+    },
+    "full_step": {
+      "damping": 0,
+      "step_fraction": 1.0,
+      "minimum_predicted_constraint_slack": -1.7985612998927536e-14,
+      "minimum_actual_constraint_slack": -1.7985612998927536e-14,
+      "maximum_constraint_linearization_error": 0.0,
+      "minimum_actual_box_slack": 0.4218833320130043,
+      "active_physical_rows_before": [
+        0,
+        3840,
+        5759
+      ],
+      "active_physical_rows_after": [
+        0,
+        3840,
+        5759
+      ],
+      "center_sA_x_sign_changed": false,
+      "accepted": false,
+      "reason": "same_objective_acceptance",
+      "stable_objective_change": {
+        "components": {
+          "point": -5.660607982106469e-13,
+          "theta_anchor": 7.732113388770116e-13,
+          "A_anchor": -1.1485088907918777e-13,
+          "regularization": 0.0,
+          "temporal": 0.0
+        },
+        "total": 9.22996515871769e-14,
+        "maximum_prediction_change_px": 1.9468870959826745e-10
+      },
+      "accumulated_cost_difference": 0.0,
+      "cancellation_difference": -9.22996515871769e-14,
+      "numerical_allowance": 2.736444086332317e-11,
+      "gradient_after": {
+        "state_projected_gradient_inf": 6.12724714715851e-12,
+        "global_projected_gradient_inf": 2.5103383954672154e-05
+      },
+      "component_accumulated_differences": {
+        "point": -6.821210263296962e-13,
+        "theta_anchor": 8.100187187665142e-13,
+        "A_anchor": -1.1457501614131615e-13,
+        "regularization": 0.0,
+        "temporal": 0.0
+      }
+    }
+  }
+]

@@ -248,6 +248,9 @@ class BoundedJointDM0(JointDM0):
         return xp.zeros_like(x),dp
 
     def update(self,x,p,kind='joint',observed=False):
+        if observed and kind=='joint':
+            from .polishing import update
+            return update(self,x,p)
         xp=self.xp;o=self.evaluate(x,p,hessian=True);before=self.stationarity(x,p,o)
         if observed:o.update(self.observed_hessian(x,p))
         reasons={};accepted=False;used=None

@@ -4,11 +4,11 @@ Updated: 2026-10-10. Repository: `/home/aplab/ACC`.
 
 ## Decision
 
-**Stage 4 / S7 / G7 is implemented but COMPLETE_UNCERTIFIED / PAUSE. Do not advance to Stage 5 / G8 yet.**
+**Stage 4 / S7 / G7 is COMPLETE_CERTIFIED_WITH_LIMIT / GO_WITH_LIMIT in attempt04.** G8 has not run and awaits separate authorization.
 
-The current result is **G7 attempt 03**, the one authorized bounded continuation from attempt02's selected snapshot. The independent objective reconstruction, smooth active-constraint derivative check, local-state curvature and constrained profile-curvature checks pass. Global stationarity still fails: the global KKT residual is 2.5103e-5 against a 1e-6 threshold. Preserve the result as numerical/scientific evidence, not as a certified calibration.
+The current result is **G7 attempt04**, one reviewed constrained saved-point correction to attempt03. It meets the unchanged full-population 1e-6 stationarity and complementarity thresholds: global scaled KKT residual 4.24e-10 and state projected gradient 1.32e-13. All 89,175 valid state Jacobians have rank two; constrained profile curvature is positive with rank16; P1/P4 domains and the one-degree physical bound are valid. Independent public-optics reconstruction matches objective components within 2.28e-13, predictions within 3.41e-13 px, and g within 7.77e-16. The correction changes J by −5.9962e-12 and maximum predicted position by 6.19e-6 px; no material empirical improvement is claimed. `crosscheck_complete=false` and `comparison_complete=false`.
 
-Stages 1–3 (G0–G5) and Stage 4's G6 have provisional GO_WITH_LIMIT decisions. **G6 attempt 02 is the last usable parent checkpoint.** G7 attempts 01 and 02 are preserved historical results; attempt 03 is the current bounded continuation. Repair01 reassessed attempt02 without changing its fit.
+Stages 1–3 (G0–G5) and Stage 4's G6 have provisional GO_WITH_LIMIT decisions. G7 attempts01–03 and repair records remain preserved historical results. Attempt04 is the current certified numerical checkpoint, with the same G6 operational-reference lineage and attempt03 as its immediate parent. Compact results are historical attempt03 data and were not rerun for attempt04.
 
 ## Goal and model
 
@@ -60,13 +60,16 @@ This is a **user-accepted model assumption**, not a measured optical calibration
 
 ## Results and metric definitions
 
-| Measure | G7 attempt 01, unbounded | G7 attempt 02, bounded | G7 attempt 03, continued |
-|---|---:|---:|---:|
-| Selected full objective J | 1516.074461 | 1925.601339 | 1925.601339 |
-| Native relative-coordinate RMS | 4.985584 px | 4.678851 px | 4.678857 px |
-| Fixation-mean gaze deviation from labels | 2.31665 degrees RMS | 0.92741 degrees RMS | 0.9274 degrees RMS |
-| Compact withheld-P4 coordinate RMS | 28.3941 px | 29.3673 px | 29.3673 px |
-| Full fit certified | No | No | No |
+| Measure | G7 attempt 01, unbounded | G7 attempt 02, bounded (old FD) | G7 attempt 03, continued | G7 attempt04, one correction |
+|---|---:|---:|---:|---:|
+| Selected full objective J | 1516.074461 | 1925.601339 | 1925.601339 | 1925.601339 |
+| Native relative-coordinate RMS | 4.985584 px | 4.678851 px | 4.678857 px | 4.678857 px |
+| Fixation-mean gaze deviation from labels | 2.31665 degrees RMS | 0.92741 degrees RMS | 0.9274 degrees RMS | not recalculated |
+| Compact withheld-P4 coordinate RMS | 28.3941 px | 29.3673 px | 29.3673 px | attempt03 historical: 29.3673 px |
+| Global scaled KKT residual | not certified | 2.8122e-4 | 2.5103e-5 | 4.2363e-10 |
+| Full fit certified | No | No | No | Yes, GO_WITH_LIMIT |
+
+Attempt02's displayed global residual is its historical finite-difference certificate. Repair01's same-state selected-branch derivative reassessment measured 0.0035570; those derivatives are not directly comparable. Attempt04's current certificate uses the reviewed repaired derivative implementation.
 
 G6's native relative-coordinate RMS was 4.560659 px. Attempt 02's objective components are point loss 1880.990476, gaze anchor 43.004635, accommodation anchor 1.581828, regularization 0.024400, and temporal penalty zero. A constrained model can have a higher minimum J than its unconstrained predecessor; that alone is not a defect.
 
@@ -105,39 +108,66 @@ Repair01 reassessed attempt02 at the exact same states and globals, without opti
 
 Attempt03 completed 8 outer updates at J=1925.601338676, down 6.69e-8 from the warm start. Native equal-exposure relative-coordinate RMS is 4.678857434 px. Its physical bound is feasible; state projected gradient is 1.23e-11, complementarity 1.89e-13, active derivatives are smooth, profile curvature is positive with rank 16, and zero of 169,935 free local eigenvalues are negative. The local minimum 124.707 is per-frame Hessian divided by positive exposure row weight; magnitude is not directly comparable with attempt02's weighted census. Global KKT residual 2.5103e-5 still fails the 1e-6 threshold.
 
-History records 62 accepted and 35 rejected updates, including 27 accepted joint outer steps. Joint-proposal rejection counts are 810 same-objective line-search rejections and 5 nonpositive shared-proposal-curvature events. Only one of the maximum six polish proposals was attempted; it was unaccepted and recorded 36 line-search plus 5 nonpositive-curvature rejections. It ended with global residual 2.5103e-5. Attempt03 runtime was 156.16 seconds. Compact progress remains 270/300 scored, 30 unavailable, zero unresolved; its coordinate RMS is 29.3673 px.
+History records 62 accepted and 35 rejected updates, including 27 accepted joint outer steps. Joint-proposal rejection counts are 810 same-objective line-search rejections and 5 nonpositive shared-proposal-curvature events. Only one of the maximum six polish proposals was attempted; it was unaccepted and recorded 36 line-search plus 5 nonpositive-curvature rejections. It ended with global residual 2.5103e-5. Attempt03 runtime was 156.16 seconds. Compact progress remains 270/300 scored, 30 unavailable, zero unresolved; its coordinate RMS is 29.3673 px. This remains historical and is not the current certificate.
 
 Attempt02's common start also failed certification. Its histories contain thousands of nonlinear-bound proposal rejections and heavily damped joint steps. Its old certificate conflated an unavailable profile calculation with failed local curvature. The repaired certificate records local and profile status independently, uses `NOT_EVALUATED` for unavailable profile curvature, and blocks smooth certification at active endpoint ties. Constraint derivatives now use selected-branch forward automatic differentiation; the outward feasibility bounds remain unchanged.
 
-Keep `fit_complete`, `fit_certified`, `crosscheck_complete`, and `comparison_complete` false. No automated test suite was added or run for this campaign; the evidence above comes from experiment preflight and saved-result audits.
+### Attempt04 current certified correction
+
+Attempt04 applies one reviewed constrained Newton correction to attempt03's selected saved state. It uses the unchanged objective, population, covariance, anchors, priors, references, state domains and user-authorized one-degree physical bound. It is a single local correction, not a new fit loop or subset inference.
+
+| Certificate item | Attempt04 |
+|---|---:|
+| Global scaled KKT residual | 4.2363e-10 (threshold 1e-6) |
+| State projected gradient | 1.3156e-13 |
+| Complementarity | 3.1461e-14 (threshold 1e-6) |
+| Active physical constraints | 3; feasible, minimum normalized slack 0 |
+| State data rank | 89,175 / 89,175 rank 2 |
+| Free-state observed curvature | 0 negative of 169,935; minimum 124.707 per positive row-weight normalization |
+| Constrained observed profile | Positive, rank 16; minimum normalized eigenvalue 4.9430e-5 |
+| Optical domains | P1 and P4 valid |
+| Full objective J | 1925.6013386759976 |
+| Native relative-coordinate RMS | 4.678857454 px |
+
+Direct objective change is −5.9962e-12 and maximum predicted movement is 6.19e-6 px; maximum state changes are 1.70e-7 degrees and 6.28e-7 D. RMS changes by about 2e-8 px, so no material empirical improvement is claimed. Independent public-optics reconstruction on all valid rows matches components within 2.28e-13, predictions within 3.41e-13 px, g within 7.77e-16, and exposure means within 1.96e-14. All attempt03 parent files remain hash-identical.
+
+Attempt04 flags are `fit_complete=true`, `fit_certified=true`, `crosscheck_complete=false`, and `comparison_complete=false`. Compact evidence remains the attempt03 diagnostic: 300 scheduled, 270 scored, 30 unavailable; 90 complete triples across 20 exposures; E=41.8138 px, Gtheta=1.50113 degrees, GA=1.31867 D. The two largest rows contribute 94.3568% of E² and 91.8257% of Gtheta²; no cause is asserted and no row was trimmed. G8 awaits separate authorization.
+
+Attempt04 has `fit_complete=true` and `fit_certified=true`; `crosscheck_complete=false` and `comparison_complete=false`. This is a limited numerical certificate under the declared model and user-authorized bound. No automated test suite was added or run for attempt04; verification consists of the full saved-point certificate and independent NumPy/public-optics reconstruction.
 
 ## Next action
 
-1. Diagnose why positive constrained profile curvature coexists with rejected full shared proposals and no acceptable same-objective polish step near a 2.51e-5 global residual. Inspect QP accuracy/scaling and constraint-aware Newton/line-search behavior.
-2. Keep the full objective, physical bound, population, references and priors fixed. Do not launch another fit in this campaign or relax the certificate.
-3. Keep G8 paused until a complete joint fit meets the declared numerical certificate. Then evaluate the full declared withheld-point schedule with a frozen model, retaining all missing/unresolved outcomes.
+1. Preserve attempt04 as the current numerically certified checkpoint and retain its GO_WITH_LIMIT restrictions.
+2. Keep G8 paused until its separate authorization. If authorized, evaluate the declared full withheld-point schedule with the frozen attempt04 model, retaining every missing/unresolved outcome; do not treat the historical attempt03 compact scores as an attempt04 evaluation.
 
 Open scientific limits remain: empirical omega1/omega4 references are not independently established optical zeros; omega1 continuous uncertainty is unquantified; G3 discrete alternatives and physical accommodation calibration remain unresolved. Large compact prediction errors also remain unexplained.
 
 ## Files and execution handoff
 
 - Scientific definitions: [Theory](docs/Theory.md), [estimator plan](docs/ESTIMATOR_PLAN.md), [stage gates](docs/STAGE_GATES.md), [Stage 4 plan](docs/stages/04_CENTER_AND_DM0_CALIBRATION.md).
-- Current evidence: [G7 attempt 03 report](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_03/STAGE_REPORT.md), [summary](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_03/summary.json), [checkpoint](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_03/checkpoint.json), [arrays](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_03/fitted.npz), [independent audit](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_03/mechanical_audit.json), [compact aggregation](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_03/compact_diagnostics/REPORT.md).
+- Current evidence: [G7 attempt04 report](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/STAGE_REPORT.md), [summary/certificate](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/summary.json), [checkpoint](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/checkpoint.json), [arrays](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/fitted.npz), [adoption verification](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/verification.json), [independent public-optics audit](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/independent_public_optics_audit.json), [report-only source history](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/reporting_source_history.json).
+- Historical evidence: [attempt03 report](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_03/STAGE_REPORT.md), [audit](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_03/mechanical_audit.json), [compact aggregation](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_03/compact_diagnostics/REPORT.md), [saved-point probe and N1–N4/E1 report](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_polish_repair_01/STAGE_REPORT.md).
 - Same-state repair: [repair01 report](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_repair_01/STAGE_REPORT.md), [summary](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_repair_01/summary.json).
 - Parent: [G6 attempt 02 checkpoint](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g6_attempt_02/checkpoint.json). Its ancestry/provenance identifies G5; G7 provenance also records G3 and prior-attempt hashes.
 - Historical results: [G7 attempt 01](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_01/STAGE_REPORT.md) and [attempt 02](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_02/STAGE_REPORT.md).
 - Stage navigation: [README](experiments/distortion_model/stage_04_center_and_dm0_calibration/README.md), [results](experiments/distortion_model/stage_04_center_and_dm0_calibration/docs/RESULTS.md), [progress](experiments/distortion_model/stage_04_center_and_dm0_calibration/docs/PROGRESS.md).
 - Implementation: [joint model/solver](distortion_model/joint.py), [bounded solver](distortion_model/centroid_bound.py), [bounded runner](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run_joint_bounded.py), [audit script](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_bounded.py), [dependencies](requirements-stage7.txt).
-- Repair implementation: [interval automatic derivatives](distortion_model/interval_ad.py), [regression and same-state reassessment](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/repair_g7.py), [compatible continuation runner](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/continue_g7_repaired.py), [saved compact aggregation](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/summarize_g7_compact.py).
+- Repair implementation: [interval automatic derivatives](distortion_model/interval_ad.py), [constrained polishing](distortion_model/polishing.py), [regression and same-state reassessment](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/repair_g7.py), [compatible continuation runner](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/continue_g7_repaired.py), [saved-point probe](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/probe_g7_polishing.py), [one-correction adoption](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/accept_g7_polish.py), [independent audit](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_polish.py), [saved compact aggregation](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/summarize_g7_compact.py).
 
-Each attempt's `source_snapshot/` and `provenance.json` are authoritative. Attempt02's live fitting files were restored to its archived versions before this repair; the current fitting code is the repaired version used by attempt03, with matching fitting-source hashes. Post-fit changes to the audit-only start-label handling and live stage status text are recorded separately. Preserve archived source bytes when diagnosing or implementing another repair.
+Each attempt's `source_snapshot/` and `provenance.json` are authoritative. Attempt04 records the reviewed saved-point correction sources and the hash-identical attempt03 optimization parent. Its provenance records one reporting-only summarizer source change after the probe snapshot, with both hashes; no fitting, proposal, or certificate source mismatch was accepted. Preserve the original pending-review probe and historical attempt bytes.
 
 From the repository root, the existing result can be independently reconstructed with:
 
 ```bash
-OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_bounded.py --attempt experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_03
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_polish.py --attempt experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04
 ```
 
-The bounded runner accepts `--output`; use a fresh attempt directory for any justified future campaign. It rejects an existing output directory. Full fitting is not the immediate next action until the numerical diagnosis is resolved.
+The one-correction adoption can be reconstructed from the preserved probe into a fresh output directory with:
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/accept_g7_polish.py --output experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04_replay
+```
+
+G8 has not run and awaits separate authorization. The crosscheck/comparison flags remain false; do not describe the historical attempt03 compact scores as an attempt04 evaluation.
 
 Standing user preferences: root agent performs implementation and scientific audit; delegate mechanical work to **gpt-6-luna, low reasoning**. Execute shell commands outside the sandbox using the available escalation mechanism. Prefer vectorized/chunked GPU computation and appropriate parallelism. Keep experiment scripts, results, and reports organized by stage. Preserve unrelated working-tree changes; no commit or push has been requested.

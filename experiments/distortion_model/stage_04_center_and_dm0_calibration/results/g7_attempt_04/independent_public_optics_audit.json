@@ -1,0 +1,56 @@
+{
+  "accommodation_anchor_definition": "mean of 20 exposure mean A deviations; .25 D sigma",
+  "all_public_optics_valid": true,
+  "all_saved_frame_arrays_match_input_mask": true,
+  "attempt": "experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04",
+  "audit_script": "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_polish.py",
+  "audit_script_sha256": "52f31292ae43280c90304fcf8c6adaca37387531c11aa60c0029d2e2e6ed502e",
+  "component_differences_independent_minus_saved": {
+    "A_anchor": 8.659739592076221e-15,
+    "cost": -2.2737367544323206e-13,
+    "point": 0.0,
+    "regularization": 0.0,
+    "temporal": 0.0,
+    "theta_anchor": -2.2026824808563106e-13
+  },
+  "exposure_mean_max_abs_difference": 1.9539925233402755e-14,
+  "g_max_abs_difference": 7.771561172376096e-16,
+  "gaze_anchor_definition": "mean of 20 exposure mean theta deviations; .10 degree sigma",
+  "kind": "independent public-optics and full-objective reconstruction; no inference, optimization, or tests",
+  "parent_attempt03_file_count": 82,
+  "parent_attempt03_hashes_unchanged": true,
+  "passed_tolerances": {
+    "components_abs_lt_1e-8": true,
+    "g_abs_lt_1e-8": true,
+    "means_abs_lt_1e-8": true,
+    "prediction_abs_lt_1e-8_px": true
+  },
+  "point_loss_definition": "equal-exposure weighted full ten-coordinate covariance quadratic on all complete valid rows",
+  "population_rows": 89175,
+  "prediction_max_abs_difference_px": 3.410605131648481e-13,
+  "prior_definition": "half squared template coordinates p[3:6]/template_sigma plus half squared D coefficients p[17:19]",
+  "reconstructed_components": {
+    "A_anchor": 1.5818597253308668,
+    "cost": 1925.6013386759973,
+    "point": 1880.9906386064886,
+    "regularization": 0.02439975223521386,
+    "temporal": 0.0,
+    "theta_anchor": 43.00444059194267
+  },
+  "saved_components": {
+    "A_anchor": 1.5818597253308582,
+    "cost": 1925.6013386759976,
+    "point": 1880.9906386064886,
+    "regularization": 0.02439975223521386,
+    "temporal": 0.0,
+    "theta_anchor": 43.00444059194289
+  },
+  "saved_state_accommodation_exactly_matches_solution": true,
+  "saved_state_theta_exactly_matches_solution": true,
+  "unavailable_frame_arrays_are_nan": {
+    "accommodation_D": true,
+    "g": true,
+    "prediction": true,
+    "theta_visual_deg": true
+  }
+}
