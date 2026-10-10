@@ -1,9 +1,9 @@
 # Reverse-transform / empirical-reference audit
 
-> **Current implementation status (2026-10-10):** The current empirical pipeline comprises the audited [capture1 P1](../experiments/reverse_transform/stage_01_capture1_p1_fit/README.md), [capture1 P4](../experiments/reverse_transform/stage_02_capture1_p4_fit/README.md), [independent-captures](../experiments/reverse_transform/stage_03_independent_captures/README.md), and [framewise-A stage](../experiments/reverse_transform/stage_04_framewise_accommodation/README.md). Stage 04 freezes the stage 03 gaze, keystone, P1 magnifications, empirical reference, and post-fit linear barrel law, then fits one accommodation-like value per complete frame with 0.25 D soft fixation-mean anchors. Its same-recording fit improvement is conditional and does not establish framewise physiological accommodation. Demand labels remain confounded with capture. This exploratory empirical fit is not a completed physical-optics estimator and does not calibrate physical barrel distortion; see the [stage 04 results](../experiments/reverse_transform/stage_04_framewise_accommodation/RESULTS.md) and [scientific review](../experiments/reverse_transform/stage_04_framewise_accommodation/SCIENTIFIC_REVIEW.md).
+> **Current implementation status (2026-10-10):** Reverse-transform Stages 01–05 were implemented and numerically audited under a **size-normalized keystone convention**. Subsequent review found that the keystone operator was rescaled to preserve RMS triangle size, which removes a legitimate gaze-dependent size component from the projective transform. Therefore Stages 01–05 are now historical controls and must be rebuilt under the raw keystone transform before further accommodation interpretation. Do not reuse their fitted keystone coefficients, radial-law slope, framewise A values, or joint gaze/A states as calibration inputs to the corrected pipeline. See [REVERSE_TRANSFORM_NEXT_STEP.md](REVERSE_TRANSFORM_NEXT_STEP.md).
 
-**Repository / branch:** `rueijrwu/gaze_acc_joint_estimator` / `exp5_full`  
-**Audited estimator commit:** `37d2181ee0fbd43c1eaa6f38b26b0ab5df32475c`  
+**Repository / branch:** `rueijrwu/gaze_acc_joint_estimator` / `exp5_distortion_model`  
+**Original audit basis:** `37d2181ee0fbd43c1eaa6f38b26b0ab5df32475c`; updated after Stages 01–05 and the keystone-normalization finding.  
 **Optical reference repository:** `rueijrwu/distortion_tracking` / `main`, inspected at `7b3f28e7a7817aa701c84d1ecba13dbdd229d96d`  
 **Scope:** This document preserves the original design audit and its scientific cautions. Current implementation status and stage links are summarized in the banner above; the implemented stages do not establish physical optical calibration or physiological validation.
 
@@ -28,6 +28,70 @@ However, the reverse transformation should **not initially replace the forward r
 - use the reverse-to-reference transformation as a primary diagnostic/visualization and, only after covariance/Jacobian validation, as an equivalent weighted metric.
 
 The main unresolved scientific issue is **identifiability**. A non-equilateral measured triangle is helpful, but unequal side lengths alone do not prove that accommodation-dependent magnification and barrel/radial distortion can be separated. What matters is the set of radii relative to a constrained distortion center and the rank of the complete local sensitivity after nuisance scale, gaze, center, and reference gauges are included.
+
+
+## 1A. Pipeline-wide correction after implementation audit
+
+The implementation review changed one important conclusion of this audit: the extra RMS-size normalization inside the keystone operator must be removed **everywhere**, not only in a future stage.
+
+The corrected rule is:
+
+\[
+\boxed{
+\text{keystone/projective transform} = K(\theta,A;B)
+\quad\text{with no post-transform RMS or area normalization.}
+}
+\]
+
+Centering the transformed triangle for a translation-free observation is still allowed:
+
+\[
+H_r(\theta,A)=C\!\left(K_r(\theta,A;B_r)\right),
+\]
+
+but do not rescale \(H_r\) to the input/reference RMS radius.
+
+One common positive nuisance scale remains and is estimated from P1:
+
+\[
+g_i(\theta)=
+\frac{\langle X_{1i},H_1(\theta)\rangle}
+{\langle H_1(\theta),H_1(\theta)\rangle}.
+\]
+
+The same \(g_i\) is then applied to P4. This preserves the intended separation between common external magnification, gaze-dependent projective size/shape, and accommodation-dependent P4 deformation.
+
+### Consequence for existing stages
+
+All empirical reverse-transform stages that used the normalized keystone must be corrected as a chain:
+
+1. **Stage 01 / P1:** refit P1 keystone from scratch using the raw transform; reprofile framewise P1 scale under that transform.
+2. **Stage 02 / Capture-1 P4:** refit P4 keystone from scratch using the new P1-derived scale; keep the reference radial increment at its gauge value for the reference capture.
+3. **Stage 03 / independent captures:** refit P1/P4 raw-keystone coefficients and relative radial deformation from scratch. The old per-capture radial coefficients are not transferable because they may have absorbed size removed by the normalization.
+4. **Stage 04 / framewise A:** rerun only after the new Stage-03 optical model and radial/accommodation law are frozen. Old framewise A values remain historical controls.
+5. **Stage 05 / joint gaze+A:** rerun only if needed after the corrected Stage-04 result. Old joint states remain diagnostic evidence under the obsolete normalized-keystone parameterization.
+
+Do not patch old coefficients by simply deleting the normalization factor. Removing the normalization changes the model and therefore the meaning of all fitted coefficients and profiled states.
+
+### Accommodation dependence of P4 keystone
+
+When the corrected raw-keystone Stage 03 is rebuilt, inspect whether P4 keystone coefficients vary systematically with accommodation/capture. If supported, promote the minimum necessary dependence into a shared \(K_4(\theta,A)\), e.g. selected terms such as
+
+\[
+s_{x,4}(\theta,A)=1+[\alpha_{40}+\alpha_{4A}(A-A_{ref})]\theta^2,
+\]
+
+or
+
+\[
+q_4(\theta,A)=[\gamma_{40}+\gamma_{4A}(A-A_{ref})]\theta.
+\]
+
+Do not force all coefficients to depend on A. Add only dependencies that reduce reproducible coordinate residuals and remain identifiable. Otherwise the radial/accommodation term can again absorb accommodation-dependent keystone error.
+
+### Preservation rule
+
+Preserve all existing Stage 01–05 outputs and source snapshots unchanged. The corrected raw-keystone pipeline must write to new stage/result directories so the normalized-keystone chain remains reproducible as a historical comparison.
 
 ## 2. Current repository state
 
