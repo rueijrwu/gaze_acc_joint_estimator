@@ -1,7 +1,7 @@
 # Reverse-transform next-step plan: remove keystone size normalization
 
 **Branch:** `exp5_distortion_model`  
-**Purpose:** Replace the current size-normalized keystone convention with the direct physical/projective keystone transform, then rebuild the Capture-1 calibration chain before evaluating accommodation again.  
+**Purpose:** Replace the size-normalized keystone convention with the direct physical/projective keystone transform across the **entire reverse-transform pipeline**, then rebuild Stages 01–05 in order before drawing further accommodation conclusions.  
 **Status:** Planning document only. Existing Stage 01–05 results remain historical evidence under the old normalized-keystone convention.
 
 ## 1. Revised conclusion
@@ -24,9 +24,9 @@ The first priority is:
 }
 \]
 
-and recalibrate Capture 1 with the direct keystone transformation.
+and rebuild the full reverse-transform chain with the direct keystone transformation.
 
-Only after the raw keystone model has been refit should accommodation be evaluated again.
+The correction is pipeline-wide: every stage whose coefficients, radial law, framewise A, or joint states were fit under the normalized-keystone convention must be treated as historical and recalibrated in sequence. Only after the raw P1/P4 transforms are rebuilt should accommodation be evaluated again.
 
 ## 2. Why the current normalization is problematic
 
@@ -260,6 +260,57 @@ Therefore:
 
 Do not compare new coefficients numerically with old coefficients as if they represented the same parameterization.
 
+
+## 6A. Pipeline-wide replacement map
+
+The raw-keystone correction applies to every active empirical stage. The corrected pipeline should be versioned as a new chain rather than editing historical outputs in place.
+
+| Historical stage | Required corrected action |
+|---|---|
+| Stage 01 — Capture-1 P1 | Refit raw P1 keystone; profile one positive common scale from P1 under the raw gaze-dependent transform. |
+| Stage 02 — Capture-1 P4 | Refit raw P4 keystone using the new Stage-01 P1 scale; keep reference relative radial increment at zero gauge for Capture 1. |
+| Stage 03 — independent captures | Refit all P1/P4 raw-keystone coefficients and relative radial terms from scratch. Do not reuse old kappa values or the old beta law. |
+| Stage 04 — framewise A | Rerun only after the corrected Stage-03 model and new accommodation/radial law are frozen. |
+| Stage 05 — gaze/A ablation | Treat as historical evidence under the normalized model; rerun only if the corrected Stage-04 result still requires state-separation testing. |
+
+No old fitted optical coefficient should be carried into the raw-keystone chain except as an optional numerical starting point that is explicitly labeled as such and fully reoptimized. Saved historical states must not be used as fixed truth in the corrected pipeline.
+
+### Corrected Stage-03 accommodation/keystone policy
+
+The corrected Stage 03 should not assume that accommodation enters only through a radial coefficient. After removing the keystone normalization, independently fitted capture coefficients should be inspected for systematic accommodation dependence.
+
+The first shared P4 candidate remains
+
+\[
+K_4(\theta;B_4(A)),
+\]
+
+with A entering the P4 baseline/radial model. If coordinate residuals show systematic remaining changes in the keystone coefficients with accommodation, promote only the necessary terms to
+
+\[
+\boxed{K_4(\theta,A)}.
+\]
+
+Examples of minimal supported coupling are
+
+\[
+s_{x,4}(\theta,A)=1+[\alpha_{40}+\alpha_{4A}(A-A_{ref})]\theta^2,
+\]
+
+\[
+q_4(\theta,A)=[\gamma_{40}+\gamma_{4A}(A-A_{ref})]\theta.
+\]
+
+The goal is not to maximize flexibility. It is to prevent the newly fitted radial/accommodation state from absorbing a reproducible accommodation-dependent keystone error.
+
+Use a staged comparison:
+
+1. raw keystone with A-independent P4 coefficients;
+2. inspect coefficient/residual trends versus demand;
+3. add one A-dependent keystone term at a time;
+4. retain only terms that improve original-coordinate prediction and remain identifiable;
+5. refit the radial/accommodation law after the accepted K4 model is fixed.
+
 ## 7. New experiment sequence
 
 The new sequence should restart with **Capture 1 only**.
@@ -377,13 +428,13 @@ Validate:
 
 The raw forward and inverse operators must be algebraic inverses under the declared model.
 
-### R4 — refit relative accommodation deformation
+### R4 — rebuild Stage 03 and refit accommodation-dependent optics
 
-Only after R1–R3 pass should accommodation/radial deformation be reintroduced.
+Only after R1–R3 pass should the cross-capture accommodation-dependent model be rebuilt.
 
-Do not reuse the old Stage-03 beta directly.
+Do not reuse the old Stage-03 kappa values or beta directly.
 
-Refit Capture 2–4 relative deformation against the new raw-keystone model, or perform the smallest controlled Capture-1 test first if a within-capture accommodation signal can be defined independently.
+Refit Captures 2–4 against the new raw-keystone model. First estimate the raw P1/P4 keystone and relative radial deformation independently per capture. Then inspect whether P4 keystone coefficients themselves vary systematically with accommodation/demand. If they do, fit the smallest shared K4(theta,A) dependence supported by coordinate residuals. Only after the accepted K4(theta,A) structure is fixed should the shared radial/accommodation law be fit.
 
 The reference-relative radial model remains
 
