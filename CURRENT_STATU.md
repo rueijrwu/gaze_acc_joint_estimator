@@ -20,7 +20,7 @@ The shared empirical reference is capture 1's nominal zero-gaze fixation, labele
 |---|---|---|
 | [01 — capture1 P1](experiments/reverse_transform/stage_01_capture1_p1_fit/README.md) | Fresh capture1-only calibration on five reviewed intervals. Fits a quadratic horizontal centroid-to-gaze map; vertical gaze uses the shared first-order x/y slope assumption because no independent vertical targets were measured. Fits four shared 2D keystone shape coefficients and one positive profiled `M_i` per frame. 24,280 complete rows; 420 unavailable. No old model, state, reference, or covariance is loaded. | [Results](experiments/reverse_transform/stage_01_capture1_p1_fit/results/attempt_01/RESULTS.md), [audit](experiments/reverse_transform/stage_01_capture1_p1_fit/results/attempt_01/independent_audit.json) |
 | [02 — capture1 P4](experiments/reverse_transform/stage_02_capture1_p4_fit/README.md) | Reuses stage01 gaze and `M_i`; fits four shared P4 keystone coefficients with the P4 scale fixed to P1 `M_i`. No P4 accommodation or radial increment is fit; κ=0 is the capture1 reference gauge. Equal-fixation objective is 6.85869→2.93474 px²/point. Its post-inverse uniform-radius scaling is a shape diagnostic only, not part of the forward fit. | [Results](experiments/reverse_transform/stage_02_capture1_p4_fit/results/run/RESULTS.md), [audit](experiments/reverse_transform/stage_02_capture1_p4_fit/results/run/audit.json) |
-| [03 — independent captures](experiments/reverse_transform/stage_03_independent_captures/README.md) | Independently fits captures 1–4 against the capture1 reference, reusing capture1 P1 fit and estimating P1 keystone for captures 2–4. P4 fits one keystone and a constant relative radial coefficient per capture with fixed P1 `M_i`. The fitted relative κ values (captures 1–4) are 0, −1.856868e−6, −1.472843e−6, −8.477171e−7 px⁻². Forty-three capture2 radial inverse failures remain in forward fitting. Capture4’s P4 vertical quadratic coefficient is at its declared bound; shape diagnostic worsens versus P1-scale-only. The post-fit κ/demand association is confounded because each demand label occurs in one capture. | [Results](experiments/reverse_transform/stage_03_independent_captures/results/run/RESULTS.md), [audit](experiments/reverse_transform/stage_03_independent_captures/results/run/audit.json), [scientific review](experiments/reverse_transform/stage_03_independent_captures/SCIENTIFIC_REVIEW.md) |
+| [03 — independent captures](experiments/reverse_transform/stage_03_independent_captures/README.md) | Independently fits captures 1–4 against the capture1 reference, reusing capture1 P1 fit and estimating P1 keystone for captures 2–4. For each capture, P4 fits four shared keystone coefficients and one constant relative radial coefficient with fixed P1 `M_i`; capture1's κ is fixed to zero as the reference gauge. The fitted relative κ values (captures 1–4) are 0, −1.856868e−6, −1.472843e−6, −8.477171e−7 px⁻². Forty-three capture2 radial inverse failures remain in forward fitting. Capture4’s P4 vertical quadratic coefficient is at its declared bound; shape diagnostic worsens versus P1-scale-only. The post-fit κ/demand association is confounded because each demand label occurs in one capture. | [Results](experiments/reverse_transform/stage_03_independent_captures/results/run/RESULTS.md), [audit](experiments/reverse_transform/stage_03_independent_captures/results/run/audit.json), [scientific review](experiments/reverse_transform/stage_03_independent_captures/SCIENTIFIC_REVIEW.md) |
 | [04 — framewise accommodation](experiments/reverse_transform/stage_04_framewise_accommodation/README.md) | Holds stage03 gaze, keystone coefficients, P1 magnifications, reference, and linear κ(A) law fixed; estimates only one `A_i` per complete frame. Details and limits follow below. | [Results](experiments/reverse_transform/stage_04_framewise_accommodation/RESULTS.md), [scientific review](experiments/reverse_transform/stage_04_framewise_accommodation/SCIENTIFIC_REVIEW.md), [audit](experiments/reverse_transform/stage_04_framewise_accommodation/results/run/audit.json) |
 
 Stage01 also documents the native coefficient values, polynomial, magnification distributions, and sensitivity concerns. In particular, the assumed small vertical gaze span yields large native vertical coefficients; these require sensitivity analysis and are not evidence of a vertical optical mechanism.
@@ -44,7 +44,7 @@ J = mean_fixation(data inverse-vertex MSE)
 
 The equivalent soft-anchor width is 0.25 D with residual scale 1 px. It is a penalty, not a hard ±0.25 D bound or measured uncertainty. There is no per-frame prior, fitted P4 magnification, rotation, temporal smoothing, or empirical measured-radius normalization in this fit. The deterministic model-size normalization inside the frozen stage03 keystone operator remains active. At every trial A, the runner recomputes the trial-dependent model centroid and keystone normalization before inverse mapping; it does not substitute one precomputed inverse-keystone triangle.
 
-Operational `A` bounds are [0,6] D, with a per-frame upper bound reduced only when required to remain on the monotone inverse branch. No complete frame is dropped. The fit and audit used CuPy 14.2.0 float64 on a Tesla P100 GPU; runtime was 6.722 s.
+Operational `A` bounds are [0,6] D, with a per-frame upper bound reduced only when required to remain on the monotone inverse branch. No complete frame is dropped. The fit used CuPy 14.2.0 float64 on a Tesla P100 GPU; runtime was 6.722 s. The independent saved-results audit used NumPy on CPU.
 
 ### Stage04 result and numerical audit
 
@@ -59,7 +59,7 @@ There are 89,175 complete fitted frames, 89,129 frames valid for all inverse com
 
 There are 965 frames at the lower A=0 bound: 918, 46, 0, and 1 for captures 1–4. No frame reaches the upper A bound; 47 individual upper bounds were restricted by the inverse domain (0, 46, 0, 1 by capture). The largest fixation-mean shift from its nominal soft anchor is +0.443709 D at capture3, −5°.
 
-Fitted fixation-mean A in D (the expected nominal anchor for each capture is 0.360360, 4, 3, and 2 D respectively):
+Fitted fixation-mean A in D (each cell is mean ± within-fixation standard deviation, not uncertainty of the mean; expected nominal anchors by capture are 0.360360, 4, 3, and 2 D):
 
 | Capture | −10° | −5° | 0° | +5° | +10° |
 |---:|---:|---:|---:|---:|---:|
@@ -79,19 +79,27 @@ All four +10° fixation means are below their nominal anchors. For example, capt
 - Code: [reviewed data loader](distortion_model/data.py), [P1 shape model](distortion_model/p1_shape.py), [capture shape model](distortion_model/capture_shape.py), [framewise accommodation model](distortion_model/frame_accommodation.py), and each stage's `scripts/` directory.
 - Canonical stage04 outputs: [summary](experiments/reverse_transform/stage_04_framewise_accommodation/results/run/summary.json), [audit](experiments/reverse_transform/stage_04_framewise_accommodation/results/run/audit.json), [per-frame results](experiments/reverse_transform/stage_04_framewise_accommodation/results/run/frames.npz), [figures](experiments/reverse_transform/stage_04_framewise_accommodation/RESULTS.md).
 - The stage01–03 fitted artifacts and inputs are hash-frozen parents for stage04. Preserve them; do not overwrite canonical outputs. The previous incorrect stage02 experiment/results were removed; the corrected stage02 canonical run is the one linked above.
-- Run a new stage04 replay into a fresh output directory; the available interpreter is `/home/aplab/.pyenv/shims/python`:
+- Run a new stage04 replay into a fresh output directory; use the available project interpreter `/home/aplab/.pyenv/versions/venv/bin/python`:
 
 ```bash
-/home/aplab/.pyenv/shims/python experiments/reverse_transform/stage_04_framewise_accommodation/scripts/run.py \
+/home/aplab/.pyenv/versions/venv/bin/python experiments/reverse_transform/stage_04_framewise_accommodation/scripts/run.py \
   --output experiments/reverse_transform/stage_04_framewise_accommodation/results/replay \
   --anchor-width 0.25
-/home/aplab/.pyenv/shims/python experiments/reverse_transform/stage_04_framewise_accommodation/scripts/audit.py \
+/home/aplab/.pyenv/versions/venv/bin/python experiments/reverse_transform/stage_04_framewise_accommodation/scripts/audit.py \
   --results experiments/reverse_transform/stage_04_framewise_accommodation/results/replay
-/home/aplab/.pyenv/shims/python experiments/reverse_transform/stage_04_framewise_accommodation/scripts/plot_results.py \
+/home/aplab/.pyenv/versions/venv/bin/python experiments/reverse_transform/stage_04_framewise_accommodation/scripts/plot_results.py \
   --results experiments/reverse_transform/stage_04_framewise_accommodation/results/replay
 ```
 
-No automated test suite was added or run. The run, independent audit, and saved-artifact review are the current verification. The working tree is not committed or pushed; preserve unrelated user changes.
+No automated test suite was added or run. The run, independent audit, and saved-artifact review are the current verification. This handoff update is local; no commit or push was requested or performed this turn. Preserve unrelated working-tree changes.
+
+### Standing workflow preferences
+
+- Root owns implementation and scientific audit; mechanical tasks go to GPT-6-luna at low reasoning effort.
+- Run shell commands outside the sandbox using `sandbox_permissions=require_escalated`.
+- Prefer vectorized CuPy for appropriate GPU work. Keep scripts and results organized by stage.
+- Do not add or run automated test suites unless requested.
+- Preserve unrelated working-tree changes. No commit or push has been requested for the current work.
 
 ## Historical background: joint distortion-model estimator
 
