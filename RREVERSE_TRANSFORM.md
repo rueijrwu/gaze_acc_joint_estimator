@@ -1,691 +1,781 @@
 # Reverse-transform / empirical-reference audit
 
-**Repository / branch:** `rueijrwu/gaze_acc_joint_estimator` / `exp5_full`  
-**Audited estimator commit:** `37d2181ee0fbd43c1eaa6f38b26b0ab5df32475c`  
-**Optical reference repository:** `rueijrwu/distortion_tracking` / `main`, inspected at `7b3f28e7a7817aa701c84d1ecba13dbdd229d96d`  
-**Status:** Design audit only. This document does not claim that the reverse-transform estimator is implemented, calibrated, or physiologically validated.
+**Repository / branch:** rueijrwu/gaze_acc_joint_estimator / exp5_full  
+**Audit basis:** estimator commit 37d2181ee0fbd43c1eaa6f38b26b0ab5df32475c  
+**Optical evidence checked:** rueijrwu/distortion_tracking main at 7b3f28e7a7817aa701c84d1ecba13dbdd229d96d  
+**Status:** design audit only. No reverse-transform estimator, new calibration, or physiological validation is claimed here.
 
 ## 1. Executive conclusion
 
-The proposed idea is scientifically useful if it is stated as:
+The reverse-transform idea is scientifically useful and is compatible with the current joint optical theory if it is defined as **recovery of one fixed empirical reference pattern through the inverse of the same calibrated forward model**.
 
-> **Estimate gaze, P1 nuisance scale, and accommodation such that removal of the state-dependent optical effects maps every frame back to one fixed empirical P1/P4 reference pattern.**
+The correct target is the measured, non-equilateral empirical triangle, or one globally shared refinement of that triangle. It should not be forced into an equilateral triangle or perfect grid.
 
-The important target is the **same empirical non-equilateral triangle**, not an equilateral triangle, regular grid, or arbitrary aesthetically regularized pattern.
+The intended interpretation is
 
-This formulation has four advantages:
+\[
+\boxed{
+\text{measured relative pattern at }x_i
+\;\xrightarrow{\mathcal T_{x_i}^{-1}}\;
+\text{latent reference coordinates}
+\;\xrightarrow{\mathcal T_{x_{\rm ref}}}\;
+\text{the same empirical reference pattern}.
+}
+\]
 
-1. it uses only relative changes from a fixed reference;
-2. it makes the accommodation hypothesis visually and mathematically testable as reference recovery;
-3. it preserves the actual source/alignment geometry rather than declaring fixed imperfections to be physiological signal;
-4. it provides a strong internal validation question: after estimating a state from retained measurements, does the omitted P4 return to its reference-consistent location?
+where
 
-However, the reverse transformation should **not initially replace the forward relative-coordinate cost**. The safest design is:
+\[
+x_i=(\theta_i,A_i).
+\]
 
-- use the physical forward model in the original relative camera-coordinate metric for calibration and state estimation;
-- use the reverse-to-reference transformation as a primary diagnostic/visualization and, only after covariance/Jacobian validation, as an equivalent weighted metric.
+This formulation is attractive because it makes the accommodation hypothesis concrete: after correcting nuisance scale and gaze-dependent deformation, the accommodation state should be the one whose shared optical response returns the P4 geometry toward the same reference pattern.
 
-The main unresolved scientific issue is **identifiability**. A non-equilateral measured triangle is helpful, but unequal side lengths alone do not prove that accommodation-dependent magnification and barrel/radial distortion can be separated. What matters is the set of radii relative to a constrained distortion center and the rank of the complete local sensitivity after nuisance scale, gaze, center, and reference gauges are included.
+However, the audit recommends **not replacing the forward native-coordinate objective with an unweighted inverse-space error**. The safest initial architecture is:
+
+1. fit and compare models with the forward residual in original same-frame relative image coordinates;
+2. use reverse-to-reference recovery as the physical interpretation and diagnostic;
+3. allow an inverse-space metric only after its covariance/Jacobian propagation is validated.
+
+The central scientific risk is identifiability. A non-equilateral measured triangle is helpful, but unequal side lengths alone do not prove that accommodation-dependent magnification and radial distortion are independently observable. The decisive geometry is the set of point radii and directions relative to a constrained distortion center, after gaze, nuisance scale, reference gauge, and center uncertainty are included.
 
 ## 2. Current repository state
 
-The latest `docs/Theory.md` already contains several pieces required by this proposal:
+The latest docs/Theory.md already contains most of the correct ingredients:
 
-- P1-reference scale is the primary normalization; triangle area is no longer required.
-- P4 has accommodation-dependent magnification `M(A)`, radial coefficient `kappa4(A)`, gaze-dependent keystone deformation, and a separate axial nuisance scale.
-- The empirical reference is explicitly allowed to be already distorted.
-- The theory warns that inverse keystone about an observed centroid is not generally equivalent to inversion about the true local optical origin.
-- It already recognizes equal-radius magnification/radial degeneracy.
-- It uses a forward relative-data cost in original coordinates and a three-way held-P4 cross-agreement.
+- P1-reference scale fitting is the primary nuisance-scale normalization.
+- Triangle area and the P4/P1 area ratio are optional historical diagnostics rather than required observations.
+- P4 accommodation response is decomposed into accommodation-dependent magnification, radial distortion, gaze/keystone deformation, and axial nuisance scale.
+- The empirical P4 baseline is recognized as already distorted.
+- Relative P4-P1 centroid displacement is retained rather than erased by independent centering.
+- Framewise state is one horizontal gaze and one accommodation value.
+- Shared optical functions are calibrated globally.
+- Held-P4 cross-agreement freezes the global calibration and reruns state inference.
 
-Those are all compatible with the reverse-reference interpretation.
+These are compatible with a reverse-reference interpretation.
 
-The documentation is not yet fully reconciled. In particular:
+There is, however, an important documentation conflict:
 
-- `docs/ESTIMATOR_PLAN.md` still describes the historical area-normalized conditional six-residual model as the required normalization and treats a changed P1 normalizer as a later experiment.
-- `docs/ACCOMMODATION_FULL_CALIBRATION_PLAN.md` still defines `r=(P1-c1)/sqrt(area(P1))`, `v=(P4-c1)/sqrt(area(P1))`, and the older `D(theta,A)+T(theta,A)r` model.
+- docs/Theory.md uses gaze-conditioned P1 reference-scale normalization.
+- docs/ESTIMATOR_PLAN.md still states that P1 triangle-area normalization is required and describes changing the P1 normalizer as a later experiment.
+- docs/ACCOMMODATION_FULL_CALIBRATION_PLAN.md still defines the older area-normalized conditional six-coordinate model as the working invariant.
 
-Therefore implementation should not be started by silently mixing the latest theory with those older contracts. The reverse-transform work should first pass the gates in Section 11, then the authoritative plan documents should be reconciled explicitly.
+This mismatch is a blocking implementation hazard. The historical area-normalized model should remain available as a control, but the new reverse-transform work should not silently mix the two contracts.
 
-## 3. Recommended reference: preserve the empirical triangle
+## 3. Preserve the empirical non-equilateral reference
 
-The empirical P4 pattern is a triangle but **not an equilateral triangle**. That asymmetry should be preserved.
+Let the empirical P4 reference be
 
-Let the fixed empirical reference be
-
-[
-mathcal B^{ref}={mathbf B^{ref}_1,mathbf B^{ref}_2,mathbf B^{ref}_3}.
-]
-
-The desired result after correcting a frame is
-
-[
-oxed{mathbf B^{rec}_{ij}approxmathbf B^{ref}_j,}
-]
-
-not
-
-[
-|mathbf B^{rec}_1-mathbf B^{rec}_2|
+\[
+\mathcal B^{\rm ref}
 =
-|mathbf B^{rec}_2-mathbf B^{rec}_3|
+\left\{
+\mathbf B^{\rm ref}_1,
+\mathbf B^{\rm ref}_2,
+\mathbf B^{\rm ref}_3
+\right\}.
+\]
+
+The desired recovery condition is
+
+\[
+\boxed{
+\mathbf B^{\rm rec}_{ij}
+\approx
+\mathbf B^{\rm ref}_j.
+}
+\]
+
+It is **not**
+
+\[
+\|\mathbf B^{\rm rec}_1-\mathbf B^{\rm rec}_2\|
 =
-|mathbf B^{rec}_3-mathbf B^{rec}_1|.
-]
+\|\mathbf B^{\rm rec}_2-\mathbf B^{\rm rec}_3\|
+=
+\|\mathbf B^{\rm rec}_3-\mathbf B^{\rm rec}_1\|.
+\]
 
-An unequal reference is not a defect. It contains fixed source placement, camera alignment, baseline optical distortion, and any other reproducible reference geometry. Those fixed effects should not be reassigned to framewise accommodation.
+The fixed asymmetry can contain source placement, camera alignment, baseline optical distortion, and other reproducible geometry. Those effects should not be reassigned to framewise accommodation.
 
-### 3.1 Do not force a regular grid/equilateral target
+### 3.1 Do not force a regular grid or equilateral triangle
 
-A fixed map that transforms the empirical reference into a convenient regular plotting coordinate system is allowed as a **coordinate convention**. If the complete forward/inverse model and covariance are transformed consistently, this creates no new information.
+A fixed map that makes the empirical reference look regular can be used as a plotting coordinate convention. If the complete optical model and covariance are transformed consistently, it creates no new information.
 
-It must not be interpreted as evidence that the physical reference was an equilateral triangle or perfect grid.
+It must not be treated as evidence that the physical reference itself was a perfect grid.
 
-A "random barrel" selected only to make the reference look regular is therefore not a physical calibration. It can be:
+A regular equal-radius configuration can actually reduce radial-distortion observability. For the radial model
 
-- an initialization;
-- a fixed gauge/convention;
-- or a visualization transform.
+\[
+\mathbf B_j(A)
+=
+\left[
+1+\kappa(A)\|M(A)\mathbf u_j\|^2
+\right]
+M(A)\mathbf u_j,
+\]
 
-It should not be a fitted per-frame degree of freedom and should not be reported as the physical reference barrel coefficient.
+if all three points have equal radius \(R\) from the distortion center,
+
+\[
+\mathbf B_j(A)
+=
+M(A)
+\left[
+1+\kappa(A)M(A)^2R^2
+\right]
+\mathbf u_j.
+\]
+
+Magnification and radial distortion then collapse into one effective scalar.
+
+The empirical triangle is non-equilateral, which may help. But non-equilateral side lengths do not by themselves guarantee distinct radii around the distortion center. Identifiability must be evaluated with the actual reference coordinates and center convention.
 
 ### 3.2 Prefer a consensus empirical reference over one noisy frame
 
-One frame can initialize the pattern, but the final reference should preferably be estimated from multiple suitable near-reference frames or as one shared template during calibration.
+One high-quality frame can initialize the reference, but a final calibration should test whether the result depends materially on that choice.
 
-A practical initialization is:
+Prefer either:
 
-1. choose low-demand, near-zero-gaze frames;
-2. preserve P1/P4 point identities;
-3. estimate trial gaze and P1 scale;
-4. map those frames toward a common reference state;
-5. form a robust shared reference;
-6. hold that reference convention fixed while evaluating frame states.
+1. one fixed empirical reference estimated robustly from several appropriate observations; or
+2. one globally shared reference refinement under explicit origin, orientation, and scale gauges.
 
-This does **not** impose constant gaze or accommodation inside a fixation. It only estimates one shared reference geometry from multiple observations.
+Do not allow a different reference triangle for each frame, accommodation value, or held-P4 subset.
 
 ## 4. What the reverse transform should mean
 
-Write the local P4 forward model schematically as
+Let the local P4 forward map be
 
-[
-mathcal F_{	heta,A}
+\[
+\mathcal F_{\theta,A}
 =
-K_4(	heta,A)circ mathcal R_A,
-]
+K_4(\theta,A)\circ\mathcal R_A,
+\]
 
-where (mathcal R_A) contains the accommodation-dependent baseline magnification/radial response, and (K_4) is the gaze/keystone transformation.
+with
 
-The complete measured relative coordinate also contains:
-
-- the P1-derived external scale (g);
-- possible P4/P1 differential scale (eta);
-- and the relative P4/P1 optical-origin displacement.
-
-The present theory writes
-
-[
-mathbf q_j-mathbf c_1
+\[
+\mathcal R_A(\mathbf u)
 =
-gleft[
-oldsymboldelta_g
-+etamathbf F_{4j}(	heta,A)
--overline{mathbf F}_1(	heta)
-ight].
-]
+\left[
+1+\kappa_4(A)\|M(A)\mathbf u\|^2
+\right]
+M(A)\mathbf u.
+\]
 
-Therefore, before applying a physical inverse (K_4^{-1}) or (mathcal R_A^{-1}), reconstruct the local P4 coordinate:
+The full relative observation also contains nuisance scale and the relative optical-origin / centroid-displacement law. Therefore the physical inverse cannot be applied directly to raw P4 image points as though the P4 centroid were the radial center.
 
-[
-oxed{
-mathbf z_j
+After same-frame translation removal, define the P1-scale-corrected relative measurement
+
+\[
+\widetilde{\mathbf q}_{ij}
 =
-rac{
-(mathbf q_j-mathbf c_1)/g
-+overline{mathbf F}_1(	heta)
--oldsymboldelta_g
-}{eta}
-=
-mathbf F_{4j}(	heta,A).
-}
-]
-
-Then the source/reference coordinate is recovered in reverse order:
-
-[
-oxed{
-widehat{mathbf u}_j
-=
-mathcal R_A^{-1}
-left(
-K_4^{-1}(	heta,A;mathbf z_j)
-ight).
-}
-]
-
-To compare with the empirical reference state (x_{ref}=(	heta_{ref},A_{ref})), reapply the reference-state transformation:
-
-[
-oxed{
-mathbf B^{rec}_{ij}
-=
-K_4left(
-	heta_{ref},A_{ref};
-mathcal R_{A_{ref}}(widehat{mathbf u}_j)
-ight).
-}
-]
-
-At a convention where (	heta_{ref}=0) and (K_4(0,A)=I), this simplifies, but the general form should be retained in the specification.
-
-### 4.1 Inverse order is mandatory
-
-If the forward order is
-
-[
-	ext{reference/source}
-ightarrow
-mathcal R_A
-ightarrow
-K_4
-ightarrow
-	ext{external scale/relative placement},
-]
-
-the inverse order is
-
-[
-	ext{remove external scale/placement}
-ightarrow
-K_4^{-1}
-ightarrow
-mathcal R_A^{-1}.
-]
-
-Do not change the sign of the radial coefficient and call that the radial inverse. The inverse of
-
-[
-mathbf r'=(1+kappa|mathbf r|^2)mathbf r
-]
-
-is generally a nonlinear scalar-radius solve.
-
-### 4.2 A critical requirement: reverse transformation needs an optical origin
-
-The current theory permits either:
-
-- fitting the relative centroid law (mathbf h_g) directly; or
-- fitting the relative optical-origin displacement (oldsymboldelta_g) and deriving (mathbf h_g).
-
-For ordinary forward prediction, direct (mathbf h_g) can be sufficient.
-
-For a **physical reverse radial transformation of individual P4 points**, (mathbf h_g) alone is generally insufficient because radial inversion requires coordinates about a defined local radial center/origin. The reverse-transform implementation therefore needs one of these:
-
-1. a constrained/shared (oldsymboldelta_g) plus distortion-center convention;
-2. an equivalent shared local-coordinate parameterization that reconstructs (mathbf F_{4j});
-3. or a deliberately empirical relative-deformation inverse that makes no claim to recover absolute radial coordinates.
-
-This is the most important structural issue to resolve before coding the reverse transform.
-
-## 5. Do not invert a centered triangle as if centering commuted with optics
-
-A tempting shape-only construction is
-
-[
-mathbf q_j-mathbf c_4=getamathbf S_{4j}.
-]
-
-This removes relative P4/P1 displacement and is useful for inspecting shape.
-
-But (mathbf S_{4j}=mathbf F_{4j}-overline{mathbf F}_4) is a **centered output of a nonlinear/projective transformation**. In general,
-
-[
-K^{-1}(mathbf F_j-overline{mathbf F})
-
-eq
-K^{-1}(mathbf F_j)-	ext{constant},
-]
-
-and similarly for a radial transform. Centering and projective/radial inversion do not commute.
-
-Therefore:
-
-- centered P4 edges/triangles are valid relative measurements;
-- they can be forward-predicted and compared;
-- but they should not be pointwise "undistorted" by simply applying the physical inverse about the measured centroid.
-
-For a true reverse optical transform, reconstruct the local coordinate about the calibrated origin first.
-
-## 6. Magnification versus barrel/radial distortion
-
-The empirical triangle being non-equilateral is potentially helpful, but it does not by itself guarantee identifiability.
-
-For
-
-[
-mathbf B_j(A)
-=
-M(A)
-left[
-1+kappa_4(A)M(A)^2r_j^2
-ight]
-mathbf u_j,
-qquad
-r_j=|mathbf u_j|,
-]
-
-uniform magnification changes all points through the common factor (M), while radial distortion changes them according to (r_j^2).
-
-### 6.1 Equal radii are the degeneracy, not equal side lengths
-
-If all three radii relative to the radial center are equal,
-
-[
-r_1=r_2=r_3=R,
-]
-
-then
-
-[
-mathbf B_j
-=
-M(1+kappa M^2R^2)mathbf u_j,
-]
-
-and only one effective scale is observable from the three centered points.
-
-A triangle can be non-equilateral and still have all three vertices on a circle about the chosen radial center. Therefore **unequal side lengths are not the test**.
-
-The required test is the actual local Jacobian/rank at the empirical geometry and plausible shared center.
-
-### 6.2 Different radii help, but a free center can reintroduce ambiguity
-
-If the three radii differ, the responses to (M) and (kappa) can become distinguishable. However, if the radial center is also free, center shifts can mimic part of the same differential deformation.
-
-Before claiming separate accommodation magnification and barrel coefficients, evaluate the rank and conditioning of a local sensitivity matrix containing at least the relevant columns from
-
-[
-left[
-partial_	hetamathbf y,
-partial_Amathbf y,
-partial_gmathbf y,
-partial_{c_x}mathbf y,
-partial_{c_y}mathbf y,
-partial_Mmathbf y,
-partial_kappamathbf y
-ight],
-]
-
-with only the actually free quantities included.
-
-If (M) and (kappa) remain poorly separated, use an **effective accommodation-dependent deformation/scale** rather than assigning physical meaning to an unstable absolute barrel coefficient.
-
-## 7. Reference gauge and relative radial model
-
-The strongest scientific version of the proposal is reference-relative.
-
-The empirical reference is already distorted. Therefore it is safer to model the transformation **from the reference state to another state** than to pretend the empirical reference is a known paraxial grid.
-
-Conceptually,
-
-[
-oxed{
-mathcal R_{rel}(A)
-=
-mathcal R_Acircmathcal R_{A_{ref}}^{-1}.
-}
-]
-
-Then
-
-[
-mathcal R_{rel}(A_{ref})=I.
-]
-
-If the absolute paraxial geometry and (kappa(A_{ref})) are not identifiable, parameterize the **relative deformation** with the reference constraints
-
-[
-M_{rel}(A_{ref})=1,
-qquad
-Deltakappa(A_{ref})=0,
-]
-
-while stating clearly that (Deltakappa) is a reference-relative coefficient, not an independently measured absolute barrel coefficient.
-
-This directly matches the scientific question: how does the P4 pattern change with accommodation relative to the selected reference?
-
-## 8. Recommended metric: forward fit, reverse diagnostic
-
-### 8.1 Primary optimization metric
-
-Use the existing translation-free observation vector
-
-[
-mathbf y_i=
-egin{bmatrix}
-mathbf e_{1i}\
-mathbf q_{i1}-mathbf c_{1i}\
-mathbf q_{i2}-mathbf c_{1i}\
-mathbf q_{i3}-mathbf c_{1i}
-end{bmatrix}
-]
-
-and minimize the fixed raw-relative coordinate metric
-
-[
-oxed{
-Q_i=
-(mathbf y_i-widehat{mathbf y}_i)^T
-R_{y,i}^{-1}
-(mathbf y_i-widehat{mathbf y}_i).
-}
-]
-
-This metric has three important properties:
-
-1. it does not reward a candidate merely for contracting coordinates through its inverse;
-2. its units and covariance are tied to the measurements;
-3. held-P4 prediction can be scored in the original camera-coordinate convention.
-
-### 8.2 Reverse-to-reference residual
-
-Also compute
-
-[
-oxed{
-mathbf e^{rev}_{ij}
-=
-mathbf B^{rec}_{ij}
--
-mathbf B^{ref}_j.
-}
-]
-
-This should be a first-class diagnostic: plot it by gaze, accommodation, point, capture, and recovered coordinate.
-
-If it is later used as a formal comparative cost, propagate the measurement covariance through the reverse transform:
-
-[
-R^{rev}
-approx
-J_{rev}R_{local}J_{rev}^T
+\frac{
+\mathbf q_{ij}-\mathbf c_{1i}
+}{
+\widehat g_{P1,i}(\theta_i)
+}.
+\]
+
+In the common-scale starting model, current theory predicts
+
+\[
+\widetilde{\mathbf q}_{ij}
+\approx
+\mathbf h(\theta_i,A_i)
 +
-R_{template},
-]
+\mathbf S_{4j}(\theta_i,A_i).
+\]
 
-where (J_{rev}) is the reverse-transform Jacobian and (R_{template}) represents reference uncertainty when relevant.
+The conceptual reference recovery is
 
-An unweighted inverse-space RMS should not rank models because candidate transforms can change the scale of the residual space.
+\[
+\boxed{
+\mathbf B^{\rm rec}_{ij}
+=
+\mathcal T_{x_{\rm ref}}
+\left[
+\mathcal T_{x_i}^{-1}
+\left(
+\widetilde{\mathbf q}_{ij}
+\right)
+\right].
+}
+\]
 
-### 8.3 Desired interpretation
+The transformation \(\mathcal T\) must include the declared relative-origin convention, not only a radial warp around an observed centroid.
 
-A successful model should satisfy both views:
+## 5. Inverse order is mandatory
 
-[
-	ext{forward state model predicts the raw relative coordinates}
-]
+For the local P4 forward transformation
+
+\[
+\mathbf P^{\rm local}_{4,j}
+=
+g_4\,
+K_4
+\left(
+\theta,A;
+\mathcal R_A(\mathbf u_j)
+\right),
+\]
+
+the reverse path must undo operations in reverse order:
+
+1. remove the external/common nuisance scale using the P1-derived scale policy;
+2. remove the modeled P4-P1 relative-origin / centroid displacement;
+3. apply the inverse keystone or projective transformation;
+4. invert the accommodation-dependent radial/magnification transformation;
+5. apply the reference-state radial/magnification transformation;
+6. apply the reference-state keystone transformation;
+7. restore the reference-state relative-origin convention.
+
+Do not commute these stages without proof. Scaling inside a projective denominator is not generally equivalent to scaling outside it.
+
+### 5.1 Radial inverse
+
+For a radial map such as
+
+\[
+\mathbf y
+=
+\left(
+1+\kappa r^2
+\right)
+\mathbf x,
+\]
+
+the inverse is not obtained by simply replacing \(\kappa\) with \(-\kappa\).
+
+The inverse should solve the one-dimensional radial equation using a bounded monotone root solve or another certified method. The accepted domain must satisfy the one-to-one conditions, including checks associated with
+
+\[
+1+\kappa r^2
+\]
 
 and
 
-[
-	ext{inverse state correction collapses observations back onto one shared empirical reference.}
-]
+\[
+1+3\kappa r^2.
+\]
 
-These are two representations of the same hypothesis, not separate degrees of freedom.
+Synthetic round-trip tests must verify
 
-## 9. Framewise estimation and shared calibration
+\[
+\mathcal T_x^{-1}
+\left(
+\mathcal T_x(\mathbf u)
+\right)
+\approx
+\mathbf u
+\]
 
-With global parameters fixed, the recommended framewise sequence is:
+over the full accepted gaze, accommodation, and field domain.
 
-1. initialize gaze from the relative P4-P1 displacement;
-2. evaluate the gaze-conditioned P1 reference;
-3. estimate the one positive P1 nuisance scale (g_{P1}(	heta));
-4. remove that common nuisance scale;
-5. estimate accommodation using the complete P4 reference-relative forward model;
-6. update gaze using the accommodation-corrected displacement and P4 geometry;
-7. repeat with (g_{P1}) recomputed at every trial gaze;
-8. optionally perform a final joint ((	heta,A)) refinement.
+## 6. A critical requirement: reverse transformation needs an optical origin
 
-The key point is that "find the barrel coefficient that best matches the reference" must not mean a free framewise (kappa_i).
+The current forward theory can be written with a directly fitted relative centroid law. That is sufficient for predicting measured relative coordinates.
 
-The final estimator should use shared functions, e.g.
+A physical radial inverse of individual P4 points needs more: it needs a defined local coordinate system and radial center.
 
-[
-M_i=M(A_i;eta_M),
-qquad
-kappa_i=kappa(A_i;eta_kappa),
-]
+Therefore, before implementing a reverse radial transform, choose one explicit parameterization:
 
-or a shared reference-relative effective deformation law.
+1. fit a shared relative optical-origin displacement and derive the centroid law;
+2. use an equivalent shared local-coordinate parameterization that reconstructs the uncentered local P4 coordinates; or
+3. use matched optical constraints that fix the required radial center / origin.
 
-A free per-frame best-fit radial coefficient can be useful as a **diagnostic experiment** to see whether a repeatable response curve exists. It is not yet an accommodation estimator.
+Do not silently use the measured P4 centroid as the radial center.
 
-After frame-state updates, update the allowed shared reference, displacement, rotation, magnification/radial response, and alignment parameters using all calibration frames, then repeat under the same objective.
+The center must be fixed or globally constrained. A different radial center per frame would be flexible enough to absorb state-dependent deformation and undermine the physical interpretation.
 
-## 10. Cross-agreement / omitted-P4 validation
+## 7. Do not invert a centered triangle as if centering commuted with optics
 
-The strongest internal test remains the three-way held-P4 procedure.
+This is a major mathematical point.
 
-After calibration, freeze:
+The centered P4 shape is
 
-- empirical reference geometry;
-- distortion center/origin convention;
-- all shared response functions;
-- noise/weighting policy;
-- reference gauge;
-- and any reference refinement.
+\[
+\mathbf S_{4j}
+=
+\mathbf F_{4j}
+-
+\overline{\mathbf F}_4.
+\]
 
-For each frame and omitted P4 (j):
+For a nonlinear radial/projective transformation \(K\), in general
 
-1. retain all three P1 points;
-2. retain only the other two P4 points;
-3. rerun the complete gaze -> P1 scale -> accommodation -> corrected gaze inference;
-4. do not use the measured three-P4 centroid, P4 area, affine fit, reverse transform, or initialization containing the omitted point;
-5. predict the omitted P4 in the original relative camera-coordinate system;
-6. score its original-coordinate error;
-7. separately report subset agreement in (	heta) and (A).
+\[
+K^{-1}
+\left(
+\mathbf F_j-\overline{\mathbf F}
+\right)
+\neq
+K^{-1}(\mathbf F_j)
+-
+\text{constant}.
+\]
 
-The reverse diagnostic can then ask whether the omitted prediction and retained measurements all map to the same empirical reference state.
+Therefore it is not generally valid to:
 
-This test is internal consistency because calibration used the full dataset. It is not independent physiological validation.
+1. center the measured P4 triangle;
+2. treat the centered coordinates as if they were raw local optical coordinates;
+3. apply the physical inverse barrel/keystone transformation directly.
 
-## 11. Proposed gates before implementation
+The reverse transform must reconstruct or parameterize the appropriate local optical coordinates first.
 
-The reverse-transform idea should be developed in short gates so a failure does not trigger a large rewrite.
+This is one reason the forward model should remain authoritative and the reverse diagnostic should be derived from it.
 
-### RT0 — Freeze reference and coordinate conventions
+## 8. Magnification versus barrel/radial distortion
 
-Deliverables:
+For the accommodation-dependent radial model
 
-- exact empirical P1/P4 reference construction;
-- source correspondence;
-- reference origin/rotation/scale convention;
-- distortion-center convention;
-- (A_{ref}), (	heta_{ref}), and (M(A_{ref})=1);
-- statement of whether radial coefficients are absolute or reference-relative.
+\[
+\mathbf B_j(A)
+=
+M(A)
+\left[
+1+
+\kappa(A)M(A)^2r_j^2
+\right]
+\mathbf u_j,
+\qquad
+r_j=\|\mathbf u_j\|,
+\]
 
-**Gate:** the same input data always produce the same reference and gauges. No per-frame regularization target is allowed.
+uniform magnification and radial deformation become distinguishable only through differences in the point radii and the complete spatial response.
 
-### RT1 — Synthetic forward/inverse closure
+### 8.1 Equal radii are the degeneracy, not equal side lengths
 
-Generate synthetic states from the proposed forward model and verify:
+If
 
-[
-mathcal T_{ref}circmathcal T_x^{-1}circmathcal T_x
-]
+\[
+r_1=r_2=r_3=R,
+\]
 
-returns the reference to numerical precision.
+then
 
-Test:
+\[
+\mathbf B_j(A)
+=
+M(A)
+\left[
+1+\kappa(A)M(A)^2R^2
+\right]
+\mathbf u_j,
+\]
 
-- transform order;
-- radial inverse;
-- keystone inverse;
-- P1 scale cancellation;
-- nonzero relative-origin displacement;
-- differential (eta);
-- non-equilateral reference.
+so only one effective scale is observed.
 
-**Gate:** exact noiseless closure and analytic/numeric Jacobian agreement.
+The empirical triangle being non-equilateral is encouraging, but the actual radii relative to the radial center must be evaluated.
 
-### RT2 — Actual-geometry identifiability audit
+### 8.2 Different radii help, but a free center can reintroduce ambiguity
 
-Using the actual empirical reference triangle, evaluate local rank/conditioning over:
+If the radii differ, the responses to \(M\) and \(\kappa\) can become distinct.
 
-- gaze range;
-- accommodation range;
-- plausible shared center offsets;
-- P1 scale variation.
+However, if the radial center is also free, center shifts can mimic part of the same differential deformation.
 
-Compare at minimum:
+The actual-geometry audit should therefore inspect the Jacobian columns for at least
 
-1. accommodation magnification only;
-2. magnification + radial deformation;
-3. magnification + radial + optional accommodation-dependent keystone term.
+\[
+\partial_\theta\mathbf y,\quad
+\partial_A\mathbf y,\quad
+\partial_g\mathbf y,\quad
+\partial_{c_x}\mathbf y,\quad
+\partial_{c_y}\mathbf y,\quad
+\partial_M\mathbf y,\quad
+\partial_\kappa\mathbf y.
+\]
 
-**Gate:** do not promote a separate radial coefficient unless it contributes a distinguishable response after gaze/scale/center nuisances. Otherwise use effective deformation.
+Use rank, singular values, principal confounded directions, and sensitivity to plausible shared center offsets.
 
-### RT3 — Reference sensitivity
+If \(M\) and \(\kappa\) are not separately identifiable, report an identifiable effective accommodation deformation rather than claiming a physical barrel coefficient.
 
-Repeat the initialization with:
+## 9. P1 scale must remain gaze-conditioned
 
-- several individual candidate reference frames;
-- one multi-frame consensus reference;
-- modest allowed shared reference refinement.
+The nuisance scale estimate depends on the P1 reference evaluated at the trial gaze:
 
-Compare state trajectories and predicted original-coordinate P4 values.
+\[
+\widehat g_{P1}(\theta)
+=
+\frac{
+\mathbf a_1(\theta)^\mathsf T
+W_1
+\mathbf e_1
+}{
+\mathbf a_1(\theta)^\mathsf T
+W_1
+\mathbf a_1(\theta)
+}.
+\]
 
-**Gate:** scientific conclusions must not depend strongly on which acceptable reference frame happened to be chosen. If they do, reference uncertainty must enter the model.
+Therefore scale-corrected P4 coordinates cannot be precomputed once before the state solve.
 
-### RT4 — Real-data ablation under one metric
+Every trial or accepted gaze update must update:
 
-On one identical calibration population and noise policy, compare:
+1. the P1 reference pattern;
+2. the P1 scale;
+3. the corrected P4 relative coordinates used by the accommodation step.
 
-- scale + gaze only;
-- accommodation magnification;
-- accommodation magnification + radial/effective deformation;
-- then only if needed, explicit accommodation/keystone coupling.
+This coupling is part of the estimator, not an implementation detail.
 
-Do not change response family, center policy, reference construction, and covariance simultaneously.
+## 10. Do not use a free per-frame barrel coefficient as accommodation
 
-**Gate:** each added mechanism must produce reproducible image-space improvement and acceptable identifiability, not merely lower training cost.
+An unconstrained per-frame radial coefficient can be useful during model discovery.
 
-### RT5 — Full all-condition calibration
+It should not define the final accommodation estimator.
 
-Run the accepted model on all 20 reviewed calibration conditions with free framewise gaze/accommodation and soft fixation-mean anchors.
+The scientific model should use globally shared response laws such as
 
-Store:
+\[
+M_i=M(A_i;\beta_M),
+\]
 
-- global parameters;
-- per-frame states;
-- convergence/branch/bound status;
-- forward residuals;
-- reverse-reference residuals;
-- conditioning/identifiability diagnostics.
+and
 
-**Gate:** numerical certification and complete scheduled accounting.
+\[
+\kappa_i=\kappa(A_i;\beta_\kappa).
+\]
 
-### RT6 — Three-way cross-agreement
+Then \(A_i\) is the framewise state and \(\beta_M,\beta_\kappa\) are shared calibration parameters.
 
-Freeze the calibration and perform the complete omitted-P4 procedure.
+If each frame independently chooses \(M_i\) and \(\kappa_i\), and accommodation is assigned afterward, then accommodation has not been inferred from a common optical law.
+
+## 11. Recommended metric: forward fit, reverse diagnostic
+
+### 11.1 Primary optimization metric
+
+Use the translation-free native observation
+
+\[
+\mathbf y_i
+=
+\begin{bmatrix}
+\mathbf p_{i2}-\mathbf p_{i1}\\
+\mathbf p_{i3}-\mathbf p_{i1}\\
+\mathbf q_{i1}-\mathbf c_{1i}\\
+\mathbf q_{i2}-\mathbf c_{1i}\\
+\mathbf q_{i3}-\mathbf c_{1i}
+\end{bmatrix}.
+\]
+
+Let the joint forward model predict
+
+\[
+\widehat{\mathbf y}_i
+=
+\widehat{\mathbf y}
+(
+\theta_i,A_i;\Psi
+).
+\]
+
+Use the covariance-weighted forward objective
+
+\[
+\boxed{
+J_{\rm data}
+=
+\sum_i
+\left(
+\mathbf y_i-\widehat{\mathbf y}_i
+\right)^\mathsf T
+R_i^{-1}
+\left(
+\mathbf y_i-\widehat{\mathbf y}_i
+\right).
+}
+\]
+
+Add only the declared soft fixation-mean anchors and necessary global/gauge constraints.
+
+Do not add a cost rewarding equal triangle sides.
+
+### 11.2 Why raw inverse-space RMS is unsafe
+
+If a local inverse map changes residual coordinates according to
+
+\[
+\mathbf e'=J\mathbf e,
+\]
+
+then its covariance changes as
+
+\[
+R'=JRJ^\mathsf T.
+\]
+
+With consistent covariance propagation, the local quadratic metric can remain equivalent. Without it, a candidate transformation can appear better merely because its inverse contracts coordinates.
+
+Therefore:
+
+- native forward residual is the primary fitting and ranking metric;
+- reverse-reference residual is a physical diagnostic;
+- inverse-space ranking is allowed only after Jacobian and covariance propagation are validated.
+
+### 11.3 Reverse-reference diagnostic
+
+After fitting the frame state, compute
+
+\[
+\mathbf B^{\rm rec}_{ij}
+=
+\mathcal T_{x_{\rm ref}}
+\left[
+\mathcal T_{x_i}^{-1}
+\left(
+\widetilde{\mathbf q}_{ij}
+\right)
+\right].
+\]
 
 Report:
 
-- original-coordinate P4 cross error;
-- signed axes and point-specific residuals;
-- (	heta) subset disagreement;
-- (A) subset disagreement;
-- ambiguity/conditioning;
-- reverse-reference collapse plots;
-- exact common-frame coverage.
+- signed x/y residuals for each P4;
+- side-length ratios relative to the empirical reference;
+- orientation and area relative to the empirical reference;
+- residual maps versus gaze and accommodation;
+- dependence on reference-frame selection;
+- dependence on shared distortion-center assumptions.
 
-**Gate:** classify the result as supported, tradeoff, identifiability unresolved, or insufficient evidence. Do not define an arbitrary pixel/degree/diopter combined score.
+Side-length diagnostics should compare to the empirical reference:
 
-## 12. Required documentation reconciliation
+\[
+\frac{L^{\rm rec}_{12}}{L^{\rm ref}_{12}},
+\quad
+\frac{L^{\rm rec}_{23}}{L^{\rm ref}_{23}},
+\quad
+\frac{L^{\rm rec}_{31}}{L^{\rm ref}_{31}}
+\rightarrow 1.
+\]
 
-If RT0-RT3 support this design, update the authoritative documents before implementation:
+They should not compare the three sides to each other.
 
-### `docs/Theory.md`
+## 12. Recommended iterative estimator
 
-Add a dedicated **reference-recovery interpretation**:
+With global optical parameters fixed during application:
 
-[
-mathbf B^{rec}
+1. initialize gaze from the calibrated relative P4-P1 centroid relationship;
+2. fit P1 nuisance scale from the P1 reference evaluated at that gaze;
+3. update accommodation using the shared accommodation-dependent P4 model;
+4. update gaze using the accommodation-corrected centroid displacement and full relative geometry;
+5. recompute P1 scale at the new gaze;
+6. use damping or a final joint two-state refinement;
+7. report ambiguity and conditioning rather than forcing a unique state when the local problem is weakly identified.
+
+During calibration, alternate frame-state updates with updates of the permitted global optical/reference parameters under one coherent objective.
+
+Do not optimize independent unrelated costs for gaze, scale, radial coefficient, and accommodation.
+
+## 13. Cross-agreement / omitted-P4 validation
+
+After calibration, freeze:
+
+- the empirical reference;
+- distortion-center and alignment convention;
+- P1 reference and scale policy;
+- accommodation-dependent magnification and radial laws;
+- keystone and relative-origin laws;
+- covariance policy;
+- response-law parameters.
+
+For each frame, omit P4 \(j\) in turn:
+
+1. retain all three P1 points;
+2. retain only the other two P4 points;
+3. initialize without any all-three P4 centroid, area, inverse warp, or held-point-derived quantity;
+4. rerun the full gaze -> P1 scale -> accommodation -> gaze solver;
+5. predict the omitted P4 in original relative image coordinates.
+
+Use
+
+\[
+\mathbf e^{\rm cross}_{ij}
 =
-mathcal T_{ref}circmathcal T_x^{-1}(mathbf y)
-]
+(\mathbf q_{ij}-\mathbf c_{1i})
+-
+(\widehat{\mathbf q}_{ij|-j}-\mathbf c_{1i})
+\]
 
-with:
+as the primary held-point error.
 
-- explicit local-origin reconstruction;
-- inverse order;
-- reference-relative radial option;
-- forward-vs-reverse metric distinction;
-- empirical non-equilateral reference;
-- statement that a regular-grid transform is a gauge/visualization unless independently known.
+Also compare the subset-derived gaze and accommodation estimates on the same frame.
 
-The current warning against inverting about an observed centroid should remain.
+Internal cross-agreement remains an internal consistency test, not independent physiological validation.
 
-### `docs/ESTIMATOR_PLAN.md`
+## 14. Proposed gates before implementation
 
-This file is currently historical/conditional and conflicts with the latest theory at the top-level normalization contract.
+### RT0 — Freeze reference and coordinate conventions
 
-Either:
+Declare:
 
-1. mark the old area-normalized conditional design as a historical baseline section and add a new authoritative implementation plan for reference-P1 scale + joint optical model; or
-2. create a clean new implementation plan and explicitly state which document controls the new work.
+- empirical reference construction;
+- point correspondence;
+- reference origin;
+- reference orientation;
+- reference scale;
+- distortion-center parameterization;
+- P1 scale policy;
+- common-scale versus differential-scale policy.
 
-Do not silently edit the old coefficients/normalization and claim the same estimator.
+**Pass:** no hidden per-frame or per-subset reference freedom remains.
 
-### `docs/ACCOMMODATION_FULL_CALIBRATION_PLAN.md`
+### RT1 — Synthetic forward/inverse closure
 
-The plan still assumes the old `r/v` area normalization and `D+Tr` six-residual model. Preserve its historical results, but revise the future work program to use:
+Test scale, keystone, radial/magnification, relative-origin displacement, and all compositions.
 
-- the reference-P1 scale;
-- the new relative observation vector;
-- the shared empirical reference;
-- physical/reference-relative accommodation mechanisms;
-- the same identifiability and held-P4 evidence hierarchy.
+**Pass:** forward -> inverse round trips recover the latent reference to numerical precision over the accepted domain, with one-to-one radial inversion.
 
-### `docs/CURRENT_STATUS.md`
+### RT2 — Actual-geometry identifiability audit
 
-Do not rewrite historical empirical results as results of the reverse-transform model. Add the new method only after an actual implementation/calibration exists.
+Use the actual empirical non-equilateral triangle and plausible shared center/alignment uncertainty.
 
-## 13. Failure modes to watch
+Evaluate rank and condition for:
 
-1. **Reference leakage:** choosing/refining the reference using the held P4 during cross-check.
+- \(M\) versus \(\kappa\);
+- gaze versus accommodation;
+- center versus radial response;
+- differential nuisance scale versus accommodation;
+- reference gauge versus optical coefficients.
+
+**Pass:** every parameter claimed as separately physical has adequate local distinction over meaningful calibration regions. Otherwise collapse to an identifiable effective deformation.
+
+### RT3 — Reference sensitivity
+
+Repeat with several valid empirical reference frames or a robust consensus reference.
+
+**Pass:** inferred optical response and state trajectories are stable to reference choice within declared uncertainty.
+
+### RT4 — Real-data ablation under one metric
+
+With identical data, covariance, starts, and state policy, compare:
+
+1. accommodation-dependent P4 magnification only;
+2. magnification plus radial deformation.
+
+**Pass:** the radial term explains reproducible shape change that cannot be absorbed by common scale, gaze, center, or reference gauge and remains identifiable.
+
+### RT5 — Full all-condition calibration
+
+Run all reviewed calibration conditions with independent framewise gaze/accommodation and soft fixation-mean anchors.
+
+**Pass:** convergence, ambiguity, rank, and failures are explicitly recorded; no regular-triangle constraint or per-frame deformation map is introduced.
+
+### RT6 — Three-way cross-agreement
+
+Freeze calibration and run the full omitted-P4 solver.
+
+**Pass:** retained pairs infer compatible states and predict the omitted point without held-point leakage. No universal RMS threshold is imposed.
+
+## 15. Required documentation reconciliation
+
+### docs/Theory.md
+
+Add a dedicated reference-recovery section that:
+
+- defines the empirical non-equilateral reference;
+- states \(\mathcal T_{\rm ref}\circ\mathcal T_x^{-1}\);
+- gives inverse order explicitly;
+- explains why a physical inverse needs a declared local optical origin;
+- warns that centering does not commute with nonlinear optical inversion;
+- keeps the forward native-coordinate objective primary;
+- identifies reverse recovery as a diagnostic / validated secondary metric;
+- requires actual-geometry \(M/\kappa/\)center identifiability tests.
+
+### docs/ESTIMATOR_PLAN.md
+
+Reconcile the old area-normalization requirement with current Theory.
+
+Move the historical conditional area-normalized estimator into an explicitly historical/control section.
+
+Define the new implementation contract around:
+
+- P1 reference-scale fitting;
+- the 10-coordinate translation-free observation;
+- the joint forward optical model;
+- paired forward/inverse operators;
+- reverse-reference diagnostics;
+- complete held-P4 iterative cross-agreement.
+
+### docs/ACCOMMODATION_FULL_CALIBRATION_PLAN.md
+
+Replace the old area-normalized six-coordinate model as the invariant of the new workstream.
+
+Preserve its important scientific requirements:
+
+- no framewise nominal-demand truth;
+- no fixation-flatness assumption;
+- one shared optical response law;
+- identifiability/gauge analysis;
+- three-way P4 cross-agreement;
+- external evidence required for physiological diopter accuracy.
+
+Add explicit tests of:
+
+- empirical-reference choice;
+- distortion-center gauge;
+- \(M\)-versus-\(\kappa\) rank;
+- reference-recovery stability.
+
+### docs/CURRENT_STATUS.md
+
+Do not rewrite historical empirical results as results of the reverse-transform model.
+
+Add the new method only after actual implementation/calibration evidence exists.
+
+## 16. Failure modes to watch
+
+1. **Reference leakage:** using the omitted P4 to choose or refine the reference during cross-check.
 2. **Centroid-as-center error:** treating the measured P4 centroid as the radial center.
 3. **Wrong inverse order:** undoing radial before keystone when the forward composition is radial then keystone.
 4. **Double distortion:** applying a baseline radial correction to an empirical reference that already contains it.
-5. **Free per-frame barrel:** fitting (kappa_i) independently and then relabeling it accommodation.
-6. **Scale removal of signal:** fitting a separate unconstrained P4 scale that removes accommodation-dependent magnification.
-7. **Regular-shape bias:** forcing the empirical non-equilateral triangle toward an equilateral target.
-8. **Gauge drift:** simultaneously freeing reference geometry, center, reference radial coefficient, (M(A)), and per-frame scale.
-9. **Inverse-space metric bias:** ranking by unweighted reverse RMS when the candidate inverse changes coordinate scaling.
-10. **Shape-only information loss:** centering P4 and discarding P4-P1 centroid displacement.
-11. **Plan mismatch:** implementing a hybrid of the new theory and the old area-normalized conditional plan without a declared contract.
-12. **Overclaiming:** interpreting internal cross-agreement as independent physiological accommodation accuracy.
+5. **Free per-frame barrel:** fitting \(\kappa_i\) independently and relabeling it accommodation.
+6. **Scale removal of signal:** fitting an unconstrained P4 scale that removes accommodation-dependent magnification.
+7. **Regular-shape bias:** forcing the non-equilateral empirical triangle toward an equilateral target.
+8. **Gauge drift:** simultaneously freeing reference geometry, center, reference radial coefficient, accommodation magnification, and per-frame scale.
+9. **Inverse-space metric bias:** ranking models by unweighted reverse RMS when inverse mappings change coordinate scaling.
+10. **Shape-only information loss:** centering P4 and discarding the P4-P1 centroid displacement.
+11. **Centered-inverse error:** applying a physical inverse directly to centered nonlinear/projective coordinates.
+12. **Plan mismatch:** implementing a hybrid of current Theory and old area-normalized plans without a declared contract.
+13. **Overclaiming:** treating internal cross-agreement as independent physiological accommodation accuracy.
 
-## 14. Recommended decision
+## 17. Recommended implementation architecture
+
+Do not start with a separate reverse-only estimator.
+
+Implement one authoritative forward optical model with paired tested inverse operators:
+
+- P1 forward transformation;
+- P1 gaze-conditioned scale fit;
+- P4 accommodation radial/magnification forward operator;
+- P4 accommodation radial/magnification inverse operator;
+- keystone forward operator;
+- keystone inverse operator;
+- relative-origin forward model;
+- reference-recovery adapter.
+
+The inverse operators should be verified against the forward operators, not independently tuned to data.
+
+One forward likelihood/objective should drive calibration and state inference. Reference recovery should consume the same fitted model.
+
+## 18. Recommended decision
 
 Proceed with the reverse-transform concept, but define it as **empirical reference recovery under one shared optical model**.
 
-The recommended scientific statement is:
+The scientific question should not be:
 
-[
-oxed{
-	ext{A valid gaze/accommodation state is one whose calibrated optical inverse returns the measured P1/P4 geometry to the same fixed empirical reference.}
-}
-]
+> Which barrel coefficient makes the triangle look most regular?
 
-For implementation and fitting:
+It should be:
 
-[
-oxed{
-	ext{Optimize in original relative coordinates; use reverse-to-reference consistency as a physically interpretable diagnostic and validated secondary metric.}
-}
-]
+> Which shared gaze/accommodation optical state makes the measured P1/P4 geometry consistent with the same fixed empirical reference while preserving relative P4-P1 displacement and predicting withheld P4 measurements?
 
-Do not force the empirical triangle to become equilateral. Do not require an absolute barrel coefficient when only relative deformation is identifiable. Resolve the local optical-origin/distortion-center parameterization first, because a physical reverse radial transform cannot be defined uniquely from the relative centroid law alone.
+The immediate priority is:
 
-The first practical work should therefore be **RT0 -> RT1 -> RT2**, not a full estimator rewrite.
+1. reconcile the plan documents with current Theory;
+2. prove forward/inverse round-trip correctness;
+3. establish a valid local optical-origin/distortion-center convention;
+4. test magnification versus radial identifiability on the actual empirical triangle;
+5. test reference-frame sensitivity;
+6. only then run full calibration and three-way held-P4 cross-agreement.
+
+If the three-point geometry cannot separately identify radial coefficient and magnification, that does not invalidate reference recovery. The correct scientific result is to use the identifiable effective deformation as the accommodation signal and avoid claiming a physically unique barrel coefficient.
