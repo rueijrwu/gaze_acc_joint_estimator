@@ -1,0 +1,42 @@
+{
+  "accommodation_search_bounds_D": [
+    0.0,
+    6.0
+  ],
+  "array_backend": "numpy float64",
+  "blocks_per_interval": 5,
+  "bootstrap_degree": 1,
+  "bootstrap_weighting": "equal five reference fixation means",
+  "boundary_window_rows": 100,
+  "camera_units": "native pixels; x right, y down",
+  "candidate": "bootstrap_only",
+  "captures": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "covariance_diagonal_floor_px2": 1e-08,
+  "covariance_shrinkage": 0.05,
+  "forward_model": "DM0-M1 synthetic fixture only; independent fixed optical zeros; visual degree 2",
+  "gpu": "not required for stage-one linear bootstrap",
+  "interval_policy": "[start_row,end_row_exclusive), full reviewed interval, no trimming",
+  "noise_policy": "full native sample covariance of adjacent differences / sqrt(2); only timestamp-reliable reviewed intervals, complete adjacent rows and source frames; positive finite dt; no interval/gap bridging; real eye motion may contribute",
+  "numerical_tolerances": {
+    "atol": 1e-09,
+    "rtol": 1e-10
+  },
+  "optimizer": "five-by-two QR/SVD least squares",
+  "out_of_domain_policy": "record; never clip bootstrap states",
+  "pairing_policy": "read stored pair_index; require reviewed [2,1,0]; never re-sort",
+  "plot_stride": 10,
+  "provisional_reference_scale": 1.0,
+  "sign": "P4-P1",
+  "stage": "S0-S1/G0-G1",
+  "theta_search_bounds_deg": [
+    -20.0,
+    20.0
+  ],
+  "threads": 4,
+  "validity_policy": "finite and present P1 and all three mapped P4; no pupil, shape or residual gate"
+}

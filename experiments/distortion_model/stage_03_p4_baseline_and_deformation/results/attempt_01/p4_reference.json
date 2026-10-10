@@ -1,0 +1,77 @@
+{
+  "Aref_demand_D": 0.36036036036036034,
+  "Delta14_deg": 0.00392997874181944,
+  "all_sampled_alternatives": [
+    {
+      "equal_capture_mean_score": 0.07209193943735995,
+      "exposure": 0,
+      "nominal_target_deg": -10.0,
+      "omega4_visual_deg": -10.016974132845107,
+      "score": 0.06551404303903664
+    },
+    {
+      "equal_capture_mean_score": 0.08691234799214692,
+      "exposure": 1,
+      "nominal_target_deg": -5.0,
+      "omega4_visual_deg": -5.0148989655383795,
+      "score": 0.08565660626042172
+    },
+    {
+      "equal_capture_mean_score": 0.09399615487189647,
+      "exposure": 2,
+      "nominal_target_deg": 0.0,
+      "omega4_visual_deg": -0.0020702209523218284,
+      "score": 0.08875738108574581
+    },
+    {
+      "equal_capture_mean_score": 0.10283208812990127,
+      "exposure": 3,
+      "nominal_target_deg": 5.0,
+      "omega4_visual_deg": 5.121306244243302,
+      "score": 0.09940503359442411
+    },
+    {
+      "equal_capture_mean_score": 0.10996880357041057,
+      "exposure": 4,
+      "nominal_target_deg": 10.0,
+      "omega4_visual_deg": 9.912637075092503,
+      "score": 0.11929954664730476
+    }
+  ],
+  "bounded_adjacent_alternatives": [
+    {
+      "equal_capture_mean_score": 0.08691234799214692,
+      "exposure": 1,
+      "nominal_target_deg": -5.0,
+      "omega4_visual_deg": -5.0148989655383795,
+      "score": 0.08565660626042172
+    }
+  ],
+  "omega1_visual_deg": -10.020904111586926,
+  "omega4_visual_deg": -10.016974132845107,
+  "parameter_roster": {
+    "derived": [
+      "Delta14",
+      "framewise xi1/xi4",
+      "P4 corrected diagnostic shape"
+    ],
+    "fitted": [],
+    "fixed": [
+      "G2 P1 model/scale",
+      "G2 visual/A starts",
+      "source correspondence",
+      "camera axes",
+      "one selected omega4"
+    ]
+  },
+  "parent_p1_reference_sha256": "3d46f3c4a7991c4b0accb313117ad05f901b3b015870987dc37712b3c460e3a7",
+  "physical_spatial_origin": "unknown; angular reference is distinct",
+  "physical_zero_identified": false,
+  "reference_capture": "capture_1_detections.pkl",
+  "reference_exposure": 0,
+  "schema": "p4_angular_reference_v1",
+  "scope": "angular convention only; P4 accommodation baseline/template/keystone not fitted",
+  "selected_nominal_target_deg": -10.0,
+  "selection": "independent equal-capture P4 balance; visual offset assigned in low-demand capture",
+  "source_hash": "bfb292312ace572cc394ba77050ae45d1aed5941a484efa09e3d08466a3a77dd"
+}

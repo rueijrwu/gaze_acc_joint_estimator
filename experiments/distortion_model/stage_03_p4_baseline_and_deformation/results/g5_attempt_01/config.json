@@ -1,0 +1,35 @@
+{
+  "A_bounds_D": [
+    0.0,
+    6.0
+  ],
+  "backend": "vectorized NumPy float64 CPU",
+  "candidate": "DM0-M1 with A-independent K4 coefficients",
+  "comparison": "refit identity K4 and full K4 on same frames, covariance, weights, A anchors and bounds",
+  "domain": "positive M and x/y scales; denominator bounded on full shifted visual/A rectangle",
+  "fixed": [
+    "empirical G4 template length/origin",
+    "G3 zeros and axes",
+    "G2 P1 reference/g",
+    "DM0-M1 family, no radial term"
+  ],
+  "free": [
+    "m1",
+    "alpha4",
+    "beta4",
+    "gamma4",
+    "individual A for all complete frames"
+  ],
+  "global_certificate_gradient_inf": 1e-06,
+  "metric": "native four P4 edges, frozen T R T-transpose, equal exposure weighting; full fixation means anchored equally",
+  "optimizer": "profiled L-BFGS-B ftol1e-14 gtol1e-8 maxiter100; at most5 bounded same-objective stationarity-polish steps",
+  "order": "seed K4 at frozen G4 m/A; then conditional joint m/K4/A refinement; revisit original G4 window using each xi4",
+  "population": "all complete frames in all twenty full reviewed exposures; schedule/slots unchanged",
+  "soft_mean_A_scale_D": 0.25,
+  "stage": "S5/G5",
+  "starts": "fixed-G4-state keystone seed and zero keystone; each uses G4 m and starting A",
+  "state_certificate_gradient_inf": 1e-08,
+  "state_target_gradient_inf": 1e-11,
+  "temporal_penalty": 0.0,
+  "theta_policy": "frozen G2 framewise visual theta; P1 g unchanged"
+}

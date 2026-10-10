@@ -1,0 +1,140 @@
+{
+  "Delta14_deg": 0.00392997874181944,
+  "G3_decision": "GO_WITH_LIMIT",
+  "all_captures_have_near_reference_frames": true,
+  "chosen_nominal_target_deg": -10.0,
+  "chosen_reference_is_endpoint": true,
+  "comparison_complete": false,
+  "crosscheck_complete": false,
+  "decision": "Independent operational P4 reference and conversions usable for G4; endpoint physical reference uncertainty deferred to G5/G7",
+  "elapsed_seconds": 4.408348785000271,
+  "expected_slots_unchanged": 300270,
+  "fit_certified": false,
+  "fit_complete": false,
+  "identities": {
+    "P4_native_identity_kind": "synthetic contract; empirical K4/M not fitted at G3",
+    "p1_at_p4_zero_change_from_native_max_abs_px": 0.00036057458478921944,
+    "p1_at_p4_zero_conversion_max_abs_px": 0.0,
+    "p1_native_identity_max_abs_px": 0.0,
+    "visual_from_xi1_max_abs_deg": 1.7763568394002505e-15,
+    "visual_from_xi4_max_abs_deg": 1.7763568394002505e-15,
+    "xi1_equals_xi4_plus_delta_max_abs_deg": 3.552713678800501e-15
+  },
+  "near_reference_counts": [
+    {
+      "capture": "capture_1_detections.pkl",
+      "demand_D": 0.36036036036036034,
+      "near_reference_count": 4423,
+      "near_reference_xi4_deg": {
+        "count": 4423,
+        "max": 2.460212874710546,
+        "mean": -0.03224058512913474,
+        "min": -1.0042966728319698,
+        "p05": -0.23590840038210956,
+        "p95": 0.1423634515267095,
+        "std": 0.14078218767756126
+      },
+      "valid": 24280,
+      "xi4_deg": {
+        "count": 24280,
+        "max": 20.978471177208515,
+        "mean": 10.353609557654853,
+        "min": -1.0042966728319698,
+        "p05": -0.060307973986729733,
+        "p95": 19.996664715642606,
+        "std": 7.041266682376763
+      }
+    },
+    {
+      "capture": "capture_2_detections.pkl",
+      "demand_D": 4.0,
+      "near_reference_count": 3846,
+      "near_reference_xi4_deg": {
+        "count": 3846,
+        "max": 2.487886430158402,
+        "mean": 0.06978277663242728,
+        "min": -0.6403654757300341,
+        "p05": -0.11448538929642904,
+        "p95": 0.25547954119336724,
+        "std": 0.15810681097794882
+      },
+      "valid": 22026,
+      "xi4_deg": {
+        "count": 22026,
+        "max": 16.758635931806786,
+        "mean": 8.308040433662866,
+        "min": -0.6403654757300341,
+        "p05": 0.010240811609665723,
+        "p95": 16.185962375099,
+        "std": 5.5516547043460305
+      }
+    },
+    {
+      "capture": "capture_3_detections.pkl",
+      "demand_D": 3.0,
+      "near_reference_count": 4500,
+      "near_reference_xi4_deg": {
+        "count": 4500,
+        "max": 2.43654168690085,
+        "mean": 0.2363688747880829,
+        "min": -1.0084004973455158,
+        "p05": 0.07282867490400938,
+        "p95": 0.4608019538709777,
+        "std": 0.25398706251987835
+      },
+      "valid": 19795,
+      "xi4_deg": {
+        "count": 19795,
+        "max": 17.573083176654976,
+        "mean": 7.784037165336215,
+        "min": -1.0084004973455158,
+        "p05": 0.11705962592641672,
+        "p95": 17.243418594275067,
+        "std": 5.600155161828901
+      }
+    },
+    {
+      "capture": "capture_4_detections.pkl",
+      "demand_D": 2.0,
+      "near_reference_count": 3875,
+      "near_reference_xi4_deg": {
+        "count": 3875,
+        "max": 2.3528623447210775,
+        "mean": 0.4370919965887363,
+        "min": -0.05055132013143293,
+        "p05": 0.3504812902020076,
+        "p95": 0.6014877092993611,
+        "std": 0.18277690872455127
+      },
+      "valid": 23074,
+      "xi4_deg": {
+        "count": 23074,
+        "max": 18.895612663426093,
+        "mean": 9.758424711723963,
+        "min": -0.05055132013143293,
+        "p05": 0.38107319483176816,
+        "p95": 18.60739131916329,
+        "std": 6.260707588956876
+      }
+    }
+  ],
+  "omega1_visual_deg": -10.020904111586926,
+  "omega4_visual_deg": -10.016974132845107,
+  "physical_zero_identified": false,
+  "review_report": "STAGE_REPORT.md",
+  "reviewed_utc": "2026-10-10T01:34:43.567283+00:00",
+  "reviewer": "root implementation/audit agent",
+  "scheduled": 100090,
+  "source_hash": "bfb292312ace572cc394ba77050ae45d1aed5941a484efa09e3d08466a3a77dd",
+  "stage": "S3/G3",
+  "status": "COMPLETE",
+  "tests": {
+    "errors": 0,
+    "failed": 0,
+    "passed": 40,
+    "skipped": 0
+  },
+  "unavailable": 10915,
+  "unresolved_valid": 0,
+  "valid_diagnostics": 89175
+}

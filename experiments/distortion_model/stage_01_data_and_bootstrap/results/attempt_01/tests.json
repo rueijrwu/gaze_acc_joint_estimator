@@ -1,0 +1,87 @@
+{
+  "atol": 1e-09,
+  "backend": "NumPy float64 CPU",
+  "created_utc": "2026-10-10T00:51:11.362619+00:00",
+  "elapsed_seconds": 0.14214791899939883,
+  "errors": 0,
+  "failed": 0,
+  "passed": 16,
+  "rtol": 1e-10,
+  "skipped": 0,
+  "source_hashes": {
+    "distortion_model/__init__.py": "a1ca7fdcdb759b80bc949f8d826cd9f137ae9244e10ebd7eb4b9d236b951eabd",
+    "distortion_model/data.py": "e1912697725ac0c966ad0dadd2bfc776fbd3f9431d040193da83cf397609a230",
+    "distortion_model/gaze.py": "7cc65372d7936fb1eda602cc9579a747617f3b108c8cd2fc640d0c7eac1d946a",
+    "distortion_model/geometry.py": "e0421ce58e9f87a38de51975799f87a1cbedc7256c6caa6de49119412aad34e1",
+    "distortion_model/optics.py": "b4b78bd56a3bd143db7010822bf229cc50a4293cf76819d44ccf95cc969ac186",
+    "tests/run_stage1.py": "99b850e6b2653ced4571a95f2ddb6f1b19d30f48d44f2e6b1770ecadaa760239",
+    "tests/test_stage1.py": "63969b9d73447e025be8473c08002aeb64c1bea9b6fd688c2877acc43be54573"
+  },
+  "tests": [
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_bootstrap_collapse_and_ordering_contradictions"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_bootstrap_sign_gain_dynamic_states_and_equal_mean_anchors"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_center_sign_and_mean_correction_counted_once"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_domain_checks_use_actual_shifted_angles_and_projective_field"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_dual_offsets_native_identity_and_p1_at_p4_zero"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_full_forward_matches_independent_native_coordinate_construction"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_native_shared_errors_and_selected_covariance_marginal"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_p1_only_scale_ignores_accommodation_and_p4_global_changes"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_parameter_snapshot_copies_and_freezes_reference_arrays"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_payload_hash_flag_and_stored_correspondence_contract"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_population_duplicate_source_frames_rejected"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_profile_scale_edge_origin_covariance_equivalence"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_profile_scale_rejects_nonpositive_and_collapsed_reference"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_retained_measurement_and_initializer_noninterference"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_slot_failures_keep_every_identity_and_retained_validity"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_ten_coordinate_rank_and_common_translation_nullspace"
+    }
+  ],
+  "total": 16
+}

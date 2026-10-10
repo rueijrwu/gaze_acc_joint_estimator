@@ -1,0 +1,1759 @@
+{
+  "checks": {
+    "all_npz_no_pickle": {
+      "files": [
+        {
+          "arrays": {
+            "block_ids": {
+              "dtype": "int8",
+              "shape": [
+                100090
+              ]
+            },
+            "components": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                2
+              ]
+            },
+            "score": {
+              "dtype": "float64",
+              "shape": [
+                100090
+              ]
+            },
+            "validity": {
+              "dtype": "bool",
+              "shape": [
+                100090
+              ]
+            }
+          },
+          "file": "balance.npz",
+          "object_dtype": false,
+          "opened_allow_pickle_false": true
+        },
+        {
+          "arrays": {
+            "accommodation_start_D": {
+              "dtype": "float64",
+              "shape": [
+                100090
+              ]
+            },
+            "initialization_valid": {
+              "dtype": "bool",
+              "shape": [
+                100090
+              ]
+            },
+            "p1_scale_valid": {
+              "dtype": "bool",
+              "shape": [
+                100090
+              ]
+            },
+            "status": {
+              "dtype": "<U36",
+              "shape": [
+                100090
+              ]
+            },
+            "theta_visual_deg": {
+              "dtype": "float64",
+              "shape": [
+                100090
+              ]
+            },
+            "within_proposed_theta_bounds": {
+              "dtype": "bool",
+              "shape": [
+                100090
+              ]
+            }
+          },
+          "file": "initial_states.npz",
+          "object_dtype": false,
+          "opened_allow_pickle_false": true
+        },
+        {
+          "arrays": {
+            "F1": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                3,
+                2
+              ]
+            },
+            "d_edge_prediction_dtheta": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                4
+              ]
+            },
+            "d_mu1_dtheta": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                2
+              ]
+            },
+            "dg_domega1": {
+              "dtype": "float64",
+              "shape": [
+                100090
+              ]
+            },
+            "dg_dtheta": {
+              "dtype": "float64",
+              "shape": [
+                100090
+              ]
+            },
+            "edge_prediction": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                4
+              ]
+            },
+            "edge_residual": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                4
+              ]
+            },
+            "g": {
+              "dtype": "float64",
+              "shape": [
+                100090
+              ]
+            },
+            "mu1": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                2
+              ]
+            },
+            "reference_edges": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                4
+              ]
+            },
+            "valid": {
+              "dtype": "bool",
+              "shape": [
+                100090
+              ]
+            }
+          },
+          "file": "p1_at_frozen_stage_one_theta.npz",
+          "object_dtype": false,
+          "opened_allow_pickle_false": true
+        },
+        {
+          "arrays": {
+            "F1": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                3,
+                2
+              ]
+            },
+            "d_edge_prediction_dtheta": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                4
+              ]
+            },
+            "d_mu1_dtheta": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                2
+              ]
+            },
+            "dg_domega1": {
+              "dtype": "float64",
+              "shape": [
+                100090
+              ]
+            },
+            "dg_dtheta": {
+              "dtype": "float64",
+              "shape": [
+                100090
+              ]
+            },
+            "edge_prediction": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                4
+              ]
+            },
+            "edge_residual": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                4
+              ]
+            },
+            "g": {
+              "dtype": "float64",
+              "shape": [
+                100090
+              ]
+            },
+            "mu1": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                2
+              ]
+            },
+            "reference_edges": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                4
+              ]
+            },
+            "valid": {
+              "dtype": "bool",
+              "shape": [
+                100090
+              ]
+            }
+          },
+          "file": "p1_at_refreshed_theta.npz",
+          "object_dtype": false,
+          "opened_allow_pickle_false": true
+        },
+        {
+          "arrays": {
+            "F1": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                3,
+                2
+              ]
+            },
+            "d_edge_prediction_dtheta": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                4
+              ]
+            },
+            "d_mu1_dtheta": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                2
+              ]
+            },
+            "dg_domega1": {
+              "dtype": "float64",
+              "shape": [
+                100090
+              ]
+            },
+            "dg_dtheta": {
+              "dtype": "float64",
+              "shape": [
+                100090
+              ]
+            },
+            "edge_prediction": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                4
+              ]
+            },
+            "edge_residual": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                4
+              ]
+            },
+            "g": {
+              "dtype": "float64",
+              "shape": [
+                100090
+              ]
+            },
+            "mu1": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                2
+              ]
+            },
+            "reference_edges": {
+              "dtype": "float64",
+              "shape": [
+                100090,
+                4
+              ]
+            },
+            "valid": {
+              "dtype": "bool",
+              "shape": [
+                100090
+              ]
+            }
+          },
+          "file": "p1_identity_at_frozen_stage_one_theta.npz",
+          "object_dtype": false,
+          "opened_allow_pickle_false": true
+        },
+        {
+          "arrays": {
+            "g_reference_00": {
+              "dtype": "float64",
+              "shape": [
+                100090
+              ]
+            },
+            "g_reference_01": {
+              "dtype": "float64",
+              "shape": [
+                100090
+              ]
+            }
+          },
+          "file": "reference_alternative_scales.npz",
+          "object_dtype": false,
+          "opened_allow_pickle_false": true
+        }
+      ],
+      "pass": true
+    },
+    "alternative_scale_comparison": {
+      "common_valid": 89175,
+      "reference00_mean": 0.9976304998929014,
+      "reference01_mean": 0.9987992810093657,
+      "relative_g_reference01_vs_reference00": {
+        "max": 0.0015498875436656956,
+        "mean": 0.0011717783599449344,
+        "min": 0.00026540804575980737,
+        "p05": 0.0005080191972902881,
+        "p95": 0.0015460904087023718,
+        "std": 0.00034429616911340905
+      }
+    },
+    "artifact_hashes": {
+      "bootstrap.json": {
+        "actual": "95485c470bf29055095f5123de67787bf20b883d040f6720c9cd718edb371864",
+        "expected": "95485c470bf29055095f5123de67787bf20b883d040f6720c9cd718edb371864",
+        "pass": true
+      },
+      "p1_at_refreshed_theta.npz": {
+        "actual": "7a101e78d600b650b47dcae0d54b2af1c67a0458ab38a01ca62f95ee0ab4b0ca",
+        "expected": "7a101e78d600b650b47dcae0d54b2af1c67a0458ab38a01ca62f95ee0ab4b0ca",
+        "hash_method": "semantic array_hash",
+        "pass": true
+      },
+      "p1_reference.json": {
+        "actual": "3d46f3c4a7991c4b0accb313117ad05f901b3b015870987dc37712b3c460e3a7",
+        "expected": "3d46f3c4a7991c4b0accb313117ad05f901b3b015870987dc37712b3c460e3a7",
+        "pass": true
+      }
+    },
+    "bootstrap_fit_reconstruction": {
+      "fit_inputs": "five saved reference mean displacement/g values transformed by (d-origin)/scale and five saved mean predictions",
+      "gain_deg_per_reference_px": 0.04823477696047013,
+      "intercept_deg": 3.140041333075384e-16,
+      "pass": true,
+      "saved_coefficients_deg": [
+        3.831045297980734e-16,
+        7.070744488783125
+      ],
+      "saved_gain_deg_per_reference_px": 0.04823477696047011,
+      "slope_deg_per_normalized_px": 7.070744488783126
+    },
+    "conditional_fit_mechanical_counts": {
+      "all_block_best_certified": true,
+      "all_reference_starts_certified": true,
+      "block_best_rank2": true,
+      "block_starts": 10,
+      "blocks": 5,
+      "comparison_complete": false,
+      "crosscheck_complete": false,
+      "fit_complete": false,
+      "reference_all_rank2": true,
+      "reference_candidates": 2,
+      "reference_starts": 4,
+      "summary_status": "COMPLETE_PENDING_REVIEW"
+    },
+    "coverage": {
+      "complete_valid": 89175,
+      "exposures": [
+        {
+          "complete_valid": 4433,
+          "exposure": 0,
+          "scheduled": 4800
+        },
+        {
+          "complete_valid": 4800,
+          "exposure": 1,
+          "scheduled": 4800
+        },
+        {
+          "complete_valid": 4900,
+          "exposure": 2,
+          "scheduled": 4900
+        },
+        {
+          "complete_valid": 4993,
+          "exposure": 3,
+          "scheduled": 5000
+        },
+        {
+          "complete_valid": 5154,
+          "exposure": 4,
+          "scheduled": 5200
+        },
+        {
+          "complete_valid": 3912,
+          "exposure": 5,
+          "scheduled": 4600
+        },
+        {
+          "complete_valid": 4345,
+          "exposure": 6,
+          "scheduled": 5000
+        },
+        {
+          "complete_valid": 4553,
+          "exposure": 7,
+          "scheduled": 5000
+        },
+        {
+          "complete_valid": 4781,
+          "exposure": 8,
+          "scheduled": 5000
+        },
+        {
+          "complete_valid": 4435,
+          "exposure": 9,
+          "scheduled": 5290
+        },
+        {
+          "complete_valid": 4505,
+          "exposure": 10,
+          "scheduled": 4700
+        },
+        {
+          "complete_valid": 3902,
+          "exposure": 11,
+          "scheduled": 4900
+        },
+        {
+          "complete_valid": 4811,
+          "exposure": 12,
+          "scheduled": 5000
+        },
+        {
+          "complete_valid": 4251,
+          "exposure": 13,
+          "scheduled": 5000
+        },
+        {
+          "complete_valid": 2326,
+          "exposure": 14,
+          "scheduled": 5500
+        },
+        {
+          "complete_valid": 3914,
+          "exposure": 15,
+          "scheduled": 4800
+        },
+        {
+          "complete_valid": 4899,
+          "exposure": 16,
+          "scheduled": 4900
+        },
+        {
+          "complete_valid": 4747,
+          "exposure": 17,
+          "scheduled": 5000
+        },
+        {
+          "complete_valid": 4738,
+          "exposure": 18,
+          "scheduled": 4900
+        },
+        {
+          "complete_valid": 4776,
+          "exposure": 19,
+          "scheduled": 5800
+        }
+      ],
+      "pass": true,
+      "scheduled": 100090,
+      "slot_rows": 300270,
+      "unavailable": 10915
+    },
+    "frame_state_hash": {
+      "actual": "4dd9f0ba55bb525004b84c4157e55930acf9694ddfb3cc3330504899ed79b0c7",
+      "initialization_valid": 89175,
+      "p1_scale_valid": 89175,
+      "pass": true,
+      "within_theta_bounds": 89175
+    },
+    "parent_covariance_hash": {
+      "actual": "9cf7a379a78472ab0a67321659ee6f1cd8c5ef000d0bcc674df39398c454c493",
+      "expected": "9cf7a379a78472ab0a67321659ee6f1cd8c5ef000d0bcc674df39398c454c493",
+      "pass": true
+    },
+    "parent_population_hash": {
+      "actual": "840e580212e1be89af1dbff7b7a79d8e9630c4143cad956d8048d0cf29beede5",
+      "expected": "840e580212e1be89af1dbff7b7a79d8e9630c4143cad956d8048d0cf29beede5",
+      "pass": true
+    },
+    "parent_slots_hash": {
+      "actual": "def9614b8352fd1c82a0b4612cdafa25618e4e4c06d6d3834a145911ddb756de",
+      "expected": "def9614b8352fd1c82a0b4612cdafa25618e4e4c06d6d3834a145911ddb756de",
+      "pass": true
+    },
+    "parent_summary_sha256": {
+      "actual": "f228547a782a41089a54fe135eef1deadd83b333bfbfd3e042f8456be7c261fa",
+      "expected": "f228547a782a41089a54fe135eef1deadd83b333bfbfd3e042f8456be7c261fa",
+      "pass": true
+    },
+    "residual_reconstruction": {
+      "pass": true,
+      "per_exposure_table": [
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.4799382150197923,
+          "edge_coordinate_rmse_px_saved": 0.4799382150197923,
+          "exposure": 0,
+          "g_mean": 0.999999999999999,
+          "g_sd": 0.0017163941371129182,
+          "nominal_target_deg": -10.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 4800,
+          "signed_edge_residual_means_px": [
+            3.0570808686228825e-13,
+            1.0959636837431223e-13,
+            4.690960505718339e-13,
+            -1.313494266607282e-13
+          ],
+          "unavailable": 367,
+          "valid": 4433
+        },
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.6112782046159856,
+          "edge_coordinate_rmse_px_saved": 0.6112782046159856,
+          "exposure": 1,
+          "g_mean": 0.998824542460462,
+          "g_sd": 0.0004010797467295433,
+          "nominal_target_deg": -5.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 4800,
+          "signed_edge_residual_means_px": [
+            1.1234449005834373,
+            0.10392615387597628,
+            -0.022825617939590898,
+            0.08971850574626261
+          ],
+          "unavailable": 0,
+          "valid": 4800
+        },
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.2288358141144897,
+          "edge_coordinate_rmse_px_saved": 1.2288358141144897,
+          "exposure": 2,
+          "g_mean": 0.9956132482552283,
+          "g_sd": 0.0008681018824296624,
+          "nominal_target_deg": 0.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 4900,
+          "signed_edge_residual_means_px": [
+            1.442623726514328,
+            0.5298765116471241,
+            0.6903293007279832,
+            0.7408555150278778
+          ],
+          "unavailable": 0,
+          "valid": 4900
+        },
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 3.9419657730528774,
+          "edge_coordinate_rmse_px_saved": 3.9419657730528774,
+          "exposure": 3,
+          "g_mean": 0.9841179686156865,
+          "g_sd": 0.002883446024058346,
+          "nominal_target_deg": 5.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            5.095649055555859,
+            1.9943325659388893,
+            5.22703609471898,
+            1.158574718801898
+          ],
+          "unavailable": 7,
+          "valid": 4993
+        },
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 2.0446888177064566,
+          "edge_coordinate_rmse_px_saved": 2.0446888177064566,
+          "exposure": 4,
+          "g_mean": 0.9956872141866193,
+          "g_sd": 0.0017940746208639068,
+          "nominal_target_deg": 10.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 5200,
+          "signed_edge_residual_means_px": [
+            3.543697024762496,
+            0.8353535496925241,
+            0.8047234428406385,
+            1.1127397937846348
+          ],
+          "unavailable": 46,
+          "valid": 5154
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.40407345989483434,
+          "edge_coordinate_rmse_px_saved": 0.40407345989483434,
+          "exposure": 5,
+          "g_mean": 1.0006059139553019,
+          "g_sd": 0.000994578513471681,
+          "nominal_target_deg": -10.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 4600,
+          "signed_edge_residual_means_px": [
+            0.591342038981721,
+            0.09324419011806293,
+            0.14781647185639313,
+            0.05019558026678145
+          ],
+          "unavailable": 688,
+          "valid": 3912
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.2656845260672451,
+          "edge_coordinate_rmse_px_saved": 1.2656845260672451,
+          "exposure": 6,
+          "g_mean": 1.0023784409715628,
+          "g_sd": 0.003119500174001127,
+          "nominal_target_deg": -5.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            1.9665109197659916,
+            0.2094455859231765,
+            -0.3318745802613559,
+            0.42060669936911627
+          ],
+          "unavailable": 655,
+          "valid": 4345
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.3159887967657018,
+          "edge_coordinate_rmse_px_saved": 1.3159887967657018,
+          "exposure": 7,
+          "g_mean": 0.9981585281910773,
+          "g_sd": 0.0008306534640667011,
+          "nominal_target_deg": 0.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            2.5418138756705533,
+            0.22512379061405552,
+            -0.10805997669642013,
+            0.21181114711061683
+          ],
+          "unavailable": 447,
+          "valid": 4553
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 3.1808917230370226,
+          "edge_coordinate_rmse_px_saved": 3.1808917230370226,
+          "exposure": 8,
+          "g_mean": 0.9980982869398093,
+          "g_sd": 0.0004763865814997483,
+          "nominal_target_deg": 5.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            1.4365404605338021,
+            1.7842384749412297,
+            5.787520357970608,
+            0.9060819081949737
+          ],
+          "unavailable": 219,
+          "valid": 4781
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 2.9782581815275098,
+          "edge_coordinate_rmse_px_saved": 2.9782581815275098,
+          "exposure": 9,
+          "g_mean": 0.991926279557575,
+          "g_sd": 0.00032966800264672526,
+          "nominal_target_deg": 10.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 5290,
+          "signed_edge_residual_means_px": [
+            5.616949415267224,
+            0.7594129326284503,
+            1.7810002420664304,
+            -0.11276958020442644
+          ],
+          "unavailable": 855,
+          "valid": 4435
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.5029129413315724,
+          "edge_coordinate_rmse_px_saved": 0.5029129413315724,
+          "exposure": 10,
+          "g_mean": 1.0011557359253527,
+          "g_sd": 0.0007765879129512716,
+          "nominal_target_deg": -10.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 4700,
+          "signed_edge_residual_means_px": [
+            0.6520916613636276,
+            0.18332972868219816,
+            -0.15670901680556773,
+            0.4823267352767208
+          ],
+          "unavailable": 195,
+          "valid": 4505
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 2.1343209439170043,
+          "edge_coordinate_rmse_px_saved": 2.1343209439170043,
+          "exposure": 11,
+          "g_mean": 1.0082343388257133,
+          "g_sd": 0.004323639235859955,
+          "nominal_target_deg": -5.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 4900,
+          "signed_edge_residual_means_px": [
+            -1.433236943835927,
+            -0.6988154252478227,
+            -3.1588151870354695,
+            0.38252719108863337
+          ],
+          "unavailable": 998,
+          "valid": 3902
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 2.170837139612567,
+          "edge_coordinate_rmse_px_saved": 2.170837139612567,
+          "exposure": 12,
+          "g_mean": 0.9980494587851279,
+          "g_sd": 0.0006487845266348771,
+          "nominal_target_deg": 0.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            4.22487563661313,
+            0.44608284687971117,
+            -0.21981338878034645,
+            0.5754295406807256
+          ],
+          "unavailable": 189,
+          "valid": 4811
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.9675290642988557,
+          "edge_coordinate_rmse_px_saved": 1.9675290642988557,
+          "exposure": 13,
+          "g_mean": 0.9949063018204795,
+          "g_sd": 0.0006602088784152401,
+          "nominal_target_deg": 5.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            2.9168182193204624,
+            1.1237848320134294,
+            1.7141732012711923,
+            1.436971998632485
+          ],
+          "unavailable": 749,
+          "valid": 4251
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 2.2802253757069413,
+          "edge_coordinate_rmse_px_saved": 2.2802253757069413,
+          "exposure": 14,
+          "g_mean": 0.9915909572053567,
+          "g_sd": 0.0007569052094753732,
+          "nominal_target_deg": 10.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 5500,
+          "signed_edge_residual_means_px": [
+            3.9243904559649554,
+            1.0295917605972977,
+            1.711162716039128,
+            0.9914202976349791
+          ],
+          "unavailable": 3174,
+          "valid": 2326
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.4726093006757601,
+          "edge_coordinate_rmse_px_saved": 0.4726093006757601,
+          "exposure": 15,
+          "g_mean": 1.0008695581313418,
+          "g_sd": 0.0007174243538781269,
+          "nominal_target_deg": -10.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 4800,
+          "signed_edge_residual_means_px": [
+            0.651225575643671,
+            -0.1412589227153868,
+            -0.5255159319928953,
+            -0.17169645176024365
+          ],
+          "unavailable": 886,
+          "valid": 3914
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.7195138070210318,
+          "edge_coordinate_rmse_px_saved": 0.7195138070210318,
+          "exposure": 16,
+          "g_mean": 0.9994605474691255,
+          "g_sd": 0.00031006155678791713,
+          "nominal_target_deg": -5.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 4900,
+          "signed_edge_residual_means_px": [
+            1.3942480319254238,
+            0.16615400426567756,
+            -0.08012659052465991,
+            0.2468148366473862
+          ],
+          "unavailable": 1,
+          "valid": 4899
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.472747329838962,
+          "edge_coordinate_rmse_px_saved": 1.472747329838962,
+          "exposure": 17,
+          "g_mean": 0.9964702054439151,
+          "g_sd": 0.0007821728414623063,
+          "nominal_target_deg": 0.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            2.7323919819884956,
+            0.5470875242344654,
+            0.4001016499469454,
+            0.7333690144893241
+          ],
+          "unavailable": 253,
+          "valid": 4747
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 2.316171246310707,
+          "edge_coordinate_rmse_px_saved": 2.316171246310707,
+          "exposure": 18,
+          "g_mean": 0.9931349271092705,
+          "g_sd": 0.0007687301421306276,
+          "nominal_target_deg": 5.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 4900,
+          "signed_edge_residual_means_px": [
+            4.013884142772203,
+            1.058936418904181,
+            1.6123758313264207,
+            1.1188619362341352
+          ],
+          "unavailable": 162,
+          "valid": 4738
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.747232510906613,
+          "edge_coordinate_rmse_px_saved": 1.747232510906613,
+          "exposure": 19,
+          "g_mean": 0.9937077583141938,
+          "g_sd": 0.00031675577017469176,
+          "nominal_target_deg": 10.0,
+          "scenario": "identity_at_original_theta",
+          "scheduled": 5800,
+          "signed_edge_residual_means_px": [
+            2.8869757772476525,
+            0.9126144218012106,
+            1.2306025962676268,
+            1.1738134663088338
+          ],
+          "unavailable": 1024,
+          "valid": 4776
+        },
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.47993439164039425,
+          "edge_coordinate_rmse_px_saved": 0.47993439164039425,
+          "exposure": 0,
+          "g_mean": 1.0000030781230735,
+          "g_sd": 0.001715939171665699,
+          "nominal_target_deg": -10.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 4800,
+          "signed_edge_residual_means_px": [
+            -0.0022638807200998463,
+            -0.0011110914411186319,
+            -0.004067550011047194,
+            -9.816680901866332e-06
+          ],
+          "unavailable": 367,
+          "valid": 4433
+        },
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.6630981915080657,
+          "edge_coordinate_rmse_px_saved": 0.6630981915080657,
+          "exposure": 1,
+          "g_mean": 0.9986405863789908,
+          "g_sd": 0.00039729860286538617,
+          "nominal_target_deg": -5.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 4800,
+          "signed_edge_residual_means_px": [
+            1.2118526584763856,
+            0.16249264262752963,
+            0.21518591610794172,
+            0.08085161933021223
+          ],
+          "unavailable": 0,
+          "valid": 4800
+        },
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.1101378335036716,
+          "edge_coordinate_rmse_px_saved": 1.1101378335036716,
+          "exposure": 2,
+          "g_mean": 0.9958300267845148,
+          "g_sd": 0.000862821175241513,
+          "nominal_target_deg": 0.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 4900,
+          "signed_edge_residual_means_px": [
+            1.1908880842942586,
+            0.43688981915962194,
+            0.3962539738263115,
+            0.7213115312024685
+          ],
+          "unavailable": 0,
+          "valid": 4900
+        },
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 3.0341485091184657,
+          "edge_coordinate_rmse_px_saved": 3.0341485091184657,
+          "exposure": 3,
+          "g_mean": 0.9853285089712455,
+          "g_sd": 0.002858661192404793,
+          "nominal_target_deg": 5.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            4.076732172159768,
+            1.544898609103758,
+            3.6323942087558914,
+            1.1267859418340544
+          ],
+          "unavailable": 7,
+          "valid": 4993
+        },
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.7805675544746729,
+          "edge_coordinate_rmse_px_saved": 1.7805675544746729,
+          "exposure": 4,
+          "g_mean": 0.9984250951870938,
+          "g_sd": 0.0018421803434376049,
+          "nominal_target_deg": 10.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 5200,
+          "signed_edge_residual_means_px": [
+            1.349899455345322,
+            -0.18809049441401035,
+            -2.8183650218547704,
+            1.066387454046112
+          ],
+          "unavailable": 46,
+          "valid": 5154
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.4079780387889973,
+          "edge_coordinate_rmse_px_saved": 0.4079780387889973,
+          "exposure": 5,
+          "g_mean": 1.0005975018975852,
+          "g_sd": 0.0010012428549344187,
+          "nominal_target_deg": -10.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 4600,
+          "signed_edge_residual_means_px": [
+            0.5961628428200958,
+            0.09605000763160884,
+            0.15878525355100864,
+            0.049946963360120174
+          ],
+          "unavailable": 688,
+          "valid": 3912
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.2992299173998636,
+          "edge_coordinate_rmse_px_saved": 1.2992299173998636,
+          "exposure": 6,
+          "g_mean": 1.0021842307098345,
+          "g_sd": 0.00311844793030204,
+          "nominal_target_deg": -5.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            2.0716564901571273,
+            0.2733457572511533,
+            -0.07922012165652458,
+            0.4136154808839479
+          ],
+          "unavailable": 655,
+          "valid": 4345
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.2839708127999212,
+          "edge_coordinate_rmse_px_saved": 1.2839708127999212,
+          "exposure": 7,
+          "g_mean": 0.9981400683177849,
+          "g_sd": 0.0008210806661001941,
+          "nominal_target_deg": 0.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            2.481433362380216,
+            0.21977292914602456,
+            -0.09072039660308338,
+            0.1968600279808046
+          ],
+          "unavailable": 447,
+          "valid": 4553
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 2.772896008275027,
+          "edge_coordinate_rmse_px_saved": 2.772896008275027,
+          "exposure": 8,
+          "g_mean": 0.9986375362493014,
+          "g_sd": 0.00046002432447651495,
+          "nominal_target_deg": 5.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            0.9328103223622718,
+            1.576282838219565,
+            5.0723213751169975,
+            0.881808255651001
+          ],
+          "unavailable": 219,
+          "valid": 4781
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 2.204200668140152,
+          "edge_coordinate_rmse_px_saved": 2.204200668140152,
+          "exposure": 9,
+          "g_mean": 0.99341568127019,
+          "g_sd": 0.00029872779769508695,
+          "nominal_target_deg": 10.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 5290,
+          "signed_edge_residual_means_px": [
+            4.378844936611817,
+            0.2013414132240585,
+            -0.18864904568720045,
+            -0.1477024423904324
+          ],
+          "unavailable": 855,
+          "valid": 4435
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.5079614252598968,
+          "edge_coordinate_rmse_px_saved": 0.5079614252598968,
+          "exposure": 10,
+          "g_mean": 1.001135088350173,
+          "g_sd": 0.0007605880455126558,
+          "nominal_target_deg": -10.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 4700,
+          "signed_edge_residual_means_px": [
+            0.6651218941156068,
+            0.19043238849719732,
+            -0.1296371554161678,
+            0.48195579468070054
+          ],
+          "unavailable": 195,
+          "valid": 4505
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 2.01941348589168,
+          "edge_coordinate_rmse_px_saved": 2.01941348589168,
+          "exposure": 11,
+          "g_mean": 1.0080410891897178,
+          "g_sd": 0.004322214513165389,
+          "nominal_target_deg": -5.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 4900,
+          "signed_edge_residual_means_px": [
+            -1.3321314965209905,
+            -0.6350621059391739,
+            -2.906828746654472,
+            0.37475359626585614
+          ],
+          "unavailable": 998,
+          "valid": 3902
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 2.120949222495963,
+          "edge_coordinate_rmse_px_saved": 2.120949222495963,
+          "exposure": 12,
+          "g_mean": 0.9980855113132733,
+          "g_sd": 0.0006453544723963017,
+          "nominal_target_deg": 0.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            4.119518890375446,
+            0.42044956798482147,
+            -0.2745593648368406,
+            0.5592697179719838
+          ],
+          "unavailable": 189,
+          "valid": 4811
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.5082252922454258,
+          "edge_coordinate_rmse_px_saved": 1.5082252922454258,
+          "exposure": 13,
+          "g_mean": 0.995625995899669,
+          "g_sd": 0.000633885693411124,
+          "nominal_target_deg": 5.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            2.270630380859679,
+            0.8467699069871298,
+            0.7576581818164664,
+            1.4103761830307544
+          ],
+          "unavailable": 749,
+          "valid": 4251
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.412289102373377,
+          "edge_coordinate_rmse_px_saved": 1.412289102373377,
+          "exposure": 14,
+          "g_mean": 0.9933716756353268,
+          "g_sd": 0.0007391456471934947,
+          "nominal_target_deg": 10.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 5500,
+          "signed_edge_residual_means_px": [
+            2.462997809742855,
+            0.3636893526401803,
+            -0.6435331652326565,
+            0.9536727508554836
+          ],
+          "unavailable": 3174,
+          "valid": 2326
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.4654848765777921,
+          "edge_coordinate_rmse_px_saved": 0.4654848765777921,
+          "exposure": 15,
+          "g_mean": 1.0008294418654289,
+          "g_sd": 0.0007085391353676617,
+          "nominal_target_deg": -10.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 4800,
+          "signed_edge_residual_means_px": [
+            0.6763401649713164,
+            -0.1274745960382848,
+            -0.47291760938797056,
+            -0.1724603449729689
+          ],
+          "unavailable": 886,
+          "valid": 3914
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.7698350945226266,
+          "edge_coordinate_rmse_px_saved": 0.7698350945226266,
+          "exposure": 16,
+          "g_mean": 0.9992743865995368,
+          "g_sd": 0.0003101323322641442,
+          "nominal_target_deg": -5.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 4900,
+          "signed_edge_residual_means_px": [
+            1.4849512582724804,
+            0.22565763481897771,
+            0.16090363280732184,
+            0.2380872023577813
+          ],
+          "unavailable": 1,
+          "valid": 4899
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.367733030752244,
+          "edge_coordinate_rmse_px_saved": 1.367733030752244,
+          "exposure": 17,
+          "g_mean": 0.9966053835538987,
+          "g_sd": 0.0007700293073942785,
+          "nominal_target_deg": 0.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            2.5463046000040586,
+            0.48444693089408397,
+            0.214035702912731,
+            0.7152636645583378
+          ],
+          "unavailable": 253,
+          "valid": 4747
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.7579431586238,
+          "edge_coordinate_rmse_px_saved": 1.7579431586238,
+          "exposure": 18,
+          "g_mean": 0.9940804424114837,
+          "g_sd": 0.0007565853041495783,
+          "nominal_target_deg": 5.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 4900,
+          "signed_edge_residual_means_px": [
+            3.1930489822609176,
+            0.6993188805162203,
+            0.3584075093017597,
+            1.089631083285711
+          ],
+          "unavailable": 162,
+          "valid": 4738
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.1878794622638968,
+          "edge_coordinate_rmse_px_saved": 1.1878794622638968,
+          "exposure": 19,
+          "g_mean": 0.9959324395686023,
+          "g_sd": 0.00040473292542776604,
+          "nominal_target_deg": 10.0,
+          "scenario": "constrained_k1_at_original_theta",
+          "scheduled": 5800,
+          "signed_edge_residual_means_px": [
+            1.0852988309767209,
+            0.08094777067069983,
+            -1.7124244390065808,
+            1.1319513730102146
+          ],
+          "unavailable": 1024,
+          "valid": 4776
+        },
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.47912513511295346,
+          "edge_coordinate_rmse_px_saved": 0.47912513511295346,
+          "exposure": 0,
+          "g_mean": 1.000002689554917,
+          "g_sd": 0.0017146976336990022,
+          "nominal_target_deg": -10.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 4800,
+          "signed_edge_residual_means_px": [
+            -0.0020139349227926793,
+            -0.0009755523153290582,
+            -0.0035561853587994224,
+            -1.5998186449586088e-05
+          ],
+          "unavailable": 367,
+          "valid": 4433
+        },
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.6633090005806199,
+          "edge_coordinate_rmse_px_saved": 0.6633090005806199,
+          "exposure": 1,
+          "g_mean": 0.998640260277308,
+          "g_sd": 0.000397227982582277,
+          "nominal_target_deg": -5.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 4800,
+          "signed_edge_residual_means_px": [
+            1.2122364237301448,
+            0.16263380385482332,
+            0.21563087159858588,
+            0.08088183896912463
+          ],
+          "unavailable": 0,
+          "valid": 4800
+        },
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.1109250283032346,
+          "edge_coordinate_rmse_px_saved": 1.1109250283032346,
+          "exposure": 2,
+          "g_mean": 0.9958276355474011,
+          "g_sd": 0.000862518562377487,
+          "nominal_target_deg": 0.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 4900,
+          "signed_edge_residual_means_px": [
+            1.1928009683405154,
+            0.4377755242888373,
+            0.39941525744741685,
+            0.72135178487029
+          ],
+          "unavailable": 0,
+          "valid": 4900
+        },
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 3.0207664201708253,
+          "edge_coordinate_rmse_px_saved": 3.0207664201708253,
+          "exposure": 3,
+          "g_mean": 0.9853461979529112,
+          "g_sd": 0.002853053602233699,
+          "nominal_target_deg": 5.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            4.063222774718111,
+            1.5385283554000309,
+            3.609217749455189,
+            1.1266025199794882
+          ],
+          "unavailable": 7,
+          "valid": 4993
+        },
+        {
+          "capture": "capture_1_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.7728182930172591,
+          "edge_coordinate_rmse_px_saved": 1.7728182930172591,
+          "exposure": 4,
+          "g_mean": 0.9984103527894448,
+          "g_sd": 0.0018341129904815077,
+          "nominal_target_deg": 10.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 5200,
+          "signed_edge_residual_means_px": [
+            1.3611279882206677,
+            -0.18259364059792071,
+            -2.7988472942915177,
+            1.066510732541472
+          ],
+          "unavailable": 46,
+          "valid": 5154
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.40804224567601355,
+          "edge_coordinate_rmse_px_saved": 0.40804224567601355,
+          "exposure": 5,
+          "g_mean": 1.0005967251980623,
+          "g_sd": 0.0010006268847241012,
+          "nominal_target_deg": -10.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 4600,
+          "signed_edge_residual_means_px": [
+            0.5966605442159144,
+            0.09631837583055868,
+            0.15980438063166935,
+            0.04993453691202087
+          ],
+          "unavailable": 688,
+          "valid": 3912
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.29923563355844,
+          "edge_coordinate_rmse_px_saved": 1.29923563355844,
+          "exposure": 6,
+          "g_mean": 1.0021842552830724,
+          "g_sd": 0.003118435713157298,
+          "nominal_target_deg": -5.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            2.071653957609236,
+            0.2733394870879837,
+            -0.07925088950836853,
+            0.41361853363590395
+          ],
+          "unavailable": 655,
+          "valid": 4345
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.284711533320802,
+          "edge_coordinate_rmse_px_saved": 1.284711533320802,
+          "exposure": 7,
+          "g_mean": 0.9981382229624244,
+          "g_sd": 0.0008211143805965531,
+          "nominal_target_deg": 0.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            2.482976521437318,
+            0.22046770061455975,
+            -0.08827156419538393,
+            0.1969043999007424
+          ],
+          "unavailable": 447,
+          "valid": 4553
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 2.776640451793257,
+          "edge_coordinate_rmse_px_saved": 2.776640451793257,
+          "exposure": 8,
+          "g_mean": 0.9986323402502949,
+          "g_sd": 0.00045957448382679837,
+          "nominal_target_deg": 5.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            0.9368507028379605,
+            1.578156266460996,
+            5.079133032334577,
+            0.881877245134489
+          ],
+          "unavailable": 219,
+          "valid": 4781
+        },
+        {
+          "capture": "capture_2_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 2.203196411197052,
+          "edge_coordinate_rmse_px_saved": 2.203196411197052,
+          "exposure": 9,
+          "g_mean": 0.9934184246680362,
+          "g_sd": 0.0002979136315385002,
+          "nominal_target_deg": 10.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 5290,
+          "signed_edge_residual_means_px": [
+            4.376745316696792,
+            0.20033584855894515,
+            -0.19226372906016403,
+            -0.147729560017161
+          ],
+          "unavailable": 855,
+          "valid": 4435
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.5080936884615098,
+          "edge_coordinate_rmse_px_saved": 0.5080936884615098,
+          "exposure": 10,
+          "g_mean": 1.0011341021151943,
+          "g_sd": 0.0007603326606872237,
+          "nominal_target_deg": -10.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 4700,
+          "signed_edge_residual_means_px": [
+            0.6657434154725558,
+            0.1907715092471063,
+            -0.12834416415462466,
+            0.4819379017673553
+          ],
+          "unavailable": 195,
+          "valid": 4505
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 2.0195756011080155,
+          "edge_coordinate_rmse_px_saved": 2.0195756011080155,
+          "exposure": 11,
+          "g_mean": 1.0080411890781455,
+          "g_sd": 0.004322330643351713,
+          "nominal_target_deg": -5.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 4900,
+          "signed_edge_residual_means_px": [
+            -1.33234285733876,
+            -0.6351218622241136,
+            -2.906976249876101,
+            0.37472554320046825
+          ],
+          "unavailable": 998,
+          "valid": 3902
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 2.121759654277594,
+          "edge_coordinate_rmse_px_saved": 2.121759654277594,
+          "exposure": 12,
+          "g_mean": 0.9980833278128002,
+          "g_sd": 0.0006452851742619054,
+          "nominal_target_deg": 0.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            4.121316919564039,
+            0.4212671167156634,
+            -0.27166528441393306,
+            0.5593166374307365
+          ],
+          "unavailable": 189,
+          "valid": 4811
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.5095431275705442,
+          "edge_coordinate_rmse_px_saved": 1.5095431275705442,
+          "exposure": 13,
+          "g_mean": 0.9956232806473173,
+          "g_sd": 0.0006331578373443801,
+          "nominal_target_deg": 5.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            2.2727402551901985,
+            0.8477653036511194,
+            0.7612372365258729,
+            1.4104097206079278
+          ],
+          "unavailable": 749,
+          "valid": 4251
+        },
+        {
+          "capture": "capture_3_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.411234785083322,
+          "edge_coordinate_rmse_px_saved": 1.411234785083322,
+          "exposure": 14,
+          "g_mean": 0.9933758272834351,
+          "g_sd": 0.0007370211384652366,
+          "nominal_target_deg": 10.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 5500,
+          "signed_edge_residual_means_px": [
+            2.4598280448267693,
+            0.362163517254331,
+            -0.6490071041555922,
+            0.9536337960234179
+          ],
+          "unavailable": 3174,
+          "valid": 2326
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.46536312557598764,
+          "edge_coordinate_rmse_px_saved": 0.46536312557598764,
+          "exposure": 15,
+          "g_mean": 1.0008287556762367,
+          "g_sd": 0.0007082789856318396,
+          "nominal_target_deg": -10.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 4800,
+          "signed_edge_residual_means_px": [
+            0.6767698108316241,
+            -0.12723885511776506,
+            -0.47201804062251296,
+            -0.17247338539244528
+          ],
+          "unavailable": 886,
+          "valid": 3914
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 0.7700223921975672,
+          "edge_coordinate_rmse_px_saved": 0.7700223921975672,
+          "exposure": 16,
+          "g_mean": 0.9992741162519672,
+          "g_sd": 0.0003101441760061409,
+          "nominal_target_deg": -5.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 4900,
+          "signed_edge_residual_means_px": [
+            1.4852773423972594,
+            0.2257759256644155,
+            0.16127331704877385,
+            0.23811386100000792
+          ],
+          "unavailable": 1,
+          "valid": 4899
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.3688299336566272,
+          "edge_coordinate_rmse_px_saved": 1.3688299336566272,
+          "exposure": 17,
+          "g_mean": 0.9966029921966303,
+          "g_sd": 0.0007698722822796689,
+          "nominal_target_deg": 0.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 5000,
+          "signed_edge_residual_means_px": [
+            2.548237232256661,
+            0.48533562161764676,
+            0.2171995924523271,
+            0.7153078578898683
+          ],
+          "unavailable": 253,
+          "valid": 4747
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.758037903524007,
+          "edge_coordinate_rmse_px_saved": 1.758037903524007,
+          "exposure": 18,
+          "g_mean": 0.9940800097432294,
+          "g_sd": 0.0007554293000736834,
+          "nominal_target_deg": 5.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 4900,
+          "signed_edge_residual_means_px": [
+            3.193383683382529,
+            0.6994778449312762,
+            0.3589782119691711,
+            1.0896360600201638
+          ],
+          "unavailable": 162,
+          "valid": 4738
+        },
+        {
+          "capture": "capture_4_detections.pkl",
+          "edge_coordinate_rmse_px_recomputed": 1.186803063681477,
+          "edge_coordinate_rmse_px_saved": 1.186803063681477,
+          "exposure": 19,
+          "g_mean": 0.9959290619254024,
+          "g_sd": 0.0004037036964247316,
+          "nominal_target_deg": 10.0,
+          "scenario": "same_k1_at_refreshed_theta",
+          "scheduled": 5800,
+          "signed_edge_residual_means_px": [
+            1.0878735117000207,
+            0.08219761644833042,
+            -1.7079623950059746,
+            1.1319811833837508
+          ],
+          "unavailable": 1024,
+          "valid": 4776
+        }
+      ],
+      "scenarios": {
+        "constrained_k1_at_original_theta": {
+          "aggregate_match_1e-12": true,
+          "per_exposure_rms_match_saved_1e-12": true,
+          "recomputed_equal_exposure_rmse": 1.5908271674109367,
+          "saved_equal_exposure_rmse": 1.5908271674109367,
+          "valid_count": 89175
+        },
+        "identity_at_original_theta": {
+          "aggregate_match_1e-12": true,
+          "per_exposure_rms_match_saved_1e-12": true,
+          "recomputed_equal_exposure_rmse": 1.9266283177676573,
+          "saved_equal_exposure_rmse": 1.9266283177676573,
+          "valid_count": 89175
+        },
+        "same_k1_at_refreshed_theta": {
+          "aggregate_match_1e-12": true,
+          "per_exposure_rms_match_saved_1e-12": true,
+          "recomputed_equal_exposure_rmse": 1.5895253232363415,
+          "saved_equal_exposure_rmse": 1.5895253232363415,
+          "valid_count": 89175
+        }
+      }
+    },
+    "test_evidence": {
+      "errors": 0,
+      "failed": 0,
+      "passed": 31,
+      "path": "/tmp/acc-stage2-tests-attempt02.json",
+      "runtime_seconds": 0.5237199759994837,
+      "saved_copy": "tests.json",
+      "skipped": 0
+    },
+    "theta_refresh": {
+      "count": 89175,
+      "max": 0.2498846067428051,
+      "mean": -0.004122878651312426,
+      "min": -0.23092302263209064,
+      "p05": -0.029555514097486024,
+      "p95": 0.04852688061821064,
+      "std": 0.024913948201826703
+    }
+  },
+  "created_utc": "2026-10-10T01:17:08.006744+00:00",
+  "final_review_mechanical_checks": {
+    "checked_utc": "2026-10-10T01:19:10.833346+00:00",
+    "live_stage_markdown_links": {
+      "checked": 99,
+      "historical_source_snapshot_links_excluded": true,
+      "unresolved": []
+    },
+    "reviewed_gate_status": "S2/G2 COMPLETE; GO_WITH_LIMIT; proceed to S3/G3 per live docs/RESULTS.md and docs/PROGRESS.md",
+    "reviewed_stage_status": "COMPLETE",
+    "runner": {
+      "help_command": "python experiments/distortion_model/stage_02_p1_reference_and_scale/scripts/run.py --help",
+      "help_succeeded": true,
+      "resolved_repository_root": "/home/aplab/ACC",
+      "runpy_probe_succeeded_without_main": true
+    },
+    "source_hashes": {
+      "archived_snapshot_entries_compared": 21,
+      "archived_snapshot_entries_match": true,
+      "current_sources_match": true,
+      "note": "The added source_snapshot README files are explanatory additions and are not among the archived source file hashes.",
+      "provenance_entries_checked": 21
+    },
+    "source_snapshot_readmes_added": [
+      "experiments/distortion_model/stage_02_p1_reference_and_scale/results/attempt_01/source_snapshot/README.md",
+      "experiments/distortion_model/stage_02_p1_reference_and_scale/results/attempt_02/source_snapshot/README.md"
+    ],
+    "whitespace": {
+      "clean": true,
+      "command": "git diff --check"
+    }
+  },
+  "schema": "mechanical_reproduction_checks_v1",
+  "source": "mechanical_inventory"
+}

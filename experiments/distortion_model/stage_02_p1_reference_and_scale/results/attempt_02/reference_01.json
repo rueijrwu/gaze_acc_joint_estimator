@@ -1,0 +1,128 @@
+{
+  "alpha1_deg_minus2": 4.560657511277164e-06,
+  "b1_reference_px": [
+    [
+      -230.42569562276157,
+      124.9242473496331
+    ],
+    [
+      17.476922117869087,
+      -246.56330800798222
+    ],
+    [
+      212.94877350489307,
+      121.63906065834902
+    ]
+  ],
+  "beta1_deg_minus2": -4.560657511277164e-06,
+  "conditional_fit": {
+    "active_mask": [
+      0,
+      0
+    ],
+    "conditional_fit_certified": true,
+    "conditional_rank": 2,
+    "cost": 1430.2397983188944,
+    "domain": {
+      "local_theta_bounds_deg": [
+        -15.00057812753063,
+        24.99942187246937
+      ],
+      "min_denominator": 0.9938573699382935,
+      "min_sx": 1.0,
+      "min_sy": 0.9971497208860107,
+      "valid_domain": true
+    },
+    "gauss_newton_eigenvalues": [
+      4336907.355537998,
+      135929674.33175242
+    ],
+    "jacobian_singular_values": [
+      11658.888211650043,
+      2082.524274897653
+    ],
+    "message": "`ftol` termination condition is satisfied.",
+    "nfev": 5,
+    "njev": 5,
+    "optimizer_original_cost": 1430.239798318896,
+    "optimizer_success": true,
+    "scaled_gradient": [
+      -6.897998328975479e-09,
+      8.756439396724118e-08
+    ],
+    "scaled_parameters": [
+      0.0004560657511277164,
+      -0.004178980327431253
+    ],
+    "scaled_projected_gradient_inf": 8.756439396724118e-08,
+    "start": [
+      0.0,
+      0.0
+    ],
+    "stationarity_polish": [
+      {
+        "cost_after": 1430.2397983188944,
+        "cost_before": 1430.239798318896,
+        "damping": 0,
+        "iteration": 0,
+        "parameter_change": [
+          -5.126185500387015e-12,
+          -1.3932462822330294e-11
+        ],
+        "rounding_allowance": 2.0324929981809646e-11,
+        "scaled_projected_gradient_after": 8.756439396724118e-08,
+        "scaled_projected_gradient_before": 3.0414599561405322e-05
+      }
+    ],
+    "status": 2
+  },
+  "domain": {
+    "local_theta_bounds_deg": [
+      -15.00057812753063,
+      24.99942187246937
+    ],
+    "min_denominator": 0.9938573699382935,
+    "min_sx": 1.0,
+    "min_sy": 0.9971497208860107,
+    "valid_domain": true
+  },
+  "gamma1_px_minus1_deg_minus1": -1.6608022153875685e-06,
+  "omega1_visual_deg": -4.99942187246937,
+  "parameter_roster": {
+    "derived": [
+      "alpha1",
+      "beta1=-alpha1",
+      "gamma1",
+      "per-frame g"
+    ],
+    "fitted": [
+      "delta1=100*alpha1=-100*beta1",
+      "keystone1=10*reference_radius_px*gamma1"
+    ],
+    "fixed": [
+      "omega1",
+      "b1 template",
+      "native-pixel length",
+      "centroid origin",
+      "camera axes",
+      "alpha1+beta1=0"
+    ],
+    "free_count": 2
+  },
+  "parent_covariance_hash": "9cf7a379a78472ab0a67321659ee6f1cd8c5ef000d0bcc674df39398c454c493",
+  "parent_population_hash": "840e580212e1be89af1dbff7b7a79d8e9630c4143cad956d8048d0cf29beede5",
+  "physical_origin_status": "unknown; fixed empirical centroid convention",
+  "reference_evidence_kind": "empirical observed-pattern balance; source symmetry/physical zero unresolved",
+  "reference_radius_px": 251.62420237114367,
+  "scale_policy": "p1_profile_v1",
+  "schema": "p1_reference_checkpoint_v1",
+  "scope": "partial optical initialization; no P4 model",
+  "source_hash": "dc6385ee6379dfb8709b31318bc1d02d02a7b9c62d0d068e134d1749d81d1102",
+  "stage": "S2/G2",
+  "template_exposure": 1,
+  "template_frame_count": 4800,
+  "theta_bounds_deg": [
+    -20.0,
+    20.0
+  ]
+}

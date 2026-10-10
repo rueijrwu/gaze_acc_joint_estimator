@@ -1,0 +1,49 @@
+{
+  "Aref_D": 0.36036036036036034,
+  "a": "(A_D-Aref_D)/1 D",
+  "automated_tests": "not added or run; historical upstream test evidence is not a current G6 test result",
+  "backend": "NumPy float64; chunked moments, 10x10 linear solve",
+  "basis": "[1,a,t,a*t,t^2]",
+  "before": "optimal constant D within same declared degree-2 family; all nonconstant coefficients initially zero",
+  "candidate": "DM0-M1 conditional forward D initialization",
+  "chunk_size": 16384,
+  "coefficient_axes": [
+    "image x",
+    "image y; not vertical gaze"
+  ],
+  "curvature_scale_reference_px": 190.30268515831884,
+  "fixed": [
+    "G5 individual theta/A",
+    "G2 positive P1 g",
+    "both optical references and zeros",
+    "G5 DM0-M1 and K4",
+    "template length/origin and camera axes"
+  ],
+  "free": [
+    "b0_x/y",
+    "bA_x/y",
+    "s0_x/y",
+    "sA_x/y",
+    "c2_x/y"
+  ],
+  "identity_atol": 1e-09,
+  "identity_rtol": 1e-10,
+  "metric": "complete ten-coordinate relative residual, frozen full raw R including cross-terms",
+  "no_additional_center_loss": true,
+  "normalized_data_rank_rtol": 1e-10,
+  "omega1_visual_deg": -10.020904111586926,
+  "omega4_visual_deg": -10.016974132845107,
+  "parameter_gradient_scale": "one fixed empirical P4 RMS radius in reference pixels",
+  "plot_stride": 20,
+  "regularization": "0.5*sum((c2/reference_P4_rms_radius_px)^2); all other D priors zero",
+  "sign": "P4 minus P1",
+  "soft_mean_A_scale_D": 0.25,
+  "soft_mean_theta_scale_deg": 0.1,
+  "stage": "S6/G6",
+  "stationarity_threshold": 1e-06,
+  "t": "theta_visual_deg/10 degrees",
+  "temporal_penalty": 0.0,
+  "visual_degree": 2,
+  "weights": "1/(20*full valid exposure count), global counts retained across chunks",
+  "workers": 4
+}

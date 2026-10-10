@@ -1,0 +1,1006 @@
+{
+  "capture_1_detections.pkl": {
+    "array_layout": {
+      "coordinates": "px; origin top-left, x right, y down; missing observations NaN",
+      "frame_axis": "n processed frames in decode order; frame_index is the source index",
+      "frame_index": "(n,) zero-based source frame index",
+      "p1_candidate_offsets": "(n+1,) frame i slice is p1_candidate_xy[offsets[i]:offsets[i+1]]",
+      "p1_candidate_xy": "(m, 2) raw x/y in px, native order, including invalid candidates on valid-pupil frames; invalid-pupil frames have empty slices",
+      "p1_valid": "(n, 3) whether each labelled P1 point is present",
+      "p1_xy": "(n, 3, 2) valid P1 triple sorted by x; NaN when unavailable",
+      "p4_candidate_offsets": "(n+1,) frame i slice is p4_candidate_xy[offsets[i]:offsets[i+1]]",
+      "p4_candidate_xy": "(m, 2) raw x/y in px, native order, including invalid candidates on valid-pupil frames; invalid-pupil frames have empty slices",
+      "p4_found": "(n, 3) whether each labelled P4 point is present",
+      "p4_minus_p1_x_mean": "(n,) mean P4 x minus mean P1 x in px; NaN if any point missing",
+      "p4_xy": "(n, 3, 2) selected P4 in L/M/R pair slots; P1 i pairs with P4 pair_index[i]",
+      "point_axes": "(frame, label, coordinate); labels left/middle/right; coordinates x/y",
+      "pupil_angle_deg": "(n,) native ellipse angle in degrees; NaN for invalid pupils",
+      "pupil_axes": "(n, 2) semi-major/semi-minor axes in px; NaN for invalid pupils",
+      "pupil_center": "(n, 2) x/y in px; NaN for invalid pupils",
+      "pupil_inliers": "(n,) native pupil fit inlier count, including rejected fits",
+      "pupil_reason": "(n,) native rejection code decoded by pupil_reason_names",
+      "pupil_valid": "(n,) native result and ellipse validity",
+      "sim_angle_deg": "(n,) P1-to-P4 rotation in [0, 360), clockwise in image coordinates",
+      "sim_rms": "(n,) Euclidean residual RMS per point in px; OK2 uses fixed reference",
+      "sim_scale": "(n,) dimensionless P1-to-P4 scale",
+      "status": "(n,) code decoded by status_names",
+      "timestamp_ms": "(n,) decoder timestamp in ms"
+    },
+    "config": {
+      "pipeline": {
+        "image_process": {
+          "fallback": {
+            "binary_threshold": 150,
+            "clahe_gain": 8.0,
+            "clahe_tile_grid_size": [
+              8,
+              8
+            ],
+            "roi_size": 96
+          },
+          "params": {
+            "p1_max_area": 100,
+            "p1_max_aspect": 2.0,
+            "p1_min_area": 4,
+            "p1_threshold": 200.0,
+            "p4_max_area": 90,
+            "p4_max_aspect": 2.5,
+            "p4_min_area": 4,
+            "p4_threshold": 0.0,
+            "pupil_gain": 0.9,
+            "pupil_max_area": 200000.0,
+            "pupil_min_area": 5000.0
+          },
+          "static": {
+            "cuda_device": 0,
+            "downsample_factor": 8,
+            "ellipse_refine_half_window": 15,
+            "enable_hough_pupil_seed": true,
+            "frame_height": 992,
+            "frame_width": 2048,
+            "hough_accumulator_dp": 1.0,
+            "hough_center_roi_margin_ratio": 0.15,
+            "hough_center_vote_threshold": 5,
+            "hough_max_circles": 3,
+            "hough_radius_bin_step": 8,
+            "hough_radius_max_ratio": 1.3,
+            "hough_radius_min_ratio": 0.6,
+            "hough_radius_vote_threshold": 5,
+            "lm_convergence_threshold": 0.0001,
+            "lm_max_iterations": 16,
+            "loc_min_sigma": 0.5,
+            "p1_loc_threshold": 220,
+            "p1_roi_size": 64,
+            "p4_localization_threshold": 70,
+            "p4_roi_size": 128,
+            "pupil_filter": {
+              "max_area": 120000,
+              "max_aspect": 1.6,
+              "max_cy": 124,
+              "min_area": 4000,
+              "min_cx": 0,
+              "min_cy": 20
+            },
+            "pupil_max_hole_area": 2500,
+            "ransac_inlier_threshold": 16.0,
+            "ransac_max_major": 2400.0,
+            "ransac_min_aspect": 0.925,
+            "ransac_min_major": 500.0,
+            "starburst_roi_half_size": 32,
+            "starburst_search_span": 32,
+            "starburst_threshold_ratio": 1.0
+          }
+        }
+      },
+      "system": {
+        "enable_debug_outputs": true,
+        "enable_telemetry": true
+      }
+    },
+    "config_path": "/workspace/ximea/xrecorder/exp5/config.json",
+    "end_frame": 27028,
+    "fps": 1000.0,
+    "frame_count": 27091,
+    "frame_size": [
+      2048,
+      992
+    ],
+    "frame_size_layout": "(width, height) in px",
+    "frames_processed": 27028,
+    "labels": [
+      "left",
+      "middle",
+      "right"
+    ],
+    "max_frames_requested": null,
+    "native_overrides": [],
+    "native_params": {
+      "p1_max_area": 100.0,
+      "p1_max_aspect": 2.0,
+      "p1_min_area": 4.0,
+      "p1_threshold": 200.0,
+      "p4_max_area": 90.0,
+      "p4_max_aspect": 2.5,
+      "p4_min_area": 4.0,
+      "p4_offset": 0.0,
+      "p4_threshold": 0.0,
+      "pupil_gain": 0.8999999761581421,
+      "pupil_max_area": 200000.0,
+      "pupil_min_area": 5000.0,
+      "pupil_threshold": 0.8999999761581421
+    },
+    "native_static": {
+      "cuda_device": 0,
+      "downsample_factor": 8,
+      "ellipse_refine_half_window": 15,
+      "enable_debug_outputs": true,
+      "enable_hough_pupil_seed": true,
+      "enable_telemetry": true,
+      "frame_height": 992,
+      "frame_width": 2048,
+      "hough_accumulator_dp": 1.0,
+      "hough_center_roi_margin_ratio": 0.15000000596046448,
+      "hough_center_vote_threshold": 5,
+      "hough_max_circles": 3,
+      "hough_radius_bin_step": 8,
+      "hough_radius_max_ratio": 1.2999999523162842,
+      "hough_radius_min_ratio": 0.6000000238418579,
+      "hough_radius_vote_threshold": 5,
+      "lm_convergence_threshold": 9.999999747378752e-05,
+      "lm_max_iterations": 16,
+      "loc_min_sigma": 0.5,
+      "p1_filter": {
+        "max_area": 80,
+        "max_aspect": 4.0,
+        "max_cx": 512.0,
+        "max_cy": 128.0,
+        "min_area": 4,
+        "min_cx": 0.0,
+        "min_cy": 0.0
+      },
+      "p1_loc_threshold": 220,
+      "p1_roi_size": 64,
+      "p4_filter": {
+        "max_area": 80,
+        "max_aspect": 4.0,
+        "max_cx": 512.0,
+        "max_cy": 128.0,
+        "min_area": 4,
+        "min_cx": 0.0,
+        "min_cy": 0.0
+      },
+      "p4_localization_threshold": 70,
+      "p4_roi_size": 128,
+      "pupil_filter": {
+        "max_area": 120000,
+        "max_aspect": 1.600000023841858,
+        "max_cx": 512.0,
+        "max_cy": 124.0,
+        "min_area": 4000,
+        "min_cx": 0.0,
+        "min_cy": 20.0
+      },
+      "pupil_max_hole_area": 2500,
+      "ransac_inlier_threshold": 16.0,
+      "ransac_max_major": 2400.0,
+      "ransac_min_aspect": 0.925000011920929,
+      "ransac_min_major": 500.0,
+      "starburst_roi_half_size": 32,
+      "starburst_search_span": 32,
+      "starburst_threshold_ratio": 1.0
+    },
+    "pair_index": [
+      2,
+      1,
+      0
+    ],
+    "pairing": {
+      "p1_left": "p4_right",
+      "p1_middle": "p4_middle",
+      "p1_right": "p4_left"
+    },
+    "pupil_reason_names": {
+      "0": "kAccepted",
+      "1": "kNoCandidates",
+      "2": "kRansacFailed",
+      "3": "kCircularityFailed",
+      "4": "kAreaMismatch",
+      "5": "kAspectMismatch",
+      "6": "kSolidityFailed",
+      "7": "kBoundaryIntersection",
+      "8": "kRoiOutOfBounds"
+    },
+    "s_ref": 0.7561503591029028,
+    "source_video": "/workspace/ximea/xrecorder/exp5/capture_1.mkv",
+    "source_video_name": "capture_1.mkv",
+    "start_frame": 0,
+    "status_names": {
+      "0": "NO_PUPIL",
+      "1": "P1_COUNT",
+      "2": "NO_SEED",
+      "3": "OK3",
+      "4": "OK2",
+      "5": "OKF",
+      "6": "P4_FAIL"
+    },
+    "tolerances": {
+      "angle_tol": 3.0,
+      "rms_tol": 15.0,
+      "scale_tol": 0.1
+    }
+  },
+  "capture_2_detections.pkl": {
+    "array_layout": {
+      "coordinates": "px; origin top-left, x right, y down; missing observations NaN",
+      "frame_axis": "n processed frames in decode order; frame_index is the source index",
+      "frame_index": "(n,) zero-based source frame index",
+      "p1_candidate_offsets": "(n+1,) frame i slice is p1_candidate_xy[offsets[i]:offsets[i+1]]",
+      "p1_candidate_xy": "(m, 2) raw x/y in px, native order, including invalid candidates on valid-pupil frames; invalid-pupil frames have empty slices",
+      "p1_valid": "(n, 3) whether each labelled P1 point is present",
+      "p1_xy": "(n, 3, 2) valid P1 triple sorted by x; NaN when unavailable",
+      "p4_candidate_offsets": "(n+1,) frame i slice is p4_candidate_xy[offsets[i]:offsets[i+1]]",
+      "p4_candidate_xy": "(m, 2) raw x/y in px, native order, including invalid candidates on valid-pupil frames; invalid-pupil frames have empty slices",
+      "p4_found": "(n, 3) whether each labelled P4 point is present",
+      "p4_minus_p1_x_mean": "(n,) mean P4 x minus mean P1 x in px; NaN if any point missing",
+      "p4_xy": "(n, 3, 2) selected P4 in L/M/R pair slots; P1 i pairs with P4 pair_index[i]",
+      "point_axes": "(frame, label, coordinate); labels left/middle/right; coordinates x/y",
+      "pupil_angle_deg": "(n,) native ellipse angle in degrees; NaN for invalid pupils",
+      "pupil_axes": "(n, 2) semi-major/semi-minor axes in px; NaN for invalid pupils",
+      "pupil_center": "(n, 2) x/y in px; NaN for invalid pupils",
+      "pupil_inliers": "(n,) native pupil fit inlier count, including rejected fits",
+      "pupil_reason": "(n,) native rejection code decoded by pupil_reason_names",
+      "pupil_valid": "(n,) native result and ellipse validity",
+      "sim_angle_deg": "(n,) P1-to-P4 rotation in [0, 360), clockwise in image coordinates",
+      "sim_rms": "(n,) fitted-transform Euclidean residual RMS per point in px; diagnostic only",
+      "sim_scale": "(n,) dimensionless P1-to-P4 scale",
+      "status": "(n,) code decoded by status_names",
+      "timestamp_ms": "(n,) decoder timestamp in ms",
+      "triangle_angle_error_deg": "(n,) fitted rotation error against configured expected_angle_deg",
+      "triangle_edge_scale_error_fraction": "(n,) maximum abs(edge_scale / fitted_scale - 1) over three corresponding edges"
+    },
+    "config": {
+      "pipeline": {
+        "image_process": {
+          "fallbacks": {
+            "blob_detection": {
+              "binary_threshold": 150,
+              "clahe_gain": 8.0,
+              "clahe_tile_grid_size": [
+                8,
+                8
+              ],
+              "p4_max_area": 100,
+              "p4_max_aspect": 2.5,
+              "p4_min_area": 8
+            },
+            "constant_velocity": {
+              "roi_size": 96,
+              "velocity_gain": 1.0
+            },
+            "endpoint_identification": {
+              "angle_tolerance_deg": 2.5,
+              "expected_angle_deg": 180.0,
+              "expected_scale": 0.7125,
+              "scale_tolerance_fraction": 0.1
+            },
+            "triangle_geometry": {
+              "roi_size": 128
+            }
+          },
+          "params": {
+            "p1_max_area": 120,
+            "p1_max_aspect": 2.0,
+            "p1_min_area": 8,
+            "p1_threshold": 200.0,
+            "p4_max_area": 80,
+            "p4_max_aspect": 2.5,
+            "p4_min_area": 8,
+            "p4_threshold": 0.0,
+            "pupil_gain": 0.9,
+            "pupil_max_area": 200000.0,
+            "pupil_min_area": 5000.0
+          },
+          "static": {
+            "cuda_device": 0,
+            "downsample_factor": 8,
+            "ellipse_refine_half_window": 15,
+            "enable_hough_pupil_seed": true,
+            "frame_height": 992,
+            "frame_width": 2048,
+            "hough_accumulator_dp": 1.0,
+            "hough_center_roi_margin_ratio": 0.15,
+            "hough_center_vote_threshold": 5,
+            "hough_max_circles": 3,
+            "hough_radius_bin_step": 8,
+            "hough_radius_max_ratio": 1.3,
+            "hough_radius_min_ratio": 0.6,
+            "hough_radius_vote_threshold": 5,
+            "lm_convergence_threshold": 0.0001,
+            "lm_max_iterations": 16,
+            "loc_min_sigma": 0.5,
+            "p1_loc_threshold": 220,
+            "p1_roi_size": 64,
+            "p4_localization_threshold": 70,
+            "p4_roi_size": 128,
+            "pupil_filter": {
+              "max_area": 120000,
+              "max_aspect": 1.6,
+              "max_cy": 124,
+              "min_area": 4000,
+              "min_cx": 0,
+              "min_cy": 20
+            },
+            "pupil_max_hole_area": 2500,
+            "ransac_inlier_threshold": 16.0,
+            "ransac_max_major": 2400.0,
+            "ransac_min_aspect": 0.925,
+            "ransac_min_major": 500.0,
+            "starburst_roi_half_size": 32,
+            "starburst_search_span": 32,
+            "starburst_threshold_ratio": 1.0
+          },
+          "triangle_similarity_gates": {
+            "angle_tolerance_deg": 2.5,
+            "edge_scale_tolerance_fraction": 0.1,
+            "expected_angle_deg": 180.0
+          }
+        }
+      },
+      "system": {
+        "enable_debug_outputs": true,
+        "enable_telemetry": true
+      }
+    },
+    "config_path": "/workspace/ximea/xrecorder/exp5/config.json",
+    "end_frame": 27090,
+    "fps": 1000.0,
+    "frame_count": 28043,
+    "frame_size": [
+      2048,
+      992
+    ],
+    "frame_size_layout": "(width, height) in px",
+    "frames_processed": 27090,
+    "labels": [
+      "left",
+      "middle",
+      "right"
+    ],
+    "max_frames_requested": null,
+    "native_overrides": [],
+    "native_params": {
+      "p1_max_area": 120.0,
+      "p1_max_aspect": 2.0,
+      "p1_min_area": 8.0,
+      "p1_threshold": 200.0,
+      "p4_max_area": 80.0,
+      "p4_max_aspect": 2.5,
+      "p4_min_area": 8.0,
+      "p4_offset": 0.0,
+      "p4_threshold": 0.0,
+      "pupil_gain": 0.8999999761581421,
+      "pupil_max_area": 200000.0,
+      "pupil_min_area": 5000.0,
+      "pupil_threshold": 0.8999999761581421
+    },
+    "native_static": {
+      "cuda_device": 0,
+      "downsample_factor": 8,
+      "ellipse_refine_half_window": 15,
+      "enable_debug_outputs": true,
+      "enable_hough_pupil_seed": true,
+      "enable_telemetry": true,
+      "frame_height": 992,
+      "frame_width": 2048,
+      "hough_accumulator_dp": 1.0,
+      "hough_center_roi_margin_ratio": 0.15000000596046448,
+      "hough_center_vote_threshold": 5,
+      "hough_max_circles": 3,
+      "hough_radius_bin_step": 8,
+      "hough_radius_max_ratio": 1.2999999523162842,
+      "hough_radius_min_ratio": 0.6000000238418579,
+      "hough_radius_vote_threshold": 5,
+      "lm_convergence_threshold": 9.999999747378752e-05,
+      "lm_max_iterations": 16,
+      "loc_min_sigma": 0.5,
+      "p1_filter": {
+        "max_area": 80,
+        "max_aspect": 4.0,
+        "max_cx": 512.0,
+        "max_cy": 128.0,
+        "min_area": 4,
+        "min_cx": 0.0,
+        "min_cy": 0.0
+      },
+      "p1_loc_threshold": 220,
+      "p1_roi_size": 64,
+      "p4_filter": {
+        "max_area": 80,
+        "max_aspect": 4.0,
+        "max_cx": 512.0,
+        "max_cy": 128.0,
+        "min_area": 4,
+        "min_cx": 0.0,
+        "min_cy": 0.0
+      },
+      "p4_localization_threshold": 70,
+      "p4_roi_size": 128,
+      "pupil_filter": {
+        "max_area": 120000,
+        "max_aspect": 1.600000023841858,
+        "max_cx": 512.0,
+        "max_cy": 124.0,
+        "min_area": 4000,
+        "min_cx": 0.0,
+        "min_cy": 20.0
+      },
+      "pupil_max_hole_area": 2500,
+      "ransac_inlier_threshold": 16.0,
+      "ransac_max_major": 2400.0,
+      "ransac_min_aspect": 0.925000011920929,
+      "ransac_min_major": 500.0,
+      "starburst_roi_half_size": 32,
+      "starburst_search_span": 32,
+      "starburst_threshold_ratio": 1.0
+    },
+    "pair_index": [
+      2,
+      1,
+      0
+    ],
+    "pairing": {
+      "p1_left": "p4_right",
+      "p1_middle": "p4_middle",
+      "p1_right": "p4_left"
+    },
+    "pupil_reason_names": {
+      "0": "kAccepted",
+      "1": "kNoCandidates",
+      "2": "kRansacFailed",
+      "3": "kCircularityFailed",
+      "4": "kAreaMismatch",
+      "5": "kAspectMismatch",
+      "6": "kSolidityFailed",
+      "7": "kBoundaryIntersection",
+      "8": "kRoiOutOfBounds"
+    },
+    "source_video": "/workspace/ximea/xrecorder/exp5/capture_2.mkv",
+    "source_video_name": "capture_2.mkv",
+    "start_frame": 0,
+    "status_names": {
+      "0": "NO_PUPIL",
+      "1": "P1_COUNT",
+      "3": "OK3",
+      "5": "OKF",
+      "6": "P4_FAIL",
+      "7": "OKV"
+    },
+    "tolerances": {
+      "endpoint_angle_tol": 2.5,
+      "endpoint_default_scale": 0.7125,
+      "endpoint_expected_angle_deg": 180.0,
+      "endpoint_scale_reference": "last fully accepted triangle fitted scale; config default when unavailable",
+      "endpoint_scale_tol": 0.1,
+      "triangle_angle_tol": 2.5,
+      "triangle_edge_scale_tol": 0.1,
+      "triangle_expected_angle_deg": 180.0
+    },
+    "triangle_gate_definition": {
+      "angle": "abs((fitted_angle - expected_angle_deg + 180) % 360 - 180)",
+      "correspondence": "P1 L/M/R to P4 R/M/L",
+      "rms": "reported only",
+      "scale": "max(abs((P4_edge_length / P1_edge_length) / fitted_scale - 1)) over all three corresponding edges"
+    }
+  },
+  "capture_3_detections.pkl": {
+    "array_layout": {
+      "coordinates": "px; origin top-left, x right, y down; missing observations NaN",
+      "frame_axis": "n processed frames in decode order; frame_index is the source index",
+      "frame_index": "(n,) zero-based source frame index",
+      "p1_candidate_offsets": "(n+1,) frame i slice is p1_candidate_xy[offsets[i]:offsets[i+1]]",
+      "p1_candidate_xy": "(m, 2) raw x/y in px, native order, including invalid candidates on valid-pupil frames; invalid-pupil frames have empty slices",
+      "p1_valid": "(n, 3) whether each labelled P1 point is present",
+      "p1_xy": "(n, 3, 2) valid P1 triple sorted by x; NaN when unavailable",
+      "p4_candidate_offsets": "(n+1,) frame i slice is p4_candidate_xy[offsets[i]:offsets[i+1]]",
+      "p4_candidate_xy": "(m, 2) raw x/y in px, native order, including invalid candidates on valid-pupil frames; invalid-pupil frames have empty slices",
+      "p4_found": "(n, 3) whether each labelled P4 point is present",
+      "p4_minus_p1_x_mean": "(n,) mean P4 x minus mean P1 x in px; NaN if any point missing",
+      "p4_xy": "(n, 3, 2) selected P4 in L/M/R pair slots; P1 i pairs with P4 pair_index[i]",
+      "point_axes": "(frame, label, coordinate); labels left/middle/right; coordinates x/y",
+      "pupil_angle_deg": "(n,) native ellipse angle in degrees; NaN for invalid pupils",
+      "pupil_axes": "(n, 2) semi-major/semi-minor axes in px; NaN for invalid pupils",
+      "pupil_center": "(n, 2) x/y in px; NaN for invalid pupils",
+      "pupil_inliers": "(n,) native pupil fit inlier count, including rejected fits",
+      "pupil_reason": "(n,) native rejection code decoded by pupil_reason_names",
+      "pupil_valid": "(n,) native result and ellipse validity",
+      "sim_angle_deg": "(n,) P1-to-P4 rotation in [0, 360), clockwise in image coordinates",
+      "sim_rms": "(n,) fitted-transform Euclidean residual RMS per point in px; diagnostic only",
+      "sim_scale": "(n,) dimensionless P1-to-P4 scale",
+      "status": "(n,) code decoded by status_names",
+      "timestamp_ms": "(n,) decoder timestamp in ms",
+      "triangle_angle_error_deg": "(n,) fitted rotation error against configured expected_angle_deg",
+      "triangle_edge_scale_error_fraction": "(n,) maximum abs(edge_scale / fitted_scale - 1) over three corresponding edges"
+    },
+    "config": {
+      "pipeline": {
+        "image_process": {
+          "fallbacks": {
+            "blob_detection": {
+              "binary_threshold": 150,
+              "clahe_gain": 8.0,
+              "clahe_tile_grid_size": [
+                8,
+                8
+              ],
+              "p4_max_area": 100,
+              "p4_max_aspect": 2.5,
+              "p4_min_area": 8
+            },
+            "constant_velocity": {
+              "roi_size": 96,
+              "velocity_gain": 1.0
+            },
+            "endpoint_identification": {
+              "angle_tolerance_deg": 2.5,
+              "expected_angle_deg": 180.0,
+              "expected_scale": 0.7125,
+              "scale_tolerance_fraction": 0.1
+            },
+            "triangle_geometry": {
+              "roi_size": 128
+            }
+          },
+          "params": {
+            "p1_max_area": 120,
+            "p1_max_aspect": 2.0,
+            "p1_min_area": 8,
+            "p1_threshold": 200.0,
+            "p4_max_area": 80,
+            "p4_max_aspect": 2.5,
+            "p4_min_area": 8,
+            "p4_threshold": 0.0,
+            "pupil_gain": 0.9,
+            "pupil_max_area": 200000.0,
+            "pupil_min_area": 5000.0
+          },
+          "static": {
+            "cuda_device": 0,
+            "downsample_factor": 8,
+            "ellipse_refine_half_window": 15,
+            "enable_hough_pupil_seed": true,
+            "frame_height": 992,
+            "frame_width": 2048,
+            "hough_accumulator_dp": 1.0,
+            "hough_center_roi_margin_ratio": 0.15,
+            "hough_center_vote_threshold": 5,
+            "hough_max_circles": 3,
+            "hough_radius_bin_step": 8,
+            "hough_radius_max_ratio": 1.3,
+            "hough_radius_min_ratio": 0.6,
+            "hough_radius_vote_threshold": 5,
+            "lm_convergence_threshold": 0.0001,
+            "lm_max_iterations": 16,
+            "loc_min_sigma": 0.5,
+            "p1_loc_threshold": 220,
+            "p1_roi_size": 64,
+            "p4_localization_threshold": 70,
+            "p4_roi_size": 128,
+            "pupil_filter": {
+              "max_area": 120000,
+              "max_aspect": 1.6,
+              "max_cy": 124,
+              "min_area": 4000,
+              "min_cx": 0,
+              "min_cy": 20
+            },
+            "pupil_max_hole_area": 2500,
+            "ransac_inlier_threshold": 16.0,
+            "ransac_max_major": 2400.0,
+            "ransac_min_aspect": 0.925,
+            "ransac_min_major": 500.0,
+            "starburst_roi_half_size": 32,
+            "starburst_search_span": 32,
+            "starburst_threshold_ratio": 1.0
+          },
+          "triangle_similarity_gates": {
+            "angle_tolerance_deg": 2.5,
+            "edge_scale_tolerance_fraction": 0.1,
+            "expected_angle_deg": 180.0
+          }
+        }
+      },
+      "system": {
+        "enable_debug_outputs": true,
+        "enable_telemetry": true
+      }
+    },
+    "config_path": "/workspace/ximea/xrecorder/exp5/config.json",
+    "end_frame": 27900,
+    "fps": 1000.0,
+    "frame_count": 28668,
+    "frame_size": [
+      2048,
+      992
+    ],
+    "frame_size_layout": "(width, height) in px",
+    "frames_processed": 27900,
+    "labels": [
+      "left",
+      "middle",
+      "right"
+    ],
+    "max_frames_requested": null,
+    "native_overrides": [],
+    "native_params": {
+      "p1_max_area": 120.0,
+      "p1_max_aspect": 2.0,
+      "p1_min_area": 8.0,
+      "p1_threshold": 200.0,
+      "p4_max_area": 80.0,
+      "p4_max_aspect": 2.5,
+      "p4_min_area": 8.0,
+      "p4_offset": 0.0,
+      "p4_threshold": 0.0,
+      "pupil_gain": 0.8999999761581421,
+      "pupil_max_area": 200000.0,
+      "pupil_min_area": 5000.0,
+      "pupil_threshold": 0.8999999761581421
+    },
+    "native_static": {
+      "cuda_device": 0,
+      "downsample_factor": 8,
+      "ellipse_refine_half_window": 15,
+      "enable_debug_outputs": true,
+      "enable_hough_pupil_seed": true,
+      "enable_telemetry": true,
+      "frame_height": 992,
+      "frame_width": 2048,
+      "hough_accumulator_dp": 1.0,
+      "hough_center_roi_margin_ratio": 0.15000000596046448,
+      "hough_center_vote_threshold": 5,
+      "hough_max_circles": 3,
+      "hough_radius_bin_step": 8,
+      "hough_radius_max_ratio": 1.2999999523162842,
+      "hough_radius_min_ratio": 0.6000000238418579,
+      "hough_radius_vote_threshold": 5,
+      "lm_convergence_threshold": 9.999999747378752e-05,
+      "lm_max_iterations": 16,
+      "loc_min_sigma": 0.5,
+      "p1_filter": {
+        "max_area": 80,
+        "max_aspect": 4.0,
+        "max_cx": 512.0,
+        "max_cy": 128.0,
+        "min_area": 4,
+        "min_cx": 0.0,
+        "min_cy": 0.0
+      },
+      "p1_loc_threshold": 220,
+      "p1_roi_size": 64,
+      "p4_filter": {
+        "max_area": 80,
+        "max_aspect": 4.0,
+        "max_cx": 512.0,
+        "max_cy": 128.0,
+        "min_area": 4,
+        "min_cx": 0.0,
+        "min_cy": 0.0
+      },
+      "p4_localization_threshold": 70,
+      "p4_roi_size": 128,
+      "pupil_filter": {
+        "max_area": 120000,
+        "max_aspect": 1.600000023841858,
+        "max_cx": 512.0,
+        "max_cy": 124.0,
+        "min_area": 4000,
+        "min_cx": 0.0,
+        "min_cy": 20.0
+      },
+      "pupil_max_hole_area": 2500,
+      "ransac_inlier_threshold": 16.0,
+      "ransac_max_major": 2400.0,
+      "ransac_min_aspect": 0.925000011920929,
+      "ransac_min_major": 500.0,
+      "starburst_roi_half_size": 32,
+      "starburst_search_span": 32,
+      "starburst_threshold_ratio": 1.0
+    },
+    "pair_index": [
+      2,
+      1,
+      0
+    ],
+    "pairing": {
+      "p1_left": "p4_right",
+      "p1_middle": "p4_middle",
+      "p1_right": "p4_left"
+    },
+    "pupil_reason_names": {
+      "0": "kAccepted",
+      "1": "kNoCandidates",
+      "2": "kRansacFailed",
+      "3": "kCircularityFailed",
+      "4": "kAreaMismatch",
+      "5": "kAspectMismatch",
+      "6": "kSolidityFailed",
+      "7": "kBoundaryIntersection",
+      "8": "kRoiOutOfBounds"
+    },
+    "source_video": "/workspace/ximea/xrecorder/exp5/capture_3.mkv",
+    "source_video_name": "capture_3.mkv",
+    "start_frame": 0,
+    "status_names": {
+      "0": "NO_PUPIL",
+      "1": "P1_COUNT",
+      "3": "OK3",
+      "5": "OKF",
+      "6": "P4_FAIL",
+      "7": "OKV"
+    },
+    "tolerances": {
+      "endpoint_angle_tol": 2.5,
+      "endpoint_default_scale": 0.7125,
+      "endpoint_expected_angle_deg": 180.0,
+      "endpoint_scale_reference": "last fully accepted triangle fitted scale; config default when unavailable",
+      "endpoint_scale_tol": 0.1,
+      "triangle_angle_tol": 2.5,
+      "triangle_edge_scale_tol": 0.1,
+      "triangle_expected_angle_deg": 180.0
+    },
+    "triangle_gate_definition": {
+      "angle": "abs((fitted_angle - expected_angle_deg + 180) % 360 - 180)",
+      "correspondence": "P1 L/M/R to P4 R/M/L",
+      "rms": "reported only",
+      "scale": "max(abs((P4_edge_length / P1_edge_length) / fitted_scale - 1)) over all three corresponding edges"
+    }
+  },
+  "capture_4_detections.pkl": {
+    "array_layout": {
+      "coordinates": "px; origin top-left, x right, y down; missing observations NaN",
+      "frame_axis": "n processed frames in decode order; frame_index is the source index",
+      "frame_index": "(n,) zero-based source frame index",
+      "p1_candidate_offsets": "(n+1,) frame i slice is p1_candidate_xy[offsets[i]:offsets[i+1]]",
+      "p1_candidate_xy": "(m, 2) raw x/y in px, native order, including invalid candidates on valid-pupil frames; invalid-pupil frames have empty slices",
+      "p1_valid": "(n, 3) whether each labelled P1 point is present",
+      "p1_xy": "(n, 3, 2) valid P1 triple sorted by x; NaN when unavailable",
+      "p4_candidate_offsets": "(n+1,) frame i slice is p4_candidate_xy[offsets[i]:offsets[i+1]]",
+      "p4_candidate_xy": "(m, 2) raw x/y in px, native order, including invalid candidates on valid-pupil frames; invalid-pupil frames have empty slices",
+      "p4_found": "(n, 3) whether each labelled P4 point is present",
+      "p4_minus_p1_x_mean": "(n,) mean P4 x minus mean P1 x in px; NaN if any point missing",
+      "p4_xy": "(n, 3, 2) selected P4 in L/M/R pair slots; P1 i pairs with P4 pair_index[i]",
+      "point_axes": "(frame, label, coordinate); labels left/middle/right; coordinates x/y",
+      "pupil_angle_deg": "(n,) native ellipse angle in degrees; NaN for invalid pupils",
+      "pupil_axes": "(n, 2) semi-major/semi-minor axes in px; NaN for invalid pupils",
+      "pupil_center": "(n, 2) x/y in px; NaN for invalid pupils",
+      "pupil_inliers": "(n,) native pupil fit inlier count, including rejected fits",
+      "pupil_reason": "(n,) native rejection code decoded by pupil_reason_names",
+      "pupil_valid": "(n,) native result and ellipse validity",
+      "sim_angle_deg": "(n,) P1-to-P4 rotation in [0, 360), clockwise in image coordinates",
+      "sim_rms": "(n,) Euclidean residual RMS per point in px; OK2 reports fixed-reference residual without gating",
+      "sim_scale": "(n,) dimensionless P1-to-P4 scale",
+      "status": "(n,) code decoded by status_names",
+      "timestamp_ms": "(n,) decoder timestamp in ms"
+    },
+    "config": {
+      "pipeline": {
+        "image_process": {
+          "fallbacks": {
+            "blob_detection": {
+              "binary_threshold": 150,
+              "clahe_gain": 8.0,
+              "clahe_tile_grid_size": [
+                8,
+                8
+              ]
+            },
+            "constant_velocity": {
+              "roi_size": 96,
+              "velocity_gain": 1.0
+            },
+            "geometry_gates": {
+              "angle_tolerance_deg": 3.0,
+              "scale_tolerance_fraction": 0.125
+            },
+            "pair_geometry": {
+              "roi_size": 128
+            }
+          },
+          "params": {
+            "p1_max_area": 100,
+            "p1_max_aspect": 2.0,
+            "p1_min_area": 4,
+            "p1_threshold": 200.0,
+            "p4_max_area": 90,
+            "p4_max_aspect": 2.5,
+            "p4_min_area": 4,
+            "p4_threshold": 0.0,
+            "pupil_gain": 0.9,
+            "pupil_max_area": 200000.0,
+            "pupil_min_area": 5000.0
+          },
+          "static": {
+            "cuda_device": 0,
+            "downsample_factor": 8,
+            "ellipse_refine_half_window": 15,
+            "enable_hough_pupil_seed": true,
+            "frame_height": 992,
+            "frame_width": 2048,
+            "hough_accumulator_dp": 1.0,
+            "hough_center_roi_margin_ratio": 0.15,
+            "hough_center_vote_threshold": 5,
+            "hough_max_circles": 3,
+            "hough_radius_bin_step": 8,
+            "hough_radius_max_ratio": 1.3,
+            "hough_radius_min_ratio": 0.6,
+            "hough_radius_vote_threshold": 5,
+            "lm_convergence_threshold": 0.0001,
+            "lm_max_iterations": 16,
+            "loc_min_sigma": 0.5,
+            "p1_loc_threshold": 220,
+            "p1_roi_size": 64,
+            "p4_localization_threshold": 70,
+            "p4_roi_size": 128,
+            "pupil_filter": {
+              "max_area": 120000,
+              "max_aspect": 1.6,
+              "max_cy": 124,
+              "min_area": 4000,
+              "min_cx": 0,
+              "min_cy": 20
+            },
+            "pupil_max_hole_area": 2500,
+            "ransac_inlier_threshold": 16.0,
+            "ransac_max_major": 2400.0,
+            "ransac_min_aspect": 0.925,
+            "ransac_min_major": 500.0,
+            "starburst_roi_half_size": 32,
+            "starburst_search_span": 32,
+            "starburst_threshold_ratio": 1.0
+          },
+          "triangle_similarity_gates": {
+            "angle_tolerance_deg": 3.0,
+            "scale_tolerance_fraction": 0.12
+          }
+        }
+      },
+      "system": {
+        "enable_debug_outputs": true,
+        "enable_telemetry": true
+      }
+    },
+    "config_path": "/workspace/ximea/xrecorder/exp5/config.json",
+    "end_frame": 26424,
+    "fps": 1000.0,
+    "frame_count": 26513,
+    "frame_size": [
+      2048,
+      992
+    ],
+    "frame_size_layout": "(width, height) in px",
+    "frames_processed": 26424,
+    "labels": [
+      "left",
+      "middle",
+      "right"
+    ],
+    "max_frames_requested": null,
+    "native_overrides": [],
+    "native_params": {
+      "p1_max_area": 100.0,
+      "p1_max_aspect": 2.0,
+      "p1_min_area": 4.0,
+      "p1_threshold": 200.0,
+      "p4_max_area": 90.0,
+      "p4_max_aspect": 2.5,
+      "p4_min_area": 4.0,
+      "p4_offset": 0.0,
+      "p4_threshold": 0.0,
+      "pupil_gain": 0.8999999761581421,
+      "pupil_max_area": 200000.0,
+      "pupil_min_area": 5000.0,
+      "pupil_threshold": 0.8999999761581421
+    },
+    "native_static": {
+      "cuda_device": 0,
+      "downsample_factor": 8,
+      "ellipse_refine_half_window": 15,
+      "enable_debug_outputs": true,
+      "enable_hough_pupil_seed": true,
+      "enable_telemetry": true,
+      "frame_height": 992,
+      "frame_width": 2048,
+      "hough_accumulator_dp": 1.0,
+      "hough_center_roi_margin_ratio": 0.15000000596046448,
+      "hough_center_vote_threshold": 5,
+      "hough_max_circles": 3,
+      "hough_radius_bin_step": 8,
+      "hough_radius_max_ratio": 1.2999999523162842,
+      "hough_radius_min_ratio": 0.6000000238418579,
+      "hough_radius_vote_threshold": 5,
+      "lm_convergence_threshold": 9.999999747378752e-05,
+      "lm_max_iterations": 16,
+      "loc_min_sigma": 0.5,
+      "p1_filter": {
+        "max_area": 80,
+        "max_aspect": 4.0,
+        "max_cx": 512.0,
+        "max_cy": 128.0,
+        "min_area": 4,
+        "min_cx": 0.0,
+        "min_cy": 0.0
+      },
+      "p1_loc_threshold": 220,
+      "p1_roi_size": 64,
+      "p4_filter": {
+        "max_area": 80,
+        "max_aspect": 4.0,
+        "max_cx": 512.0,
+        "max_cy": 128.0,
+        "min_area": 4,
+        "min_cx": 0.0,
+        "min_cy": 0.0
+      },
+      "p4_localization_threshold": 70,
+      "p4_roi_size": 128,
+      "pupil_filter": {
+        "max_area": 120000,
+        "max_aspect": 1.600000023841858,
+        "max_cx": 512.0,
+        "max_cy": 124.0,
+        "min_area": 4000,
+        "min_cx": 0.0,
+        "min_cy": 20.0
+      },
+      "pupil_max_hole_area": 2500,
+      "ransac_inlier_threshold": 16.0,
+      "ransac_max_major": 2400.0,
+      "ransac_min_aspect": 0.925000011920929,
+      "ransac_min_major": 500.0,
+      "starburst_roi_half_size": 32,
+      "starburst_search_span": 32,
+      "starburst_threshold_ratio": 1.0
+    },
+    "pair_index": [
+      2,
+      1,
+      0
+    ],
+    "pairing": {
+      "p1_left": "p4_right",
+      "p1_middle": "p4_middle",
+      "p1_right": "p4_left"
+    },
+    "pupil_reason_names": {
+      "0": "kAccepted",
+      "1": "kNoCandidates",
+      "2": "kRansacFailed",
+      "3": "kCircularityFailed",
+      "4": "kAreaMismatch",
+      "5": "kAspectMismatch",
+      "6": "kSolidityFailed",
+      "7": "kBoundaryIntersection",
+      "8": "kRoiOutOfBounds"
+    },
+    "s_ref": 0.7565034612400331,
+    "source_video": "/workspace/ximea/xrecorder/exp5/capture_4.mkv",
+    "source_video_name": "capture_4.mkv",
+    "start_frame": 0,
+    "status_names": {
+      "0": "NO_PUPIL",
+      "1": "P1_COUNT",
+      "2": "NO_SEED",
+      "3": "OK3",
+      "4": "OK2",
+      "5": "OKF",
+      "6": "P4_FAIL",
+      "7": "OKV"
+    },
+    "tolerances": {
+      "fallback_angle_tol": 3.0,
+      "fallback_scale_tol": 0.125,
+      "triangle_angle_tol": 3.0,
+      "triangle_scale_tol": 0.12
+    }
+  }
+}

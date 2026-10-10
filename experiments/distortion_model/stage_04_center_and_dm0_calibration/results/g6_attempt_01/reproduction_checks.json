@@ -1,0 +1,4276 @@
+{
+  "G6_decision": "REPAIR",
+  "checks": {
+    "G5_Dobs_carry_through": {
+      "detail": {
+        "equal_nan": true,
+        "max_abs": 0.0
+      },
+      "pass": true
+    },
+    "archived_source_hashes": {
+      "detail": {
+        "entries": 34,
+        "mismatches": 0
+      },
+      "pass": true
+    },
+    "artifact_npz_safe_open_and_semantic_checkpoint_hash": {
+      "detail": {
+        "checkpoint_hash": "76babeee0e2a4e80d138c56a387a661ea81b623cb6d8ffde23671e1310a5ec0e",
+        "npz_files": [
+          {
+            "array_hash": "76babeee0e2a4e80d138c56a387a661ea81b623cb6d8ffde23671e1310a5ec0e",
+            "file": "fitted.npz",
+            "keys": [
+              "C1_hat_px",
+              "C4_hat_px",
+              "D_obs_reference_px",
+              "D_prediction_reference_px",
+              "F1",
+              "F4",
+              "accommodation_D",
+              "center_block_evaluated",
+              "centroid_prediction_px",
+              "centroid_residual_px",
+              "g",
+              "initial_relative_prediction_px",
+              "initial_relative_residual_px",
+              "input_valid",
+              "mu1",
+              "mu4",
+              "mu4_minus_mu1_reference_px",
+              "raw_centroid_separation_px",
+              "relative_observed_px",
+              "relative_prediction_px",
+              "relative_residual_px",
+              "status",
+              "theta_visual_deg"
+            ]
+          }
+        ],
+        "reproduced_array_hash": "76babeee0e2a4e80d138c56a387a661ea81b623cb6d8ffde23671e1310a5ec0e"
+      },
+      "pass": true
+    },
+    "certificate_and_scope_flags": {
+      "detail": {
+        "center_block_certified": true,
+        "comparison_complete": false,
+        "crosscheck_complete": false,
+        "fit_certified": false,
+        "fit_complete": false,
+        "gradient_inf": 4.326982097116316e-11,
+        "rank": 10,
+        "threshold": 1e-06
+      },
+      "pass": true
+    },
+    "console_log_preserved": {
+      "detail": {
+        "bytes": 4607,
+        "path": "/home/aplab/ACC/experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g6_attempt_01/console.log"
+      },
+      "pass": true
+    },
+    "frozen_optical_outputs_recomputed": {
+      "detail": {
+        "F1": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        },
+        "F4": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        },
+        "mu1": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        },
+        "mu4": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        }
+      },
+      "pass": true
+    },
+    "g3_base_checkpoint_hash": {
+      "detail": {
+        "actual": "1b46cb440bf412bc0a4ef4894d95ec5bea1df3a4560597e146d3eccaf0485d3e",
+        "expected": "1b46cb440bf412bc0a4ef4894d95ec5bea1df3a4560597e146d3eccaf0485d3e"
+      },
+      "pass": true
+    },
+    "independent_cost_anchors_regularization": {
+      "detail": {
+        "after": {
+          "A_mean_anchor": 0.43781772823416665,
+          "A_mean_deviation_D": [
+            0.0020680124099929365,
+            0.21713937808363964,
+            -0.024212304792804284,
+            -0.1297240835291734,
+            0.4138164417097217,
+            -0.516063696265793,
+            -0.09829018874881035,
+            -0.14351339636343408,
+            0.10140655728702441,
+            -0.27812958395351917,
+            -0.10802275578469578,
+            0.579235940514971,
+            0.20216088578091007,
+            0.13314568961369,
+            -0.14492218977412685,
+            -0.1551351913808705,
+            0.11404597255030824,
+            0.05466909982639834,
+            0.08145979063878084,
+            -0.03214831055362111
+          ],
+          "point": 2011.0093010041228,
+          "regularization": 2.0201575035935513e-05,
+          "temporal": 0.0,
+          "theta_mean_anchor": 122.64452701633817,
+          "theta_mean_deviation_deg": [
+            -0.016974132845069434,
+            -0.01489896553837422,
+            -0.0020702209523218757,
+            0.12130624424329284,
+            -0.0873629249074881,
+            0.13331211117641395,
+            -0.9927364814038988,
+            -2.068178476870211,
+            -3.056553411322466,
+            -3.884837014811138,
+            0.22204620906653894,
+            -0.5858793397496402,
+            -1.518658490509168,
+            -2.087658985751555,
+            -2.8758813042607887,
+            0.46085018406161105,
+            -0.08613642835808832,
+            -0.6382302638845696,
+            -1.032328617571673,
+            -1.5162693777482197
+          ],
+          "total": 2134.09166595027
+        },
+        "before": {
+          "A_mean_anchor": 0.43781772823416665,
+          "A_mean_deviation_D": [
+            0.0020680124099929365,
+            0.21713937808363964,
+            -0.024212304792804284,
+            -0.1297240835291734,
+            0.4138164417097217,
+            -0.516063696265793,
+            -0.09829018874881035,
+            -0.14351339636343408,
+            0.10140655728702441,
+            -0.27812958395351917,
+            -0.10802275578469578,
+            0.579235940514971,
+            0.20216088578091007,
+            0.13314568961369,
+            -0.14492218977412685,
+            -0.1551351913808705,
+            0.11404597255030824,
+            0.05466909982639834,
+            0.08145979063878084,
+            -0.03214831055362111
+          ],
+          "point": 54636.352524748116,
+          "regularization": 0.0,
+          "temporal": 0.0,
+          "theta_mean_anchor": 122.64452701633817,
+          "theta_mean_deviation_deg": [
+            -0.016974132845069434,
+            -0.01489896553837422,
+            -0.0020702209523218757,
+            0.12130624424329284,
+            -0.0873629249074881,
+            0.13331211117641395,
+            -0.9927364814038988,
+            -2.068178476870211,
+            -3.056553411322466,
+            -3.884837014811138,
+            0.22204620906653894,
+            -0.5858793397496402,
+            -1.518658490509168,
+            -2.087658985751555,
+            -2.8758813042607887,
+            0.46085018406161105,
+            -0.08613642835808832,
+            -0.6382302638845696,
+            -1.032328617571673,
+            -1.5162693777482197
+          ],
+          "total": 54759.43486949269
+        },
+        "saved_after": {
+          "A_mean_anchor": 0.43781772823416665,
+          "A_mean_deviation_D": [
+            0.0020680124099929365,
+            0.21713937808363964,
+            -0.024212304792804284,
+            -0.1297240835291734,
+            0.4138164417097217,
+            -0.516063696265793,
+            -0.09829018874881035,
+            -0.14351339636343408,
+            0.10140655728702441,
+            -0.27812958395351917,
+            -0.10802275578469578,
+            0.579235940514971,
+            0.20216088578091007,
+            0.13314568961369,
+            -0.14492218977412685,
+            -0.1551351913808705,
+            0.11404597255030824,
+            0.05466909982639834,
+            0.08145979063878084,
+            -0.03214831055362111
+          ],
+          "point": 2011.009301004123,
+          "regularization": 2.0201575036050256e-05,
+          "temporal": 0.0,
+          "theta_mean_anchor": 122.64452701633817,
+          "theta_mean_deviation_deg": [
+            -0.016974132845069434,
+            -0.01489896553837422,
+            -0.0020702209523218757,
+            0.12130624424329284,
+            -0.0873629249074881,
+            0.13331211117641395,
+            -0.9927364814038988,
+            -2.068178476870211,
+            -3.056553411322466,
+            -3.884837014811138,
+            0.22204620906653894,
+            -0.5858793397496402,
+            -1.518658490509168,
+            -2.087658985751555,
+            -2.8758813042607887,
+            0.46085018406161105,
+            -0.08613642835808832,
+            -0.6382302638845696,
+            -1.032328617571673,
+            -1.5162693777482197
+          ],
+          "total": 2134.0916659502705
+        },
+        "saved_before": {
+          "A_mean_anchor": 0.43781772823416665,
+          "A_mean_deviation_D": [
+            0.0020680124099929365,
+            0.21713937808363964,
+            -0.024212304792804284,
+            -0.1297240835291734,
+            0.4138164417097217,
+            -0.516063696265793,
+            -0.09829018874881035,
+            -0.14351339636343408,
+            0.10140655728702441,
+            -0.27812958395351917,
+            -0.10802275578469578,
+            0.579235940514971,
+            0.20216088578091007,
+            0.13314568961369,
+            -0.14492218977412685,
+            -0.1551351913808705,
+            0.11404597255030824,
+            0.05466909982639834,
+            0.08145979063878084,
+            -0.03214831055362111
+          ],
+          "point": 54636.352524748116,
+          "regularization": 0.0,
+          "temporal": 0.0,
+          "theta_mean_anchor": 122.64452701633817,
+          "theta_mean_deviation_deg": [
+            -0.016974132845069434,
+            -0.01489896553837422,
+            -0.0020702209523218757,
+            0.12130624424329284,
+            -0.0873629249074881,
+            0.13331211117641395,
+            -0.9927364814038988,
+            -2.068178476870211,
+            -3.056553411322466,
+            -3.884837014811138,
+            0.22204620906653894,
+            -0.5858793397496402,
+            -1.518658490509168,
+            -2.087658985751555,
+            -2.8758813042607887,
+            0.46085018406161105,
+            -0.08613642835808832,
+            -0.6382302638845696,
+            -1.032328617571673,
+            -1.5162693777482197
+          ],
+          "total": 54759.43486949269
+        }
+      },
+      "pass": true
+    },
+    "independent_full_covariance_normal_equations": {
+      "detail": {
+        "coefficients": [
+          [
+            49.01847187723442,
+            51.13192591579199
+          ],
+          [
+            0.43620768413095173,
+            0.7208089465545503
+          ],
+          [
+            205.47366453959455,
+            8.950483549520728
+          ],
+          [
+            0.2833289125474896,
+            -0.6496042700586797
+          ],
+          [
+            1.202325085748353,
+            0.1327365522974012
+          ]
+        ],
+        "data_hessian_condition": 57.262158767277434,
+        "gradient_vector": [
+          -1.4210854715202004e-14,
+          2.842170943040401e-14,
+          -5.684341886080802e-14,
+          -2.842170943040401e-14,
+          5.684341886080802e-14,
+          1.4210854715202004e-14,
+          2.2737367544323206e-13,
+          -2.842170943040401e-14,
+          7.105427357601002e-15,
+          1.4210854715202004e-14
+        ],
+        "max_coefficient_difference": {
+          "equal_nan": false,
+          "max_abs": 3.4772185131259903e-12
+        },
+        "normal_equation_residual_inf": 2.2737367544323206e-13,
+        "parameter_count": 10,
+        "rank": 10,
+        "saved_scaled_gradient_inf": 6.490473145674475e-11,
+        "scaled_gradient_inf": 4.326982097116316e-11
+      },
+      "pass": true
+    },
+    "no_automated_tests_run": {
+      "detail": {
+        "automated_tests_run": false
+      },
+      "pass": true
+    },
+    "parent_g5_checkpoint_summary_hashes": {
+      "detail": {
+        "checkpoint": "32100a45ee12e0446b047acac482dd301c94956fc672698a828dabfeed64b98b",
+        "expected_checkpoint": "32100a45ee12e0446b047acac482dd301c94956fc672698a828dabfeed64b98b",
+        "expected_summary": "1ac3d8c1e0899b03e96513ac7cea006326ad45b96de285230f5fa5a6d5bbc1e3",
+        "summary": "1ac3d8c1e0899b03e96513ac7cea006326ad45b96de285230f5fa5a6d5bbc1e3"
+      },
+      "pass": true
+    },
+    "predictions_centers_sign_units_and_origin": {
+      "detail": {
+        "C1_hat_px": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        },
+        "C4_hat_px": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        },
+        "D_obs_reference_px": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        },
+        "D_prediction_reference_px": {
+          "equal_nan": false,
+          "max_abs": 3.865352482534945e-12
+        },
+        "Dobs_sign_units": {
+          "equal_nan": false,
+          "max_abs": 2.8421709430404007e-13
+        },
+        "centroid_identity": {
+          "equal_nan": false,
+          "max_abs": 1.1368683772161603e-13
+        },
+        "centroid_prediction_px": {
+          "equal_nan": false,
+          "max_abs": 3.865352482534945e-12
+        },
+        "generic_forward": {
+          "equal_nan": false,
+          "max_abs": 1.1368683772161603e-13
+        },
+        "generic_g": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        },
+        "initial_relative_prediction_px": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        },
+        "initial_relative_residual_px": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        },
+        "mu4_minus_mu1_reference_px": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        },
+        "origin_conversion": {
+          "equal_nan": false,
+          "max_abs": 1.7053025658242404e-13
+        },
+        "raw_centroid_separation_px": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        },
+        "relative_observed_px": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        },
+        "relative_prediction_px": {
+          "equal_nan": false,
+          "max_abs": 3.865352482534945e-12
+        },
+        "relative_residual_px": {
+          "equal_nan": false,
+          "max_abs": 3.865352482534945e-12
+        }
+      },
+      "pass": true
+    },
+    "reported_aggregates": {
+      "detail": {
+        "P1_centered_point_rms_px": 0.9891700446456166,
+        "after_equal_exposure_centroid_rms_px": 4.894302785337661,
+        "after_equal_exposure_relative_rms_px": 4.560658934848985,
+        "before_equal_exposure_relative_rms_px": 72.07082166081261
+      },
+      "pass": true
+    },
+    "review_status": {
+      "decision": "REPAIR",
+      "pass": true,
+      "reviewed_utc": "2026-10-10T02:28:53Z",
+      "reviewer": "root implementation/audit agent",
+      "scientific_disposition": "reporting_repair_only",
+      "status": "COMPLETE"
+    },
+    "scheduled_valid_unavailable_status": {
+      "detail": {
+        "evaluated": 89175,
+        "scheduled": 100090,
+        "unavailable": 10915,
+        "unavailable_status_counts": {
+          "input_unavailable": 10915
+        },
+        "valid": 89175
+      },
+      "pass": true
+    },
+    "twenty_exposure_one_hundred_block_reconstruction": {
+      "detail": {
+        "block_count": 100,
+        "exposure_count": 20,
+        "exposures": [
+          {
+            "P4_relative_point_rms_px": 2.2939750196087894,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 1.3001783642965374,
+                "block": 0,
+                "centroid_rms_px": 1.2442079166981324,
+                "evaluated": 904,
+                "initial_relative_coordinate_rms_px": 99.84035571325067,
+                "mean_A_D": 0.4432147444797494,
+                "mean_theta_deg": -9.81141314809059,
+                "point_cost_contribution": 1.0256661181154487,
+                "relative_coordinate_rms_px": 1.034835468500407,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  0.16345068157804926,
+                  0.004833094530720074,
+                  -0.03277858317908489,
+                  0.003766835342758112,
+                  0.22852506424135455,
+                  -1.1287585030781149,
+                  0.581495953438354,
+                  -1.4370174367820376,
+                  0.24853027134558253,
+                  -1.3617420154612032
+                ],
+                "unavailable": 56,
+                "valid": 904
+              },
+              {
+                "P4_relative_point_rms_px": 1.5759868112571136,
+                "block": 1,
+                "centroid_rms_px": 1.5736549911696636,
+                "evaluated": 914,
+                "initial_relative_coordinate_rms_px": 102.42042977626075,
+                "mean_A_D": 0.3659252130620635,
+                "mean_theta_deg": -10.0971493307229,
+                "point_cost_contribution": 0.3358917341730116,
+                "relative_coordinate_rms_px": 1.2279307909167159,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  -0.25599289303515316,
+                  -0.07554745938646563,
+                  -0.28433300057673594,
+                  0.02349038968895538,
+                  0.21423505197987827,
+                  -2.1606175094893643,
+                  0.3616889132098731,
+                  -2.2542363806166565,
+                  0.20780475705448787,
+                  -2.14105310423516
+                ],
+                "unavailable": 46,
+                "valid": 914
+              },
+              {
+                "P4_relative_point_rms_px": 2.02961761103498,
+                "block": 2,
+                "centroid_rms_px": 2.028759372042336,
+                "evaluated": 900,
+                "initial_relative_coordinate_rms_px": 101.89258351194535,
+                "mean_A_D": 0.355026301676857,
+                "mean_theta_deg": -10.048436037663576,
+                "point_cost_contribution": 0.3300868301608948,
+                "relative_coordinate_rms_px": 1.5776980407622132,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  -0.304571694317462,
+                  -0.06823303392169887,
+                  -0.26428292449742,
+                  0.03977061614382691,
+                  0.2783222012471174,
+                  -2.864302815122289,
+                  0.281555179730483,
+                  -2.773332053470118,
+                  0.29101810906529757,
+                  -2.7225105533638176
+                ],
+                "unavailable": 60,
+                "valid": 900
+              },
+              {
+                "P4_relative_point_rms_px": 2.299126903696919,
+                "block": 3,
+                "centroid_rms_px": 2.2981550554378556,
+                "evaluated": 914,
+                "initial_relative_coordinate_rms_px": 101.79120675219218,
+                "mean_A_D": 0.3438718413741134,
+                "mean_theta_deg": -10.038928858485455,
+                "point_cost_contribution": 0.473462845972942,
+                "relative_coordinate_rms_px": 1.7887698890662438,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  -0.40943328582501354,
+                  -0.09707137248019743,
+                  -0.31166427523181306,
+                  0.010700960039491956,
+                  0.22854751184889255,
+                  -3.261880851056707,
+                  0.3676951512825448,
+                  -3.232330225278478,
+                  0.27181549683532624,
+                  -3.178991421837256
+                ],
+                "unavailable": 46,
+                "valid": 914
+              },
+              {
+                "P4_relative_point_rms_px": 3.7042263318838495,
+                "block": 4,
+                "centroid_rms_px": 3.6754194062891568,
+                "evaluated": 801,
+                "initial_relative_coordinate_rms_px": 102.08259647039229,
+                "mean_A_D": 0.29675489165717694,
+                "mean_theta_deg": -10.09707983295232,
+                "point_cost_contribution": 4.793598663095033,
+                "relative_coordinate_rms_px": 2.933473043889158,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  0.9059012018784162,
+                  0.26278352307869457,
+                  0.9943363441136441,
+                  -0.08804068326046108,
+                  0.5999201634179137,
+                  -0.2545087119896081,
+                  -0.24981905431731802,
+                  0.07121793959656729,
+                  0.46120281079641734,
+                  -0.21718258252445263
+                ],
+                "unavailable": 159,
+                "valid": 801
+              }
+            ],
+            "capture": "capture_1_detections.pkl",
+            "centroid_rms_px": 2.2785358673240017,
+            "demand_D": 0.36036036036036034,
+            "evaluated": 4433,
+            "exposure": 0,
+            "initial_relative_coordinate_rms_px": 101.6004662073289,
+            "ledger_means": {
+              "C1_hat_px": [
+                621.1294409143541,
+                433.29945034206696
+              ],
+              "C4_hat_px": [
+                465.82587462725957,
+                473.62858749199376
+              ],
+              "D_obs_reference_px": [
+                -155.3015129617485,
+                40.33016865370243
+              ],
+              "D_prediction_reference_px": [
+                -155.59346856196495,
+                42.301242136981905
+              ],
+              "mu4_minus_mu1_reference_px": [
+                -2.319994591675128e-05,
+                0.0004172883381159408
+              ],
+              "raw_centroid_separation_px": [
+                -155.30358958155088,
+                40.32956959700181
+              ]
+            },
+            "mean_A_D": 0.36242837277034273,
+            "mean_theta_deg": -10.016974132845107,
+            "point_cost_contribution": 6.958706191517334,
+            "relative_coordinate_rms_px": 1.8025585128900228,
+            "scheduled": 4800,
+            "signed_relative_means_px": [
+              -0.0020139349227926793,
+              -0.0009755523153290582,
+              -0.0035561853587994224,
+              -1.5998186449586088e-05,
+              0.30280080158669914,
+              -1.9757038574859913,
+              0.2809889411467636,
+              -1.974450466759616,
+              0.2919882758760195,
+              -1.9665594914136346
+            ],
+            "target_theta_deg": -10.0,
+            "unavailable": 367,
+            "valid": 4433
+          },
+          {
+            "P4_relative_point_rms_px": 2.659543597176313,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 3.0717664377905107,
+                "block": 0,
+                "centroid_rms_px": 2.746474516921137,
+                "evaluated": 960,
+                "initial_relative_coordinate_rms_px": 46.0449414349383,
+                "mean_A_D": 0.7163662318890341,
+                "mean_theta_deg": -5.105438855174142,
+                "point_cost_contribution": 5.425552029927613,
+                "relative_coordinate_rms_px": 2.4305271713038716,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  1.1612802928558628,
+                  0.3554930470222065,
+                  0.5384627435199273,
+                  0.4124916118827462,
+                  3.230643420481454,
+                  -4.213406417119671,
+                  -0.49682649612084956,
+                  -2.163900620699842,
+                  3.1979323767125933,
+                  -3.2432190233747415
+                ],
+                "unavailable": 0,
+                "valid": 960
+              },
+              {
+                "P4_relative_point_rms_px": 2.396862488248305,
+                "block": 1,
+                "centroid_rms_px": 1.9936567695917515,
+                "evaluated": 960,
+                "initial_relative_coordinate_rms_px": 43.887355827987605,
+                "mean_A_D": 0.6690611225634492,
+                "mean_theta_deg": -4.957801768619793,
+                "point_cost_contribution": 1.5706251360509345,
+                "relative_coordinate_rms_px": 1.885534192285618,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  1.0111608102336118,
+                  0.12163242369501166,
+                  0.15384914806335873,
+                  0.045677024301669,
+                  3.219601230424457,
+                  -2.85926416451327,
+                  -0.35109870896334905,
+                  -0.8435804659903925,
+                  3.2492014849663775,
+                  -1.9772776882948755
+                ],
+                "unavailable": 0,
+                "valid": 960
+              },
+              {
+                "P4_relative_point_rms_px": 2.4010333915360325,
+                "block": 2,
+                "centroid_rms_px": 2.0344696028072997,
+                "evaluated": 960,
+                "initial_relative_coordinate_rms_px": 44.174098995824274,
+                "mean_A_D": 0.544011502552713,
+                "mean_theta_deg": -4.98300235619241,
+                "point_cost_contribution": 2.583057253807809,
+                "relative_coordinate_rms_px": 1.9093646704247382,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  1.3333421677756976,
+                  0.1468355460257292,
+                  0.2361299235524027,
+                  0.001619941609473614,
+                  3.1817286014372987,
+                  -2.760111628235493,
+                  -0.23566915090675739,
+                  -0.9115107512891257,
+                  3.2586049709559375,
+                  -2.159235708115513
+                ],
+                "unavailable": 0,
+                "valid": 960
+              },
+              {
+                "P4_relative_point_rms_px": 2.482440844785368,
+                "block": 3,
+                "centroid_rms_px": 2.160803318586068,
+                "evaluated": 960,
+                "initial_relative_coordinate_rms_px": 44.515920144811496,
+                "mean_A_D": 0.4777613049233889,
+                "mean_theta_deg": -5.010651438118703,
+                "point_cost_contribution": 2.7541521644987457,
+                "relative_coordinate_rms_px": 1.9716690466278932,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  1.3543858173855454,
+                  0.12592941124713822,
+                  0.1657367420435036,
+                  -0.014468898196152593,
+                  3.1612189665768247,
+                  -2.876764612775982,
+                  -0.15058110333142644,
+                  -1.2430820616553362,
+                  3.22943558694067,
+                  -2.519979216749385
+                ],
+                "unavailable": 0,
+                "valid": 960
+              },
+              {
+                "P4_relative_point_rms_px": 2.8736193198421103,
+                "block": 4,
+                "centroid_rms_px": 2.6140476735985017,
+                "evaluated": 960,
+                "initial_relative_coordinate_rms_px": 44.64700195090575,
+                "mean_A_D": 0.4802985302913514,
+                "mean_theta_deg": -5.01760040958685,
+                "point_cost_contribution": 2.478946940377801,
+                "relative_coordinate_rms_px": 2.2591193641606884,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  1.2010130304000106,
+                  0.06327859128403308,
+                  -0.016024199186260368,
+                  -0.04091048475211353,
+                  3.124620095444203,
+                  -3.642118584660268,
+                  -0.10326147912449037,
+                  -2.084023112694798,
+                  3.2116601763508394,
+                  -3.389973344753818
+                ],
+                "unavailable": 0,
+                "valid": 960
+              }
+            ],
+            "capture": "capture_1_detections.pkl",
+            "centroid_rms_px": 2.3306296305179597,
+            "demand_D": 0.36036036036036034,
+            "evaluated": 4800,
+            "exposure": 1,
+            "initial_relative_coordinate_rms_px": 44.66007072308685,
+            "ledger_means": {
+              "C1_hat_px": [
+                720.7241074571982,
+                426.54837485153433
+              ],
+              "C4_hat_px": [
+                669.1891627690552,
+                470.92935553056867
+              ],
+              "D_obs_reference_px": [
+                -51.60614701568815,
+                44.44130984104264
+              ],
+              "D_prediction_reference_px": [
+                -53.65739696479056,
+                46.90388532163172
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.007323696341506924,
+                -0.9982537507063286
+              ],
+              "raw_centroid_separation_px": [
+                -51.52763086902906,
+                43.38407393150979
+              ]
+            },
+            "mean_A_D": 0.5774997384439873,
+            "mean_theta_deg": -5.0148989655383795,
+            "point_cost_contribution": 14.81233352466289,
+            "relative_coordinate_rms_px": 2.1023545893282174,
+            "scheduled": 4800,
+            "signed_relative_means_px": [
+              1.2122364237301448,
+              0.16263380385482332,
+              0.21563087159858588,
+              0.08088183896912463,
+              3.1835624628728514,
+              -3.2703330814609335,
+              -0.26748738768937474,
+              -1.4492194024658955,
+              3.229366919185284,
+              -2.6579369962576673
+            ],
+            "target_theta_deg": -5.0,
+            "unavailable": 0,
+            "valid": 4800
+          },
+          {
+            "P4_relative_point_rms_px": 4.434019143260521,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 3.8563886960644544,
+                "block": 0,
+                "centroid_rms_px": 3.170712680964826,
+                "evaluated": 980,
+                "initial_relative_coordinate_rms_px": 14.569962059780691,
+                "mean_A_D": 0.28271489734036154,
+                "mean_theta_deg": 0.11267476015356259,
+                "point_cost_contribution": 15.42348036225498,
+                "relative_coordinate_rms_px": 3.1419669455044628,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  2.602649045056389,
+                  0.70619981487496,
+                  0.9998619956619705,
+                  0.8073099796072991,
+                  4.491941276684476,
+                  -4.716223924692006,
+                  0.5326670463129531,
+                  0.9145430768269117,
+                  5.090393428923373,
+                  -0.937121359071756
+                ],
+                "unavailable": 0,
+                "valid": 980
+              },
+              {
+                "P4_relative_point_rms_px": 3.998902061259192,
+                "block": 1,
+                "centroid_rms_px": 3.3099805704055187,
+                "evaluated": 980,
+                "initial_relative_coordinate_rms_px": 12.447641461289187,
+                "mean_A_D": 0.29831610294937416,
+                "mean_theta_deg": -0.032650243301376045,
+                "point_cost_contribution": 11.807422921317952,
+                "relative_coordinate_rms_px": 3.207704198537145,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  2.36093604948129,
+                  0.5542509924172333,
+                  0.5978961273363659,
+                  0.6943359309406143,
+                  4.625440209935737,
+                  -6.187025956483737,
+                  0.250941455359141,
+                  -0.6406434866076145,
+                  5.15248812368827,
+                  -2.746183553094442
+                ],
+                "unavailable": 0,
+                "valid": 980
+              },
+              {
+                "P4_relative_point_rms_px": 4.521529919767254,
+                "block": 2,
+                "centroid_rms_px": 3.9789529758495172,
+                "evaluated": 980,
+                "initial_relative_coordinate_rms_px": 12.746113308493369,
+                "mean_A_D": 0.36568257079662997,
+                "mean_theta_deg": -0.01657037697303384,
+                "point_cost_contribution": 8.535619073681671,
+                "relative_coordinate_rms_px": 3.550652835817874,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  1.6297222481731335,
+                  0.41001462858349,
+                  0.13547248545111315,
+                  0.7332242236258067,
+                  4.657635149021921,
+                  -7.353775886459508,
+                  0.29761991522720904,
+                  -2.2016131820164495,
+                  5.003992506968891,
+                  -4.0246250946767335
+                ],
+                "unavailable": 0,
+                "valid": 980
+              },
+              {
+                "P4_relative_point_rms_px": 5.1128463444015155,
+                "block": 3,
+                "centroid_rms_px": 4.664774581913304,
+                "evaluated": 980,
+                "initial_relative_coordinate_rms_px": 12.375114706747242,
+                "mean_A_D": 0.37673529262842503,
+                "mean_theta_deg": -0.06531126039685309,
+                "point_cost_contribution": 5.546558734025356,
+                "relative_coordinate_rms_px": 3.9802592321942676,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  0.8371858382155641,
+                  0.3644300010692882,
+                  0.20231076904651787,
+                  0.7135937862498246,
+                  4.634905880354592,
+                  -8.41198835819413,
+                  0.3194571264052536,
+                  -3.4255877332342193,
+                  4.96237488909017,
+                  -5.265027140682041
+                ],
+                "unavailable": 0,
+                "valid": 980
+              },
+              {
+                "P4_relative_point_rms_px": 4.5666450252364355,
+                "block": 4,
+                "centroid_rms_px": 4.199475028737193,
+                "evaluated": 980,
+                "initial_relative_coordinate_rms_px": 12.860396519462867,
+                "mean_A_D": 0.3572914141229264,
+                "mean_theta_deg": -0.00849398424390874,
+                "point_cost_contribution": 7.9746434714315955,
+                "relative_coordinate_rms_px": 3.58315008023648,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  -1.466488339223797,
+                  0.15398218449921766,
+                  0.061534909741115196,
+                  0.6582950039279029,
+                  4.206919630327327,
+                  -7.470155527420139,
+                  1.026504373000477,
+                  -2.828531917710295,
+                  4.744964515354283,
+                  -4.4275574291941995
+                ],
+                "unavailable": 0,
+                "valid": 980
+              }
+            ],
+            "capture": "capture_1_detections.pkl",
+            "centroid_rms_px": 3.904796268251818,
+            "demand_D": 0.36036036036036034,
+            "evaluated": 4900,
+            "exposure": 2,
+            "initial_relative_coordinate_rms_px": 13.024778228347467,
+            "ledger_means": {
+              "C1_hat_px": [
+                827.6265960028293,
+                424.87202135169264
+              ],
+              "C4_hat_px": [
+                879.7206500954901,
+                471.79004646461715
+              ],
+              "D_obs_reference_px": [
+                52.31292009858557,
+                47.11572663880056
+              ],
+              "D_prediction_reference_px": [
+                48.96571835663676,
+                51.112722076151634
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.01401055303894346,
+                -2.023551787647249
+              ],
+              "raw_centroid_separation_px": [
+                52.10800609355079,
+                44.90292539012673
+              ]
+            },
+            "mean_A_D": 0.33614805556754346,
+            "mean_theta_deg": -0.0020702209523218284,
+            "point_cost_contribution": 49.28772456271157,
+            "relative_coordinate_rms_px": 3.5057063803297437,
+            "scheduled": 4900,
+            "signed_relative_means_px": [
+              1.1928009683405154,
+              0.4377755242888373,
+              0.39941525744741685,
+              0.72135178487029,
+              4.523368429264813,
+              -6.827833930649901,
+              0.4854379832610074,
+              -1.636366648548334,
+              4.990842692804993,
+              -3.480102915343844
+            ],
+            "target_theta_deg": 0.0,
+            "unavailable": 0,
+            "valid": 4900
+          },
+          {
+            "P4_relative_point_rms_px": 5.245068055843656,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 5.128383242822764,
+                "block": 0,
+                "centroid_rms_px": 3.844674523226675,
+                "evaluated": 993,
+                "initial_relative_coordinate_rms_px": 70.0458500393265,
+                "mean_A_D": 0.4536142832528116,
+                "mean_theta_deg": 4.9921479128361455,
+                "point_cost_contribution": 35.134575494638895,
+                "relative_coordinate_rms_px": 4.244773402086888,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.9495772860040854,
+                  1.0063288940654491,
+                  1.6561200158099274,
+                  1.138145583812601,
+                  5.715461146420528,
+                  -7.791444248871849,
+                  -0.23978563237649222,
+                  0.8598480990424652,
+                  6.038698677287498,
+                  -0.6135704892635111
+                ],
+                "unavailable": 7,
+                "valid": 993
+              },
+              {
+                "P4_relative_point_rms_px": 5.10562472558772,
+                "block": 1,
+                "centroid_rms_px": 3.783361072448316,
+                "evaluated": 1000,
+                "initial_relative_coordinate_rms_px": 69.50120233294284,
+                "mean_A_D": 0.346330463880242,
+                "mean_theta_deg": 5.104228400683128,
+                "point_cost_contribution": 44.085082411120624,
+                "relative_coordinate_rms_px": 4.362428850007763,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  4.064698461780771,
+                  1.581140460672838,
+                  3.6270275402831005,
+                  1.2320212862180708,
+                  5.90621478499468,
+                  -8.928751828685455,
+                  -0.3351445229534557,
+                  -0.22004604128338962,
+                  6.150387099783047,
+                  -1.6945762745783843
+                ],
+                "unavailable": 0,
+                "valid": 1000
+              },
+              {
+                "P4_relative_point_rms_px": 5.122230707004149,
+                "block": 2,
+                "centroid_rms_px": 3.822601759779324,
+                "evaluated": 1000,
+                "initial_relative_coordinate_rms_px": 69.48294089479883,
+                "mean_A_D": 0.21014066401784726,
+                "mean_theta_deg": 5.104845903315363,
+                "point_cost_contribution": 48.615146168387156,
+                "relative_coordinate_rms_px": 4.449084614877687,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  4.5275387012351995,
+                  1.644559477159118,
+                  4.013011896237639,
+                  1.0694268801387927,
+                  5.879118660704199,
+                  -8.917857580314198,
+                  -0.2101960941885096,
+                  -0.12994490689029944,
+                  6.2801608351173,
+                  -1.8805639136395351
+                ],
+                "unavailable": 0,
+                "valid": 1000
+              },
+              {
+                "P4_relative_point_rms_px": 5.036704769409934,
+                "block": 3,
+                "centroid_rms_px": 3.790354861628918,
+                "evaluated": 1000,
+                "initial_relative_coordinate_rms_px": 70.3102737950887,
+                "mean_A_D": 0.1430452117996001,
+                "mean_theta_deg": 5.180755779813979,
+                "point_cost_contribution": 47.0048810137915,
+                "relative_coordinate_rms_px": 4.359612558207326,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  4.232128111801979,
+                  1.6422063748964757,
+                  3.987900881438086,
+                  1.134471800730355,
+                  5.745418619319128,
+                  -8.742086952386723,
+                  0.07603953187474377,
+                  -0.039264393532691115,
+                  6.2537048550297225,
+                  -1.768275250494761
+                ],
+                "unavailable": 0,
+                "valid": 1000
+              },
+              {
+                "P4_relative_point_rms_px": 5.794122945607087,
+                "block": 4,
+                "centroid_rms_px": 4.694111912149989,
+                "evaluated": 1000,
+                "initial_relative_coordinate_rms_px": 70.66910374274323,
+                "mean_A_D": 0.001611607250327232,
+                "mean_theta_deg": 5.223649116248043,
+                "point_cost_contribution": 57.441489332984865,
+                "relative_coordinate_rms_px": 4.991777790444227,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  4.5343757943475005,
+                  1.8146811739769242,
+                  4.7483567293716735,
+                  1.0590278504444413,
+                  6.018933842184188,
+                  -10.52004430665674,
+                  0.2683939115718814,
+                  -1.1259865853059339,
+                  6.01361470315896,
+                  -3.7362784534715603
+                ],
+                "unavailable": 0,
+                "valid": 1000
+              }
+            ],
+            "capture": "capture_1_detections.pkl",
+            "centroid_rms_px": 4.0029438739776655,
+            "demand_D": 0.36036036036036034,
+            "evaluated": 4993,
+            "exposure": 3,
+            "initial_relative_coordinate_rms_px": 70.00333199422361,
+            "ledger_means": {
+              "C1_hat_px": [
+                936.0924618431691,
+                432.27841579478127
+              ],
+              "C4_hat_px": [
+                1092.2820739046588,
+                483.47814101948046
+              ],
+              "D_obs_reference_px": [
+                158.521839591548,
+                51.95909755050547
+              ],
+              "D_prediction_reference_px": [
+                154.49154020426582,
+                55.70108831069633
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.01957591803211157,
+                -3.095625240473849
+              ],
+              "raw_centroid_separation_px": [
+                156.20889944046385,
+                48.14961750947858
+              ]
+            },
+            "mean_A_D": 0.23063627683117535,
+            "mean_theta_deg": 5.121306244243302,
+            "point_cost_contribution": 232.281174420923,
+            "relative_coordinate_rms_px": 4.489594107750899,
+            "scheduled": 5000,
+            "signed_relative_means_px": [
+              4.063222774718111,
+              1.5385283554000309,
+              3.609217749455189,
+              1.1266025199794882,
+              5.853222276306391,
+              -8.981703346119152,
+              -0.08792595766977719,
+              -0.1324680081440311,
+              6.147465507637786,
+              -1.9405105924339907
+            ],
+            "target_theta_deg": 5.0,
+            "unavailable": 7,
+            "valid": 4993
+          },
+          {
+            "P4_relative_point_rms_px": 5.9751990302684765,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 5.81912755047182,
+                "block": 0,
+                "centroid_rms_px": 3.3021340875905603,
+                "evaluated": 1040,
+                "initial_relative_coordinate_rms_px": 124.8342187304742,
+                "mean_A_D": 0.6860956970349044,
+                "mean_theta_deg": 9.9012037916701,
+                "point_cost_contribution": 35.93636082308587,
+                "relative_coordinate_rms_px": 4.630058754647458,
+                "scheduled": 1040,
+                "signed_relative_means_px": [
+                  1.7899558898841414,
+                  0.03287418777458735,
+                  -2.0932320167531304,
+                  1.1180959159641282,
+                  7.612495551800759,
+                  -9.51945115549632,
+                  -2.905082075567524,
+                  -0.12251546070186739,
+                  6.482360833211131,
+                  1.4908162278480273
+                ],
+                "unavailable": 0,
+                "valid": 1040
+              },
+              {
+                "P4_relative_point_rms_px": 5.860362360334445,
+                "block": 1,
+                "centroid_rms_px": 3.6544250795864173,
+                "evaluated": 1040,
+                "initial_relative_coordinate_rms_px": 123.72869311961263,
+                "mean_A_D": 0.6755553674068019,
+                "mean_theta_deg": 9.82529958043111,
+                "point_cost_contribution": 36.97242604711389,
+                "relative_coordinate_rms_px": 4.652136574916014,
+                "scheduled": 1040,
+                "signed_relative_means_px": [
+                  2.20057811577282,
+                  0.11157842510257608,
+                  -1.9870655125259489,
+                  1.1872593880308802,
+                  7.382113910537442,
+                  -10.077825115071338,
+                  -2.5418972731180256,
+                  -1.0099117681001504,
+                  6.39565753036,
+                  0.5823664043781082
+                ],
+                "unavailable": 0,
+                "valid": 1040
+              },
+              {
+                "P4_relative_point_rms_px": 5.721413620408356,
+                "block": 2,
+                "centroid_rms_px": 3.580739914032627,
+                "evaluated": 1040,
+                "initial_relative_coordinate_rms_px": 125.59982456894727,
+                "mean_A_D": 0.7885534749947265,
+                "mean_theta_deg": 9.960952208767399,
+                "point_cost_contribution": 43.40922861957667,
+                "relative_coordinate_rms_px": 4.581201236920653,
+                "scheduled": 1040,
+                "signed_relative_means_px": [
+                  1.2937038241125591,
+                  -0.26614822869424754,
+                  -3.1416519505115525,
+                  1.0731416066294115,
+                  7.22168673551783,
+                  -9.914886747190707,
+                  -2.35258189332961,
+                  -1.2156319371572055,
+                  6.13768195992613,
+                  0.7543509618148817
+                ],
+                "unavailable": 0,
+                "valid": 1040
+              },
+              {
+                "P4_relative_point_rms_px": 5.936062829787856,
+                "block": 3,
+                "centroid_rms_px": 3.912762832194422,
+                "evaluated": 1040,
+                "initial_relative_coordinate_rms_px": 125.5861634172111,
+                "mean_A_D": 0.8787646377272685,
+                "mean_theta_deg": 9.949632480030006,
+                "point_cost_contribution": 41.59148098710256,
+                "relative_coordinate_rms_px": 4.752508850968447,
+                "scheduled": 1040,
+                "signed_relative_means_px": [
+                  0.5627551727849426,
+                  -0.44962465208269536,
+                  -3.539802276883869,
+                  0.9661623828615831,
+                  7.183500234877278,
+                  -10.624336613436709,
+                  -2.41257511958446,
+                  -1.969009677849073,
+                  6.059862137604067,
+                  0.06902763548629431
+                ],
+                "unavailable": 0,
+                "valid": 1040
+              },
+              {
+                "P4_relative_point_rms_px": 6.5302785939042,
+                "block": 4,
+                "centroid_rms_px": 4.724830296089417,
+                "evaluated": 994,
+                "initial_relative_coordinate_rms_px": 125.23078101386744,
+                "mean_A_D": 0.8450495911658916,
+                "mean_theta_deg": 9.92672022303039,
+                "point_cost_contribution": 39.00528067266803,
+                "relative_coordinate_rms_px": 5.18933596181637,
+                "scheduled": 1040,
+                "signed_relative_means_px": [
+                  0.940021054962446,
+                  -0.34900859660554373,
+                  -3.252552442491947,
+                  0.9842561874178092,
+                  7.243730025726543,
+                  -12.046170758047579,
+                  -2.4786764593107993,
+                  -3.267492243114378,
+                  6.132500590340259,
+                  -1.3291876235686988
+                ],
+                "unavailable": 46,
+                "valid": 994
+              }
+            ],
+            "capture": "capture_1_detections.pkl",
+            "centroid_rms_px": 3.8570703123519867,
+            "demand_D": 0.36036036036036034,
+            "evaluated": 5154,
+            "exposure": 4,
+            "initial_relative_coordinate_rms_px": 124.99577559383503,
+            "ledger_means": {
+              "C1_hat_px": [
+                1032.9065434409179,
+                425.6052726642034
+              ],
+              "C4_hat_px": [
+                1290.3615693403779,
+                481.8103015227047
+              ],
+              "D_obs_reference_px": [
+                257.8602184946193,
+                56.29502383761929
+              ],
+              "D_prediction_reference_px": [
+                254.1764456470071,
+                60.16555369931632
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.021420982792987226,
+                -4.020834519938244
+              ],
+              "raw_centroid_separation_px": [
+                257.4764123678246,
+                52.19057131797272
+              ]
+            },
+            "mean_A_D": 0.7741768020700709,
+            "mean_theta_deg": 9.912637075092503,
+            "point_cost_contribution": 196.91477714954704,
+            "relative_coordinate_rms_px": 4.76224274379367,
+            "scheduled": 5200,
+            "signed_relative_means_px": [
+              1.3611279882206677,
+              -0.18259364059792071,
+              -2.7988472942915177,
+              1.066510732541472,
+              7.329463705008712,
+              -10.422167898708219,
+              -2.5386934840160134,
+              -1.5012881038448405,
+              6.242586446710073,
+              0.32813565791251875
+            ],
+            "target_theta_deg": 10.0,
+            "unavailable": 46,
+            "valid": 5154
+          },
+          {
+            "P4_relative_point_rms_px": 15.723118451663026,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 22.91852121154381,
+                "block": 0,
+                "centroid_rms_px": 21.518106676680596,
+                "evaluated": 820,
+                "initial_relative_coordinate_rms_px": 99.60408001612126,
+                "mean_A_D": 3.095173765814283,
+                "mean_theta_deg": -9.669031963697904,
+                "point_cost_contribution": 12.941295525911018,
+                "relative_coordinate_rms_px": 17.75553249404006,
+                "scheduled": 920,
+                "signed_relative_means_px": [
+                  0.7910345910374094,
+                  0.1722430089175557,
+                  0.5496598907442548,
+                  -0.028880309118485534,
+                  2.116929288479351,
+                  7.40813436529676,
+                  0.032784253668094225,
+                  7.99320732147818,
+                  -2.1590103759607904,
+                  6.654778838195798
+                ],
+                "unavailable": 100,
+                "valid": 820
+              },
+              {
+                "P4_relative_point_rms_px": 1.9167747152884307,
+                "block": 1,
+                "centroid_rms_px": 1.2861274572191854,
+                "evaluated": 800,
+                "initial_relative_coordinate_rms_px": 100.54740340850466,
+                "mean_A_D": 3.431769169032401,
+                "mean_theta_deg": -9.949413269504872,
+                "point_cost_contribution": 1.001640516358137,
+                "relative_coordinate_rms_px": 1.5028942028873173,
+                "scheduled": 920,
+                "signed_relative_means_px": [
+                  0.64921537340539,
+                  0.10210122902194421,
+                  0.3100403546576606,
+                  -0.040748874569704316,
+                  1.7825675302372905,
+                  -0.7514692603035626,
+                  -1.237633557455659,
+                  -2.5565295098940037,
+                  -0.992802047892671,
+                  -1.4510450470164253
+                ],
+                "unavailable": 120,
+                "valid": 800
+              },
+              {
+                "P4_relative_point_rms_px": 2.5102816678703306,
+                "block": 2,
+                "centroid_rms_px": 2.1610792267034995,
+                "evaluated": 654,
+                "initial_relative_coordinate_rms_px": 100.45614942713357,
+                "mean_A_D": 3.638916089717125,
+                "mean_theta_deg": -9.934176861987737,
+                "point_cost_contribution": 0.7079297730481723,
+                "relative_coordinate_rms_px": 1.9508455832729368,
+                "scheduled": 920,
+                "signed_relative_means_px": [
+                  0.46642940357699947,
+                  -0.007919076679664785,
+                  0.01811673767459642,
+                  -0.12079096691548562,
+                  1.895141364852467,
+                  -2.176701151546807,
+                  -1.3806955335473259,
+                  -4.072227448989261,
+                  -1.0437200905405357,
+                  -2.81287734796198
+                ],
+                "unavailable": 266,
+                "valid": 654
+              },
+              {
+                "P4_relative_point_rms_px": 4.285588388035659,
+                "block": 3,
+                "centroid_rms_px": 4.095250796547685,
+                "evaluated": 732,
+                "initial_relative_coordinate_rms_px": 99.73145281759005,
+                "mean_A_D": 3.7325993212749764,
+                "mean_theta_deg": -9.855532972861996,
+                "point_cost_contribution": 1.6985053047082577,
+                "relative_coordinate_rms_px": 3.3248422424167914,
+                "scheduled": 920,
+                "signed_relative_means_px": [
+                  0.17862042109240997,
+                  -0.010533511331132051,
+                  -0.2480483202143904,
+                  0.09729337888989986,
+                  1.1865009246901612,
+                  -2.3475319215723327,
+                  -0.13513142881294574,
+                  -5.400656483413298,
+                  -1.5493404491909832,
+                  -3.5976428548758874
+                ],
+                "unavailable": 188,
+                "valid": 732
+              },
+              {
+                "P4_relative_point_rms_px": 23.862515171060636,
+                "block": 4,
+                "centroid_rms_px": 22.423135592762335,
+                "evaluated": 906,
+                "initial_relative_coordinate_rms_px": 102.561617158624,
+                "mean_A_D": 3.5690807628767462,
+                "mean_theta_deg": -9.932830454047163,
+                "point_cost_contribution": 19.02003220068481,
+                "relative_coordinate_rms_px": 18.48651966031111,
+                "scheduled": 920,
+                "signed_relative_means_px": [
+                  0.8060931649212679,
+                  0.1840693622098057,
+                  0.10609753515719351,
+                  0.28631721914797814,
+                  2.2625783636766807,
+                  -0.28932233793507267,
+                  -0.41103271522855367,
+                  -0.045261383681263714,
+                  -2.3378128461093324,
+                  -1.2346504409272538
+                ],
+                "unavailable": 14,
+                "valid": 906
+              }
+            ],
+            "capture": "capture_2_detections.pkl",
+            "centroid_rms_px": 14.756648032052688,
+            "demand_D": 4.0,
+            "evaluated": 3912,
+            "exposure": 5,
+            "initial_relative_coordinate_rms_px": 100.65438996185851,
+            "ledger_means": {
+              "C1_hat_px": [
+                618.9628120812547,
+                426.624266122962
+              ],
+              "C4_hat_px": [
+                466.68260631540016,
+                473.2333936465136
+              ],
+              "D_obs_reference_px": [
+                -152.18604345969902,
+                46.58519883362994
+              ],
+              "D_prediction_reference_px": [
+                -152.05693429036646,
+                46.69823716568318
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.00017123242752552958,
+                -0.02787214519494951
+              ],
+              "raw_centroid_separation_px": [
+                -152.2800346484637,
+                46.581269983504605
+              ]
+            },
+            "mean_A_D": 3.4839363037342146,
+            "mean_theta_deg": -9.866687888823586,
+            "point_cost_contribution": 35.369403320710475,
+            "relative_coordinate_rms_px": 12.181809048606793,
+            "scheduled": 4600,
+            "signed_relative_means_px": [
+              0.5966605442159144,
+              0.09631837583055868,
+              0.15980438063166935,
+              0.04993453691202087,
+              1.8711076604602985,
+              0.5289910054776997,
+              -0.597523129546214,
+              -0.5491609701983203,
+              -1.6614004941713547,
+              -0.3311878949665026
+            ],
+            "target_theta_deg": -10.0,
+            "unavailable": 688,
+            "valid": 3912
+          },
+          {
+            "P4_relative_point_rms_px": 9.510497853277903,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 22.952592110526325,
+                "block": 0,
+                "centroid_rms_px": 21.55818495882331,
+                "evaluated": 695,
+                "initial_relative_coordinate_rms_px": 60.28354878028467,
+                "mean_A_D": 3.736970929043916,
+                "mean_theta_deg": -6.146657267753045,
+                "point_cost_contribution": 17.740931179210747,
+                "relative_coordinate_rms_px": 17.801315447942088,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.3071674973482295,
+                  0.5661941104778734,
+                  1.2501023898547727,
+                  0.31890765003372423,
+                  4.018374797124585,
+                  0.5722035869586911,
+                  -1.557420061041424,
+                  3.100397599585472,
+                  0.15627872483565086,
+                  1.2307646732114175
+                ],
+                "unavailable": 305,
+                "valid": 695
+              },
+              {
+                "P4_relative_point_rms_px": 3.016779572210276,
+                "block": 1,
+                "centroid_rms_px": 2.780742855322258,
+                "evaluated": 932,
+                "initial_relative_coordinate_rms_px": 56.373327345143736,
+                "mean_A_D": 3.8866461375248473,
+                "mean_theta_deg": -6.062169161315069,
+                "point_cost_contribution": 11.663411940069976,
+                "relative_coordinate_rms_px": 2.523128244042593,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.5594517926071743,
+                  0.6459159695855974,
+                  1.3372863504485661,
+                  0.4345503650985829,
+                  2.77538065179692,
+                  -3.881424043641915,
+                  -1.2143118090657639,
+                  -4.05900724871901,
+                  1.000013238359965,
+                  -3.4296946524081617
+                ],
+                "unavailable": 68,
+                "valid": 932
+              },
+              {
+                "P4_relative_point_rms_px": 2.8304244358201895,
+                "block": 2,
+                "centroid_rms_px": 2.5880985852378684,
+                "evaluated": 916,
+                "initial_relative_coordinate_rms_px": 55.95377944387084,
+                "mean_A_D": 3.9167704654807274,
+                "mean_theta_deg": -6.0127283849324975,
+                "point_cost_contribution": 8.622241324877567,
+                "relative_coordinate_rms_px": 2.2968880139612664,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.043438722039331,
+                  0.3322840451544746,
+                  0.1725214689440564,
+                  0.41888351860162387,
+                  2.7363623222731333,
+                  -3.6504891973166504,
+                  -1.1738601463587357,
+                  -3.7776498040073507,
+                  1.0157119718812058,
+                  -3.1907749068426483
+                ],
+                "unavailable": 84,
+                "valid": 916
+              },
+              {
+                "P4_relative_point_rms_px": 2.6525383683390173,
+                "block": 3,
+                "centroid_rms_px": 2.392272436902547,
+                "evaluated": 823,
+                "initial_relative_coordinate_rms_px": 55.94619324973313,
+                "mean_A_D": 3.9717778455028716,
+                "mean_theta_deg": -6.000353415114271,
+                "point_cost_contribution": 13.109008817852642,
+                "relative_coordinate_rms_px": 2.1853333968576765,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.122197751733916,
+                  0.120365346317217,
+                  -0.8425598276420206,
+                  0.47489470961659375,
+                  2.707254537551689,
+                  -3.3774158753235333,
+                  -1.2116503553437405,
+                  -3.4061431678208454,
+                  1.0537204289947115,
+                  -2.9560033739465674
+                ],
+                "unavailable": 177,
+                "valid": 823
+              },
+              {
+                "P4_relative_point_rms_px": 2.3160420167609637,
+                "block": 4,
+                "centroid_rms_px": 1.9827976245725423,
+                "evaluated": 979,
+                "initial_relative_coordinate_rms_px": 53.68571806293803,
+                "mean_A_D": 3.9600053327870355,
+                "mean_theta_deg": -5.7922589285277795,
+                "point_cost_contribution": 20.689074881559854,
+                "relative_coordinate_rms_px": 1.9709969982368032,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  1.4239911597345845,
+                  -0.21580325272643222,
+                  -1.9653933420677872,
+                  0.40448939994805194,
+                  2.7895532565167906,
+                  -2.7743435821631093,
+                  -1.2977658232878693,
+                  -2.58692062740828,
+                  1.2116603100847,
+                  -2.3690729145048293
+                ],
+                "unavailable": 21,
+                "valid": 979
+              }
+            ],
+            "capture": "capture_2_detections.pkl",
+            "centroid_rms_px": 8.909546830804242,
+            "demand_D": 4.0,
+            "evaluated": 4345,
+            "exposure": 6,
+            "initial_relative_coordinate_rms_px": 56.260517184111244,
+            "ledger_means": {
+              "C1_hat_px": [
+                706.3333017429454,
+                427.4596359026787
+              ],
+              "C4_hat_px": [
+                634.3087810238657,
+                474.823806509295
+              ],
+              "D_obs_reference_px": [
+                -71.87478547209969,
+                47.262190903017
+              ],
+              "D_prediction_reference_px": [
+                -72.7407101910871,
+                49.748323661766996
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.003521818872046695,
+                -0.6820676413012496
+              ],
+              "raw_centroid_separation_px": [
+                -72.0209910822189,
+                46.680561987156544
+              ]
+            },
+            "mean_A_D": 3.9017098112511848,
+            "mean_theta_deg": -5.9927364814038935,
+            "point_cost_contribution": 71.82466814357065,
+            "relative_coordinate_rms_px": 7.4124858814655,
+            "scheduled": 5000,
+            "signed_relative_means_px": [
+              2.071653957609236,
+              0.2733394870879837,
+              -0.07925088950836853,
+              0.41361853363590395,
+              2.9562661130525925,
+              -2.7754544195187565,
+              -1.2789648851517634,
+              -2.399170717126398,
+              0.9262245281452278,
+              -2.3051684563610157
+            ],
+            "target_theta_deg": -5.0,
+            "unavailable": 655,
+            "valid": 4345
+          },
+          {
+            "P4_relative_point_rms_px": 3.381794122133781,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 2.955774203030449,
+                "block": 0,
+                "centroid_rms_px": 2.4777088358766455,
+                "evaluated": 825,
+                "initial_relative_coordinate_rms_px": 12.798265579249184,
+                "mean_A_D": 3.7799771627313077,
+                "mean_theta_deg": -2.0547348118357105,
+                "point_cost_contribution": 12.108986232575667,
+                "relative_coordinate_rms_px": 2.4662658154532853,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.675699405387976,
+                  0.4673121548869085,
+                  0.4033886997549399,
+                  0.5222788222684596,
+                  3.648222715841224,
+                  -4.565355754701516,
+                  -0.87494709340548,
+                  -2.551513047828311,
+                  2.065709042436273,
+                  -1.54288909964325
+                ],
+                "unavailable": 175,
+                "valid": 825
+              },
+              {
+                "P4_relative_point_rms_px": 2.734513465207677,
+                "block": 1,
+                "centroid_rms_px": 2.291512014392465,
+                "evaluated": 838,
+                "initial_relative_coordinate_rms_px": 10.681410717356362,
+                "mean_A_D": 3.8403679688535672,
+                "mean_theta_deg": -2.0247539089175564,
+                "point_cost_contribution": 12.56766203512784,
+                "relative_coordinate_rms_px": 2.310006935740002,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.8650413600858786,
+                  0.3482298569656449,
+                  0.15860678627224983,
+                  0.3173086714126646,
+                  3.5084898910134488,
+                  -4.369254473286417,
+                  -0.6560046005846704,
+                  -2.5668607583697,
+                  1.946852454526182,
+                  -1.4132132558617
+                ],
+                "unavailable": 162,
+                "valid": 838
+              },
+              {
+                "P4_relative_point_rms_px": 3.141851343371221,
+                "block": 2,
+                "centroid_rms_px": 2.7906587443320734,
+                "evaluated": 1000,
+                "initial_relative_coordinate_rms_px": 11.162232379393927,
+                "mean_A_D": 3.8764239274993124,
+                "mean_theta_deg": -2.0666406119067133,
+                "point_cost_contribution": 12.613050653002363,
+                "relative_coordinate_rms_px": 2.557101512953697,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.446870382311017,
+                  0.15293161041556824,
+                  -0.31317722969661055,
+                  0.1629392903145362,
+                  3.462846590841325,
+                  -4.98086688293591,
+                  -0.5843096031278636,
+                  -3.3582815597177738,
+                  1.8686038678302124,
+                  -2.1190074434218618
+                ],
+                "unavailable": 0,
+                "valid": 1000
+              },
+              {
+                "P4_relative_point_rms_px": 3.672717862487342,
+                "block": 3,
+                "centroid_rms_px": 3.3964635015351483,
+                "evaluated": 890,
+                "initial_relative_coordinate_rms_px": 11.603252474914926,
+                "mean_A_D": 3.895912091749138,
+                "mean_theta_deg": -2.099287071268707,
+                "point_cost_contribution": 9.38632801068407,
+                "relative_coordinate_rms_px": 2.9351829354596664,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.2576728135089765,
+                  0.10667162280639846,
+                  -0.2677646602917178,
+                  0.04212340482203726,
+                  3.3925653083090705,
+                  -5.965207842198287,
+                  -0.4941681542116538,
+                  -4.429899633666232,
+                  1.811692357830877,
+                  -3.134011340704052
+                ],
+                "unavailable": 110,
+                "valid": 890
+              },
+              {
+                "P4_relative_point_rms_px": 4.08904893849963,
+                "block": 4,
+                "centroid_rms_px": 3.8627238704953597,
+                "evaluated": 1000,
+                "initial_relative_coordinate_rms_px": 11.715826212089581,
+                "mean_A_D": 3.878088300048594,
+                "mean_theta_deg": -2.0895105044168445,
+                "point_cost_contribution": 10.845303329033504,
+                "relative_coordinate_rms_px": 3.248396457208326,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.240436246573059,
+                  0.07857093826591864,
+                  -0.31612081861931446,
+                  -0.0007080828733607638,
+                  3.3003349543140725,
+                  -6.662250387235473,
+                  -0.3337393802553662,
+                  -5.179601413745375,
+                  1.7664747577046653,
+                  -3.8096679983460557
+                ],
+                "unavailable": 0,
+                "valid": 1000
+              }
+            ],
+            "capture": "capture_2_detections.pkl",
+            "centroid_rms_px": 3.05310239050708,
+            "demand_D": 4.0,
+            "evaluated": 4553,
+            "exposure": 7,
+            "initial_relative_coordinate_rms_px": 11.597830119357612,
+            "ledger_means": {
+              "C1_hat_px": [
+                795.2192882197153,
+                425.22652638262684
+              ],
+              "C4_hat_px": [
+                804.6852199903223,
+                473.57706584957805
+              ],
+              "D_obs_reference_px": [
+                9.485949056665444,
+                48.44106162258677
+              ],
+              "D_prediction_reference_px": [
+                7.89527649511104,
+                52.276289461939655
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.006463494003687579,
+                -1.349855900237571
+              ],
+              "raw_centroid_separation_px": [
+                9.472383123031612,
+                47.00321745508001
+              ]
+            },
+            "mean_A_D": 3.8564866036365606,
+            "mean_theta_deg": -2.068178476870213,
+            "point_cost_contribution": 57.52133026042346,
+            "relative_coordinate_rms_px": 2.7426469660235435,
+            "scheduled": 5000,
+            "signed_relative_means_px": [
+              2.482976521437318,
+              0.22046770061455975,
+              -0.08827156419538393,
+              0.1969043999007424,
+              3.4554058727847012,
+              -5.3547124963695545,
+              -0.5775141330948993,
+              -3.6759326218752983,
+              1.8851651967729517,
+              -2.4544480014523007
+            ],
+            "target_theta_deg": 0.0,
+            "unavailable": 447,
+            "valid": 4553
+          },
+          {
+            "P4_relative_point_rms_px": 3.714777136928453,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 4.031550040541427,
+                "block": 0,
+                "centroid_rms_px": 3.047513315645083,
+                "evaluated": 935,
+                "initial_relative_coordinate_rms_px": 34.409943875276184,
+                "mean_A_D": 3.9996369182513214,
+                "mean_theta_deg": 1.8973453315652788,
+                "point_cost_contribution": 39.632318428637795,
+                "relative_coordinate_rms_px": 3.4466494579054183,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  0.9485891958952365,
+                  1.3327406140741436,
+                  4.076494968484418,
+                  0.8525350850575981,
+                  4.9456520129872255,
+                  -6.550230933389156,
+                  -2.1748779196267827,
+                  -3.3497074105435605,
+                  2.8156484408814917,
+                  -1.144579550958879
+                ],
+                "unavailable": 65,
+                "valid": 935
+              },
+              {
+                "P4_relative_point_rms_px": 4.009043615377693,
+                "block": 1,
+                "centroid_rms_px": 3.0552383229323485,
+                "evaluated": 938,
+                "initial_relative_coordinate_rms_px": 33.890087436306985,
+                "mean_A_D": 4.173386226044492,
+                "mean_theta_deg": 1.8760758456343967,
+                "point_cost_contribution": 44.20205731689609,
+                "relative_coordinate_rms_px": 3.4811235179990687,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  0.821573274358305,
+                  1.381367144385515,
+                  4.630676454136071,
+                  0.6524841384112214,
+                  4.8542147754065175,
+                  -6.673833150096255,
+                  -2.2299078183286047,
+                  -3.6103160068668707,
+                  2.712020370224767,
+                  -1.431124149950287
+                ],
+                "unavailable": 62,
+                "valid": 938
+              },
+              {
+                "P4_relative_point_rms_px": 3.504767939744292,
+                "block": 2,
+                "centroid_rms_px": 2.246623318505332,
+                "evaluated": 989,
+                "initial_relative_coordinate_rms_px": 34.29988051031278,
+                "mean_A_D": 4.157268904823657,
+                "mean_theta_deg": 1.9122434300416946,
+                "point_cost_contribution": 63.862402876969654,
+                "relative_coordinate_rms_px": 3.2777267114803927,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  0.9213219138220883,
+                  1.6592176552710185,
+                  5.411220369500043,
+                  0.8932664556612082,
+                  5.019927837603912,
+                  -5.401702016965038,
+                  -2.441474961732776,
+                  -2.2759034604787707,
+                  2.7855970553984437,
+                  -0.14641532982336206
+                ],
+                "unavailable": 11,
+                "valid": 989
+              },
+              {
+                "P4_relative_point_rms_px": 3.4137018639935737,
+                "block": 3,
+                "centroid_rms_px": 2.167499920893898,
+                "evaluated": 1000,
+                "initial_relative_coordinate_rms_px": 35.11036656871258,
+                "mean_A_D": 4.0638683407099725,
+                "mean_theta_deg": 1.9831638981607604,
+                "point_cost_contribution": 75.27068731014495,
+                "relative_coordinate_rms_px": 3.3017252248044437,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  0.996556132276426,
+                  1.8105998274042154,
+                  5.805178338737372,
+                  1.040558421557834,
+                  4.945293730434096,
+                  -5.2336557085848145,
+                  -2.2820674052647005,
+                  -2.0239702329438636,
+                  2.84446979485728,
+                  -0.00720068937198549
+                ],
+                "unavailable": 0,
+                "valid": 1000
+              },
+              {
+                "P4_relative_point_rms_px": 3.5986386430081017,
+                "block": 4,
+                "centroid_rms_px": 2.3947061745133826,
+                "evaluated": 919,
+                "initial_relative_coordinate_rms_px": 36.280220795856856,
+                "mean_A_D": 4.112209645499423,
+                "mean_theta_deg": 2.0494760193435115,
+                "point_cost_contribution": 61.35328249789831,
+                "relative_coordinate_rms_px": 3.352472872222515,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  0.9943123783587452,
+                  1.6885355450379174,
+                  5.409534748537676,
+                  0.9609420418091961,
+                  4.987060801196063,
+                  -5.645843264837847,
+                  -2.3961264910434044,
+                  -2.3804946842358348,
+                  2.846342762118018,
+                  -0.35778084014818745
+                ],
+                "unavailable": 81,
+                "valid": 919
+              }
+            ],
+            "capture": "capture_2_detections.pkl",
+            "centroid_rms_px": 2.6032082135018966,
+            "demand_D": 4.0,
+            "evaluated": 4781,
+            "exposure": 8,
+            "initial_relative_coordinate_rms_px": 34.80103361254228,
+            "ledger_means": {
+              "C1_hat_px": [
+                880.2739757952644,
+                421.4381132966589
+              ],
+              "C4_hat_px": [
+                972.8000781091844,
+                473.3943332956259
+              ],
+              "D_obs_reference_px": [
+                92.65330477799552,
+                52.02740124697793
+              ],
+              "D_prediction_reference_px": [
+                90.83540580647555,
+                55.10091244675732
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.008300186600397367,
+                -2.0128441531129253
+              ],
+              "raw_centroid_separation_px": [
+                92.53439111162066,
+                49.9461343961053
+              ]
+            },
+            "mean_A_D": 4.101406557287023,
+            "mean_theta_deg": 1.9434465886775325,
+            "point_cost_contribution": 284.32074843054676,
+            "relative_coordinate_rms_px": 3.370999018932173,
+            "scheduled": 5000,
+            "signed_relative_means_px": [
+              0.9368507028379605,
+              1.578156266460996,
+              5.079133032334577,
+              0.881877245134489,
+              4.950962001589197,
+              -5.887678389721474,
+              -2.305770921591843,
+              -2.7151152925056388,
+              2.801029215755661,
+              -0.6051835129603433
+            ],
+            "target_theta_deg": 5.0,
+            "unavailable": 219,
+            "valid": 4781
+          },
+          {
+            "P4_relative_point_rms_px": 4.505272538299864,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 3.8980339626676086,
+                "block": 0,
+                "centroid_rms_px": 2.1190314588159795,
+                "evaluated": 967,
+                "initial_relative_coordinate_rms_px": 80.22637437139763,
+                "mean_A_D": 3.8309431963929863,
+                "mean_theta_deg": 5.997263424300283,
+                "point_cost_contribution": 34.202876827660326,
+                "relative_coordinate_rms_px": 3.313936785140276,
+                "scheduled": 1058,
+                "signed_relative_means_px": [
+                  4.275443295109586,
+                  0.25109990513349195,
+                  -0.03332186991986981,
+                  -0.09219545285770865,
+                  5.8910584756708415,
+                  -5.947863128384305,
+                  -2.523095588345613,
+                  -2.2068430988188448,
+                  2.3244262139114205,
+                  1.5936689092231964
+                ],
+                "unavailable": 91,
+                "valid": 967
+              },
+              {
+                "P4_relative_point_rms_px": 4.06953000647661,
+                "block": 1,
+                "centroid_rms_px": 2.4307327378937518,
+                "evaluated": 1053,
+                "initial_relative_coordinate_rms_px": 82.57296196509074,
+                "mean_A_D": 3.6710517701662466,
+                "mean_theta_deg": 6.212850401269257,
+                "point_cost_contribution": 40.907984692581444,
+                "relative_coordinate_rms_px": 3.461376132922238,
+                "scheduled": 1058,
+                "signed_relative_means_px": [
+                  4.506994050517114,
+                  0.2649845424553529,
+                  -0.16289754807430562,
+                  -0.01366955797305082,
+                  5.905891464866597,
+                  -6.594246897533414,
+                  -2.396903254440456,
+                  -2.6939448506836485,
+                  2.436505517194636,
+                  1.0335645807524043
+                ],
+                "unavailable": 5,
+                "valid": 1053
+              },
+              {
+                "P4_relative_point_rms_px": 4.396238407804825,
+                "block": 2,
+                "centroid_rms_px": 2.957165758191743,
+                "evaluated": 671,
+                "initial_relative_coordinate_rms_px": 81.81499821997043,
+                "mean_A_D": 3.6389197483088735,
+                "mean_theta_deg": 6.1453315238632245,
+                "point_cost_contribution": 26.87906441858711,
+                "relative_coordinate_rms_px": 3.7002758179847666,
+                "scheduled": 1058,
+                "signed_relative_means_px": [
+                  4.5578891180008,
+                  0.21939343132717923,
+                  -0.1539072571300375,
+                  -0.15429754908778737,
+                  5.900641604660299,
+                  -7.491783707140593,
+                  -2.373827926022106,
+                  -3.5218252642582484,
+                  2.4896480357651276,
+                  0.10503242222207664
+                ],
+                "unavailable": 387,
+                "valid": 671
+              },
+              {
+                "P4_relative_point_rms_px": 4.860949994360249,
+                "block": 3,
+                "centroid_rms_px": 3.5961126901412843,
+                "evaluated": 925,
+                "initial_relative_coordinate_rms_px": 81.4185859405212,
+                "mean_A_D": 3.7289957002395444,
+                "mean_theta_deg": 6.109503413058146,
+                "point_cost_contribution": 35.915019257104426,
+                "relative_coordinate_rms_px": 4.0149726380377055,
+                "scheduled": 1058,
+                "signed_relative_means_px": [
+                  4.375274218328485,
+                  0.0951861769594264,
+                  -0.30541345334918607,
+                  -0.36298915540436855,
+                  5.9204145221181035,
+                  -8.48863059470562,
+                  -2.4714900276795793,
+                  -4.642751347855703,
+                  2.4118423956930797,
+                  -0.9219316896231504
+                ],
+                "unavailable": 133,
+                "valid": 925
+              },
+              {
+                "P4_relative_point_rms_px": 5.306507656514886,
+                "block": 4,
+                "centroid_rms_px": 4.218486207671039,
+                "evaluated": 819,
+                "initial_relative_coordinate_rms_px": 81.42568364316823,
+                "mean_A_D": 3.7183388723226196,
+                "mean_theta_deg": 6.110445086552678,
+                "point_cost_contribution": 28.90922367144903,
+                "relative_coordinate_rms_px": 4.320560214228039,
+                "scheduled": 1058,
+                "signed_relative_means_px": [
+                  4.18214264695057,
+                  0.16042362732764637,
+                  -0.321315089334334,
+                  -0.13716108306487937,
+                  5.868045556560756,
+                  -9.336460881164404,
+                  -2.3956011071536074,
+                  -5.553201384436529,
+                  2.407550442190891,
+                  -1.8962953349950558
+                ],
+                "unavailable": 239,
+                "valid": 819
+              }
+            ],
+            "capture": "capture_2_detections.pkl",
+            "centroid_rms_px": 3.1126264765701936,
+            "demand_D": 4.0,
+            "evaluated": 4435,
+            "exposure": 9,
+            "initial_relative_coordinate_rms_px": 81.49796118330141,
+            "ledger_means": {
+              "C1_hat_px": [
+                967.2081782030948,
+                419.2212975858024
+              ],
+              "C4_hat_px": [
+                1145.1660161637778,
+                472.89353338445744
+              ],
+              "D_obs_reference_px": [
+                179.13753624520533,
+                54.02798053725322
+              ],
+              "D_prediction_reference_px": [
+                177.16747748369698,
+                57.74288807434715
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.010820253070738707,
+                -2.790146037094306
+              ],
+              "raw_centroid_separation_px": [
+                177.96858697991513,
+                50.900459741198226
+              ]
+            },
+            "mean_A_D": 3.7218704160464786,
+            "mean_theta_deg": 6.115162985188851,
+            "point_cost_contribution": 166.81416886738234,
+            "relative_coordinate_rms_px": 3.757674567753302,
+            "scheduled": 5290,
+            "signed_relative_means_px": [
+              4.376745316696792,
+              0.20033584855894515,
+              -0.19226372906016403,
+              -0.147729560017161,
+              5.897903160989367,
+              -7.490610430105521,
+              -2.436242769239969,
+              -3.647464010657278,
+              2.409617208258651,
+              0.06630110525361184
+            ],
+            "target_theta_deg": 10.0,
+            "unavailable": 855,
+            "valid": 4435
+          },
+          {
+            "P4_relative_point_rms_px": 1.7386098647539563,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 1.0906743706898574,
+                "block": 0,
+                "centroid_rms_px": 0.8440382657708896,
+                "evaluated": 898,
+                "initial_relative_coordinate_rms_px": 98.13178164890707,
+                "mean_A_D": 2.8021170597918315,
+                "mean_theta_deg": -9.727053146155791,
+                "point_cost_contribution": 4.21866755233292,
+                "relative_coordinate_rms_px": 0.939379007596822,
+                "scheduled": 940,
+                "signed_relative_means_px": [
+                  1.0135789911982012,
+                  0.3136813072821241,
+                  0.1927344477505111,
+                  0.5477215146011235,
+                  0.7107519546208241,
+                  1.1617305477656188,
+                  -0.053175869684045377,
+                  -0.715327455873405,
+                  -0.5815508745631719,
+                  0.3290833687888401
+                ],
+                "unavailable": 42,
+                "valid": 898
+              },
+              {
+                "P4_relative_point_rms_px": 1.3919746388128478,
+                "block": 1,
+                "centroid_rms_px": 1.1377244315480004,
+                "evaluated": 908,
+                "initial_relative_coordinate_rms_px": 97.37783412434683,
+                "mean_A_D": 2.849678646436839,
+                "mean_theta_deg": -9.650802573895785,
+                "point_cost_contribution": 5.990528753322469,
+                "relative_coordinate_rms_px": 1.1656863888255438,
+                "scheduled": 940,
+                "signed_relative_means_px": [
+                  1.0084714312206138,
+                  0.2898591883376451,
+                  -0.04133540190335589,
+                  0.6338907812573764,
+                  1.097779608905375,
+                  1.637479087690382,
+                  -0.5442438804293032,
+                  -0.06566125172673817,
+                  -0.43575520061509326,
+                  0.9190971588397732
+                ],
+                "unavailable": 32,
+                "valid": 908
+              },
+              {
+                "P4_relative_point_rms_px": 1.8405411166133476,
+                "block": 2,
+                "centroid_rms_px": 1.5812357769237724,
+                "evaluated": 885,
+                "initial_relative_coordinate_rms_px": 99.87083440458875,
+                "mean_A_D": 2.9621163323360884,
+                "mean_theta_deg": -9.888211787995829,
+                "point_cost_contribution": 3.085851216677183,
+                "relative_coordinate_rms_px": 1.4475359884390118,
+                "scheduled": 940,
+                "signed_relative_means_px": [
+                  0.4863605788288781,
+                  0.1310755189499079,
+                  -0.3386798781271674,
+                  0.48697178262345236,
+                  1.4124517604077202,
+                  3.1337285033628044,
+                  -1.098588461043381,
+                  1.2201602511458212,
+                  -0.4807829543074106,
+                  2.183106038167018
+                ],
+                "unavailable": 55,
+                "valid": 885
+              },
+              {
+                "P4_relative_point_rms_px": 2.1617238611829936,
+                "block": 3,
+                "centroid_rms_px": 1.7564390872078945,
+                "evaluated": 923,
+                "initial_relative_coordinate_rms_px": 98.82387684865955,
+                "mean_A_D": 2.965109526385143,
+                "mean_theta_deg": -9.7919009204439,
+                "point_cost_contribution": 2.5886475275668293,
+                "relative_coordinate_rms_px": 1.68673991015813,
+                "scheduled": 940,
+                "signed_relative_means_px": [
+                  0.3183628684489974,
+                  0.09904918197183489,
+                  -0.32805031507297827,
+                  0.42361545476982915,
+                  1.6073942751085226,
+                  4.264028682302661,
+                  -1.013382229510664,
+                  1.082501062763057,
+                  -0.662393010094509,
+                  2.041637606038751
+                ],
+                "unavailable": 17,
+                "valid": 923
+              },
+              {
+                "P4_relative_point_rms_px": 1.9759326450392212,
+                "block": 4,
+                "centroid_rms_px": 1.650554045861271,
+                "evaluated": 891,
+                "initial_relative_coordinate_rms_px": 99.29905383272073,
+                "mean_A_D": 2.8802234652764533,
+                "mean_theta_deg": -9.834867995358032,
+                "point_cost_contribution": 1.8012436012450035,
+                "relative_coordinate_rms_px": 1.5458149450177467,
+                "scheduled": 940,
+                "signed_relative_means_px": [
+                  0.5039394536673147,
+                  0.12022835351022679,
+                  -0.12481629148528892,
+                  0.31620247541426844,
+                  1.467475535315383,
+                  3.641325890487945,
+                  -0.9789290617592175,
+                  1.1379246683298492,
+                  -0.5616579269902959,
+                  2.104275339880378
+                ],
+                "unavailable": 49,
+                "valid": 891
+              }
+            ],
+            "capture": "capture_3_detections.pkl",
+            "centroid_rms_px": 1.437004349741786,
+            "demand_D": 3.0,
+            "evaluated": 4505,
+            "exposure": 10,
+            "initial_relative_coordinate_rms_px": 98.69796764332503,
+            "ledger_means": {
+              "C1_hat_px": [
+                615.9577617378507,
+                420.65341374770276
+              ],
+              "C4_hat_px": [
+                465.44402140125464,
+                468.2502034090843
+              ],
+              "D_obs_reference_px": [
+                -150.34652404078503,
+                47.54298959673661
+              ],
+              "D_prediction_reference_px": [
+                -150.33903234996788,
+                45.93919650426829
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.0002518399691528806,
+                -0.04251028316349821
+              ],
+              "raw_centroid_separation_px": [
+                -150.5134880447481,
+                47.554203203596686
+              ]
+            },
+            "mean_A_D": 2.8919772442153078,
+            "mean_theta_deg": -9.777953790933477,
+            "point_cost_contribution": 17.684938651144396,
+            "relative_coordinate_rms_px": 1.3845296080595861,
+            "scheduled": 4700,
+            "signed_relative_means_px": [
+              0.6657434154725558,
+              0.1907715092471063,
+              -0.12834416415462466,
+              0.4819379017673553,
+              1.2599788159794847,
+              2.7710398692969074,
+              -0.7373482251487841,
+              0.5307206905070049,
+              -0.5449982870907599,
+              1.5141946209509218
+            ],
+            "target_theta_deg": -10.0,
+            "unavailable": 195,
+            "valid": 4505
+          },
+          {
+            "P4_relative_point_rms_px": 1.8087710545611062,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 2.0203258635840444,
+                "block": 0,
+                "centroid_rms_px": 1.410587953082854,
+                "evaluated": 760,
+                "initial_relative_coordinate_rms_px": 50.30445137120329,
+                "mean_A_D": 3.1466197087726604,
+                "mean_theta_deg": -5.506283740709233,
+                "point_cost_contribution": 9.559605973106466,
+                "relative_coordinate_rms_px": 1.6442103441444311,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  0.6090771186081321,
+                  0.4205213392968154,
+                  0.0744901135364579,
+                  0.9929819423624976,
+                  2.9196313723813763,
+                  0.23358669774046542,
+                  -1.5835436391967237,
+                  0.6194996986674146,
+                  2.2117060773018498,
+                  1.3539338419871292
+                ],
+                "unavailable": 220,
+                "valid": 760
+              },
+              {
+                "P4_relative_point_rms_px": 1.7960455709046994,
+                "block": 1,
+                "centroid_rms_px": 1.139975027636054,
+                "evaluated": 675,
+                "initial_relative_coordinate_rms_px": 51.565203999510956,
+                "mean_A_D": 3.8752457683391786,
+                "mean_theta_deg": -5.585167242859441,
+                "point_cost_contribution": 35.07645362807838,
+                "relative_coordinate_rms_px": 2.242886012603786,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  -3.480046036789296,
+                  -0.9060532316090858,
+                  -3.9380026367366425,
+                  0.6960227377985665,
+                  2.648607347463303,
+                  -1.225079864802233,
+                  -1.6924024367270398,
+                  -0.8864169994555008,
+                  1.968686635452421,
+                  -0.1415261859494799
+                ],
+                "unavailable": 305,
+                "valid": 675
+              },
+              {
+                "P4_relative_point_rms_px": 1.7646727161763989,
+                "block": 2,
+                "centroid_rms_px": 1.1313473970714323,
+                "evaluated": 739,
+                "initial_relative_coordinate_rms_px": 51.23846933026181,
+                "mean_A_D": 3.924058338046189,
+                "mean_theta_deg": -5.553961125410425,
+                "point_cost_contribution": 33.86560556652307,
+                "relative_coordinate_rms_px": 2.1418718895100888,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  -2.7233021098861534,
+                  -1.0622553411069937,
+                  -4.261165475273072,
+                  0.3330685152128282,
+                  2.6533677130140996,
+                  -1.1295423986173472,
+                  -1.6128194441079589,
+                  -1.0609801434100883,
+                  1.8664777993864656,
+                  -0.12047059246441984
+                ],
+                "unavailable": 241,
+                "valid": 739
+              },
+              {
+                "P4_relative_point_rms_px": 1.5839538844401138,
+                "block": 3,
+                "centroid_rms_px": 1.00325876210041,
+                "evaluated": 890,
+                "initial_relative_coordinate_rms_px": 51.78153209197739,
+                "mean_A_D": 3.608773056765669,
+                "mean_theta_deg": -5.6195748680391695,
+                "point_cost_contribution": 20.926299139446634,
+                "relative_coordinate_rms_px": 1.6099884614915425,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  -0.7812897536267781,
+                  -0.7456219006053512,
+                  -3.0813725957884257,
+                  0.08014823882086938,
+                  2.4794109141264498,
+                  -1.243764894798407,
+                  -1.3104915732921296,
+                  -1.0754851973471422,
+                  1.9494121473706763,
+                  -0.33977021317767814
+                ],
+                "unavailable": 90,
+                "valid": 890
+              },
+              {
+                "P4_relative_point_rms_px": 1.8769598006864667,
+                "block": 4,
+                "centroid_rms_px": 1.449948967280162,
+                "evaluated": 838,
+                "initial_relative_coordinate_rms_px": 52.20772573214928,
+                "mean_A_D": 3.3976964621189394,
+                "mean_theta_deg": -5.651000892125057,
+                "point_cost_contribution": 24.255933242254205,
+                "relative_coordinate_rms_px": 1.85327046351173,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  -0.7217198385579243,
+                  -0.880245351206573,
+                  -3.401025223184414,
+                  -0.09519346054195774,
+                  2.4632690169993228,
+                  -2.0086558620667523,
+                  -1.1946673060834048,
+                  -1.8221680227113357,
+                  2.000898490991932,
+                  -1.1412875590398137
+                ],
+                "unavailable": 142,
+                "valid": 838
+              }
+            ],
+            "capture": "capture_3_detections.pkl",
+            "centroid_rms_px": 1.239292400896259,
+            "demand_D": 3.0,
+            "evaluated": 3902,
+            "exposure": 11,
+            "initial_relative_coordinate_rms_px": 51.449125928743555,
+            "ledger_means": {
+              "C1_hat_px": [
+                711.9877690635915,
+                417.51327711089704
+              ],
+              "C4_hat_px": [
+                648.036076525646,
+                466.88506381567737
+              ],
+              "D_obs_reference_px": [
+                -63.44042439156577,
+                48.97917797814333
+              ],
+              "D_prediction_reference_px": [
+                -64.48601933607792,
+                49.66178487274782
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.004098602443517157,
+                -0.7633044804558556
+              ],
+              "raw_centroid_separation_px": [
+                -63.947561995503584,
+                48.60240233697989
+              ]
+            },
+            "mean_A_D": 3.5792359405149714,
+            "mean_theta_deg": -5.585879339749642,
+            "point_cost_contribution": 123.68389754940875,
+            "relative_coordinate_rms_px": 1.8959076665616337,
+            "scheduled": 4900,
+            "signed_relative_means_px": [
+              -1.33234285733876,
+              -0.6351218622241136,
+              -2.906976249876101,
+              0.37472554320046825,
+              2.623901510067399,
+              -1.09542266012801,
+              -1.4621238038195623,
+              -0.8702549098657961,
+              1.9991842486000846,
+              -0.10619238535120042
+            ],
+            "target_theta_deg": -5.0,
+            "unavailable": 998,
+            "valid": 3902
+          },
+          {
+            "P4_relative_point_rms_px": 3.5501082029054447,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 3.249989859998118,
+                "block": 0,
+                "centroid_rms_px": 2.5007362525428434,
+                "evaluated": 953,
+                "initial_relative_coordinate_rms_px": 8.87724252230453,
+                "mean_A_D": 3.0609215803469016,
+                "mean_theta_deg": -1.6909164525501386,
+                "point_cost_contribution": 31.2842944851818,
+                "relative_coordinate_rms_px": 2.8611881669532155,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  4.165568235756085,
+                  0.5591712274912767,
+                  0.1594519390059318,
+                  0.6522705430722588,
+                  4.140619992759108,
+                  -4.867319090681749,
+                  -1.441495922240468,
+                  -2.009145567954798,
+                  3.1222733420547604,
+                  -1.4144566714980131
+                ],
+                "unavailable": 47,
+                "valid": 953
+              },
+              {
+                "P4_relative_point_rms_px": 3.528111417591039,
+                "block": 1,
+                "centroid_rms_px": 2.326934002770289,
+                "evaluated": 968,
+                "initial_relative_coordinate_rms_px": 5.99091399109685,
+                "mean_A_D": 3.2789097816994373,
+                "mean_theta_deg": -1.5481725933008743,
+                "point_cost_contribution": 36.03137361793397,
+                "relative_coordinate_rms_px": 3.0769098091471845,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  4.390108066572779,
+                  0.504635783622432,
+                  -0.12755907759447016,
+                  0.6451270857799419,
+                  4.9490871096206766,
+                  -4.9536451433686945,
+                  -2.708844747433204,
+                  -1.7228867905849694,
+                  3.3977029536492194,
+                  -1.325512573490417
+                ],
+                "unavailable": 32,
+                "valid": 968
+              },
+              {
+                "P4_relative_point_rms_px": 3.8719366141816582,
+                "block": 2,
+                "centroid_rms_px": 2.3170002751738923,
+                "evaluated": 1000,
+                "initial_relative_coordinate_rms_px": 6.178897933787747,
+                "mean_A_D": 3.2667421691553113,
+                "mean_theta_deg": -1.5755368728995391,
+                "point_cost_contribution": 35.41694479928825,
+                "relative_coordinate_rms_px": 3.2853483646759956,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  4.164763088459015,
+                  0.38833231902260174,
+                  -0.41139369210769045,
+                  0.5506511621895971,
+                  5.5499655049486805,
+                  -5.01412512121318,
+                  -3.6990144244160796,
+                  -1.2365947667148363,
+                  3.7939366448498197,
+                  -1.4218818584111539
+                ],
+                "unavailable": 0,
+                "valid": 1000
+              },
+              {
+                "P4_relative_point_rms_px": 3.425677840807031,
+                "block": 3,
+                "centroid_rms_px": 1.919662765210193,
+                "evaluated": 945,
+                "initial_relative_coordinate_rms_px": 5.156847580328046,
+                "mean_A_D": 3.120701584290772,
+                "mean_theta_deg": -1.4127489668638171,
+                "point_cost_contribution": 29.866084602145722,
+                "relative_coordinate_rms_px": 2.933499121476147,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  3.8216129570789015,
+                  0.3397235871260872,
+                  -0.481264471214333,
+                  0.5264557636145509,
+                  5.207336549164252,
+                  -4.063078534100659,
+                  -3.0634296903112452,
+                  -0.34220318735714894,
+                  3.741742743791309,
+                  -0.4641679988264997
+                ],
+                "unavailable": 55,
+                "valid": 945
+              },
+              {
+                "P4_relative_point_rms_px": 3.627839724552568,
+                "block": 4,
+                "centroid_rms_px": 2.1446667936235366,
+                "evaluated": 945,
+                "initial_relative_coordinate_rms_px": 8.525157871201344,
+                "mean_A_D": 3.279098328493313,
+                "mean_theta_deg": -1.3604305837653219,
+                "point_cost_contribution": 33.05446395613482,
+                "relative_coordinate_rms_px": 3.11206785823633,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  4.055087015879357,
+                  0.3131929855202135,
+                  -0.49658579541947306,
+                  0.4197075526889642,
+                  5.326844538479165,
+                  -4.6763391987841985,
+                  -3.302033873811191,
+                  -1.0266430877583361,
+                  3.6796207438801027,
+                  -1.0103360783330404
+                ],
+                "unavailable": 55,
+                "valid": 945
+              }
+            ],
+            "capture": "capture_3_detections.pkl",
+            "centroid_rms_px": 2.251983362589112,
+            "demand_D": 3.0,
+            "evaluated": 4811,
+            "exposure": 12,
+            "initial_relative_coordinate_rms_px": 7.089919873712092,
+            "ledger_means": {
+              "C1_hat_px": [
+                805.9706698642898,
+                416.4645509323824
+              ],
+              "C4_hat_px": [
+                826.8079659999748,
+                466.0950051658541
+              ],
+              "D_obs_reference_px": [
+                20.87726137046621,
+                49.72549044154491
+              ],
+              "D_prediction_reference_px": [
+                18.961097160248436,
+                52.10440440910656
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.007790107001981927,
+                -1.4927162796806903
+              ],
+              "raw_centroid_separation_px": [
+                20.84507126930606,
+                48.14060096253134
+              ]
+            },
+            "mean_A_D": 3.202160885780903,
+            "mean_theta_deg": -1.5186584905091673,
+            "point_cost_contribution": 165.65316146068463,
+            "relative_coordinate_rms_px": 3.0598540101792415,
+            "scheduled": 5000,
+            "signed_relative_means_px": [
+              4.121316919564039,
+              0.4212671167156634,
+              -0.27166528441393306,
+              0.5593166374307365,
+              5.038764042399502,
+              -4.719716996672198,
+              -2.84977859528628,
+              -1.2705517847113181,
+              3.548457305094561,
+              -1.1320643505307093
+            ],
+            "target_theta_deg": 0.0,
+            "unavailable": 189,
+            "valid": 4811
+          },
+          {
+            "P4_relative_point_rms_px": 4.369727520982242,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 5.029501263880955,
+                "block": 0,
+                "centroid_rms_px": 3.994669009568626,
+                "evaluated": 737,
+                "initial_relative_coordinate_rms_px": 45.497570628189195,
+                "mean_A_D": 3.2216434777476746,
+                "mean_theta_deg": 2.8898744727190087,
+                "point_cost_contribution": 20.879436056032763,
+                "relative_coordinate_rms_px": 3.9969789180517346,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  1.6816554907031978,
+                  0.7725459064558178,
+                  0.5929171216593943,
+                  1.4233614533385615,
+                  5.335706690556637,
+                  -8.50336250029853,
+                  -2.375922792225189,
+                  -3.4324665369966234,
+                  3.8755442128659787,
+                  -2.353654018414449
+                ],
+                "unavailable": 263,
+                "valid": 737
+              },
+              {
+                "P4_relative_point_rms_px": 4.375634654162268,
+                "block": 1,
+                "centroid_rms_px": 2.983401164998571,
+                "evaluated": 945,
+                "initial_relative_coordinate_rms_px": 45.38912309580571,
+                "mean_A_D": 3.2019175114641927,
+                "mean_theta_deg": 2.9079569558955547,
+                "point_cost_contribution": 35.22075147899217,
+                "relative_coordinate_rms_px": 3.5630673609079966,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.485909196873084,
+                  1.0868774898018034,
+                  1.2446408250877272,
+                  1.715037822727553,
+                  5.5044803482998,
+                  -7.2870175050145525,
+                  -2.7383644880460762,
+                  -1.8999909894055964,
+                  4.105249601122772,
+                  -1.3078902094336242
+                ],
+                "unavailable": 55,
+                "valid": 945
+              },
+              {
+                "P4_relative_point_rms_px": 4.291986952729668,
+                "block": 2,
+                "centroid_rms_px": 3.3376540083434536,
+                "evaluated": 919,
+                "initial_relative_coordinate_rms_px": 45.4741969036241,
+                "mean_A_D": 3.097588244219528,
+                "mean_theta_deg": 2.9125761015066147,
+                "point_cost_contribution": 25.01849446508001,
+                "relative_coordinate_rms_px": 3.4427453808678665,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.2054491823504794,
+                  0.8175839545525592,
+                  0.5956362644108387,
+                  1.447091883482466,
+                  4.798777975578202,
+                  -7.689086739361584,
+                  -1.555214368829847,
+                  -2.7419728259473484,
+                  3.798192328792016,
+                  -1.8081463686608232
+                ],
+                "unavailable": 81,
+                "valid": 919
+              },
+              {
+                "P4_relative_point_rms_px": 4.123460960317093,
+                "block": 3,
+                "centroid_rms_px": 3.3145605949587207,
+                "evaluated": 745,
+                "initial_relative_coordinate_rms_px": 45.319086921316035,
+                "mean_A_D": 3.106064798005793,
+                "mean_theta_deg": 2.9003380954572044,
+                "point_cost_contribution": 17.799534636665165,
+                "relative_coordinate_rms_px": 3.3208654864963973,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.3709726117843424,
+                  0.7720061278728015,
+                  0.6416551561018665,
+                  1.261117980361009,
+                  4.495213985522641,
+                  -7.480567071388935,
+                  -0.9972956439633958,
+                  -2.984872120018928,
+                  3.528000547860196,
+                  -1.620508358847972
+                ],
+                "unavailable": 255,
+                "valid": 745
+              },
+              {
+                "P4_relative_point_rms_px": 4.0491964004046395,
+                "block": 4,
+                "centroid_rms_px": 3.2274852268479304,
+                "evaluated": 905,
+                "initial_relative_coordinate_rms_px": 46.08355746185728,
+                "mean_A_D": 3.047665374764682,
+                "mean_theta_deg": 2.9448569319941433,
+                "point_cost_contribution": 20.94287539085362,
+                "relative_coordinate_rms_px": 3.2734336852585195,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.5189747433820955,
+                  0.7523541717140648,
+                  0.6601449456476889,
+                  1.1674179584827642,
+                  4.529974822627501,
+                  -7.258280585919474,
+                  -0.9375327564775425,
+                  -2.8461976006018728,
+                  3.5207246268516053,
+                  -1.3885159341187843
+                ],
+                "unavailable": 95,
+                "valid": 905
+              }
+            ],
+            "capture": "capture_3_detections.pkl",
+            "centroid_rms_px": 3.361019384888784,
+            "demand_D": 3.0,
+            "evaluated": 4251,
+            "exposure": 13,
+            "initial_relative_coordinate_rms_px": 45.562729320812,
+            "ledger_means": {
+              "C1_hat_px": [
+                901.235956150929,
+                420.39682003275044
+              ],
+              "C4_hat_px": [
+                1013.4786809777869,
+                471.3721598599041
+              ],
+              "D_obs_reference_px": [
+                112.73763587812417,
+                51.19955380510727
+              ],
+              "D_prediction_reference_px": [
+                110.4005771100502,
+                55.224164430787795
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.01084310258532244,
+                -2.289627234975344
+              ],
+              "raw_centroid_separation_px": [
+                112.25352047828412,
+                48.69574432007559
+              ]
+            },
+            "mean_A_D": 3.1331456896136904,
+            "mean_theta_deg": 2.9123410142484363,
+            "point_cost_contribution": 119.86109202762371,
+            "relative_coordinate_rms_px": 3.5168450841878083,
+            "scheduled": 5000,
+            "signed_relative_means_px": [
+              2.2727402551901985,
+              0.8477653036511194,
+              0.7612372365258729,
+              1.4104097206079278,
+              4.938317655453339,
+              -7.612619811073641,
+              -1.7312406359428443,
+              -2.7392686209737067,
+              3.7734396385696716,
+              -1.6692946177381225
+            ],
+            "target_theta_deg": 5.0,
+            "unavailable": 749,
+            "valid": 4251
+          },
+          {
+            "P4_relative_point_rms_px": 4.578800749111887,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 4.395796474648049,
+                "block": 0,
+                "centroid_rms_px": 2.6425605575953335,
+                "evaluated": 651,
+                "initial_relative_coordinate_rms_px": 90.49237358827294,
+                "mean_A_D": 3.0495402866696075,
+                "mean_theta_deg": 6.9023383531237945,
+                "point_cost_contribution": 29.55511756062374,
+                "relative_coordinate_rms_px": 3.511465845189073,
+                "scheduled": 1100,
+                "signed_relative_means_px": [
+                  2.3391241527994926,
+                  0.4383741506437919,
+                  -0.4101184241445894,
+                  1.0306558726971868,
+                  6.076504013793105,
+                  -6.969185295144239,
+                  -2.5266674474257047,
+                  -1.5245215190395687,
+                  3.4073297990127793,
+                  1.2223429733445696
+                ],
+                "unavailable": 449,
+                "valid": 651
+              },
+              {
+                "P4_relative_point_rms_px": 4.426718755359318,
+                "block": 1,
+                "centroid_rms_px": 2.6859060899082627,
+                "evaluated": 469,
+                "initial_relative_coordinate_rms_px": 93.90371760385399,
+                "mean_A_D": 2.9091999327995577,
+                "mean_theta_deg": 7.219596361537231,
+                "point_cost_contribution": 27.251860680603713,
+                "relative_coordinate_rms_px": 3.584477315595228,
+                "scheduled": 1100,
+                "signed_relative_means_px": [
+                  3.068478057800805,
+                  0.44707045738274187,
+                  -0.5181342085444044,
+                  0.9874799999139048,
+                  6.209369627183189,
+                  -7.405073041101007,
+                  -2.5183532435266955,
+                  -2.0083320656882355,
+                  3.486620139034864,
+                  0.7466102954135104
+                ],
+                "unavailable": 631,
+                "valid": 469
+              },
+              {
+                "P4_relative_point_rms_px": 4.296624819077057,
+                "block": 2,
+                "centroid_rms_px": 2.474541616358078,
+                "evaluated": 474,
+                "initial_relative_coordinate_rms_px": 94.19591553046023,
+                "mean_A_D": 2.8510956575404647,
+                "mean_theta_deg": 7.242064878233888,
+                "point_cost_contribution": 23.547237912244228,
+                "relative_coordinate_rms_px": 3.455033801364135,
+                "scheduled": 1100,
+                "signed_relative_means_px": [
+                  2.641600330112727,
+                  0.3732102314011727,
+                  -0.6412142552022042,
+                  0.9447460890546093,
+                  6.219301757161678,
+                  -6.970515785160303,
+                  -2.473709548118419,
+                  -1.5219863713794526,
+                  3.5417392817162074,
+                  1.1660891256196422
+                ],
+                "unavailable": 626,
+                "valid": 474
+              },
+              {
+                "P4_relative_point_rms_px": 4.7078387715295085,
+                "block": 3,
+                "centroid_rms_px": 3.2073894857330347,
+                "evaluated": 338,
+                "initial_relative_coordinate_rms_px": 93.96567069237572,
+                "mean_A_D": 2.7720510552058553,
+                "mean_theta_deg": 7.219677549041616,
+                "point_cost_contribution": 14.035089391830425,
+                "relative_coordinate_rms_px": 3.7252494652234156,
+                "scheduled": 1100,
+                "signed_relative_means_px": [
+                  1.9878425587866044,
+                  0.27216901605147953,
+                  -0.9015674235349076,
+                  0.9590910141557006,
+                  6.158931753227475,
+                  -8.198021741267597,
+                  -2.339328166151981,
+                  -2.710511300148009,
+                  3.625761607370078,
+                  -0.24303214708017076
+                ],
+                "unavailable": 762,
+                "valid": 338
+              },
+              {
+                "P4_relative_point_rms_px": 5.224397708629556,
+                "block": 4,
+                "centroid_rms_px": 3.9554433128427573,
+                "evaluated": 394,
+                "initial_relative_coordinate_rms_px": 93.22941600498199,
+                "mean_A_D": 2.5453626729612187,
+                "mean_theta_deg": 7.153038987273876,
+                "point_cost_contribution": 16.290457535608365,
+                "relative_coordinate_rms_px": 4.126930537014674,
+                "scheduled": 1100,
+                "signed_relative_means_px": [
+                  2.1209762902099287,
+                  0.1990861610213295,
+                  -0.9922160919284577,
+                  0.7920931661636269,
+                  6.13439559222491,
+                  -9.344900691174939,
+                  -2.0850989208941275,
+                  -3.593309416959102,
+                  3.837490686407597,
+                  -1.3876146222166952
+                ],
+                "unavailable": 706,
+                "valid": 394
+              }
+            ],
+            "capture": "capture_3_detections.pkl",
+            "centroid_rms_px": 2.9668096584361594,
+            "demand_D": 3.0,
+            "evaluated": 2326,
+            "exposure": 14,
+            "initial_relative_coordinate_rms_px": 92.91593282208632,
+            "ledger_means": {
+              "C1_hat_px": [
+                987.617418025716,
+                423.36161477980517
+              ],
+              "C4_hat_px": [
+                1186.3434535851259,
+                478.0877892198121
+              ],
+              "D_obs_reference_px": [
+                200.052028731202,
+                55.09119623838166
+              ],
+              "D_prediction_reference_px": [
+                197.60341673475716,
+                58.21945885916419
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.013582779871641939,
+                -3.104689838421194
+              ],
+              "raw_centroid_separation_px": [
+                198.73952854519084,
+                51.642047329599826
+              ]
+            },
+            "mean_A_D": 2.8550778102258754,
+            "mean_theta_deg": 7.124118695739205,
+            "point_cost_contribution": 110.67976308091043,
+            "relative_coordinate_rms_px": 3.6573054599653303,
+            "scheduled": 5500,
+            "signed_relative_means_px": [
+              2.4598280448267693,
+              0.362163517254331,
+              -0.6490071041555922,
+              0.9536337960234179,
+              6.154178115627843,
+              -7.638334302000261,
+              -2.412179019900234,
+              -2.144329113270986,
+              3.555313722112556,
+              0.45991690579255734
+            ],
+            "target_theta_deg": 10.0,
+            "unavailable": 3174,
+            "valid": 2326
+          },
+          {
+            "P4_relative_point_rms_px": 2.120820530296306,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 4.146578529625059,
+                "block": 0,
+                "centroid_rms_px": 3.398381324994991,
+                "evaluated": 700,
+                "initial_relative_coordinate_rms_px": 94.54327446573214,
+                "mean_A_D": 2.03500219947182,
+                "mean_theta_deg": -9.393009835540399,
+                "point_cost_contribution": 3.501524939834906,
+                "relative_coordinate_rms_px": 3.231669872262256,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  0.6657994424942375,
+                  -0.09143025262071514,
+                  -0.6277673836160882,
+                  0.0281417655074249,
+                  1.5867427710403161,
+                  -1.941009724541313,
+                  -1.081415862302646,
+                  -2.1254872875497366,
+                  0.3051537256539773,
+                  -2.013435676731298
+                ],
+                "unavailable": 260,
+                "valid": 700
+              },
+              {
+                "P4_relative_point_rms_px": 1.3219335572530089,
+                "block": 1,
+                "centroid_rms_px": 1.0498322371812636,
+                "evaluated": 936,
+                "initial_relative_coordinate_rms_px": 96.9176741014721,
+                "mean_A_D": 1.9777832409049387,
+                "mean_theta_deg": -9.626686585434628,
+                "point_cost_contribution": 2.224281347775838,
+                "relative_coordinate_rms_px": 1.0578626825701607,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  0.7226760586007879,
+                  -0.08143030473796703,
+                  -0.38474136353354416,
+                  -0.11140525994380539,
+                  1.518520521853389,
+                  1.5960055366900017,
+                  -1.1775045549501206,
+                  1.2175514690933078,
+                  0.24542823168348543,
+                  1.1068017507633363
+                ],
+                "unavailable": 24,
+                "valid": 936
+              },
+              {
+                "P4_relative_point_rms_px": 1.5790467669139834,
+                "block": 2,
+                "centroid_rms_px": 1.2872343595380649,
+                "evaluated": 765,
+                "initial_relative_coordinate_rms_px": 96.95491705627425,
+                "mean_A_D": 1.7923363785270372,
+                "mean_theta_deg": -9.62967271813736,
+                "point_cost_contribution": 2.7392545167972147,
+                "relative_coordinate_rms_px": 1.263262861274955,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  0.7841686878733125,
+                  -0.15282741985424206,
+                  -0.5271002643037276,
+                  -0.22741003306203325,
+                  1.6732248200233686,
+                  1.9252945310827432,
+                  -1.3992598708903923,
+                  1.7484122582725032,
+                  0.4000680018516652,
+                  1.3963780854638683
+                ],
+                "unavailable": 195,
+                "valid": 765
+              },
+              {
+                "P4_relative_point_rms_px": 1.224449327347703,
+                "block": 3,
+                "centroid_rms_px": 0.7346720585958129,
+                "evaluated": 706,
+                "initial_relative_coordinate_rms_px": 97.0218936765471,
+                "mean_A_D": 1.7289939284370428,
+                "mean_theta_deg": -9.634486016569761,
+                "point_cost_contribution": 2.2243164995834785,
+                "relative_coordinate_rms_px": 0.9904757621026721,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  0.628619286199185,
+                  -0.17495006140984176,
+                  -0.49986073959191835,
+                  -0.2765726623200195,
+                  1.7872147490619934,
+                  1.1380169054473466,
+                  -1.5387272330978516,
+                  1.0586128124424912,
+                  0.4511743060241722,
+                  0.7061385447255928
+                ],
+                "unavailable": 254,
+                "valid": 706
+              },
+              {
+                "P4_relative_point_rms_px": 1.0947790186563087,
+                "block": 4,
+                "centroid_rms_px": 0.5382150295978539,
+                "evaluated": 807,
+                "initial_relative_coordinate_rms_px": 94.8160405199226,
+                "mean_A_D": 1.676935767990389,
+                "mean_theta_deg": -9.39516740231031,
+                "point_cost_contribution": 2.0444340400022054,
+                "relative_coordinate_rms_px": 0.8838405715690588,
+                "scheduled": 960,
+                "signed_relative_means_px": [
+                  0.573356104980136,
+                  -0.1454339743715629,
+                  -0.3615739056426329,
+                  -0.2741707163363538,
+                  1.8059816455021094,
+                  0.5624521486311749,
+                  -1.387847402014676,
+                  0.560698036364418,
+                  0.5425570785739964,
+                  0.19725295353113312
+                ],
+                "unavailable": 153,
+                "valid": 807
+              }
+            ],
+            "capture": "capture_4_detections.pkl",
+            "centroid_rms_px": 1.6763037592361867,
+            "demand_D": 2.0,
+            "evaluated": 3914,
+            "exposure": 15,
+            "initial_relative_coordinate_rms_px": 96.09217728878117,
+            "ledger_means": {
+              "C1_hat_px": [
+                618.6936945999161,
+                416.9346383048596
+              ],
+              "C4_hat_px": [
+                473.1785119029115,
+                462.2216612907493
+              ],
+              "D_obs_reference_px": [
+                -145.3959669115035,
+                45.250390762677625
+              ],
+              "D_prediction_reference_px": [
+                -145.6428195134753,
+                44.7042064662478
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.0006098832516348977,
+                -0.089819372538847
+              ],
+              "raw_centroid_separation_px": [
+                -145.51457223258015,
+                45.197117851738405
+              ]
+            },
+            "mean_A_D": 1.8448648086191304,
+            "mean_theta_deg": -9.539149815938385,
+            "point_cost_contribution": 12.733811343993633,
+            "relative_coordinate_rms_px": 1.6689376766356867,
+            "scheduled": 4800,
+            "signed_relative_means_px": [
+              0.6767698108316241,
+              -0.12723885511776506,
+              -0.47201804062251296,
+              -0.17247338539244528,
+              1.6686951804442673,
+              0.7320755009280558,
+              -1.3121879019594387,
+              0.5593220266467731,
+              0.38470952393774427,
+              0.345556373648014
+            ],
+            "target_theta_deg": -10.0,
+            "unavailable": 886,
+            "valid": 3914
+          },
+          {
+            "P4_relative_point_rms_px": 1.9251999720435582,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 2.156738057154165,
+                "block": 0,
+                "centroid_rms_px": 1.631664002645008,
+                "evaluated": 979,
+                "initial_relative_coordinate_rms_px": 45.76713046025228,
+                "mean_A_D": 2.142339779642571,
+                "mean_theta_deg": -5.121249025539311,
+                "point_cost_contribution": 3.561876073383558,
+                "relative_coordinate_rms_px": 1.7348851341311318,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  1.41318352452704,
+                  0.23652687455530993,
+                  0.20250577388094892,
+                  0.2546322068764955,
+                  3.331909433436842,
+                  -2.2296719861986722,
+                  -1.1083835268427347,
+                  -0.9710940850789046,
+                  2.467962413829596,
+                  -1.3785384784109256
+                ],
+                "unavailable": 1,
+                "valid": 979
+              },
+              {
+                "P4_relative_point_rms_px": 1.8893944643131595,
+                "block": 1,
+                "centroid_rms_px": 1.2007477437100773,
+                "evaluated": 980,
+                "initial_relative_coordinate_rms_px": 45.41609077796549,
+                "mean_A_D": 2.3032522357342695,
+                "mean_theta_deg": -5.099858544448313,
+                "point_cost_contribution": 4.829238903469687,
+                "relative_coordinate_rms_px": 1.5542371576399427,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  1.6165826175638325,
+                  0.2162406080508829,
+                  0.060954581565096366,
+                  0.25184276860691535,
+                  3.3567201068529,
+                  -0.058312939751119904,
+                  -1.233666589164612,
+                  1.2714817179230862,
+                  2.450264342593234,
+                  0.8934080563474653
+                ],
+                "unavailable": 0,
+                "valid": 980
+              },
+              {
+                "P4_relative_point_rms_px": 1.9019170409850248,
+                "block": 2,
+                "centroid_rms_px": 1.3326691789189713,
+                "evaluated": 980,
+                "initial_relative_coordinate_rms_px": 45.23343157376627,
+                "mean_A_D": 2.148293252508832,
+                "mean_theta_deg": -5.086381122668587,
+                "point_cost_contribution": 4.261671773407515,
+                "relative_coordinate_rms_px": 1.5585807915009806,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  1.523949670670831,
+                  0.2795240921688898,
+                  0.27409611158388747,
+                  0.30593054343208576,
+                  3.1949164984591514,
+                  0.2636594374689259,
+                  -0.9868456249742932,
+                  1.6514253418970586,
+                  2.5080571642447897,
+                  1.069411955687424
+                ],
+                "unavailable": 0,
+                "valid": 980
+              },
+              {
+                "P4_relative_point_rms_px": 1.8915591917312147,
+                "block": 3,
+                "centroid_rms_px": 1.3746283259983467,
+                "evaluated": 980,
+                "initial_relative_coordinate_rms_px": 45.04410109916878,
+                "mean_A_D": 1.9882579963033722,
+                "mean_theta_deg": -5.070300046360309,
+                "point_cost_contribution": 3.4637505320590725,
+                "relative_coordinate_rms_px": 1.5371935315810745,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  1.418032106085352,
+                  0.22583727107337984,
+                  0.21179360750428916,
+                  0.21838924113881059,
+                  3.1385403266994287,
+                  0.30547042459770707,
+                  -0.8232649639469714,
+                  1.7051855231790864,
+                  2.552193507253147,
+                  1.0530035005722003
+                ],
+                "unavailable": 0,
+                "valid": 980
+              },
+              {
+                "P4_relative_point_rms_px": 1.7653112979240333,
+                "block": 4,
+                "centroid_rms_px": 1.1918314007665491,
+                "evaluated": 980,
+                "initial_relative_coordinate_rms_px": 44.88042610309937,
+                "mean_A_D": 1.9881154697942576,
+                "mean_theta_deg": -5.052929231954725,
+                "point_cost_contribution": 3.6514191818788557,
+                "relative_coordinate_rms_px": 1.4449900255876522,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  1.4545652280189751,
+                  0.17076175282962486,
+                  0.05705858464519181,
+                  0.15979140040070677,
+                  3.171821785113474,
+                  -0.6133056498699044,
+                  -0.8376581316072969,
+                  0.6976419241828289,
+                  2.548188427305157,
+                  0.04231409534055736
+                ],
+                "unavailable": 0,
+                "valid": 980
+              }
+            ],
+            "capture": "capture_4_detections.pkl",
+            "centroid_rms_px": 1.3556809021393552,
+            "demand_D": 2.0,
+            "evaluated": 4899,
+            "exposure": 16,
+            "initial_relative_coordinate_rms_px": 45.269177810460704,
+            "ledger_means": {
+              "C1_hat_px": [
+                716.4265326666577,
+                419.06164026564113
+              ],
+              "C4_hat_px": [
+                663.3836042044263,
+                467.7309141242006
+              ],
+              "D_obs_reference_px": [
+                -53.08153336482342,
+                48.7046325748271
+              ],
+              "D_prediction_reference_px": [
+                -54.66474603343727,
+                48.457240702707026
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.0058216237219046755,
+                -0.9140505998809546
+              ],
+              "raw_centroid_separation_px": [
+                -53.03711109222367,
+                47.75588767804466
+              ]
+            },
+            "mean_A_D": 2.114045972550315,
+            "mean_theta_deg": -5.086136428358089,
+            "point_cost_contribution": 19.76795646419869,
+            "relative_coordinate_rms_px": 1.5687608973990192,
+            "scheduled": 4900,
+            "signed_relative_means_px": [
+              1.4852773423972594,
+              0.2257759256644155,
+              0.16127331704877385,
+              0.23811386100000792,
+              3.238762620558712,
+              -0.4660722244318851,
+              -0.9979412280625312,
+              0.8713040840469819,
+              2.505340799287121,
+              0.33626978677779096
+            ],
+            "target_theta_deg": -5.0,
+            "unavailable": 1,
+            "valid": 4899
+          },
+          {
+            "P4_relative_point_rms_px": 4.108349878858332,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 5.692566293339038,
+                "block": 0,
+                "centroid_rms_px": 5.250138125585034,
+                "evaluated": 747,
+                "initial_relative_coordinate_rms_px": 8.85036599153421,
+                "mean_A_D": 2.0705762720973206,
+                "mean_theta_deg": -0.6643718945932165,
+                "point_cost_contribution": 8.163546408865903,
+                "relative_coordinate_rms_px": 4.482394594978218,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.2718664592150466,
+                  0.47844526805488413,
+                  0.6328960830434491,
+                  0.48047324461760044,
+                  4.446240433710968,
+                  -7.34916066018012,
+                  -0.8056132844975951,
+                  -3.2249470905316455,
+                  3.8124420806703907,
+                  -3.287832179987334
+                ],
+                "unavailable": 253,
+                "valid": 747
+              },
+              {
+                "P4_relative_point_rms_px": 3.4521742008691816,
+                "block": 1,
+                "centroid_rms_px": 2.7344614345521885,
+                "evaluated": 1000,
+                "initial_relative_coordinate_rms_px": 5.422881396659635,
+                "mean_A_D": 2.1328878313674577,
+                "mean_theta_deg": -0.678234532423535,
+                "point_cost_contribution": 15.284557495323968,
+                "relative_coordinate_rms_px": 2.8307322811148374,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.804322055632927,
+                  0.48130375677298204,
+                  0.3419813734200142,
+                  0.5758705778741541,
+                  4.272048973737186,
+                  -5.5619140862844185,
+                  -0.6963875120626818,
+                  -1.3051188435058259,
+                  3.8099025243833955,
+                  -1.5098874518528487
+                ],
+                "unavailable": 0,
+                "valid": 1000
+              },
+              {
+                "P4_relative_point_rms_px": 3.483352304199149,
+                "block": 2,
+                "centroid_rms_px": 2.728845594527529,
+                "evaluated": 1000,
+                "initial_relative_coordinate_rms_px": 5.885065167485416,
+                "mean_A_D": 2.001578018461379,
+                "mean_theta_deg": -0.6323746273169195,
+                "point_cost_contribution": 16.163029888038132,
+                "relative_coordinate_rms_px": 2.836099661924782,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.6174143023672496,
+                  0.46433918110352046,
+                  0.07421431948530414,
+                  0.736756321840673,
+                  4.373663386272017,
+                  -5.660332770061649,
+                  -0.7773636591739181,
+                  -1.255983896634849,
+                  3.978803415662148,
+                  -1.7425579763368182
+                ],
+                "unavailable": 0,
+                "valid": 1000
+              },
+              {
+                "P4_relative_point_rms_px": 3.885690188167082,
+                "block": 3,
+                "centroid_rms_px": 3.209120292367114,
+                "evaluated": 1000,
+                "initial_relative_coordinate_rms_px": 5.764427189886061,
+                "mean_A_D": 1.9418126437261405,
+                "mean_theta_deg": -0.6605173271736112,
+                "point_cost_contribution": 15.938033819901849,
+                "relative_coordinate_rms_px": 3.1255221272591465,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.467821494231955,
+                  0.5121152905912879,
+                  0.15810959272000077,
+                  0.8419980873221167,
+                  4.458512427455691,
+                  -6.461397235493581,
+                  -0.8548410389740293,
+                  -2.0819154947444773,
+                  4.033662826920813,
+                  -2.6578718956532006
+                ],
+                "unavailable": 0,
+                "valid": 1000
+              },
+              {
+                "P4_relative_point_rms_px": 4.094608380645132,
+                "block": 4,
+                "centroid_rms_px": 3.3842652420546613,
+                "evaluated": 1000,
+                "initial_relative_coordinate_rms_px": 9.905989926210523,
+                "mean_A_D": 2.130515248064252,
+                "mean_theta_deg": -0.5622667704848403,
+                "point_cost_contribution": 17.75614849798765,
+                "relative_coordinate_rms_px": 3.2859110306461683,
+                "scheduled": 1000,
+                "signed_relative_means_px": [
+                  2.509840044256615,
+                  0.48873135211417645,
+                  -0.016032194287581205,
+                  0.8820279006369068,
+                  4.640700274589814,
+                  -6.762755472506265,
+                  -1.19640011264073,
+                  -2.4493422033888397,
+                  3.9867073363360293,
+                  -2.901206247019917
+                ],
+                "unavailable": 0,
+                "valid": 1000
+              }
+            ],
+            "capture": "capture_4_detections.pkl",
+            "centroid_rms_px": 3.4732676427679694,
+            "demand_D": 2.0,
+            "evaluated": 4747,
+            "exposure": 17,
+            "initial_relative_coordinate_rms_px": 7.313593753779501,
+            "ledger_means": {
+              "C1_hat_px": [
+                817.0389433544884,
+                416.76494754770675
+              ],
+              "C4_hat_px": [
+                856.0325045802412,
+                464.88065923876707
+              ],
+              "D_obs_reference_px": [
+                39.127740273257636,
+                48.27980504995025
+              ],
+              "D_prediction_reference_px": [
+                36.61964566535049,
+                51.85242323591589
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.01033388626385982,
+                -1.7450590231132013
+              ],
+              "raw_centroid_separation_px": [
+                39.00385999161296,
+                46.37659015630933
+              ]
+            },
+            "mean_A_D": 2.0546690998264014,
+            "mean_theta_deg": -0.6382302638845668,
+            "point_cost_contribution": 73.30531611011745,
+            "relative_coordinate_rms_px": 3.297969282934413,
+            "scheduled": 5000,
+            "signed_relative_means_px": [
+              2.548237232256661,
+              0.48533562161764676,
+              0.2171995924523271,
+              0.7153078578898683,
+              4.437806333692198,
+              -6.3063456030125185,
+              -0.8693459967076186,
+              -2.00155801872786,
+              3.930265501909241,
+              -2.373611588226947
+            ],
+            "target_theta_deg": 0.0,
+            "unavailable": 253,
+            "valid": 4747
+          },
+          {
+            "P4_relative_point_rms_px": 4.9954040797067085,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 5.8397250205133036,
+                "block": 0,
+                "centroid_rms_px": 4.905656193547938,
+                "evaluated": 818,
+                "initial_relative_coordinate_rms_px": 55.273205212497544,
+                "mean_A_D": 2.3204189756289795,
+                "mean_theta_deg": 3.7752489628159562,
+                "point_cost_contribution": 14.619949849378653,
+                "relative_coordinate_rms_px": 4.5985057913566285,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  2.2673964230122965,
+                  0.5518358021910212,
+                  0.14893111249745053,
+                  0.993831823826551,
+                  5.433266823797874,
+                  -10.488827249417316,
+                  -1.7742303069251502,
+                  -4.03255098649784,
+                  4.696683396200708,
+                  -3.9443737204539473
+                ],
+                "unavailable": 162,
+                "valid": 818
+              },
+              {
+                "P4_relative_point_rms_px": 4.928999591769168,
+                "block": 1,
+                "centroid_rms_px": 3.672719365019282,
+                "evaluated": 980,
+                "initial_relative_coordinate_rms_px": 57.57678334697626,
+                "mean_A_D": 2.1589594826616807,
+                "mean_theta_deg": 3.9944144176843155,
+                "point_cost_contribution": 23.98921539211112,
+                "relative_coordinate_rms_px": 3.980194879005818,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  3.2636809200243886,
+                  0.7069234359700775,
+                  0.5613355553018593,
+                  0.966058135894021,
+                  5.699852644489357,
+                  -8.712146827195019,
+                  -1.9768802778938783,
+                  -2.0665067408877693,
+                  4.90605029875029,
+                  -2.1339934348298786
+                ],
+                "unavailable": 0,
+                "valid": 980
+              },
+              {
+                "P4_relative_point_rms_px": 4.649889242142808,
+                "block": 2,
+                "centroid_rms_px": 3.2563916925093506,
+                "evaluated": 980,
+                "initial_relative_coordinate_rms_px": 58.07383379202208,
+                "mean_A_D": 2.0208483072728423,
+                "mean_theta_deg": 4.038868710103314,
+                "point_cost_contribution": 29.543256107568418,
+                "relative_coordinate_rms_px": 3.8014088547936042,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  3.5860297643991106,
+                  0.7403967218548265,
+                  0.4297528310573523,
+                  1.0825149739583448,
+                  5.769971704550243,
+                  -7.95936700414109,
+                  -1.9506185692732307,
+                  -1.1799045461353093,
+                  5.038920406629598,
+                  -1.3883096018246621
+                ],
+                "unavailable": 0,
+                "valid": 980
+              },
+              {
+                "P4_relative_point_rms_px": 4.840721868706311,
+                "block": 3,
+                "centroid_rms_px": 3.511282372571662,
+                "evaluated": 980,
+                "initial_relative_coordinate_rms_px": 57.67230072547691,
+                "mean_A_D": 1.972890243184741,
+                "mean_theta_deg": 4.000534185918568,
+                "point_cost_contribution": 28.21160941491823,
+                "relative_coordinate_rms_px": 3.918373244910489,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  3.309617702430626,
+                  0.7222893212204979,
+                  0.3259553908924663,
+                  1.1518089581698916,
+                  5.819636773656977,
+                  -8.310718216370564,
+                  -1.9809562881329252,
+                  -1.5190486199164859,
+                  5.098753180062939,
+                  -1.8284318034171494
+                ],
+                "unavailable": 0,
+                "valid": 980
+              },
+              {
+                "P4_relative_point_rms_px": 4.778190085783468,
+                "block": 4,
+                "centroid_rms_px": 3.4078164060539486,
+                "evaluated": 980,
+                "initial_relative_coordinate_rms_px": 57.63595044507069,
+                "mean_A_D": 1.9736833607399447,
+                "mean_theta_deg": 3.9974820315611037,
+                "point_cost_contribution": 30.867934705976744,
+                "relative_coordinate_rms_px": 3.8816518191144285,
+                "scheduled": 980,
+                "signed_relative_means_px": [
+                  3.387122243597278,
+                  0.75153780982411,
+                  0.2941940985513963,
+                  1.2381293814526446,
+                  5.887461847809274,
+                  -8.141930029268977,
+                  -2.0522141399677944,
+                  -1.4105980410406171,
+                  5.1001953422271065,
+                  -1.6967361730381663
+                ],
+                "unavailable": 0,
+                "valid": 980
+              }
+            ],
+            "capture": "capture_4_detections.pkl",
+            "centroid_rms_px": 3.753712500498226,
+            "demand_D": 2.0,
+            "evaluated": 4738,
+            "exposure": 18,
+            "initial_relative_coordinate_rms_px": 57.321739396890145,
+            "ledger_means": {
+              "C1_hat_px": [
+                914.6058263492328,
+                420.5167806506863
+              ],
+              "C4_hat_px": [
+                1048.4213538160059,
+                471.4318083361717
+              ],
+              "D_obs_reference_px": [
+                134.61332725357903,
+                51.21879248172926
+              ],
+              "D_prediction_reference_px": [
+                131.6771000932518,
+                55.501778813572145
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.013938357820309286,
+                -2.6136039974665715
+              ],
+              "raw_centroid_separation_px": [
+                133.82938312893526,
+                48.3169123759409
+              ]
+            },
+            "mean_A_D": 2.0814597906387777,
+            "mean_theta_deg": 3.967671382428326,
+            "point_cost_contribution": 127.23196546995317,
+            "relative_coordinate_rms_px": 4.026004975136157,
+            "scheduled": 4900,
+            "signed_relative_means_px": [
+              3.193383683382529,
+              0.6994778449312762,
+              0.3589782119691711,
+              1.0896360600201638,
+              5.7319115181431854,
+              -8.662207582410215,
+              -1.9528865092501597,
+              -1.9736520675339317,
+              4.977401405911501,
+              -2.1386701764835254
+            ],
+            "target_theta_deg": 5.0,
+            "unavailable": 162,
+            "valid": 4738
+          },
+          {
+            "P4_relative_point_rms_px": 8.49874062898869,
+            "blocks": [
+              {
+                "P4_relative_point_rms_px": 11.33463256249212,
+                "block": 0,
+                "centroid_rms_px": 8.113088306256211,
+                "evaluated": 561,
+                "initial_relative_coordinate_rms_px": 104.11263702107354,
+                "mean_A_D": 2.078553050033687,
+                "mean_theta_deg": 8.005874774443003,
+                "point_cost_contribution": 16.83255683885578,
+                "relative_coordinate_rms_px": 8.813860701719358,
+                "scheduled": 1160,
+                "signed_relative_means_px": [
+                  1.0942028851101673,
+                  0.2006886541745401,
+                  -1.431484081155802,
+                  1.2763358958446767,
+                  6.200819465983539,
+                  -9.444264256824248,
+                  -1.429319237206413,
+                  -3.738145103982355,
+                  3.842247653472369,
+                  -0.24678960851016485
+                ],
+                "unavailable": 599,
+                "valid": 561
+              },
+              {
+                "P4_relative_point_rms_px": 5.0466965719711165,
+                "block": 1,
+                "centroid_rms_px": 3.4888555192958948,
+                "evaluated": 1137,
+                "initial_relative_coordinate_rms_px": 109.05648097805675,
+                "mean_A_D": 2.0799837042843556,
+                "mean_theta_deg": 8.53717135059316,
+                "point_cost_contribution": 27.55376616542487,
+                "relative_coordinate_rms_px": 3.9717487171156023,
+                "scheduled": 1160,
+                "signed_relative_means_px": [
+                  0.906006112327235,
+                  0.155596598089957,
+                  -1.5635241280234413,
+                  1.2739108505640906,
+                  6.294681852846827,
+                  -9.160076182202644,
+                  -1.869198366590418,
+                  -2.8020806233088664,
+                  4.144992028627789,
+                  -0.014777405813981475
+                ],
+                "unavailable": 23,
+                "valid": 1137
+              },
+              {
+                "P4_relative_point_rms_px": 5.363860060291535,
+                "block": 2,
+                "centroid_rms_px": 3.9707540839516318,
+                "evaluated": 832,
+                "initial_relative_coordinate_rms_px": 109.77513668048636,
+                "mean_A_D": 2.0172002893666363,
+                "mean_theta_deg": 8.597654868671803,
+                "point_cost_contribution": 21.540064437962865,
+                "relative_coordinate_rms_px": 4.223848802843102,
+                "scheduled": 1160,
+                "signed_relative_means_px": [
+                  1.0208243648014628,
+                  0.08404087441042286,
+                  -1.7996667053404614,
+                  1.2093850086321778,
+                  6.248079563140804,
+                  -9.887538138684564,
+                  -1.7888104614430036,
+                  -3.450627514764812,
+                  4.229495331096105,
+                  -0.8836480505293939
+                ],
+                "unavailable": 328,
+                "valid": 832
+              },
+              {
+                "P4_relative_point_rms_px": 9.097249072134106,
+                "block": 3,
+                "centroid_rms_px": 6.711330321516649,
+                "evaluated": 1160,
+                "initial_relative_coordinate_rms_px": 109.59979977781016,
+                "mean_A_D": 1.91467143911883,
+                "mean_theta_deg": 8.565159377813776,
+                "point_cost_contribution": 30.46453058843166,
+                "relative_coordinate_rms_px": 7.088348498898635,
+                "scheduled": 1160,
+                "signed_relative_means_px": [
+                  1.167059341632917,
+                  0.022476887095876183,
+                  -1.8424748432235898,
+                  1.0405404771420814,
+                  6.088586323751354,
+                  -10.67970546464263,
+                  -1.2278413041154994,
+                  -4.767652830059244,
+                  4.035170987354961,
+                  -1.7561123157647
+                ],
+                "unavailable": 0,
+                "valid": 1160
+              },
+              {
+                "P4_relative_point_rms_px": 10.685202729132556,
+                "block": 4,
+                "centroid_rms_px": 8.255943547060978,
+                "evaluated": 1086,
+                "initial_relative_coordinate_rms_px": 108.9110275307632,
+                "mean_A_D": 1.8122655854740317,
+                "mean_theta_deg": 8.500372144372577,
+                "point_cost_contribution": 27.91144594341726,
+                "relative_coordinate_rms_px": 8.311658203425113,
+                "scheduled": 1160,
+                "signed_relative_means_px": [
+                  1.2417978046108848,
+                  0.006520214177108457,
+                  -1.7880712508976593,
+                  0.94718763951546,
+                  6.0560915651686225,
+                  -12.703552381807182,
+                  -0.9843740574360003,
+                  -6.952631059854732,
+                  4.038121049249116,
+                  -3.8920434936110366
+                ],
+                "unavailable": 74,
+                "valid": 1086
+              }
+            ],
+            "capture": "capture_4_detections.pkl",
+            "centroid_rms_px": 6.309890297885778,
+            "demand_D": 2.0,
+            "evaluated": 4776,
+            "exposure": 19,
+            "initial_relative_coordinate_rms_px": 108.71323206990253,
+            "ledger_means": {
+              "C1_hat_px": [
+                1002.4894927736232,
+                422.1789032927806
+              ],
+              "C4_hat_px": [
+                1229.8011927277323,
+                475.55204555172344
+              ],
+              "D_obs_reference_px": [
+                228.23779797289902,
+                53.5921304873967
+              ],
+              "D_prediction_reference_px": [
+                225.2931906215688,
+                59.09331152690412
+              ],
+              "mu4_minus_mu1_reference_px": [
+                0.016811943051945655,
+                -3.5125364127780627
+              ],
+              "raw_centroid_separation_px": [
+                227.32844353744235,
+                49.87487657846738
+              ]
+            },
+            "mean_A_D": 1.9678516894463767,
+            "mean_theta_deg": 8.483730622251777,
+            "point_cost_contribution": 124.30236397409247,
+            "relative_coordinate_rms_px": 6.625749464934464,
+            "scheduled": 5800,
+            "signed_relative_means_px": [
+              1.0878735117000207,
+              0.08219761644833042,
+              -1.7079623950059746,
+              1.1319811833837508,
+              6.171229220888087,
+              -10.495013991678464,
+              -1.446554245803215,
+              -4.446193839654847,
+              4.073177301180073,
+              -1.4979680860916635
+            ],
+            "target_theta_deg": 10.0,
+            "unavailable": 1024,
+            "valid": 4776
+          }
+        ]
+      },
+      "pass": true
+    },
+    "unchanged_theta_A_g": {
+      "detail": {
+        "A": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        },
+        "g": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        },
+        "theta": {
+          "equal_nan": true,
+          "max_abs": 0.0
+        }
+      },
+      "pass": true
+    }
+  },
+  "created_utc": "2026-10-10T02:32:28.346471+00:00",
+  "final_mechanical_checks": {
+    "attempt01_historical_archive_preserved": {
+      "detail": "Attempt01 retained as reporting-repair history; original archived source hashes remain part of provenance.",
+      "pass": true
+    },
+    "live_markdown_links": {
+      "detail": "Previously scanned stage4, global index, and stage3 pointer: 10 Markdown documents, 55 local links, zero missing.",
+      "pass": true
+    },
+    "source_snapshot_notes_present": {
+      "detail": "Both attempt directories contain source_snapshot/README.md describing repository-relative archived sources and root-resident raw inputs.",
+      "pass": true
+    },
+    "whitespace": {
+      "detail": "git diff --check passed; stage4/index/progress whitespace scan found no trailing whitespace.",
+      "pass": true
+    }
+  },
+  "review_report": "STAGE_REPORT.md",
+  "reviewed_utc": "2026-10-10T02:28:53Z",
+  "reviewer": "root implementation/audit agent",
+  "schema": "g6_mechanical_reproduction_checks_v1",
+  "scientific_disposition": "reporting_repair_only",
+  "source": "mechanical_inventory",
+  "status": "COMPLETE"
+}

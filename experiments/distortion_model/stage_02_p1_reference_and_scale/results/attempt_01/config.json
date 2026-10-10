@@ -1,0 +1,51 @@
+{
+  "alternative_policy": "retain all five balance profiles; fit selected reference and adjacent sampled reference(s); never choose omega by training cost",
+  "axis_policy": "fixed native camera x right, y down; optical/camera alignment unknown; no fitted rotation/affine",
+  "backend": "NumPy/SciPy float64 CPU",
+  "block_policy": "five contiguous original-row partitions per exposure; diagnostic fits only; full fit keeps all rows",
+  "bootstrap_refresh": "one framewise displacement/g refresh using fit-snapshot scale, then recompute scale/means at refreshed visual theta",
+  "bounds_policy": "actual reference coordinates and shifted full visual domain; scales and denominators >=0.5",
+  "candidate": "p1_initialization_only",
+  "certificate": {
+    "conditional_rank_rtol": 1e-10,
+    "kind": "conditional two-global-parameter fit, not full-model certification",
+    "scaled_projected_gradient_inf": 1e-06
+  },
+  "covariance_policy": "unchanged frozen stage-one R11",
+  "derivative_test_tolerances": {
+    "atol": 1e-05,
+    "finite_difference_steps": "theta 1e-4; alpha/beta 1e-8; gamma 1e-10; scaled params 1e-6",
+    "rtol": 3e-06
+  },
+  "free_parameters": [
+    "delta1=100*alpha1=-100*beta1",
+    "keystone1=10*reference_radius_px*gamma1"
+  ],
+  "isotropic_gaze_scale_policy": "alpha1+beta1=0; trace-free quadratic anisotropy initially free, no free isotropic term",
+  "length_policy": "fixed empirical native-pixel reference length",
+  "omega1_policy": "fixed at mean stage-one visual gaze in selected reference exposure; no continuous zero extrapolation",
+  "optimizer": {
+    "ftol": 1e-10,
+    "gtol": 1e-08,
+    "max_nfev": 100,
+    "method": "SciPy least_squares trf; exact analytic profile Jacobian",
+    "xtol": 1e-10
+  },
+  "origin_policy": "fixed reference-template centroid; true spatial optical origin unknown",
+  "p4_policy": "no P4-dependent scale; P4 used only through the upstream approximate gaze and the bootstrap refresh",
+  "parameter_count": 2,
+  "plot_stride": 10,
+  "population": "unchanged stage-one full scheduled rows and complete-pair fit policy",
+  "reference_selection": "smallest mean fixed-camera-axis P1 balance score in reference capture; fixed operational reference; physical source symmetry unknown",
+  "scale_policy": "p1_profile_v1",
+  "source_geometry_status": "unknown; stored L/M/R and P1-P4 pairing do not establish physical mirror-source geometry",
+  "stage": "S2/G2",
+  "starts": "zero plus fixed 15%/-10% of admissible positive bounds",
+  "symmetry_score": "norm([(Lx+Rx-2*Mx),(Ry-Ly)])/norm(R-L); observed pattern diagnostic, not anatomical alignment",
+  "template_policy": "mean of framewise centered P1 triples in selected complete-valid reference exposure; no symmetrizing",
+  "theta_bounds_deg": [
+    -20.0,
+    20.0
+  ],
+  "workers": 4
+}

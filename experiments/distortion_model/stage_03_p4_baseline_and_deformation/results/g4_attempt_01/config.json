@@ -1,0 +1,34 @@
+{
+  "A_bounds_D": [
+    0.0,
+    6.0
+  ],
+  "backend": "vectorized NumPy CPU",
+  "candidate": "DM0-M1",
+  "data_population": "fixed G3 |xi4|<=2.5 degrees; full schedule preserved",
+  "fixed": [
+    "empirical centered reference from low-demand selected exposure near frames",
+    "K4=identity",
+    "G3 zeros",
+    "G2 P1 g",
+    "outside-window provisional demand A"
+  ],
+  "free": [
+    "one m1",
+    "individual near-window A"
+  ],
+  "global_certificate_gradient_inf": 1e-06,
+  "metric": "native four P4 edge marginal, equal capture weights in near window; full fixation means anchored equally across 20 exposures",
+  "optimizer": "profiled L-BFGS-B, ftol1e-14 gtol1e-8 maxiter100; at most5 bounded stationarity-polish steps",
+  "reference_policy": "native empirical shape; no radial coefficient or P4 nuisance scale",
+  "sensitivity": [
+    "one doubled soft-mean anchor scale .50 D",
+    "one G3 adjacent operational reference"
+  ],
+  "soft_mean_A_scale_D": 0.25,
+  "stage": "S4/G4",
+  "state_certificate_gradient_inf": 1e-08,
+  "state_target_gradient_inf": 1e-11,
+  "temporal_penalty": 0.0,
+  "theta_policy": "frozen G2 per-frame visual theta"
+}

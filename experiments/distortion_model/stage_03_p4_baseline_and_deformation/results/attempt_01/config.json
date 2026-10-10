@@ -1,0 +1,40 @@
+{
+  "backend": "vectorized NumPy float64 CPU; parallel exposure summaries",
+  "block_policy": "five contiguous original-row partitions in every full interval; diagnostic only",
+  "derived_parameters": [
+    "Delta14",
+    "framewise xi1/xi4",
+    "P4 corrected diagnostic shape"
+  ],
+  "fixed_parameters": [
+    "G2 P1 model/scale",
+    "G2 visual/A starts",
+    "source correspondence",
+    "camera axes",
+    "one selected omega4"
+  ],
+  "free_parameters": [],
+  "geometry_status": "physical illuminator symmetry and camera-optical alignment unknown; empirical pattern diagnostic",
+  "identity_tolerances": {
+    "atol": 1e-09,
+    "rtol": 1e-10
+  },
+  "near_reference_half_width_deg": 2.5,
+  "near_reference_policy": "half nominal target spacing; diagnostic support, not trimming or calibration validity",
+  "omega4_policy": "one shared offset fixed at mean exported visual theta in low-demand selected exposure",
+  "p1_policy": "native reference/template/omega1/K1 unchanged; xi1=xi4+Delta14",
+  "plot_stride": 10,
+  "population": "unchanged reviewed schedule and complete-valid initialization population",
+  "reference_alternatives": "retain all five sampled low-demand offsets; adjacent nominal reference(s) bounded alternatives",
+  "reference_selection": "smallest equal-capture mean fixed-axis balance across all five nominal gaze bins; stable nominal-order tie break",
+  "scale_policy": "frozen G2 p1_profile_v1; centered P4 divided only by exported P1 g, no P4 size/area normalization",
+  "scope": "independent angular P4 reference only; no P4 optical fit",
+  "stage": "S3/G3",
+  "states": "G2 visual theta and provisional A unchanged; no fixation flattened to zero",
+  "symmetry_metric": "norm([q0x+q2x-2*q1x,q2y-q0y])/norm(q2-q0); fixed camera axes, source-corresponding slots, no sorting",
+  "theta_bounds_deg": [
+    -20.0,
+    20.0
+  ],
+  "workers": 4
+}

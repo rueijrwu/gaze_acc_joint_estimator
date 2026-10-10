@@ -1,0 +1,151 @@
+{
+  "atol": 1e-09,
+  "backend": "NumPy float64 CPU",
+  "created_utc": "2026-10-10T01:14:21.470228+00:00",
+  "elapsed_seconds": 0.5237199759994837,
+  "errors": 0,
+  "failed": 0,
+  "passed": 31,
+  "rtol": 1e-10,
+  "skipped": 0,
+  "source_hashes": {
+    "distortion_model/__init__.py": "a1ca7fdcdb759b80bc949f8d826cd9f137ae9244e10ebd7eb4b9d236b951eabd",
+    "distortion_model/alignment.py": "f0f99d1029f343998bd19cd107b03985a0e6e4ea83ff1dd908d99b50b9d0da7a",
+    "distortion_model/data.py": "34d30a0bfae63bfa5f8d2f8e5a2e83dd746489af3127cd6d6658aaece940f716",
+    "distortion_model/gaze.py": "7cc65372d7936fb1eda602cc9579a747617f3b108c8cd2fc640d0c7eac1d946a",
+    "distortion_model/geometry.py": "e0421ce58e9f87a38de51975799f87a1cbedc7256c6caa6de49119412aad34e1",
+    "distortion_model/optics.py": "ac0e8e785f39c31c0da049f2a52bcc0add18a274779e7eb100d1626a10329f6b",
+    "distortion_model/p1.py": "cd8995a57772df1e79f4a1923f2fe4db64b1194530535a37189f789b1d020cfb",
+    "tests/run_stage1.py": "99b850e6b2653ced4571a95f2ddb6f1b19d30f48d44f2e6b1770ecadaa760239",
+    "tests/run_stage2.py": "d90c87a62da459f8ac3c15c4ccb23a95e4ac12a42bdf9b0658339950f88dea9a",
+    "tests/test_stage1.py": "24801a7e07f423daa69b28bd5dfb473ba0cf14053dea5896f2106700e77a9437",
+    "tests/test_stage2.py": "bdcdb5fc294817dd2487121a27155e93349674da9d4a7bf293213e09e65b88d7"
+  },
+  "tests": [
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_bootstrap_collapse_and_ordering_contradictions"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_bootstrap_sign_gain_dynamic_states_and_equal_mean_anchors"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_center_sign_and_mean_correction_counted_once"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_domain_checks_use_actual_shifted_angles_and_projective_field"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_dual_offsets_native_identity_and_p1_at_p4_zero"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_full_forward_matches_independent_native_coordinate_construction"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_native_shared_errors_and_selected_covariance_marginal"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_p1_only_scale_ignores_accommodation_and_p4_global_changes"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_parameter_snapshot_copies_and_freezes_reference_arrays"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_payload_hash_flag_and_stored_correspondence_contract"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_population_duplicate_source_frames_rejected"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_profile_scale_edge_origin_covariance_equivalence"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_profile_scale_rejects_nonpositive_and_collapsed_reference"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_retained_measurement_and_initializer_noninterference"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_reviewed_fixations_schema_and_all_twenty_exposure_identities"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_slot_failures_keep_every_identity_and_retained_validity"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage1.StageOneContracts.test_ten_coordinate_rank_and_common_translation_nullspace"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage2.P1Contracts.test_admissible_bounds_across_shifted_full_domain_and_invalid_scale_status"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage2.P1Contracts.test_conditional_objective_jacobian_and_scalar_gradient"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage2.P1Contracts.test_empirical_reference_keeps_asymmetry_and_fixed_native_length"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage2.P1Contracts.test_equal_exposure_weighting_survives_group_row_replication"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage2.P1Contracts.test_full_metric_stationarity_after_ftol_with_large_irreducible_residual"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage2.P1Contracts.test_global_optical_composition_derivatives"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage2.P1Contracts.test_no_deformation_information_at_native_zero_remains_uncertified"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage2.P1Contracts.test_observed_balance_fixed_axes_scale_and_translation_invariance"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage2.P1Contracts.test_p1_scale_uses_no_p4_and_weighted_parallel_residual_is_zero"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage2.P1Contracts.test_point_edge_mean_theta_and_offset_derivatives"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage2.P1Contracts.test_profile_g_and_prediction_chain_derivatives"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage2.P1Contracts.test_reference_checkpoint_freezes_template_coefficients_and_axes"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage2.P1Contracts.test_scale_bootstrap_uses_mean_of_framewise_ratio_and_keeps_trajectories"
+    },
+    {
+      "status": "passed",
+      "test": "test_stage2.P1Contracts.test_synthetic_full_population_two_parameter_recovery_and_multistart"
+    }
+  ],
+  "total": 31
+}

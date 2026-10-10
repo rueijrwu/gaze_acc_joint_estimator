@@ -1,0 +1,54 @@
+{
+  "G0_decision": "GO_WITH_LIMIT",
+  "G1_decision": "GO_WITH_LIMIT",
+  "bootstrap_gain_deg_per_px": 0.04838772198701595,
+  "candidate": "bootstrap_only",
+  "comparison_complete": false,
+  "crosscheck_complete": false,
+  "decision": "G0 and G1 usable with explicit timing, boundary and provisional-transfer limits",
+  "elapsed_seconds": 6.678279478999684,
+  "fit_certified": false,
+  "fit_complete": false,
+  "invalid": 10915,
+  "manifest_hash": "840e580212e1be89af1dbff7b7a79d8e9630c4143cad956d8048d0cf29beede5",
+  "next_action": "G2/S2 P1 reference and P1-only common scale",
+  "outside_proposed_theta_bounds": 0,
+  "reference_mean_residuals_deg": [
+    -0.020904111586926177,
+    0.0005781275306286915,
+    0.01527051682325134,
+    0.052475602693689005,
+    -0.0474201354606425
+  ],
+  "reference_ordered": true,
+  "reviewed_utc": "2026-10-10T00:55:41.653065+00:00",
+  "reviewer": "Codex implementation and empirical audit",
+  "scheduled": 100090,
+  "scientific_disposition": "protocol_ready (stage-one geometry and initializer only)",
+  "slots": 300270,
+  "source_hash": "c43a344ae12e99a5a92f8cfa58162a4923563c014c8e78689a54c04fb86e549b",
+  "status": "COMPLETE",
+  "synthetic_forward": {
+    "kind": "synthetic numerical, not empirical optical calibration",
+    "local_angle_ranges_deg": {
+      "P1": [
+        -17.0,
+        23.0
+      ],
+      "P4": [
+        -24.0,
+        16.0
+      ]
+    },
+    "max_scale_recovery_error": 4.440892098500626e-16,
+    "proposals": 533,
+    "valid": 533
+  },
+  "tests": {
+    "errors": 0,
+    "failed": 0,
+    "passed": 17,
+    "skipped": 0
+  },
+  "valid": 89175
+}

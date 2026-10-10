@@ -1,0 +1,390 @@
+{
+  "A_values_D": [
+    0.0,
+    4.0
+  ],
+  "Aref_D": 0.36036036036036034,
+  "G7_minus_G6_summary_by_theta": [
+    {
+      "G6_delta_H_A4_minus_A0_reference_px_xy": [
+        0.6115022934260992,
+        5.482276589037589
+      ],
+      "G6_equivalent_horizontal_shift_deg": 0.03011064111288467,
+      "G6_x_slope_reversal": false,
+      "G7_delta_H_A4_minus_A0_reference_px_xy": [
+        33.32491239908546,
+        13.336138858855954
+      ],
+      "G7_equivalent_horizontal_shift_deg": 0.6208546353330837,
+      "G7_minus_G6_delta_H_reference_px_xy": [
+        32.713410105659364,
+        7.853862269818364
+      ],
+      "G7_x_slope_reversal": false,
+      "theta_visual_deg": -10.0
+    },
+    {
+      "G6_delta_H_A4_minus_A0_reference_px_xy": [
+        1.174496084925778,
+        4.365558820102713
+      ],
+      "G6_equivalent_horizontal_shift_deg": 0.05749291986994261,
+      "G6_x_slope_reversal": false,
+      "G7_delta_H_A4_minus_A0_reference_px_xy": [
+        -133.97452024771655,
+        6.684387385607401
+      ],
+      "G7_equivalent_horizontal_shift_deg": -3.250613858310819,
+      "G7_minus_G6_delta_H_reference_px_xy": [
+        -135.14901633264233,
+        2.3188285655046883
+      ],
+      "G7_x_slope_reversal": false,
+      "theta_visual_deg": -5.0
+    },
+    {
+      "G6_delta_H_A4_minus_A0_reference_px_xy": [
+        1.7377045141026812,
+        3.2481243990959
+      ],
+      "G6_equivalent_horizontal_shift_deg": 0.08456588556182157,
+      "G6_x_slope_reversal": false,
+      "G7_delta_H_A4_minus_A0_reference_px_xy": [
+        -301.273926527552,
+        0.03270183449906483
+      ],
+      "G7_equivalent_horizontal_shift_deg": -10.477633421831763,
+      "G7_minus_G6_delta_H_reference_px_xy": [
+        -303.0116310416547,
+        -3.2154225645968353
+      ],
+      "G7_x_slope_reversal": true,
+      "theta_visual_deg": 0.0
+    },
+    {
+      "G6_delta_H_A4_minus_A0_reference_px_xy": [
+        2.3011367708522243,
+        2.1325248925591183
+      ],
+      "G6_equivalent_horizontal_shift_deg": 0.11133547679050222,
+      "G6_x_slope_reversal": false,
+      "G7_delta_H_A4_minus_A0_reference_px_xy": [
+        -468.573299146549,
+        -6.618540606804032
+      ],
+      "G7_equivalent_horizontal_shift_deg": -28.76016329872296,
+      "G7_minus_G6_delta_H_reference_px_xy": [
+        -470.87443591740123,
+        -8.75106549936315
+      ],
+      "G7_x_slope_reversal": true,
+      "theta_visual_deg": 5.0
+    },
+    {
+      "G6_delta_H_A4_minus_A0_reference_px_xy": [
+        2.8648009429038837,
+        1.0212320422431276
+      ],
+      "G6_equivalent_horizontal_shift_deg": 0.13780743360074763,
+      "G6_x_slope_reversal": false,
+      "G7_delta_H_A4_minus_A0_reference_px_xy": [
+        -635.872630911779,
+        -13.26896715024212
+      ],
+      "G7_equivalent_horizontal_shift_deg": -166.0048956313211,
+      "G7_minus_G6_delta_H_reference_px_xy": [
+        -638.7374318546829,
+        -14.290199192485247
+      ],
+      "G7_x_slope_reversal": true,
+      "theta_visual_deg": 10.0
+    }
+  ],
+  "created_utc": "2026-10-10T03:07:24.893290+00:00",
+  "finite_difference_step_deg": 0.0001,
+  "grid_theta_visual_deg": [
+    -10.0,
+    -5.0,
+    0.0,
+    5.0,
+    10.0
+  ],
+  "inputs": {
+    "G6_checkpoint_sha256": "ce5605fb06af135ea6a8fa5830b72b6da5146e982126d182e56cf35c15cb074d",
+    "G6_model_path": "experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g6_attempt_02/model.json",
+    "G6_model_sha256": "04c24853f2ee91d047e809e7ded5621dbf4fda05cbbd787958b0252e39f2a188",
+    "G7_checkpoint_sha256": "a0b28e044ed5b94542d93b32a71882bb2dc222dc536070a33eea30a80fb7d47e",
+    "G7_fit_certified": false,
+    "G7_model_path": "experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_01/perturbed/model.json",
+    "G7_model_sha256": "d63ca40cf3b471722d11e81d196360a595a19edb140203076b2143931eabb601"
+  },
+  "interpretation_limit": "This compares two frozen model predictions; G7 is uncertified. The 50-arcmin value is user-supplied expectation, not an authority-document hard constraint or fit target.",
+  "method": "Frozen empirical G6 attempt02 and selected lower-J G7 perturbed model. H(theta,A)=D(theta,A)+mu4(theta,A)-mu1(theta); evaluate at g=1. Finite-difference horizontal slope uses h=1e-4 visual degrees at Aref and A=4D. Equivalent shift is delta-Hx divided by the Aref slope, a local linear diagnostic, not an exact inverse.",
+  "models": {
+    "G6": {
+      "A_interval_D": [
+        0.0,
+        4.0
+      ],
+      "aref_D": 0.36036036036036034,
+      "center_coefficients_reference_px": [
+        [
+          49.01847187723217,
+          51.13192591579176
+        ],
+        [
+          0.4362076841312269,
+          0.7208089465546236
+        ],
+        [
+          205.4736645395964,
+          8.950483549521197
+        ],
+        [
+          0.28332891254705983,
+          -0.6496042700590016
+        ],
+        [
+          1.2023250857518302,
+          0.13273655229720935
+        ]
+      ],
+      "model_config_revision": "S6_G6_degree2_M1_v1",
+      "omega1_visual_deg": -10.020904111586926,
+      "omega4_visual_deg": -10.016974132845107,
+      "rows": [
+        {
+          "Aref_to_A4_x_slope_sign_reversal": false,
+          "H_at_A0_reference_px_xy": [
+            -155.30794420750718,
+            41.8170187017218
+          ],
+          "H_at_A4_reference_px_xy": [
+            -154.69644191408108,
+            47.29929529075939
+          ],
+          "dH_x_dtheta_at_A4_reference_px_per_deg": 20.410949475291318,
+          "dH_x_dtheta_at_Aref_reference_px_per_deg": 20.308511238056326,
+          "delta_H_A4_minus_A0_reference_px_xy": [
+            0.6115022934260992,
+            5.482276589037589
+          ],
+          "equivalent_horizontal_shift_using_Aref_slope_deg": 0.03011064111288467,
+          "theta_visual_deg": -10.0
+        },
+        {
+          "Aref_to_A4_x_slope_sign_reversal": false,
+          "H_at_A0_reference_px_xy": [
+            -53.516026807269654,
+            45.284503495287595
+          ],
+          "H_at_A4_reference_px_xy": [
+            -52.341530722343876,
+            49.65006231539031
+          ],
+          "dH_x_dtheta_at_A4_reference_px_per_deg": 20.531010415112405,
+          "dH_x_dtheta_at_Aref_reference_px_per_deg": 20.42853428878999,
+          "delta_H_A4_minus_A0_reference_px_xy": [
+            1.174496084925778,
+            4.365558820102713
+          ],
+          "equivalent_horizontal_shift_using_Aref_slope_deg": 0.05749291986994261,
+          "theta_visual_deg": -5.0
+        },
+        {
+          "Aref_to_A4_x_slope_sign_reversal": false,
+          "H_at_A0_reference_px_xy": [
+            48.875912706978795,
+            48.816474829017245
+          ],
+          "H_at_A4_reference_px_xy": [
+            50.613617221081476,
+            52.064599228113146
+          ],
+          "dH_x_dtheta_at_A4_reference_px_per_deg": 20.651044343651392,
+          "dH_x_dtheta_at_Aref_reference_px_per_deg": 20.5485285533058,
+          "delta_H_A4_minus_A0_reference_px_xy": [
+            1.7377045141026812,
+            3.2481243990959
+          ],
+          "equivalent_horizontal_shift_using_Aref_slope_deg": 0.08456588556182157,
+          "theta_visual_deg": 0.0
+        },
+        {
+          "Aref_to_A4_x_slope_sign_reversal": false,
+          "H_at_A0_reference_px_xy": [
+            151.86773258486883,
+            52.395114732691816
+          ],
+          "H_at_A4_reference_px_xy": [
+            154.16886935572106,
+            54.527639625250934
+          ],
+          "dH_x_dtheta_at_A4_reference_px_per_deg": 20.77105225566811,
+          "dH_x_dtheta_at_Aref_reference_px_per_deg": 20.668495228903794,
+          "delta_H_A4_minus_A0_reference_px_xy": [
+            2.3011367708522243,
+            2.1325248925591183
+          ],
+          "equivalent_horizontal_shift_using_Aref_slope_deg": 0.11133547679050222,
+          "theta_visual_deg": 5.0
+        },
+        {
+          "Aref_to_A4_x_slope_sign_reversal": false,
+          "H_at_A0_reference_px_xy": [
+            255.45929709765798,
+            56.0029844034038
+          ],
+          "H_at_A4_reference_px_xy": [
+            258.32409804056186,
+            57.02421644564693
+          ],
+          "dH_x_dtheta_at_A4_reference_px_per_deg": 20.89103512417978,
+          "dH_x_dtheta_at_Aref_reference_px_per_deg": 20.78843548602549,
+          "delta_H_A4_minus_A0_reference_px_xy": [
+            2.8648009429038837,
+            1.0212320422431276
+          ],
+          "equivalent_horizontal_shift_using_Aref_slope_deg": 0.13780743360074763,
+          "theta_visual_deg": 10.0
+        }
+      ],
+      "source_hash": "acb145815227c40fe85ad881e824d9826661e30d668260f260f658943445fa21"
+    },
+    "G7_selected_perturbed": {
+      "A_interval_D": [
+        0.0,
+        4.0
+      ],
+      "aref_D": 0.36036036036036034,
+      "center_coefficients_reference_px": [
+        [
+          247.59990243500368,
+          42.5046595082643
+        ],
+        [
+          -75.31720802113888,
+          -0.01749784869200507
+        ],
+        [
+          287.76674261331533,
+          8.549944337330624
+        ],
+        [
+          -83.64843829937595,
+          -3.351489006947468
+        ],
+        [
+          -124.6026368587016,
+          4.769494538497233
+        ]
+      ],
+      "model_config_revision": "S7_G7_DM0_joint_v1",
+      "omega1_visual_deg": -10.020904111586926,
+      "omega4_visual_deg": -10.016974132845107,
+      "rows": [
+        {
+          "Aref_to_A4_x_slope_sign_reversal": false,
+          "H_at_A0_reference_px_xy": [
+            -167.77218362937785,
+            37.52835523847852
+          ],
+          "H_at_A4_reference_px_xy": [
+            -134.4472712302924,
+            50.86449409733447
+          ],
+          "dH_x_dtheta_at_A4_reference_px_per_deg": 23.23038660307475,
+          "dH_x_dtheta_at_Aref_reference_px_per_deg": 53.67586952331749,
+          "delta_H_A4_minus_A0_reference_px_xy": [
+            33.32491239908546,
+            13.336138858855954
+          ],
+          "equivalent_horizontal_shift_using_Aref_slope_deg": 0.6208546353330837,
+          "theta_visual_deg": -10.0
+        },
+        {
+          "Aref_to_A4_x_slope_sign_reversal": false,
+          "H_at_A0_reference_px_xy": [
+            84.5275503765929,
+            40.09449831585525
+          ],
+          "H_at_A4_reference_px_xy": [
+            -49.44696987112364,
+            46.77888570146265
+          ],
+          "dH_x_dtheta_at_A4_reference_px_per_deg": 10.769665797845107,
+          "dH_x_dtheta_at_Aref_reference_px_per_deg": 41.2151446118969,
+          "delta_H_A4_minus_A0_reference_px_xy": [
+            -133.97452024771655,
+            6.684387385607401
+          ],
+          "equivalent_horizontal_shift_using_Aref_slope_deg": -3.250613858310819,
+          "theta_visual_deg": -5.0
+        },
+        {
+          "Aref_to_A4_x_slope_sign_reversal": true,
+          "H_at_A0_reference_px_xy": [
+            274.52262483051896,
+            45.04323718605723
+          ],
+          "H_at_A4_reference_px_xy": [
+            -26.75130169703305,
+            45.0759390205563
+          ],
+          "dH_x_dtheta_at_A4_reference_px_per_deg": -1.6914681140889343,
+          "dH_x_dtheta_at_Aref_reference_px_per_deg": 28.75400526036742,
+          "delta_H_A4_minus_A0_reference_px_xy": [
+            -301.273926527552,
+            0.03270183449906483
+          ],
+          "equivalent_horizontal_shift_using_Aref_slope_deg": -10.477633421831763,
+          "theta_visual_deg": 0.0
+        },
+        {
+          "Aref_to_A4_x_slope_sign_reversal": true,
+          "H_at_A0_reference_px_xy": [
+            402.2109442681955,
+            52.347376296151374
+          ],
+          "H_at_A4_reference_px_xy": [
+            -66.36235487835351,
+            45.72883568934734
+          ],
+          "dH_x_dtheta_at_A4_reference_px_per_deg": -14.153024387724145,
+          "dH_x_dtheta_at_Aref_reference_px_per_deg": 16.292442232668236,
+          "delta_H_A4_minus_A0_reference_px_xy": [
+            -468.573299146549,
+            -6.618540606804032
+          ],
+          "equivalent_horizontal_shift_using_Aref_slope_deg": -28.76016329872296,
+          "theta_visual_deg": 5.0
+        },
+        {
+          "Aref_to_A4_x_slope_sign_reversal": true,
+          "H_at_A0_reference_px_xy": [
+            467.59036398303755,
+            61.97900556920433
+          ],
+          "H_at_A4_reference_px_xy": [
+            -168.28226692874148,
+            48.71003841896221
+          ],
+          "dH_x_dtheta_at_A4_reference_px_per_deg": -26.615013518380692,
+          "dH_x_dtheta_at_Aref_reference_px_per_deg": 3.830445050994058,
+          "delta_H_A4_minus_A0_reference_px_xy": [
+            -635.872630911779,
+            -13.26896715024212
+          ],
+          "equivalent_horizontal_shift_using_Aref_slope_deg": -166.0048956313211,
+          "theta_visual_deg": 10.0
+        }
+      ],
+      "source_hash": "17d7481c0f05b4ae294a8be489a212a7db1d010c845ecdecaec8f60836081d7a"
+    }
+  },
+  "script_sha256": "4cd61b5e7c89fa3147febdb9f17a4ca08498faf50517db7801b8729ea15254cf",
+  "source": "mechanical_inventory",
+  "user_supplied_expected_scale_arcmin": 50.0,
+  "user_supplied_expected_scale_deg": 0.8333333333333334
+}

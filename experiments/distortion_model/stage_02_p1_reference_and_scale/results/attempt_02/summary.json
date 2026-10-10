@@ -1,0 +1,260 @@
+{
+  "G2_decision": "GO_WITH_LIMIT",
+  "block_conditional_certified": [
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "block_scaled_coefficients": [
+    [
+      0.0016303619977787432,
+      0.0015600967641426803
+    ],
+    [
+      0.0026174775993186346,
+      0.00438401989762033
+    ],
+    [
+      0.002486707795817735,
+      0.004509413987512001
+    ],
+    [
+      0.0020733898381894308,
+      0.0033478151232012236
+    ],
+    [
+      0.002597441232313594,
+      0.004941625103231901
+    ]
+  ],
+  "bootstrap_gain_deg_per_reference_px": 0.04823477696047011,
+  "bootstrap_reference_mean_predictions_deg": [
+    -10.016974132845107,
+    -5.0148989655383795,
+    -0.0020702209523217685,
+    5.121306244243303,
+    9.912637075092505
+  ],
+  "chosen_reference_is_endpoint": true,
+  "chosen_reference_nominal_target_deg": -10.0,
+  "comparison_complete": false,
+  "complete_valid": 89175,
+  "conditional_fit_certified": true,
+  "conditional_fit_seconds": 2.7027725459993235,
+  "conditional_rank": 2,
+  "constrained_k1": {
+    "equal_exposure_edge_coordinate_rmse_px": 1.5908271674109367,
+    "equal_exposure_mean_weighted_edge_squared_error": 3842.3969907136443
+  },
+  "crosscheck_complete": false,
+  "decision": "Reviewed empirical P1 initialization usable for S3/G3; physical reference/gauge uncertainty deferred to G5/G7/G8",
+  "elapsed_seconds": 12.752530195000872,
+  "expected_slots_unchanged": 300270,
+  "finite_refreshed_starts": 89175,
+  "fit_certified": false,
+  "fit_complete": false,
+  "free_parameter_count": 2,
+  "g_at_export_theta": {
+    "count": 89175,
+    "max": 1.013326394950246,
+    "mean": 0.99762964021034,
+    "min": 0.9704792731882392,
+    "p05": 0.9879648320330556,
+    "p95": 1.0045346266056225,
+    "std": 0.0046123274945156075
+  },
+  "identity": {
+    "equal_exposure_edge_coordinate_rmse_px": 1.9266283177676573,
+    "equal_exposure_mean_weighted_edge_squared_error": 4526.082676686509
+  },
+  "k1_coefficients_native_units": [
+    2.297252066776559e-05,
+    -2.297252066776559e-05,
+    1.5055409656203467e-06
+  ],
+  "multistart_outcomes": [
+    {
+      "active_mask": [
+        0,
+        0
+      ],
+      "conditional_fit_certified": true,
+      "conditional_rank": 2,
+      "cost": 1921.1984953568212,
+      "domain": {
+        "local_theta_bounds_deg": [
+          -9.979095888413074,
+          30.020904111586926
+        ],
+        "min_denominator": 0.988841008623092,
+        "min_sx": 1.0,
+        "min_sy": 0.9792959081523074,
+        "valid_domain": true
+      },
+      "gauss_newton_eigenvalues": [
+        3051152.299766466,
+        528865155.95311886
+      ],
+      "jacobian_singular_values": [
+        22997.06842084702,
+        1746.7547909670761
+      ],
+      "message": "`ftol` termination condition is satisfied.",
+      "nfev": 6,
+      "njev": 6,
+      "optimizer_original_cost": 1921.1984953568228,
+      "optimizer_success": true,
+      "scaled_gradient": [
+        1.6657909849578103e-09,
+        -1.1295680339234541e-08
+      ],
+      "scaled_parameters": [
+        0.0022972520667765587,
+        0.0037927710675655212
+      ],
+      "scaled_projected_gradient_inf": 1.1295680339234541e-08,
+      "start": [
+        0.0,
+        0.0
+      ],
+      "stationarity_polish": [
+        {
+          "cost_after": 1921.1984953568235,
+          "cost_before": 1921.1984953568228,
+          "damping": 0,
+          "iteration": 0,
+          "parameter_change": [
+            2.03793206268732e-11,
+            6.781911273887054e-11
+          ],
+          "rounding_allowance": 2.73018726965805e-11,
+          "scaled_projected_gradient_after": 1.0022494419721348e-06,
+          "scaled_projected_gradient_before": 8.789646247942033e-05
+        },
+        {
+          "cost_after": 1921.1984953568212,
+          "cost_before": 1921.1984953568235,
+          "damping": 0,
+          "iteration": 1,
+          "parameter_change": [
+            2.324191186731106e-13,
+            7.734425079564122e-13
+          ],
+          "rounding_allowance": 2.730187269658051e-11,
+          "scaled_projected_gradient_after": 1.1295680339234541e-08,
+          "scaled_projected_gradient_before": 1.0022494419721348e-06
+        }
+      ],
+      "status": 2
+    },
+    {
+      "active_mask": [
+        0,
+        0
+      ],
+      "conditional_fit_certified": true,
+      "conditional_rank": 2,
+      "cost": 1921.1984953568253,
+      "domain": {
+        "local_theta_bounds_deg": [
+          -9.979095888413074,
+          30.020904111586926
+        ],
+        "min_denominator": 0.9888410086236084,
+        "min_sx": 1.0,
+        "min_sy": 0.9792959081527828,
+        "valid_domain": true
+      },
+      "gauss_newton_eigenvalues": [
+        3051152.299766302,
+        528865155.95308316
+      ],
+      "jacobian_singular_values": [
+        22997.068420846244,
+        1746.7547909670877
+      ],
+      "message": "`ftol` termination condition is satisfied.",
+      "nfev": 6,
+      "njev": 6,
+      "optimizer_original_cost": 1921.1984953568253,
+      "optimizer_success": true,
+      "scaled_gradient": [
+        3.1646531600677396e-08,
+        -2.3586991119195813e-07
+      ],
+      "scaled_parameters": [
+        0.0022972520667238123,
+        0.0037927710673900153
+      ],
+      "scaled_projected_gradient_inf": 2.3586991119195813e-07,
+      "start": [
+        0.008321732065125237,
+        -0.016994237827865633
+      ],
+      "stationarity_polish": [
+        {
+          "cost_after": 1921.198495356822,
+          "cost_before": 1921.1984953568253,
+          "damping": 0,
+          "iteration": 0,
+          "parameter_change": [
+            4.2056902665316143e-10,
+            1.3993633573954056e-09
+          ],
+          "rounding_allowance": 2.7301872696580536e-11,
+          "scaled_projected_gradient_after": 2.0677497987514068e-05,
+          "scaled_projected_gradient_before": 0.0018102870816754206
+        },
+        {
+          "cost_after": 1921.1984953568253,
+          "cost_before": 1921.198495356822,
+          "damping": 0,
+          "iteration": 1,
+          "parameter_change": [
+            4.794235754917997e-12,
+            1.5954440026055838e-11
+          ],
+          "rounding_allowance": 2.7301872696580488e-11,
+          "scaled_projected_gradient_after": 2.3586991119195813e-07,
+          "scaled_projected_gradient_before": 2.0677497987514068e-05
+        }
+      ],
+      "status": 2
+    }
+  ],
+  "omega1_fixed_operational_deg": -10.020904111586926,
+  "outside_proposed_theta_bounds": 0,
+  "parent_population_hash": "840e580212e1be89af1dbff7b7a79d8e9630c4143cad956d8048d0cf29beede5",
+  "physical_zero_identified": false,
+  "refreshed_theta": {
+    "equal_exposure_edge_coordinate_rmse_px": 1.5895253232363415,
+    "equal_exposure_mean_weighted_edge_squared_error": 3837.9031748182506
+  },
+  "review_report": "STAGE_REPORT.md",
+  "reviewed_utc": "2026-10-10T01:18:26.471790+00:00",
+  "reviewer": "root implementation/audit agent",
+  "scale_valid_at_export_theta": 89175,
+  "scale_valid_at_fit_theta": 89175,
+  "scaled_projected_gradient_inf": 1.1295680339234541e-08,
+  "scheduled": 100090,
+  "source_hash": "dc6385ee6379dfb8709b31318bc1d02d02a7b9c62d0d068e134d1749d81d1102",
+  "status": "COMPLETE",
+  "tests": {
+    "errors": 0,
+    "failed": 0,
+    "passed": 31,
+    "skipped": 0
+  },
+  "theta_refresh_change_deg": {
+    "count": 89175,
+    "max": 0.2498846067428051,
+    "mean": -0.004122878651312426,
+    "min": -0.23092302263209064,
+    "p05": -0.029555514097486024,
+    "p95": 0.04852688061821064,
+    "std": 0.024913948201826703
+  },
+  "unavailable": 10915
+}

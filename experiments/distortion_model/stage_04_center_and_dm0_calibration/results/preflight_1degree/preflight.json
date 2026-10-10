@@ -1,0 +1,250 @@
+{
+  "G6_dense": {
+    "A_nodes": 25,
+    "actual_max_abs_Hx_A_px_per_D": 0.9985188381733678,
+    "actual_min_Hx_theta_px_per_deg": 20.058241570097834,
+    "incident_interval_containment_checks": 7680,
+    "maximum_actual_abs_A_slope_minus_interval_abs_bound": 0.0,
+    "minimum_interval_lower_minus_actual_theta_slope": 0.0,
+    "nodes": 2025,
+    "theta_nodes": 81,
+    "violations": 0
+  },
+  "G6_parameter_hash": "311abcfa1f839251068be8134d476e4cc4c4476f27270a997843de2d265d1425",
+  "actual_rows": {
+    "indices": [
+      0,
+      1,
+      4433,
+      4434,
+      9233,
+      9234,
+      14133,
+      14134,
+      19126,
+      19127,
+      24280,
+      24281,
+      28192,
+      28193,
+      32537,
+      32538,
+      37090,
+      37091,
+      41871,
+      41872,
+      46306,
+      46307,
+      50811,
+      50812,
+      54713,
+      54714,
+      59524,
+      59525,
+      63775,
+      63776,
+      66101,
+      66102,
+      70015,
+      70016,
+      74914,
+      74915,
+      79661,
+      79662,
+      84399,
+      84400
+    ],
+    "per_exposure": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "rows": 40
+  },
+  "bound_record_at_G6": {
+    "A_cell_width_D": 0.25,
+    "accommodation_interval_D": [
+      0.0,
+      4.0
+    ],
+    "allowed_max_accommodation_slope_px_per_D": 2.50675055646294,
+    "bound_deg": 1.0,
+    "certified_max_abs_accommodation_slope_px_per_D": 1.0011214462849476,
+    "certified_min_gaze_slope_px_per_deg": 20.05400445170352,
+    "certified_shift_equivalent_upper_bound_deg": 0.19968509505340332,
+    "constraint_derivative_extension_D": [
+      0.0,
+      6.0
+    ],
+    "feasible": true,
+    "interval_cells": 1920,
+    "kind": "user-authorized continuous-domain sufficient 1degree bound",
+    "meaning": "H=D+mu4-mu1 at g=1; bound on horizontal centroid response. Inverse-angle guarantee applies where the monotone inverse lies in the declared theta domain. No bound on individual theta or fixation-mean deviation.",
+    "minimum_normalized_slack": 0.6006298098931934,
+    "reference_interval_min_gaze_slope_px_per_deg": 20.05400445170352,
+    "required_min_gaze_slope_px_per_deg": 10.02700222585176,
+    "theta_cell_width_deg": 0.5,
+    "theta_domain_deg": [
+      -20.0,
+      20.0
+    ]
+  },
+  "created_utc": "2026-10-10T03:34:33.541311+00:00",
+  "kind": "mechanical preflight; no test suite or campaign fitting",
+  "parent_G6_attempt02_checkpoint_sha256": "ce5605fb06af135ea6a8fa5830b72b6da5146e982126d182e56cf35c15cb074d",
+  "preflight_provenance": {
+    "archived_replay_command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python experiments/distortion_model/stage_04_center_and_dm0_calibration/results/preflight_1degree/audit.py",
+    "audit_script": "audit.py",
+    "audit_script_sha256": "638e435f0efcbe2ffcc337a4274e76be27d4db27207ebbdbe3003ce7617690ca",
+    "automated_tests_run": false,
+    "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python /tmp/g7b_preflight.py",
+    "created_utc": "2026-10-10T03:54:20.747987+00:00",
+    "full_fit_run": false,
+    "gpu": "Tesla P100-PCIE-16GB",
+    "package_versions": {
+      "cupy": "14.2.0",
+      "matplotlib": "3.11.2",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1"
+    },
+    "python": "3.13.15",
+    "requirements_file": "requirements-stage7.txt",
+    "requirements_sha256": "69a3bd9bded8b1719d5ad1c9d54275368f5fffa2fa9bcef1042f52c323725b5b",
+    "source": "mechanical_inventory",
+    "source_hashes": {
+      "distortion_model/centroid_bound.py": "7e2440d5a9a9da908d96a826f188a257d95994f6afcb92a844bc7c7ccc891cd5",
+      "distortion_model/joint.py": "8e491a760ccbf3db107603b2cdcf60634a936aa19a7eb00740798d14bfb46560",
+      "distortion_model/optics.py": "ac0e8e785f39c31c0da049f2a52bcc0add18a274779e7eb100d1626a10329f6b",
+      "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run_joint.py": "0259ff464cf2ec32ff0ffc627e58a7e22cb8ea443391bb30f21df9c17b5cc204",
+      "experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run_joint_bounded.py": "b39e84793e5c87b3c7efc19acd4da60d9d4604bfd3e5051e6c6dfc30d1fc9d22"
+    }
+  },
+  "prior_G7_selected_start": "perturbed",
+  "prior_G7_start_dense": {
+    "common": {
+      "A_nodes": 25,
+      "actual_max_abs_Hx_A_px_per_D": 229.03153909823004,
+      "actual_min_Hx_theta_px_per_deg": -62.208034790955935,
+      "incident_interval_containment_checks": 7680,
+      "maximum_actual_abs_A_slope_minus_interval_abs_bound": 0.0,
+      "minimum_interval_lower_minus_actual_theta_slope": 0.0,
+      "nodes": 2025,
+      "theta_nodes": 81,
+      "violations": 0
+    },
+    "perturbed": {
+      "A_nodes": 25,
+      "actual_max_abs_Hx_A_px_per_D": 242.61790378091064,
+      "actual_min_Hx_theta_px_per_deg": -68.27024807080306,
+      "incident_interval_containment_checks": 7680,
+      "maximum_actual_abs_A_slope_minus_interval_abs_bound": 0.0,
+      "minimum_interval_lower_minus_actual_theta_slope": 0.0,
+      "nodes": 2025,
+      "theta_nodes": 81,
+      "violations": 0
+    }
+  },
+  "prior_G7_unbounded_dense": {
+    "A_nodes": 25,
+    "actual_max_abs_Hx_A_px_per_D": 242.61790378091064,
+    "actual_min_Hx_theta_px_per_deg": -68.27024807080306,
+    "incident_interval_containment_checks": 7680,
+    "maximum_actual_abs_A_slope_minus_interval_abs_bound": 0.0,
+    "minimum_interval_lower_minus_actual_theta_slope": 0.0,
+    "nodes": 2025,
+    "theta_nodes": 81,
+    "violations": 0
+  },
+  "proposal": {
+    "cpu": {
+      "accepted": true,
+      "cost_after": 4791.890427405714,
+      "cost_before": 6134.669992164644,
+      "dp_inf": 0.1428427258299312,
+      "dx_inf": 1.0000000000000002,
+      "elapsed_seconds": 0.8455620480017387,
+      "event": {
+        "accepted": true,
+        "block": "joint",
+        "cost_before": 6134.669992164644,
+        "gradient_before": {
+          "global_projected_gradient_inf": 18622.08301453573,
+          "state_projected_gradient_inf": 14093.877520093783
+        },
+        "observed_curvature": false,
+        "outcome": {
+          "cost_after": 4791.890427405714,
+          "damping": 1,
+          "global_projected_gradient_inf": 9878.797391563134,
+          "lm": 1e-06,
+          "max_frame_trust_cap": 3.006027066034292,
+          "state_projected_gradient_inf": 8877.773042872715
+        },
+        "rejection_counts": {
+          "one-degree centroid constraint violated": 1
+        }
+      },
+      "feasible_actual": true,
+      "minimum_actual_physical_slack": 0.29861203279454374,
+      "minimum_linearized_physical_slack": 0.30031490494659674,
+      "state_global_hash": "0e9d1e2c48bbb6649a9ab9435b81b1bdc59272cd4b783b9d2623b045ce9465ca"
+    },
+    "gpu": {
+      "accepted": true,
+      "cost_after": 4791.890427405709,
+      "cost_before": 6134.669992164644,
+      "dp_inf": 0.1428427258299326,
+      "dx_inf": 1.0000000000000002,
+      "elapsed_seconds": 0.9509350500011351,
+      "event": {
+        "accepted": true,
+        "block": "joint",
+        "cost_before": 6134.669992164644,
+        "gradient_before": {
+          "global_projected_gradient_inf": 18622.083014535627,
+          "state_projected_gradient_inf": 14093.877520093783
+        },
+        "observed_curvature": false,
+        "outcome": {
+          "cost_after": 4791.890427405709,
+          "damping": 1,
+          "global_projected_gradient_inf": 9878.797391563134,
+          "lm": 1e-06,
+          "max_frame_trust_cap": 3.006027066034256,
+          "state_projected_gradient_inf": 8877.773042872648
+        },
+        "rejection_counts": {
+          "one-degree centroid constraint violated": 1
+        }
+      },
+      "feasible_actual": true,
+      "minimum_actual_physical_slack": 0.2986120327945445,
+      "minimum_linearized_physical_slack": 0.3003149049465975,
+      "state_global_hash": "1500a1ce21702806ad3fa6fc817656a01b2da9410977a1b971eff1c7bc276ca4"
+    }
+  },
+  "proposal_comparison": {
+    "accepted_match": true,
+    "cost_after_abs_difference": 5.4569682106375694e-12,
+    "dp_max_abs_difference": 1.3877787807814457e-15,
+    "dx_max_abs_difference": 0.0,
+    "state_global_hash_match": false
+  }
+}

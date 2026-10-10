@@ -1,7 +1,7 @@
 # Subplan 4 — Correct centers and finish the first full DM0 calibration
 
-**Covers:** S6/G6 and S7/G7. **Status:** NOT_RUN.  
-**Parent:** [Gate policy](../STAGE_GATES.md). **Requires:** compatible G0–G5 checkpoints.  
+**Covers:** S6/G6 and S7/G7. **Current status:** G6 GO_WITH_LIMIT; G7 attempt 02 COMPLETE_UNCERTIFIED / PAUSE. See the [Stage 4 live progress pointer](../../experiments/distortion_model/stage_04_center_and_dm0_calibration/docs/PROGRESS.md) and [G7 attempt 02 report](../../experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_02/STAGE_REPORT.md).
+**Parent:** [Gate policy](../STAGE_GATES.md). **Requires:** compatible G0–G5 checkpoints.
 **Equations:** [Theory](../Theory.md), corrected-center law and the single relative-coordinate objective.
 
 ## S6 / G6 — Are centroid shifts and optical-center separation accounted for once?
@@ -33,6 +33,11 @@ Solve the linear D block against the **same complete relative residual and covar
 
 ## S7 / G7 — Can the complete DM0 model be fitted to all empirical calibration data?
 
+
+### User-authorized G7 physical coupling bound
+
+For G7 attempt 02, the user authorized a one-degree bound on horizontal accommodation-induced apparent gaze shift. At normalized \(g=1\), define \(H_x=D_x+\mu_{4,x}-\mu_{1,x}\). The continuous constraints are \(H_{x,\theta}\ge s_{min}\) and \(|H_{x,A}|\le s_{min}/4\), with \(s_{min}\) equal to half the outward-interval lower slope from G6 (10.027 reference px/degree). Interval constraints cover theta [-20,20] degrees and A [0,6] D; for the 0-to-4 D accommodation change they imply at most a one-degree inverse-equivalent horizontal shift where the monotone inverse remains in the declared theta domain. This is a user-assumed coupling bound, not a measured optical calibration or individual theta-error bound. It neither clamps theta labels nor adds a loss term. See the [bounded implementation](../../distortion_model/centroid_bound.py), [preflight record](../../experiments/distortion_model/stage_04_center_and_dm0_calibration/results/preflight_1degree/preflight.json), and [attempt 02 report](../../experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_02/STAGE_REPORT.md).
+
 This is the first full-calibration result, not another initializer. Use all valid frames in every declared full interval with the same source IDs, shared functions, two free states per frame, and finite full-fixation-mean anchors. Keep zero temporal-flatness penalty and the P1-only g definition. Refit global parameters and frame states; do not merely apply bootstrap states or a historical empirical fit.
 
 Execute the existing S7 block order: accommodation, visual gaze with fresh scale, permitted P1/global parameters, P4 baseline, K4/omega4, and D. All proposals are judged against the same full J, with damping or joint refinement as needed. Compare one common initialized and one reproducible perturbed start. A warm-start from a preceding checkpoint is allowed only with matching provenance and does not certify a fit by itself.
@@ -55,4 +60,4 @@ At completed outer checkpoints, use one predeclared compact P4-check schedule to
 
 G7 explicitly revisits G2–G5 provisional assumptions using the refined gaze and full model. Keep unresolved items open; a low J cannot certify common scale, an absolute distortion center, or a physiological accommodation law. Ordinary parameter refinement does not reopen every gate; changing a model/reference convention does.
 
-**Saved result and next action:** accepted/uncertified model, actual full states/scale/means, numerical evidence and last compatible checkpoint. If certified, run G8 on all scheduled rows. If not, record one numerical or empirical question and stop expanding the model. Do not hide missing calibration by reporting synthetic tests as empirical success.
+**Current result:** G7 attempt 02 is COMPLETE_UNCERTIFIED / PAUSE. Preserve its selected perturbed snapshot and the compatible G6 attempt 02 checkpoint. The strict global KKT residual remains above tolerance; active interval-constraint curvature did not pass its two-step stability check, so constrained profile curvature was not evaluated. The next numerical question is whether a smooth equivalent certificate can retain the same physical bound and objective near the active constraint boundary. G8 and further fitting are not authorized until this question is resolved. See the [full result summary](../../experiments/distortion_model/stage_04_center_and_dm0_calibration/docs/RESULTS.md), [mechanical audit](../../experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_02/mechanical_audit.json), and [live progress pointer](../../experiments/distortion_model/stage_04_center_and_dm0_calibration/docs/PROGRESS.md). Do not hide missing calibration by reporting synthetic tests as empirical success.

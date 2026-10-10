@@ -1,0 +1,289 @@
+{
+  "source": "mechanical_inventory",
+  "observed_utc": "2026-10-10T00:54:43.035010+00:00",
+  "remote": {
+    "ref": "refs/heads/exp5_distortion_model",
+    "sha": "efd88bd3b326653aedc3b383143ef10856d22092",
+    "local_head_sha": "efd88bd3b326653aedc3b383143ef10856d22092",
+    "matches_local_head": true
+  },
+  "test_evidence": {
+    "attempt_01_path": "../attempt_01/tests.json",
+    "attempt_01_preserved": true,
+    "attempt_02_total": 17,
+    "attempt_02_passed": 17,
+    "attempt_02_failed": 0,
+    "attempt_02_errors": 0,
+    "attempt_02_skipped": 0,
+    "attempt_01_bytes": 3281
+  },
+  "population": {
+    "frame_records": 100090,
+    "valid": 89175,
+    "invalid": 10915,
+    "slot_records": 300270,
+    "slots_per_frame": 3,
+    "held_point_ids": [
+      0,
+      1,
+      2
+    ],
+    "all_invalid_rows_retained_as_slots": true,
+    "frame_manifest_hash": "840e580212e1be89af1dbff7b7a79d8e9630c4143cad956d8048d0cf29beede5",
+    "frame_manifest_hash_reproduced": true,
+    "slot_hash": "def9614b8352fd1c82a0b4612cdafa25618e4e4c06d6d3834a145911ddb756de",
+    "slot_hash_reproduced": true,
+    "source_rows_valid_invalid": [
+      {
+        "capture": "capture_1_detections.pkl",
+        "rows": 27028,
+        "valid": 26073,
+        "invalid": 955
+      },
+      {
+        "capture": "capture_2_detections.pkl",
+        "rows": 27090,
+        "valid": 24189,
+        "invalid": 2901
+      },
+      {
+        "capture": "capture_3_detections.pkl",
+        "rows": 27900,
+        "valid": 21908,
+        "invalid": 5992
+      },
+      {
+        "capture": "capture_4_detections.pkl",
+        "rows": 26424,
+        "valid": 23970,
+        "invalid": 2454
+      }
+    ],
+    "exposure_schedule_valid_invalid": [
+      {
+        "exposure": 0,
+        "scheduled": 4800,
+        "valid": 4433,
+        "invalid": 367
+      },
+      {
+        "exposure": 1,
+        "scheduled": 4800,
+        "valid": 4800,
+        "invalid": 0
+      },
+      {
+        "exposure": 2,
+        "scheduled": 4900,
+        "valid": 4900,
+        "invalid": 0
+      },
+      {
+        "exposure": 3,
+        "scheduled": 5000,
+        "valid": 4993,
+        "invalid": 7
+      },
+      {
+        "exposure": 4,
+        "scheduled": 5200,
+        "valid": 5154,
+        "invalid": 46
+      },
+      {
+        "exposure": 5,
+        "scheduled": 4600,
+        "valid": 3912,
+        "invalid": 688
+      },
+      {
+        "exposure": 6,
+        "scheduled": 5000,
+        "valid": 4345,
+        "invalid": 655
+      },
+      {
+        "exposure": 7,
+        "scheduled": 5000,
+        "valid": 4553,
+        "invalid": 447
+      },
+      {
+        "exposure": 8,
+        "scheduled": 5000,
+        "valid": 4781,
+        "invalid": 219
+      },
+      {
+        "exposure": 9,
+        "scheduled": 5290,
+        "valid": 4435,
+        "invalid": 855
+      },
+      {
+        "exposure": 10,
+        "scheduled": 4700,
+        "valid": 4505,
+        "invalid": 195
+      },
+      {
+        "exposure": 11,
+        "scheduled": 4900,
+        "valid": 3902,
+        "invalid": 998
+      },
+      {
+        "exposure": 12,
+        "scheduled": 5000,
+        "valid": 4811,
+        "invalid": 189
+      },
+      {
+        "exposure": 13,
+        "scheduled": 5000,
+        "valid": 4251,
+        "invalid": 749
+      },
+      {
+        "exposure": 14,
+        "scheduled": 5500,
+        "valid": 2326,
+        "invalid": 3174
+      },
+      {
+        "exposure": 15,
+        "scheduled": 4800,
+        "valid": 3914,
+        "invalid": 886
+      },
+      {
+        "exposure": 16,
+        "scheduled": 4900,
+        "valid": 4899,
+        "invalid": 1
+      },
+      {
+        "exposure": 17,
+        "scheduled": 5000,
+        "valid": 4747,
+        "invalid": 253
+      },
+      {
+        "exposure": 18,
+        "scheduled": 4900,
+        "valid": 4738,
+        "invalid": 162
+      },
+      {
+        "exposure": 19,
+        "scheduled": 5800,
+        "valid": 4776,
+        "invalid": 1024
+      }
+    ]
+  },
+  "npz_archives": {
+    "opened_with_allow_pickle_false": true,
+    "archives": [
+      "covariance.npz",
+      "initial_states.npz",
+      "measurements.npz",
+      "population.npz",
+      "slots.npz",
+      "synthetic_forward.npz"
+    ],
+    "all_arrays_numeric_or_unicode": true
+  },
+  "bootstrap_reproduction": {
+    "origin_px": 51.79241949025186,
+    "scale_px": 146.13185524441357,
+    "coefficients_deg": [
+      3.831045297980734e-16,
+      7.070987585013542
+    ],
+    "gain_deg_per_px": 0.04838772198701595,
+    "saved_fit_exact_match": true,
+    "framewise_states_exact_match": true,
+    "framewise_theta_max_absolute_delta_deg": 0.0,
+    "reference_rows": [
+      {
+        "target_theta_deg": -10.0,
+        "n": 4433,
+        "mean_displacement_x_px": -155.30358958155094,
+        "std_displacement_x_px": 10.636749323111864,
+        "reference_prediction_deg": -10.020904111586926,
+        "residual_deg": -0.020904111586926177
+      },
+      {
+        "target_theta_deg": -5.0,
+        "n": 4800,
+        "mean_displacement_x_px": -51.52763086902903,
+        "std_displacement_x_px": 5.234183025265637,
+        "reference_prediction_deg": -4.999421872469371,
+        "residual_deg": 0.0005781275306286915
+      },
+      {
+        "target_theta_deg": 0.0,
+        "n": 4900,
+        "mean_displacement_x_px": 52.1080060935507,
+        "std_displacement_x_px": 3.6196173532291103,
+        "reference_prediction_deg": 0.01527051682325134,
+        "residual_deg": 0.01527051682325134
+      },
+      {
+        "target_theta_deg": 5.0,
+        "n": 4993,
+        "mean_displacement_x_px": 156.208899440464,
+        "std_displacement_x_px": 11.74179543766868,
+        "reference_prediction_deg": 5.052475602693689,
+        "residual_deg": 0.052475602693689005
+      },
+      {
+        "target_theta_deg": 10.0,
+        "n": 5154,
+        "mean_displacement_x_px": 257.4764123678246,
+        "std_displacement_x_px": 5.576915383264526,
+        "reference_prediction_deg": 9.952579864539358,
+        "residual_deg": -0.0474201354606425
+      }
+    ],
+    "finite_starts": 89175,
+    "outside_reference_mean_domain": 8022,
+    "outside_proposed_theta_bounds": 0
+  },
+  "covariance_reproduction": {
+    "pairs": 63756,
+    "saved_pairs_match": true,
+    "pairs_by_exposure": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      3804,
+      4275,
+      4528,
+      4752,
+      4392,
+      4374,
+      3819,
+      4777,
+      4185,
+      2220,
+      3511,
+      4897,
+      4745,
+      4736,
+      4741
+    ],
+    "max_absolute_matrix_delta": 0.0,
+    "matrices": [
+      "native",
+      "native_unshrunk",
+      "relative",
+      "R11"
+    ],
+    "covariance_arrays_hash": "9cf7a379a78472ab0a67321659ee6f1cd8c5ef000d0bcc674df39398c454c493",
+    "covariance_arrays_hash_matches": true
+  }
+}
