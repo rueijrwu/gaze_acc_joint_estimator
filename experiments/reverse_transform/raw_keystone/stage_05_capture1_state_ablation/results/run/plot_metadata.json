@@ -1,0 +1,69 @@
+{
+  "models": [
+    "A0",
+    "G",
+    "GA"
+  ],
+  "sampled_triangle_clouds": {
+    "A0_P1": {
+      "seed": 5705,
+      "frames": 600,
+      "common_valid": 24280
+    },
+    "G_P1": {
+      "seed": 5705,
+      "frames": 600,
+      "common_valid": 24280
+    },
+    "GA_P1": {
+      "seed": 5705,
+      "frames": 600,
+      "common_valid": 24280
+    },
+    "A0_P4": {
+      "seed": 5706,
+      "frames": 600,
+      "common_valid": 24280
+    },
+    "G_P4": {
+      "seed": 5706,
+      "frames": 600,
+      "common_valid": 24280
+    },
+    "GA_P4": {
+      "seed": 5706,
+      "frames": 600,
+      "common_valid": 24280
+    }
+  },
+  "triangle_cloud_seed_policy": "5705 + pattern_index, shared across A0/G/GA; up to 120 rows per fixation",
+  "triangle_coordinates": "Recovered native reference coordinates; no rotation alignment or radius normalization.",
+  "keystone_geometry": "Raw centered projective output; no post-keystone RMS or area rescaling.",
+  "state_error_bars": "Within-fixation standard deviation; not uncertainty of the mean.",
+  "conditioning": "Raw condition numbers use degree and diopter coordinates; acute angles are unit-invariant.",
+  "anchor_widths": {
+    "gaze_mean_deg": 0.5,
+    "A_mean_D": 0.25
+  },
+  "G_GA_P1_P4_weights": {
+    "P1": 1.0,
+    "P4": 1.0
+  },
+  "fit_artifact_sha256": {
+    "summary.json": "db61e5d0d0f6c471a152c62d6526aa645324d9079d76f583b72b7f4fafebdebb",
+    "frames.npz": "9856b1c783c4abdcbaecc9f64a1386dcfb7d70ef105d89487f2dd9565fe70a7e",
+    "audit.json": "6173f79a11b303e9ad7fbb40d1c9ee2c2f0f2f9c1063c34e882925bf42b2b794",
+    "protocol.json": "fc9ca8b24927cce0afb23bfa656bdfb7e3d06e740eff8574835e375b25d830c3",
+    "provenance.json": "a5e56435cb552c84eea4ca820b8744d7f91f60e74d9da9551b2a8127a758e8f6"
+  },
+  "plot_script_sha256": "d07e501fc821cf632383f94b947525f3a650e8c6367fff332df6374dad402f79",
+  "plot_script_snapshot": "experiments/reverse_transform/raw_keystone/stage_05_capture1_state_ablation/scripts/plot_results.py",
+  "plot_output_sha256": {
+    "state_means_by_fixation.png": "4fc639bca490f26626273abb7a53dac57e1d7ba627acdf141639d5206a7d78d5",
+    "forward_inverse_metrics_by_fixation.png": "2d89f4f873ddf12f0ec6e12110b08fd3a49a711e6d3ccfbb02d6ed1064f979bd",
+    "corrected_triangle_means_clouds.png": "0d7b31b98966ff11bf59843123203e1b36073b6180a1e09a267973dc9f865bba",
+    "conditioning_by_fixation.png": "7642c66b5dd8b624d9d2d230efe4223ae768c890ffbf47596e277826a58fbf81",
+    "states_by_source_row.png": "aff6f3c2e8fe538a8ac2d3d8847418dec9f9096bd3ff1eec03a03c1487132ca0",
+    "delta_gaze_vs_delta_A.png": "568ad95a1a29d3319fc96783bf7a64b808e3d4d3c12c0341d30d35cbaf9cae58"
+  }
+}

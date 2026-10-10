@@ -1,0 +1,60 @@
+{
+  "anchored_linear_slope_per_D_px2": -5.253231191989352e-07,
+  "reference_A_D": 0.36036036036036034,
+  "capture_coefficients": [
+    {
+      "capture": 1,
+      "demand_D": 0.36036036036036034,
+      "kappa_per_px2": 0.0
+    },
+    {
+      "capture": 2,
+      "demand_D": 4.0,
+      "kappa_per_px2": -1.8542103418544594e-06
+    },
+    {
+      "capture": 3,
+      "demand_D": 3.0,
+      "kappa_per_px2": -1.4746662328239108e-06
+    },
+    {
+      "capture": 4,
+      "demand_D": 2.0,
+      "kappa_per_px2": -8.479173954744534e-07
+    }
+  ],
+  "coefficient_residuals_per_px2": [
+    0.0,
+    5.777650640112453e-08,
+    -8.800250376726205e-08,
+    1.3423214383260263e-08
+  ],
+  "P4_keystone_scaled_by_capture": [
+    [
+      -0.0014326568448210964,
+      0.0016317299838511413,
+      -0.007727537518764486,
+      -0.0576344853750089
+    ],
+    [
+      0.006252566424008926,
+      0.14365636077661006,
+      0.0005123313141987559,
+      -0.37382771938472986
+    ],
+    [
+      0.00276066352465796,
+      -0.0014616873461944762,
+      -0.004512242888411646,
+      -0.05916030469162194
+    ],
+    [
+      0.0010762693520592398,
+      -0.3137581518784484,
+      -0.0036820716123721078,
+      0.1804652389424036
+    ]
+  ],
+  "accommodation_keystone_policy": "Independent capture coefficients retained and inspected. A/capture confounded; trends alone do not support promoting shared K(theta,A). Any coupling needs a declared coordinate/identifiability comparison.",
+  "limitations": "Post-fit demand association only; independent fits receive no demand inputs. Relative coefficients, not physical absolute barrel."
+}

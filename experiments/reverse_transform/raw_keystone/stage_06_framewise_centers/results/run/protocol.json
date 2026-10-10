@@ -1,0 +1,27 @@
+{
+  "complete": 89175,
+  "scheduled": 100090,
+  "unavailable": 10915,
+  "sequence": "Framewise centers -> arithmetic fixation means -> quadratic x gaze calibration/shared first-order y slope -> new P1 scale -> fixed-gaze framewise A -> recomputed centers; repeat as a fixed-point iteration.",
+  "center_formula": "C1_i=c1_i-g_i*mu1_i; C4_i=c4_i-g_i*mu4_i. Two centers per frame; no shared center positions.",
+  "separation": "(C4_i-C1_i)/g_i; common magnification removed once before fixation averaging.",
+  "fixed": "Capture1 zero-gaze0.360360D references, Stage03 raw K and gaze-coordinate units, newly raw-fitted kappa(A) law.",
+  "mean_A_anchor_width_D": 0.25,
+  "mean_A_anchor_strength_px2_D2": 16.0,
+  "A_operational_bounds_D": [
+    0,
+    6
+  ],
+  "metric": "Original centered P4 camera vertex SSE with equal fixation weights plus fixation-mean A anchors; gaze obtained by declared fixation-mean polynomial calibration, not joint cost minimization.",
+  "normalization": "No RMS/area normalization; one P1-derived magnification per frame shared with P4.",
+  "reference_A": 0.36036036036036034,
+  "slope": -5.253231191989352e-07,
+  "maximum_cycles": 24,
+  "tolerance": 0.0001,
+  "device": {
+    "backend": "cupy",
+    "version": "14.2.0",
+    "dtype": "float64",
+    "gpu": "Tesla P100-PCIE-16GB"
+  }
+}

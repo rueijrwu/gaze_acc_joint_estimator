@@ -1,0 +1,160 @@
+{
+  "status": "PASS",
+  "independent_CPU": true,
+  "checks": {
+    "global_fits": [
+      {
+        "capture": 1,
+        "pattern": 1,
+        "independent_cost_difference": 6.661338147750939e-16,
+        "analytic_gradient_relative_error": 2.1087350476885943e-09,
+        "projected_gradient_inf": 6.886990977506002e-13,
+        "active_bounds": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "free_hessian_eigenvalues": [
+          673.9101300062296,
+          4567.890697345352,
+          15637.608892029768,
+          58219.495854434266
+        ],
+        "domain": {
+          "min_radial_factor": 1.0,
+          "min_radial_derivative": 1.0,
+          "min_keystone_denominator": 0.9918791611623159,
+          "valid": true
+        }
+      },
+      {
+        "capture": 2,
+        "pattern": 1,
+        "independent_cost_difference": 2.220446049250313e-16,
+        "analytic_gradient_relative_error": 2.455019965191534e-09,
+        "projected_gradient_inf": 2.78808687942389e-09,
+        "active_bounds": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "free_hessian_eigenvalues": [
+          76.12499692397782,
+          265.5843937336183,
+          15184.267850187876,
+          54529.32892039877
+        ],
+        "domain": {
+          "min_radial_factor": 1.0,
+          "min_radial_derivative": 1.0,
+          "min_keystone_denominator": 0.9926327155708825,
+          "valid": true
+        }
+      },
+      {
+        "capture": 3,
+        "pattern": 1,
+        "independent_cost_difference": 6.661338147750939e-16,
+        "analytic_gradient_relative_error": 2.109407565287179e-09,
+        "projected_gradient_inf": 5.360295540768334e-14,
+        "active_bounds": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "free_hessian_eigenvalues": [
+          804.625277548057,
+          1972.4319615003817,
+          15534.226575526247,
+          54448.16975247538
+        ],
+        "domain": {
+          "min_radial_factor": 1.0,
+          "min_radial_derivative": 1.0,
+          "min_keystone_denominator": 0.9917218184528195,
+          "valid": true
+        }
+      },
+      {
+        "capture": 4,
+        "pattern": 1,
+        "independent_cost_difference": 1.1102230246251565e-16,
+        "analytic_gradient_relative_error": 2.2189903814645428e-09,
+        "projected_gradient_inf": 1.1020419162736245e-08,
+        "active_bounds": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "free_hessian_eigenvalues": [
+          32.24365546140767,
+          66.62950164808942,
+          15150.851562548802,
+          54167.74052584247
+        ],
+        "domain": {
+          "min_radial_factor": 1.0,
+          "min_radial_derivative": 1.0,
+          "min_keystone_denominator": 0.9711158177080896,
+          "valid": true
+        }
+      }
+    ],
+    "inverse": [
+      {
+        "pattern": 1,
+        "independent_forward_difference_px": 1.4210854715202004e-13,
+        "measured_inverse_replay_difference_px": 5.684341886080802e-14,
+        "synthetic_closure_px": 1.1368683772161603e-13
+      },
+      {
+        "pattern": 4,
+        "independent_forward_difference_px": 1.1368683772161603e-13,
+        "measured_inverse_replay_difference_px": 1.7053025658242404e-13,
+        "synthetic_closure_px": 1.7053025658242404e-13
+      }
+    ],
+    "all_complete_frames": 89175,
+    "P1_profile_normalization_cancellation_px": 1.9895196601282805e-13,
+    "nontrivial_raw_size_span_px": 11.882841103781516,
+    "frame_A": {
+      "certificate": {
+        "projected_gradient_inf": 1.2286781888795932e-12,
+        "free_frame_curvature_min": 26.738866348555906,
+        "lower_bound_frames": 949,
+        "upper_bound_frames": 13,
+        "forward_domain_limited_frames": 0,
+        "stationary": true
+      },
+      "all_frame_gradient_relative_error": 1.7699840570572793e-09,
+      "fixation_means_D": [
+        0.5662579335797512,
+        0.587119483758312,
+        0.36207196750876486,
+        0.21148959226608635,
+        0.24304992273668843,
+        3.9258702852757006,
+        4.074249859657514,
+        4.008436881695814,
+        4.114287065094517,
+        3.71954840359538,
+        3.1378227576763518,
+        3.3766490001950573,
+        3.094117766030742,
+        3.0207337671974304,
+        2.753864095751656,
+        2.0652915525548075,
+        2.165322385421799,
+        2.042904755089427,
+        1.9154789254389124,
+        1.740004701195823
+      ],
+      "forward_domain_limited_frames": 0
+    }
+  },
+  "scope": "Fresh population/calibration/reference and hashes; independent raw forward equation, global gradients/free curvature, positive common scale, exact inverse closure, retained raw size response, framewise forward gradients/stationarity. No physical/physiological certification."
+}

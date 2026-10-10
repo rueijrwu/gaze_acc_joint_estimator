@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "independent_CPU": true,
+  "checks": {
+    "cycle_1": {
+      "certificate": {
+        "projected_gradient_inf": 1.0811285945021873e-12,
+        "free_frame_curvature_min": 26.743396125882462,
+        "lower_bound_frames": 944,
+        "upper_bound_frames": 13,
+        "forward_domain_limited_frames": 0,
+        "stationary": true
+      },
+      "gradient_relative_error_max": 1.7931759941864144e-09,
+      "objective_equal_fixation_px2": 7.2297206898117965
+    },
+    "cycle_2": {
+      "certificate": {
+        "projected_gradient_inf": 1.0215388294508856e-12,
+        "free_frame_curvature_min": 26.74357968780368,
+        "lower_bound_frames": 944,
+        "upper_bound_frames": 13,
+        "forward_domain_limited_frames": 0,
+        "stationary": true
+      },
+      "gradient_relative_error_max": 1.6497715890448703e-09,
+      "objective_equal_fixation_px2": 7.2284699773443
+    },
+    "cycle_3": {
+      "certificate": {
+        "projected_gradient_inf": 1.1168824535329684e-12,
+        "free_frame_curvature_min": 26.743582783864866,
+        "lower_bound_frames": 943,
+        "upper_bound_frames": 13,
+        "forward_domain_limited_frames": 0,
+        "stationary": true
+      },
+      "gradient_relative_error_max": 1.8281338001201355e-09,
+      "objective_equal_fixation_px2": 7.2285121044586695
+    },
+    "cycle_4": {
+      "certificate": {
+        "projected_gradient_inf": 1.0828311592179388e-12,
+        "free_frame_curvature_min": 26.743582914769043,
+        "lower_bound_frames": 943,
+        "upper_bound_frames": 13,
+        "forward_domain_limited_frames": 0,
+        "stationary": true
+      },
+      "gradient_relative_error_max": 2.103857516689337e-09,
+      "objective_equal_fixation_px2": 7.228520582633694
+    },
+    "cycle_5": {
+      "certificate": {
+        "projected_gradient_inf": 1.241169677782826e-12,
+        "free_frame_curvature_min": 26.74358292999686,
+        "lower_bound_frames": 943,
+        "upper_bound_frames": 13,
+        "forward_domain_limited_frames": 0,
+        "stationary": true
+      },
+      "gradient_relative_error_max": 2.0813462060167427e-09,
+      "objective_equal_fixation_px2": 7.2285215387522985
+    },
+    "cycle_6": {
+      "certificate": {
+        "projected_gradient_inf": 1.4710159144092754e-12,
+        "free_frame_curvature_min": 26.74358293079178,
+        "lower_bound_frames": 943,
+        "upper_bound_frames": 13,
+        "forward_domain_limited_frames": 0,
+        "stationary": true
+      },
+      "gradient_relative_error_max": 1.980191728559669e-09,
+      "objective_equal_fixation_px2": 7.228521636688313
+    },
+    "initial": {
+      "synthetic_center_closure_px": 2.2737367544323206e-13,
+      "synthetic_inverse_closure_px": 3.694822225952521e-13,
+      "p1_inverse_failures": 0,
+      "p4_inverse_failures": 0
+    },
+    "refined": {
+      "synthetic_center_closure_px": 2.2737367544323206e-13,
+      "synthetic_inverse_closure_px": 4.263256414560601e-13,
+      "p1_inverse_failures": 0,
+      "p4_inverse_failures": 0
+    },
+    "next_gaze_fixed_point_max_deg": 1.4789684232852096e-06
+  },
+  "scope": "Raw vertex equations, frame centers, arithmetic fixation-mean polynomial calibration, sequential P1 scale and fixed-gaze A, all-frame A gradients, bounds/stationarity, translation invariance and synthetic closure. Conditional origins, no physical center ground truth."
+}

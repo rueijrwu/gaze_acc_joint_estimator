@@ -1,0 +1,15 @@
+{
+  "stage": 2,
+  "keystone": "Raw centered projective output. NO post-keystone RMS/area rescaling.",
+  "reference": "Capture1 zero-gaze centered arithmetic means, demand0.36036036036036034D.",
+  "scale": "One positive P1-profiled scalar per frame, shared with P4; no P4 scale.",
+  "metric": "Original centered camera mean-three-vertex SSE, equal fixation weights; inverse secondary.",
+  "old_results": "Historical read-only comparisons only; no old fitted optics/states used.",
+  "P1_gauge": "Four-coefficient exp(a), exp(-a) and generalized projective denominator; identity at zero gaze; no arbitrary isotropic gaze function.",
+  "device": {
+    "backend": "cupy",
+    "version": "14.2.0",
+    "dtype": "float64",
+    "gpu": "Tesla P100-PCIE-16GB"
+  }
+}

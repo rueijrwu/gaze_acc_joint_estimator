@@ -1,0 +1,29 @@
+{
+  "stage": 4,
+  "keystone": "Raw centered projective output. NO post-keystone RMS/area rescaling.",
+  "reference": "Capture1 zero-gaze centered arithmetic means, demand0.36036036036036034D.",
+  "scale": "One positive P1-profiled scalar per frame, shared with P4; no P4 scale.",
+  "metric": "Original centered camera mean-three-vertex SSE, equal fixation weights; inverse secondary.",
+  "old_results": "Historical read-only comparisons only; no old fitted optics/states used.",
+  "P1_gauge": "Four-coefficient exp(a), exp(-a) and generalized projective denominator; identity at zero gaze; no arbitrary isotropic gaze function.",
+  "device": {
+    "backend": "cupy",
+    "version": "14.2.0",
+    "dtype": "float64",
+    "gpu": "Tesla P100-PCIE-16GB"
+  },
+  "anchor_width_D": 0.25,
+  "residual_scale_px": 1.0,
+  "strength_px2_per_D2": 16.0,
+  "anchors": "Arithmetic fixation means only; no per-frame prior/smoothing.",
+  "A_bounds_D": [
+    0.0,
+    6.0
+  ],
+  "domain": "Forward model branch bounds only. Measured inverse failures reported, not trimmed.",
+  "frozen": "New raw Stage03 gaze, P1 scale, per-capture keystone and newly fitted radial law.",
+  "kappa_law": {
+    "slope": -5.253231191989352e-07,
+    "reference_A": 0.36036036036036034
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "stage": 3,
+  "input_sha256": {
+    "summary.json": "36fc5cad22813aa26460a9ede61ccf3456a35635402d23a37c96d6c1e92e5543",
+    "frames.npz": "65a40afa566f2224d565038ff5f996995ff7b2a7cbb86f0765e9f2db22abfd1b",
+    "historical_comparison.json": "ffc8df609e9f59a3d02c357a756b21ec448c1a4265d72826c1cfe644bb96e6b5",
+    "protocol.json": "c15537e57ce1a9aa72e1571452be88ac31778a59332ef43d31f765c908ab8aeb",
+    "provenance.json": "3b118c1b7c8db1328db099d8f6e1711d6d05583c49f112c445d56b4cf4be4623",
+    "audit.json": "6d24d4e16c2a4fd8c0ee8eaac9115a3df2daa20b7b217715698dbebd836bf386"
+  },
+  "plot_script_sha256": "2edd32d5d2db2be17d9a3d46d2fb221a7eaeefbb21c1fb8dc72fde3b64cbc126",
+  "plot_script_snapshot": "plot_source_snapshot/experiments/reverse_transform/raw_keystone/scripts/plot_results.py",
+  "outputs": {
+    "point_errors_by_fixation.png": "a7b377b9fd108329cf4f5f65c6e7cb88711ccfdbcb28962c370eac7741414fcf",
+    "scale_and_raw_size_by_fixation.png": "ab48f8e573b9abaff87166f858583ba4bd96dbc0b0b460b3793a482acea3393b",
+    "p4_inverse_radius_ratio_by_fixation.png": "d8629793503cdd9bf5fcb68f5e82067c7f2e7800b69da4e36471e0d78596ab07",
+    "p1_triangles_raw_vs_historical.png": "2fbc3692e5c9158a84048815ff8d9cd6485cf80ab5f7cc41fbd3e8b4bd73489c",
+    "p4_triangles_raw_vs_historical.png": "ef35c3bebb2153aa54033984019b2706476db63a9b6b7cf90235db1790dc7971"
+  },
+  "plot_scope": "Saved artifacts only; no fitting or refitting.",
+  "triangle_sampling": "Per pattern and fixation, same valid indices for raw and historical arrays; deterministic seed.",
+  "triangle_coordinates": "Native camera coordinates; no rotation alignment or radius normalization.",
+  "size_factors": "Raw model-size factors are diagnostics only; no post-keystone RMS normalization is applied."
+}

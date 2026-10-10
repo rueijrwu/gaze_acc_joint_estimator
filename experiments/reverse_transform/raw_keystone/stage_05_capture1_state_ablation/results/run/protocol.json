@@ -1,0 +1,38 @@
+{
+  "capture": 1,
+  "complete": 24280,
+  "keystone": "Raw centered projective output, no RMS/area rescaling.",
+  "gaze_mean_anchor_width_deg": 0.5,
+  "A_mean_anchor_width_D": 0.25,
+  "weights": {
+    "P1": 1.0,
+    "P4": 1.0
+  },
+  "data_metric": "Equal fixation mean of P1 mean-three-vertex SSE + P4 mean-three-vertex SSE in centered camera coordinates.",
+  "anchors": "Only arithmetic fixation-mean anchors; gaze nominal labels and A_ref. Residual scale 1 px.",
+  "bounds": {
+    "theta_x_deg": [
+      -20.0,
+      20.0
+    ],
+    "A_D": [
+      0.0,
+      6.0
+    ]
+  },
+  "bounds_interpretation": "Operational ranges, not framewise priors or calibration truth. Forward fitting does not restrict measured inverse-domain validity; failures are reported.",
+  "frozen": "References/origin, P1/P4 keystone, beta/A_ref, vertical gaze, units, correspondence, population.",
+  "magnification": "Positive P1 profiled magnification recomputed at every trial gaze; shared by P4.",
+  "A0": "Exact saved RAW Stage04 forward-fit A states/gaze/M, not refitted in this ablation.",
+  "kappa_law": {
+    "slope": -5.253231191989352e-07,
+    "reference_A": 0.36036036036036034
+  },
+  "conditioning_units": "Raw singular values/condition use degrees and diopters; normalized column correlations/angles are unit invariant.",
+  "device": {
+    "backend": "cupy",
+    "version": "14.2.0",
+    "dtype": "float64",
+    "gpu": "Tesla P100-PCIE-16GB"
+  }
+}

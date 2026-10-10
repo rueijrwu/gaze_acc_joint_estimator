@@ -1,0 +1,752 @@
+{
+  "plot_scope": "Saved summary.json and frames.npz only; no fitting or refitting.",
+  "summary_sha256": "5338e5f3bf7ed81e5b3b53c409cf26cd3634b04248f36435ed3864e1633703b6",
+  "frames_sha256": "2a0860a9ed88bc46daf03dac8d10a99e7e271f3c4242186ff0ca4f11e3bbc58f",
+  "source_sha256": "f6fd63144569074b98c56c70f76dc1c8853f99c7b10ad41e816066eb8fae384c",
+  "source_path": "experiments/reverse_transform/raw_keystone/stage_06_framewise_centers/scripts/plot_results.py",
+  "outputs_sha256": {
+    "accommodation_by_source_order.png": "f4e9ac6392bc78728823734f851be6022eb2f29f3c12c008d3406111f89f3c2b",
+    "centers_by_source_order.png": "9d87ce286b13449a82a65053bcf130039c4b619bc4c61f7993f2f4372cb8dd2d",
+    "corrected_center_separation_by_capture.png": "5863e6e546efe156fd8ce5eba4bfd33e4fdbfd2ba25a39e57ed76883d8c814a9",
+    "corrected_center_gaze_calibration.png": "7dacdc5d67a228e0a498942fe6b2d1912177290dfa9076c0980e972b80584ac5",
+    "gaze_initial_vs_refined.png": "5ff9c918dc2dd6a5d0bbedbe86174cf57eafdeb318be1190455a8491cb39cc4a",
+    "forward_point_metrics_by_capture.png": "3f62d676f3cb2ef55841f264313d781cac782b3524e4772629a122815f9e97b7",
+    "outer_cycle_convergence.png": "c28d89424ce5819b4ecc14a6a926597ea7f1aa23b0c7c840777554ea1c35e121"
+  },
+  "forward_residual_metrics": {
+    "C1_p1": {
+      "initial_median_p95_rms_px": [
+        0.6745285136443653,
+        2.0088231762451443,
+        1.0169802209119596
+      ],
+      "refined_median_p95_rms_px": [
+        0.6758053938948664,
+        2.0300950297327907,
+        1.0213596662150453
+      ]
+    },
+    "C2_p1": {
+      "initial_median_p95_rms_px": [
+        0.8709303238679988,
+        2.52062294063137,
+        1.3284650085241676
+      ],
+      "refined_median_p95_rms_px": [
+        0.8697484187294642,
+        2.520409367735838,
+        1.3291744184855558
+      ]
+    },
+    "C3_p1": {
+      "initial_median_p95_rms_px": [
+        0.7812423344609917,
+        2.303636496857063,
+        1.1245966617813723
+      ],
+      "refined_median_p95_rms_px": [
+        0.7826098856690049,
+        2.302009044873071,
+        1.1231286913635155
+      ]
+    },
+    "C4_p1": {
+      "initial_median_p95_rms_px": [
+        0.49403798254787223,
+        1.4014615649412043,
+        0.6685870873460579
+      ],
+      "refined_median_p95_rms_px": [
+        0.49569118313849825,
+        1.3995090240615156,
+        0.6687681848144807
+      ]
+    },
+    "C1_p4": {
+      "initial_median_p95_rms_px": [
+        0.9499936738188924,
+        1.9075098269329107,
+        1.161832233077702
+      ],
+      "refined_median_p95_rms_px": [
+        0.93826301542644,
+        1.9277310153425495,
+        1.1755335391607895
+      ]
+    },
+    "C2_p4": {
+      "initial_median_p95_rms_px": [
+        1.283519280222669,
+        3.005749093654662,
+        3.619698950114477
+      ],
+      "refined_median_p95_rms_px": [
+        1.2186282971706515,
+        2.8773503497698085,
+        3.594403316426629
+      ]
+    },
+    "C3_p4": {
+      "initial_median_p95_rms_px": [
+        1.5357775237755003,
+        3.138500890891376,
+        1.8359192405583833
+      ],
+      "refined_median_p95_rms_px": [
+        1.4674221779095966,
+        3.022155513795427,
+        1.753093531836123
+      ]
+    },
+    "C4_p4": {
+      "initial_median_p95_rms_px": [
+        1.7697386174902596,
+        4.101619301189017,
+        2.984357800352816
+      ],
+      "refined_median_p95_rms_px": [
+        1.7859979739187473,
+        4.10442576835998,
+        2.9848930652445267
+      ]
+    }
+  },
+  "outer_cycle_state_changes": [
+    [
+      2.131261159361629,
+      0.59317749059975,
+      0.031105348886525608
+    ],
+    [
+      0.09203995197073667,
+      0.06595660781569279,
+      0.003157557750002038
+    ],
+    [
+      0.009898534427726702,
+      0.007322735844679684,
+      0.00028653617159335454
+    ],
+    [
+      0.0010961924658410283,
+      0.0008091661707858577,
+      2.3813090066937548e-05
+    ],
+    [
+      0.00012112074197023759,
+      8.93900076253118e-05,
+      1.8753200832222205e-06
+    ],
+    [
+      1.3381765130660028e-05,
+      9.878407464469774e-06,
+      1.4272059445374907e-07
+    ]
+  ],
+  "outer_cycle_center_changes_px": [
+    [
+      0.14791625839218508,
+      1.7659098567344704
+    ],
+    [
+      0.008498600215981473,
+      0.19949505315409463
+    ],
+    [
+      0.0008382994109062086,
+      0.022189844934938183
+    ],
+    [
+      9.274908131076406e-05,
+      0.0024525244787645334
+    ],
+    [
+      1.0247244130993269e-05,
+      0.000270941189722414
+    ],
+    [
+      1.132258856311899e-06,
+      2.9941525916951e-05
+    ]
+  ],
+  "A_only_start_certificates": [
+    [
+      {
+        "objective_equal_fixation_mean_px2": 7.229720689811788,
+        "certificate": {
+          "projected_gradient_inf": 1.2394671130670746e-12,
+          "free_frame_curvature_min": 26.743396125860258,
+          "lower_bound_frames": 944,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.0811285945021873e-12,
+          "free_frame_curvature_min": 26.743396125882462,
+          "lower_bound_frames": 944,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      },
+      {
+        "objective_equal_fixation_mean_px2": 7.229720689811799,
+        "certificate": {
+          "projected_gradient_inf": 1.7689647396657837e-12,
+          "free_frame_curvature_min": 26.743396125589364,
+          "lower_bound_frames": 944,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.3773748550429442e-12,
+          "free_frame_curvature_min": 26.743396125780322,
+          "lower_bound_frames": 944,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      },
+      {
+        "objective_equal_fixation_mean_px2": 7.229720689811788,
+        "certificate": {
+          "projected_gradient_inf": 1.2752209720978557e-12,
+          "free_frame_curvature_min": 26.743396126206648,
+          "lower_bound_frames": 944,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.28032866624511e-12,
+          "free_frame_curvature_min": 26.743396126206648,
+          "lower_bound_frames": 944,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      }
+    ],
+    [
+      {
+        "objective_equal_fixation_mean_px2": 7.228469977344288,
+        "certificate": {
+          "projected_gradient_inf": 1.544226197186589e-12,
+          "free_frame_curvature_min": 26.74357968780368,
+          "lower_bound_frames": 944,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.0215388294508856e-12,
+          "free_frame_curvature_min": 26.74357968780368,
+          "lower_bound_frames": 944,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      },
+      {
+        "objective_equal_fixation_mean_px2": 7.228469977344301,
+        "certificate": {
+          "projected_gradient_inf": 1.2173337717623054e-12,
+          "free_frame_curvature_min": 26.74357968780368,
+          "lower_bound_frames": 944,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.1793859231966182e-12,
+          "free_frame_curvature_min": 26.74357968780368,
+          "lower_bound_frames": 944,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      },
+      {
+        "objective_equal_fixation_mean_px2": 7.228469977344306,
+        "certificate": {
+          "projected_gradient_inf": 1.384525555626983e-12,
+          "free_frame_curvature_min": 26.74357968780368,
+          "lower_bound_frames": 944,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.229216825935054e-12,
+          "free_frame_curvature_min": 26.74357968780368,
+          "lower_bound_frames": 944,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      }
+    ],
+    [
+      {
+        "objective_equal_fixation_mean_px2": 7.228512104458673,
+        "certificate": {
+          "projected_gradient_inf": 1.1560414419952523e-12,
+          "free_frame_curvature_min": 26.743582783593972,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.0198362647351342e-12,
+          "free_frame_curvature_min": 26.743582784144643,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      },
+      {
+        "objective_equal_fixation_mean_px2": 7.228512104458664,
+        "certificate": {
+          "projected_gradient_inf": 1.0905567850046367e-12,
+          "free_frame_curvature_min": 26.743582783864866,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.1168824535329684e-12,
+          "free_frame_curvature_min": 26.743582783864866,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      },
+      {
+        "objective_equal_fixation_mean_px2": 7.228512104458665,
+        "certificate": {
+          "projected_gradient_inf": 1.1781747833000215e-12,
+          "free_frame_curvature_min": 26.743582783309755,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 8.643608189211092e-13,
+          "free_frame_curvature_min": 26.743582783860425,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      }
+    ],
+    [
+      {
+        "objective_equal_fixation_mean_px2": 7.228520582633692,
+        "certificate": {
+          "projected_gradient_inf": 1.4250466670839855e-12,
+          "free_frame_curvature_min": 26.743582914782365,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.1305029712589801e-12,
+          "free_frame_curvature_min": 26.743582914782365,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      },
+      {
+        "objective_equal_fixation_mean_px2": 7.228520582633706,
+        "certificate": {
+          "projected_gradient_inf": 1.090526594995302e-12,
+          "free_frame_curvature_min": 26.743582914520353,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 9.340407299443628e-13,
+          "free_frame_curvature_min": 26.743582914520353,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      },
+      {
+        "objective_equal_fixation_mean_px2": 7.22852058263369,
+        "certificate": {
+          "projected_gradient_inf": 1.5067697734400564e-12,
+          "free_frame_curvature_min": 26.743582914769043,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.0828311592179388e-12,
+          "free_frame_curvature_min": 26.743582914769043,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      }
+    ],
+    [
+      {
+        "objective_equal_fixation_mean_px2": 7.228521538752298,
+        "certificate": {
+          "projected_gradient_inf": 1.4284517965154884e-12,
+          "free_frame_curvature_min": 26.74358292954833,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.076020900354933e-12,
+          "free_frame_curvature_min": 26.74358292954833,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      },
+      {
+        "objective_equal_fixation_mean_px2": 7.228521538752302,
+        "certificate": {
+          "projected_gradient_inf": 1.2530876307930864e-12,
+          "free_frame_curvature_min": 26.743582929175297,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.3661153837338422e-12,
+          "free_frame_curvature_min": 26.74358292918418,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      },
+      {
+        "objective_equal_fixation_mean_px2": 7.228521538752294,
+        "certificate": {
+          "projected_gradient_inf": 1.169661959721264e-12,
+          "free_frame_curvature_min": 26.74358292998798,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 9.415182878105664e-13,
+          "free_frame_curvature_min": 26.74358292999686,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      }
+    ],
+    [
+      {
+        "objective_equal_fixation_mean_px2": 7.228521636688312,
+        "certificate": {
+          "projected_gradient_inf": 9.520220350125376e-13,
+          "free_frame_curvature_min": 26.743582931147053,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.1849850421630275e-12,
+          "free_frame_curvature_min": 26.743582931147053,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      },
+      {
+        "objective_equal_fixation_mean_px2": 7.228521636688311,
+        "certificate": {
+          "projected_gradient_inf": 1.063095776448595e-12,
+          "free_frame_curvature_min": 26.74358293098274,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.4710159144092754e-12,
+          "free_frame_curvature_min": 26.74358293079178,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      },
+      {
+        "objective_equal_fixation_mean_px2": 7.228521636688313,
+        "certificate": {
+          "projected_gradient_inf": 1.0675080767761755e-12,
+          "free_frame_curvature_min": 26.74358293124031,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        },
+        "CPU_certificate": {
+          "projected_gradient_inf": 1.2274286052443747e-12,
+          "free_frame_curvature_min": 26.74358293124031,
+          "lower_bound_frames": 943,
+          "upper_bound_frames": 13,
+          "forward_domain_limited_frames": 0,
+          "stationary": true
+        }
+      }
+    ]
+  ],
+  "calibration_zero_reference_policy": [
+    [
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance."
+    ],
+    [
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance."
+    ],
+    [
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance."
+    ],
+    [
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance."
+    ],
+    [
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance."
+    ],
+    [
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance.",
+      "Polynomial maps the zero-fixation mean input exactly to zero; the mean of framewise quadratic outputs can differ because of within-fixation variance."
+    ]
+  ],
+  "final_polynomial_at_fixation_means_deg": [
+    [
+      [
+        -9.977512792805403,
+        -5.025871837604853,
+        0.0,
+        5.104181658803474,
+        9.95606454209435
+      ],
+      [
+        -10.013734816423637,
+        -4.98487901566302,
+        0.0,
+        4.940358394511975,
+        10.023195235548174
+      ],
+      [
+        -10.006807657741758,
+        -4.915334987798657,
+        0.0,
+        5.188644618338523,
+        9.936519430871648
+      ],
+      [
+        -10.008846112257112,
+        -4.952880262248992,
+        0.0,
+        5.06786707458362,
+        9.980049972647402
+      ]
+    ],
+    [
+      [
+        -9.97811579314429,
+        -5.026556538954855,
+        0.0,
+        5.097152133210205,
+        9.958797838435594
+      ],
+      [
+        -10.013790209846915,
+        -4.983983587888974,
+        0.0,
+        4.942473939186335,
+        10.02255456148931
+      ],
+      [
+        -10.00907065067429,
+        -4.9079106392535055,
+        0.0,
+        5.192071259674542,
+        9.935983174885992
+      ],
+      [
+        -10.008754935021656,
+        -4.953064442018475,
+        0.0,
+        5.068047039091809,
+        9.979958157375677
+      ]
+    ],
+    [
+      [
+        -9.978128776263455,
+        -5.026592079334483,
+        0.0,
+        5.096937808551981,
+        9.958878942875621
+      ],
+      [
+        -10.01378698946269,
+        -4.98398246573021,
+        0.0,
+        4.94250002631966,
+        10.02254564495615
+      ],
+      [
+        -10.009112149514475,
+        -4.9077012658141905,
+        0.0,
+        5.19235216781114,
+        9.935889979797542
+      ],
+      [
+        -10.008755066029433,
+        -4.953064457475722,
+        0.0,
+        5.068045975392543,
+        9.97995856652079
+      ]
+    ],
+    [
+      [
+        -9.978129627513159,
+        -5.026593612989233,
+        0.0,
+        5.09692621830639,
+        9.958883376643433
+      ],
+      [
+        -10.013787118700069,
+        -4.9839827970603565,
+        0.0,
+        4.942498024625062,
+        10.02254632551738
+      ],
+      [
+        -10.009107735999315,
+        -4.90770706898196,
+        0.0,
+        5.192371400281504,
+        9.935881137352506
+      ],
+      [
+        -10.008755068068591,
+        -4.953064453242846,
+        0.0,
+        5.0680459716826665,
+        9.979958568468014
+      ]
+    ],
+    [
+      [
+        -9.978129665643738,
+        -5.026593686764116,
+        0.0,
+        5.096925684963805,
+        9.95888358008299
+      ],
+      [
+        -10.01378714310559,
+        -4.983982773515337,
+        0.0,
+        4.9424978989830946,
+        10.022546373899521
+      ],
+      [
+        -10.009107312017866,
+        -4.907707823582357,
+        0.0,
+        5.1923726658866425,
+        9.935880509183335
+      ],
+      [
+        -10.008755068082865,
+        -4.953064453242526,
+        0.0,
+        5.068045971572212,
+        9.979958568510773
+      ]
+    ],
+    [
+      [
+        -9.978129667502717,
+        -5.026593690262546,
+        0.0,
+        5.096925659319249,
+        9.95888358986416
+      ],
+      [
+        -10.013787145558458,
+        -4.983982770151237,
+        0.0,
+        4.9424978891412445,
+        10.022546377900865
+      ],
+      [
+        -10.009107287254336,
+        -4.907707864876511,
+        0.0,
+        5.192372748682335,
+        9.935880469008557
+      ],
+      [
+        -10.008755068083332,
+        -4.953064453242026,
+        0.0,
+        5.0680459715701,
+        9.979958568511659
+      ]
+    ]
+  ],
+  "final_calibration_source": "summary.next_calibration; computed from final refined framewise centers",
+  "source_order_note": "Source row is acquisition sequence order, not elapsed time.",
+  "normalization": "No RMS/area normalization or independent P4 scale is applied.",
+  "outer_cycles": 6
+}
