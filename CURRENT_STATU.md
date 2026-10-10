@@ -2,191 +2,99 @@
 
 Updated: 2026-10-10. Repository: `/home/aplab/ACC`.
 
-## Decision
+## Active work: reverse-transform pipeline
 
-**Stage 6 execution is complete with `STOP_UNCERTIFIED_ADJACENT`.** The control reference is calibrated and passed the full frozen G8 cross-check with `GO_WITH_LIMIT`. The adjacent reference remains uncertified, so its G8 inference was not run. `comparison_complete=false`; no paired optical ranking is available, and a subsequent optical stage is not justified.
+The active empirical pipeline is stages 01–04 under `experiments/reverse_transform/`. Stage 04 is **COMPLETE** and its independent saved-results audit is **PASS**. Its conditional, same-recording fit reduces corresponding-vertex residuals when a framewise accommodation-like parameter is allowed. It does not establish physical optical calibration, framewise physiological accommodation, or out-of-sample accuracy.
 
-The current Stage 6 control G7 fit has `J=1925.6013386760935`, state/global/complementarity residuals `3.92058e-12`, `6.36353e-8`, and `6.88043e-11`, each below the unchanged `1e-6` gate. The adjacent fit has `J=1925.8105580440379`, residuals `4.13310e-5`, `0.551904`, and `1.80740e-6`, and no certified start. These are operational-reference sensitivity fits; the adjacent failure is numerical, not evidence of optical inferiority.
+### Goal, data, and correspondence
 
-Control G8 retains 100,090 frames and all 300,270 slots: 267,565 certified retained-input inversions, 267,525 scored, 32,705 retained-input-unavailable, zero unresolved/ambiguous, and 89,175 complete triples spanning all twenty exposures. Equal-exposure consistency metrics are `E=12.408526 px`, `Gtheta=0.477866 degrees`, and `GA=1.101718 D`. The independent audit confirms the frozen control parent and archived sources are unchanged. Adjacent G8 has zero attempted inversions; its complete expected roster is preserved and paired metrics are null.
+The goal is to recover each measured P1/P4 triangle to one fixed empirical reference by inverting the fitted gaze, keystone, and relative radial transformations. The score compares the same corresponding vertices in native camera x/y coordinates; it does not make the reference equilateral, discard absolute size, or rotate-align recovered triangles. Gaze calibration uses P4-minus-P1 centroid displacement. The P1 model uses one frame magnification `M_i` with its normalized keystone shape `K`; that one scale absorbs overall size, including size changes that the unnormalized keystone would otherwise introduce. No second P1 scale is fitted.
 
-The [Stage 6 scientific review](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/SCIENTIFIC_REVIEW.md), [progress](experiments/distortion_model/stage_06_reference_sensitivity/docs/PROGRESS.md), [checkpoint](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/checkpoint.json), and [control G8 audit](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/g8_control/independent_audit.json) hold the reviewed evidence. The [boundary inspection](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/boundary_inspection/summary.json) shows a one-sided gaze-floor derivative change around `alpha4=0` with other globals/states fixed; it is not a generalized stationarity certificate. The next numerical investigation is one-sided/generalized stationarity and curvature at this interval kink, distinguishing NNLS near-active rows from actual complementarity. No further optical mechanism follows from the incomplete comparison.
+The reviewed loader in [distortion_model/data.py](distortion_model/data.py) admits exactly captures 1–4 and five nominal horizontal targets (−10°, −5°, 0°, +5°, +10°) per capture. It applies the detector P4 correspondence permutation `[2, 1, 0]` once when loading the raw arrays. The saved populations are already reordered; do not apply it again. All fits use native pixels and source row/frame identity; row order is not a timestamp, and the recording has clock jumps. Capture 1 contains 24,700 scheduled rows; captures 2–4 contain 24,890, 25,100, and 25,400. Across all captures that is 100,090 scheduled, 89,175 complete P1/P4 rows, and 10,915 unavailable rows.
 
-Stage 5's earlier G8 result remains a historical full-model consistency analysis and its metrics are unchanged. Its checkpoint and the Stage 4 G7 checkpoint remain immutable parents; Stage 6 results are recorded separately.
+The shared empirical reference is capture 1's nominal zero-gaze fixation, labeled 0.360360 D. Its 4,900 complete frames define the centered mean P1 and P4 triangles. Their reference RMS radii are 250.989832 px (P1) and 191.254 px (P4). The reference may retain baseline distortion; zero relative radial coefficient for capture 1 is a gauge convention, not evidence of zero physical barrel distortion.
 
-## Goal and model
+### Stage map
 
-Estimate the distortion transformations of P1 and P4 and infer dynamic horizontal gaze `theta` and accommodation `A` from their measured geometry. The user's main criterion is **agreement between predicted and measured relative point positions**. Nominal fixation and accommodation targets are not per-frame ground truth. Absolute image position is unnecessary for this evaluation.
+| Stage | Work and result | Canonical evidence |
+|---|---|---|
+| [01 — capture1 P1](experiments/reverse_transform/stage_01_capture1_p1_fit/README.md) | Fresh capture1-only calibration on five reviewed intervals. Fits a quadratic horizontal centroid-to-gaze map; vertical gaze uses the shared first-order x/y slope assumption because no independent vertical targets were measured. Fits four shared 2D keystone shape coefficients and one positive profiled `M_i` per frame. 24,280 complete rows; 420 unavailable. No old model, state, reference, or covariance is loaded. | [Results](experiments/reverse_transform/stage_01_capture1_p1_fit/results/attempt_01/RESULTS.md), [audit](experiments/reverse_transform/stage_01_capture1_p1_fit/results/attempt_01/independent_audit.json) |
+| [02 — capture1 P4](experiments/reverse_transform/stage_02_capture1_p4_fit/README.md) | Reuses stage01 gaze and `M_i`; fits four shared P4 keystone coefficients with the P4 scale fixed to P1 `M_i`. No P4 accommodation or radial increment is fit; κ=0 is the capture1 reference gauge. Equal-fixation objective is 6.85869→2.93474 px²/point. Its post-inverse uniform-radius scaling is a shape diagnostic only, not part of the forward fit. | [Results](experiments/reverse_transform/stage_02_capture1_p4_fit/results/run/RESULTS.md), [audit](experiments/reverse_transform/stage_02_capture1_p4_fit/results/run/audit.json) |
+| [03 — independent captures](experiments/reverse_transform/stage_03_independent_captures/README.md) | Independently fits captures 1–4 against the capture1 reference, reusing capture1 P1 fit and estimating P1 keystone for captures 2–4. P4 fits one keystone and a constant relative radial coefficient per capture with fixed P1 `M_i`. The fitted relative κ values (captures 1–4) are 0, −1.856868e−6, −1.472843e−6, −8.477171e−7 px⁻². Forty-three capture2 radial inverse failures remain in forward fitting. Capture4’s P4 vertical quadratic coefficient is at its declared bound; shape diagnostic worsens versus P1-scale-only. The post-fit κ/demand association is confounded because each demand label occurs in one capture. | [Results](experiments/reverse_transform/stage_03_independent_captures/results/run/RESULTS.md), [audit](experiments/reverse_transform/stage_03_independent_captures/results/run/audit.json), [scientific review](experiments/reverse_transform/stage_03_independent_captures/SCIENTIFIC_REVIEW.md) |
+| [04 — framewise accommodation](experiments/reverse_transform/stage_04_framewise_accommodation/README.md) | Holds stage03 gaze, keystone coefficients, P1 magnifications, reference, and linear κ(A) law fixed; estimates only one `A_i` per complete frame. Details and limits follow below. | [Results](experiments/reverse_transform/stage_04_framewise_accommodation/RESULTS.md), [scientific review](experiments/reverse_transform/stage_04_framewise_accommodation/SCIENTIFIC_REVIEW.md), [audit](experiments/reverse_transform/stage_04_framewise_accommodation/results/run/audit.json) |
 
-The model has two states per valid frame and shared optical/center parameters. `g` is a fresh positive P1-only GLS scale, with its derivatives included in fitting. P1 and P4 use separate local coordinates `theta - omega1` and `theta - omega4`. Their operational reference angles remain fixed separately; their physical optical-zero interpretation remains unresolved.
+Stage01 also documents the native coefficient values, polynomial, magnification distributions, and sensitivity concerns. In particular, the assumed small vertical gaze span yields large native vertical coefficients; these require sensitivity analysis and are not evidence of a vertical optical mechanism.
 
-DM0 uses `M(A) = 1 + m1 * (A - Aref)`, applied before the P4 projective transformation, including its denominator. The degree-2 center law is `D(theta,A)`. The fit uses the full ten-coordinate covariance, equal exposure weighting, finite full-exposure mean anchors (0.10 degrees for gaze, 0.25 D for accommodation), and zero temporal penalty. It does not clamp frame states to target labels. State domains are theta [-20,20] degrees and A [0,6] D.
+### Current stage04 contract
 
-Keep the existing scientific population and conventions: all twenty reviewed full intervals from captures 1–4; native coordinates; the P4 `[2,1,0]` permutation exactly once; no residual-selected trimming or subsampling. There are **100,090 scheduled rows, 89,175 complete valid rows, and 10,915 unavailable rows**. The shared model has 19 free global coordinates. No extra gaze dimension, independent frame-center trajectory, or P4 nuisance scale has been introduced.
-
-## Relative points and distortion centers
-
-Let `c1 = mean(measured P1)` and let `F1_i`, `F4_i` be the transformed template points before scale/translation. Define `mu1 = mean(F1)` and `mu4 = mean(F4)`. Against the common P1-centroid reference, predicted positions are:
-
-```text
-P1_i - c1:  g * (F1_i - mu1)
-P4_i - c1:  g * (D(theta,A) + F4_i - mu1)
-```
-
-Using a common reference retains both pattern distortion and the strong P4-minus-P1 gaze signal. Centering each pattern on its own centroid would discard their separation.
-
-Once the transformation, states, and scale are specified, centroid-based estimates of the model origins are:
+The frozen post-fit radial law is
 
 ```text
-C1_est = c1 - g * mu1
-C4_est = c4 - g * mu4
-C4_est - C1_est = (c4 - c1) - g * (mu4 - mu1)
-model-predicted origin separation = g * D(theta,A)
+κ(A) = β (A − A_ref)
+β = −5.25521030136462e−7 px⁻²/D
+A_ref = 0.36036036036036034 D
 ```
 
-These are model-derived origins under the fitted convention, not independently established physical distortion centers. Measurement residuals mean the centroid-based separation need not equal `g*D` exactly. Absolute origins can be reconstructed if raw positions are retained, but are not needed for the current relative-position score.
-
-## Why the one-degree bound was added
-
-The user observed that P4-minus-P1 is a strong gaze signal and that accommodation should induce only a small centroid shift. The previous unconstrained fit allowed large accommodation/gaze exchanges and slope reversal. The user explicitly accepted **1 degree over A=0 to 4 D** without requiring the missing optical simulation export. Do not request that export as a prerequisite again.
-
-For the normalized horizontal centroid law `Hx = D_x + mu4_x - mu1_x` at `g=1`, attempt 02 enforces:
+Only `A_i` changes per frame. For each of the 20 reviewed fixation periods, the arithmetic mean is over all complete frames in that period. The objective is the equal-fixation mean of per-frame mean squared distances for the three inverse-recovered corresponding vertices to the fixed reference, plus an equal-fixation mean penalty on each fixation's mean A:
 
 ```text
-dHx/dtheta >= s_min
-abs(dHx/dA) <= s_min / 4
-s_min = 10.0270022259 reference pixels/degree
+J = mean_fixation(data inverse-vertex MSE)
+  + 16 px²/D² · mean_fixation[(mean(A_i) − nominal_demand)²]
 ```
 
-The slope floor is half the G6 outward-interval lower gaze slope. Outward-rounded interval inequalities cover theta [-20,20] degrees and A [0,6] D: 1,920 cells and 5,760 inequalities. They imply at most one degree of inverse-equivalent horizontal change over 0–4 D where the monotone inverse remains within the declared gaze domain.
+The equivalent soft-anchor width is 0.25 D with residual scale 1 px. It is a penalty, not a hard ±0.25 D bound or measured uncertainty. There is no per-frame prior, fitted P4 magnification, rotation, temporal smoothing, or empirical measured-radius normalization in this fit. The deterministic model-size normalization inside the frozen stage03 keystone operator remains active. At every trial A, the runner recomputes the trial-dependent model centroid and keystone normalization before inverse mapping; it does not substitute one precomputed inverse-keystone triangle.
 
-This is a **user-accepted model assumption**, not a measured optical calibration, an individual gaze-accuracy guarantee, or a limit on fixation-mean deviations. It adds a hard constraint, not another loss term.
+Operational `A` bounds are [0,6] D, with a per-frame upper bound reduced only when required to remain on the monotone inverse branch. No complete frame is dropped. The fit and audit used CuPy 14.2.0 float64 on a Tesla P100 GPU; runtime was 6.722 s.
 
-## Results and metric definitions
+### Stage04 result and numerical audit
 
-| Measure | G7 attempt 01, unbounded | G7 attempt 02, bounded (old FD) | G7 attempt 03, continued | G7 attempt04, one correction |
-|---|---:|---:|---:|---:|
-| Selected full objective J | 1516.074461 | 1925.601339 | 1925.601339 | 1925.601339 |
-| Native relative-coordinate RMS | 4.985584 px | 4.678851 px | 4.678857 px | 4.678857 px |
-| Fixation-mean gaze deviation from labels | 2.31665 degrees RMS | 0.92741 degrees RMS | 0.9274 degrees RMS | not recalculated |
-| Compact withheld-P4 coordinate RMS | 28.3941 px | 29.3673 px | 29.3673 px | attempt03 historical: 29.3673 px |
-| Global scaled KKT residual | not certified | 2.8122e-4 | 2.5103e-5 | 4.2363e-10 |
-| Full fit certified | No | No | No | Yes, GO_WITH_LIMIT |
+| Capture | Complete frames | Common-valid frames | Parent inverse RMS → framewise-A RMS (px) | Original-camera RMS, all complete frames (parent → framewise A, px) |
+|---:|---:|---:|---:|---:|
+| 1 | 24,280 | 24,280 | 1.697981 → 1.184256 | 1.701860 → 1.185684 |
+| 2 | 22,026 | 21,980 | 2.469347 → 1.984455 | 4.739406 → 3.999212 |
+| 3 | 19,795 | 19,795 | 2.577231 → 1.994494 | 2.243655 → 1.774445 |
+| 4 | 23,074 | 23,074 | 3.311371 → 3.010430 | 3.111584 → 2.869285 |
 
-Attempt02's displayed global residual is its historical finite-difference certificate. Repair01's same-state selected-branch derivative reassessment measured 0.0035570; those derivatives are not directly comparable. Attempt04's current certificate uses the reviewed repaired derivative implementation.
+There are 89,175 complete fitted frames, 89,129 frames valid for all inverse comparisons, zero fitted inverse failures, 43 parent inverse failures, and 46 nominal-law inverse failures. The common-valid inverse RMS is pooled over the three 2D vertex distances and all common-valid frames; original-camera RMS uses every complete frame. On the common population, pooled inverse RMS is 2.569635 px for the parent capture-constant model, 2.605795 px for the frozen nominal-A law, and 2.140766 px for framewise A (reductions of 16.69% and 17.85% versus those baselines). These are absolute relative-vertex errors, not radius-normalized scores. The capture2 framewise inverse RMS over **all** complete frames is 4.149024 px, showing that the common-valid result does not describe its outlier-sensitive full population.
 
-G6's native relative-coordinate RMS was 4.560659 px. Attempt 02's objective components are point loss 1880.990476, gaze anchor 43.004635, accommodation anchor 1.581828, regularization 0.024400, and temporal penalty zero. A constrained model can have a higher minimum J than its unconstrained predecessor; that alone is not a defect.
+There are 965 frames at the lower A=0 bound: 918, 46, 0, and 1 for captures 1–4. No frame reaches the upper A bound; 47 individual upper bounds were restricted by the inverse domain (0, 46, 0, 1 by capture). The largest fixation-mean shift from its nominal soft anchor is +0.443709 D at capture3, −5°.
 
-The compact scores above have different usable coverage: attempt 01 scored 267 slots with three unresolved, while attempts 02 and 03 scored the same 270 slots with zero unresolved and 30 unavailable. Attempts 02/03 use the same saved schedule and eligible slot IDs; see the matched comparison in the compact aggregation report.
+Fitted fixation-mean A in D (the expected nominal anchor for each capture is 0.360360, 4, 3, and 2 D respectively):
 
-**Current fitting RMS:** each frame has ten scalar relative coordinates: x/y of `P1[1]-P1[0]` and `P1[2]-P1[0]`, plus x/y of all three `P4_i-c1`. For measured-minus-predicted residual `r[k,i,c]`, exposure k with N_k valid rows:
+| Capture | −10° | −5° | 0° | +5° | +10° |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 0.566 ± 0.078 | 0.592 ± 0.102 | 0.359 ± 0.060 | 0.196 ± 0.147 | 0.207 ± 0.082 |
+| 2 | 3.911 ± 0.435 | 4.095 ± 0.233 | 4.010 ± 0.088 | 4.139 ± 0.138 | 3.651 ± 0.131 |
+| 3 | 3.164 ± 0.101 | 3.444 ± 0.271 | 3.103 ± 0.119 | 3.017 ± 0.077 | 2.695 ± 0.206 |
+| 4 | 2.069 ± 0.168 | 2.186 ± 0.144 | 2.045 ± 0.127 | 1.893 ± 0.155 | 1.686 ± 0.128 |
 
-```text
-RMS = sqrt((1/20) * sum_k [(1/(10*N_k)) * sum_i sum_c r[k,i,c]^2])
-```
+The objective is 8.805618 px² (inverse data MSE 8.178932 px² plus mean-anchor penalty 0.626686 px²). Independent CPU saved-results audit passed: projected-gradient infinity norm 1.2548e−11, minimum free-frame curvature 25.212 px²/D², maximum all-frame gradient relative error 6.6162e−8, synthetic forward/inverse closure 1.7053e−12 px, and frozen-parent inverse reproduction difference 5.97e−13 px. These numerical checks certify a stationary conditional solution, not a global or physiological result.
 
-This is native-pixel, unwhitened coordinate RMS with equal exposure weight. The fitting objective separately uses covariance weighting. Expressing all P1 points against their centroid contains the same relative information, but would change an unweighted RMS definition.
+### Interpretation and next work
 
-**Compact prediction RMS:** withhold one P4 point, infer the frame states from the other eight scalar coordinates with the frozen model, and then compare the predicted withheld position with its measurement. The score is `sqrt(sum(error_x^2 + error_y^2)/(2*S))` over usable slots. Attempts 02/03 have S=270 of 300 predetermined slots; 30 remain unavailable, zero unresolved, and 48 inferred solutions are at state bounds. This is a progress diagnostic, not a full G8 evaluation or a certificate of the shared fit. For these same slots, RMS of 2D error distances would be sqrt(2) times coordinate RMS.
+All four +10° fixation means are below their nominal anchors. For example, capture1 means at −5° and +10° are 0.592 and 0.207 D; capture3 means are 3.444 and 2.695 D. The framewise parameter can absorb residual gaze-conditioned size effects. The κ law and demand association are capture-confounded, capture4 inherits a bounded stage03 `k_ay`, and A has no independent framewise ground truth. Do not interpret all fitted A variation as physiological accommodation or as measured physical barrel distortion. No stage05 fit is implemented. Further gaze-effect work and any proposed shared-β joint fit with per-frame prior are not part of this completed result and require an explicit next-stage decision.
 
-**Gaze-mean RMS is only label agreement:** it is the RMS of twenty fitted exposure-mean theta deviations from nominal labels. Its improvement does not establish physiological gaze accuracy.
+### Current files and reproduction
 
-The user prefers measurement-prediction evaluation over target agreement. The saved compact P4 reports include median and upper-percentile 2D errors, signed x/y residuals by condition, coverage, endpoints and bound strata, alongside the existing RMS. Full-population held-P4 evaluation is complete in Stage 5 and for the certified Stage 6 control. Additional P1-specific validation remains future work; historical compact metrics above are unchanged. Preserve the declared fitting objective when improving reporting.
-
-## Numerical certificate and audit
-
-Both starts in attempt02 completed the declared 32 outer cycles; selected result: perturbed. Total runtime was 782.62 seconds on CuPy 14.2.0 / Tesla P100. No automatic budget extension was run.
-
-Historical attempt02 evidence, evaluated with the old finite-difference constraint derivatives:
-
-- Physical bound feasible: minimum normalized slack 3.71e-14; three active inequalities. The continuous inverse-equivalent bound is approximately 1 degree.
-- State projected gradient: 1.20e-9, passing the 1e-6 threshold.
-- **Global scaled KKT residual: 2.8122e-4, failing the 1e-6 threshold.** Complementarity is 3.12e-12 and passes.
-- **Active-constraint Hessian finite-difference step disagreement: 0.4508, failing the 0.01 threshold.** Full constrained profile curvature was not evaluated; do not infer global rank deficiency from this.
-- All 89,175 state data Jacobians have rank two, and optical domains are valid. Independent observed-state curvature census found zero negative eigenvalues among 169,935 free eigenvalues. This does not certify the full coupled model.
-- Independent NumPy reconstruction matches J within 4.55e-13, predictions within 3.98e-13 px, and g within 8.88e-16. Population accounting and parent/source hashes pass.
-
-### Attempt 03 continuation update
-
-Repair01 reassessed attempt02 at the exact same states and globals, without optimization. It reproduced the objective exactly, passed the deterministic derivative regression, found a smooth active branch and positive constrained profile curvature (rank 16), and measured global KKT residual 0.003557. That result justified one compatible continuation; no new start or fitting-budget extension was added. Attempt03's initial states and globals are bitwise equal to attempt02's selected solution, and all 144 attempt02 hashes captured by repair01 match.
-
-Attempt03 completed 8 outer updates at J=1925.601338676, down 6.69e-8 from the warm start. Native equal-exposure relative-coordinate RMS is 4.678857434 px. Its physical bound is feasible; state projected gradient is 1.23e-11, complementarity 1.89e-13, active derivatives are smooth, profile curvature is positive with rank 16, and zero of 169,935 free local eigenvalues are negative. The local minimum 124.707 is per-frame Hessian divided by positive exposure row weight; magnitude is not directly comparable with attempt02's weighted census. Global KKT residual 2.5103e-5 still fails the 1e-6 threshold.
-
-History records 62 accepted and 35 rejected updates, including 27 accepted joint outer steps. Joint-proposal rejection counts are 810 same-objective line-search rejections and 5 nonpositive shared-proposal-curvature events. Only one of the maximum six polish proposals was attempted; it was unaccepted and recorded 36 line-search plus 5 nonpositive-curvature rejections. It ended with global residual 2.5103e-5. Attempt03 runtime was 156.16 seconds. Compact progress remains 270/300 scored, 30 unavailable, zero unresolved; its coordinate RMS is 29.3673 px. This remains historical and is not the current certificate.
-
-Attempt02's common start also failed certification. Its histories contain thousands of nonlinear-bound proposal rejections and heavily damped joint steps. Its old certificate conflated an unavailable profile calculation with failed local curvature. The repaired certificate records local and profile status independently, uses `NOT_EVALUATED` for unavailable profile curvature, and blocks smooth certification at active endpoint ties. Constraint derivatives now use selected-branch forward automatic differentiation; the outward feasibility bounds remain unchanged.
-
-### Attempt04 current certified correction
-
-Attempt04 applies one reviewed constrained Newton correction to attempt03's selected saved state. It uses the unchanged objective, population, covariance, anchors, priors, references, state domains and user-authorized one-degree physical bound. It is a single local correction, not a new fit loop or subset inference.
-
-| Certificate item | Attempt04 |
-|---|---:|
-| Global scaled KKT residual | 4.2363e-10 (threshold 1e-6) |
-| State projected gradient | 1.3156e-13 |
-| Complementarity | 3.1461e-14 (threshold 1e-6) |
-| Active physical constraints | 3; feasible, minimum normalized slack 0 |
-| State data rank | 89,175 / 89,175 rank 2 |
-| Free-state observed curvature | 0 negative of 169,935; minimum 124.707 per positive row-weight normalization |
-| Constrained observed profile | Positive, rank 16; minimum normalized eigenvalue 4.9430e-5 |
-| Optical domains | P1 and P4 valid |
-| Full objective J | 1925.6013386759976 |
-| Native relative-coordinate RMS | 4.678857454 px |
-
-Direct objective change is −5.9962e-12 and maximum predicted movement is 6.19e-6 px; maximum state changes are 1.70e-7 degrees and 6.28e-7 D. RMS changes by about 2e-8 px, so no material empirical improvement is claimed. Independent public-optics reconstruction on all valid rows matches components within 2.28e-13, predictions within 3.41e-13 px, g within 7.77e-16, and exposure means within 1.96e-14. All attempt03 parent files remain hash-identical.
-
-Attempt04 flags are `fit_complete=true`, `fit_certified=true`, `crosscheck_complete=false`, and `comparison_complete=false`; G8 did not alter these frozen parent flags. Its compact evidence remains the attempt03 diagnostic: 300 scheduled, 270 scored, 30 unavailable; 90 complete triples across 20 exposures; E=41.8138 px, Gtheta=1.50113 degrees, GA=1.31867 D. The two largest rows contribute 94.3568% of E² and 91.8257% of Gtheta²; no cause is asserted and no row was trimmed.
-
-Attempt04 has `fit_complete=true` and `fit_certified=true`; `crosscheck_complete=false` and `comparison_complete=false`. This is a limited numerical certificate under the declared model and user-authorized bound. No automated test suite was added or run for attempt04; verification consists of the full saved-point certificate and independent NumPy/public-optics reconstruction.
-
-## G8 cross-check
-
-G8 evaluated the frozen attempt04 model on all 100,090 reviewed rows. Across its three held-point routes, 267,565 slots were certified from valid retained inputs, 267,525 had an available held measurement and were scored, and 32,705 had unavailable retained inputs. There were no ambiguous or unresolved inversions. Independent audit confirmed all slots and source/parent hashes, matched predictions exactly and reproduced E/Gtheta/GA as 12.40853 px / 0.477866 degrees / 1.101718 D.
-
-The predeclared 110-row state diagnostic had 100 matched certified all-three inversions and deliberately overrepresents neighboring capture 2 rows; it is not full-period representative. On the 88 matched rows outside that neighbor case, all-three minus calibration RMS is 0.0399256 degrees / 0.0712533 D, and omission-minus-all-three RMS differences are: omit P4_0, 0.018119 degrees / 0.375236 D; omit P4_1, 0.549161 degrees / 0.520937 D; omit P4_2, 0.107763 degrees / 1.058980 D. The neighbor-enriched diagnostic gives larger omission-1 gaze disagreement (2.92557 degrees), so do not present it as representative of the full period. Omission of P4_2 retained only 7.92% median conditional accommodation information at the same all-three state. These are internal consistency and information diagnostics, not accuracy estimates. The pooled no-bound accommodation RMS is 0.752604 D with exposure 4 absent; equal-exposure GA over all 20 conditions is 1.101718 D (interior equal-exposure GA is 1.101624 D). The pooled statistic uses another population and weighting.
-
-Stage 5 G8 is COMPLETE_WITH_LIMIT / GO_WITH_LIMIT with scientific alignment/identifiability unresolved. Its full-schedule cross-check is complete, but `comparison_complete=false`; no alternative-model comparison or refit was performed there. The operational-reference follow-up using adjacent P4 `omega4=-5.0148989655383795°` versus current `omega4=-10.016974132845107°` was authorized and executed in Stage 6 with affected stages consistently reinitialized. Stage 6 stopped `STOP_UNCERTIFIED_ADJACENT`: control G8 passed with limits, adjacent G8 was not run, and paired comparison remains unavailable. Keep G7 attempt04 and its Stage 5 G8 parent immutable; do not infer model accuracy from lower point cost or subset agreement, or change separate rotation parameters at the same time.
-
-## Next action
-
-1. Preserve attempt04 as the current numerically certified checkpoint and retain its GO_WITH_LIMIT restrictions.
-2. Investigate one-sided/generalized stationarity and curvature at the Stage 6 interval kink near `alpha4=0`, distinguishing NNLS near-active rows from actual complementarity, before attempting to complete the matched G8 comparison. Do not proceed to a new optical mechanism on the current evidence.
-
-Open scientific limits remain: empirical omega1/omega4 references are not independently established optical zeros; omega1 continuous uncertainty is unquantified; G3 discrete alternatives and physical accommodation calibration remain unresolved. Full-period structured omission-1 residuals persist, omission of P4_2 has weak retained accommodation information, and the predeclared capture-2 neighborhood geometry remains anomalous.
-
-## G8 execution handoff
-
-- Reviewed result: [G8 scientific review](experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01/SCIENTIFIC_REVIEW.md), [summary/decision](experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01/scientific_review.json), [full report](experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01/REPORT.md), and [checkpoint](experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01/checkpoint.json).
-- The G8 checkpoint records `fit_complete=true`, `fit_certified=true`, `crosscheck_complete=true`, `diagnostic_three_way_complete=true`, and `comparison_complete=false`. It points to frozen G7 attempt04; the G7 parent checkpoint was not modified.
-- Reproduction from repository root into a fresh directory: `OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python experiments/distortion_model/stage_05_crosscheck_and_model_decision/scripts/run.py --output experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01_replay --chunk-size 8192`. Audit and report saved attempt01 without new inference using the corresponding `scripts/audit.py --attempt .../attempt_01` and `scripts/report.py --attempt .../attempt_01` commands.
-- The proposed operational-reference follow-up was executed in Stage 6 and stopped `STOP_UNCERTIFIED_ADJACENT`; see its [scientific review](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/SCIENTIFIC_REVIEW.md), [live progress](experiments/distortion_model/stage_06_reference_sensitivity/docs/PROGRESS.md), and [verification record](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/verification.json). Control G8 is audited complete with limits; adjacent G8 was not run and the paired comparison remains incomplete.
-
-## Files and execution handoff
-
-- Scientific definitions: [Theory](docs/Theory.md), [estimator plan](docs/ESTIMATOR_PLAN.md), [stage gates](docs/STAGE_GATES.md), [Stage 4 plan](docs/stages/04_CENTER_AND_DM0_CALIBRATION.md).
-- Current evidence: [G7 attempt04 report](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/STAGE_REPORT.md), [summary/certificate](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/summary.json), [checkpoint](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/checkpoint.json), [arrays](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/fitted.npz), [adoption verification](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/verification.json), [independent public-optics audit](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/independent_public_optics_audit.json), [report-only source history](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/reporting_source_history.json).
-- Historical evidence: [attempt03 report](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_03/STAGE_REPORT.md), [audit](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_03/mechanical_audit.json), [compact aggregation](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_03/compact_diagnostics/REPORT.md), [saved-point probe and N1–N4/E1 report](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_polish_repair_01/STAGE_REPORT.md).
-- Same-state repair: [repair01 report](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_repair_01/STAGE_REPORT.md), [summary](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_repair_01/summary.json).
-- Parent: [G6 attempt 02 checkpoint](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g6_attempt_02/checkpoint.json). Its ancestry/provenance identifies G5; G7 provenance also records G3 and prior-attempt hashes.
-- Historical results: [G7 attempt 01](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_01/STAGE_REPORT.md) and [attempt 02](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_02/STAGE_REPORT.md).
-- Stage navigation: [README](experiments/distortion_model/stage_04_center_and_dm0_calibration/README.md), [results](experiments/distortion_model/stage_04_center_and_dm0_calibration/docs/RESULTS.md), [progress](experiments/distortion_model/stage_04_center_and_dm0_calibration/docs/PROGRESS.md).
-- Implementation: [joint model/solver](distortion_model/joint.py), [bounded solver](distortion_model/centroid_bound.py), [bounded runner](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/run_joint_bounded.py), [audit script](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_bounded.py), [dependencies](requirements-stage7.txt).
-- Repair implementation: [interval automatic derivatives](distortion_model/interval_ad.py), [constrained polishing](distortion_model/polishing.py), [regression and same-state reassessment](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/repair_g7.py), [compatible continuation runner](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/continue_g7_repaired.py), [saved-point probe](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/probe_g7_polishing.py), [one-correction adoption](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/accept_g7_polish.py), [independent audit](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_polish.py), [saved compact aggregation](experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/summarize_g7_compact.py).
-
-Each attempt's `source_snapshot/` and `provenance.json` are authoritative. Attempt04 records the reviewed saved-point correction sources and the hash-identical attempt03 optimization parent. Its provenance records one reporting-only summarizer source change after the probe snapshot, with both hashes; no fitting, proposal, or certificate source mismatch was accepted. Preserve the original pending-review probe and historical attempt bytes.
-
-From the repository root, the existing result can be independently reconstructed with:
+- Code: [reviewed data loader](distortion_model/data.py), [P1 shape model](distortion_model/p1_shape.py), [capture shape model](distortion_model/capture_shape.py), [framewise accommodation model](distortion_model/frame_accommodation.py), and each stage's `scripts/` directory.
+- Canonical stage04 outputs: [summary](experiments/reverse_transform/stage_04_framewise_accommodation/results/run/summary.json), [audit](experiments/reverse_transform/stage_04_framewise_accommodation/results/run/audit.json), [per-frame results](experiments/reverse_transform/stage_04_framewise_accommodation/results/run/frames.npz), [figures](experiments/reverse_transform/stage_04_framewise_accommodation/RESULTS.md).
+- The stage01–03 fitted artifacts and inputs are hash-frozen parents for stage04. Preserve them; do not overwrite canonical outputs. The previous incorrect stage02 experiment/results were removed; the corrected stage02 canonical run is the one linked above.
+- Run a new stage04 replay into a fresh output directory; the available interpreter is `/home/aplab/.pyenv/shims/python`:
 
 ```bash
-OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_polish.py --attempt experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04
+/home/aplab/.pyenv/shims/python experiments/reverse_transform/stage_04_framewise_accommodation/scripts/run.py \
+  --output experiments/reverse_transform/stage_04_framewise_accommodation/results/replay \
+  --anchor-width 0.25
+/home/aplab/.pyenv/shims/python experiments/reverse_transform/stage_04_framewise_accommodation/scripts/audit.py \
+  --results experiments/reverse_transform/stage_04_framewise_accommodation/results/replay
+/home/aplab/.pyenv/shims/python experiments/reverse_transform/stage_04_framewise_accommodation/scripts/plot_results.py \
+  --results experiments/reverse_transform/stage_04_framewise_accommodation/results/replay
 ```
 
-The one-correction adoption can be reconstructed from the preserved probe into a fresh output directory with:
+No automated test suite was added or run. The run, independent audit, and saved-artifact review are the current verification. The working tree is not committed or pushed; preserve unrelated user changes.
 
-```bash
-OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/accept_g7_polish.py --output experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04_replay
-```
+## Historical background: joint distortion-model estimator
 
-G8 attempt01 completed its frozen-model cross-check with GO_WITH_LIMIT. The G7 parent checkpoint's crosscheck/comparison flags remain false, and the G8 candidate-model comparison flag remains false. Do not describe the historical attempt03 compact scores as an attempt04 evaluation.
+This is a separate archived `experiments/distortion_model` pipeline. Its old covariance, area normalization, one-degree accommodation/gaze constraint, model domains, and next actions do not define the current empirical reverse-transform contract above. Preserve its results as history; do not resume its next action as part of stage04.
 
-Standing user preferences: root agent performs implementation and scientific audit; delegate mechanical work to **gpt-6-luna, low reasoning**. Execute shell commands outside the sandbox using the available escalation mechanism. Prefer vectorized/chunked GPU computation and appropriate parallelism. Keep experiment scripts, results, and reports organized by stage. Preserve unrelated working-tree changes; no commit or push has been requested.
+The historical Stage6 decision was **STOP_UNCERTIFIED_ADJACENT**: control G8 passed with limits, adjacent G8 was not run, and paired optical comparison remained incomplete. The reviewed records are the [Stage6 scientific review](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/SCIENTIFIC_REVIEW.md), [verification](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/verification.json), [control G8 independent audit](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/g8_control/independent_audit.json), and [Stage5 G8 report](experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01/REPORT.md). The historical [Stage4 G7 attempt04 checkpoint](experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/checkpoint.json) and related artifacts remain preserved. They do not change the reverse-transform status or authorize a new stage.

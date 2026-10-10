@@ -1,0 +1,22 @@
+{
+  "captures": [
+    1
+  ],
+  "reference": "Capture1 zero-gaze mean at demand0.3603603604 D.",
+  "gaze": "Per-capture centroid quadratic x calibration and same first-order x/y slope; zero-fixation mean gaze zero.",
+  "P1": "Independent capture keystone fits, one frame magnification; capture1 audited gaze/M exactly retained.",
+  "P4": "Independent keystone and one constant barrel increment within each capture; fixed framewise P1 magnification.",
+  "barrel_reference": "Capture1 increment fixed zero; empirical reference already contains baseline barrel.",
+  "demand": "Not supplied to image-model fitting. Descriptive straight-line association only after independent fitting.",
+  "order": "Radial -> keystone -> model-only keystone size normalization -> P1 magnification.",
+  "metric": "Original centered P4 point SSE; five equal fixation weights within each capture; no trimming.",
+  "diagnostic": "After inverse, per-frame radius normalization only for shape performance. No rotation alignment.",
+  "origin": "Fixed empirical P4 reference centroid; physical optical origin not independently measured.",
+  "device": {
+    "backend": "cupy",
+    "cupy_version": "14.2.0",
+    "gpu": "Tesla P100-PCIE-16GB",
+    "dtype": "float64",
+    "optimizer": "SciPy L-BFGS-B controller, CuPy device-resident cost and analytic gradient"
+  }
+}

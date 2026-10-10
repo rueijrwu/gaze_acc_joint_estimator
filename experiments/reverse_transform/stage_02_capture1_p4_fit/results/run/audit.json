@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "capture": 1,
+      "finite_difference_gradient_max_error": 2.4423729098194125e-09,
+      "synthetic_forward_inverse_max_px": 2.5579538487363607e-13,
+      "stationary": true,
+      "independent_certificates": {
+        "p1": {
+          "projected_gradient_inf": 7.479744501548424e-08,
+          "free_hessian_min_eigenvalue": 673.9101300139007,
+          "active_bounds": [
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        "p4": {
+          "projected_gradient_inf": 1.1774435593192578e-13,
+          "free_hessian_min_eigenvalue": 391.4108830255055,
+          "active_bounds": [
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      }
+    }
+  ],
+  "contract": "Independent fits, one P4 barrel per capture, fixed P1 frame scales, capture1-only reference; post-fit demand association.",
+  "numerical_limits": [],
+  "constrained_bound_captures": []
+}

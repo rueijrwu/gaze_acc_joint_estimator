@@ -1,0 +1,13 @@
+{
+  "population": "capture1 only, all five reviewed intervals; complete P1/P4 needed for initial gaze",
+  "previous_model": "none; no prior calibration parameters, states, templates or covariance loaded",
+  "gaze": "horizontal quadratic centroid map; vertical linear centroid map with same first-order reference slope; zero fixation means x=y=0",
+  "reference": "arithmetic mean of centered P1 triangles in nominal zero fixation, fixed throughout fit",
+  "keystone": "sx=exp(eta_x*t_x^2-eta_y*t_y^2), sy=1/sx, denominator=1+beta_x*t_x*B_y/R_B+beta_y*t_y*B_x/R_B",
+  "one_magnification": "normalize predicted centered keystone triangle RMS radius to R_B; one profiled positive M per frame contains all total scale",
+  "objective": "original centered camera px SSE, equal five fixation weights; no normalization of measured data and no separate camera scale",
+  "fit": "four shared 2D shape coefficients; six deterministic bounded starts, analytic profile gradient, L-BFGS-B",
+  "bounds": "each anisotropic log-stretch contribution <=0.5; each perspective denominator contribution <=0.4 over observed gazes",
+  "statistics": "per-fixation and five contiguous scheduled-source-row blocks; point median/p95/signed error; RMS secondary",
+  "scope": "in-sample initial P1 deformation fit; no accommodation estimate, no physiological accuracy claim"
+}

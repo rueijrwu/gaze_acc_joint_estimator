@@ -1,0 +1,26 @@
+{
+  "frozen": "Stage03 gaze, per-capture keystone, framewise P1 magnification, common reference and postfit slope.",
+  "kappa_law": {
+    "slope_per_D_px2": -5.25521030136462e-07,
+    "reference_A_D": 0.36036036036036034
+  },
+  "frame_parameter": "A only; no P4 magnification, rotation, smoothing or radius normalization in fitting.",
+  "objective": "Equal-fixation mean of mean-three-vertex squared inverse reference distances + equal-fixation mean of ((mean A - expected A)/anchor_width)^2 * residual_scale^2.",
+  "anchor_width_D": 0.25,
+  "residual_scale_px": 1.0,
+  "penalty_strength_px2_per_D2": 16.0,
+  "anchor_mean": "Arithmetic mean over complete frames in each of the 20 fixation periods.",
+  "A_bounds_D": [
+    0.0,
+    6.0
+  ],
+  "inverse_domain": "Per-frame upper bound reduced only to keep the monotone inverse branch; no complete frame discarded.",
+  "expected_A": "Nominal capture demand, not framewise accommodation ground truth.",
+  "comparison": "Stage03 capture-constant \u03ba and frozen-law nominal A, each scored on common valid frames.",
+  "device": {
+    "backend": "cupy",
+    "version": "14.2.0",
+    "gpu": "Tesla P100-PCIE-16GB",
+    "dtype": "float64"
+  }
+}
