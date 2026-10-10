@@ -1,0 +1,117 @@
+{
+  "label": "common",
+  "components": {
+    "cost": 1925.8109842028957,
+    "point": 1881.4708042654017,
+    "theta_anchor": 42.601292404109266,
+    "A_anchor": 1.7261001294450538,
+    "regularization": 0.012787403939769062,
+    "temporal": 0.0
+  },
+  "certificate": {
+    "state_projected_gradient_inf": 6.367371623369408e-05,
+    "global_projected_gradient_inf": 1.6004758821166076,
+    "stationarity_threshold": 1e-06,
+    "physical_centroid_constraint": {
+      "kind": "user-authorized continuous-domain sufficient 1degree bound",
+      "bound_deg": 1.0,
+      "accommodation_interval_D": [
+        0.0,
+        4.0
+      ],
+      "constraint_derivative_extension_D": [
+        0.0,
+        6.0
+      ],
+      "theta_domain_deg": [
+        -20.0,
+        20.0
+      ],
+      "interval_cells": 1920,
+      "theta_cell_width_deg": 0.5,
+      "A_cell_width_D": 0.25,
+      "reference_interval_min_gaze_slope_px_per_deg": 20.302199998337,
+      "required_min_gaze_slope_px_per_deg": 10.02700222585176,
+      "allowed_max_accommodation_slope_px_per_D": 2.50675055646294,
+      "certified_min_gaze_slope_px_per_deg": 10.027002225871817,
+      "certified_max_abs_accommodation_slope_px_per_D": 2.5067505564579267,
+      "certified_shift_equivalent_upper_bound_deg": 0.9999999999959998,
+      "minimum_normalized_slack": 1.999955756559757e-12,
+      "feasible": true,
+      "meaning": "H=D+mu4-mu1 at g=1; bound on horizontal centroid response. Inverse-angle guarantee applies where the monotone inverse lies in the declared theta domain. No bound on individual theta or fixation-mean deviation."
+    },
+    "states_at_bounds": [
+      0,
+      9668
+    ],
+    "globals_at_bounds": [],
+    "active_physical_inequality_count": 4,
+    "KKT_multipliers": [
+      0.0,
+      34.58554462759048,
+      3.389120515771183,
+      10.859868710960823
+    ],
+    "KKT_complementarity_inf": 2.6162743479477643e-06,
+    "KKT_complementarity_threshold": 1e-06,
+    "constraint_derivative_method": "selected-endpoint forward automatic differentiation",
+    "nonsmooth_active_constraint_rows": [],
+    "constraint_derivative_status": "SMOOTH_ACTIVE_BRANCH",
+    "state_data_rank2_count": 89175,
+    "free_state_observed_curvature_positive": true,
+    "free_state_observed_curvature_status": "PASSED",
+    "free_state_eigenvalue_count": 168691,
+    "free_state_curvature_normalization": "observed per-frame Hessian divided by positive objective row weight; sign-only comparison with weighted historical census",
+    "negative_free_state_eigenvalue_count": 0,
+    "minimum_free_state_eigenvalue": 119.3170245973955,
+    "observed_profile_rank": 16,
+    "observed_profile_positive": true,
+    "profile_curvature_evaluated": true,
+    "profile_curvature_status": "PASSED",
+    "constraint_curvature": {
+      "active_branch_status": "SMOOTH",
+      "nonsmooth_rows": [],
+      "method": "selected-endpoint forward automatic differentiation, order2"
+    },
+    "observed_profile_curvature_eigenvalues": [
+      5.2337598080031345e-05,
+      0.00014384112404224427,
+      0.038154051731025804,
+      0.07630194416955478,
+      0.1202790236111643,
+      0.21062315416043204,
+      0.29241397137404795,
+      0.3324219452375998,
+      0.48359853266561037,
+      0.6585886948808735,
+      0.8177363771804216,
+      1.0360895458955557,
+      1.741492824633902,
+      2.6717274060463843,
+      2.908312214301705,
+      4.612064135389599
+    ],
+    "constrained_tangent_dimension": 16,
+    "domain": {
+      "P1": {
+        "local_theta_bounds_deg": [
+          -9.979095888413074,
+          30.020904111586926
+        ],
+        "min_sx": 1.0,
+        "min_sy": 0.9722613880188057,
+        "min_denominator": 0.9792467438608569,
+        "valid_domain": true
+      },
+      "P4": {
+        "min_M": 0.9246102816161925,
+        "max_M": 1.0048172344015212,
+        "min_sx": 1.0,
+        "min_sy": 1.0,
+        "min_denominator": 0.9927676843701434,
+        "valid_domain": true
+      }
+    },
+    "fit_certified": false
+  }
+}

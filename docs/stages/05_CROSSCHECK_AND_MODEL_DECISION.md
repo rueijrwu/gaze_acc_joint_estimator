@@ -1,8 +1,18 @@
 # Subplan 5 — Test full-model agreement; decide whether an extension is warranted
 
-**Covers:** S8/G8 and optional GX. **Status:** NOT_RUN.  
-**Requires:** a frozen certified full DM0 model, complete input schedule, and G7's unresolved-assumption list.  
+**Covers:** S8/G8 and optional GX. **Status:** G8 COMPLETE_WITH_LIMIT / GO_WITH_LIMIT; `comparison_complete=false`.
+**Requires:** a frozen certified full DM0 model, complete input schedule, and G7's unresolved-assumption list.
 **Parent:** [Gate policy](../STAGE_GATES.md); [mathematics](../Theory.md).
+
+## Stage 6 follow-up status
+
+The operational-reference sensitivity follow-up was executed as Stage 6. Its control reference completed G8 with GO_WITH_LIMIT; the adjacent calibration is uncertified, so adjacent G8 was not run and no paired optical ranking is available. Stage 6 status is [STOP_UNCERTIFIED_ADJACENT](../../experiments/distortion_model/stage_06_reference_sensitivity/docs/PROGRESS.md). The next investigation concerns one-sided/generalized stationarity and curvature at the interval branch near alpha4=0; no new optical mechanism is justified by the incomplete comparison. Historical G8 metrics below are unchanged.
+
+## Executed G8 outcome
+
+G8 was authorized and completed on the full reviewed schedule using the frozen certified Stage 4 attempt04 model. The result is COMPLETE_WITH_LIMIT / GO_WITH_LIMIT for the empirical cross-check; it is not a candidate-model comparison and does not establish physiological accuracy. There are 100,090 scheduled rows, 300,270 held-point slots, and 89,175 complete eligible triples across all 20 exposures. Equal-exposure E/Gtheta/GA are 12.40853 px / 0.477866 degrees / 1.101718 D. The three omissions show materially different state agreement, especially omission of P4_1; conditional accommodation information for omission of P4_2 is weak. See [Stage 5 results](../../experiments/distortion_model/stage_05_crosscheck_and_model_decision/docs/RESULTS.md) and the saved [attempt report](../../experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01/REPORT.md).
+
+Alignment and identifiability remain unresolved. The operational-reference sensitivity comparison was subsequently executed under Stage 6; see its linked STOP_UNCERTIFIED_ADJACENT result. That follow-up does not change the historical G8 metrics below.
 
 ## S8 / G8 — Do different measurements support the same instantaneous state?
 
@@ -46,10 +56,10 @@ No requirement exists that every frame, exposure or companion metric improve. Us
 
 DM1 is not automatically required after DM0. Open an extension only after a completed G8 report (or a separately approved model change resolving an earlier structural block) states:
 
-**Observed signature:** which points/axes/conditions disagree, how much, and under which actual frame identities?  
-**Hypothesis:** what single mechanism predicts that signature?  
-**Competing cause:** which reference, numerical, scale, detector or capture explanation was checked?  
-**Identifiability:** does the extra response remain distinct after allowing scale, gaze, center separation and existing parameters?  
+**Observed signature:** which points/axes/conditions disagree, how much, and under which actual frame identities?
+**Hypothesis:** what single mechanism predicts that signature?
+**Competing cause:** which reference, numerical, scale, detector or capture explanation was checked?
+**Identifiability:** does the extra response remain distinct after allowing scale, gaze, center separation and existing parameters?
 **Decision:** what matched result would support the addition, and what result would leave DM0 preferable or the mechanism unresolved?
 
 For DM1, calculate the centered radial response and its separation from effective magnification and allowed displacement/gaze directions at the actual source geometry. Equal or near-equal radii can make the radial column redundant. If so, record `radial_unidentifiable` and retain DM0; do not release a free center to manufacture rank. If distinct, add only the shared incremental kA term and run a **fresh full DM1 calibration** through the affected stages, with the same D degree, noise, anchors, populations and starts policy.
@@ -64,4 +74,4 @@ DM2 requires the same one-mechanism argument. Gaze polynomial degree changes, no
 
 Set `fit_complete`, `fit_certified`, `crosscheck_complete`, `comparison_complete` and the scientific disposition separately. Keep compact native-frame states, errors and status arrays plus the input/model hashes so summaries can be recalculated after a chat or machine switch. Do not delete the only evidence behind a score during cleanup.
 
-Update the branch's execution status only after real evidence exists. The new subplans alone leave all gates NOT_RUN. The final handoff states the simplest supported optical claim, unresolved assumptions, last usable checkpoint and exactly one next action—or explicitly that no further extension is justified.
+G8 has completed with linked full-schedule evidence; its saved checkpoint records `crosscheck_complete=true`, `diagnostic_three_way_complete=true`, and `comparison_complete=false`. See the [Stage 5 execution report](../../experiments/distortion_model/stage_05_crosscheck_and_model_decision/docs/STAGE_REPORT.md) and [scientific review](../../experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01/SCIENTIFIC_REVIEW.md). Optional GX remains unrun. The unresolved assumptions and one proposed operational-reference sensitivity follow-up are recorded in the handoff.

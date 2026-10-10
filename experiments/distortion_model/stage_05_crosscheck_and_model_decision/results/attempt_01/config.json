@@ -1,0 +1,17 @@
+{
+  "stage": "S8/G8",
+  "authority": "user explicitly requested implementation of G7_CERTIFIED_RESULTS_AUDIT suggestions",
+  "population": "all100090 reviewed scheduled rows;3P4omissions/row;no trimming",
+  "model": "frozen G7attempt04; DM0, separate fixed operational zeros, P1-only GLS g, existing covariance",
+  "inference": "49fixed7x7grid starts plus one retained-only center proposal;max60iterations;no labels or anchors",
+  "numerical_policy": "projected gradient1e-6;rank rtol1e-10;observed free curvature positive;ambiguous inverses excluded from primary metrics",
+  "acceleration": "CuPy float64, active-candidate line search compaction, chunked rows, one GPU process",
+  "chunk_size": 8192,
+  "max_iterations": 60,
+  "metric": "complete eligible triples;within-exposure squared means then20equal weights",
+  "diagnostic_schedule": "original100compact rows union capture2source rows6794..6805 selected from previous audit before new inference",
+  "diagnostic_rows": 110,
+  "interval_strata": "exactendpoints,first/last5percent,central90percent,5contiguousblocks",
+  "conditioning": "J.T R^-1 J and cosine/conditionalAinformation in declared weighting;not independently calibrated physiological precision",
+  "later_optical_extension": "choose one from resulting mechanism evidence; no extension in this frozen-model experiment"
+}

@@ -1,0 +1,4830 @@
+[
+  {
+    "step": 0,
+    "before": {
+      "state_projected_gradient_inf": 5.125098722737805e-05,
+      "global_projected_gradient_inf": 1.2736223874639763
+    },
+    "cost_before": 1925.8109663628118,
+    "trials": [
+      {
+        "damping": 0,
+        "step_fraction": 1.0,
+        "minimum_predicted_constraint_slack": 6.381267288000173e-06,
+        "minimum_actual_constraint_slack": 2.0000667788622195e-12,
+        "maximum_constraint_linearization_error": 1.065361566077172e-05,
+        "minimum_actual_box_slack": 0.4245553256777921,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": true,
+        "reason": "accepted",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.001387486151862358,
+            "theta_anchor": 0.0009851392557552914,
+            "A_anchor": -0.002430649316404433,
+            "regularization": -1.3050935421644832e-05,
+            "temporal": 0.0
+          },
+          "total": -7.107484420842844e-05,
+          "maximum_prediction_change_px": 0.06402367560798439
+        },
+        "accumulated_cost_difference": -7.107484452717472e-05,
+        "cancellation_difference": -3.187462772023808e-13,
+        "numerical_allowance": 2.736741985192469e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 1.6446442796657235e-05,
+          "global_projected_gradient_inf": 0.9027067128353052
+        },
+        "component_accumulated_differences": {
+          "point": 0.0013874861515432713,
+          "theta_anchor": 0.0009851392557038707,
+          "A_anchor": -0.0024306493164005794,
+          "regularization": -1.3050935421643484e-05,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.0570488032435321e-05,
+          "minimum_restored_slack": 2.0000667788622195e-12,
+          "correction_scaled_inf": 1.0118337755691094e-06,
+          "correction_native": [
+            -1.3000864437708286e-10,
+            -1.42261040964568e-09,
+            1.6111766060175636e-11,
+            5.790601420244069e-12,
+            -1.5496408311073305e-11,
+            -2.0235565965518206e-11,
+            1.6949051565121556e-10,
+            0.0,
+            2.8826908558394033e-10,
+            0.0,
+            0.0,
+            1.1138402711258103e-07,
+            0.0,
+            2.5295844389227724e-07,
+            0.0,
+            1.3981045653359462e-08,
+            0.0,
+            -1.0118337755691094e-06,
+            0.0
+          ]
+        }
+      }
+    ],
+    "subproblem": {
+      "method": "observed SQP with global primal working-set updates; independent bordered solve",
+      "global_working_set": [],
+      "global_final_constraint_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "subproblem_scaled_stationarity_inf": 1.2505552149377763e-11,
+      "independent_route_scaled_step_difference_inf": 1.2203336485838746e-16,
+      "subproblem_active_feasibility_inf": 1.1993986533120893e-18,
+      "minimum_linearized_constraint_slack": -3.1848438816761693e-19,
+      "minimum_multiplier": 3.345694345460852,
+      "tangent_normalized_eigenvalues": [
+        0.021400679529431196,
+        0.08100623111398522,
+        0.11019555694403499,
+        0.20898534899650797,
+        0.2792082804362439,
+        0.34130159057214726,
+        0.3858548321720309,
+        0.5198445740162062,
+        0.6086430176239143,
+        0.9034185425311231,
+        1.0641505885170746,
+        1.2818944067621612,
+        1.7526646770477574,
+        2.421100643080292,
+        2.7556435588635484,
+        3.264687471793543
+      ],
+      "weak_current_rows_kept_as_inequalities": 1,
+      "initial_tight_constraint_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "primal_tight_slack_threshold": 1e-10,
+      "all_original_inequalities_retained": true,
+      "state_working_set": [
+        {
+          "iteration": 0,
+          "working_bounds": 9653,
+          "new_lower": 63,
+          "new_upper": 0,
+          "release_lower": 6,
+          "release_upper": 0
+        },
+        {
+          "iteration": 1,
+          "working_bounds": 9710,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        }
+      ],
+      "state_quadratic_scaled_stationarity_inf": 1.8973538018496328e-18,
+      "final_state_bound_count": 9710,
+      "original_state_bound_count": 9653,
+      "state_step_max_deg_D": [
+        0.0009950857641666184,
+        0.009114772612337188
+      ]
+    },
+    "accepted": true
+  },
+  {
+    "step": 1,
+    "before": {
+      "state_projected_gradient_inf": 1.6446442796657235e-05,
+      "global_projected_gradient_inf": 0.9027067128353052
+    },
+    "cost_before": 1925.8108952879672,
+    "trials": [
+      {
+        "damping": 0,
+        "step_fraction": 1.0,
+        "minimum_predicted_constraint_slack": 9.545260631338483e-06,
+        "minimum_actual_constraint_slack": 2.000177801164682e-12,
+        "maximum_constraint_linearization_error": 1.5927521814562695e-05,
+        "minimum_actual_box_slack": 0.4244834362400995,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.00592483264967135,
+            "theta_anchor": 0.005773905311333727,
+            "A_anchor": -0.011623986998369007,
+            "regularization": 1.133043281096176e-05,
+            "temporal": 0.0
+          },
+          "total": 8.60813954470326e-05,
+          "maximum_prediction_change_px": 0.07172562805487814
+        },
+        "accumulated_cost_difference": 8.608139569332707e-05,
+        "cancellation_difference": 2.4629446702603697e-13,
+        "numerical_allowance": 2.73674188418904e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 2.409185951293951e-05,
+          "global_projected_gradient_inf": 0.8721624811565972
+        },
+        "component_accumulated_differences": {
+          "point": 0.005924832649725431,
+          "theta_anchor": 0.005773905311365013,
+          "A_anchor": -0.011623986998370084,
+          "regularization": 1.133043281096105e-05,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.5773264001150977e-05,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 1.4894560315621103e-06,
+          "correction_native": [
+            -1.9137678985437957e-10,
+            -2.0941331532485685e-09,
+            3.011120911788588e-11,
+            9.21013905100762e-12,
+            -2.4603617222331898e-11,
+            -3.217120832296523e-11,
+            -3.094053596302655e-10,
+            0.0,
+            4.2480364755679064e-10,
+            0.0,
+            0.0,
+            1.6636152566768634e-07,
+            0.0,
+            3.723640078905273e-07,
+            0.0,
+            2.0785227237421443e-08,
+            0.0,
+            -1.4894560315621103e-06,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 1,
+        "step_fraction": 0.5,
+        "minimum_predicted_constraint_slack": 1.5736667091320009e-06,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 2.630994455188329e-06,
+        "minimum_actual_box_slack": 0.4245193809528658,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": true,
+        "reason": "accepted",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.0026520047070952776,
+            "theta_anchor": 0.002886278669816029,
+            "A_anchor": -0.005836378146459473,
+            "regularization": 5.711540159222802e-06,
+            "temporal": 0.0
+          },
+          "total": -0.00029238322938894334,
+          "maximum_prediction_change_px": 0.03595145709653025
+        },
+        "accumulated_cost_difference": -0.0002923832294072781,
+        "cancellation_difference": -1.8334780308576493e-14,
+        "numerical_allowance": 2.73674188418904e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 3.452460768255456e-05,
+          "global_projected_gradient_inf": 0.4363501912951393
+        },
+        "component_accumulated_differences": {
+          "point": 0.002652004707215383,
+          "theta_anchor": 0.002886278669826936,
+          "A_anchor": -0.005836378146459875,
+          "regularization": 5.711540159221429e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -2.591746076419099e-06,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 2.3927315405880103e-07,
+          "correction_native": [
+            -3.074371112670513e-11,
+            -3.3641138266390763e-10,
+            4.2747819315301535e-12,
+            1.41770551546417e-12,
+            -3.807777111459815e-12,
+            -4.973879841832969e-12,
+            -4.967621118122644e-11,
+            0.0,
+            6.81888546581208e-11,
+            0.0,
+            0.0,
+            2.7370409036946698e-08,
+            0.0,
+            5.981828851470022e-08,
+            0.0,
+            3.3977281609954177e-09,
+            0.0,
+            -2.3927315405880103e-07,
+            0.0
+          ]
+        }
+      }
+    ],
+    "subproblem": {
+      "method": "observed SQP with global primal working-set updates; independent bordered solve",
+      "global_working_set": [
+        {
+          "iteration": 0,
+          "action": "add",
+          "original_constraint": 23,
+          "fraction": 0.8157896995803458
+        },
+        {
+          "iteration": 1,
+          "action": "release",
+          "original_constraint": 0
+        }
+      ],
+      "global_final_constraint_indices": [
+        3840,
+        5759,
+        23
+      ],
+      "subproblem_scaled_stationarity_inf": 2.442490279578356e-12,
+      "independent_route_scaled_step_difference_inf": 6.922149691845641e-17,
+      "subproblem_active_feasibility_inf": 1.1333300834262539e-18,
+      "minimum_linearized_constraint_slack": -1.1350241493207625e-18,
+      "minimum_multiplier": 4.5989560681178085,
+      "tangent_normalized_eigenvalues": [
+        0.026700148650446495,
+        0.08118780791775815,
+        0.11035505527613511,
+        0.2063476027054597,
+        0.2788757396157697,
+        0.3408945645178566,
+        0.3898132891736909,
+        0.5152515710611979,
+        0.5590287816687306,
+        0.8604946663178102,
+        1.0557642957615527,
+        1.2544776546027805,
+        1.7543698162508845,
+        2.532401129391095,
+        2.7561271061150356,
+        3.277910770973799
+      ],
+      "weak_current_rows_kept_as_inequalities": 1,
+      "initial_tight_constraint_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "primal_tight_slack_threshold": 1e-10,
+      "all_original_inequalities_retained": true,
+      "state_working_set": [
+        {
+          "iteration": 0,
+          "working_bounds": 9710,
+          "new_lower": 1,
+          "new_upper": 0,
+          "release_lower": 82,
+          "release_upper": 0
+        },
+        {
+          "iteration": 1,
+          "working_bounds": 9629,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 1,
+          "release_upper": 0
+        },
+        {
+          "iteration": 2,
+          "working_bounds": 9628,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        }
+      ],
+      "state_quadratic_scaled_stationarity_inf": 1.8973538018496328e-18,
+      "final_state_bound_count": 9628,
+      "original_state_bound_count": 9710,
+      "state_step_max_deg_D": [
+        0.001236791348366486,
+        0.011486680210667566
+      ]
+    },
+    "accepted": true
+  },
+  {
+    "step": 2,
+    "before": {
+      "state_projected_gradient_inf": 3.452460768255456e-05,
+      "global_projected_gradient_inf": 0.4363501912951393
+    },
+    "cost_before": 1925.8106029047378,
+    "trials": [
+      {
+        "damping": 0,
+        "step_fraction": 1.0,
+        "minimum_predicted_constraint_slack": 6.384222910992065e-06,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 1.063779065924031e-05,
+        "minimum_actual_box_slack": 0.4245550413769386,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -0.002686013216827981,
+            "theta_anchor": -0.002817774112023501,
+            "A_anchor": 0.005801662995194524,
+            "regularization": -5.720582478146669e-06,
+            "temporal": 0.0
+          },
+          "total": 0.0002921550838648952,
+          "maximum_prediction_change_px": 0.0359308609135951
+        },
+        "accumulated_cost_difference": 0.00029215508379820676,
+        "cancellation_difference": -6.668846247795401e-14,
+        "numerical_allowance": 2.7367414686874807e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 1.60193665946955e-05,
+          "global_projected_gradient_inf": 0.9039059739478543
+        },
+        "component_accumulated_differences": {
+          "point": -0.002686013217044092,
+          "theta_anchor": -0.0028177741120387623,
+          "A_anchor": 0.005801662995192469,
+          "regularization": -5.720582478146302e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.0600008327976695e-05,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 1.0097416916728014e-06,
+          "correction_native": [
+            -1.2973983719032763e-10,
+            -1.419669001099573e-09,
+            1.607546823051298e-11,
+            5.778485446578372e-12,
+            -1.5464019663905587e-11,
+            -2.0193285284385987e-11,
+            1.6914893694349832e-10,
+            0.0,
+            2.876682777791621e-10,
+            0.0,
+            0.0,
+            1.1159586815845228e-07,
+            0.0,
+            2.524354229182002e-07,
+            0.0,
+            1.4069700992632858e-08,
+            0.0,
+            -1.0097416916728014e-06,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 1,
+        "step_fraction": 0.5,
+        "minimum_predicted_constraint_slack": 2.4066485440042588e-06,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 4.008778557551551e-06,
+        "minimum_actual_box_slack": 0.424537211163986,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -0.0014197329184075676,
+            "theta_anchor": -0.0014090533940541534,
+            "A_anchor": 0.002894752878370686,
+            "regularization": -2.8489978516125155e-06,
+            "temporal": 0.0
+          },
+          "total": 6.311756805735255e-05,
+          "maximum_prediction_change_px": 0.01794366413230364
+        },
+        "accumulated_cost_difference": 6.311756828836224e-05,
+        "cancellation_difference": 2.3100968295393376e-13,
+        "numerical_allowance": 2.7367414686874807e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 5.176662212453212e-05,
+          "global_projected_gradient_inf": 0.6847023456865473
+        },
+        "component_accumulated_differences": {
+          "point": -0.0014197329182934482,
+          "theta_anchor": -0.001409053394056059,
+          "A_anchor": 0.0028947528783738186,
+          "regularization": -2.8489978516118425e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -3.9993239824287485e-06,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 3.806947704919324e-07,
+          "correction_native": [
+            -4.891472305573455e-11,
+            -5.352462957758545e-10,
+            6.413226228895187e-12,
+            2.2147842145906263e-12,
+            -5.9448258043987815e-12,
+            -7.76340159403209e-12,
+            6.37572700153359e-11,
+            0.0,
+            1.084730579866905e-10,
+            0.0,
+            0.0,
+            4.209059547191901e-08,
+            0.0,
+            9.517369262298304e-08,
+            0.0,
+            5.315379317219692e-09,
+            0.0,
+            -3.806947704919324e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 2,
+        "step_fraction": 0.25,
+        "minimum_predicted_constraint_slack": 4.1887958538728494e-07,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 6.977605655489327e-07,
+        "minimum_actual_box_slack": 0.42452829605726417,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": true,
+        "reason": "accepted",
+        "stable_objective_change": {
+          "components": {
+            "point": -0.000767629932258983,
+            "theta_anchor": -0.0007045682815376419,
+            "A_anchor": 0.0014458567843787034,
+            "regularization": -1.410012034044857e-06,
+            "temporal": 0.0
+          },
+          "total": -2.7751441451966364e-05,
+          "maximum_prediction_change_px": 0.00895057817410816
+        },
+        "accumulated_cost_difference": -2.7751441393775167e-05,
+        "cancellation_difference": 5.819119735768832e-14,
+        "numerical_allowance": 2.7367414686874807e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.314169127712405e-05,
+          "global_projected_gradient_inf": 0.5752120315537999
+        },
+        "component_accumulated_differences": {
+          "point": -0.00076762993239754,
+          "theta_anchor": -0.0007045682815558507,
+          "A_anchor": 0.0014458567843735892,
+          "regularization": -1.4100120340442002e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -6.953964641898125e-07,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 6.623511406299363e-08,
+          "correction_native": [
+            -8.510416017021732e-12,
+            -9.31247290180623e-11,
+            1.1465781424841036e-12,
+            3.8848792472554614e-13,
+            -1.0442845241030703e-12,
+            -1.3637873396453322e-12,
+            1.1091372527211933e-11,
+            0.0,
+            1.8874132625086607e-11,
+            0.0,
+            0.0,
+            7.321422550441033e-09,
+            0.0,
+            1.6558778515748397e-08,
+            0.0,
+            9.22854675155628e-10,
+            0.0,
+            -6.623511406299363e-08,
+            0.0
+          ]
+        }
+      }
+    ],
+    "subproblem": {
+      "method": "observed SQP with global primal working-set updates; independent bordered solve",
+      "global_working_set": [],
+      "global_final_constraint_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "subproblem_scaled_stationarity_inf": 1.2278178473934531e-11,
+      "independent_route_scaled_step_difference_inf": 4.876246337287894e-17,
+      "subproblem_active_feasibility_inf": 1.2400562347802957e-18,
+      "minimum_linearized_constraint_slack": -1.2366681029912785e-18,
+      "minimum_multiplier": 3.3456773130727835,
+      "tangent_normalized_eigenvalues": [
+        0.021401861004140488,
+        0.08102226519346617,
+        0.11024109191880979,
+        0.2090787966193538,
+        0.27927768096164235,
+        0.3414410504786453,
+        0.3859099782573227,
+        0.5197709585488527,
+        0.6085763731065483,
+        0.903285826886394,
+        1.0642379330230511,
+        1.2821532959990831,
+        1.752323802917333,
+        2.4206344109309965,
+        2.7557506052670755,
+        3.2648940688872847
+      ],
+      "weak_current_rows_kept_as_inequalities": 1,
+      "initial_tight_constraint_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "primal_tight_slack_threshold": 1e-10,
+      "all_original_inequalities_retained": true,
+      "state_working_set": [
+        {
+          "iteration": 0,
+          "working_bounds": 9628,
+          "new_lower": 82,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        },
+        {
+          "iteration": 1,
+          "working_bounds": 9710,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        }
+      ],
+      "state_quadratic_scaled_stationarity_inf": 1.1519648082658485e-18,
+      "final_state_bound_count": 9710,
+      "original_state_bound_count": 9628,
+      "state_step_max_deg_D": [
+        0.0006169301723585383,
+        0.005735009350932272
+      ]
+    },
+    "accepted": true
+  },
+  {
+    "step": 3,
+    "before": {
+      "state_projected_gradient_inf": 4.314169127712405e-05,
+      "global_projected_gradient_inf": 0.5752120315537999
+    },
+    "cost_before": 1925.8105751532964,
+    "trials": [
+      {
+        "damping": 0,
+        "step_fraction": 1.0,
+        "minimum_predicted_constraint_slack": 9.540372851222028e-06,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 1.589320146666573e-05,
+        "minimum_actual_box_slack": 0.4244832529430488,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.003997545927111672,
+            "theta_anchor": 0.0036533773392211713,
+            "A_anchor": -0.007251209406765912,
+            "regularization": 7.032523969358973e-06,
+            "temporal": 0.0
+          },
+          "total": 0.00040674638353628995,
+          "maximum_prediction_change_px": 0.044783823087300334
+        },
+        "accumulated_cost_difference": 0.00040674638353266346,
+        "cancellation_difference": -3.6264936366381395e-15,
+        "numerical_allowance": 2.7367414292503105e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 2.3655746576541938e-05,
+          "global_projected_gradient_inf": 0.8736167908632296
+        },
+        "component_accumulated_differences": {
+          "point": 0.003997545927177271,
+          "theta_anchor": 0.003653377339247754,
+          "A_anchor": -0.0072512094067587185,
+          "regularization": 7.032523969359786e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.5833921901187153e-05,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 1.489765743424755e-06,
+          "correction_native": [
+            -1.9141658582609686e-10,
+            -2.094568605331179e-09,
+            3.011188653299085e-11,
+            9.211946511586092e-12,
+            -2.4608295163576886e-11,
+            -3.2177365935696695e-11,
+            -3.094765320866738e-10,
+            0.0,
+            4.248851808469852e-10,
+            0.0,
+            0.0,
+            1.667236524936481e-07,
+            0.0,
+            3.7244143585618856e-07,
+            0.0,
+            2.1003976273219278e-08,
+            0.0,
+            -1.489765743424755e-06,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 1,
+        "step_fraction": 0.5,
+        "minimum_predicted_constraint_slack": 4.55705390946612e-06,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 7.589809575048179e-06,
+        "minimum_actual_box_slack": 0.424505774499187,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.001945535237035053,
+            "theta_anchor": 0.0018264243631322436,
+            "A_anchor": -0.0036351468950292704,
+            "regularization": 3.513792250351184e-06,
+            "temporal": 0.0
+          },
+          "total": 0.0001403264973883773,
+          "maximum_prediction_change_px": 0.02239863600556191
+        },
+        "accumulated_cost_difference": 0.00014032649755790771,
+        "cancellation_difference": 1.695304053389579e-13,
+        "numerical_allowance": 2.7367414292503105e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 2.1592842196541326e-05,
+          "global_projected_gradient_inf": 0.6004961460030226
+        },
+        "component_accumulated_differences": {
+          "point": 0.001945535237155127,
+          "theta_anchor": 0.0018264243631378463,
+          "A_anchor": -0.0036351468950190924,
+          "regularization": 3.5137922503522545e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -7.574981682578752e-06,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 7.115403620658033e-07,
+          "correction_native": [
+            -9.14242870523891e-11,
+            -1.0004058214281476e-09,
+            1.3337009206148973e-11,
+            4.28512486324423e-12,
+            -1.1485283632809575e-11,
+            -1.500839634372913e-11,
+            -1.477381437031291e-10,
+            0.0,
+            2.0283881811058236e-10,
+            0.0,
+            0.0,
+            7.97136863994386e-08,
+            0.0,
+            1.7788509051645072e-07,
+            0.0,
+            1.0071983558436319e-08,
+            0.0,
+            -7.115403620658033e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 2,
+        "step_fraction": 0.25,
+        "minimum_predicted_constraint_slack": 2.068405215997137e-06,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 3.4445612837608053e-06,
+        "minimum_actual_box_slack": 0.4245170352777414,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.0009491626581612519,
+            "theta_anchor": 0.0009131461049463812,
+            "A_anchor": -0.001819958995426222,
+            "regularization": 1.7593895463363632e-06,
+            "temporal": 0.0
+          },
+          "total": 4.4109157227747546e-05,
+          "maximum_prediction_change_px": 0.011205220348074363
+        },
+        "accumulated_cost_difference": 4.4109157443017466e-05,
+        "cancellation_difference": 2.152699202164106e-13,
+        "numerical_allowance": 2.7367414292503105e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 3.236683963775528e-05,
+          "global_projected_gradient_inf": 0.46375963482298116
+        },
+        "component_accumulated_differences": {
+          "point": 0.0009491626583439938,
+          "theta_anchor": 0.0009131461049349809,
+          "A_anchor": -0.0018199589954188689,
+          "regularization": 1.7593895463366427e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -3.440848535873897e-06,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 3.2261114474065495e-07,
+          "correction_native": [
+            -4.1451632383903855e-11,
+            -4.535822675962171e-10,
+            5.8099631449836094e-12,
+            1.9168618779910934e-12,
+            -5.14662325418425e-12,
+            -6.723163356580368e-12,
+            -6.696823085984391e-11,
+            0.0,
+            9.194512279374847e-11,
+            0.0,
+            0.0,
+            3.6198453333011016e-08,
+            0.0,
+            8.065278618516368e-08,
+            0.0,
+            4.58037719265455e-09,
+            0.0,
+            -3.2261114474065495e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 3,
+        "step_fraction": 0.125,
+        "minimum_predicted_constraint_slack": 8.248333960915585e-07,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 1.3735482335963667e-06,
+        "minimum_actual_box_slack": 0.42452266566713975,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.0004583877099686408,
+            "theta_anchor": 0.00045655653331845255,
+            "A_anchor": -0.0009105758846910027,
+            "regularization": 8.834289847052975e-07,
+            "temporal": 0.0
+          },
+          "total": 5.251787580795927e-06,
+          "maximum_prediction_change_px": 0.005608306975773303
+        },
+        "accumulated_cost_difference": 5.251787342785974e-06,
+        "cancellation_difference": -2.3800995286519903e-13,
+        "numerical_allowance": 2.7367414292503105e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 3.7753273870803134e-05,
+          "global_projected_gradient_inf": 0.39534732429743896
+        },
+        "component_accumulated_differences": {
+          "point": 0.00045838770984119037,
+          "theta_anchor": 0.00045655653330811674,
+          "A_anchor": -0.0009105758846867928,
+          "regularization": 8.83428984705531e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.3726170366989976e-06,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 1.2819239809662325e-07,
+          "correction_native": [
+            -1.6471177928122474e-11,
+            -1.8023494134077154e-10,
+            2.2613858666621543e-12,
+            7.565017883369879e-13,
+            -2.032946074221841e-12,
+            -2.6552528247608826e-12,
+            -2.6608083305936922e-11,
+            0.0,
+            3.653062945294406e-11,
+            0.0,
+            0.0,
+            1.4438278600777582e-08,
+            0.0,
+            3.204809952415579e-08,
+            0.0,
+            1.8281748482609307e-09,
+            0.0,
+            -1.2819239809662325e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 4,
+        "step_fraction": 0.0625,
+        "minimum_predicted_constraint_slack": 2.032355967320967e-07,
+        "minimum_actual_constraint_slack": 1.999511667349907e-12,
+        "maximum_constraint_linearization_error": 3.384443807430415e-07,
+        "minimum_actual_box_slack": 0.4245254808618693,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": true,
+        "reason": "accepted",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.0002148534653192469,
+            "theta_anchor": 0.00022827413687045265,
+            "A_anchor": -0.0004554370390899688,
+            "regularization": 4.457589016767649e-07,
+            "temporal": 0.0
+          },
+          "total": -1.186367799859246e-05,
+          "maximum_prediction_change_px": 0.0028097989016941938
+        },
+        "accumulated_cost_difference": -1.1863677627843572e-05,
+        "cancellation_difference": 3.7074888752303744e-13,
+        "numerical_allowance": 2.7367414292503105e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.044634987480791e-05,
+          "global_projected_gradient_inf": 0.36113015432905404
+        },
+        "component_accumulated_differences": {
+          "point": 0.00021485346587724052,
+          "theta_anchor": 0.00022827413690151843,
+          "A_anchor": -0.0004554370390810192,
+          "regularization": 4.4575890167583565e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -3.382101598781162e-07,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 3.099448943824693e-08,
+          "correction_native": [
+            -3.9824188131538116e-12,
+            -4.357738969781388e-11,
+            5.408146226532174e-13,
+            1.822626492859973e-13,
+            -4.900134462579816e-13,
+            -6.399606818016181e-13,
+            -6.434210302084699e-12,
+            0.0,
+            8.831469198721581e-12,
+            0.0,
+            0.0,
+            3.557552222177738e-09,
+            0.0,
+            7.74862235956173e-09,
+            0.0,
+            4.504743039460549e-10,
+            0.0,
+            -3.099448943824693e-08,
+            0.0
+          ]
+        }
+      }
+    ],
+    "subproblem": {
+      "method": "observed SQP with global primal working-set updates; independent bordered solve",
+      "global_working_set": [
+        {
+          "iteration": 0,
+          "action": "add",
+          "original_constraint": 23,
+          "fraction": 0.7087756245693808
+        },
+        {
+          "iteration": 1,
+          "action": "release",
+          "original_constraint": 0
+        }
+      ],
+      "global_final_constraint_indices": [
+        3840,
+        5759,
+        23
+      ],
+      "subproblem_scaled_stationarity_inf": 4.547473508864641e-13,
+      "independent_route_scaled_step_difference_inf": 5.591782484607314e-17,
+      "subproblem_active_feasibility_inf": 4.506215279392878e-19,
+      "minimum_linearized_constraint_slack": -4.506215279392878e-19,
+      "minimum_multiplier": 4.598958105729919,
+      "tangent_normalized_eigenvalues": [
+        0.026704688460819588,
+        0.08118085685422839,
+        0.11034735239915953,
+        0.2061501366929792,
+        0.27880992729575355,
+        0.340750539762265,
+        0.3898129817473212,
+        0.515080023321253,
+        0.5589869483276562,
+        0.8605719891886031,
+        1.0557346616178291,
+        1.2545638940827553,
+        1.754629503000166,
+        2.5324862877705505,
+        2.7562129936395814,
+        3.2779772158390776
+      ],
+      "weak_current_rows_kept_as_inequalities": 1,
+      "initial_tight_constraint_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "primal_tight_slack_threshold": 1e-10,
+      "all_original_inequalities_retained": true,
+      "state_working_set": [
+        {
+          "iteration": 0,
+          "working_bounds": 9628,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        }
+      ],
+      "state_quadratic_scaled_stationarity_inf": 1.6263032587282567e-18,
+      "final_state_bound_count": 9628,
+      "original_state_bound_count": 9628,
+      "state_step_max_deg_D": [
+        0.0007714169190146662,
+        0.007183804776551794
+      ]
+    },
+    "accepted": true
+  },
+  {
+    "step": 4,
+    "before": {
+      "state_projected_gradient_inf": 4.044634987480791e-05,
+      "global_projected_gradient_inf": 0.36113015432905404
+    },
+    "cost_before": 1925.8105632896188,
+    "trials": [
+      {
+        "damping": 0,
+        "step_fraction": 1.0,
+        "minimum_predicted_constraint_slack": 6.379867342521352e-06,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 1.0628999624673341e-05,
+        "minimum_actual_box_slack": 0.424555015206134,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -0.0021387900948664274,
+            "theta_anchor": -0.0023333929696986886,
+            "A_anchor": 0.004808633706170595,
+            "regularization": -4.756032640469785e-06,
+            "temporal": 0.0
+          },
+          "total": 0.0003316946089650089,
+          "maximum_prediction_change_px": 0.029782105922322444
+        },
+        "accumulated_cost_difference": 0.0003316946085760719,
+        "cancellation_difference": -3.889369837480061e-13,
+        "numerical_allowance": 2.7367414123910106e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 1.5956703487845798e-05,
+          "global_projected_gradient_inf": 0.9037191058446035
+        },
+        "component_accumulated_differences": {
+          "point": -0.0021387900953868666,
+          "theta_anchor": -0.0023333929697670897,
+          "A_anchor": 0.00480863370617568,
+          "regularization": -4.756032640468311e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.0603082295057575e-05,
+          "minimum_restored_slack": 1.999511667349907e-12,
+          "correction_scaled_inf": 1.009362703918394e-06,
+          "correction_native": [
+            -1.29691141903011e-10,
+            -1.419136155262009e-09,
+            1.6068485571931662e-11,
+            5.776294327505373e-12,
+            -1.545816859970583e-11,
+            -2.0185645944379704e-11,
+            1.690861618773647e-10,
+            0.0,
+            2.875593625170864e-10,
+            0.0,
+            0.0,
+            1.1158680093738809e-07,
+            0.0,
+            2.523406759795983e-07,
+            0.0,
+            1.4094495889055353e-08,
+            0.0,
+            -1.009362703918394e-06,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 1,
+        "step_fraction": 0.5,
+        "minimum_predicted_constraint_slack": 3.08740371879567e-06,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 5.142145663938891e-06,
+        "minimum_actual_box_slack": 0.42454024803406787,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -0.0010933986509796783,
+            "theta_anchor": -0.0011668105785148084,
+            "A_anchor": 0.0024001484191571117,
+            "regularization": -2.3789208780019854e-06,
+            "temporal": 0.0
+          },
+          "total": 0.00013756026878462298,
+          "maximum_prediction_change_px": 0.0148878524076963
+        },
+        "accumulated_cost_difference": 0.00013756026828559698,
+        "cancellation_difference": -4.990260049804462e-13,
+        "numerical_allowance": 2.7367414123910106e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 5.4725370966803414e-05,
+          "global_projected_gradient_inf": 0.722255473278214
+        },
+        "component_accumulated_differences": {
+          "point": -0.0010933986516192817,
+          "theta_anchor": -0.0011668105785318517,
+          "A_anchor": 0.002400148419155146,
+          "regularization": -2.3789208780013865e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -5.1356542483116385e-06,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 4.88543002597026e-07,
+          "correction_native": [
+            -6.277193980812606e-11,
+            -6.868779352425947e-10,
+            8.151724310250305e-12,
+            2.8342263025023874e-12,
+            -7.60365303833449e-12,
+            -9.929565019158135e-12,
+            8.182311164399233e-11,
+            0.0,
+            1.3919871154833217e-10,
+            0.0,
+            0.0,
+            5.402947949595401e-08,
+            0.0,
+            1.2213575064925641e-07,
+            0.0,
+            6.835808105161279e-09,
+            0.0,
+            -4.88543002597026e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 2,
+        "step_fraction": 0.25,
+        "minimum_predicted_constraint_slack": 1.441870151567827e-06,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 2.4011103565424463e-06,
+        "minimum_actual_box_slack": 0.4245328644478665,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -0.0005576992273252002,
+            "theta_anchor": -0.0005834338126739927,
+            "A_anchor": 0.0011990321010965086,
+            "regularization": -1.1881752128805435e-06,
+            "temporal": 0.0
+          },
+          "total": 5.6710885884435176e-05,
+          "maximum_prediction_change_px": 0.007441077068847335
+        },
+        "accumulated_cost_difference": 5.6710885701249936e-05,
+        "cancellation_difference": -1.8318524052252788e-13,
+        "numerical_allowance": 2.7367414123910106e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.758561274016914e-05,
+          "global_projected_gradient_inf": 0.6316001359898337
+        },
+        "component_accumulated_differences": {
+          "point": -0.0005576992277838144,
+          "theta_anchor": -0.0005834338127073124,
+          "A_anchor": 0.0011990321010983962,
+          "regularization": -1.188175212881587e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -2.3994817464068063e-06,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 2.2817690220467554e-07,
+          "correction_native": [
+            -2.9317995776198603e-11,
+            -3.208103910836267e-10,
+            3.894739003642674e-12,
+            1.3327181250526937e-12,
+            -3.5797649164868047e-12,
+            -4.674924892275986e-12,
+            3.821211272156697e-11,
+            0.0,
+            6.501748725858056e-11,
+            0.0,
+            0.0,
+            2.5239479916434353e-08,
+            0.0,
+            5.704422555116885e-08,
+            0.0,
+            3.1959290692148256e-09,
+            0.0,
+            -2.2817690220467554e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 3,
+        "step_fraction": 0.125,
+        "minimum_predicted_constraint_slack": 6.192779634027277e-07,
+        "minimum_actual_constraint_slack": 1.999511667349907e-12,
+        "maximum_constraint_linearization_error": 1.0311908715809892e-06,
+        "minimum_actual_box_slack": 0.4245291726547236,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -0.00028659948828927215,
+            "theta_anchor": -0.00029172403719092177,
+            "A_anchor": 0.0005992555234277401,
+            "regularization": -5.922549345190798e-07,
+            "temporal": 0.0
+          },
+          "total": 2.03397430130271e-05,
+          "maximum_prediction_change_px": 0.0037177772494487726
+        },
+        "accumulated_cost_difference": 2.033974283222051e-05,
+        "cancellation_difference": -1.80806592435653e-13,
+        "numerical_allowance": 2.7367414123910106e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.401549229259643e-05,
+          "global_projected_gradient_inf": 0.5862915848817305
+        },
+        "component_accumulated_differences": {
+          "point": -0.0002865994886178669,
+          "theta_anchor": -0.0002917240372326546,
+          "A_anchor": 0.0005992555234253238,
+          "regularization": -5.922549345185879e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.0307806501685945e-06,
+          "minimum_restored_slack": 1.999511667349907e-12,
+          "correction_scaled_inf": 9.800479040439348e-08,
+          "correction_native": [
+            -1.2592438118859673e-11,
+            -1.3779201162942013e-10,
+            1.6916147116924225e-12,
+            5.74346564798134e-13,
+            -1.5436603468216986e-12,
+            -2.015942348090694e-12,
+            1.641174434397595e-11,
+            0.0,
+            2.7926651219204442e-11,
+            0.0,
+            0.0,
+            1.0841644172190536e-08,
+            0.0,
+            2.4501197601098356e-08,
+            0.0,
+            1.373354897645489e-09,
+            0.0,
+            -9.800479040439348e-08,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 4,
+        "step_fraction": 0.0625,
+        "minimum_predicted_constraint_slack": 2.0802552190312103e-07,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 3.4638070278703026e-07,
+        "minimum_actual_box_slack": 0.4245273267581417,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -0.00015023722368473486,
+            "theta_anchor": -0.00014586380130877555,
+            "A_anchor": 0.00029956262993374586,
+            "regularization": -2.941579339158483e-07,
+            "temporal": 0.0
+          },
+          "total": 3.167447006319602e-06,
+          "maximum_prediction_change_px": 0.0018561493019433328
+        },
+        "accumulated_cost_difference": 3.1674464935349533e-06,
+        "cancellation_difference": -5.127846487103834e-13,
+        "numerical_allowance": 2.7367414123910106e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.22303717325365e-05,
+          "global_projected_gradient_inf": 0.5636420884353308
+        },
+        "component_accumulated_differences": {
+          "point": -0.00015023722426121822,
+          "theta_anchor": -0.00014586380134318233,
+          "A_anchor": 0.0002995626299309162,
+          "regularization": -2.94157933915587e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -3.4627636202877454e-07,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 3.292146929507532e-08,
+          "correction_native": [
+            -4.2300129042785785e-12,
+            -4.6286670328034026e-11,
+            5.713970999832339e-13,
+            1.9325655117952313e-13,
+            -5.195675710849282e-13,
+            -6.785338873300416e-13,
+            5.512842882399096e-12,
+            0.0,
+            9.381177351999142e-12,
+            0.0,
+            0.0,
+            3.642017149493857e-09,
+            0.0,
+            8.230367323768824e-09,
+            0.0,
+            4.614090402554208e-10,
+            0.0,
+            -3.292146929507532e-08,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 5,
+        "step_fraction": 0.03125,
+        "minimum_predicted_constraint_slack": 2.4102151319083007e-09,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 4.0130159195683746e-09,
+        "minimum_actual_box_slack": 0.4245264038098481,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": true,
+        "reason": "accepted",
+        "stable_objective_change": {
+          "components": {
+            "point": -8.185300673902866e-05,
+            "theta_anchor": -7.293234633299838e-05,
+            "A_anchor": 0.00014976503202183473,
+            "regularization": -1.4507521826162078e-07,
+            "temporal": 0.0
+          },
+          "total": -5.165396268453941e-06,
+          "maximum_prediction_change_px": 0.0009253408185259104
+        },
+        "accumulated_cost_difference": -5.1653964874276426e-06,
+        "cancellation_difference": -2.1897370137432095e-13,
+        "numerical_allowance": 2.7367414123910106e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.1337796367880204e-05,
+          "global_projected_gradient_inf": 0.5523185349571139
+        },
+        "component_accumulated_differences": {
+          "point": -8.185300725926936e-05,
+          "theta_anchor": -7.293234634886403e-05,
+          "A_anchor": 0.00014976503201991065,
+          "regularization": -1.4507521825871117e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -3.98577992832827e-09,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 3.804924205817201e-10,
+          "correction_native": [
+            -4.888869822915542e-14,
+            -5.349617590673479e-13,
+            6.624732503572991e-15,
+            2.2355025595375544e-15,
+            -6.011014382670911e-15,
+            -7.850162874764269e-15,
+            6.371282121249886e-14,
+            0.0,
+            1.0842646038407129e-13,
+            0.0,
+            0.0,
+            4.202633637003462e-11,
+            0.0,
+            9.512310514542998e-11,
+            0.0,
+            5.2714057816421695e-12,
+            0.0,
+            -3.804924205817201e-10,
+            0.0
+          ]
+        }
+      }
+    ],
+    "subproblem": {
+      "method": "observed SQP with global primal working-set updates; independent bordered solve",
+      "global_working_set": [],
+      "global_final_constraint_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "subproblem_scaled_stationarity_inf": 1.2732925824820995e-11,
+      "independent_route_scaled_step_difference_inf": 3.9437854024160224e-17,
+      "subproblem_active_feasibility_inf": 7.343775652694784e-19,
+      "minimum_linearized_constraint_slack": -7.343775652694784e-19,
+      "minimum_multiplier": 3.345677252083415,
+      "tangent_normalized_eigenvalues": [
+        0.02140166484678116,
+        0.0810239200009847,
+        0.11024311613094874,
+        0.20912404001596868,
+        0.2792921929876397,
+        0.34147471766400395,
+        0.38591209618113065,
+        0.5198236576446806,
+        0.6085683607686114,
+        0.9032547121044718,
+        1.0642379545589424,
+        1.282177889292458,
+        1.7522621910620906,
+        2.4205894042312246,
+        2.7557352274170057,
+        3.2648788550930603
+      ],
+      "weak_current_rows_kept_as_inequalities": 1,
+      "initial_tight_constraint_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "primal_tight_slack_threshold": 1e-10,
+      "all_original_inequalities_retained": true,
+      "state_working_set": [
+        {
+          "iteration": 0,
+          "working_bounds": 9628,
+          "new_lower": 82,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        },
+        {
+          "iteration": 1,
+          "working_bounds": 9710,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        }
+      ],
+      "state_quadratic_scaled_stationarity_inf": 6.776263578034403e-19,
+      "final_state_bound_count": 9710,
+      "original_state_bound_count": 9628,
+      "state_step_max_deg_D": [
+        0.0005110362944209117,
+        0.004749287242923036
+      ]
+    },
+    "accepted": true
+  },
+  {
+    "step": 5,
+    "before": {
+      "state_projected_gradient_inf": 4.1337796367880204e-05,
+      "global_projected_gradient_inf": 0.5523185349571139
+    },
+    "cost_before": 1925.8105581242223,
+    "trials": [
+      {
+        "damping": 0,
+        "step_fraction": 1.0,
+        "minimum_predicted_constraint_slack": 9.540106887988583e-06,
+        "minimum_actual_constraint_slack": 2.0000667788622195e-12,
+        "maximum_constraint_linearization_error": 1.5891534905554394e-05,
+        "minimum_actual_box_slack": 0.4244832435206133,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.003862286762183596,
+            "theta_anchor": 0.0035012299050090428,
+            "A_anchor": -0.006946445887667851,
+            "regularization": 6.732049041908647e-06,
+            "temporal": 0.0
+          },
+          "total": 0.0004238028285666961,
+          "maximum_prediction_change_px": 0.042902450212864096
+        },
+        "accumulated_cost_difference": 0.0004238028284362372,
+        "cancellation_difference": -1.3045890322888054e-13,
+        "numerical_allowance": 2.7367414050505407e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 2.3632793129195993e-05,
+          "global_projected_gradient_inf": 0.8736932893184233
+        },
+        "component_accumulated_differences": {
+          "point": 0.0038622867621143087,
+          "theta_anchor": 0.003501229904969705,
+          "A_anchor": -0.006946445887667574,
+          "regularization": 6.732049041906565e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.5837098790827397e-05,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 1.4897807512443432e-06,
+          "correction_native": [
+            -1.9141851424216592e-10,
+            -2.094589706215726e-09,
+            3.01118914830911e-11,
+            9.212032946730695e-12,
+            -2.4608518277337093e-11,
+            -3.217765977405688e-11,
+            -3.0948000858678105e-10,
+            0.0,
+            4.2488910366543684e-10,
+            0.0,
+            0.0,
+            1.6674255192255733e-07,
+            0.0,
+            3.724451878110856e-07,
+            0.0,
+            2.101546628824198e-08,
+            0.0,
+            -1.4897807512443432e-06,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 1,
+        "step_fraction": 0.5,
+        "minimum_predicted_constraint_slack": 4.765168083306587e-06,
+        "minimum_actual_constraint_slack": 1.999511667349907e-12,
+        "maximum_constraint_linearization_error": 7.935875802056458e-06,
+        "minimum_actual_box_slack": 0.4245048236646352,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.001894783308084934,
+            "theta_anchor": 0.0017503722820703747,
+            "A_anchor": -0.003481984361449928,
+            "regularization": 3.3599722053410268e-06,
+            "temporal": 0.0
+          },
+          "total": 0.00016653120091072155,
+          "maximum_prediction_change_px": 0.021452263927642434
+        },
+        "accumulated_cost_difference": 0.0001665312008753972,
+        "cancellation_difference": -3.532436387669591e-14,
+        "numerical_allowance": 2.7367414050505407e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 2.0692309595589905e-05,
+          "global_projected_gradient_inf": 0.6119645159844367
+        },
+        "component_accumulated_differences": {
+          "point": 0.0018947833082165744,
+          "theta_anchor": 0.0017503722820606527,
+          "A_anchor": -0.0034819843614506407,
+          "regularization": 3.3599722053384573e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -7.922256922476834e-06,
+          "minimum_restored_slack": 1.9996226896523694e-12,
+          "correction_scaled_inf": 7.444757355767278e-07,
+          "correction_native": [
+            -9.565607799401604e-11,
+            -1.0467120279099592e-09,
+            1.4000011680682695e-11,
+            4.488498200926195e-12,
+            -1.2028656562183208e-11,
+            -1.5718872673702106e-11,
+            -1.5457908246497102e-10,
+            0.0,
+            2.1223194863729263e-10,
+            0.0,
+            0.0,
+            8.336279518504103e-08,
+            0.0,
+            1.8611893389418184e-07,
+            0.0,
+            1.0536417026700358e-08,
+            0.0,
+            -7.444757355767278e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 2,
+        "step_fraction": 0.25,
+        "minimum_predicted_constraint_slack": 2.380463103868386e-06,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 3.9639664279889075e-06,
+        "minimum_actual_box_slack": 0.42451561373709146,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.0009382393775949666,
+            "theta_anchor": 0.000875125473426514,
+            "A_anchor": -0.0017431825351289661,
+            "regularization": 1.678490883405287e-06,
+            "temporal": 0.0
+          },
+          "total": 7.18608067759197e-05,
+          "maximum_prediction_change_px": 0.010726415920260024
+        },
+        "accumulated_cost_difference": 7.186080711107934e-05,
+        "cancellation_difference": 3.351596344208785e-13,
+        "numerical_allowance": 2.7367414050505407e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 3.101573705592966e-05,
+          "global_projected_gradient_inf": 0.4809383628957128
+        },
+        "component_accumulated_differences": {
+          "point": 0.0009382393780015263,
+          "theta_anchor": 0.0008751254734633562,
+          "A_anchor": -0.0017431825351303942,
+          "regularization": 1.6784908834013845e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -3.960554378235059e-06,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 3.719916899126209e-07,
+          "correction_native": [
+            -4.779643237336509e-11,
+            -5.230099314861343e-10,
+            6.733695054317421e-12,
+            2.2140478261246064e-12,
+            -5.94323473820613e-12,
+            -7.764114143679394e-12,
+            -7.721974746883856e-11,
+            0.0,
+            1.0602222737146701e-10,
+            0.0,
+            0.0,
+            4.1663504702412496e-08,
+            0.0,
+            9.299792247815517e-08,
+            0.0,
+            5.273377499102175e-09,
+            0.0,
+            -3.719916899126209e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 3,
+        "step_fraction": 0.125,
+        "minimum_predicted_constraint_slack": 1.1888015722723378e-06,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 1.9794910661730114e-06,
+        "minimum_actual_box_slack": 0.42452100877343085,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.0004667721326511321,
+            "theta_anchor": 0.00043754756981132203,
+            "A_anchor": -0.0008721388561654823,
+            "regularization": 8.388894978525462e-07,
+            "temporal": 0.0
+          },
+          "total": 3.301973579482437e-05,
+          "maximum_prediction_change_px": 0.005363303187550628
+        },
+        "accumulated_cost_difference": 3.301973606539832e-05,
+        "cancellation_difference": 2.705739481751422e-13,
+        "numerical_allowance": 2.7367414050505407e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 3.617693264107216e-05,
+          "global_projected_gradient_inf": 0.41538483792316644
+        },
+        "component_accumulated_differences": {
+          "point": 0.0004667721329951746,
+          "theta_anchor": 0.00043754756978842124,
+          "A_anchor": -0.0008721388561692134,
+          "regularization": 8.388894978516442e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.9786334362059677e-06,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 1.8579177701177591e-07,
+          "correction_native": [
+            -2.3872001977527005e-11,
+            -2.6121806108171737e-10,
+            3.2978084997748162e-12,
+            1.098638202368651e-12,
+            -2.9515997703847413e-12,
+            -3.8552995296566044e-12,
+            -3.8562851886259524e-11,
+            0.0,
+            5.2947065659258845e-11,
+            0.0,
+            0.0,
+            2.081151021469838e-08,
+            0.0,
+            4.6447944252943945e-08,
+            0.0,
+            2.6359819484375167e-09,
+            0.0,
+            -1.8579177701177591e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 4,
+        "step_fraction": 0.0625,
+        "minimum_predicted_constraint_slack": 5.931435277212687e-07,
+        "minimum_actual_constraint_slack": 2.000177801164682e-12,
+        "maximum_constraint_linearization_error": 9.876231268357571e-07,
+        "minimum_actual_box_slack": 0.42452370629162833,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.00023274003736931998,
+            "theta_anchor": 0.0002187699931801585,
+            "A_anchor": -0.00043620632523298623,
+            "regularization": 4.1937362409102194e-07,
+            "temporal": 0.0
+          },
+          "total": 1.5723078940583283e-05,
+          "maximum_prediction_change_px": 0.0026816996370939705
+        },
+        "accumulated_cost_difference": 1.5723078831797466e-05,
+        "cancellation_difference": -1.0878581699737613e-13,
+        "numerical_allowance": 2.7367414050505407e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 3.8757400906144655e-05,
+          "global_projected_gradient_inf": 0.38259796248329403
+        },
+        "component_accumulated_differences": {
+          "point": 0.00023274003751794226,
+          "theta_anchor": 0.0002187699931752718,
+          "A_anchor": -0.00043620632523655445,
+          "regularization": 4.193736240862972e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -9.87405639252259e-07,
+          "minimum_restored_slack": 2.0000667788622195e-12,
+          "correction_scaled_inf": 9.270234734983748e-08,
+          "correction_native": [
+            -1.1911134795218954e-11,
+            -1.3033691935699755e-10,
+            1.6291664114199773e-12,
+            5.463855706516583e-13,
+            -1.4685448605960137e-12,
+            -1.918021628759604e-12,
+            -1.924009581300248e-11,
+            0.0,
+            2.6416907643348312e-11,
+            0.0,
+            0.0,
+            1.0384926132863073e-08,
+            0.0,
+            2.3175586837459356e-08,
+            0.0,
+            1.315815592873408e-09,
+            0.0,
+            -9.270234734983748e-08,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 5,
+        "step_fraction": 0.03125,
+        "minimum_predicted_constraint_slack": 2.953576832326055e-07,
+        "minimum_actual_constraint_slack": 1.9996226896523694e-12,
+        "maximum_constraint_linearization_error": 4.91781581013484e-07,
+        "minimum_actual_box_slack": 0.42452505505073407,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.00011614941469199907,
+            "theta_anchor": 0.00010938404865869031,
+            "A_anchor": -0.0002181373869040507,
+            "regularization": 2.0968689199434422e-07,
+            "temporal": 0.0
+          },
+          "total": 7.605763338633018e-06,
+          "maximum_prediction_change_px": 0.0013408860656340948
+        },
+        "accumulated_cost_difference": 7.6057629030401586e-06,
+        "cancellation_difference": -4.3559285952537996e-13,
+        "numerical_allowance": 2.7367414050505407e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.00476026577691e-05,
+          "global_projected_gradient_inf": 0.3662019964117668
+        },
+        "component_accumulated_differences": {
+          "point": 0.00011614941445259319,
+          "theta_anchor": 0.00010938404864191398,
+          "A_anchor": -0.00021813738690101836,
+          "regularization": 2.096868919922168e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -4.917249205593777e-07,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 4.616026409326268e-08,
+          "correction_native": [
+            -5.93103819234864e-12,
+            -6.490004669168497e-11,
+            8.071685703820177e-13,
+            2.7162208577370693e-13,
+            -7.302072473117011e-13,
+            -9.53663559904146e-13,
+            -9.58014054086214e-12,
+            0.0,
+            1.3153684098968814e-11,
+            0.0,
+            0.0,
+            5.171487438926776e-09,
+            0.0,
+            1.1540066023315663e-08,
+            0.0,
+            6.553653160639771e-10,
+            0.0,
+            -4.616026409326268e-08,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 6,
+        "step_fraction": 0.015625,
+        "minimum_predicted_constraint_slack": 1.4647555504652325e-07,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 2.438839128426906e-07,
+        "minimum_actual_box_slack": 0.42452572943028866,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 5.796046510976277e-05,
+            "theta_anchor": 5.4691787346473855e-05,
+            "A_anchor": -0.000109077249523929,
+            "regularization": 1.0486132713043532e-07,
+            "temporal": 0.0
+          },
+          "total": 3.679864259438063e-06,
+          "maximum_prediction_change_px": 0.0006704763307538997
+        },
+        "accumulated_cost_difference": 3.679864448713488e-06,
+        "cancellation_difference": 1.8927542477746172e-13,
+        "numerical_allowance": 2.7367414050505407e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.0692695438610896e-05,
+          "global_projected_gradient_inf": 0.35800338128205456
+        },
+        "component_accumulated_differences": {
+          "point": 5.796046548312006e-05,
+          "theta_anchor": 5.469178735495461e-05,
+          "A_anchor": -0.00010907724952513576,
+          "regularization": 1.0486132713018181e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -2.438678581295761e-07,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 2.288988041560345e-08,
+          "correction_native": [
+            -2.941074145330843e-12,
+            -3.218253498850084e-11,
+            3.992501901243248e-13,
+            1.3458102474851122e-13,
+            -3.6183580198690055e-13,
+            -4.725545636538154e-13,
+            -4.750518590215655e-12,
+            0.0,
+            6.5225361824722924e-12,
+            0.0,
+            0.0,
+            2.5647314389348725e-09,
+            0.0,
+            5.722470103900859e-09,
+            0.0,
+            3.2504841077516747e-10,
+            0.0,
+            -2.288988041560345e-08,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 7,
+        "step_fraction": 0.0078125,
+        "minimum_predicted_constraint_slack": 7.203718977337083e-08,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 1.1994085458155723e-07,
+        "minimum_actual_box_slack": 0.42452606662006637,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 2.8892581324396004e-05,
+            "theta_anchor": 2.7345834427601478e-05,
+            "A_anchor": -5.454076377993886e-05,
+            "regularization": 5.2452995004995504e-08,
+            "temporal": 0.0
+          },
+          "total": 1.7501049670636159e-06,
+          "maximum_prediction_change_px": 0.0003352707261115029
+        },
+        "accumulated_cost_difference": 1.7501049569546012e-06,
+        "cancellation_difference": -1.0109014658894223e-14,
+        "numerical_allowance": 2.7367414050505407e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.101523980525988e-05,
+          "global_projected_gradient_inf": 0.35390391568915525
+        },
+        "component_accumulated_differences": {
+          "point": 2.889258144023188e-05,
+          "theta_anchor": 2.734583440400229e-05,
+          "A_anchor": -5.454076378219597e-05,
+          "regularization": 5.245299500300504e-08,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -1.1993515092179052e-07,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 1.1254853009288504e-08,
+          "correction_native": [
+            -1.4461131783435248e-12,
+            -1.5824010216751637e-11,
+            1.9606110149768063e-13,
+            6.614566093128094e-14,
+            -1.7784940628302104e-13,
+            -2.322675510096509e-13,
+            -2.3357965227283716e-12,
+            0.0,
+            3.2070781691623698e-12,
+            0.0,
+            0.0,
+            1.2613442762758105e-09,
+            0.0,
+            2.8137132523221243e-09,
+            0.0,
+            1.598670146496541e-10,
+            0.0,
+            -1.1254853009288504e-08,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 8,
+        "step_fraction": 0.00390625,
+        "minimum_predicted_constraint_slack": 3.4818681591968215e-08,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 5.797076951807867e-08,
+        "minimum_actual_box_slack": 0.42452623521495536,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 1.4365287388747135e-05,
+            "theta_anchor": 1.3672902402236505e-05,
+            "A_anchor": -2.7270916644459194e-05,
+            "regularization": 2.624994151951001e-08,
+            "temporal": 0.0
+          },
+          "total": 7.935230880439565e-07,
+          "maximum_prediction_change_px": 0.00016766773961762738
+        },
+        "accumulated_cost_difference": 7.935227586131077e-07,
+        "cancellation_difference": -3.2943084873723107e-13,
+        "numerical_allowance": 2.7367414050505407e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.1176511482462734e-05,
+          "global_projected_gradient_inf": 0.3518541433905853
+        },
+        "component_accumulated_differences": {
+          "point": 1.4365287370310398e-05,
+          "theta_anchor": 1.36729024120541e-05,
+          "A_anchor": -2.727091665111203e-05,
+          "regularization": 2.6249941519063125e-08,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -5.796775348620997e-08,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 5.437380417739461e-09,
+          "correction_native": [
+            -6.98637959427649e-13,
+            -7.644805605730674e-12,
+            9.465907848136782e-14,
+            3.1949270299857204e-14,
+            -8.590603866234165e-14,
+            -1.1219091326280885e-13,
+            -1.1284577163749931e-12,
+            0.0,
+            1.549378149288377e-12,
+            0.0,
+            0.0,
+            6.096484036969311e-10,
+            0.0,
+            1.3593451044348645e-09,
+            0.0,
+            7.727058210605952e-11,
+            0.0,
+            -5.437380417739461e-09,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 9,
+        "step_fraction": 0.001953125,
+        "minimum_predicted_constraint_slack": 1.6209596475882976e-08,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 2.6986088030866995e-08,
+        "minimum_actual_box_slack": 0.42452631951239983,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 7.1033024494616695e-06,
+            "theta_anchor": 6.836447498294858e-06,
+            "A_anchor": -1.3635592010854573e-05,
+            "regularization": 1.3148692917966248e-08,
+            "temporal": 0.0
+          },
+          "total": 3.1730662981992024e-07,
+          "maximum_prediction_change_px": 8.386620010014667e-05
+        },
+        "accumulated_cost_difference": 3.1730633054394275e-07,
+        "cancellation_difference": -2.992759774949072e-13,
+        "numerical_allowance": 2.7367414050505407e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.1257147194870186e-05,
+          "global_projected_gradient_inf": 0.35082924735783927
+        },
+        "component_accumulated_differences": {
+          "point": 7.103302323230309e-06,
+          "theta_anchor": 6.836447532521106e-06,
+          "A_anchor": -1.3635592015726061e-05,
+          "regularization": 1.314869291571541e-08,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -2.6983793643964304e-08,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 2.5286544015431494e-09,
+          "correction_native": [
+            -3.2490166632954984e-13,
+            -3.5552177462901933e-12,
+            4.400619689402584e-14,
+            1.4856397762041898e-14,
+            -3.994681224323869e-14,
+            -5.216931121248858e-14,
+            -5.247938703769995e-13,
+            0.0,
+            7.205353865204172e-13,
+            0.0,
+            0.0,
+            2.83799895919764e-10,
+            0.0,
+            6.321636003857869e-10,
+            0.0,
+            3.597093045408001e-11,
+            0.0,
+            -2.5286544015431494e-09,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 10,
+        "step_fraction": 0.0009765625,
+        "minimum_predicted_constraint_slack": 6.90509599496053e-09,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 1.1493837437370757e-08,
+        "minimum_actual_box_slack": 0.42452636166112206,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 3.472725512910355e-06,
+            "theta_anchor": 3.418222823327318e-06,
+            "A_anchor": -6.817829427579248e-06,
+            "regularization": 6.598138152864594e-09,
+            "temporal": 0.0
+          },
+          "total": 7.971704681128974e-08,
+          "maximum_prediction_change_px": 4.196541891587913e-05
+        },
+        "accumulated_cost_difference": 7.971721061039716e-08,
+        "cancellation_difference": 1.637991074217634e-13,
+        "numerical_allowance": 2.7367414050505407e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.129746501929489e-05,
+          "global_projected_gradient_inf": 0.35031679687226314
+        },
+        "component_accumulated_differences": {
+          "point": 3.472725666142651e-06,
+          "theta_anchor": 3.41822284610771e-06,
+          "A_anchor": -6.817829421690291e-06,
+          "regularization": 6.598138150432087e-09,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -1.1491748885816833e-08,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 1.0742939874975783e-09,
+          "correction_native": [
+            -1.3803385197448322e-13,
+            -1.5104274620529909e-12,
+            1.8691788863738065e-14,
+            6.311292322212648e-15,
+            -1.697031373655555e-14,
+            -2.216268984393293e-14,
+            -2.229633416680955e-13,
+            0.0,
+            3.061158237605912e-13,
+            0.0,
+            0.0,
+            1.2087550093774293e-10,
+            0.0,
+            2.685734968743944e-10,
+            0.0,
+            1.5320747820910716e-11,
+            0.0,
+            -1.0742939874975783e-09,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 11,
+        "step_fraction": 0.00048828125,
+        "minimum_predicted_constraint_slack": 2.252856079490879e-09,
+        "minimum_actual_constraint_slack": 2.0000667788622195e-12,
+        "maximum_constraint_linearization_error": 3.747735011216946e-09,
+        "minimum_actual_box_slack": 0.42452638273548327,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": true,
+        "reason": "accepted",
+        "stable_objective_change": {
+          "components": {
+            "point": 1.6575406476539113e-06,
+            "theta_anchor": 1.7091111803886282e-06,
+            "A_anchor": -3.4089230693238747e-06,
+            "regularization": 3.322878154984138e-09,
+            "temporal": 0.0
+          },
+          "total": -3.894836312635105e-08,
+          "maximum_prediction_change_px": 2.1015025367887574e-05
+        },
+        "accumulated_cost_difference": -3.894842848239932e-08,
+        "cancellation_difference": -6.535604827199928e-14,
+        "numerical_allowance": 2.7367414050505407e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.131762392356594e-05,
+          "global_projected_gradient_inf": 0.35006057101715027
+        },
+        "component_accumulated_differences": {
+          "point": 1.6575406789343106e-06,
+          "theta_anchor": 1.709111181469325e-06,
+          "A_anchor": -3.4089230727119e-06,
+          "regularization": 3.3228781531891016e-09,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -3.745709742375425e-09,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 3.4711439796438116e-10,
+          "correction_native": [
+            -4.460002385929207e-14,
+            -4.880331876868897e-13,
+            6.037592522086194e-15,
+            2.0390721272982376e-15,
+            -5.482842667949655e-15,
+            -7.160423430933045e-15,
+            -7.204841941808183e-14,
+            0.0,
+            9.890648822175095e-14,
+            0.0,
+            0.0,
+            3.941326326398284e-11,
+            0.0,
+            8.677859949109524e-11,
+            0.0,
+            4.995566098334322e-12,
+            0.0,
+            -3.4711439796438116e-10,
+            0.0
+          ]
+        }
+      }
+    ],
+    "subproblem": {
+      "method": "observed SQP with global primal working-set updates; independent bordered solve",
+      "global_working_set": [
+        {
+          "iteration": 0,
+          "action": "add",
+          "original_constraint": 23,
+          "fraction": 0.696618049191791
+        },
+        {
+          "iteration": 1,
+          "action": "release",
+          "original_constraint": 0
+        }
+      ],
+      "global_final_constraint_indices": [
+        3840,
+        5759,
+        23
+      ],
+      "subproblem_scaled_stationarity_inf": 7.924037842605535e-12,
+      "independent_route_scaled_step_difference_inf": 9.767983947736592e-17,
+      "subproblem_active_feasibility_inf": 1.616138863361205e-18,
+      "minimum_linearized_constraint_slack": -1.6144447974666964e-18,
+      "minimum_multiplier": 4.598958219026549,
+      "tangent_normalized_eigenvalues": [
+        0.0267050049026997,
+        0.08118036960941574,
+        0.11034680473458545,
+        0.2061363271155514,
+        0.2788053262705039,
+        0.3407404771603964,
+        0.38981298062915354,
+        0.5150680210521236,
+        0.5589840587302883,
+        0.8605773572959322,
+        1.0557325893278438,
+        1.2545699131608854,
+        1.754647628968428,
+        2.5324922205519407,
+        2.7562189889737065,
+        3.2779819315165444
+      ],
+      "weak_current_rows_kept_as_inequalities": 1,
+      "initial_tight_constraint_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "primal_tight_slack_threshold": 1e-10,
+      "all_original_inequalities_retained": true,
+      "state_working_set": [
+        {
+          "iteration": 0,
+          "working_bounds": 9628,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        }
+      ],
+      "state_quadratic_scaled_stationarity_inf": 1.2197274440461925e-18,
+      "final_state_bound_count": 9628,
+      "original_state_bound_count": 9628,
+      "state_step_max_deg_D": [
+        0.0007391065445846759,
+        0.0068835795976790164
+      ]
+    },
+    "accepted": true
+  },
+  {
+    "step": 6,
+    "before": {
+      "state_projected_gradient_inf": 4.131762392356594e-05,
+      "global_projected_gradient_inf": 0.35006057101715027
+    },
+    "cost_before": 1925.810558085274,
+    "trials": [
+      {
+        "damping": 0,
+        "step_fraction": 1.0,
+        "minimum_predicted_constraint_slack": 6.379294609452015e-06,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 1.0627844135191467e-05,
+        "minimum_actual_box_slack": 0.42455501176363886,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -0.0020593239508578717,
+            "theta_anchor": -0.0022611072001609126,
+            "A_anchor": 0.004661934400134763,
+            "regularization": -4.61424130709689e-06,
+            "temporal": 0.0
+          },
+          "total": 0.0003368890078088822,
+          "maximum_prediction_change_px": 0.028876730842512188
+        },
+        "accumulated_cost_difference": 0.0003368890077126707,
+        "cancellation_difference": -9.62115044751688e-14,
+        "numerical_allowance": 2.7367414049951917e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 1.5948471708520772e-05,
+          "global_projected_gradient_inf": 0.9036945112770612
+        },
+        "component_accumulated_differences": {
+          "point": -0.002059323950788894,
+          "theta_anchor": -0.0022611072001836874,
+          "A_anchor": 0.004661934400135737,
+          "regularization": -4.614241307099309e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.0603485307347782e-05,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 1.0093128892389853e-06,
+          "correction_native": [
+            -1.29684741326444e-10,
+            -1.4190661172612968e-09,
+            1.6067567877907018e-11,
+            5.7760063313838294e-12,
+            -1.5457399549470217e-11,
+            -2.018464184718027e-11,
+            1.6907791046497536e-10,
+            0.0,
+            2.8754504664516883e-10,
+            0.0,
+            0.0,
+            1.1158560085667725e-07,
+            0.0,
+            2.523282223097462e-07,
+            0.0,
+            1.4097752284199564e-08,
+            0.0,
+            -1.0093128892389853e-06,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 1,
+        "step_fraction": 0.5,
+        "minimum_predicted_constraint_slack": 3.1876479037722886e-06,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 5.309050943758109e-06,
+        "minimum_actual_box_slack": 0.4245406972497703,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -0.001046029405500104,
+            "theta_anchor": -0.001130660812011045,
+            "A_anchor": 0.002327049765561498,
+            "regularization": -2.309842434350701e-06,
+            "temporal": 0.0
+          },
+          "total": 0.00014804970561599863,
+          "maximum_prediction_change_px": 0.014437894845514165
+        },
+        "accumulated_cost_difference": 0.00014804970578552457,
+        "cancellation_difference": 1.695259330049964e-13,
+        "numerical_allowance": 2.7367414049951917e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 5.5160789070113056e-05,
+          "global_projected_gradient_inf": 0.727782617560305
+        },
+        "component_accumulated_differences": {
+          "point": -0.0010460294054155383,
+          "theta_anchor": -0.0011306608120591477,
+          "A_anchor": 0.0023270497655702993,
+          "regularization": -2.3098424343503954e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -5.302948669072549e-06,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 5.044234999479253e-07,
+          "correction_native": [
+            -6.4812395423262e-11,
+            -7.0920547698556e-10,
+            8.40482349002949e-12,
+            2.925141448935466e-12,
+            -7.846972800451624e-12,
+            -1.0247297620764666e-11,
+            8.448340844182249e-11,
+            0.0,
+            1.437228911116648e-10,
+            0.0,
+            0.0,
+            5.578730348704975e-08,
+            0.0,
+            1.2610587498698124e-07,
+            0.0,
+            7.059580455960704e-09,
+            0.0,
+            -5.044234999479253e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 2,
+        "step_fraction": 0.25,
+        "minimum_predicted_constraint_slack": 1.5924807479331213e-06,
+        "minimum_actual_constraint_slack": 1.9996226896523694e-12,
+        "maximum_constraint_linearization_error": 2.651902034633835e-06,
+        "minimum_actual_box_slack": 0.4245335399926778,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -0.0005271610117329712,
+            "theta_anchor": -0.0005653572089879535,
+            "A_anchor": 0.0011625455241542771,
+            "regularization": -1.155584920643044e-06,
+            "temporal": 0.0
+          },
+          "total": 6.887171851270936e-05,
+          "maximum_prediction_change_px": 0.007218807086360357
+        },
+        "accumulated_cost_difference": 6.88717186676513e-05,
+        "cancellation_difference": 1.5494193655960636e-13,
+        "numerical_allowance": 2.7367414049951917e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.823950256533286e-05,
+          "global_projected_gradient_inf": 0.6398985412001569
+        },
+        "component_accumulated_differences": {
+          "point": -0.0005271610116324155,
+          "theta_anchor": -0.0005653572090054126,
+          "A_anchor": 0.0011625455241508487,
+          "regularization": -1.155584920642383e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -2.6503699339652798e-06,
+          "minimum_restored_slack": 1.999511667349907e-12,
+          "correction_scaled_inf": 2.5201992257561483e-07,
+          "correction_native": [
+            -3.238153903763749e-11,
+            -3.54333017530463e-10,
+            4.292826141620919e-12,
+            1.4710693041571788e-12,
+            -3.9509472465448786e-12,
+            -5.159649890959429e-12,
+            4.220544799097672e-11,
+            0.0,
+            7.181096898950516e-11,
+            0.0,
+            0.0,
+            2.787749885841526e-08,
+            0.0,
+            6.300498064390367e-08,
+            0.0,
+            3.5305938653735197e-09,
+            0.0,
+            -2.5201992257561483e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 3,
+        "step_fraction": 0.125,
+        "minimum_predicted_constraint_slack": 7.950612501665382e-07,
+        "minimum_actual_constraint_slack": 1.9996226896523694e-12,
+        "maximum_constraint_linearization_error": 1.3238897305090092e-06,
+        "minimum_actual_box_slack": 0.42452996136409193,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -0.00026467235290809064,
+            "theta_anchor": -0.00028268530523967535,
+            "A_anchor": 0.0005810279224205197,
+            "regularization": -5.779416446209017e-07,
+            "temporal": 0.0
+          },
+          "total": 3.3092322628132754e-05,
+          "maximum_prediction_change_px": 0.0036093457626407144
+        },
+        "accumulated_cost_difference": 3.309232261017314e-05,
+        "cancellation_difference": -1.7959612475578618e-14,
+        "numerical_allowance": 2.7367414049951917e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.477863253294285e-05,
+          "global_projected_gradient_inf": 0.5959744686276321
+        },
+        "component_accumulated_differences": {
+          "point": -0.0002646723528414441,
+          "theta_anchor": -0.00028268530522979063,
+          "A_anchor": 0.0005810279224236492,
+          "regularization": -5.779416446215213e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.323502756722661e-06,
+          "minimum_restored_slack": 1.9996226896523694e-12,
+          "correction_scaled_inf": 1.258284140419724e-07,
+          "correction_native": [
+            -1.6167440091912034e-11,
+            -1.7691125414402732e-10,
+            2.1666889738220614e-12,
+            7.368742809734419e-13,
+            -1.9802287626138513e-12,
+            -2.5860706762939477e-12,
+            2.107128999516509e-11,
+            0.0,
+            3.585479759723839e-11,
+            0.0,
+            0.0,
+            1.3919931425635832e-08,
+            0.0,
+            3.145710351049308e-08,
+            0.0,
+            1.7636246112789265e-09,
+            0.0,
+            -1.258284140419724e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 4,
+        "step_fraction": 0.0625,
+        "minimum_predicted_constraint_slack": 3.9639252529190573e-07,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 6.600241444498778e-07,
+        "minimum_actual_box_slack": 0.4245281720497891,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -0.00013266450968050505,
+            "theta_anchor": -0.00014134432780638068,
+            "A_anchor": 0.0002904527512960931,
+            "regularization": -2.8899137683567144e-07,
+            "temporal": 0.0
+          },
+          "total": 1.6154922432371715e-05,
+          "maximum_prediction_change_px": 0.0018046357390630874
+        },
+        "accumulated_cost_difference": 1.6154922377609182e-05,
+        "cancellation_difference": -5.476253334807911e-14,
+        "numerical_allowance": 2.7367414049951917e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.304814081957252e-05,
+          "global_projected_gradient_inf": 0.5740169234947615
+        },
+        "component_accumulated_differences": {
+          "point": -0.00013266450946503028,
+          "theta_anchor": -0.00014134432783663442,
+          "A_anchor": 0.0002904527513039046,
+          "regularization": -2.889913768358565e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -6.599246902272426e-07,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 6.273522990379425e-08,
+          "correction_native": [
+            -8.06072294225217e-12,
+            -8.820398916304235e-11,
+            1.0860879916181665e-12,
+            3.679871536259547e-13,
+            -9.891927611932947e-13,
+            -1.2918408007735164e-12,
+            1.0505416501099496e-11,
+            0.0,
+            1.7876659409088454e-11,
+            0.0,
+            0.0,
+            6.940481290478482e-09,
+            0.0,
+            1.5683807475948552e-08,
+            0.0,
+            8.795208963303197e-10,
+            0.0,
+            -6.273522990379425e-08,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 5,
+        "step_fraction": 0.03125,
+        "minimum_predicted_constraint_slack": 1.9706841924550174e-07,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 3.28126496418335e-07,
+        "minimum_actual_box_slack": 0.42452727739263524,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -6.646972278800294e-05,
+            "theta_anchor": -7.067258269969458e-05,
+            "A_anchor": 0.00014521107316951362,
+            "regularization": -1.4448408550503022e-07,
+            "temporal": 0.0
+          },
+          "total": 7.924283596311068e-06,
+          "maximum_prediction_change_px": 0.0009022858870935124
+        },
+        "accumulated_cost_difference": 7.924283636384644e-06,
+        "cancellation_difference": 4.00735759679971e-14,
+        "numerical_allowance": 2.7367414049951917e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.2182880788104314e-05,
+          "global_projected_gradient_inf": 0.5630392736791014
+        },
+        "component_accumulated_differences": {
+          "point": -6.64697226966382e-05,
+          "theta_anchor": -7.067258270865295e-05,
+          "A_anchor": 0.000145211073174778,
+          "regularization": -1.4448408550485348e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -3.280995339860482e-07,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 3.118928040097371e-08,
+          "correction_native": [
+            -4.007447452580511e-12,
+            -4.385126089852449e-11,
+            5.414046795710766e-13,
+            1.8309620140049438e-13,
+            -4.922555294123157e-13,
+            -6.428656176142156e-13,
+            5.2227811270375215e-12,
+            0.0,
+            8.887577209901129e-12,
+            0.0,
+            0.0,
+            3.4505895978607187e-09,
+            0.0,
+            7.797320100243422e-09,
+            0.0,
+            4.373142538182046e-10,
+            0.0,
+            -3.118928040097371e-08,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 6,
+        "step_fraction": 0.015625,
+        "minimum_predicted_constraint_slack": 9.740893078062472e-08,
+        "minimum_actual_constraint_slack": 2.000177801164682e-12,
+        "maximum_constraint_linearization_error": 1.6218645915166974e-07,
+        "minimum_actual_box_slack": 0.42452683006405767,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -3.33246145245117e-05,
+            "theta_anchor": -3.533639604898814e-05,
+            "A_anchor": 7.260171096512562e-05,
+            "regularization": -7.222240048725703e-08,
+            "temporal": 0.0
+          },
+          "total": 3.868477991138515e-06,
+          "maximum_prediction_change_px": 0.0004511122508006338
+        },
+        "accumulated_cost_difference": 3.868477733703912e-06,
+        "cancellation_difference": -2.574346028437111e-13,
+        "numerical_allowance": 2.7367414049951917e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.1750247228602504e-05,
+          "global_projected_gradient_inf": 0.5575507294593186
+        },
+        "component_accumulated_differences": {
+          "point": -3.3324614605589886e-05,
+          "theta_anchor": -3.533639607411487e-05,
+          "A_anchor": 7.260171097001056e-05,
+          "regularization": -7.222240048718187e-08,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.6217792508932405e-07,
+          "minimum_restored_slack": 2.0000667788622195e-12,
+          "correction_scaled_inf": 1.5416466368888414e-08,
+          "correction_native": [
+            -1.980830488822244e-12,
+            -2.1675122932258595e-11,
+            2.6796735454430456e-13,
+            9.05388803471633e-14,
+            -2.43432101372385e-13,
+            -3.179129433868454e-13,
+            2.581538795168553e-12,
+            0.0,
+            4.393032857290532e-12,
+            0.0,
+            0.0,
+            1.7056020977509334e-09,
+            0.0,
+            3.854116592222101e-09,
+            0.0,
+            2.161722344499036e-10,
+            0.0,
+            -1.5416466368888414e-08,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 7,
+        "step_fraction": 0.0078125,
+        "minimum_predicted_constraint_slack": 4.7579827249524347e-08,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 7.921863742765822e-08,
+        "minimum_actual_box_slack": 0.4245266063997688,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -1.674013174498627e-05,
+            "theta_anchor": -1.7668224199411685e-05,
+            "A_anchor": 3.629989907764777e-05,
+            "regularization": -3.6089548122635656e-08,
+            "temporal": 0.0
+          },
+          "total": 1.8554535851271815e-06,
+          "maximum_prediction_change_px": 0.0002255257550132228
+        },
+        "accumulated_cost_difference": 1.8554537746240385e-06,
+        "cancellation_difference": 1.8949685697756589e-13,
+        "numerical_allowance": 2.7367414049951917e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.153392956317025e-05,
+          "global_projected_gradient_inf": 0.5548065275252771
+        },
+        "component_accumulated_differences": {
+          "point": -1.6740131513870438e-05,
+          "theta_anchor": -1.7668224195688254e-05,
+          "A_anchor": 3.6299899085712184e-05,
+          "regularization": -3.6089548120787907e-08,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -7.921486244732989e-08,
+          "minimum_restored_slack": 1.999511667349907e-12,
+          "correction_scaled_inf": 7.530099362948948e-09,
+          "correction_native": [
+            -9.675271807538467e-13,
+            -1.0587110251677218e-11,
+            1.309747759487054e-13,
+            4.423225810066929e-14,
+            -1.1893168166395984e-13,
+            -1.553203302170271e-13,
+            1.2609364396539945e-12,
+            0.0,
+            2.145759819309206e-12,
+            0.0,
+            0.0,
+            8.330979288298494e-10,
+            0.0,
+            1.882524840737236e-09,
+            0.0,
+            1.0559155042289311e-10,
+            0.0,
+            -7.530099362948948e-09,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 8,
+        "step_fraction": 0.00390625,
+        "minimum_predicted_constraint_slack": 2.2665435767408744e-08,
+        "minimum_actual_constraint_slack": 2.000177801164682e-12,
+        "maximum_constraint_linearization_error": 3.773527557093814e-08,
+        "minimum_actual_box_slack": 0.42452649456762426,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -8.444908345047466e-06,
+            "theta_anchor": -8.834118643231673e-06,
+            "A_anchor": 1.8149710437600606e-05,
+            "regularization": -1.8022619491940453e-08,
+            "temporal": 0.0
+          },
+          "total": 8.526608298295258e-07,
+          "maximum_prediction_change_px": 0.00011273258809296749
+        },
+        "accumulated_cost_difference": 8.526608326064888e-07,
+        "cancellation_difference": 2.776963000980623e-15,
+        "numerical_allowance": 2.7367414049951917e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.1425770508740616e-05,
+          "global_projected_gradient_inf": 0.5534344440952371
+        },
+        "component_accumulated_differences": {
+          "point": -8.444908417004626e-06,
+          "theta_anchor": -8.834118652600864e-06,
+          "A_anchor": 1.814971043945235e-05,
+          "regularization": -1.802261949054862e-08,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -3.7732766688947095e-08,
+          "minimum_restored_slack": 2.000177801164682e-12,
+          "correction_scaled_inf": 3.5869260136558446e-09,
+          "correction_native": [
+            -4.60876839418472e-13,
+            -5.043118199694848e-12,
+            6.24100109403303e-14,
+            2.1071957330200135e-14,
+            -5.665929735967223e-14,
+            -7.399495694300357e-14,
+            6.006399895290468e-13,
+            0.0,
+            1.0221231281303443e-12,
+            0.0,
+            0.0,
+            3.968432407165418e-10,
+            0.0,
+            8.967315034139606e-10,
+            0.0,
+            5.029878963843807e-11,
+            0.0,
+            -3.5869260136558446e-09,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 9,
+        "step_fraction": 0.001953125,
+        "minimum_predicted_constraint_slack": 1.020828021658052e-08,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 1.699373197716625e-08,
+        "minimum_actual_box_slack": 0.424526438651552,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -4.296551136383031e-06,
+            "theta_anchor": -4.417060957576464e-06,
+            "A_anchor": 9.0747954434979e-06,
+            "regularization": -8.989029554120152e-09,
+            "temporal": 0.0
+          },
+          "total": 3.521943199842858e-07,
+          "maximum_prediction_change_px": 5.633602455645814e-05
+        },
+        "accumulated_cost_difference": 3.5219431993027683e-07,
+        "cancellation_difference": -5.400899123886153e-17,
+        "numerical_allowance": 2.7367414049951917e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.137169092624845e-05,
+          "global_projected_gradient_inf": 0.5527484067658528
+        },
+        "component_accumulated_differences": {
+          "point": -4.2965511966031045e-06,
+          "theta_anchor": -4.417060949890583e-06,
+          "A_anchor": 9.074795451091688e-06,
+          "regularization": -8.98902955369374e-09,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -1.699157792245387e-08,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 1.6153417889403868e-09,
+          "correction_native": [
+            -2.075519855808146e-13,
+            -2.2711256213465704e-12,
+            2.8110507976424134e-14,
+            9.49005903317482e-15,
+            -2.5517560226425716e-14,
+            -3.332500181729279e-14,
+            2.704929317887757e-13,
+            0.0,
+            4.603047141942037e-13,
+            0.0,
+            0.0,
+            1.7871524804281484e-10,
+            0.0,
+            4.038354472350965e-10,
+            0.0,
+            2.265180492397654e-11,
+            0.0,
+            -1.6153417889403868e-09,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 10,
+        "step_fraction": 0.0009765625,
+        "minimum_predicted_constraint_slack": 3.9797123221907156e-09,
+        "minimum_actual_constraint_slack": 1.999511667349907e-12,
+        "maximum_constraint_linearization_error": 6.62299481923867e-09,
+        "minimum_actual_box_slack": 0.4245264106935158,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": -2.2221862488437314e-06,
+            "theta_anchor": -2.208530887927257e-06,
+            "A_anchor": 4.537382777911746e-06,
+            "regularization": -4.472203178776248e-09,
+            "temporal": 0.0
+          },
+          "total": 1.0219343796198109e-07,
+          "maximum_prediction_change_px": 2.8137747790424328e-05
+        },
+        "accumulated_cost_difference": 1.0219355317531154e-07,
+        "cancellation_difference": 1.15213330442723e-13,
+        "numerical_allowance": 2.7367414049951917e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.134465112095428e-05,
+          "global_projected_gradient_inf": 0.5524053891959632
+        },
+        "component_accumulated_differences": {
+          "point": -2.22218613998848e-06,
+          "theta_anchor": -2.2085308728492237e-06,
+          "A_anchor": 4.537382779723487e-06,
+          "regularization": -4.472203177230405e-09,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -6.620948234115076e-09,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 6.295502649675216e-10,
+          "correction_native": [
+            -8.08896347732011e-14,
+            -8.851301602021811e-13,
+            1.0956475943689212e-14,
+            3.698672764966316e-15,
+            -9.945305030868898e-15,
+            -1.2988206627460046e-14,
+            1.0541969073508108e-13,
+            0.0,
+            1.7939548325226387e-13,
+            0.0,
+            0.0,
+            6.965108789823872e-11,
+            0.0,
+            1.5738756624188032e-10,
+            0.0,
+            8.828161764072834e-12,
+            0.0,
+            -6.295502649675216e-10,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 11,
+        "step_fraction": 0.00048828125,
+        "minimum_predicted_constraint_slack": 8.654309285180739e-10,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 1.437634455925263e-09,
+        "minimum_actual_box_slack": 0.4245263967144978,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": true,
+        "reason": "accepted",
+        "stable_objective_change": {
+          "components": {
+            "point": -1.1849568840563308e-06,
+            "theta_anchor": -1.104265546059802e-06,
+            "A_anchor": 2.2686876530105006e-06,
+            "regularization": -2.2137821437483654e-09,
+            "temporal": 0.0
+          },
+          "total": -2.274855924938047e-08,
+          "maximum_prediction_change_px": 1.4038610800071183e-05
+        },
+        "accumulated_cost_difference": -2.2748736228095368e-08,
+        "cancellation_difference": -1.769787148960078e-13,
+        "numerical_allowance": 2.7367414049951917e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.133113121535393e-05,
+          "global_projected_gradient_inf": 0.5522338806936621
+        },
+        "component_accumulated_differences": {
+          "point": -1.184957000077702e-06,
+          "theta_anchor": -1.1042655216897401e-06,
+          "A_anchor": 2.2686876499644626e-06,
+          "regularization": -2.2137821437118177e-09,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -1.4356242861168766e-09,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 1.36654687925521e-10,
+          "correction_native": [
+            -1.755848326023839e-14,
+            -1.9213268985095903e-13,
+            2.3783905154797847e-15,
+            8.028705757134386e-16,
+            -2.1588313798867264e-15,
+            -2.8193554139861727e-15,
+            2.288314838942101e-14,
+            0.0,
+            3.894087263846684e-14,
+            0.0,
+            0.0,
+            1.5118965623512447e-11,
+            0.0,
+            3.416367198138023e-11,
+            0.0,
+            1.916301279268898e-12,
+            0.0,
+            -1.36654687925521e-10,
+            0.0
+          ]
+        }
+      }
+    ],
+    "subproblem": {
+      "method": "observed SQP with global primal working-set updates; independent bordered solve",
+      "global_working_set": [],
+      "global_final_constraint_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "subproblem_scaled_stationarity_inf": 1.318767317570746e-11,
+      "independent_route_scaled_step_difference_inf": 7.873577515306306e-17,
+      "subproblem_active_feasibility_inf": 7.936698715772794e-19,
+      "minimum_linearized_constraint_slack": -7.936698715772794e-19,
+      "minimum_multiplier": 3.3456772442737384,
+      "tangent_normalized_eigenvalues": [
+        0.021401635928640278,
+        0.08102416438787206,
+        0.11024341324467014,
+        0.209130706140397,
+        0.279294327154545,
+        0.34147967173136107,
+        0.3859124123816264,
+        0.5198314293954717,
+        0.6085671864098271,
+        0.9032501353043295,
+        1.0642379537377955,
+        1.282181495082643,
+        1.7522531249658713,
+        2.4205827824929034,
+        2.7557329560956583,
+        3.2648766055463865
+      ],
+      "weak_current_rows_kept_as_inequalities": 1,
+      "initial_tight_constraint_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "primal_tight_slack_threshold": 1e-10,
+      "all_original_inequalities_retained": true,
+      "state_working_set": [
+        {
+          "iteration": 0,
+          "working_bounds": 9628,
+          "new_lower": 82,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        },
+        {
+          "iteration": 1,
+          "working_bounds": 9710,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        }
+      ],
+      "state_quadratic_scaled_stationarity_inf": 8.809142651444724e-19,
+      "final_state_bound_count": 9710,
+      "original_state_bound_count": 9628,
+      "state_step_max_deg_D": [
+        0.0004954437527598924,
+        0.0046041072996930565
+      ]
+    },
+    "accepted": true
+  },
+  {
+    "step": 7,
+    "before": {
+      "state_projected_gradient_inf": 4.133113121535393e-05,
+      "global_projected_gradient_inf": 0.5522338806936621
+    },
+    "cost_before": 1925.8105580625252,
+    "trials": [
+      {
+        "damping": 0,
+        "step_fraction": 1.0,
+        "minimum_predicted_constraint_slack": 9.540105927652338e-06,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 1.5891528887257422e-05,
+        "minimum_actual_box_slack": 0.42448324348644356,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.003861806004609299,
+            "theta_anchor": 0.003500636623847961,
+            "A_anchor": -0.006945308944009384,
+            "regularization": 6.730940710976351e-06,
+            "temporal": 0.0
+          },
+          "total": 0.00042386462515885153,
+          "maximum_prediction_change_px": 0.042895485015719714
+        },
+        "accumulated_cost_difference": 0.00042386462564536487,
+        "cancellation_difference": 4.865133361280083e-13,
+        "numerical_allowance": 2.7367414049628638e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 2.363271002598418e-05,
+          "global_projected_gradient_inf": 0.8736935679011261
+        },
+        "component_accumulated_differences": {
+          "point": 0.003861806005033941,
+          "theta_anchor": 0.0035006366237837483,
+          "A_anchor": -0.006945308943999251,
+          "regularization": 6.7309407109760605e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.583711031472035e-05,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 1.489780806707357e-06,
+          "correction_native": [
+            -1.914185213688292e-10,
+            -2.0945897841962928e-09,
+            3.011189152402498e-11,
+            9.212033266722875e-12,
+            -2.460851910385211e-11,
+            -3.2177660862413465e-11,
+            -3.0948002140845324e-10,
+            0.0,
+            4.248891181884132e-10,
+            0.0,
+            0.0,
+            1.6674262050812148e-07,
+            0.0,
+            3.72445201676839e-07,
+            0.0,
+            2.101550795252118e-08,
+            0.0,
+            -1.489780806707357e-06,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 1,
+        "step_fraction": 0.5,
+        "minimum_predicted_constraint_slack": 4.765937770988383e-06,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 7.937155705572962e-06,
+        "minimum_actual_box_slack": 0.42450482009987656,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.0018946050864156333,
+            "theta_anchor": 0.0017500757206821873,
+            "A_anchor": -0.0034814130590076035,
+            "regularization": 3.3594047400842914e-06,
+            "temporal": 0.0
+          },
+          "total": 0.00016662715283030137,
+          "maximum_prediction_change_px": 0.021448760306782333
+        },
+        "accumulated_cost_difference": 0.00016662715324855526,
+        "cancellation_difference": 4.182538918071771e-13,
+        "numerical_allowance": 2.7367414049628638e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 2.0688982237636186e-05,
+          "global_projected_gradient_inf": 0.6120069221069997
+        },
+        "component_accumulated_differences": {
+          "point": 0.0018946050868180464,
+          "theta_anchor": 0.0017500757206505568,
+          "A_anchor": -0.003481413058997962,
+          "regularization": 3.359404740083116e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -7.923541205379081e-06,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 7.445975409930169e-07,
+          "correction_native": [
+            -9.567172849336696e-11,
+            -1.0468832828904424e-09,
+            1.4002471103336331e-11,
+            4.489251138671171e-12,
+            -1.2030667984893046e-11,
+            -1.5721502737003395e-11,
+            -1.5460438294581478e-10,
+            0.0,
+            2.1226668806135192e-10,
+            0.0,
+            0.0,
+            8.337629051747978e-08,
+            0.0,
+            1.861493852482541e-07,
+            0.0,
+            1.0538134426908756e-08,
+            0.0,
+            -7.445975409930169e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 2,
+        "step_fraction": 0.25,
+        "minimum_predicted_constraint_slack": 2.3816172209486773e-06,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 3.96588738005299e-06,
+        "minimum_actual_box_slack": 0.4245156084070382,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.0009382036517393147,
+            "theta_anchor": 0.0008749772125304049,
+            "A_anchor": -0.0017428961762545416,
+            "regularization": 1.678192386739486e-06,
+            "temporal": 0.0
+          },
+          "total": 7.19628804019175e-05,
+          "maximum_prediction_change_px": 0.010724643332480355
+        },
+        "accumulated_cost_difference": 7.196288083832769e-05,
+        "cancellation_difference": 4.3641018533310816e-13,
+        "numerical_allowance": 2.7367414049628638e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 3.101074491257366e-05,
+          "global_projected_gradient_inf": 0.4810018853230823
+        },
+        "component_accumulated_differences": {
+          "point": 0.000938203652140146,
+          "theta_anchor": 0.0008749772125113964,
+          "A_anchor": -0.0017428961762491202,
+          "regularization": 1.6781923867399684e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -3.96247641898384e-06,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 3.72174316025704e-07,
+          "correction_native": [
+            -4.781989760825924e-11,
+            -5.232666986859457e-10,
+            6.737128126661517e-12,
+            2.215148754366479e-12,
+            -5.946185156076237e-12,
+            -7.767969679082947e-12,
+            -7.725766228959597e-11,
+            0.0,
+            1.060742908034314e-10,
+            0.0,
+            0.0,
+            4.168371640698712e-08,
+            0.0,
+            9.304357900642595e-08,
+            0.0,
+            5.275940352854432e-09,
+            0.0,
+            -3.72174316025704e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 3,
+        "step_fraction": 0.125,
+        "minimum_predicted_constraint_slack": 1.1901476803437137e-06,
+        "minimum_actual_constraint_slack": 1.999511667349907e-12,
+        "maximum_constraint_linearization_error": 1.9817320640047598e-06,
+        "minimum_actual_box_slack": 0.4245210025607303,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.00046680546045368466,
+            "theta_anchor": 0.000437473444313095,
+            "A_anchor": -0.0008719954998149518,
+            "regularization": 8.387251194249535e-07,
+            "temporal": 0.0
+          },
+          "total": 3.312213007125286e-05,
+          "maximum_prediction_change_px": 0.005362396177247319
+        },
+        "accumulated_cost_difference": 3.312213016215537e-05,
+        "cancellation_difference": 9.090251202594976e-14,
+        "numerical_allowance": 2.7367414049628638e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 3.6171108274223276e-05,
+          "global_projected_gradient_inf": 0.4154589316457614
+        },
+        "component_accumulated_differences": {
+          "point": 0.0004668054605190264,
+          "theta_anchor": 0.0004374734442649242,
+          "A_anchor": -0.0008719954998117618,
+          "regularization": 8.387251194258427e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.980874700491242e-06,
+          "minimum_restored_slack": 1.999511667349907e-12,
+          "correction_scaled_inf": 1.8600479987230848e-07,
+          "correction_native": [
+            -2.3899372838507057e-11,
+            -2.6151756527746166e-10,
+            3.3016644509027384e-12,
+            1.0999060526845566e-12,
+            -2.9550031344095644e-12,
+            -3.859745592154574e-12,
+            -3.8607066502552614e-11,
+            0.0,
+            5.3007781482158595e-11,
+            0.0,
+            0.0,
+            2.0835080854825726e-08,
+            0.0,
+            4.650119996807709e-08,
+            0.0,
+            2.6389694256345702e-09,
+            0.0,
+            -1.8600479987230848e-07,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 4,
+        "step_fraction": 0.0625,
+        "minimum_predicted_constraint_slack": 5.945855752223617e-07,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 9.900240280913408e-07,
+        "minimum_actual_box_slack": 0.4245236996376041,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.00023280734287442153,
+            "theta_anchor": 0.00021873293166806644,
+            "A_anchor": -0.0004361346028293934,
+            "regularization": 4.192762132652919e-07,
+            "temporal": 0.0
+          },
+          "total": 1.5824947926359853e-05,
+          "maximum_prediction_change_px": 0.0026812254308197225
+        },
+        "accumulated_cost_difference": 1.582494837748527e-05,
+        "cancellation_difference": 4.51125417675214e-13,
+        "numerical_allowance": 2.7367414049628638e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 3.875116046949696e-05,
+          "global_projected_gradient_inf": 0.38267734513355783
+        },
+        "component_accumulated_differences": {
+          "point": 0.0002328073433091049,
+          "theta_anchor": 0.00021873293164986762,
+          "A_anchor": -0.0004361346028212143,
+          "regularization": 4.192762132655681e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -9.89806601570109e-07,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 9.293056522175882e-08,
+          "correction_native": [
+            -1.1940458038689398e-11,
+            -1.306577873255619e-10,
+            1.6332178241768843e-12,
+            5.477351147620587e-13,
+            -1.472170563546438e-12,
+            -1.922757409044016e-12,
+            -1.9287458491784686e-11,
+            0.0,
+            2.6481947270079677e-11,
+            0.0,
+            0.0,
+            1.0410176427934172e-08,
+            0.0,
+            2.3232641305439692e-08,
+            0.0,
+            1.3190158567947885e-09,
+            0.0,
+            -9.293056522175882e-08,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 5,
+        "step_fraction": 0.03125,
+        "minimum_predicted_constraint_slack": 2.968476866819003e-07,
+        "minimum_actual_constraint_slack": 1.999511667349907e-12,
+        "maximum_constraint_linearization_error": 4.942624045600752e-07,
+        "minimum_actual_box_slack": 0.424525048176048,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.0001162335721154157,
+            "theta_anchor": 0.0001093655182119933,
+            "A_anchor": -0.00021810151464517845,
+            "regularization": 2.0962294208569517e-07,
+            "temporal": 0.0
+          },
+          "total": 7.707198624316245e-06,
+          "maximum_prediction_change_px": 0.0013406282652113077
+        },
+        "accumulated_cost_difference": 7.707198619755218e-06,
+        "cancellation_difference": -4.5610267814097036e-15,
+        "numerical_allowance": 2.7367414049628638e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.004115419710286e-05,
+          "global_projected_gradient_inf": 0.36628402435309354
+        },
+        "component_accumulated_differences": {
+          "point": 0.000116233572271085,
+          "theta_anchor": 0.00010936551813500728,
+          "A_anchor": -0.0002181015146391907,
+          "regularization": 2.0962294208781707e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -4.942057534318423e-07,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 4.639607862682681e-08,
+          "correction_native": [
+            -5.961337518980907e-12,
+            -6.523159536049756e-11,
+            8.113137205000883e-13,
+            2.7301203505312445e-13,
+            -7.33943086518508e-13,
+            -9.585428132794221e-13,
+            -9.629076791451874e-12,
+            0.0,
+            1.322088502883939e-11,
+            0.0,
+            0.0,
+            5.1975776097483225e-09,
+            0.0,
+            1.1599019656706697e-08,
+            0.0,
+            6.58672091171709e-10,
+            0.0,
+            -4.639607862682681e-08,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 6,
+        "step_fraction": 0.015625,
+        "minimum_predicted_constraint_slack": 1.4798953302825558e-07,
+        "minimum_actual_constraint_slack": 1.999511667349907e-12,
+        "maximum_constraint_linearization_error": 2.46404689985269e-07,
+        "minimum_actual_box_slack": 0.42452572244527165,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 5.805301439004995e-05,
+            "theta_anchor": 5.468252220039366e-05,
+            "A_anchor": -0.00010905931063020507,
+            "regularization": 1.0481410196606479e-07,
+            "temporal": 0.0
+          },
+          "total": 3.781040062204605e-06,
+          "maximum_prediction_change_px": 0.0006703267342800245
+        },
+        "accumulated_cost_difference": 3.7810402773175156e-06,
+        "cancellation_difference": 2.1511291037765927e-13,
+        "numerical_allowance": 2.7367414049628638e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.06861429684281e-05,
+          "global_projected_gradient_inf": 0.3580867320664248
+        },
+        "component_accumulated_differences": {
+          "point": 5.8053014527104096e-05,
+          "theta_anchor": 5.468252217610825e-05,
+          "A_anchor": -0.00010905931062565877,
+          "regularization": 1.0481410196716556e-07,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 6,
+          "minimum_raw_slack": -2.463886312753516e-07,
+          "minimum_restored_slack": 1.999511667349907e-12,
+          "correction_scaled_inf": 2.3129493053446227e-08,
+          "correction_native": [
+            -2.9718614845275898e-12,
+            -3.2519423689062315e-11,
+            4.0344121045960184e-13,
+            1.3599106610279085e-13,
+            -3.6562645082539645e-13,
+            -4.775052068949503e-13,
+            -4.800241508617863e-12,
+            0.0,
+            6.590817609838749e-12,
+            0.0,
+            0.0,
+            2.591241557172483e-09,
+            0.0,
+            5.7823732633615534e-09,
+            0.0,
+            3.2840846963529536e-10,
+            0.0,
+            -2.3129493053446227e-08,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 7,
+        "step_fraction": 0.0078125,
+        "minimum_predicted_constraint_slack": 7.356315391110466e-08,
+        "minimum_actual_constraint_slack": 2.0000667788622195e-12,
+        "maximum_constraint_linearization_error": 1.2248160663475005e-07,
+        "minimum_actual_box_slack": 0.4245260595798839,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 2.898931772338432e-05,
+            "theta_anchor": 2.7341201873870743e-05,
+            "A_anchor": -5.4531793642010844e-05,
+            "regularization": 5.241413077600774e-08,
+            "temporal": 0.0
+          },
+          "total": 1.851140086020228e-06,
+          "maximum_prediction_change_px": 0.00033517523172577057
+        },
+        "accumulated_cost_difference": 1.8511400412535295e-06,
+        "cancellation_difference": -4.4766698596322295e-14,
+        "numerical_allowance": 2.7367414049628638e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.100863533109548e-05,
+          "global_projected_gradient_inf": 0.35398792794747663
+        },
+        "component_accumulated_differences": {
+          "point": 2.8989317797822878e-05,
+          "theta_anchor": 2.7341201828789963e-05,
+          "A_anchor": -5.453179363645866e-05,
+          "regularization": 5.2414130775196854e-08,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -1.2247589586955598e-07,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 1.1496364692624667e-08,
+          "correction_native": [
+            -1.4771445229915012e-12,
+            -1.6163568923878062e-11,
+            2.0027480814186327e-13,
+            6.756572099121045e-14,
+            -1.81667396109819e-13,
+            -2.372538035572817e-13,
+            -2.385912755806026e-12,
+            0.0,
+            3.2758998209749453e-12,
+            0.0,
+            0.0,
+            1.288064371648746e-09,
+            0.0,
+            2.874091173156165e-09,
+            0.0,
+            1.6325372464891744e-10,
+            0.0,
+            -1.1496364692624667e-08,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 8,
+        "step_fraction": 0.00390625,
+        "minimum_predicted_constraint_slack": 3.635063869668235e-08,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 6.05215084714672e-08,
+        "minimum_actual_box_slack": 0.42452622814719015,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 1.4464115070375665e-05,
+            "theta_anchor": 1.3670586130334856e-05,
+            "A_anchor": -2.726643140272829e-05,
+            "regularization": 2.621525739669646e-08,
+            "temporal": 0.0
+          },
+          "total": 8.944850553789263e-07,
+          "maximum_prediction_change_px": 0.00016759929638965332
+        },
+        "accumulated_cost_difference": 8.94485538083245e-07,
+        "cancellation_difference": 4.827043187496981e-13,
+        "numerical_allowance": 2.7367414049628638e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.116988100661358e-05,
+          "global_projected_gradient_inf": 0.35193848639562797
+        },
+        "component_accumulated_differences": {
+          "point": 1.4464115338341799e-05,
+          "theta_anchor": 1.3670586106684368e-05,
+          "A_anchor": -2.726643139894236e-05,
+          "regularization": 2.6215257397169123e-08,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -6.051848444599273e-08,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 5.6798416100673855e-09,
+          "correction_native": [
+            -7.297913050396318e-13,
+            -7.985699296809104e-12,
+            9.888406593113736e-14,
+            3.337433280945311e-14,
+            -8.973768283783842e-14,
+            -1.171949488111804e-13,
+            -1.1787705994790353e-12,
+            0.0,
+            1.6184699038412004e-12,
+            0.0,
+            0.0,
+            6.364734876189994e-10,
+            0.0,
+            1.4199604025168455e-09,
+            0.0,
+            8.067061841591083e-11,
+            0.0,
+            -5.6798416100673855e-09,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 9,
+        "step_fraction": 0.001953125,
+        "minimum_predicted_constraint_slack": 1.7744549619998858e-08,
+        "minimum_actual_constraint_slack": 2.0000667788622195e-12,
+        "maximum_constraint_linearization_error": 2.9541820101286476e-08,
+        "minimum_actual_box_slack": 0.4245263124308433,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 7.203175450233109e-06,
+            "theta_anchor": 6.835289363574777e-06,
+            "A_anchor": -1.3633349346800359e-05,
+            "regularization": 1.3116098765630677e-08,
+            "temporal": 0.0
+          },
+          "total": 4.182315657731583e-07,
+          "maximum_prediction_change_px": 8.381128253631687e-05
+        },
+        "accumulated_cost_difference": 4.182318207313074e-07,
+        "cancellation_difference": 2.549581490800266e-13,
+        "numerical_allowance": 2.7367414049628638e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.125050371774013e-05,
+          "global_projected_gradient_inf": 0.3509137557433064
+        },
+        "component_accumulated_differences": {
+          "point": 7.203175755421398e-06,
+          "theta_anchor": 6.835289326545535e-06,
+          "A_anchor": -1.3633349345454349e-05,
+          "regularization": 1.311609876611386e-08,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -2.9539518386911823e-08,
+          "minimum_restored_slack": 2.0000667788622195e-12,
+          "correction_scaled_inf": 2.7715903209241325e-09,
+          "correction_native": [
+            -3.5611600889889543e-13,
+            -3.89677889076296e-12,
+            4.823680856860837e-14,
+            1.628395962594703e-14,
+            -4.3785279167669665e-14,
+            -5.718223234029758e-14,
+            -5.752050717855561e-13,
+            0.0,
+            7.897621830981147e-13,
+            0.0,
+            0.0,
+            3.106774762098408e-10,
+            0.0,
+            6.928975802310327e-10,
+            0.0,
+            3.937763399493945e-11,
+            0.0,
+            -2.7715903209241325e-09,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 10,
+        "step_fraction": 0.0009765625,
+        "minimum_predicted_constraint_slack": 8.441547491844307e-09,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 1.405206639937262e-08,
+        "minimum_actual_box_slack": 0.42452635457266985,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 3.5731207342008935e-06,
+            "theta_anchor": 3.417643756529238e-06,
+            "A_anchor": -6.8167080847549795e-06,
+            "regularization": 6.566588962462722e-09,
+            "temporal": 0.0
+          },
+          "total": 1.806229949376148e-07,
+          "maximum_prediction_change_px": 4.191726407043461e-05
+        },
+        "accumulated_cost_difference": 1.8062314666167367e-07,
+        "cancellation_difference": 1.517240588694433e-13,
+        "numerical_allowance": 2.7367414049628638e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.1290815041911884e-05,
+          "global_projected_gradient_inf": 0.3504013879487445
+        },
+        "component_accumulated_differences": {
+          "point": 3.573120920918882e-06,
+          "theta_anchor": 3.4176437466726384e-06,
+          "A_anchor": -6.816708076895495e-06,
+          "regularization": 6.566588961823272e-09,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -1.4049969410123708e-08,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 1.3174672702800261e-09,
+          "correction_native": [
+            -1.6927869300679825e-13,
+            -1.8523223330476116e-12,
+            2.2925208967063613e-14,
+            7.740103440353817e-15,
+            -2.0812191049197445e-14,
+            -2.7180052437760387e-14,
+            -2.7342370181648143e-13,
+            0.0,
+            3.754101411211597e-13,
+            0.0,
+            0.0,
+            1.4777932440979934e-10,
+            0.0,
+            3.293668175700063e-10,
+            0.0,
+            1.87307801605089e-11,
+            0.0,
+            -1.3174672702800261e-09,
+            0.0
+          ]
+        }
+      },
+      {
+        "damping": 11,
+        "step_fraction": 0.00048828125,
+        "minimum_predicted_constraint_slack": 3.790056530714e-09,
+        "minimum_actual_constraint_slack": 1.9996226896523694e-12,
+        "maximum_constraint_linearization_error": 6.3072120859430925e-09,
+        "minimum_actual_box_slack": 0.4245263756435832,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": false,
+        "reason": "same_objective_acceptance",
+        "stable_objective_change": {
+          "components": {
+            "point": 1.7581972569270623e-06,
+            "theta_anchor": 1.708821646740041e-06,
+            "A_anchor": -3.4083623952192802e-06,
+            "regularization": 3.291851441624434e-09,
+            "temporal": 0.0
+          },
+          "total": 6.194835988944754e-08,
+          "maximum_prediction_change_px": 2.097025202374425e-05
+        },
+        "accumulated_cost_difference": 6.194841262185946e-08,
+        "cancellation_difference": 5.273241192277747e-14,
+        "numerical_allowance": 2.7367414049628638e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.131097069608125e-05,
+          "global_projected_gradient_inf": 0.3501452034347101
+        },
+        "component_accumulated_differences": {
+          "point": 1.7581974134373013e-06,
+          "theta_anchor": 1.7088216353045027e-06,
+          "A_anchor": -3.4083623767777738e-06,
+          "regularization": 3.291851440739846e-09,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -6.305179045540399e-09,
+          "minimum_restored_slack": 1.9996226896523694e-12,
+          "correction_scaled_inf": 5.904063625437761e-10,
+          "correction_native": [
+            -7.586011413554446e-14,
+            -8.300949220778511e-13,
+            1.0272415720103946e-14,
+            3.4685077632558467e-15,
+            -9.326424918635804e-15,
+            -1.2180006414713553e-14,
+            -1.2253335897635756e-13,
+            0.0,
+            1.6823456579662586e-13,
+            0.0,
+            0.0,
+            6.633021262506468e-11,
+            0.0,
+            1.476015906359439e-10,
+            0.0,
+            8.407266542504891e-12,
+            0.0,
+            -5.904063625437761e-10,
+            0.0
+          ]
+        }
+      }
+    ],
+    "subproblem": {
+      "method": "observed SQP with global primal working-set updates; independent bordered solve",
+      "global_working_set": [
+        {
+          "iteration": 0,
+          "action": "add",
+          "original_constraint": 23,
+          "fraction": 0.6965712269513205
+        },
+        {
+          "iteration": 1,
+          "action": "release",
+          "original_constraint": 0
+        }
+      ],
+      "global_final_constraint_indices": [
+        3840,
+        5759,
+        23
+      ],
+      "subproblem_scaled_stationarity_inf": 2.5801141039617884e-12,
+      "independent_route_scaled_step_difference_inf": 3.629623360624728e-17,
+      "subproblem_active_feasibility_inf": 1.6178329292557136e-18,
+      "minimum_linearized_constraint_slack": -1.6195269951502222e-18,
+      "minimum_multiplier": 4.598958219440406,
+      "tangent_normalized_eigenvalues": [
+        0.02670500607232219,
+        0.08118036778579506,
+        0.11034680270612189,
+        0.20613627585104333,
+        0.27880530927914,
+        0.34074043995539666,
+        0.38981298061107433,
+        0.515067976342793,
+        0.5589840479103797,
+        0.8605773770854777,
+        1.0557325817144707,
+        1.2545699357110087,
+        1.7546476959628745,
+        2.532492242243386,
+        2.75621901136584,
+        3.277981949402877
+      ],
+      "weak_current_rows_kept_as_inequalities": 1,
+      "initial_tight_constraint_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "primal_tight_slack_threshold": 1e-10,
+      "all_original_inequalities_retained": true,
+      "state_working_set": [
+        {
+          "iteration": 0,
+          "working_bounds": 9628,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        }
+      ],
+      "state_quadratic_scaled_stationarity_inf": 1.2197274440461925e-18,
+      "final_state_bound_count": 9628,
+      "original_state_bound_count": 9628,
+      "state_step_max_deg_D": [
+        0.0007389873252436228,
+        0.0068824678329486915
+      ]
+    },
+    "accepted": false,
+    "reason": "same-objective line search exhausted"
+  }
+]

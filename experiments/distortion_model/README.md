@@ -1,8 +1,8 @@
 # Distortion estimator experiments by stage
 
-Follow the [stage gates](../../docs/STAGE_GATES.md). Stages 1–4 have executed; G7 attempt 04 meets its numerical certificate with GO_WITH_LIMIT; G8 has not run and awaits separate authorization.
-Each implemented stage has its own runner, readable documentation, live resume
-pointer, attempt ledger and preserved results.
+Follow the [stage gates](../../docs/STAGE_GATES.md). Stages 1–5 have completed their reviewed scopes. Stage 6 execution and audits are complete with `STOP_UNCERTIFIED_ADJACENT`: control passed the full G8 audit with limits, while the adjacent calibration is uncertified and has no G8 inference. The matched comparison is incomplete; there is no optical ranking or next optical stage.
+
+Each implemented stage has its own runner, readable documentation, live resume pointer, attempt ledger and preserved results.
 
 | Stage | Scope | Plan | Experiment / evidence |
 |---|---|---|---|
@@ -10,7 +10,8 @@ pointer, attempt ledger and preserved results.
 | 2 | S2 / G2: P1 reference and common scale | [Plan](../../docs/stages/02_P1_REFERENCE_AND_SCALE.md) | [Stage 2](stage_02_p1_reference_and_scale/README.md): complete, GO_WITH_LIMIT |
 | 3 | S3–S5 / G3–G5: independent P4 reference, accommodation baseline and gaze deformation | [Plan](../../docs/stages/03_P4_BASELINE_AND_DEFORMATION.md) | [Stage 3](stage_03_p4_baseline_and_deformation/README.md): G3–G5 complete, GO_WITH_LIMIT; G5 metric tradeoff |
 | 4 | S6–S7 / G6–G7: corrected centers and full DM0 calibration | [Plan](../../docs/stages/04_CENTER_AND_DM0_CALIBRATION.md) | [Stage 4](stage_04_center_and_dm0_calibration/README.md): G6 and G7 attempt04 COMPLETE, GO_WITH_LIMIT; [current report](stage_04_center_and_dm0_calibration/results/g7_attempt_04/STAGE_REPORT.md) |
-| 5 | S8 / G8, optional GX: cross-agreement and model decision | [Plan](../../docs/stages/05_CROSSCHECK_AND_MODEL_DECISION.md) | Not run |
+| 5 | S8 / G8, optional GX: cross-agreement and model decision | [Plan](../../docs/stages/05_CROSSCHECK_AND_MODEL_DECISION.md) | [Stage 5](stage_05_crosscheck_and_model_decision/README.md): G8 complete, GO_WITH_LIMIT; model comparison incomplete |
+| 6 | Matched operational P4 reference sensitivity | [Stage plan/status](../../docs/stages/06_REFERENCE_SENSITIVITY.md) | [Stage 6](stage_06_reference_sensitivity/README.md): STOP_UNCERTIFIED_ADJACENT; control G8 complete with limits; adjacent uncertified; comparison incomplete |
 
 Layout within an implemented stage:
 

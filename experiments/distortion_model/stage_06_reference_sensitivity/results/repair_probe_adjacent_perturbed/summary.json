@@ -1,0 +1,118 @@
+{
+  "components": {
+    "cost": 1926.108499657803,
+    "point": 1882.1788936071562,
+    "theta_anchor": 42.841039432490106,
+    "A_anchor": 1.076111799760835,
+    "regularization": 0.012454818395744065,
+    "temporal": 0.0
+  },
+  "certificate": {
+    "state_projected_gradient_inf": 0.0009045354941771694,
+    "global_projected_gradient_inf": 519.9831243479695,
+    "stationarity_threshold": 1e-06,
+    "physical_centroid_constraint": {
+      "kind": "user-authorized continuous-domain sufficient 1degree bound",
+      "bound_deg": 1.0,
+      "accommodation_interval_D": [
+        0.0,
+        4.0
+      ],
+      "constraint_derivative_extension_D": [
+        0.0,
+        6.0
+      ],
+      "theta_domain_deg": [
+        -20.0,
+        20.0
+      ],
+      "interval_cells": 1920,
+      "theta_cell_width_deg": 0.5,
+      "A_cell_width_D": 0.25,
+      "reference_interval_min_gaze_slope_px_per_deg": 20.302199998337,
+      "required_min_gaze_slope_px_per_deg": 10.02700222585176,
+      "allowed_max_accommodation_slope_px_per_D": 2.50675055646294,
+      "certified_min_gaze_slope_px_per_deg": 10.027002271846266,
+      "certified_max_abs_accommodation_slope_px_per_D": 2.5067505566430763,
+      "certified_shift_equivalent_upper_bound_deg": 0.999999995484796,
+      "minimum_normalized_slack": -7.186051753649281e-11,
+      "feasible": true,
+      "meaning": "H=D+mu4-mu1 at g=1; bound on horizontal centroid response. Inverse-angle guarantee applies where the monotone inverse lies in the declared theta domain. No bound on individual theta or fixation-mean deviation."
+    },
+    "states_at_bounds": [
+      0,
+      8507
+    ],
+    "globals_at_bounds": [],
+    "active_physical_inequality_count": 3,
+    "KKT_multipliers": [
+      34.49651780083467,
+      3.083671780857064,
+      9.681403990365581
+    ],
+    "KKT_complementarity_inf": 1.582377523852193e-07,
+    "KKT_complementarity_threshold": 1e-06,
+    "constraint_derivative_method": "selected-endpoint forward automatic differentiation",
+    "nonsmooth_active_constraint_rows": [],
+    "constraint_derivative_status": "SMOOTH_ACTIVE_BRANCH",
+    "state_data_rank2_count": 89175,
+    "free_state_observed_curvature_positive": true,
+    "free_state_observed_curvature_status": "PASSED",
+    "free_state_eigenvalue_count": 169843,
+    "free_state_curvature_normalization": "observed per-frame Hessian divided by positive objective row weight; sign-only comparison with weighted historical census",
+    "negative_free_state_eigenvalue_count": 0,
+    "minimum_free_state_eigenvalue": 139.3066196674382,
+    "observed_profile_rank": 16,
+    "observed_profile_positive": true,
+    "profile_curvature_evaluated": true,
+    "profile_curvature_status": "PASSED",
+    "constraint_curvature": {
+      "active_branch_status": "SMOOTH",
+      "nonsmooth_rows": [],
+      "method": "selected-endpoint forward automatic differentiation, order2"
+    },
+    "observed_profile_curvature_eigenvalues": [
+      5.105057971018539e-05,
+      0.00010267656352914038,
+      0.03883417218646449,
+      0.07489236962595613,
+      0.12184294440596184,
+      0.19009161377257994,
+      0.27415532236565476,
+      0.3220680068640212,
+      0.47669355112903705,
+      0.6165053629250409,
+      0.819478199059365,
+      1.038117634120444,
+      1.7596743522525007,
+      2.6977944090508514,
+      2.9028689881519414,
+      4.666829346946946
+    ],
+    "constrained_tangent_dimension": 16,
+    "domain": {
+      "P1": {
+        "local_theta_bounds_deg": [
+          -9.979095888413074,
+          30.020904111586926
+        ],
+        "min_sx": 1.0,
+        "min_sy": 0.9727403826918278,
+        "min_denominator": 0.9798603911129732,
+        "valid_domain": true
+      },
+      "P4": {
+        "min_M": 0.917616138379153,
+        "max_M": 1.0052641445125141,
+        "min_sx": 1.0,
+        "min_sy": 1.0,
+        "min_denominator": 0.9916176401522787,
+        "valid_domain": true
+      }
+    },
+    "fit_certified": false
+  },
+  "original_source_unchanged": true,
+  "new_optical_mechanism": false,
+  "calibration_checkpoint_written": false
+}

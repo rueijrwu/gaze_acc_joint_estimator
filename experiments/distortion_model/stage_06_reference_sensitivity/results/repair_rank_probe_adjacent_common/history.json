@@ -1,0 +1,157 @@
+[
+  {
+    "step": 0,
+    "before": {
+      "state_projected_gradient_inf": 6.367371623369408e-05,
+      "global_projected_gradient_inf": 1.6004758821166076
+    },
+    "cost_before": 1925.8109842028957,
+    "trials": [
+      {
+        "damping": 0,
+        "step_fraction": 1.0,
+        "minimum_predicted_constraint_slack": 6.370245619255076e-06,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 1.0636859945289956e-05,
+        "minimum_actual_box_slack": 0.4245554362589084,
+        "active_physical_rows_before": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          1,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": true,
+        "reason": "accepted",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.0034570935767029567,
+            "theta_anchor": 0.002827118727268161,
+            "A_anchor": -0.006359723583504578,
+            "regularization": -1.3491655928009096e-05,
+            "temporal": 0.0
+          },
+          "total": -8.90029354614696e-05,
+          "maximum_prediction_change_px": 0.06200893272119856
+        },
+        "accumulated_cost_difference": -8.900293551050709e-05,
+        "cancellation_difference": -4.903748847956413e-14,
+        "numerical_allowance": 2.7367420105447532e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 1.6401246961310432e-05,
+          "global_projected_gradient_inf": 0.901735030214109
+        },
+        "component_accumulated_differences": {
+          "point": 0.003457093576571424,
+          "theta_anchor": 0.0028271187272750353,
+          "A_anchor": -0.006359723583506449,
+          "regularization": -1.349165592800898e-05,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -1.0571829631267349e-05,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 1.0115335767783672e-06,
+          "correction_native": [
+            -1.2997007266437803e-10,
+            -1.422188338817209e-09,
+            1.610524513059134e-11,
+            5.788860186556183e-12,
+            -1.5491764179472715e-11,
+            -2.02295010867193e-11,
+            1.694397504695862e-10,
+            0.0,
+            2.881824101273505e-10,
+            0.0,
+            0.0,
+            1.1131919172765981e-07,
+            0.0,
+            2.528833941945917e-07,
+            0.0,
+            1.4022306140796016e-08,
+            0.0,
+            -1.0115335767783672e-06,
+            0.0
+          ]
+        }
+      }
+    ],
+    "subproblem": {
+      "method": "observed SQP with global primal working-set updates; independent bordered solve",
+      "global_working_set": [],
+      "global_final_constraint_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "subproblem_scaled_stationarity_inf": 1.2278178473934531e-11,
+      "independent_route_scaled_step_difference_inf": 1.1039888621333649e-16,
+      "subproblem_active_feasibility_inf": 3.172985420414609e-18,
+      "minimum_linearized_constraint_slack": -1.3891340334970526e-19,
+      "minimum_multiplier": 3.345703997184844,
+      "tangent_normalized_eigenvalues": [
+        0.021400053352881084,
+        0.08100443291723426,
+        0.11018611447456131,
+        0.20903128015916486,
+        0.27920999258484297,
+        0.3413156512232198,
+        0.3858404050858124,
+        0.5199436692021573,
+        0.6086475276673167,
+        0.9034063238072191,
+        1.0641259095936673,
+        1.2818672254994623,
+        1.7526619389884621,
+        2.4211584132726354,
+        2.755595487616442,
+        3.264605574554919
+      ],
+      "weak_current_rows_kept_as_inequalities": 1,
+      "initial_tight_constraint_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "primal_tight_slack_threshold": 1e-10,
+      "all_original_inequalities_retained": true,
+      "state_working_set": [
+        {
+          "iteration": 0,
+          "working_bounds": 9659,
+          "new_lower": 57,
+          "new_upper": 0,
+          "release_lower": 6,
+          "release_upper": 0
+        },
+        {
+          "iteration": 1,
+          "working_bounds": 9710,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        }
+      ],
+      "state_quadratic_scaled_stationarity_inf": 2.032879073410321e-18,
+      "final_state_bound_count": 9710,
+      "original_state_bound_count": 9659,
+      "state_step_max_deg_D": [
+        0.0010429676945298847,
+        0.009382485262460404
+      ]
+    },
+    "accepted": true
+  }
+]

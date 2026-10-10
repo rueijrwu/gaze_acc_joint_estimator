@@ -1,0 +1,210 @@
+{
+  "kind": "actual-record numerical verification, legacy replay, CPU/GPU and whole-loop omitted-input perturbation",
+  "passed": true,
+  "predeclared_population_indices": [
+    0,
+    1,
+    4800,
+    4801,
+    9600,
+    9601,
+    14500,
+    14501,
+    19500,
+    19501,
+    24700,
+    24701,
+    29300,
+    29301,
+    34300,
+    34301,
+    39302,
+    39303,
+    44300,
+    44301,
+    49590,
+    49591,
+    54290,
+    54292,
+    59190,
+    59191,
+    64190,
+    64191,
+    69190,
+    69191,
+    74690,
+    74691,
+    79490,
+    79491,
+    84390,
+    84391,
+    89390,
+    89391,
+    94290,
+    94291
+  ],
+  "records": [
+    {
+      "held_point": 0,
+      "rows": 40,
+      "legacy_seconds": 2.256387472996721,
+      "compacted_seconds": 1.9781088309973711,
+      "legacy_compacted_max_state_difference_deg_D": [
+        8.23074941536106e-12,
+        1.120659121056633e-11
+      ],
+      "cost_max_difference": 9.890754881780595e-12,
+      "CPU_GPU_max_state_difference_deg_D": [
+        1.000444171950221e-11,
+        7.249756350802272e-13
+      ],
+      "masking": [
+        {
+          "mode": "huge_finite",
+          "bitwise_inverse_and_predicted_held_invariant": true,
+          "fields": {
+            "states": true,
+            "cost": true,
+            "projected_gradient_inf": true,
+            "certified": true,
+            "ambiguous": true,
+            "rank2": true,
+            "at_bounds": true,
+            "candidate_certified_count": true,
+            "selected_start": true,
+            "gn_information": true
+          }
+        },
+        {
+          "mode": "unavailable_nan",
+          "bitwise_inverse_and_predicted_held_invariant": true,
+          "fields": {
+            "states": true,
+            "cost": true,
+            "projected_gradient_inf": true,
+            "certified": true,
+            "ambiguous": true,
+            "rank2": true,
+            "at_bounds": true,
+            "candidate_certified_count": true,
+            "selected_start": true,
+            "gn_information": true
+          }
+        }
+      ]
+    },
+    {
+      "held_point": 1,
+      "rows": 40,
+      "legacy_seconds": 2.017410394997569,
+      "compacted_seconds": 2.211749681002402,
+      "legacy_compacted_max_state_difference_deg_D": [
+        2.0400925393460057e-10,
+        1.1486067652555221e-10
+      ],
+      "cost_max_difference": 3.922195901395753e-11,
+      "CPU_GPU_max_state_difference_deg_D": [
+        2.0659740584960673e-10,
+        1.1634260221882187e-10
+      ],
+      "masking": [
+        {
+          "mode": "huge_finite",
+          "bitwise_inverse_and_predicted_held_invariant": true,
+          "fields": {
+            "states": true,
+            "cost": true,
+            "projected_gradient_inf": true,
+            "certified": true,
+            "ambiguous": true,
+            "rank2": true,
+            "at_bounds": true,
+            "candidate_certified_count": true,
+            "selected_start": true,
+            "gn_information": true
+          }
+        },
+        {
+          "mode": "unavailable_nan",
+          "bitwise_inverse_and_predicted_held_invariant": true,
+          "fields": {
+            "states": true,
+            "cost": true,
+            "projected_gradient_inf": true,
+            "certified": true,
+            "ambiguous": true,
+            "rank2": true,
+            "at_bounds": true,
+            "candidate_certified_count": true,
+            "selected_start": true,
+            "gn_information": true
+          }
+        }
+      ]
+    },
+    {
+      "held_point": 2,
+      "rows": 40,
+      "legacy_seconds": 1.9704701399969053,
+      "compacted_seconds": 2.3131234550019144,
+      "legacy_compacted_max_state_difference_deg_D": [
+        0.0,
+        0.0
+      ],
+      "cost_max_difference": 0.0,
+      "CPU_GPU_max_state_difference_deg_D": [
+        1.4983569940341113e-12,
+        1.2032597140887447e-11
+      ],
+      "masking": [
+        {
+          "mode": "huge_finite",
+          "bitwise_inverse_and_predicted_held_invariant": true,
+          "fields": {
+            "states": true,
+            "cost": true,
+            "projected_gradient_inf": true,
+            "certified": true,
+            "ambiguous": true,
+            "rank2": true,
+            "at_bounds": true,
+            "candidate_certified_count": true,
+            "selected_start": true,
+            "gn_information": true
+          }
+        },
+        {
+          "mode": "unavailable_nan",
+          "bitwise_inverse_and_predicted_held_invariant": true,
+          "fields": {
+            "states": true,
+            "cost": true,
+            "projected_gradient_inf": true,
+            "certified": true,
+            "ambiguous": true,
+            "rank2": true,
+            "at_bounds": true,
+            "candidate_certified_count": true,
+            "selected_start": true,
+            "gn_information": true
+          }
+        }
+      ]
+    }
+  ],
+  "all3_scored_rows": 40,
+  "all3_public_optics_cost_max_difference": 8.549250196665525e-11,
+  "benchmark": {
+    "rows": 1024,
+    "seconds": 5.333308291999856,
+    "scored": 1024,
+    "rough_full_omission_seconds_at_this_rate": 1563.8989070691375
+  },
+  "source_sha256": {
+    "distortion_model/inference.py": "363c45f581a9c83ddba5b2808760265e440bb5469cc5290f2dc8c19d1158f3f0",
+    "distortion_model/crosscheck.py": "33411f58e919bad70b099d54f619d0944a05e22b75cf3b5baacc64fc6bc0a9ee",
+    "experiments/distortion_model/stage_05_crosscheck_and_model_decision/scripts/audit.py": "0adce167008d827924b6c6b5641e88f3768713209284cc134d5a547812d44232"
+  },
+  "parent_checkpoint_sha256": "71f97b2a4209b9844d961652450ef494ef708dffa93487fd6ba0e46e692324d4",
+  "automated_repository_suite_run": false
+}

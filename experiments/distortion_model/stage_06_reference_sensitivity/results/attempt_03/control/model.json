@@ -1,0 +1,222 @@
+{
+  "Aref_D": 0.36036036036036034,
+  "Delta14_deg": 0.00392997874181944,
+  "P1_reference_path": "experiments/distortion_model/stage_02_p1_reference_and_scale/results/attempt_02/p1_reference.json",
+  "P1_reference_sha256": "3d46f3c4a7991c4b0accb313117ad05f901b3b015870987dc37712b3c460e3a7",
+  "P4_reference_path": "experiments/distortion_model/stage_03_p4_baseline_and_deformation/results/attempt_01/p4_reference.json",
+  "P4_reference_sha256": "e997bf9e79fb7f974407a05bba50eacbf234bb4684dd227585f1733179203818",
+  "a_bounds_D": [
+    0.0,
+    6.0
+  ],
+  "b1_reference_px": [
+    [
+      -230.32956515248438,
+      125.13588749192634
+    ],
+    [
+      16.740027503040814,
+      -246.8928980604675
+    ],
+    [
+      213.5895376494437,
+      121.75701056854113
+    ]
+  ],
+  "b4_reference_px": [
+    [
+      164.19604567852755,
+      -97.79774592135293
+    ],
+    [
+      -11.016639568279922,
+      196.8061058032957
+    ],
+    [
+      -153.17940611024767,
+      -99.0083598819435
+    ]
+  ],
+  "baseline": "empirical_incremental",
+  "bootstrap_inverse_path": "experiments/distortion_model/stage_02_p1_reference_and_scale/results/attempt_02/bootstrap.json",
+  "bootstrap_inverse_sha256": "95485c470bf29055095f5123de67787bf20b883d040f6720c9cd718edb371864",
+  "center_basis": "[1,(A-Aref)/1D,theta/10deg,(A-Aref)/1D*theta/10deg,(theta/10deg)^2]",
+  "center_c3_reference_px": [
+    0.0,
+    0.0
+  ],
+  "center_coefficients_reference_px": [
+    [
+      24.00172633259722,
+      41.389133920007836
+    ],
+    [
+      -2.506867287850205,
+      1.7501911738723586
+    ],
+    [
+      195.99552948855123,
+      4.554731165665999
+    ],
+    [
+      -0.00031222835004527283,
+      -0.12397091736462457
+    ],
+    [
+      23.904901005423582,
+      0.6996623455271825
+    ]
+  ],
+  "coefficient_order": [
+    "b0",
+    "bA",
+    "s0",
+    "sA",
+    "c2"
+  ],
+  "config_sha256": "22649f11aec65870429a6c754f71ae6ab617efa416d8ec3dc2392489cd9775b8",
+  "covariance_hash": "9cf7a379a78472ab0a67321659ee6f1cd8c5ef000d0bcc674df39398c454c493",
+  "covariance_policy": "unchanged full raw relative covariance, not plug-in residual covariance",
+  "estimator_plan_sha256": "74c78372474bd453e295590009804fdc2d08833ec1fa705541ab0805c2dde8b7",
+  "fixed_free_roster": {
+    "fixed": [
+      "empirical omega1/omega4 separately fixed",
+      "P1 empirical template/origin/length",
+      "P4 template origin/RMS length",
+      "source identities/camera axes",
+      "Aref",
+      "degree2",
+      "no radial term"
+    ],
+    "free": [
+      "trace-free P1 alpha1/beta1 pair",
+      "P1 gamma1",
+      "m1",
+      "three P4 template tangent coordinates at fixed centroid/RMS radius",
+      "alpha4",
+      "beta4",
+      "gamma4",
+      "ten degree2 forward D coefficients"
+    ]
+  },
+  "gauges": "fixed empirical template centroid origins/lengths/camera axes; physical origins unknown",
+  "gaze_polynomial_target": "center_separation",
+  "k1_native": [
+    3.078764546567061e-05,
+    -3.078764546567061e-05,
+    2.8010187753748802e-06
+  ],
+  "k4_native": [
+    5.9335835822788324e-06,
+    2.7909145143294044e-05,
+    -1.250904747828287e-06
+  ],
+  "m1_per_D": -0.013851357576629081,
+  "mechanism": "DM0-M1",
+  "model_config_revision": "GX_reference_DM0_1degree_v1",
+  "native_baseline_angles": {
+    "P1_xi1_deg": 0.0,
+    "P4_xi4_deg": 0.0
+  },
+  "omega1_visual_deg": -10.020904111586926,
+  "omega4_visual_deg": -10.016974132845107,
+  "population_hash": "840e580212e1be89af1dbff7b7a79d8e9630c4143cad956d8048d0cf29beede5",
+  "scale_policy": "p1_profile_v1",
+  "schema": "distortion_dual_alignment_v1",
+  "scope": "matched reference calibration with separately declared state-bound numerical continuation",
+  "sign": "P4-P1",
+  "slots_hash": "def9614b8352fd1c82a0b4612cdafa25618e4e4c06d6d3834a145911ddb756de",
+  "source_hash": "33f56cf5efdf785cc9a33c03d76450e1e871ab8091d9b3880e9f2fa0eaa69a69",
+  "stage": "S7/G7",
+  "theory_sha256": "8a807332a55c2ac6a786cb2311bbb62895ce37dab9a0c0bf0f3fa884b4200a80",
+  "theta_bounds_deg": [
+    -20.0,
+    20.0
+  ],
+  "visual_degree": 2,
+  "P4_reference_template_before_joint_px": [
+    [
+      161.6313236459999,
+      -96.22833826738626
+    ],
+    [
+      -6.701549201206022,
+      197.4169918666808
+    ],
+    [
+      -154.92977444479394,
+      -101.18865359929526
+    ]
+  ],
+  "template_tangent_coordinates": [
+    -0.009391394252255469,
+    0.011003590106780661,
+    0.010990492412674581
+  ],
+  "template_tangent_basis": [
+    [
+      [
+        -0.6280835164479396,
+        0.0006568095070779058,
+        0.17809806615582466
+      ],
+      [
+        -0.40561513825907974,
+        -0.15804286968099185,
+        -0.6260471286180054
+      ]
+    ],
+    [
+      [
+        0.4758979043177769,
+        -0.6492799306618658,
+        -0.13494462794683296
+      ],
+      [
+        0.43635238272589005,
+        0.3242324296581334,
+        -0.11142095274494357
+      ]
+    ],
+    [
+      [
+        0.15218561213016277,
+        0.6486231211547879,
+        -0.043153438208991715
+      ],
+      [
+        -0.030737244466810337,
+        -0.16618955997714155,
+        0.7374680813629488
+      ]
+    ]
+  ],
+  "physical_centroid_constraint": {
+    "kind": "user-authorized continuous-domain sufficient 1degree bound",
+    "bound_deg": 1.0,
+    "accommodation_interval_D": [
+      0.0,
+      4.0
+    ],
+    "constraint_derivative_extension_D": [
+      0.0,
+      6.0
+    ],
+    "theta_domain_deg": [
+      -20.0,
+      20.0
+    ],
+    "interval_cells": 1920,
+    "theta_cell_width_deg": 0.5,
+    "A_cell_width_D": 0.25,
+    "reference_interval_min_gaze_slope_px_per_deg": 20.05400445170352,
+    "required_min_gaze_slope_px_per_deg": 10.02700222585176,
+    "allowed_max_accommodation_slope_px_per_D": 2.50675055646294,
+    "certified_min_gaze_slope_px_per_deg": 10.027002225871813,
+    "certified_max_abs_accommodation_slope_px_per_D": 2.506750556457927,
+    "certified_shift_equivalent_upper_bound_deg": 0.9999999999960003,
+    "minimum_normalized_slack": 1.999733711954832e-12,
+    "feasible": true,
+    "meaning": "H=D+mu4-mu1 at g=1; bound on horizontal centroid response. Inverse-angle guarantee applies where the monotone inverse lies in the declared theta domain. No bound on individual theta or fixation-mean deviation."
+  }
+}

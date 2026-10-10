@@ -4,11 +4,15 @@ Updated: 2026-10-10. Repository: `/home/aplab/ACC`.
 
 ## Decision
 
-**Stage 4 / S7 / G7 is COMPLETE_CERTIFIED_WITH_LIMIT / GO_WITH_LIMIT in attempt04.** G8 has not run and awaits separate authorization.
+**Stage 6 execution is complete with `STOP_UNCERTIFIED_ADJACENT`.** The control reference is calibrated and passed the full frozen G8 cross-check with `GO_WITH_LIMIT`. The adjacent reference remains uncertified, so its G8 inference was not run. `comparison_complete=false`; no paired optical ranking is available, and a subsequent optical stage is not justified.
 
-The current result is **G7 attempt04**, one reviewed constrained saved-point correction to attempt03. It meets the unchanged full-population 1e-6 stationarity and complementarity thresholds: global scaled KKT residual 4.24e-10 and state projected gradient 1.32e-13. All 89,175 valid state Jacobians have rank two; constrained profile curvature is positive with rank16; P1/P4 domains and the one-degree physical bound are valid. Independent public-optics reconstruction matches objective components within 2.28e-13, predictions within 3.41e-13 px, and g within 7.77e-16. The correction changes J by −5.9962e-12 and maximum predicted position by 6.19e-6 px; no material empirical improvement is claimed. `crosscheck_complete=false` and `comparison_complete=false`.
+The current Stage 6 control G7 fit has `J=1925.6013386760935`, state/global/complementarity residuals `3.92058e-12`, `6.36353e-8`, and `6.88043e-11`, each below the unchanged `1e-6` gate. The adjacent fit has `J=1925.8105580440379`, residuals `4.13310e-5`, `0.551904`, and `1.80740e-6`, and no certified start. These are operational-reference sensitivity fits; the adjacent failure is numerical, not evidence of optical inferiority.
 
-Stages 1–3 (G0–G5) and Stage 4's G6 have provisional GO_WITH_LIMIT decisions. G7 attempts01–03 and repair records remain preserved historical results. Attempt04 is the current certified numerical checkpoint, with the same G6 operational-reference lineage and attempt03 as its immediate parent. Compact results are historical attempt03 data and were not rerun for attempt04.
+Control G8 retains 100,090 frames and all 300,270 slots: 267,565 certified retained-input inversions, 267,525 scored, 32,705 retained-input-unavailable, zero unresolved/ambiguous, and 89,175 complete triples spanning all twenty exposures. Equal-exposure consistency metrics are `E=12.408526 px`, `Gtheta=0.477866 degrees`, and `GA=1.101718 D`. The independent audit confirms the frozen control parent and archived sources are unchanged. Adjacent G8 has zero attempted inversions; its complete expected roster is preserved and paired metrics are null.
+
+The [Stage 6 scientific review](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/SCIENTIFIC_REVIEW.md), [progress](experiments/distortion_model/stage_06_reference_sensitivity/docs/PROGRESS.md), [checkpoint](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/checkpoint.json), and [control G8 audit](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/g8_control/independent_audit.json) hold the reviewed evidence. The [boundary inspection](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/boundary_inspection/summary.json) shows a one-sided gaze-floor derivative change around `alpha4=0` with other globals/states fixed; it is not a generalized stationarity certificate. The next numerical investigation is one-sided/generalized stationarity and curvature at this interval kink, distinguishing NNLS near-active rows from actual complementarity. No further optical mechanism follows from the incomplete comparison.
+
+Stage 5's earlier G8 result remains a historical full-model consistency analysis and its metrics are unchanged. Its checkpoint and the Stage 4 G7 checkpoint remain immutable parents; Stage 6 results are recorded separately.
 
 ## Goal and model
 
@@ -87,7 +91,7 @@ This is native-pixel, unwhitened coordinate RMS with equal exposure weight. The 
 
 **Gaze-mean RMS is only label agreement:** it is the RMS of twenty fitted exposure-mean theta deviations from nominal labels. Its improvement does not establish physiological gaze accuracy.
 
-The user prefers measurement-prediction evaluation over target agreement. The saved compact P4 reports now include median and upper-percentile 2D errors, signed x/y residuals by condition, coverage, endpoints and bound strata, alongside the existing RMS. Full-population evaluation and separate P1/P4 reporting remain future work. Preserve the declared fitting objective when improving reporting.
+The user prefers measurement-prediction evaluation over target agreement. The saved compact P4 reports include median and upper-percentile 2D errors, signed x/y residuals by condition, coverage, endpoints and bound strata, alongside the existing RMS. Full-population held-P4 evaluation is complete in Stage 5 and for the certified Stage 6 control. Additional P1-specific validation remains future work; historical compact metrics above are unchanged. Preserve the declared fitting objective when improving reporting.
 
 ## Numerical certificate and audit
 
@@ -131,16 +135,31 @@ Attempt04 applies one reviewed constrained Newton correction to attempt03's sele
 
 Direct objective change is −5.9962e-12 and maximum predicted movement is 6.19e-6 px; maximum state changes are 1.70e-7 degrees and 6.28e-7 D. RMS changes by about 2e-8 px, so no material empirical improvement is claimed. Independent public-optics reconstruction on all valid rows matches components within 2.28e-13, predictions within 3.41e-13 px, g within 7.77e-16, and exposure means within 1.96e-14. All attempt03 parent files remain hash-identical.
 
-Attempt04 flags are `fit_complete=true`, `fit_certified=true`, `crosscheck_complete=false`, and `comparison_complete=false`. Compact evidence remains the attempt03 diagnostic: 300 scheduled, 270 scored, 30 unavailable; 90 complete triples across 20 exposures; E=41.8138 px, Gtheta=1.50113 degrees, GA=1.31867 D. The two largest rows contribute 94.3568% of E² and 91.8257% of Gtheta²; no cause is asserted and no row was trimmed. G8 awaits separate authorization.
+Attempt04 flags are `fit_complete=true`, `fit_certified=true`, `crosscheck_complete=false`, and `comparison_complete=false`; G8 did not alter these frozen parent flags. Its compact evidence remains the attempt03 diagnostic: 300 scheduled, 270 scored, 30 unavailable; 90 complete triples across 20 exposures; E=41.8138 px, Gtheta=1.50113 degrees, GA=1.31867 D. The two largest rows contribute 94.3568% of E² and 91.8257% of Gtheta²; no cause is asserted and no row was trimmed.
 
 Attempt04 has `fit_complete=true` and `fit_certified=true`; `crosscheck_complete=false` and `comparison_complete=false`. This is a limited numerical certificate under the declared model and user-authorized bound. No automated test suite was added or run for attempt04; verification consists of the full saved-point certificate and independent NumPy/public-optics reconstruction.
+
+## G8 cross-check
+
+G8 evaluated the frozen attempt04 model on all 100,090 reviewed rows. Across its three held-point routes, 267,565 slots were certified from valid retained inputs, 267,525 had an available held measurement and were scored, and 32,705 had unavailable retained inputs. There were no ambiguous or unresolved inversions. Independent audit confirmed all slots and source/parent hashes, matched predictions exactly and reproduced E/Gtheta/GA as 12.40853 px / 0.477866 degrees / 1.101718 D.
+
+The predeclared 110-row state diagnostic had 100 matched certified all-three inversions and deliberately overrepresents neighboring capture 2 rows; it is not full-period representative. On the 88 matched rows outside that neighbor case, all-three minus calibration RMS is 0.0399256 degrees / 0.0712533 D, and omission-minus-all-three RMS differences are: omit P4_0, 0.018119 degrees / 0.375236 D; omit P4_1, 0.549161 degrees / 0.520937 D; omit P4_2, 0.107763 degrees / 1.058980 D. The neighbor-enriched diagnostic gives larger omission-1 gaze disagreement (2.92557 degrees), so do not present it as representative of the full period. Omission of P4_2 retained only 7.92% median conditional accommodation information at the same all-three state. These are internal consistency and information diagnostics, not accuracy estimates. The pooled no-bound accommodation RMS is 0.752604 D with exposure 4 absent; equal-exposure GA over all 20 conditions is 1.101718 D (interior equal-exposure GA is 1.101624 D). The pooled statistic uses another population and weighting.
+
+Stage 5 G8 is COMPLETE_WITH_LIMIT / GO_WITH_LIMIT with scientific alignment/identifiability unresolved. Its full-schedule cross-check is complete, but `comparison_complete=false`; no alternative-model comparison or refit was performed there. The operational-reference follow-up using adjacent P4 `omega4=-5.0148989655383795°` versus current `omega4=-10.016974132845107°` was authorized and executed in Stage 6 with affected stages consistently reinitialized. Stage 6 stopped `STOP_UNCERTIFIED_ADJACENT`: control G8 passed with limits, adjacent G8 was not run, and paired comparison remains unavailable. Keep G7 attempt04 and its Stage 5 G8 parent immutable; do not infer model accuracy from lower point cost or subset agreement, or change separate rotation parameters at the same time.
 
 ## Next action
 
 1. Preserve attempt04 as the current numerically certified checkpoint and retain its GO_WITH_LIMIT restrictions.
-2. Keep G8 paused until its separate authorization. If authorized, evaluate the declared full withheld-point schedule with the frozen attempt04 model, retaining every missing/unresolved outcome; do not treat the historical attempt03 compact scores as an attempt04 evaluation.
+2. Investigate one-sided/generalized stationarity and curvature at the Stage 6 interval kink near `alpha4=0`, distinguishing NNLS near-active rows from actual complementarity, before attempting to complete the matched G8 comparison. Do not proceed to a new optical mechanism on the current evidence.
 
-Open scientific limits remain: empirical omega1/omega4 references are not independently established optical zeros; omega1 continuous uncertainty is unquantified; G3 discrete alternatives and physical accommodation calibration remain unresolved. Large compact prediction errors also remain unexplained.
+Open scientific limits remain: empirical omega1/omega4 references are not independently established optical zeros; omega1 continuous uncertainty is unquantified; G3 discrete alternatives and physical accommodation calibration remain unresolved. Full-period structured omission-1 residuals persist, omission of P4_2 has weak retained accommodation information, and the predeclared capture-2 neighborhood geometry remains anomalous.
+
+## G8 execution handoff
+
+- Reviewed result: [G8 scientific review](experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01/SCIENTIFIC_REVIEW.md), [summary/decision](experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01/scientific_review.json), [full report](experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01/REPORT.md), and [checkpoint](experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01/checkpoint.json).
+- The G8 checkpoint records `fit_complete=true`, `fit_certified=true`, `crosscheck_complete=true`, `diagnostic_three_way_complete=true`, and `comparison_complete=false`. It points to frozen G7 attempt04; the G7 parent checkpoint was not modified.
+- Reproduction from repository root into a fresh directory: `OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python experiments/distortion_model/stage_05_crosscheck_and_model_decision/scripts/run.py --output experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01_replay --chunk-size 8192`. Audit and report saved attempt01 without new inference using the corresponding `scripts/audit.py --attempt .../attempt_01` and `scripts/report.py --attempt .../attempt_01` commands.
+- The proposed operational-reference follow-up was executed in Stage 6 and stopped `STOP_UNCERTIFIED_ADJACENT`; see its [scientific review](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/SCIENTIFIC_REVIEW.md), [live progress](experiments/distortion_model/stage_06_reference_sensitivity/docs/PROGRESS.md), and [verification record](experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/verification.json). Control G8 is audited complete with limits; adjacent G8 was not run and the paired comparison remains incomplete.
 
 ## Files and execution handoff
 
@@ -168,6 +187,6 @@ The one-correction adoption can be reconstructed from the preserved probe into a
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/accept_g7_polish.py --output experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04_replay
 ```
 
-G8 has not run and awaits separate authorization. The crosscheck/comparison flags remain false; do not describe the historical attempt03 compact scores as an attempt04 evaluation.
+G8 attempt01 completed its frozen-model cross-check with GO_WITH_LIMIT. The G7 parent checkpoint's crosscheck/comparison flags remain false, and the G8 candidate-model comparison flag remains false. Do not describe the historical attempt03 compact scores as an attempt04 evaluation.
 
 Standing user preferences: root agent performs implementation and scientific audit; delegate mechanical work to **gpt-6-luna, low reasoning**. Execute shell commands outside the sandbox using the available escalation mechanism. Prefer vectorized/chunked GPU computation and appropriate parallelism. Keep experiment scripts, results, and reports organized by stage. Preserve unrelated working-tree changes; no commit or push has been requested.

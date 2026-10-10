@@ -1,0 +1,220 @@
+{
+  "label": "common",
+  "components": {
+    "cost": 1925.8727910062553,
+    "point": 1881.4995838212358,
+    "theta_anchor": 43.31977751311501,
+    "A_anchor": 1.0299702130017157,
+    "regularization": 0.023459458902726785,
+    "temporal": 0.0
+  },
+  "certificate": {
+    "state_projected_gradient_inf": 0.0008287478217102774,
+    "global_projected_gradient_inf": 496.4052916498347,
+    "stationarity_threshold": 1e-06,
+    "physical_centroid_constraint": {
+      "kind": "user-authorized continuous-domain sufficient 1degree bound",
+      "bound_deg": 1.0,
+      "accommodation_interval_D": [
+        0.0,
+        4.0
+      ],
+      "constraint_derivative_extension_D": [
+        0.0,
+        6.0
+      ],
+      "theta_domain_deg": [
+        -20.0,
+        20.0
+      ],
+      "interval_cells": 1920,
+      "theta_cell_width_deg": 0.5,
+      "A_cell_width_D": 0.25,
+      "reference_interval_min_gaze_slope_px_per_deg": 20.05400445170352,
+      "required_min_gaze_slope_px_per_deg": 10.02700222585176,
+      "allowed_max_accommodation_slope_px_per_D": 2.50675055646294,
+      "certified_min_gaze_slope_px_per_deg": 10.027002225806479,
+      "certified_max_abs_accommodation_slope_px_per_D": 2.5067505567128596,
+      "certified_shift_equivalent_upper_bound_deg": 1.0000000001042146,
+      "minimum_normalized_slack": -9.969869374515383e-11,
+      "feasible": true,
+      "meaning": "H=D+mu4-mu1 at g=1; bound on horizontal centroid response. Inverse-angle guarantee applies where the monotone inverse lies in the declared theta domain. No bound on individual theta or fixation-mean deviation."
+    },
+    "states_at_bounds": [
+      0,
+      7515
+    ],
+    "globals_at_bounds": [],
+    "active_physical_inequality_count": 3,
+    "KKT_multipliers": [
+      34.22024159022533,
+      3.080286546173223,
+      9.369398729220368
+    ],
+    "KKT_complementarity_inf": 9.34116814480775e-10,
+    "KKT_complementarity_threshold": 1e-06,
+    "constraint_derivative_method": "selected-endpoint forward automatic differentiation",
+    "nonsmooth_active_constraint_rows": [],
+    "constraint_derivative_status": "SMOOTH_ACTIVE_BRANCH",
+    "state_data_rank2_count": 89175,
+    "free_state_observed_curvature_positive": true,
+    "free_state_observed_curvature_status": "PASSED",
+    "free_state_eigenvalue_count": 170840,
+    "free_state_curvature_normalization": "observed per-frame Hessian divided by positive objective row weight; sign-only comparison with weighted historical census",
+    "negative_free_state_eigenvalue_count": 0,
+    "minimum_free_state_eigenvalue": 144.76790450397053,
+    "observed_profile_rank": 16,
+    "observed_profile_positive": true,
+    "profile_curvature_evaluated": true,
+    "profile_curvature_status": "PASSED",
+    "constraint_curvature": {
+      "active_branch_status": "SMOOTH",
+      "nonsmooth_rows": [],
+      "method": "selected-endpoint forward automatic differentiation, order2"
+    },
+    "observed_profile_curvature_eigenvalues": [
+      4.813618382163867e-05,
+      9.732000372840811e-05,
+      0.010914124791683135,
+      0.051044830650613014,
+      0.11972122987671036,
+      0.19110713937021664,
+      0.25305734712851746,
+      0.2686091779861361,
+      0.47747638655159946,
+      0.6057721134533683,
+      0.8088103748630248,
+      1.02770648051902,
+      1.7654498893403303,
+      2.7822794429576003,
+      3.2608728149613215,
+      4.377033191362309
+    ],
+    "constrained_tangent_dimension": 16,
+    "domain": {
+      "P1": {
+        "local_theta_bounds_deg": [
+          -9.979095888413074,
+          30.020904111586926
+        ],
+        "min_sx": 1.0,
+        "min_sy": 0.9726989260042861,
+        "min_denominator": 0.9798143428606597,
+        "valid_domain": true
+      },
+      "P4": {
+        "min_M": 0.9147715000147951,
+        "max_M": 1.0054459105421856,
+        "min_sx": 1.0,
+        "min_sy": 1.0,
+        "min_denominator": 0.9913969861276417,
+        "valid_domain": true
+      }
+    },
+    "fit_certified": false
+  },
+  "means": [
+    [
+      -10.351330398235543,
+      0.10588387667839337
+    ],
+    [
+      -4.049736778305914,
+      0.341598031948285
+    ],
+    [
+      1.3677298924235533,
+      0.04045230891162581
+    ],
+    [
+      6.4091597996190295,
+      0.15869404433286136
+    ],
+    [
+      10.325108507982469,
+      0.5792079238994573
+    ],
+    [
+      -9.575716494012925,
+      3.63222879656123
+    ],
+    [
+      -4.546142302390117,
+      4.090941939474969
+    ],
+    [
+      -0.07780964268706585,
+      3.9414121545061374
+    ],
+    [
+      4.176463572227586,
+      4.65382958200702
+    ],
+    [
+      7.8141429281742525,
+      3.9081703278149043
+    ],
+    [
+      -9.553650473151091,
+      3.328034301584988
+    ],
+    [
+      -4.163107171996352,
+      4.010804210764627
+    ],
+    [
+      0.26934437340010314,
+      3.534140739831647
+    ],
+    [
+      4.735342971754337,
+      3.263144850350362
+    ],
+    [
+      8.466817215739997,
+      2.989194302632759
+    ],
+    [
+      -9.490002534855806,
+      2.0694035353990237
+    ],
+    [
+      -3.8748097572618616,
+      2.361401656770746
+    ],
+    [
+      1.0067702007243566,
+      1.986641941155975
+    ],
+    [
+      5.492547034354764,
+      2.0670228274121105
+    ],
+    [
+      9.43792456913982,
+      1.6654441764851127
+    ]
+  ],
+  "elapsed_seconds": 352.20406883599935,
+  "scaled_globals": [
+    0.0030292296384331952,
+    0.006860797162754059,
+    -0.1511240175456509,
+    -0.00927696923852658,
+    0.010363677366977823,
+    0.010796972008774835,
+    0.001387436492579546,
+    0.0033673888911204173,
+    -0.002756931079070836,
+    0.12554722253372172,
+    0.21975890218698435,
+    -0.013172572632263402,
+    0.008867643150808876,
+    1.0320066075218874,
+    0.02308395822447159,
+    -1.876252756679846e-06,
+    -0.00014648334568297472,
+    0.1261323634353214,
+    0.002299469919168348
+  ]
+}

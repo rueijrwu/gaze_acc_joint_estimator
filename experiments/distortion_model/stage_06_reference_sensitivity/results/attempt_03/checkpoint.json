@@ -1,0 +1,82 @@
+{
+  "schema": "stage6_attempt03_reviewed_checkpoint_v1",
+  "status": "STOP_UNCERTIFIED_ADJACENT",
+  "execution_complete": true,
+  "fit_complete": true,
+  "fit_certified": false,
+  "control_fit_certified": true,
+  "adjacent_fit_certified": false,
+  "control_crosscheck_complete": true,
+  "adjacent_crosscheck_complete": false,
+  "crosscheck_complete": false,
+  "comparison_complete": false,
+  "next_optical_stage_decision": "NO_GO_UNTIL_CERTIFIED_COMPARISON",
+  "no_optical_ranking": true,
+  "primary_control": {
+    "E_px": 12.408526174302978,
+    "Gtheta_deg": 0.4778664312320905,
+    "GA_D": 1.1017175502634429
+  },
+  "adjacent_metrics": null,
+  "paired_metrics": null,
+  "root_review": "SCIENTIFIC_REVIEW.md",
+  "protocol_authority": "user requested next stage after completed G8",
+  "parents_and_evidence_sha256": {
+    "protocol.json": "22649f11aec65870429a6c754f71ae6ab617efa416d8ec3dc2392489cd9775b8",
+    "provenance.json": "33f56cf5efdf785cc9a33c03d76450e1e871ab8091d9b3880e9f2fa0eaa69a69",
+    "population.npz": "60bc317fdc90d5f8066cb939f720060279f40f51f3abbc3f361fad353a9f9560",
+    "covariance.npz": "ad64eb0c13fe4b91a2c987ed07df80ecaed6cee6abb1bbcb9c1757736defb5f6",
+    "control/checkpoint.json": "71f97b2a4209b9844d961652450ef494ef708dffa93487fd6ba0e46e692324d4",
+    "control/summary.json": "6de281f842b42b4b5eb349ac4b6f04d6d543f13b5c829574cc1000320ce22246",
+    "control/fitted.npz": "3ee265171ef3e9eb8c200bfd8a6537f53a7158dfb79587b85dca080c1cee27b6",
+    "control/independent_public_optics_audit.json": "46ab7cd547b34cf8d2071aeb591d2bfede2e8e6876be3c12113c5c8f9b7e3fe8",
+    "adjacent/checkpoint.json": "da89930d0e290dc9d5e890543860026b6dc909563662c8279cbacee890011188",
+    "adjacent/summary.json": "3411ef941fdf6c8436e5aadba90e819751584a8a4a50a2c913d4ae0597535123",
+    "adjacent/fitted.npz": "71de7faf5dd00419e7db2b2b8833b0c090513d26efb510f3499683b482eb912d",
+    "adjacent/independent_public_optics_audit.json": "7539c998329126f610fe5787e5eee66e60136f9bbe639ba8c44a414291ae8eb0",
+    "g8_control/checkpoint.json": "19c0957128459a906e70af77bfc3688d1c5286d3f7fa5cc461e5b007385daac4",
+    "g8_control/summary.json": "b76c49957a0d7e366667f537a45f04f77195a3bd7fbb4e0db7e16df5582d480b",
+    "g8_control/independent_audit.json": "33fbf2ebff997d4aa86d819aeef2a35f9c1a2c48cb9f34f77eb7a727da9826f4",
+    "g8_control/crosscheck.npz": "bdd7177dde791a33c33ad408ca2b373904953f576b8fa06c77c02dbac4715cbd",
+    "g8_control/metrics.json": "9d2ea26e3c0f429bc79f09ed46905e2eb7cf4b638fab307dcec4f82f9e82af9d",
+    "g8_control/provenance.json": "88289c95b649bd69fe2c783ee3f4c3f3d1f546e8d2e75ff7ba8511ff92e6aa8b",
+    "g8_adjacent/summary.json": "837e0004af886c7dc260d230ef7ba8a60b25ddf38b4256d1560a860baae3ce28",
+    "g8_adjacent/not_run_roster.npz": "51fcd55cfa32f1d1351368cc25d441e1e19d34ac1dcfc09ca27f6ef616d9d45f",
+    "comparison.json": "22f9ccbdaf87025fc4601b8db45b7a48e1f88c37719eb55d4f5dac75fe0a69a7",
+    "boundary_inspection/summary.json": "03b9e6f3110c48f7c5c609a60241ec2f6838ce383a814aed38e056ac7cf348b2",
+    "boundary_inspection/config.json": "cd1d615047b64130cdedcdeab92cd0833909d4321c06b39d565be51f80b3331a",
+    "boundary_inspection/source.py": "e3d3e2027c337668114abe57078d2401bf3ad87e2bf3a51a43c76085c46b346a",
+    "CALIBRATION_REVIEW.md": "a579517343223c50170f75677163bbfd93f61ef5d1f3f16f7c0deaad3e08e742",
+    "SCIENTIFIC_REVIEW.md": "1edf399fc83f95cbbad9ea688f3cd9bf656b79ff1b03709ff3ba1646f3b71e1f",
+    "summary.json": "3b79c3c0a2cfc4d32d5ffd73ec14e87a09e52c9aa9761637d78cdd1924aa91ef",
+    "comparison_source_snapshot/compare_saved.py": "8635b472b68fad4a29383aa22249ecb62b656c7f994323da058b1d0f7ba0aaaa",
+    "comparison_source_snapshot/record_uninferred.py": "798987f1b87405300d6c0d07f344125ea97a98a439c9f873644b5d78bac7889c"
+  },
+  "frozen_control_parent": {
+    "path": "experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_03/control/checkpoint.json",
+    "expected_sha256": "71f97b2a4209b9844d961652450ef494ef708dffa93487fd6ba0e46e692324d4",
+    "actual_sha256": "71f97b2a4209b9844d961652450ef494ef708dffa93487fd6ba0e46e692324d4",
+    "matches": true
+  },
+  "control_crosscheck": {
+    "checkpoint_path": "g8_control/checkpoint.json",
+    "status": "COMPLETE_WITH_LIMIT",
+    "decision": "GO_WITH_LIMIT",
+    "crosscheck_complete": true,
+    "audit_passed": true,
+    "parent_unchanged": true,
+    "archived_sources_match": true
+  },
+  "adjacent_unattempted_roster": {
+    "path": "g8_adjacent/not_run_roster.npz",
+    "status": "NOT_RUN_UNCERTIFIED_CALIBRATION",
+    "inference_attempted": 0,
+    "scheduled_slots": 300270
+  },
+  "boundary_inspection": {
+    "path": "boundary_inspection/summary.json",
+    "optimization_performed": false,
+    "inference_performed": false,
+    "source_sha256": "e3d3e2027c337668114abe57078d2401bf3ad87e2bf3a51a43c76085c46b346a"
+  }
+}

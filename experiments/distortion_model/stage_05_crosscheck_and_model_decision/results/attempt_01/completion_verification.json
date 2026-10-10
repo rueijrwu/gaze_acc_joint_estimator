@@ -1,0 +1,186 @@
+{
+  "kind": "mechanical G8 completion verification; no new inference or gate decision",
+  "markdown_documents_checked": [
+    "CURRENT_STATU.md",
+    "docs/stages/05_CROSSCHECK_AND_MODEL_DECISION.md",
+    "experiments/distortion_model/README.md",
+    "experiments/distortion_model/stage_04_center_and_dm0_calibration/docs/PROGRESS.md",
+    "experiments/distortion_model/stage_05_crosscheck_and_model_decision/README.md",
+    "experiments/distortion_model/stage_05_crosscheck_and_model_decision/docs/PROGRESS.md",
+    "experiments/distortion_model/stage_05_crosscheck_and_model_decision/docs/RESULTS.md",
+    "experiments/distortion_model/stage_05_crosscheck_and_model_decision/docs/STAGE_REPORT.md",
+    "experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01/REPORT.md",
+    "experiments/distortion_model/stage_05_crosscheck_and_model_decision/results/attempt_01/SCIENTIFIC_REVIEW.md"
+  ],
+  "missing_markdown_links": [],
+  "preflight_core_sha256_current": {
+    "distortion_model/inference.py": "363c45f581a9c83ddba5b2808760265e440bb5469cc5290f2dc8c19d1158f3f0",
+    "distortion_model/crosscheck.py": "33411f58e919bad70b099d54f619d0944a05e22b75cf3b5baacc64fc6bc0a9ee",
+    "experiments/distortion_model/stage_05_crosscheck_and_model_decision/scripts/audit.py": "0adce167008d827924b6c6b5641e88f3768713209284cc134d5a547812d44232"
+  },
+  "preflight_core_hashes_match_current": true,
+  "preflight_summary_sha256": "676f58356f72a9a786dee345b8800eeaba13e6a1ea2572fb9fe4969de0737f45",
+  "large_chunk_benchmark_sha256": "3cf0fdbc9686770ba8d7c1a54312db031662b4bef81493240406cccd65e84d53",
+  "final_artifact_sha256": {
+    "summary.json": "6a841e9075237eb5a126df4c97259b54b2cf1019b736fc082e703a41d19fa7db",
+    "checkpoint.json": "bdfff21a362f515f11ed0df955ec3be65916abebf3def588e19954622a59942b",
+    "independent_audit.json": "ac8a45019e4c94188a7ab243e2dcca55cba509e6c73017fe595e1ede160c3a5d",
+    "scientific_review.json": "78ae5a9c667e1e92db0904c39be93d1fb61c6418f5473314d3982ebdaca32a24",
+    "SCIENTIFIC_REVIEW.md": "c78f13b08cac8037ebd52b5664c4e7575761d83a2bdd18e90321271f429be6c9",
+    "REPORT.md": "444fdd8f94bf416b1e58d00e1fa9438197450a1b9c0c7e33ca009c42d93ecb92",
+    "postprocessing_provenance.json": "9a2a7f2d901949db8815a93a84e0d2dd4c82360d877f1915c423a5041cd5eade",
+    "report.log": "675e492aed89c67ad863dc7677370732690c2444f5f150203309ff9a426fcabe"
+  },
+  "current_report_script_sha256": "a0aa58b26c6bb574f085045bcab7b0b5be9fd8b1d305d610cb175d9deac5282f",
+  "postprocessing_source_sha256_matches_report_provenance": true,
+  "archived_run_sources": {
+    "count": 36,
+    "source_snapshot_matches_provenance": true,
+    "current_live_docs_or_postprocessor_compared_as_if_used_in_fit": false
+  },
+  "parent_files": {
+    "count": 47,
+    "match_run_provenance": true
+  },
+  "result_npz_sha256": {
+    "covariance.npz": "ad64eb0c13fe4b91a2c987ed07df80ecaed6cee6abb1bbcb9c1757736defb5f6",
+    "crosscheck.npz": "d8f7e2fa3aa1c259440654e9b202156d22dd5fd60e29bfe319f75608d5a23644",
+    "diagnostic_information.npz": "c3452177d6612a987f77908f6ea511b0ec7e336cd030c46f480dc85b9c349653",
+    "diagnostic_schedule.npz": "8da99d9345e75b7de8f8849351b4e282375eb1a36d8d32d148a4fde03fbc20ce",
+    "diagnostic_states.npz": "187373bdc3463c10af76d6111afc6921ebe2e367f2bc31bf91c5f74b380cf7ad",
+    "frame_metrics.npz": "af358495022a3770d4260ce39c96f21788f1effd82956fcecce5a865921eccc6",
+    "held_0.npz": "79ee05d5ff58c80977b37c00c9b6e7931ed738ef03d459c39fe20d85e99cf7b7",
+    "held_1.npz": "750e0ec9c565fcdb02cc4c50eacf1831ed462f6e663051607958bd5ff2546bda",
+    "held_2.npz": "e3ba4b6d59b5e70df31349a7a609f81ae5fb241968dd4db6fa4b63e22553a7de",
+    "population.npz": "60bc317fdc90d5f8066cb939f720060279f40f51f3abbc3f361fad353a9f9560",
+    "raw_geometry.npz": "4221c25214afbc34d8255003d85d258bba98f67058e6bc6c3971dedd931f73f3",
+    "slot_context.npz": "dac2ea4e7b2a4a28c9e7aeafeadd3314d8334dbe7abe8d0b175b1e0e5fe234f4"
+  },
+  "slot_context_shapes": {
+    "population_index": [
+      100090
+    ],
+    "held_point": [
+      100090,
+      3
+    ],
+    "calibration_status": [
+      100090,
+      3
+    ],
+    "calibration_frame_available": [
+      100090,
+      3
+    ],
+    "calibration_checkpoint_sha256": []
+  },
+  "point_exposure_aggregate_reconciliation": {
+    "total_groups": 360,
+    "exposure_point_groups": 60,
+    "five_block_point_groups": 300,
+    "exposure_totals": {
+      "scheduled": 300270,
+      "retained_input_valid": 267565,
+      "certified": 267565,
+      "scored": 267525,
+      "bound_active_scored": 40981
+    },
+    "block_totals": {
+      "scheduled": 300270,
+      "retained_input_valid": 267565,
+      "certified": 267565,
+      "scored": 267525,
+      "bound_active_scored": 40981
+    },
+    "match_full_run_metrics": true
+  },
+  "no_subset_at_bound_absent_exposures": [
+    4
+  ],
+  "schedule_partitions": {
+    "original_compact": {
+      "scheduled_rows": 100,
+      "matched_all3_rows": 90,
+      "all3_minus_calibration_theta_rms_deg": 0.04002591639954664,
+      "all3_minus_calibration_A_rms_D": 0.07127681699232813,
+      "omission_rms": [
+        {
+          "held_point": 0,
+          "matched_frames": 90,
+          "equal_exposure_theta_RMS_deg": 0.022223870871394755,
+          "equal_exposure_A_RMS_D": 0.5457391202013029
+        },
+        {
+          "held_point": 1,
+          "matched_frames": 90,
+          "equal_exposure_theta_RMS_deg": 1.7880888964747197,
+          "equal_exposure_A_RMS_D": 0.7207937099835995
+        },
+        {
+          "held_point": 2,
+          "matched_frames": 90,
+          "equal_exposure_theta_RMS_deg": 0.1474904568812008,
+          "equal_exposure_A_RMS_D": 1.1642308899194906
+        }
+      ]
+    },
+    "predeclared_neighbors": {
+      "scheduled_rows": 12,
+      "matched_all3_rows": 12,
+      "all3_minus_calibration_theta_rms_deg": null,
+      "all3_minus_calibration_A_rms_D": null,
+      "omission_rms": [
+        {
+          "held_point": 0,
+          "matched_frames": 12,
+          "equal_exposure_theta_RMS_deg": null,
+          "equal_exposure_A_RMS_D": null
+        },
+        {
+          "held_point": 1,
+          "matched_frames": 12,
+          "equal_exposure_theta_RMS_deg": null,
+          "equal_exposure_A_RMS_D": null
+        },
+        {
+          "held_point": 2,
+          "matched_frames": 12,
+          "equal_exposure_theta_RMS_deg": null,
+          "equal_exposure_A_RMS_D": null
+        }
+      ]
+    },
+    "outside_neighbor_case": {
+      "scheduled_rows": 98,
+      "matched_all3_rows": 88,
+      "all3_minus_calibration_theta_rms_deg": 0.039925580921582236,
+      "all3_minus_calibration_A_rms_D": 0.07125329671361555,
+      "omission_rms": [
+        {
+          "held_point": 0,
+          "matched_frames": 88,
+          "equal_exposure_theta_RMS_deg": 0.018119249548183676,
+          "equal_exposure_A_RMS_D": 0.3752356369207521
+        },
+        {
+          "held_point": 1,
+          "matched_frames": 88,
+          "equal_exposure_theta_RMS_deg": 0.5491610819844454,
+          "equal_exposure_A_RMS_D": 0.520936559597418
+        },
+        {
+          "held_point": 2,
+          "matched_frames": 88,
+          "equal_exposure_theta_RMS_deg": 0.10776257247543837,
+          "equal_exposure_A_RMS_D": 1.0589803847039219
+        }
+      ]
+    }
+  },
+  "console_logs_present": {
+    "console.log": true,
+    "independent_audit_console.log": true,
+    "report.log": true
+  },
+  "automated_repository_suite_run": false
+}

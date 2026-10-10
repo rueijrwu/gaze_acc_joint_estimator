@@ -1,0 +1,822 @@
+[
+  {
+    "step": 0,
+    "before": {
+      "state_projected_gradient_inf": 0.0008287478217102774,
+      "global_projected_gradient_inf": 496.4052916498347
+    },
+    "cost_before": 1925.8727910062553,
+    "trials": [
+      {
+        "damping": 0,
+        "step_fraction": 1.0,
+        "minimum_predicted_constraint_slack": 5.3407336653849e-08,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 1.6370316936020757e-05,
+        "minimum_actual_box_slack": 0.42302593555317425,
+        "active_physical_rows_before": [
+          0,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": true,
+        "reason": "accepted",
+        "stable_objective_change": {
+          "components": {
+            "point": -0.5184249231407864,
+            "theta_anchor": -0.3773464042820035,
+            "A_anchor": 0.6395857748756342,
+            "regularization": 0.0009443894617036233,
+            "temporal": 0.0
+          },
+          "total": -0.2552411630854521,
+          "maximum_prediction_change_px": 2.0098064806842046
+        },
+        "accumulated_cost_difference": -0.2552411630849747,
+        "cancellation_difference": 4.773959005888173e-13,
+        "numerical_allowance": 2.7368298432950486e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 0.006583124839873041,
+          "global_projected_gradient_inf": 51.71065358233536
+        },
+        "component_accumulated_differences": {
+          "point": -0.518424923140401,
+          "theta_anchor": -0.37734640428200095,
+          "A_anchor": 0.6395857748756353,
+          "regularization": 0.0009443894617036236,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 2,
+          "minimum_raw_slack": -5.536022523733308e-06,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 6.469754753202319e-08,
+          "correction_native": [
+            -8.360298225433617e-13,
+            -9.14808648155981e-12,
+            -3.1914899757331723e-13,
+            6.9234204329220086e-15,
+            -1.217938996482086e-14,
+            -1.793580420774043e-14,
+            -1.2079975433589406e-12,
+            0.0,
+            5.891426300850928e-13,
+            0.0,
+            0.0,
+            6.469754753202319e-08,
+            0.0,
+            1.6278908458279402e-09,
+            0.0,
+            -4.218152858739645e-09,
+            0.0,
+            -6.511563383311764e-09,
+            0.0
+          ]
+        }
+      }
+    ],
+    "subproblem": {
+      "method": "equilibrated null-space Lagrangian Newton; independent bordered KKT check",
+      "active_row_rank": 3,
+      "active_rows": 3,
+      "tangent_dimension": 16,
+      "physical_active_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "tangent_normalized_eigenvalues": [
+        0.012939814733503922,
+        0.02118639321507075,
+        0.10443269095213512,
+        0.1683028593072031,
+        0.24415444441451545,
+        0.2720121746905426,
+        0.38590520367111364,
+        0.4890007963727296,
+        0.5964086926879361,
+        0.8939166939496846,
+        1.0463570511012026,
+        1.3481623095930486,
+        1.7577353177902828,
+        2.363627721095139,
+        2.805867664253022,
+        3.4899901721728686
+      ],
+      "objective_full_space_min_eigenvalue": -26793.514448998612,
+      "lagrangian_full_space_min_eigenvalue": -26793.395744504807,
+      "subproblem_scaled_stationarity_inf": 1.9554136088117957e-11,
+      "subproblem_active_feasibility_inf": 1.6805853651530485e-16,
+      "subproblem_complementarity_inf": 1.7722601383128272e-15,
+      "minimum_multiplier": 3.2952502144303346,
+      "multipliers": [
+        34.382241334339554,
+        3.2952502144303346,
+        10.5454931065131
+      ],
+      "independent_route_scaled_step_difference_inf": 2.0957025983912804e-16,
+      "minimum_linearized_physical_slack": -1.1033112357755614e-16,
+      "minimum_linearized_box_slack": 0.42302593555335427,
+      "shared_step": [
+        4.964706236053024e-05,
+        0.0001959792439718867,
+        0.014636459181790275,
+        -0.00010636129711080572,
+        0.000654050483065954,
+        0.00019247986317919233,
+        -0.0008932666282967534,
+        -0.0006482040146708406,
+        0.00044133845788422955,
+        0.0007632984116482152,
+        -0.002437644754336838,
+        -5.846456936349606e-07,
+        0.00035008116820252756,
+        -0.002207335149058642,
+        0.0008976052888639456,
+        2.908208299084427e-07,
+        -0.0005080256216973133,
+        -0.0005448079462912828,
+        0.0015653889796217845
+      ],
+      "shared_step_scaled": [
+        0.00044744647483236787,
+        0.0005766049821032205,
+        0.0082544355385592,
+        -0.0005318064855540285,
+        0.0032702524153297697,
+        0.0009623993158959616,
+        -0.00804849968421007,
+        -0.0058404396202841125,
+        0.0026575786089980866,
+        0.0007632984116482152,
+        -0.002437644754336838,
+        -5.846456936349606e-07,
+        0.00035008116820252756,
+        -0.002207335149058642,
+        0.0008976052888639456,
+        2.908208299084427e-07,
+        -0.0005080256216973133,
+        -0.0005448079462912828,
+        0.0015653889796217845
+      ],
+      "predicted_reduced_quadratic_change": -0.29396912787330226,
+      "full_objective_directional_change": -0.5882039639884914,
+      "state_step_max_deg_D": [
+        0.07001748215039799,
+        0.6981469281483154
+      ],
+      "original_state_active_count": 8484,
+      "weak_active_policy": "reject rather than freeze weak active rows",
+      "tie_policy": "reject nonsmooth active branches; retain outward feasibility checks",
+      "state_working_set": [
+        {
+          "iteration": 0,
+          "working_bounds": 7510,
+          "new_lower": 1012,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        },
+        {
+          "iteration": 1,
+          "working_bounds": 8522,
+          "new_lower": 1,
+          "new_upper": 0,
+          "release_lower": 39,
+          "release_upper": 0
+        },
+        {
+          "iteration": 2,
+          "working_bounds": 8484,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        }
+      ],
+      "state_quadratic_scaled_stationarity_inf": 6.938893903907228e-17,
+      "final_state_bound_count": 8484,
+      "original_state_bound_count": 7510
+    },
+    "accepted": true
+  },
+  {
+    "step": 1,
+    "before": {
+      "state_projected_gradient_inf": 0.006583124839873041,
+      "global_projected_gradient_inf": 51.71065358233536
+    },
+    "cost_before": 1925.6175498431703,
+    "trials": [
+      {
+        "damping": 0,
+        "step_fraction": 1.0,
+        "minimum_predicted_constraint_slack": 6.791021552824544e-09,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 5.916386709436949e-07,
+        "minimum_actual_box_slack": 0.4219697816411554,
+        "active_physical_rows_before": [
+          0,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": true,
+        "reason": "accepted",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.005357161212097752,
+            "theta_anchor": 0.05522129943585411,
+            "A_anchor": -0.0767488923703332,
+            "regularization": -1.5397791060188425e-06,
+            "temporal": 0.0
+          },
+          "total": -0.01617197150148735,
+          "maximum_prediction_change_px": 0.17482456314408523
+        },
+        "accumulated_cost_difference": -0.016171971501762528,
+        "cancellation_difference": -2.751791849942009e-13,
+        "numerical_allowance": 2.7364671237864546e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 4.489291055965669e-05,
+          "global_projected_gradient_inf": 0.9824223928704093
+        },
+        "component_accumulated_differences": {
+          "point": 0.005357161211804851,
+          "theta_anchor": 0.05522129943584275,
+          "A_anchor": -0.076748892370335,
+          "regularization": -1.5397791060245414e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -9.026301328596276e-08,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 8.352027422919298e-10,
+          "correction_native": [
+            -1.0723296482629991e-13,
+            -1.1733752784520891e-12,
+            2.2077177089802997e-14,
+            4.388991832066876e-15,
+            -1.1259794050960863e-14,
+            -1.4746764783014905e-14,
+            -8.550092776130701e-14,
+            0.0,
+            1.6529826171690088e-13,
+            0.0,
+            0.0,
+            6.855740101027296e-10,
+            0.0,
+            2.0880068557298234e-10,
+            0.0,
+            -2.581724072573336e-10,
+            0.0,
+            -8.352027422919298e-10,
+            0.0
+          ]
+        }
+      }
+    ],
+    "subproblem": {
+      "method": "equilibrated null-space Lagrangian Newton; independent bordered KKT check",
+      "active_row_rank": 3,
+      "active_rows": 3,
+      "tangent_dimension": 16,
+      "physical_active_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "tangent_normalized_eigenvalues": [
+        0.01294007032860117,
+        0.021850747939035565,
+        0.10571478525304545,
+        0.1815814335088248,
+        0.24355073761875987,
+        0.28518877321001507,
+        0.38305785158825717,
+        0.5091383723103323,
+        0.6047106920740771,
+        0.8889815309077731,
+        1.0442259018330118,
+        1.2764063835391455,
+        1.7513593043397686,
+        2.4455743575328097,
+        2.779395159730293,
+        3.466323898286251
+      ],
+      "objective_full_space_min_eigenvalue": -32011.536355263826,
+      "lagrangian_full_space_min_eigenvalue": -32011.42045672743,
+      "subproblem_scaled_stationarity_inf": 1.0686562745831907e-11,
+      "subproblem_active_feasibility_inf": 6.508601166702044e-18,
+      "subproblem_complementarity_inf": 3.6909805624617e-17,
+      "minimum_multiplier": 3.3009462522533712,
+      "multipliers": [
+        34.39810461344249,
+        3.3009462522533712,
+        10.51403239057334
+      ],
+      "independent_route_scaled_step_difference_inf": 3.2170014185585775e-16,
+      "minimum_linearized_physical_slack": -3.510528049895448e-18,
+      "minimum_linearized_box_slack": 0.4219697816411429,
+      "shared_step": [
+        1.0277033382403998e-08,
+        -4.711999790495545e-08,
+        -0.0018727329750076879,
+        -6.421232303915745e-06,
+        -9.792823882084987e-06,
+        8.036803872958154e-07,
+        9.004594569346541e-05,
+        6.797181079706033e-05,
+        -5.213179769818997e-05,
+        -0.00016320403142220774,
+        0.0001632294823290137,
+        3.8471364786291756e-08,
+        -2.525229997883579e-05,
+        9.88782861533711e-05,
+        -2.5620813437989305e-05,
+        -4.1463219620533736e-08,
+        -3.821744008233218e-06,
+        2.363137360654704e-05,
+        -0.00016758145817724862
+      ],
+      "shared_step_scaled": [
+        9.26222447019748e-08,
+        -1.386352197204522e-07,
+        -0.0010561539120313628,
+        -3.210616151957872e-05,
+        -4.896411941042493e-05,
+        4.0184019364790765e-06,
+        0.0008113308417892538,
+        0.0006124387505424453,
+        -0.0003139185990622822,
+        -0.00016320403142220774,
+        0.0001632294823290137,
+        3.8471364786291756e-08,
+        -2.525229997883579e-05,
+        9.88782861533711e-05,
+        -2.5620813437989305e-05,
+        -4.1463219620533736e-08,
+        -3.821744008233218e-06,
+        2.363137360654704e-05,
+        -0.00016758145817724862
+      ],
+      "predicted_reduced_quadratic_change": -0.006497356809633605,
+      "full_objective_directional_change": -0.03174368972461597,
+      "state_step_max_deg_D": [
+        0.00912478247001644,
+        0.03031528078469484
+      ],
+      "original_state_active_count": 8427,
+      "weak_active_policy": "reject rather than freeze weak active rows",
+      "tie_policy": "reject nonsmooth active branches; retain outward feasibility checks",
+      "state_working_set": [
+        {
+          "iteration": 0,
+          "working_bounds": 8472,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 44,
+          "release_upper": 0
+        },
+        {
+          "iteration": 1,
+          "working_bounds": 8428,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 1,
+          "release_upper": 0
+        },
+        {
+          "iteration": 2,
+          "working_bounds": 8427,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        }
+      ],
+      "state_quadratic_scaled_stationarity_inf": 7.589415207398531e-18,
+      "final_state_bound_count": 8427,
+      "original_state_bound_count": 8472
+    },
+    "accepted": true
+  },
+  {
+    "step": 2,
+    "before": {
+      "state_projected_gradient_inf": 4.489291055965669e-05,
+      "global_projected_gradient_inf": 0.9824223928704093
+    },
+    "cost_before": 1925.6013778716685,
+    "trials": [
+      {
+        "damping": 0,
+        "step_fraction": 1.0,
+        "minimum_predicted_constraint_slack": -8.082833901367421e-10,
+        "minimum_actual_constraint_slack": 1.999955756559757e-12,
+        "maximum_constraint_linearization_error": 1.9981557186632415e-08,
+        "minimum_actual_box_slack": 0.42188353635206105,
+        "active_physical_rows_before": [
+          0,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": true,
+        "reason": "accepted",
+        "stable_objective_change": {
+          "components": {
+            "point": 0.004116206946501844,
+            "theta_anchor": 0.006776653909641353,
+            "A_anchor": -0.010929499810255719,
+            "regularization": -2.554028443971846e-06,
+            "temporal": 0.0
+          },
+          "total": -3.919298255649377e-05,
+          "maximum_prediction_change_px": 0.017938577955540325
+        },
+        "accumulated_cost_difference": -3.919298274013272e-05,
+        "cancellation_difference": -1.8363895202665875e-13,
+        "numerical_allowance": 2.7364441420327076e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 6.352491927104353e-07,
+          "global_projected_gradient_inf": 0.011301491008516962
+        },
+        "component_accumulated_differences": {
+          "point": 0.0041162069464917295,
+          "theta_anchor": 0.006776653909589925,
+          "A_anchor": -0.010929499810258259,
+          "regularization": -2.5540284439712346e-06,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -1.3212753113833742e-09,
+          "minimum_restored_slack": 1.999955756559757e-12,
+          "correction_scaled_inf": 7.108309955833638e-12,
+          "correction_native": [
+            -6.871969828848268e-16,
+            -7.519527342903051e-15,
+            3.3842560342421338e-16,
+            3.1705596310442614e-17,
+            -8.177805818663371e-17,
+            -1.0687807922226386e-16,
+            -5.27607431674517e-16,
+            0.0,
+            1.1815233448612783e-15,
+            0.0,
+            0.0,
+            3.5695578264157406e-12,
+            0.0,
+            1.3380909036609765e-12,
+            0.0,
+            -7.108309955833638e-12,
+            0.0,
+            -5.352363614643909e-12,
+            0.0
+          ]
+        }
+      }
+    ],
+    "subproblem": {
+      "method": "equilibrated null-space Lagrangian Newton; independent bordered KKT check",
+      "active_row_rank": 3,
+      "active_rows": 3,
+      "tangent_dimension": 16,
+      "physical_active_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "tangent_normalized_eigenvalues": [
+        0.012863525436148458,
+        0.021868719062708944,
+        0.10555943347454426,
+        0.1795383863272365,
+        0.24341896735850654,
+        0.2829803380955316,
+        0.37948571289339944,
+        0.5032804401014525,
+        0.6040070675970832,
+        0.889424524233385,
+        1.0452123065992143,
+        1.286312692192897,
+        1.7522982036008696,
+        2.442624518036608,
+        2.780228399451478,
+        3.4708967655389356
+      ],
+      "objective_full_space_min_eigenvalue": -32816.240856145894,
+      "lagrangian_full_space_min_eigenvalue": -32816.11835085589,
+      "subproblem_scaled_stationarity_inf": 1.1596057447604835e-11,
+      "subproblem_active_feasibility_inf": 1.8865541317721404e-18,
+      "subproblem_complementarity_inf": 1.9800232356543254e-17,
+      "minimum_multiplier": 3.293507359704773,
+      "multipliers": [
+        34.40289449164003,
+        3.293507359704773,
+        10.495448830797049
+      ],
+      "independent_route_scaled_step_difference_inf": 8.969038912979435e-17,
+      "minimum_linearized_physical_slack": -1.8865541317721404e-18,
+      "minimum_linearized_box_slack": 0.42188353635206083,
+      "shared_step": [
+        -1.223787149769945e-07,
+        -3.797820511645942e-07,
+        -0.000152926950311393,
+        -1.6398932655793487e-06,
+        -4.339758726415906e-06,
+        2.364292475171272e-07,
+        9.128044912747537e-06,
+        3.752125123577615e-06,
+        -1.276039201002506e-05,
+        -2.3324463078616332e-05,
+        6.572198106261148e-06,
+        7.870992081070752e-10,
+        4.396499802898253e-06,
+        1.651036678197169e-05,
+        -2.1783970560659464e-05,
+        -9.297797016384959e-09,
+        6.885413189513955e-06,
+        3.969428868058231e-06,
+        -2.066803330244888e-05
+      ],
+      "shared_step_scaled": [
+        -1.1029439005540077e-06,
+        -1.117384771860323e-06,
+        -8.624528909453334e-05,
+        -8.199466327896742e-06,
+        -2.1698793632079527e-05,
+        1.1821462375856358e-06,
+        8.224539490273814e-05,
+        3.380735036504538e-05,
+        -7.683840880499093e-05,
+        -2.3324463078616332e-05,
+        6.572198106261148e-06,
+        7.870992081070752e-10,
+        4.396499802898253e-06,
+        1.651036678197169e-05,
+        -2.1783970560659464e-05,
+        -9.297797016384959e-09,
+        6.885413189513955e-06,
+        3.969428868058231e-06,
+        -2.066803330244888e-05
+      ],
+      "predicted_reduced_quadratic_change": -3.857355301448091e-05,
+      "full_objective_directional_change": -7.826707649227047e-05,
+      "state_step_max_deg_D": [
+        0.0006153940484071477,
+        0.007616293782217749
+      ],
+      "original_state_active_count": 8415,
+      "weak_active_policy": "reject rather than freeze weak active rows",
+      "tie_policy": "reject nonsmooth active branches; retain outward feasibility checks",
+      "state_working_set": [
+        {
+          "iteration": 0,
+          "working_bounds": 8425,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 10,
+          "release_upper": 0
+        },
+        {
+          "iteration": 1,
+          "working_bounds": 8415,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        }
+      ],
+      "state_quadratic_scaled_stationarity_inf": 5.759824041329242e-19,
+      "final_state_bound_count": 8415,
+      "original_state_bound_count": 8425
+    },
+    "accepted": true
+  },
+  {
+    "step": 3,
+    "before": {
+      "state_projected_gradient_inf": 6.352491927104353e-07,
+      "global_projected_gradient_inf": 0.011301491008516962
+    },
+    "cost_before": 1925.6013386786858,
+    "trials": [
+      {
+        "damping": 0,
+        "step_fraction": 1.0,
+        "minimum_predicted_constraint_slack": 1.9958921712551053e-12,
+        "minimum_actual_constraint_slack": 1.999733711954832e-12,
+        "maximum_constraint_linearization_error": 1.4876988529977098e-14,
+        "minimum_actual_box_slack": 0.4218833347480198,
+        "active_physical_rows_before": [
+          0,
+          3840,
+          5759
+        ],
+        "active_physical_rows_after": [
+          0,
+          3840,
+          5759
+        ],
+        "center_sA_x_sign_changed": false,
+        "accepted": true,
+        "reason": "accepted",
+        "stable_objective_change": {
+          "components": {
+            "point": 6.340158117173367e-06,
+            "theta_anchor": 1.1529521245449487e-05,
+            "A_anchor": -1.7869950017948008e-05,
+            "regularization": -2.321587587124728e-09,
+            "temporal": 0.0
+          },
+          "total": -2.592242912279271e-09,
+          "maximum_prediction_change_px": 2.3267698622930766e-05
+        },
+        "accumulated_cost_difference": -2.5922872737282887e-09,
+        "cancellation_difference": -4.436144901768713e-14,
+        "numerical_allowance": 2.7364440863361293e-11,
+        "gradient_after": {
+          "state_projected_gradient_inf": 3.920581307520488e-12,
+          "global_projected_gradient_inf": 6.363531213082751e-08
+        },
+        "component_accumulated_differences": {
+          "point": 6.340158279272146e-06,
+          "theta_anchor": 1.1529521259490139e-05,
+          "A_anchor": -1.7869950017512792e-05,
+          "regularization": -2.321587581899376e-09,
+          "temporal": 0.0
+        },
+        "feasibility_correction": {
+          "method": "nearest declared-unit global correction; original nonlinear inequalities",
+          "maximum_iterations": 50,
+          "solver_success": true,
+          "solver_message": "Optimization terminated successfully",
+          "iterations": 1,
+          "minimum_raw_slack": -4.884981308350689e-15,
+          "minimum_restored_slack": 1.999733711954832e-12,
+          "correction_scaled_inf": 2.4797372607697475e-13,
+          "correction_native": [
+            -3.1837671826202436e-17,
+            -3.4837790323368865e-16,
+            5.371102002935885e-18,
+            1.3533556845120039e-18,
+            -3.486139861510855e-18,
+            -4.5619666191071254e-18,
+            -2.3910308939302883e-17,
+            0.0,
+            4.975608792626237e-17,
+            0.0,
+            0.0,
+            2.6350751812537508e-14,
+            0.0,
+            6.199343151924365e-14,
+            0.0,
+            -2.995628316929846e-17,
+            0.0,
+            -2.4797372607697475e-13,
+            0.0
+          ]
+        }
+      }
+    ],
+    "subproblem": {
+      "method": "equilibrated null-space Lagrangian Newton; independent bordered KKT check",
+      "active_row_rank": 3,
+      "active_rows": 3,
+      "tangent_dimension": 16,
+      "physical_active_indices": [
+        0,
+        3840,
+        5759
+      ],
+      "tangent_normalized_eigenvalues": [
+        0.01286138795441678,
+        0.02187083171321049,
+        0.10557141442233824,
+        0.17941245838694425,
+        0.24342948997928848,
+        0.2828650251579111,
+        0.37949125607449,
+        0.5030351648214438,
+        0.604014995021386,
+        0.889429735374575,
+        1.0452712200843715,
+        1.2863271762328703,
+        1.752360687619391,
+        2.4424422328258375,
+        2.7804262205704364,
+        3.471190703761086
+      ],
+      "objective_full_space_min_eigenvalue": -32753.089625800625,
+      "lagrangian_full_space_min_eigenvalue": -32752.967141083896,
+      "subproblem_scaled_stationarity_inf": 1.2505552149377763e-11,
+      "subproblem_active_feasibility_inf": 3.5684571625537614e-21,
+      "subproblem_complementarity_inf": 3.7452488613900536e-20,
+      "minimum_multiplier": 3.293498970039178,
+      "multipliers": [
+        34.402898381507065,
+        3.293498970039178,
+        10.495428950896446
+      ],
+      "independent_route_scaled_step_difference_inf": 4.2023444224199004e-16,
+      "minimum_linearized_physical_slack": -3.568043572247485e-21,
+      "minimum_linearized_box_slack": 0.4218833347480198,
+      "shared_step": [
+        -5.160108766965335e-11,
+        -1.730441100131959e-10,
+        -3.5747681438183703e-07,
+        -2.5910599332410006e-09,
+        -5.1606310914219275e-09,
+        4.3111853361069003e-10,
+        1.4504632927517197e-08,
+        5.701959189767649e-09,
+        -2.0513750977716103e-08,
+        -4.253061747600277e-08,
+        7.214094346647002e-09,
+        -5.315148992210148e-13,
+        1.2609858639297913e-08,
+        1.9241109533751798e-08,
+        -1.8431333347381342e-08,
+        -1.697308495521216e-11,
+        4.582785616142892e-09,
+        4.54929697586679e-09,
+        -3.308919326602279e-08
+      ],
+      "shared_step_scaled": [
+        -4.6505721945107573e-10,
+        -5.091258336088884e-10,
+        -2.0160404126399097e-07,
+        -1.2955299666205002e-08,
+        -2.5803155457109637e-08,
+        2.15559266805345e-09,
+        1.306894602782839e-07,
+        5.1375720624119974e-08,
+        -1.2352629782150685e-07,
+        -4.253061747600277e-08,
+        7.214094346647002e-09,
+        -5.315148992210148e-13,
+        1.2609858639297913e-08,
+        1.9241109533751798e-08,
+        -1.8431333347381342e-08,
+        -1.697308495521216e-11,
+        4.582785616142892e-09,
+        4.54929697586679e-09,
+        -3.308919326602279e-08
+      ],
+      "predicted_reduced_quadratic_change": -2.437581322549848e-09,
+      "full_objective_directional_change": -3.1729531802113488e-09,
+      "state_step_max_deg_D": [
+        1.1514863158049305e-06,
+        6.704308109222204e-06
+      ],
+      "original_state_active_count": 8415,
+      "weak_active_policy": "reject rather than freeze weak active rows",
+      "tie_policy": "reject nonsmooth active branches; retain outward feasibility checks",
+      "state_working_set": [
+        {
+          "iteration": 0,
+          "working_bounds": 8415,
+          "new_lower": 0,
+          "new_upper": 0,
+          "release_lower": 0,
+          "release_upper": 0
+        }
+      ],
+      "state_quadratic_scaled_stationarity_inf": 1.4889251025954498e-21,
+      "final_state_bound_count": 8415,
+      "original_state_bound_count": 8415
+    },
+    "accepted": true
+  }
+]

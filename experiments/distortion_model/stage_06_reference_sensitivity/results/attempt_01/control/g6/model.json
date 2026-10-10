@@ -1,0 +1,132 @@
+{
+  "Aref_D": 0.36036036036036034,
+  "Delta14_deg": 0.00392997874181944,
+  "P1_reference_path": "experiments/distortion_model/stage_02_p1_reference_and_scale/results/attempt_02/p1_reference.json",
+  "P1_reference_sha256": "3d46f3c4a7991c4b0accb313117ad05f901b3b015870987dc37712b3c460e3a7",
+  "P4_reference_path": "experiments/distortion_model/stage_03_p4_baseline_and_deformation/results/attempt_01/p4_reference.json",
+  "P4_reference_sha256": "e997bf9e79fb7f974407a05bba50eacbf234bb4684dd227585f1733179203818",
+  "a_bounds_D": [
+    0.0,
+    6.0
+  ],
+  "b1_reference_px": [
+    [
+      -230.32956515248438,
+      125.13588749192634
+    ],
+    [
+      16.740027503040814,
+      -246.8928980604675
+    ],
+    [
+      213.5895376494437,
+      121.75701056854113
+    ]
+  ],
+  "b4_reference_px": [
+    [
+      161.6313236459999,
+      -96.22833826738626
+    ],
+    [
+      -6.701549201206022,
+      197.4169918666808
+    ],
+    [
+      -154.92977444479394,
+      -101.18865359929526
+    ]
+  ],
+  "baseline": "empirical_incremental",
+  "bootstrap_inverse_path": "experiments/distortion_model/stage_02_p1_reference_and_scale/results/attempt_02/bootstrap.json",
+  "bootstrap_inverse_sha256": "95485c470bf29055095f5123de67787bf20b883d040f6720c9cd718edb371864",
+  "center_basis": "[1,(A-Aref)/1D,theta/10deg,(A-Aref)/1D*theta/10deg,(theta/10deg)^2]",
+  "center_c3_reference_px": [
+    0.0,
+    0.0
+  ],
+  "center_coefficients_reference_px": [
+    [
+      49.01847187723217,
+      51.13192591579176
+    ],
+    [
+      0.4362076841312269,
+      0.7208089465546236
+    ],
+    [
+      205.4736645395964,
+      8.950483549521197
+    ],
+    [
+      0.28332891254705983,
+      -0.6496042700590016
+    ],
+    [
+      1.2023250857518302,
+      0.13273655229720935
+    ]
+  ],
+  "coefficient_order": [
+    "b0",
+    "bA",
+    "s0",
+    "sA",
+    "c2"
+  ],
+  "config_sha256": "cd2a6f59ff37db2b7d43f62140985e1b25c1507ba18f5c49ddcc206185260024",
+  "covariance_hash": "9cf7a379a78472ab0a67321659ee6f1cd8c5ef000d0bcc674df39398c454c493",
+  "covariance_policy": "unchanged full raw relative covariance, not plug-in residual covariance",
+  "estimator_plan_sha256": "74c78372474bd453e295590009804fdc2d08833ec1fa705541ab0805c2dde8b7",
+  "fixed_free_roster": {
+    "fixed": [
+      "G5 individual theta/A",
+      "G2 positive P1 g",
+      "both optical references and zeros",
+      "G5 DM0-M1 and K4",
+      "template length/origin and camera axes"
+    ],
+    "free": [
+      "b0_x/y",
+      "bA_x/y",
+      "s0_x/y",
+      "sA_x/y",
+      "c2_x/y"
+    ]
+  },
+  "gauges": "fixed empirical template centroid origins/lengths/camera axes; physical origins unknown",
+  "gaze_polynomial_target": "center_separation",
+  "k1_native": [
+    2.297252066776559e-05,
+    -2.297252066776559e-05,
+    1.5055409656203467e-06
+  ],
+  "k4_native": [
+    -2.8221205967585845e-05,
+    8.868510271371706e-05,
+    1.275169144926737e-05
+  ],
+  "m1_per_D": -0.019077930364378454,
+  "mechanism": "DM0-M1",
+  "model_config_revision": "S6_G6_degree2_M1_v1",
+  "native_baseline_angles": {
+    "P1_xi1_deg": 0.0,
+    "P4_xi4_deg": 0.0
+  },
+  "omega1_visual_deg": -10.020904111586926,
+  "omega4_visual_deg": -10.016974132845107,
+  "population_hash": "840e580212e1be89af1dbff7b7a79d8e9630c4143cad956d8048d0cf29beede5",
+  "scale_policy": "p1_profile_v1",
+  "schema": "distortion_dual_alignment_v1",
+  "scope": "fresh reference-specific G4-G6 initialization; original population/covariance/P1 reference retained",
+  "sign": "P4-P1",
+  "slots_hash": "def9614b8352fd1c82a0b4612cdafa25618e4e4c06d6d3834a145911ddb756de",
+  "source_hash": "acb145815227c40fe85ad881e824d9826661e30d668260f260f658943445fa21",
+  "stage": "S6/G6",
+  "theory_sha256": "8a807332a55c2ac6a786cb2311bbb62895ce37dab9a0c0bf0f3fa884b4200a80",
+  "theta_bounds_deg": [
+    -20.0,
+    20.0
+  ],
+  "visual_degree": 2
+}

@@ -1,0 +1,81 @@
+{
+  "stage": "GX/reference sensitivity",
+  "authority": "user requested next stage after completed G8",
+  "candidates": {
+    "control": {
+      "omega4_deg": -10.016974132845107,
+      "reference_exposure": 0
+    },
+    "adjacent": {
+      "omega4_deg": -5.0148989655383795,
+      "reference_exposure": 1
+    }
+  },
+  "population": "all100090 scheduled frames;89175complete;20exposures;no trimming",
+  "intervention": "one P4 reference convention; empirical baseline and affected G4-G8 stages refit consistently",
+  "fixed": "omega1/source identities/camera axes, covariance, domains, anchors .10deg/.25D, zero temporal penalty, DM0-M1 degree2 family",
+  "prior_policy": "template tangent sigma.10 and normalized D c2 prior; native radius and template gauge recorded per reference",
+  "initialization": "fresh G2 theta/g and provisional demand A; near-window G4 then all-row G5 then exact G6 D solve",
+  "conditional_starts": "G4 measured projection slope and1.5times;G5 fixed-G4 keystone seed and zero keystone;matched identity baseline also recorded",
+  "joint_starts": [
+    "fresh own G6 common",
+    "PCG64seed20261010 same scaled/global and state perturbations"
+  ],
+  "max_outer": 48,
+  "joint_steps": 4,
+  "polish_steps": 12,
+  "chunk_size": 32768,
+  "stationarity_threshold": 1e-06,
+  "budget_policy": "two fresh starts per reference; fixed48outer and12repairedpolish; preserve uncertified outcomes without ranking",
+  "bound_deg": 1.0,
+  "shared_slope_floor": 10.02700222585176,
+  "bound_policy": "same numeric certified G7 slope floor across references; do not recompute a different physical constraint from each G6",
+  "G8_policy": "identical50starts,8192rowchunks,full300270slots;only certified and reviewed globals enter inference",
+  "comparison_policy": "exactcommonframe/point identities;all-scheduled coverage, paired20exposure E/Gtheta/GA, point1signedaxes/timeblocks, bounds and conditional A information",
+  "diagnostic_schedule": "same original100compact union capture2rows6794..6805 as G8",
+  "selection": "lowest J among numerically certified starts; cross-error never selects a fit",
+  "scientific_scope": "operational-reference/model-family sensitivity; not physical zero or physiological ground truth",
+  "numerical_continuation": {
+    "source_campaign": "experiments/distortion_model/stage_06_reference_sensitivity/results/attempt_02",
+    "reason": "a near-active census row with positive slack was incorrectly initialized as a tight primal equality",
+    "method": "same observed Lagrangian Newton; initialize primal working set from actually tight constraints",
+    "total_continuation_step_budget_per_original_start": 12,
+    "previous_attempted_steps": {
+      "control": {
+        "common": 4,
+        "perturbed": 4
+      },
+      "adjacent": {
+        "common": 3,
+        "perturbed": 3
+      }
+    },
+    "remaining_steps": {
+      "control": {
+        "common": 8,
+        "perturbed": 8
+      },
+      "adjacent": {
+        "common": 9,
+        "perturbed": 9
+      }
+    },
+    "state_working_set_max_iterations": 32,
+    "global_working_set_max_iterations": 96,
+    "primal_tight_slack_threshold": 1e-10,
+    "nonlinear_feasibility_correction_max_iterations": 50,
+    "correction_policy": "nearest declared-unit global feasibility correction; re-evaluate same original J and actual inequalities",
+    "starts": [
+      "common",
+      "perturbed"
+    ],
+    "matched_candidates": [
+      "control",
+      "adjacent"
+    ],
+    "same_objective": true,
+    "same_thresholds": true,
+    "original_budget_outcomes_preserved": true,
+    "global_working_set_policy": "current smooth NNLS multipliers define the Hessian; truly tight rows initialize the releasable primal working set; all near-active and inactive rows remain inequalities; positive tangent curvature, independent bordered solve and full nonlinear feasibility guards retained"
+  }
+}
