@@ -1,0 +1,218 @@
+{
+  "status": "PASS",
+  "independent_CPU": true,
+  "checks": {
+    "A0": {
+      "independent_forward_difference_px": 1.9895196601282805e-13,
+      "all_frame_Jacobian_relative_error_max": 1.0862615346286902e-09,
+      "synthetic_closure_px": 1.7053025658242404e-12,
+      "conditioning_near_bounds_and_inverse_failures": {
+        "p4": {
+          "near_bound_frames": 1240,
+          "near_bound_condition": {
+            "count": 1240,
+            "finite": 1240,
+            "mean": 39.55265251778405,
+            "std": 15.577751494793723,
+            "median": 39.48363514249927,
+            "p95": 39.56221435327333,
+            "rms": 42.50974785653423
+          },
+          "near_bound_acute_angle_deg": {
+            "count": 1240,
+            "finite": 1240,
+            "mean": 87.43132722720104,
+            "std": 0.1251428410542642,
+            "median": 87.40482389852836,
+            "p95": 87.70517824523317,
+            "rms": 87.43141678733437
+          },
+          "inverse_failure_condition": {
+            "count": 0,
+            "finite": 0,
+            "mean": null,
+            "std": null,
+            "median": null,
+            "p95": null,
+            "rms": null
+          }
+        },
+        "joint": {
+          "near_bound_frames": 1240,
+          "near_bound_condition": {
+            "count": 1240,
+            "finite": 1240,
+            "mean": 26.04105363254592,
+            "std": 3.230329520423264,
+            "median": 26.368325032913482,
+            "p95": 26.42225277486062,
+            "rms": 26.24064601155336
+          },
+          "near_bound_acute_angle_deg": {
+            "count": 1240,
+            "finite": 1240,
+            "mean": 88.2904326866188,
+            "std": 0.10555698341105046,
+            "median": 88.26713822040543,
+            "p95": 88.49300068945983,
+            "rms": 88.29049578673296
+          },
+          "inverse_failure_condition": {
+            "count": 0,
+            "finite": 0,
+            "mean": null,
+            "std": null,
+            "median": null,
+            "p95": null,
+            "rms": null
+          }
+        }
+      }
+    },
+    "G": {
+      "independent_forward_difference_px": 1.9895196601282805e-13,
+      "all_frame_Jacobian_relative_error_max": 1.1109761373560152e-09,
+      "synthetic_closure_px": 1.7053025658242404e-13,
+      "conditioning_near_bounds_and_inverse_failures": {
+        "p4": {
+          "near_bound_frames": 1323,
+          "near_bound_condition": {
+            "count": 1323,
+            "finite": 1323,
+            "mean": 70.97612746668989,
+            "std": 1.9617411439795627,
+            "median": 71.05164207893772,
+            "p95": 71.06468749158068,
+            "rms": 71.00323301430574
+          },
+          "near_bound_acute_angle_deg": {
+            "count": 1323,
+            "finite": 1323,
+            "mean": 88.19204055305872,
+            "std": 0.25159887879967785,
+            "median": 88.12238872141847,
+            "p95": 88.61665965598445,
+            "rms": 88.19239943956717
+          },
+          "inverse_failure_condition": {
+            "count": 0,
+            "finite": 0,
+            "mean": null,
+            "std": null,
+            "median": null,
+            "p95": null,
+            "rms": null
+          }
+        },
+        "joint": {
+          "near_bound_frames": 1323,
+          "near_bound_condition": {
+            "count": 1323,
+            "finite": 1323,
+            "mean": 26.806176982444786,
+            "std": 0.5650778163135747,
+            "median": 26.824718784497723,
+            "p95": 26.82503315725708,
+            "rms": 26.812132279112795
+          },
+          "near_bound_acute_angle_deg": {
+            "count": 1323,
+            "finite": 1323,
+            "mean": 89.316196452884,
+            "std": 0.1021743811282848,
+            "median": 89.2907353174762,
+            "p95": 89.47726700933066,
+            "rms": 89.31625489469612
+          },
+          "inverse_failure_condition": {
+            "count": 0,
+            "finite": 0,
+            "mean": null,
+            "std": null,
+            "median": null,
+            "p95": null,
+            "rms": null
+          }
+        }
+      },
+      "projected_gradient_inf": 9.661920606424296e-11,
+      "independent_gradient_relative_error_max": 2.8794910808792254e-09,
+      "independent_Hessian_relative_error_max": 1.207644502867429e-06,
+      "independent_minimum_free_frame_curvature": 0.00012114131919815918,
+      "objective_equal_fixation_px2": 3.554731395109326
+    },
+    "GA": {
+      "independent_forward_difference_px": 1.7053025658242404e-13,
+      "all_frame_Jacobian_relative_error_max": 1.1036786722655192e-09,
+      "synthetic_closure_px": 1.3073986337985843e-12,
+      "conditioning_near_bounds_and_inverse_failures": {
+        "p4": {
+          "near_bound_frames": 2533,
+          "near_bound_condition": {
+            "count": 2533,
+            "finite": 2533,
+            "mean": 50.180944022641,
+            "std": 21.89732719139775,
+            "median": 70.90055990931742,
+            "p95": 71.1156643580586,
+            "rms": 54.75052585254827
+          },
+          "near_bound_acute_angle_deg": {
+            "count": 2533,
+            "finite": 2533,
+            "mean": 87.84880112847617,
+            "std": 0.40681739651449855,
+            "median": 87.95292360896667,
+            "p95": 88.54960191802643,
+            "rms": 87.84974308502365
+          },
+          "inverse_failure_condition": {
+            "count": 0,
+            "finite": 0,
+            "mean": null,
+            "std": null,
+            "median": null,
+            "p95": null,
+            "rms": null
+          }
+        },
+        "joint": {
+          "near_bound_frames": 2533,
+          "near_bound_condition": {
+            "count": 2533,
+            "finite": 2533,
+            "mean": 22.094328931528636,
+            "std": 4.985314926460347,
+            "median": 26.814063128785968,
+            "p95": 26.827970612236854,
+            "rms": 22.649784454836908
+          },
+          "near_bound_acute_angle_deg": {
+            "count": 2533,
+            "finite": 2533,
+            "mean": 88.89552389723241,
+            "std": 0.4489429571733653,
+            "median": 89.22734095113715,
+            "p95": 89.45157434946601,
+            "rms": 88.89665752289123
+          },
+          "inverse_failure_condition": {
+            "count": 0,
+            "finite": 0,
+            "mean": null,
+            "std": null,
+            "median": null,
+            "p95": null,
+            "rms": null
+          }
+        }
+      },
+      "projected_gradient_inf": 2.1927252858209033e-08,
+      "independent_gradient_relative_error_max": 2.6343377989076443e-09,
+      "independent_Hessian_relative_error_max": 6.914367635338887e-07,
+      "independent_minimum_free_frame_curvature": 0.00012478469707750872,
+      "objective_equal_fixation_px2": 2.5225703009882947
+    }
+  },
+  "scope": "All frames: immutable input/baseline replay, independent forward oracle, Jacobian/gradient/Hessian finite differences, projected stationarity, sufficient free curvature, synthetic inverse closure. No physiological or global-optimum certification."
+}

@@ -1,0 +1,68 @@
+{
+  "models": [
+    "A0",
+    "G",
+    "GA"
+  ],
+  "sampled_triangle_clouds": {
+    "A0_P1": {
+      "seed": 5705,
+      "frames": 600,
+      "common_valid": 24280
+    },
+    "G_P1": {
+      "seed": 5705,
+      "frames": 600,
+      "common_valid": 24280
+    },
+    "GA_P1": {
+      "seed": 5705,
+      "frames": 600,
+      "common_valid": 24280
+    },
+    "A0_P4": {
+      "seed": 5706,
+      "frames": 600,
+      "common_valid": 24280
+    },
+    "G_P4": {
+      "seed": 5706,
+      "frames": 600,
+      "common_valid": 24280
+    },
+    "GA_P4": {
+      "seed": 5706,
+      "frames": 600,
+      "common_valid": 24280
+    }
+  },
+  "triangle_cloud_seed_policy": "5705 + pattern_index, shared across A0/G/GA; up to 120 rows per fixation",
+  "triangle_coordinates": "Recovered native reference coordinates; no rotation alignment or radius normalization.",
+  "state_error_bars": "Within-fixation standard deviation; not uncertainty of the mean.",
+  "conditioning": "Raw condition numbers use degree and diopter coordinates; acute angles are unit-invariant.",
+  "anchor_widths": {
+    "gaze_mean_deg": 0.5,
+    "A_mean_D": 0.25
+  },
+  "G_GA_P1_P4_weights": {
+    "P1": 1.0,
+    "P4": 1.0
+  },
+  "fit_artifact_sha256": {
+    "summary.json": "e7bee01891c99635f2cccfa4457a9406f113c751fc53cdf4838ea3dab75c16c6",
+    "frames.npz": "6b629fc6962fcb3a5fec7619f198ba9ab825612fe75eac7f91fe605b193df9ce",
+    "audit.json": "c3fd853fd631eb4f25397cd94c692a68007a3bb43561980283377dda801b8312",
+    "protocol.json": "a3f4590457d67b694fd5e382bb7d6ab55a186949bb8f32592aa5ec6b9d48ae87",
+    "provenance.json": "673bb640a7ea0199fbc175ac8017f570a517e7bac0b9f50a1b2293a084976c26"
+  },
+  "plot_script_sha256": "ac23791b9889f35aaadde1342fbb886e3745f494f865c02b63c3e730f79d28b4",
+  "plot_script_snapshot": "experiments/reverse_transform/stage_05_capture1_state_ablation/scripts/plot_results.py",
+  "plot_output_sha256": {
+    "state_means_by_fixation.png": "b265d3d8744011918ec07f2c7e319da4b31c271a53005a03e9e53ff7276542ec",
+    "forward_inverse_metrics_by_fixation.png": "92a3cb8438a339557862f43f384dad5554e6f6f080ff8644b3bbb90a1817d05d",
+    "corrected_triangle_means_clouds.png": "fadf1de610d98ad73d3429486e48bf76fb757bc607c0ae3c06677f5181dc0a2f",
+    "conditioning_by_fixation.png": "b46d4a358e0c316711e4b0ee57686f53b316a237fd4633d44c12a1bd53c5829b",
+    "states_by_source_row.png": "b35b8eca241f88bbd68d35ffbf74e4e8bea3e20294b797f9d975906a2f2e6b46",
+    "delta_gaze_vs_delta_A.png": "b9c63965a28c4e7f8a89576325959c4bdfcd05abdf3ebc0ed0ed06df7ae5ca11"
+  }
+}
