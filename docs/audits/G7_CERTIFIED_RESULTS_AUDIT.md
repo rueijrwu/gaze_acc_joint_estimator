@@ -71,10 +71,10 @@ Use evidence to choose **one** later optical follow-up: correspondence repair; o
 
 ## Primary evidence
 
-- [Attempt04 report](../../experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/STAGE_REPORT.md)
-- [Attempt04 verification](../../experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/verification.json)
-- [Independent public-optics audit](../../experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/independent_public_optics_audit.json)
-- [Saved compact empirical diagnostics](../../experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_polish_repair_01/empirical_diagnostics/REPORT.md)
-- [Stage 4 resume pointer](../../experiments/distortion_model/stage_04_center_and_dm0_calibration/docs/PROGRESS.md)
+- [Attempt04 report](../../experiments/archive/distortion_model/stage_04_center_and_dm0_calibration.md) (archived from `experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/STAGE_REPORT.md`)
+- [Attempt04 verification](../../experiments/archive/distortion_model/stage_04_center_and_dm0_calibration.json) (bundle component `experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/verification.json`)
+- [Independent public-optics audit](../../experiments/archive/distortion_model/stage_04_center_and_dm0_calibration.json) (bundle component `experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04/independent_public_optics_audit.json`)
+- [Saved compact empirical diagnostics](../../experiments/archive/distortion_model/stage_04_center_and_dm0_calibration.md) (archived from `experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_polish_repair_01/empirical_diagnostics/REPORT.md`)
+- [Stage 4 resume pointer](../../experiments/archive/distortion_model/stage_04_center_and_dm0_calibration.md) (archived from `experiments/distortion_model/stage_04_center_and_dm0_calibration/docs/PROGRESS.md`)
 
 **Review limitation:** This is a source and saved-result audit, not an independent full-array rerun or new empirical calibration.
