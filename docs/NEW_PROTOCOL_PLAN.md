@@ -1,5 +1,7 @@
 # New protocol: mean initialization, framewise alternation, and joint calibration
 
+> **Implementation update (2026-10-10):** Revision 2 has since been implemented through canonical Stage 05; Stage 03 passes joint-fit review and Stage 05 supports conditional within-recording geometry. The “not implemented” status below records the state when Revision 2 was published. See [current status](CURRENT_STATUS.md) and the [implementation audit](audits/NEW_PROTOCOL_IMPLEMENTATION_AUDIT.md).
+
 Revision 2, 2026-10-10. Status: REVISED SPECIFICATION / NOT IMPLEMENTED.
 
 This revision incorporates [NEW_PROTOCOL_PLAN_AUDIT.md](NEW_PROTOCOL_PLAN_AUDIT.md). It is the current execution plan and supersedes the earlier sequence in [SHARED_KEYSTONE_CALIBRATION_PLAN.md](SHARED_KEYSTONE_CALIBRATION_PLAN.md). The [shared-keystone audit](SHARED_KEYSTONE_CALIBRATION_AUDIT.md) remains relevant. No revised estimator has been implemented or run.
@@ -182,3 +184,9 @@ Create new outputs under `experiments/reverse_transform/shared_keystone/`:
 Every saved run includes protocol.json, provenance.json, immutable source snapshot, summary.json, frames.npz, audit.json, RESULTS.md and plots as appropriate; use a scientific review for the paired comparison. Hash initial and accepted anchor/parameter manifests and retain all scheduled row identities. Document-only audit closure is not numerical audit PASS.
 
 A successful numerical fit retains the declared population and passes its equation/derivative/domain/stationarity audit. Scientific promotion additionally requires stable response parameters under the declared controls and defensible held-out geometry. A flatter A curve, lower training SSE, or bounds that suppress gauge motion are insufficient alone. Preserve canonical raw Stages 01–06. No implementation, fit, commit or push is part of this document update.
+
+## Execution record (2026-10-10)
+
+Revision 2's “REVISED SPECIFICATION / NOT IMPLEMENTED” status above records the state when the specification was published. The shared-keystone S0 estimator has since been implemented and run through the canonical Stage 05 retained-input validation. Stage 03 passes the joint-fit audit; Stage 05 records conditional within-recording geometry. Stage 01 and Stage 02 remain warm-start stages and are not joint-stationarity claims.
+
+See the [implementation audit](audits/NEW_PROTOCOL_IMPLEMENTATION_AUDIT.md) for NP-01–NP-07 dispositions, exact executed-source hashes, numerical audit repairs, remaining limits, and the unrun S1 decision gate. The original Revision 2 specification SHA256 is preserved there as the historical pre-execution plan hash.

@@ -1,9 +1,0 @@
-# Compact historical experiment archive
-
-Historical experiment records are consolidated into flat stage files under [the archive](archive/README.md): each family contains one report and one compact JSON bundle per stage, with no per-attempt or per-stage result directories. The family indexes are [distortion model](archive/distortion_model/README.md), [normalized reverse transform](archive/normalized_reverse_transform/README.md), and [raw keystone](archive/raw_keystone/README.md).
-
-The [consolidation manifest](CONSOLIDATION_MANIFEST.json) maps every removed file to its archive component or recovery path, with source hashes and sizes. The earlier [bulk-artifact cleanup manifest](CLEANUP_MANIFEST.json) records removal of arrays, plots, snapshots, logs, and caches. Raw detections and fixation definitions remain under `data/`; the shared estimator library remains under `distortion_model/`. The seven reusable raw-keystone scripts and [empirical reference](reverse_transform/raw_keystone/REFERENCE.json) remain at their original paths.
-
-The archive preserves historical reports, numerical summaries, audits, protocols, provenance, and selected fitted/reference coefficients. It does not contain frame arrays, plots, obsolete stage-local runners, or complete attempt trees. For full historical reproduction, restore both the original code and its artifacts from the recorded recovery HEAD, preferably in a separate worktree. The retained raw-keystone shared runner is current source code; old stage wrappers and distortion-model stage scripts require recovery from Git. Historical PASS records describe original runs and are not new post-consolidation audits.
-
-Consolidation changes retention and paths, not reported scientific conclusions. No estimator fit or test run was performed during consolidation.

@@ -25,11 +25,11 @@ The latter's coefficients are globally fitted once and evaluated at the current 
 
 Reviewed sources:
 
-- [Stage 01–04 shared runner](../experiments/reverse_transform/raw_keystone/scripts/run.py), specifically the `stage in (1,3)` capture loop and Stage 02/04 cases.
+- [Stage 01–04 shared runner](../experiments/archive/reverse_transform/raw_keystone/scripts/run.py), specifically the `stage in (1,3)` capture loop and Stage 02/04 cases.
 - [Raw projective operator and inverse](../distortion_model/raw_keystone.py), classes `RawKeystone` and `RawFrameAccommodation`.
-- [Fit and gaze-calibration helpers](../experiments/reverse_transform/raw_keystone/scripts/helpers.py).
-- Stage 06 framewise center/gaze cycle (archived source: `experiments/reverse_transform/raw_keystone/stage_06_framewise_centers/scripts/run.py`; restore from recovery HEAD `e8a1d3cb89ea40cea40275225c0ce93588b9695e`).
-- [Raw Stage 03 results](../experiments/archive/raw_keystone/stage_03_independent_captures.md) (archived from `experiments/reverse_transform/raw_keystone/stage_03_independent_captures/RESULTS.md`) and [Stage 06 results](../experiments/archive/raw_keystone/stage_06_framewise_centers.md) (archived from `experiments/reverse_transform/raw_keystone/stage_06_framewise_centers/RESULTS.md`).
+- [Fit and gaze-calibration helpers](../experiments/archive/reverse_transform/raw_keystone/scripts/helpers.py).
+- Stage 06 framewise center/gaze cycle is documented in the [compact Stage 06 report](../experiments/archive/raw_keystone/stage_06_framewise_centers.md); its original runner can be recovered from HEAD `e8a1d3cb89ea40cea40275225c0ce93588b9695e`.
+- [Raw Stage 03 results](../experiments/archive/raw_keystone/stage_03_independent_captures.md) (archived from `experiments/archive/raw_keystone/stage_03_independent_captures.md`) and [Stage 06 results](../experiments/archive/raw_keystone/stage_06_framewise_centers.md) (archived from `experiments/archive/raw_keystone/stage_06_framewise_centers.md`).
 - [Theory](Theory.md), especially the proposed shared transformations and full relative-coordinate model.
 
 **Stage 01.** Capture-1 P1 keystone is calibrated against a fixed empirical, non-equilateral P1 triangle, with frame gaze initialized from the P4–P1 centroid signal. One positive frame scale \(g_i\) is profiled from P1.

@@ -30,11 +30,11 @@ All twenty reviewed conditions from captures 1–4 remain in the final calibrati
 
 Read only the next needed subplan:
 
-1. [Data and gaze bootstrap: S0–S1](stages/01_DATA_AND_BOOTSTRAP.md).
-2. [P1 reference and common scale: S2](stages/02_P1_REFERENCE_AND_SCALE.md).
-3. [P4 reference, accommodation, and gaze deformation: S3–S5](stages/03_P4_BASELINE_AND_DEFORMATION.md).
-4. [Corrected centers and full DM0 fit: S6–S7](stages/04_CENTER_AND_DM0_CALIBRATION.md).
-5. [Cross-agreement and model decision: S8, GX](stages/05_CROSSCHECK_AND_MODEL_DECISION.md).
+1. [Data and gaze bootstrap: S0–S1](../experiments/archive/distortion_model/stage_01_data_and_bootstrap.md).
+2. [P1 reference and common scale: S2](../experiments/archive/distortion_model/stage_02_p1_reference_and_scale.md).
+3. [P4 reference, accommodation, and gaze deformation: S3–S5](../experiments/archive/distortion_model/stage_03_p4_baseline_and_deformation.md).
+4. [Corrected centers and full DM0 fit: S6–S7](../experiments/archive/distortion_model/stage_04_center_and_dm0_calibration.md).
+5. [Cross-agreement and model decision: S8, GX](../experiments/archive/distortion_model/stage_05_crosscheck_and_model_decision.md).
 
 ## 3. Numerical gates are not accuracy gates
 
