@@ -41,8 +41,8 @@ The three omission slots per frame are a complete future test schedule; their st
 inference is explicitly marked not run.
 
 See the [detailed gate audit](../results/attempt_02/STAGE_REPORT.md),
-[bootstrap plots](../results/attempt_02/bootstrap.png),
-[native tracks](../results/attempt_02/native_tracks.png), and
+bootstrap plots (archived artifact: `../results/attempt_02/bootstrap.png`),
+native tracks (archived artifact: `../results/attempt_02/native_tracks.png`), and
 [reproduction checks](../results/attempt_02/reproduction_checks.json).
 The one next action is **stage 2 / S2 / G2: P1 reference and common scale**, as recorded
 in [PROGRESS.md](PROGRESS.md).

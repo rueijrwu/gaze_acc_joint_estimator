@@ -4,7 +4,7 @@ Status: COMPLETE. Decision: **GO_WITH_LIMIT**. Scientific disposition: protocol 
 
 ## Provenance and parent
 
-Source commit `efd88bd3b326653aedc3b383143ef10856d22092`, remote matched at execution. Dirty-source hash `ecfa8c99729ec48e066fe74196d489278aabb245b0b767ecfb5450520a82623f`; config hash `a4d8cb64ded2edd552a88f2aa79ab31fba2f334aefeabdb22988fa8490bba1a9`. Theory SHA256 `8a807332a55c2ac6a786cb2311bbb62895ce37dab9a0c0bf0f3fa884b4200a80`; estimator-plan SHA256 `74c78372474bd453e295590009804fdc2d08833ec1fa705541ab0805c2dde8b7`; gate-policy SHA256 `2b5aadbed756beb0f7d68e29c5ecd47020bc2606fec54a199d5c1c3cf93e7b01`. [provenance.json](provenance.json) saves exact hashes/runtime and [source_snapshot](source_snapshot/) preserves source bytes.
+Source commit `efd88bd3b326653aedc3b383143ef10856d22092`, remote matched at execution. Dirty-source hash `ecfa8c99729ec48e066fe74196d489278aabb245b0b767ecfb5450520a82623f`; config hash `a4d8cb64ded2edd552a88f2aa79ab31fba2f334aefeabdb22988fa8490bba1a9`. Theory SHA256 `8a807332a55c2ac6a786cb2311bbb62895ce37dab9a0c0bf0f3fa884b4200a80`; estimator-plan SHA256 `74c78372474bd453e295590009804fdc2d08833ec1fa705541ab0805c2dde8b7`; gate-policy SHA256 `2b5aadbed756beb0f7d68e29c5ecd47020bc2606fec54a199d5c1c3cf93e7b01`. [provenance.json](provenance.json) saves exact hashes/runtime and source snapshot (archived artifact: `source_snapshot/`) preserves source bytes.
 
 Parent: reviewed [G4 GO_WITH_LIMIT](../g4_attempt_01/STAGE_REPORT.md). Parent checkpoint SHA256 `c4c4546a6825d22da631a900ad7a6e9f8faed6f2524492734b9a19d91d2faf02`; parent summary SHA256 `fa6e6e41d365c76df02cc9f6439ff1a236a10b210c305921adc5d83c00f26d17`. G3 native angular convention, G4 template and G2 theta/P1 scale remain pinned by [checkpoint.json](checkpoint.json), including unchanged G0 population, slots and covariance through the parent chain.
 
@@ -32,7 +32,7 @@ Weighted cost decreases **7.66%** while native RMS rises **0.23%**. This is a me
 
 Fitted K4: alpha4=−2.82212060e−5 deg⁻²; beta4=8.86851027e−5 deg⁻²; gamma4=1.27516914e−5 reference-px⁻¹deg⁻¹. These are conditional effective coefficients under the empirical origin, fixed theta and demand-anchor gauge. Numerical rank does not establish their physical identity. All three belong to the declared minimal map; no extra unsupported freedom is released.
 
-Native residuals remain directional and gaze/capture dependent: often M−L x is negative and edge y is positive at positive targets. Capture1 +10° signed means are approximately [−9.868,+8.921,−1.087,+10.750] px. Capture2 −10° whole-interval RMS is 9.517 px despite near-window RMS 2.312 px; transition excursions outside the near window are retained. P1 scale dependence and extreme residual tails remain visible in [composition_and_scale.png](composition_and_scale.png). Valid flags do not guarantee that every observed shape satisfies the optical family.
+Native residuals remain directional and gaze/capture dependent: often M−L x is negative and edge y is positive at positive targets. Capture1 +10° signed means are approximately [−9.868,+8.921,−1.087,+10.750] px. Capture2 −10° whole-interval RMS is 9.517 px despite near-window RMS 2.312 px; transition excursions outside the near window are retained. P1 scale dependence and extreme residual tails remain visible in composition_and_scale.png (archived artifact: `composition_and_scale.png`). Valid flags do not guarantee that every observed shape satisfies the optical family.
 
 ## Full population and condition evidence
 
@@ -63,7 +63,7 @@ Native residuals remain directional and gaze/capture dependent: often M−L x is
 
 961 lower-bound A states, zero upper-bound states; 891 are in capture1 +5° (17.85% of that condition). No entire exposure is all-bound. Full A spans 0–4.462737 D, mean 2.291841 D. Full-mean deviations include −.516064 D at capture2 −10°, +.579236 D at capture3 −5°, and +.413816 D at capture1 +10°. These deviations and the bound concentration are model/initialization limitations; s_A is a finite penalty scale, not an accuracy threshold. No physiological interpretation is assigned to the latent means.
 
-[fitted_residuals.json](fitted_residuals.json) saves all twenty condition records, signed biases per point/axis and one hundred original-row block summaries; [identity_residuals.json](identity_residuals.json) uses the same accounting. [residuals_and_states.png](residuals_and_states.png) displays the matched comparisons and frame variation.
+[fitted_residuals.json](fitted_residuals.json) saves all twenty condition records, signed biases per point/axis and one hundred original-row block summaries; [identity_residuals.json](identity_residuals.json) uses the same accounting. residuals_and_states.png (archived artifact: `residuals_and_states.png`) displays the matched comparisons and frame variation.
 
 ## Revisit G4 and numerical support
 
@@ -77,7 +77,7 @@ Full proposed visual/A rectangle, including shifted native angles: M ranges .892
 
 ## Consistent handoff and gate decision
 
-[fitted.npz](fitted.npz) contains all scheduled rows, individual A/M/F4/mu4, edge/centered native residuals, validity/status and unchanged theta/g. [model.json](model.json) contains the frozen empirical template and optical coefficients. [contributions_and_centers.npz](contributions_and_centers.npz) separates magnification/keystone changes and stores the derived relative-center initializer `Dobs=(c4−c1)/g−mu4+mu1`; this is a handoff diagnostic, not a fitted D polynomial or independent extra measurement. NPZ hashes are semantic array_hash; sha256 fields identify file bytes.
+fitted.npz (archived artifact: `fitted.npz`) contains all scheduled rows, individual A/M/F4/mu4, edge/centered native residuals, validity/status and unchanged theta/g. [model.json](model.json) contains the frozen empirical template and optical coefficients. contributions_and_centers.npz (archived artifact: `contributions_and_centers.npz`) separates magnification/keystone changes and stores the derived relative-center initializer `Dobs=(c4−c1)/g−mu4+mu1`; this is a handoff diagnostic, not a fitted D polynomial or independent extra measurement. NPZ hashes are semantic array_hash; sha256 fields identify file bytes.
 
 **GO_WITH_LIMIT** authorizes the next consistent relative-center/joint calculation: conversions/order/derivatives, positive full-domain scales, numerical stationarity and all-frame status accounting pass. Structured residuals, weighted/native tradeoff, bound concentration and fixation-mean discrepancies remain substantial. No full optical response support or independent accommodation accuracy is asserted. Preserve both K4 candidates. G7 must review these signatures after visual gaze and relative centers are jointly refined; freeze any freedom unsupported by that fit. G8 tests whole-loop common-scale compatibility and native/state agreement. Do not infer optical adequacy from this conditional objective decrease.
 

@@ -44,8 +44,8 @@ The source snapshot records a launch-time version before two unrelated live nume
 
 One next numerical question: why does the constrained interval formulation have unstable active-constraint Hessian near the boundary, and can a smooth equivalent certificate preserve the same physical bound and unchanged objective? No model expansion or fitting continuation is authorized before resolving it.
 
-- [Full summary](summary.json), [checkpoint](checkpoint.json), [fit arrays](fitted.npz)
+- [Full summary](summary.json), [checkpoint](checkpoint.json), fit arrays (archived artifact: `fitted.npz`)
 - [Independent mechanical reconstruction and census](mechanical_audit.json)
 - [Source snapshot and provenance](provenance.json)
-- [Console log](console.log)
+- Console log (archived artifact: `console.log`)
 - [One-degree preflight evidence](../preflight_1degree/preflight.json)

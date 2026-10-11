@@ -65,6 +65,6 @@ with nonzero independent optical offsets. These are numerical fixtures, not fitt
 real optics. Full inversion, optical derivatives, symmetry and calibration belong
 to later stages.
 
-The original attempt-02 runner is preserved in `results/attempt_02/source_snapshot/`.
+The original attempt-02 runner snapshot was removed from the working tree (archived path: `results/attempt_02/source_snapshot/`); recover it from the cleanup commit if needed.
 Its hash matches that attempt's original provenance. The current runner detects the
 repository root after the move; historical outputs and provenance remain intact.

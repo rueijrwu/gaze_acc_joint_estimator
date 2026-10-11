@@ -60,11 +60,11 @@ The descriptive, post-fit demand association is an anchored slope of −5.255210
 
 ## Figures
 
-- [Inverse point error by fixation](point_error_by_fixation.png)
-- [Radius-normalized shape error by fixation](shape_error_by_fixation.png)
-- [Reference and fixation-mean triangles](triangle_overlays.png)
-- [Radius-normalized vertex-error clouds](normalized_vertex_clouds.png)
-- [Recovered radius distributions](radius_distributions.png)
-- [Independent coefficients and post-fit demand association](postfit_barrel_vs_demand.png)
+- Inverse point error by fixation (archived artifact: `point_error_by_fixation.png`)
+- Radius-normalized shape error by fixation (archived artifact: `shape_error_by_fixation.png`)
+- Reference and fixation-mean triangles (archived artifact: `triangle_overlays.png`)
+- Radius-normalized vertex-error clouds (archived artifact: `normalized_vertex_clouds.png`)
+- Recovered radius distributions (archived artifact: `radius_distributions.png`)
+- Independent coefficients and post-fit demand association (archived artifact: `postfit_barrel_vs_demand.png`)
 
-The machine-readable [summary](summary.json), [post-fit association](postfit.json), and [audit](audit.json) include detailed per-fixation results and provenance. Run logs are in the stage directory: [runner](../../console_run.log), [audit](../../audit_run.log), and [plotting](../../plot_run.log).
+The machine-readable [summary](summary.json), [post-fit association](postfit.json), and [audit](audit.json) include detailed per-fixation results and provenance. Run logs are in the stage directory: runner (archived artifact: `../../console_run.log`), audit (archived artifact: `../../audit_run.log`), and plotting (archived artifact: `../../plot_run.log`).

@@ -40,10 +40,10 @@ In all four captures, the +10° fixation mean is below its expected anchor. The 
 
 ## Figures
 
-- [Inverse RMS, median, and P95 by fixation](results/run/inverse_error_by_fixation.png): common-valid frames; all three models use the same population.
-- [Framewise inverse error over all complete frames](results/run/framewise_error_all_complete.png): preserves prior inverse-failure outliers.
-- [Triangle means and vertex clouds](results/run/triangle_means_and_vertex_clouds.png): unnormalized recovered coordinates, common-valid frames.
-- [A distribution by fixation](results/run/accommodation_by_fixation.png) and [A by source row](results/run/accommodation_by_source_row.png): row points are not joined across gaps or reversed source order.
-- [Remaining radius variability](results/run/remaining_radius_variability.png): recovered-to-reference RMS radius diagnostic; no radius correction is applied during fitting.
+- Inverse RMS, median, and P95 by fixation (archived artifact: `results/run/inverse_error_by_fixation.png`): common-valid frames; all three models use the same population.
+- Framewise inverse error over all complete frames (archived artifact: `results/run/framewise_error_all_complete.png`): preserves prior inverse-failure outliers.
+- Triangle means and vertex clouds (archived artifact: `results/run/triangle_means_and_vertex_clouds.png`): unnormalized recovered coordinates, common-valid frames.
+- A distribution by fixation (archived artifact: `results/run/accommodation_by_fixation.png`) and A by source row (archived artifact: `results/run/accommodation_by_source_row.png`): row points are not joined across gaps or reversed source order.
+- Remaining radius variability (archived artifact: `results/run/remaining_radius_variability.png`): recovered-to-reference RMS radius diagnostic; no radius correction is applied during fitting.
 
 See the [independent scientific review](SCIENTIFIC_REVIEW.md) for numerical interpretation and limitations. The main limitation remains that one fitted A per frame is an in-sample accommodation parameterization; it does not establish physiological accuracy or distinguish accommodation from other unmodeled size changes.

@@ -20,7 +20,7 @@ Command:
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/repair_g7.py --output experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_repair_01
 ```
 
-Runtime was 35.35 seconds. The derivative regression is an actual-data numerical audit, not an automated test suite. The repair provenance lists 144 files from attempt02, and all 144 SHA-256 values still match. Attempt02 remains unchanged. See [reassessment summary](summary.json), [provenance](provenance.json), and [console output](console.log).
+Runtime was 35.35 seconds. The derivative regression is an actual-data numerical audit, not an automated test suite. The repair provenance lists 144 files from attempt02, and all 144 SHA-256 values still match. Attempt02 remains unchanged. See [reassessment summary](summary.json), [provenance](provenance.json), and console output (archived artifact: `console.log`).
 
 ## Gate
 

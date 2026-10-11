@@ -7,7 +7,7 @@ Reviewer: root implementation/audit agent. Decision timestamp: 2026-10-10T01:34:
 
 ## Source, configuration and parent
 
-Source commit `efd88bd3b326653aedc3b383143ef10856d22092`, matching remote branch at execution. Dirty source hash `bfb292312ace572cc394ba77050ae45d1aed5941a484efa09e3d08466a3a77dd`; config hash `6540b77a4fb16c0abea8e964a30ef61c735be1340c683f9e65c2ec59e454f647`. [provenance.json](provenance.json) lists all exact source/theory/plan hashes and runtime. [source_snapshot](source_snapshot/) preserves original source layout and bytes. Theory SHA256 `8a807332a55c2ac6a786cb2311bbb62895ce37dab9a0c0bf0f3fa884b4200a80`; estimator-plan SHA256 `74c78372474bd453e295590009804fdc2d08833ec1fa705541ab0805c2dde8b7`; gate-policy SHA256 `2b5aadbed756beb0f7d68e29c5ecd47020bc2606fec54a199d5c1c3cf93e7b01`.
+Source commit `efd88bd3b326653aedc3b383143ef10856d22092`, matching remote branch at execution. Dirty source hash `bfb292312ace572cc394ba77050ae45d1aed5941a484efa09e3d08466a3a77dd`; config hash `6540b77a4fb16c0abea8e964a30ef61c735be1340c683f9e65c2ec59e454f647`. [provenance.json](provenance.json) lists all exact source/theory/plan hashes and runtime. source snapshot (archived artifact: `source_snapshot/`) preserves original source layout and bytes. Theory SHA256 `8a807332a55c2ac6a786cb2311bbb62895ce37dab9a0c0bf0f3fa884b4200a80`; estimator-plan SHA256 `74c78372474bd453e295590009804fdc2d08833ec1fa705541ab0805c2dde8b7`; gate-policy SHA256 `2b5aadbed756beb0f7d68e29c5ecd47020bc2606fec54a199d5c1c3cf93e7b01`.
 
 Parent: reviewed G2 GO_WITH_LIMIT, stage 2 attempt_02 [audit](../../../stage_02_p1_reference_and_scale/results/attempt_02/STAGE_REPORT.md). Parent checkpoint SHA256 `e23e2cf748977bc50168af0d00fab16389c22f7969399e34b8bbd80fcb158858`; summary SHA256 `041aff80f31d8b70ba7cbdc2969f43a298dba01c3c0c60be24aa6c61bd660aae`. [checkpoint.json](checkpoint.json) pins the original population, slots, covariance, P1 export and frame states. Raw trusted captures were reloaded with pinned hashes; original measurements and manifests matched, and every exported P1 field was independently reevaluated at the frozen visual states.
 
@@ -74,9 +74,9 @@ Native xi4 is evaluated for each frame. Block ranges below are the five contiguo
 
 [Full score/axis/block distributions](p4_balance.json) retain all twenty exposures and one hundred block records, including framewise visual-gaze support. Plots reviewed:
 
-- [P4 balance and signed components](p4_balance.png): per-demand curves and block variability.
-- [Native-angle trajectories](native_angle_trajectories.png): per-frame angles in original source rows; valid display stride 10, full arrays saved with availability.
-- [Retained P4 size and near-reference support](p4_size_and_support.png): corrected native size remains visible and measured near-zero coverage exists.
+- P4 balance and signed components (archived artifact: `p4_balance.png`): per-demand curves and block variability.
+- Native-angle trajectories (archived artifact: `native_angle_trajectories.png`): per-frame angles in original source rows; valid display stride 10, full arrays saved with availability.
+- Retained P4 size and near-reference support (archived artifact: `p4_size_and_support.png`): corrected native size remains visible and measured near-zero coverage exists.
 
 The corrected RMS-radius differences across captures remain present in reference pixels (approximately 178–194 px over the plotted condition means). These are descriptive evidence; demand and capture/pose remain confounded. No M(A) fit or physiological accommodation inference is made by this view.
 
@@ -99,7 +99,7 @@ Conversions: `xi1=theta−omega1`, `xi4=theta−omega4`, `xi1=xi4+Delta14`, `the
 
 ## Checkpoint, runtime and decision
 
-[p4_diagnostics.npz](p4_diagnostics.npz) stores all scheduled rows: angle arrays, score/axis components, corrected centered P4, preserved displacement, blocks, availability and diagnostic near-window mask. The [checkpoint](checkpoint.json) points to unchanged G2 state/P1 arrays and frozen G0 manifests/covariance. NPZ hash fields are semantic `array_hash`; fields named sha256 are byte hashes. [reproduction_checks.json](reproduction_checks.json) records independent recomputation of hashes, diagnostics, all exposure/block summaries and conversions.
+p4_diagnostics.npz (archived artifact: `p4_diagnostics.npz`) stores all scheduled rows: angle arrays, score/axis components, corrected centered P4, preserved displacement, blocks, availability and diagnostic near-window mask. The [checkpoint](checkpoint.json) points to unchanged G2 state/P1 arrays and frozen G0 manifests/covariance. NPZ hash fields are semantic `array_hash`; fields named sha256 are byte hashes. [reproduction_checks.json](reproduction_checks.json) records independent recomputation of hashes, diagnostics, all exposure/block summaries and conversions.
 
 Runtime 4.408 s, vectorized NumPy float64 CPU with four source-loading and exposure-summary threads. CuPy/GPU availability is recorded in provenance; this diagnostic gate has no optimization requiring acceleration.
 

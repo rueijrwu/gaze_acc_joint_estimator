@@ -37,7 +37,7 @@ Attempt04 provenance records the reporting-only hash change to the already-saved
 
 ## Files and execution
 
-- [Summary and certificate](summary.json), [checkpoint](checkpoint.json), [model](model.json), [full arrays](fitted.npz), [verification](verification.json), and [independent public-optics audit](independent_public_optics_audit.json).
+- [Summary and certificate](summary.json), [checkpoint](checkpoint.json), [model](model.json), full arrays (archived artifact: `fitted.npz`), [verification](verification.json), and [independent public-optics audit](independent_public_optics_audit.json).
 - [Saved-point proposal probe](../g7_polish_repair_01/STAGE_REPORT.md), its [original summary](../g7_polish_repair_01/summary.json), and [compact diagnostic report](../g7_polish_repair_01/empirical_diagnostics/REPORT.md).
 - Reproduce the one-correction adoption from the preserved probe with `OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/accept_g7_polish.py --output experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04` (use a fresh output directory).
 - Reconstruct the independent public-optics audit with `OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python experiments/distortion_model/stage_04_center_and_dm0_calibration/scripts/audit_g7_polish.py --attempt experiments/distortion_model/stage_04_center_and_dm0_calibration/results/g7_attempt_04`.

@@ -4,7 +4,7 @@ Status: **COMPLETE**. Decision: **GO_WITH_LIMIT**. Scientific disposition: `prot
 
 ## Provenance and retry scope
 
-Source commit `efd88bd3b326653aedc3b383143ef10856d22092`; remote matched at execution. Dirty-source hash `acb145815227c40fe85ad881e824d9826661e30d668260f260f658943445fa21`. [provenance.json](provenance.json) saves theory/plan/config hashes, runtime, parent bytes and archived source hashes. [source_snapshot](source_snapshot/) preserves source bytes; [config.json](config.json) declares policy before fitting.
+Source commit `efd88bd3b326653aedc3b383143ef10856d22092`; remote matched at execution. Dirty-source hash `acb145815227c40fe85ad881e824d9826661e30d668260f260f658943445fa21`. [provenance.json](provenance.json) saves theory/plan/config hashes, runtime, parent bytes and archived source hashes. source snapshot (archived artifact: `source_snapshot/`) preserves source bytes; [config.json](config.json) declares policy before fitting.
 
 Parent: reviewed [G5 GO_WITH_LIMIT](../../../stage_03_p4_baseline_and_deformation/results/g5_attempt_01/STAGE_REPORT.md). Its chain pins G5 states/model, G3 independent zeros, G2 P1 reference/scale and G0 measurements/population/covariance/slots. Raw sources are freshly hash-checked and matched to the schedule. Schema `distortion_dual_alignment_v1` records basis, units, references, revision, fixed/free roster and separate bootstrap inverse.
 
@@ -76,13 +76,13 @@ Coefficients multiply the dimensionless basis above. At Aref the dominant visual
 
 The before initializer solves the constant pair in the same degree-2 family and complete criterion, with other coefficients zero. Its large error makes the decrease expected after adding the declared gaze response. Acceptance rests on consistency, rank, stationarity and accounting. The decrease does not validate optical accuracy; these values are not comparable to G5's four-edge marginal cost.
 
-After-fit centroid-coordinate RMS is **4.894303 native px**; descriptive P1 centered point RMS .989170 px is unchanged. [Corrected centers](components.png), [mean corrections](optical_mean_corrections.png) and [native centroid residuals](residuals.png) use display stride20 only; fitting/reporting use all rows.
+After-fit centroid-coordinate RMS is **4.894303 native px**; descriptive P1 centered point RMS .989170 px is unchanged. Corrected centers (archived artifact: `components.png`), mean corrections (archived artifact: `optical_mean_corrections.png`) and native centroid residuals (archived artifact: `residuals.png`) use display stride20 only; fitting/reporting use all rows.
 
 ## Population and limitations
 
 100,090 scheduled rows; **89,175 complete and evaluated**; 10,915 unavailable original inputs; zero unresolved valid evaluations. All twenty full intervals and 300,270 expected omission slots remain. Every theta/A/g value is unchanged from its upstream snapshot.
 
-[fitted.npz](fitted.npz) saves full-row status, states/g, optics/means, raw centroid separation, inferred origins, Dobs/D prediction and native relative prediction/residual arrays. [conditions.json](conditions.json) saves all twenty exposure records and one hundred contiguous original-row blocks, including unavailable counts and signed means. Five equally spaced original rows per exposure form the representative ledger, retaining unavailable representatives explicitly.
+fitted.npz (archived artifact: `fitted.npz`) saves full-row status, states/g, optics/means, raw centroid separation, inferred origins, Dobs/D prediction and native relative prediction/residual arrays. [conditions.json](conditions.json) saves all twenty exposure records and one hundred contiguous original-row blocks, including unavailable counts and signed means. Five equally spaced original rows per exposure form the representative ledger, retaining unavailable representatives explicitly.
 
 | Exposure | Capture | Target θ (°) | Scheduled | Valid | Unavailable | Relative RMS (px) | Centroid RMS (px) | Mean θ (°) | Mean A (D) | Signed centroid x/y means (px) |
 |---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---|

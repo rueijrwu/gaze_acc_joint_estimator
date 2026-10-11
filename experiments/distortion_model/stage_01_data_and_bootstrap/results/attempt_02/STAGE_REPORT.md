@@ -61,13 +61,13 @@ All twenty exposure counts are explicit:
 | capture_4_detections.pkl | 5 | 2 | 4900 | 4738 | 162 | 14700 |
 | capture_4_detections.pkl | 10 | 2 | 5800 | 4776 | 1024 | 17400 |
 
-Evidence: [census.json](census.json), [population.npz](population.npz),
-[slots.npz](slots.npz), [measurements.npz](measurements.npz),
-[source_metadata.json](source_metadata.json), [native tracks](native_tracks.png),
-[full interval boundaries](full_interval_boundaries.png),
+Evidence: [census.json](census.json), population.npz (archived artifact: `population.npz`),
+slots.npz (archived artifact: `slots.npz`), measurements.npz (archived artifact: `measurements.npz`),
+[source_metadata.json](source_metadata.json), native tracks (archived artifact: `native_tracks.png`),
+full interval boundaries (archived artifact: `full_interval_boundaries.png`),
 [tests.json](tests.json), [covariance.json](covariance.json),
-[covariance.npz](covariance.npz), [synthetic fixture](synthetic_fixture.json),
-[synthetic forward evaluations](synthetic_forward.npz), and
+covariance.npz (archived artifact: `covariance.npz`), [synthetic fixture](synthetic_fixture.json),
+synthetic forward evaluations (archived artifact: `synthetic_forward.npz`), and
 [reproduction checks](reproduction_checks.json).
 Evidence kinds: synthetic numerical contracts and empirical input census; no optical fit.
 
@@ -153,8 +153,8 @@ row has a reason. No finite start is outside the proposed [-20,20] degree search
 **8,022** starts fall outside the five-mean reference displacement range; these are
 explicit extrapolations, including normal endpoint variation, and are not clipped or dropped.
 Dynamic within-fixation variation is preserved. See
-[bootstrap.json](bootstrap.json), [bootstrap plots](bootstrap.png),
-[initial_states.npz](initial_states.npz), and [reproduction checks](reproduction_checks.json).
+[bootstrap.json](bootstrap.json), bootstrap plots (archived artifact: `bootstrap.png`),
+initial_states.npz (archived artifact: `initial_states.npz`), and [reproduction checks](reproduction_checks.json).
 
 Raw transfer to captures 2–4 changes offset and gain, especially at positive gaze.
 The plot shows this before accommodation and P1-scale correction. It limits transfer

@@ -88,18 +88,18 @@ State spreads are within-fixation standard deviations, not uncertainty of the me
 | 4 | +5° | 2.000 | 1.915 ± 0.154 | 1.916 ± 0.153 | 2.401 / 2.723 / 2.355 | 2.577 / 2.995 / 2.548 |
 | 4 | +10° | 2.000 | 1.740 ± 0.259 | 1.742 ± 0.261 | 2.969 / 4.667 / 5.687 | 3.299 / 5.150 / 5.234 |
 
-The saved control audit is [here](results/normalized_forward_control/audit.json). The state overlay is [accommodation raw vs normalized control](results/run/accommodation_raw_vs_normalized_forward_control.png).
+The saved control audit is [here](results/normalized_forward_control/audit.json). The state overlay is accommodation raw vs normalized control (archived artifact: `results/run/accommodation_raw_vs_normalized_forward_control.png`).
 
 ## Figures
 
-- [point_errors_by_fixation.png](results/run/point_errors_by_fixation.png)
-- [scale_and_raw_size_by_fixation.png](results/run/scale_and_raw_size_by_fixation.png)
-- [p4_inverse_radius_ratio_by_fixation.png](results/run/p4_inverse_radius_ratio_by_fixation.png)
-- [p4_triangles_raw_vs_historical.png](results/run/p4_triangles_raw_vs_historical.png)
-- [vertex_residual_vectors_native_px.png](results/run/vertex_residual_vectors_native_px.png)
-- [accommodation_by_fixation.png](results/run/accommodation_by_fixation.png)
-- [accommodation_by_source_row.png](results/run/accommodation_by_source_row.png)
-- [accommodation_by_source_order.png](results/run/accommodation_by_source_order.png) (all complete rows, four capture panels; source-row order, not elapsed time)
-- [accommodation_raw_vs_normalized_forward_control.png](results/run/accommodation_raw_vs_normalized_forward_control.png)
+- point_errors_by_fixation.png (archived artifact: `results/run/point_errors_by_fixation.png`)
+- scale_and_raw_size_by_fixation.png (archived artifact: `results/run/scale_and_raw_size_by_fixation.png`)
+- p4_inverse_radius_ratio_by_fixation.png (archived artifact: `results/run/p4_inverse_radius_ratio_by_fixation.png`)
+- p4_triangles_raw_vs_historical.png (archived artifact: `results/run/p4_triangles_raw_vs_historical.png`)
+- vertex_residual_vectors_native_px.png (archived artifact: `results/run/vertex_residual_vectors_native_px.png`)
+- accommodation_by_fixation.png (archived artifact: `results/run/accommodation_by_fixation.png`)
+- accommodation_by_source_row.png (archived artifact: `results/run/accommodation_by_source_row.png`)
+- accommodation_by_source_order.png (archived artifact: `results/run/accommodation_by_source_order.png`) (all complete rows, four capture panels; source-row order, not elapsed time)
+- accommodation_raw_vs_normalized_forward_control.png (archived artifact: `results/run/accommodation_raw_vs_normalized_forward_control.png`)
 
 Scale-factor and inverse-radius plots are diagnostics, not fit normalization steps. Triangle plots use matched raw/historical valid frames in native coordinates without rotation alignment or radius normalization. See the [read-only historical comparison record](results/run/historical_comparison.json) for those fields.

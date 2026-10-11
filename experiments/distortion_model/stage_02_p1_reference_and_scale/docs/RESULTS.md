@@ -15,7 +15,7 @@ P1 now supplies one positive, gaze-conditioned GLS scale from its four correlate
 | Checks | 31 passed, zero failures/errors/skips |
 | Total CPU experiment time | 12.75 s |
 
-![Scale and residual evidence](../results/attempt_02/p1_scale_and_residuals.png)
+Scale and residual evidence (archived image: `../results/attempt_02/p1_scale_and_residuals.png`)
 
 The operational reference is capture 1 nominal −10°, omega1 −10.020904°. Its observed balance minimum is at an endpoint. Physical source symmetry, optical zero and optical origin are unknown. An adjacent −5° reference changes scale by 0.0265–0.1550% and reverses the fitted keystone sign. Keep these uncertainties for G5/G7/G8. Residuals remain structured across capture/gaze, and transferred centroid gaze is still approximate.
 

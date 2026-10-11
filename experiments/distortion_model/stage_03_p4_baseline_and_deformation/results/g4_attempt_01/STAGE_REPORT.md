@@ -16,7 +16,7 @@ Fitted: one shared m1 and individual near-window A. Fixed: template/origin/lengt
 
 The descriptive Euclidean projection is rho=<centered P4/g,b4>/<b4,b4>; remaining direction is preserved. It is never divided out of measured P4 in inference. [measured_response.json](measured_response.json) preserves actual distributions against demand labels. Mean rho by demand: 0.36036 D ≈1.000002; 2 D ≈0.973704; 3 D ≈0.951485; 4 D ≈0.940095. Coordinate directional RMS is approximately .230, 1.277, 1.001, 1.202 reference pixels, respectively (2D point-vector RMS is sqrt(2) times this coordinate RMS). Reference capture overlaps the template sample.
 
-The negative response is coherent, while directional biases remain. Capture, pose, transferred gaze and demand are confounded. This is consistent with an effective accommodation response under the fixed conventions; it does not establish physiological A accuracy or a physical linear law. [Measured response plot](measured_response.png) plots actual rho against demand before any fitted-A relation.
+The negative response is coherent, while directional biases remain. Capture, pose, transferred gaze and demand are confounded. This is consistent with an effective accommodation response under the fixed conventions; it does not establish physiological A accuracy or a physical linear law. Measured response plot (archived artifact: `measured_response.png`) plots actual rho against demand before any fitted-A relation.
 
 ## Fit, state status and sensitivity
 
@@ -53,7 +53,7 @@ All twenty exposures are retained. Rows outside the near window are displayed wi
 | 18 | 4 | 5 | 4900 | 4738 | 162 | 0 | 6.0410 | 2.00000 | 0.00000 |
 | 19 | 4 | 10 | 5800 | 4776 | 1024 | 0 | 9.9793 | 2.00000 | 0.00000 |
 
-[Fitted native residuals/point-axis biases/100 contiguous block records](fitted_residuals.json), [identity residuals](identity_residuals.json), [state/residual plot](residuals_and_states.png). Coordinates and summaries are original pixels; centered coordinate RMS and four-edge RMS are different diagnostic displays, never extra observations. No block/condition is dropped. [fitted.npz](fitted.npz) saves all scheduled rows, states/status, M/F4/mu4, native predictions/residuals, unchanged theta/g. [reproduction_checks.json](reproduction_checks.json) records independent recomputation.
+[Fitted native residuals/point-axis biases/100 contiguous block records](fitted_residuals.json), [identity residuals](identity_residuals.json), state/residual plot (archived artifact: `residuals_and_states.png`). Coordinates and summaries are original pixels; centered coordinate RMS and four-edge RMS are different diagnostic displays, never extra observations. No block/condition is dropped. fitted.npz (archived artifact: `fitted.npz`) saves all scheduled rows, states/status, M/F4/mu4, native predictions/residuals, unchanged theta/g. [reproduction_checks.json](reproduction_checks.json) records independent recomputation.
 
 [tests.json](tests.json): 50 passing checks, zero failures/errors/skips, including ten G4 contracts for marginal covariance, preserved scalar/directional decomposition, composition/state/global derivatives, coupled full-mean penalties, profiled gradient, synthetic m/A recovery, window state status, full-domain bounds and zero-slope unidentifiability. Exact and finite-difference tolerances remain separately recorded. Runtime **11.329 s**, vectorized CPU; CuPy availability recorded, no accelerator required.
 

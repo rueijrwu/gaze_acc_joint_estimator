@@ -24,7 +24,7 @@ The dominant center response is approximately **20.55 reference px per visual de
 
 Optical means affect the measured centroid law. Their mean correction is mainly in image y, reaching approximately −4.02 reference px in the recorded conditions. The implementation applies that correction once, preserving the P4-minus-P1 sign. All-frame centroid/sign/origin identities and agreement with the existing complete forward adapter are within 2.85e−13 px.
 
-![Corrected centers and forward predictions](../results/g6_attempt_02/components.png)
+Corrected centers and forward predictions (archived image: `../results/g6_attempt_02/components.png`)
 
 ## What remains unresolved
 
@@ -38,7 +38,7 @@ At the G6 review, the next action was G7 full DM0 joint refinement. Attempt 01 u
 
 - [Detailed G6 audit and analytical cases](../results/g6_attempt_02/STAGE_REPORT.md)
 - [All 20 exposure records and 100 contiguous blocks](../results/g6_attempt_02/conditions.json)
-- [Complete native-row arrays and correction ledger](../results/g6_attempt_02/fitted.npz)
+- Complete native-row arrays and correction ledger (archived artifact: `../results/g6_attempt_02/fitted.npz`)
 - [Independent reconstruction](../results/g6_attempt_02/reproduction_checks.json)
 - [Resume pointer](PROGRESS.md) and [runner instructions](../README.md)
 
@@ -68,9 +68,9 @@ External simulation data inventory: [distortion-tracking source evidence](DISTOR
 **Decision: PAUSE.** Full fit, certification, cross-check and comparison remain false; G8 is not authorized. Diagnose nonpositive curvature and large joint trust caps, starting with exposure 6 and its outlier/transition rows, and review this center accommodation/gain tradeoff against an authoritative source before considering any compatible continuation.
 
 - [G7 detailed attempt report](../results/g7_attempt_01/STAGE_REPORT.md)
-- [G7 checkpoint and full arrays](../results/g7_attempt_01/checkpoint.json), [fitted.npz](../results/g7_attempt_01/fitted.npz)
+- [G7 checkpoint and full arrays](../results/g7_attempt_01/checkpoint.json), fitted.npz (archived artifact: `../results/g7_attempt_01/fitted.npz`)
 - [G7 mechanical reconstruction and curvature census](../results/g7_attempt_01/mechanical_audit.json)
-- [Native P4-local-angle response](../results/g7_attempt_01/response_curves_native_xi4.png)
+- Native P4-local-angle response (archived artifact: `../results/g7_attempt_01/response_curves_native_xi4.png`)
 
 
 ## G7 attempt 02 — user-authorized one-degree horizontal bound
@@ -89,7 +89,7 @@ Independent NumPy reconstruction reproduces objective components within 4.55e−
 
 - [Detailed attempt 02 report](../results/g7_attempt_02/STAGE_REPORT.md)
 - [Mechanical reconstruction, full population and history census](../results/g7_attempt_02/mechanical_audit.json)
-- [Attempt 02 checkpoint and arrays](../results/g7_attempt_02/checkpoint.json), [summary](../results/g7_attempt_02/summary.json), [fitted.npz](../results/g7_attempt_02/fitted.npz)
+- [Attempt 02 checkpoint and arrays](../results/g7_attempt_02/checkpoint.json), [summary](../results/g7_attempt_02/summary.json), fitted.npz (archived artifact: `../results/g7_attempt_02/fitted.npz`)
 - [Attempt 02 provenance and source snapshot](../results/g7_attempt_02/provenance.json)
 - [Preflight interval and CPU/GPU proposal evidence](../results/preflight_1degree/preflight.json)
 
@@ -107,7 +107,7 @@ The independent audit verifies bitwise equality between attempt03's initial stat
 
 **Historical attempt03 decision: PAUSE / COMPLETE_UNCERTIFIED.** The one constrained saved-point proposal subsequently passed the recomputed strict full-data certificate in attempt04. Attempt03 itself is unchanged and remains uncertified evidence.
 
-- [Attempt 03 report](../results/g7_attempt_03/STAGE_REPORT.md), [summary](../results/g7_attempt_03/summary.json), [checkpoint](../results/g7_attempt_03/checkpoint.json), [console log](../results/g7_attempt_03/console.log)
+- [Attempt 03 report](../results/g7_attempt_03/STAGE_REPORT.md), [summary](../results/g7_attempt_03/summary.json), [checkpoint](../results/g7_attempt_03/checkpoint.json), console log (archived artifact: `../results/g7_attempt_03/console.log`)
 - [Attempt 03 mechanical audit](../results/g7_attempt_03/mechanical_audit.json), [compact aggregation](../results/g7_attempt_03/compact_diagnostics/REPORT.md)
 - [Attempt ledger](STAGE_REPORT.md) and [live progress pointer](PROGRESS.md)
 
@@ -130,6 +130,6 @@ Existing attempt03 compact records remain 300 scheduled / 270 scored / 30 unavai
 
 `fit_complete=true`, `fit_certified=true`, `crosscheck_complete=false`, and `comparison_complete=false`. The separate G8 cross-agreement evaluation awaits its own authorization. Empirical omega1/omega4 references remain fixed operational values; omega1 uncertainty, G3 alternatives, and physical zeros remain open.
 
-- [Attempt04 report](../results/g7_attempt_04/STAGE_REPORT.md), [summary](../results/g7_attempt_04/summary.json), [checkpoint](../results/g7_attempt_04/checkpoint.json), [full arrays](../results/g7_attempt_04/fitted.npz), [verification](../results/g7_attempt_04/verification.json), [independent public-optics audit](../results/g7_attempt_04/independent_public_optics_audit.json)
+- [Attempt04 report](../results/g7_attempt_04/STAGE_REPORT.md), [summary](../results/g7_attempt_04/summary.json), [checkpoint](../results/g7_attempt_04/checkpoint.json), full arrays (archived artifact: `../results/g7_attempt_04/fitted.npz`), [verification](../results/g7_attempt_04/verification.json), [independent public-optics audit](../results/g7_attempt_04/independent_public_optics_audit.json)
 - [Saved-point probe and N1–N4/E1 report](../results/g7_polish_repair_01/STAGE_REPORT.md), [probe summary](../results/g7_polish_repair_01/summary.json), [expanded compact report](../results/g7_polish_repair_01/empirical_diagnostics/REPORT.md)
 - [One-correction adoption script](../scripts/accept_g7_polish.py), [independent audit script](../scripts/audit_g7_polish.py)

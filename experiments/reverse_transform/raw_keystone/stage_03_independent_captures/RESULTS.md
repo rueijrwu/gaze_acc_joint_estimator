@@ -56,11 +56,11 @@ Each metric cell gives median / P95 / RMS corresponding-vertex distance in pixel
 
 ## Figures
 
-- [point_errors_by_fixation.png](results/run/point_errors_by_fixation.png)
-- [scale_and_raw_size_by_fixation.png](results/run/scale_and_raw_size_by_fixation.png)
-- [p4_inverse_radius_ratio_by_fixation.png](results/run/p4_inverse_radius_ratio_by_fixation.png)
-- [p1_triangles_raw_vs_historical.png](results/run/p1_triangles_raw_vs_historical.png)
-- [p4_triangles_raw_vs_historical.png](results/run/p4_triangles_raw_vs_historical.png)
-- [vertex_residual_vectors_native_px.png](results/run/vertex_residual_vectors_native_px.png)
+- point_errors_by_fixation.png (archived artifact: `results/run/point_errors_by_fixation.png`)
+- scale_and_raw_size_by_fixation.png (archived artifact: `results/run/scale_and_raw_size_by_fixation.png`)
+- p4_inverse_radius_ratio_by_fixation.png (archived artifact: `results/run/p4_inverse_radius_ratio_by_fixation.png`)
+- p1_triangles_raw_vs_historical.png (archived artifact: `results/run/p1_triangles_raw_vs_historical.png`)
+- p4_triangles_raw_vs_historical.png (archived artifact: `results/run/p4_triangles_raw_vs_historical.png`)
+- vertex_residual_vectors_native_px.png (archived artifact: `results/run/vertex_residual_vectors_native_px.png`)
 
 Scale-factor and inverse-radius plots are diagnostics, not fit normalization steps. Triangle plots use matched raw/historical valid frames in native coordinates without rotation alignment or radius normalization. See the [read-only historical comparison record](results/run/historical_comparison.json) for those fields.

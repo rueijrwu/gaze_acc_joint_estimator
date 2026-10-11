@@ -133,6 +133,11 @@ def historical_comparison(stage, p):
              2: HIST/'stage_02_capture1_p4_fit/results/run/frames.npz',
              3: HIST/'stage_03_independent_captures/results/run/frames.npz',
              4: HIST/'stage_04_framewise_accommodation/results/run/frames.npz'}
+    if not paths[stage].is_file():
+        return dict(control='Historical normalized-keystone archive; retained compact reports only.',
+                    status='ARCHIVED_ARRAYS_NOT_RETAINED', path=str(paths[stage].relative_to(ROOT)),
+                    reason='Bulk historical arrays were removed under compact retention. Restore them for a framewise comparison.',
+                    fixations=[])
     old = load_npz(paths[stage])
     assert np.array_equal(old['row'], p['row']) and np.array_equal(old['population_index'], p['population_index'])
     records = []
@@ -304,7 +309,7 @@ def main():
     write(out/'summary.json', summary)
     write(out/'protocol.json', protocol)
     write(out/'provenance.json', dict(started_UTC=datetime.now(timezone.utc).isoformat(), parent_sha256=parents,
-              source_sha256={str(s.relative_to(ROOT)): digest(s) for s in sources}, historical_control_sha256={comparison['path']: comparison['sha256']}, **inputs))
+              source_sha256={str(s.relative_to(ROOT)): digest(s) for s in sources}, historical_control_sha256=({comparison['path']: comparison['sha256']} if 'sha256' in comparison else {}), **inputs))
     assert all(digest(ROOT/key) == val for key, val in parents.items())
     print(json.dumps(dict(status=summary['status'], stage=stage, complete=summary['complete'], runtime_seconds=summary['runtime_seconds'])), flush=True)
 

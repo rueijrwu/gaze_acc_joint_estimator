@@ -15,7 +15,7 @@ G4 finds a coherent negative effective P4 size response against recorded demand,
 
 G5 composes accommodation and gaze keystone correctly and updates all complete-frame A. It decreases weighted cost **7.66%**, while native RMS rises **0.23%**: **a tradeoff between the weighted criterion and native pixel RMS**. Structured signed residuals remain. There are 961 lower-bound A states, mostly at capture1 +5°, and several fixation means differ substantially from demand. These are provisional state/model limitations.
 
-![Matched G5 residuals and states](../results/g5_attempt_01/residuals_and_states.png)
+Matched G5 residuals and states (archived image: `../results/g5_attempt_01/residuals_and_states.png`)
 
 All 100,090 scheduled rows, 20 exposures and 300,270 expected slots remain; 10,915 rows have unavailable original inputs. G2 visual theta/P1 scale and independent G3 reference remain frozen. Both identity and composed K4 snapshots are saved.
 

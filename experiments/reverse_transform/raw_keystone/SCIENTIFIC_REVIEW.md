@@ -1,6 +1,6 @@
 # Raw-keystone correction: scientific review
 
-Updated 2026-10-10. The active implementation is [raw_keystone.py](../../../distortion_model/raw_keystone.py). This chain implements the pipeline-wide correction in [the next-step plan](../../../docs/REVERSE_TRANSFORM_NEXT_STEP.md). Historical normalized stages and source snapshots remain preserved.
+Updated 2026-10-10. The active implementation is [raw_keystone.py](../../../distortion_model/raw_keystone.py). This chain implements the pipeline-wide correction in [the next-step plan](../../../docs/REVERSE_TRANSFORM_NEXT_STEP.md). Historical normalized stages remain as compact comparison records; bulk source snapshots were removed under the [experiment retention policy](../../README.md).
 
 ## What changed
 

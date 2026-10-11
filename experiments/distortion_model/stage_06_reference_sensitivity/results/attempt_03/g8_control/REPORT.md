@@ -47,11 +47,11 @@ Ratios compare conditional accommodation information after allowing gaze, using 
 
 The predeclared capture2 neighborhood is saved in [neighbor_case.json](neighbor_case.json) and plotted below. All original endpoints remain in the primary evaluation.
 
-![Neighbor geometry](neighbor_geometry.png)
+Neighbor geometry (archived image: `neighbor_geometry.png`)
 
-![Exposure scorecard](exposure_scorecard.png)
+Exposure scorecard (archived image: `exposure_scorecard.png`)
 
-Joint point/axis/exposure/block counts, signed errors and tails are in [point_exposure_diagnostics.json](point_exposure_diagnostics.json). Boundary/bound strata, independent E²/Gtheta²/GA² contribution ranks and conditioning distributions are in [metrics.json](metrics.json). Raw centroids, scale, model origins and distortion corrections are in [raw_geometry.npz](raw_geometry.npz); condition and scale associations are in [measurement_diagnostics.json](measurement_diagnostics.json).
+Joint point/axis/exposure/block counts, signed errors and tails are in [point_exposure_diagnostics.json](point_exposure_diagnostics.json). Boundary/bound strata, independent E²/Gtheta²/GA² contribution ranks and conditioning distributions are in [metrics.json](metrics.json). Raw centroids, scale, model origins and distortion corrections are in raw_geometry.npz (archived artifact: `raw_geometry.npz`); condition and scale associations are in [measurement_diagnostics.json](measurement_diagnostics.json).
 
 ## Interpretation limits
 

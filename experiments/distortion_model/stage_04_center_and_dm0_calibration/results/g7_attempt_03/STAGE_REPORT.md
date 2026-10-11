@@ -32,7 +32,7 @@ The same-state reassessment is recorded at [repair01](../g7_repair_01/STAGE_REPO
 
 **PAUSE / COMPLETE_UNCERTIFIED.** Keep `fit_complete`, `fit_certified`, `crosscheck_complete`, and `comparison_complete` false. Do not launch G8 or another fit in this campaign. The next numerical question is why positive constrained profile curvature coexists with rejected full shared proposals and no acceptable same-objective polish step near a 2.51e-5 global residual. Diagnose QP accuracy/scaling and constraint-aware Newton/line-search behavior without relaxing the physical bound or changing the objective.
 
-- [Saved summary](summary.json), [checkpoint](checkpoint.json), [full arrays](fitted.npz), [console log](console.log)
-- [Independent audit](mechanical_audit.json), [runtime provenance](provenance.json), [source snapshot](source_snapshot/)
+- [Saved summary](summary.json), [checkpoint](checkpoint.json), full arrays (archived artifact: `fitted.npz`), console log (archived artifact: `console.log`)
+- [Independent audit](mechanical_audit.json), [runtime provenance](provenance.json), source snapshot (archived artifact: `source_snapshot/`)
 - [Compact aggregation](compact_diagnostics/REPORT.md) and [machine-readable records](compact_diagnostics/summary.json)
 - [Repair reassessment](../g7_repair_01/STAGE_REPORT.md)

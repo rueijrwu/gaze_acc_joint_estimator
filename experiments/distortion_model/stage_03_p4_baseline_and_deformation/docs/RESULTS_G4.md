@@ -10,7 +10,7 @@ The measured near-reference P4 projection decreases from approximately 1.000 at 
 - **50 checks passed**; runtime **11.33 s** on vectorized CPU.
 - Doubling the soft-anchor scale changes slope little. The adjacent reference gives **−0.02152827/D**, about 28% larger magnitude.
 
-![Measured response](../results/g4_attempt_01/measured_response.png)
+Measured response (archived image: `../results/g4_attempt_01/measured_response.png`)
 
 This is a conditional shape initialization. Capture/pose and demand are confounded; the physical reference and accommodation accuracy remain unresolved. Directional residuals persist. G5 revisits individual local angles and fits the P4 gaze deformation on all complete frames.
 

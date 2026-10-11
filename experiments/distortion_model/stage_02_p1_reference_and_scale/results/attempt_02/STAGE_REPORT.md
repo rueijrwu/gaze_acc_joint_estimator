@@ -7,7 +7,7 @@ Reviewer: root implementation/audit agent. Decision timestamp: 2026-10-10T01:18:
 
 ## Provenance and parent
 
-Source commit: `efd88bd3b326653aedc3b383143ef10856d22092`; remote branch matched at execution. Dirty source hash: `dc6385ee6379dfb8709b31318bc1d02d02a7b9c62d0d068e134d1749d81d1102`. Config hash: `aa09f77bfc1b574359523c763aa60c7a36c8bdfaf964ec27406d9df9983b9140`. Exact theory/plan/source hashes and runtime are in [provenance.json](provenance.json); source copies are in [source_snapshot](source_snapshot/). Theory SHA256: `8a807332a55c2ac6a786cb2311bbb62895ce37dab9a0c0bf0f3fa884b4200a80`. Estimator plan SHA256: `74c78372474bd453e295590009804fdc2d08833ec1fa705541ab0805c2dde8b7`. Gate policy SHA256: `2b5aadbed756beb0f7d68e29c5ecd47020bc2606fec54a199d5c1c3cf93e7b01`.
+Source commit: `efd88bd3b326653aedc3b383143ef10856d22092`; remote branch matched at execution. Dirty source hash: `dc6385ee6379dfb8709b31318bc1d02d02a7b9c62d0d068e134d1749d81d1102`. Config hash: `aa09f77bfc1b574359523c763aa60c7a36c8bdfaf964ec27406d9df9983b9140`. Exact theory/plan/source hashes and runtime are in [provenance.json](provenance.json); source copies are in source snapshot (archived artifact: `source_snapshot/`). Theory SHA256: `8a807332a55c2ac6a786cb2311bbb62895ce37dab9a0c0bf0f3fa884b4200a80`. Estimator plan SHA256: `74c78372474bd453e295590009804fdc2d08833ec1fa705541ab0805c2dde8b7`. Gate policy SHA256: `2b5aadbed756beb0f7d68e29c5ecd47020bc2606fec54a199d5c1c3cf93e7b01`.
 
 Parent: stage 1 attempt_02, reviewed G0/G1 GO_WITH_LIMIT: [report](../../../stage_01_data_and_bootstrap/results/attempt_02/STAGE_REPORT.md). [checkpoint.json](checkpoint.json) identifies unchanged parent population, slot manifest and covariance hashes. Raw source bytes were checked and reconstructed measurements matched the parent. Captures 1–4 and all twenty full intervals remain; captures 5/6 were excluded. Population: 100,090 scheduled, 89,175 input-valid and scale-solved, 10,915 unavailable inputs, zero unresolved valid scales. Expected outcome slots remain 300,270. No trimming or state clipping was used.
 
@@ -60,10 +60,10 @@ Counts and original-snapshot values below reproduce [p1_residuals.json](p1_resid
 
 Plots reviewed:
 
-- [Balance and contiguous blocks](p1_balance.png): axis-specific discrepancies and reference uncertainty.
-- [Scale and residuals](p1_scale_and_residuals.png): capture/gaze differences and native-row trajectories; plotted stride 10 only, full rows fit and saved.
-- [Measured/predicted patterns](p1_patterns.png): one original-row example per exposure; full residual arrays supply quantitative detail.
-- [Bootstrap refresh and coefficient blocks](bootstrap_refresh_and_blocks.png): approximate starts and within-interval stability.
+- Balance and contiguous blocks (archived artifact: `p1_balance.png`): axis-specific discrepancies and reference uncertainty.
+- Scale and residuals (archived artifact: `p1_scale_and_residuals.png`): capture/gaze differences and native-row trajectories; plotted stride 10 only, full rows fit and saved.
+- Measured/predicted patterns (archived artifact: `p1_patterns.png`): one original-row example per exposure; full residual arrays supply quantitative detail.
+- Bootstrap refresh and coefficient blocks (archived artifact: `bootstrap_refresh_and_blocks.png`): approximate starts and within-interval stability.
 
 ## Numerical evidence and repaired attempt
 
@@ -79,7 +79,7 @@ The adjacent −5° operational reference also certifies, with identity/K1 costs
 
 Refresh the inverse centroid bootstrap once using the five means of **framewise dx/g** at fitted original theta; then recompute g, F1 and mu1 at the refreshed per-frame theta. No post-refresh refit occurred. [bootstrap.json](bootstrap.json) names both snapshots. Five refreshed reference means are −10.016974, −5.014899, −0.002070, +5.121306, +9.912637°. Theta change standard deviation is 0.024914° (mean −0.004123°, range −0.230923 to +0.249885°); all 89,175 starts are finite and within bounds, exported theta spans −11.025375 to +10.961497°. Demand-based A starts remain provisional.
 
-Exported g spans 0.970479–1.013326, mean 0.997630, with zero nonpositive or unavailable scales among valid frames. [initial_states.npz](initial_states.npz), [p1_at_refreshed_theta.npz](p1_at_refreshed_theta.npz) and [checkpoint.json](checkpoint.json) are the consistent handoff. Hash fields for NPZ arrays are semantic `array_hash`; fields named sha256 identify file bytes. Original theta comparisons and alternative scales are retained separately.
+Exported g spans 0.970479–1.013326, mean 0.997630, with zero nonpositive or unavailable scales among valid frames. initial_states.npz (archived artifact: `initial_states.npz`), p1_at_refreshed_theta.npz (archived artifact: `p1_at_refreshed_theta.npz`) and [checkpoint.json](checkpoint.json) are the consistent handoff. Hash fields for NPZ arrays are semantic `array_hash`; fields named sha256 identify file bytes. Original theta comparisons and alternative scales are retained separately.
 
 Independent reconstruction checks are recorded in [reproduction_checks.json](reproduction_checks.json): parent and exported semantic hashes, bootstrap reconstruction, all twenty exposure RMS values, aggregate metrics and safe NPZ loading matched.
 

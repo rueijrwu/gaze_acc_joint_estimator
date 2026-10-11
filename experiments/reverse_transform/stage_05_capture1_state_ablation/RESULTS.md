@@ -98,7 +98,7 @@ Mean signed P4 vertex residuals (x,y) in px, vertices 1–3:
 | G | (−0.076, −0.068) | (+0.100, −0.213) | (−0.024, +0.280) |
 | GA | (−0.019, −0.096) | (+0.104, −0.142) | (−0.084, +0.238) |
 
-The [canonical summary JSON](results/run/summary.json) contains exact per-fixation correlations, signed P4 vertex residuals, observed/recovered radius ratios, and per-fixation conditioning fields. [frames.npz](results/run/frames.npz) contains signed P1/P4 residual arrays and the corresponding per-frame state and conditioning arrays.
+The [canonical summary JSON](results/run/summary.json) contains exact per-fixation correlations, signed P4 vertex residuals, observed/recovered radius ratios, and per-fixation conditioning fields. frames.npz (archived artifact: `results/run/frames.npz`) contains signed P1/P4 residual arrays and the corresponding per-frame state and conditioning arrays.
 
 ## Conditioning
 
@@ -125,9 +125,9 @@ There were no P4 inverse failures in any near-bound or full population. These lo
 
 ## Figures
 
-- [State means by fixation](results/run/state_means_by_fixation.png)
-- [Forward and inverse metrics by fixation](results/run/forward_inverse_metrics_by_fixation.png)
-- [Corrected triangle means and clouds](results/run/corrected_triangle_means_clouds.png)
-- [Conditioning by fixation](results/run/conditioning_by_fixation.png)
-- [States by source row](results/run/states_by_source_row.png)
-- [Joint gaze/A changes](results/run/delta_gaze_vs_delta_A.png)
+- State means by fixation (archived artifact: `results/run/state_means_by_fixation.png`)
+- Forward and inverse metrics by fixation (archived artifact: `results/run/forward_inverse_metrics_by_fixation.png`)
+- Corrected triangle means and clouds (archived artifact: `results/run/corrected_triangle_means_clouds.png`)
+- Conditioning by fixation (archived artifact: `results/run/conditioning_by_fixation.png`)
+- States by source row (archived artifact: `results/run/states_by_source_row.png`)
+- Joint gaze/A changes (archived artifact: `results/run/delta_gaze_vs_delta_A.png`)

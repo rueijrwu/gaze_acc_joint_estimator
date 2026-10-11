@@ -2,8 +2,10 @@
 
 **Branch:** `exp5_distortion_model`  
 **Basis commit:** `980d6d3640f06bf5823e8e908f31d422c94006a7` (Stage 06 complete, CPU audit PASS)  
-**Status:** PROPOSED / NOT IMPLEMENTED  
+**Status:** SUPERSEDED EXECUTION SEQUENCE / MODEL-COMPARISON COMPANION<br>
 **Paired audit:** [SHARED_KEYSTONE_CALIBRATION_AUDIT.md](SHARED_KEYSTONE_CALIBRATION_AUDIT.md)
+
+The current execution specification is [NEW_PROTOCOL_PLAN.md](NEW_PROTOCOL_PLAN.md), Revision 2, incorporating [NEW_PROTOCOL_PLAN_AUDIT.md](NEW_PROTOCOL_PLAN_AUDIT.md). Mean initialization now supplies frozen anchors, followed by framewise alternation and joint S0 calibration; S1 is conditional on the completed S0 evidence. This companion retains the shared-law hypothesis and comparison contracts. Neither plan has been implemented.
 
 ## 0. Objective and acceptance question
 
@@ -32,7 +34,7 @@ No free per-capture P4 keystone coefficient, isotropic P4-only scale, arbitrary 
 
 ## 2. Parameterization
 
-Let \(t_x=\theta_x/10^\circ\); choose one common fixed \(u_y\) or use native degrees for \(t_y\). For P4, start with
+Let \(t_x=\theta_x/10^\circ\) and \(t_y=\theta_y/10^\circ\) in every capture. For P4, start with
 
 \[
 B_{4j}(A)=
@@ -74,89 +76,29 @@ Keep the empirical reference gauge and all declared optical-origin conventions f
 |---|---|---|---|
 | H — historical | Four independent \(K_{4,c}(\theta)\) | Historical fitted shared \(\kappa(A)\) | Read-only Stage 03–06 benchmark; potentially overflexible, not an authoritative state law |
 | S0 — shared baseline | One \(K_4(\theta)\), all captures | Refitted shared \(\kappa(A)\) | **Mandatory primary control** |
-| S1 — minimal \(A\) coupling | One \(K_4(\theta,A)\) with **only** global \(b_{0,A}\) added | Refitted shared \(\kappa(A)\) | **Mandatory hypothesis test** |
+| S1 — minimal \(A\) coupling | One \(K_4(\theta,A)\) with **only** global \(b_{0,A}\) added | Refitted shared \(\kappa(A)\) | Conditional hypothesis test after S0 |
 | S2 — optional second coupling | Add exactly one further identified shared \(A\)-dependent term | Refitted shared \(\kappa(A)\) | Only if S1 leaves reproducible geometry that the extra term can distinguish |
 | Diagnostic free fit | Historical independent \(K_{4,c},\kappa_c\) | Independent per capture | In-sample flexibility ceiling only; not a valid final \(A\) estimator |
 
-For the paired S0/S1 comparison, **freeze the same provisional gaze array** to isolate changes to the optical model. Then refit \(A_i\) consistently under each accepted candidate. Do not silently change gaze calibration during this first comparison.
+For the paired S0/S1 comparison, use the same references, frame population, initial gaze/optical/accommodation anchor targets, widths, weighting and constraints from the current protocol. Both candidates may jointly update states under their common declared policy. A separately labeled fixed-gaze comparison can isolate the added optical term; freezing Stage-06 gaze and scales is an optional historical control and is not the primary execution path.
 
 Compare the same native-coordinate data error, not the numerical value of incomparable optimizer objectives. Because S0/S1 have fewer parameters than H, their in-sample error may be greater; a lower H residual is **not** by itself evidence against the shared law.
 
-## 4. Execution sequence
+## 4. Current execution sequence
 
-### P0 — freeze and fingerprint controls
+The exact operator, numeric defaults, anchor construction, constraints and stopping rules are defined in [NEW_PROTOCOL_PLAN.md](NEW_PROTOCOL_PLAN.md). Follow this order:
 
-Archive or reference immutable hashes of the active raw Stage 03, 04, 05 and 06 `population.npz`, `frames.npz`, `summary.json`, `audit.json`, `protocol.json`, and parent optical/reference artifacts.
+1. Fingerprint the existing raw Stage 01–06 controls and preserve their canonical results.
+2. Initialize gaze polynomials from arithmetic fixation means; calibrate provisional shared P1/P4 keystone from Capture 1 while profiling P1 magnification.
+3. Initialize radial response from all captures' zero-gaze observations using a trial-consistent centered forward fit. Any inverse mean initializer uses a declared provisional radial seed and restores its modeled optical mean.
+4. Fit the initial shared radial slope using nominal labels to establish the diopter scale. Construct one mean-accommodation target from each capture's zero-gaze P4 estimate, reuse it for that capture's five fixation-mean anchors, and freeze all targets and penalty widths. Primary width is 0.25 D; nominal-demand targets are a declared control.
+5. Alternate Capture 1 shared keystone/gaze proposals, all-capture zero-gaze radial-law proposals, and **all-frame accommodation updates**. Accept/damp proposals against the full objective. This allows nonzero-gaze Capture 1 accommodation to feed back into keystone calibration.
+6. Jointly refine shared P1/P4 keystone, radial slope, and framewise gaze/A across all captures. Reprofile P1 magnification and modeled optical means consistently; certify global and state stationarity under the same objective and constraints.
+7. Evaluate anchor sensitivity and known data-only scale symmetries. Retain separate data and regularized information diagnostics.
+8. If S0 evidence supports an additional response, fit S1 with one global horizontal accommodation-dependent keystone term, refitting the remaining optics and states. Include radial and explicit keystone contributions in the A derivative and inverse.
+9. Run the declared training/test and retained-input P4 checks, with training-only references/anchors and no omitted-coordinate leakage. A full relative-displacement D model remains a separate comparison.
 
-Record a single matched population and identical vertex order, including P4 permutation already applied once. Use separate new output paths, e.g. `experiments/reverse_transform/shared_keystone/stage_01_global_p1/` through dedicated global P4 and state-test stages. Do not overwrite `results/run` under existing stages.
-
-### P1 — P1 model and common scale policy
-
-For a physically shared system, the target is one \(K_1(\theta)\) shared by all captures, plus one \(g_i\) per frame. Fit it with the fixed P1 empirical reference using the same fitting population, native gaze and vertex metric.
-
-To isolate the P4 issue, an initial **controlled S0/S1 optical ablation may temporarily freeze the existing Stage-06 gaze array and P1 scales**, provided both candidates use the *same* frozen inputs and results are labeled conditional. That is not the final globally consistent calibration, because Stage 06 inherited per-capture P1/gaze solutions.
-
-After the first P4-only comparison, rerun/reconcile P1 globally and reprofile \(g_i\) at every gaze update. Quantify whether P1 itself exhibits capture effects; do not bury those inside a falsely universal \(K_1\).
-
-### P2 — fit S0 as an all-capture shared P4 keystone
-
-Fit one common four-coefficient \(K_4(\theta)\) to all four captures simultaneously using the same reference, current P1 scale, and a newly optimized shared \(k_A\).
-
-As a reproducible initialization, set \(A_i\) to the nominal demand per capture, *explicitly as a starting approximation, not known physiological accommodation*. Then, holding the global optics fixed, fit framewise \(A_i\) using the same 0.25 D fixation-mean soft anchors and operational [0,6] D bounds as the raw baseline. If necessary, alternate shared optical updates with state updates under **one explicitly recorded joint objective**.
-
-Use equal fixation weighting across all 20 fixations (and hence avoid the longest capture dominating), not an accidentally per-capture or frame-count-weighted cost. Enforce the valid forward domain on all frames.
-
-### P3 — fit S1 with one shared accommodation-dependent keystone coefficient
-
-From S0, release only \(b_{0,A}\) in
-
-\[
-b_0(A)=b_{0,ref}+b_{0,A}(A-A_{ref}).
-\]
-
-**Refit global \(K_4\) coefficients and radial \(k_A\)** together under S1. Do not initialize S1 with the frozen historical per-capture \(K_{4,c}\) as if they were physical constants; old coefficients may be used only as transparently labeled optimizer starts.
-
-At each frame, the derivative required for \(A_i\) is
-
-\[
-\boxed{
-\partial_A\widehat X_{4ij}
-=
-g_i\,C\!\left[
-(\partial_B K_4)\,\partial_A B_4
-+
-(\partial_A K_4)_{B_4}
-\right]_j ,
-}
-\]
-
-for fixed gaze and P1-only scale. The second term is **absent** in the historical Stage-04/06 A-only model. It must enter optimization, gradient audits, and the inverse evaluation for S1.
-
-The inverse is evaluated using the **same global coefficients at the same trial \(A_i\)**. Restore model optical centroid, divide by \(g_i\), undo the projective stretch/denominator and then invert the radial response. Do not add an RMS-size factor.
-
-### P4 — state recovery under globally frozen optical laws
-
-For each accepted S0/S1, freeze the global optical parameters and estimate framewise \(A_i\), initially at the same provisional gaze, with matched fixation-mean anchors.
-
-Compute per-fixation A mean ± SD, bounds, native-camera P1/P4 residuals and inverse-reference residuals. In particular, compare Capture 1's Stage-06 means
-
-\[
-[0.56664,\,0.58709,\,0.36226,\,0.21374,\,0.24386]\,D
-\]
-
-over gaze \([-10,-5,0,+5,+10]^\circ\), against nominal 0.36036 D. Measure the range and signed dependence, but **do not force** the means to the nominal demand by tuning model terms beyond the declared soft anchors.
-
-### P5 — only then reconcile gaze and full relative displacement
-
-If a shared model improves coordinate behavior and provides an identifiable \(A\) derivative, consider a separate joint gaze+\(A\) iteration. At every trial gaze, reevaluate \(K_1\), \(g_i\), \(K_4(\theta_i,A_i)\), and the inverse center.
-
-The historical Stage-06 per-capture gaze polynomials use P4–P1 information; they remain conditional initializations, not independent truth. Any replacement with a global relative-displacement \(D(\theta,A)\) law (as proposed in `docs/Theory.md`) is a **separate ablation after S0/S1**, not a covert modification inside the same test.
-
-### P6 — held-P4 and cross-condition checks
-
-Once the global model is frozen, perform three independent omit-one-P4-vertex trials. Infer state/scale using retained inputs only (all P1 points plus two P4 points), then predict the omitted P4 point in original relative pixels. No use of its measured coordinate through a full-three-point P4 centroid, cached inverse, label, initializer, gate, or covariance.
-
-Also compare fits when withholding one gaze fixation from optical calibration (interpolation/extrapolation must be identified) and, where feasible, withholding an accommodation/capture condition for a stress test. With only four demands and one per capture, a leave-one-capture-out result is **weak/extrapolative** and cannot independently separate capture effects from \(A\).
+The first joint model centers P1 and P4 separately and uses polynomial gaze anchors. This is conditional shape-plus-gaze-anchor inference. It does not implement Theory's full relative-center observation model. Historical fit coefficients and nominal demand are not framewise physical truth.
 
 ## 5. Numerical and scientific audit contracts
 
@@ -166,7 +108,7 @@ Also compare fits when withholding one gaze fixation from optical calibration (i
 - Independent CPU replay of all candidate forward predictions and inverses.
 - Finite-difference checks of global \(b\), \(k_A\), state \(\theta,A\), and P1 profiled \(g\) derivatives, including \(\partial_AK_4\).
 - Trial consistency: a proposed \(A\) updates radial shape, keystone, optical centroid and inverse together.
-- Same complete-frame masks, references, correspondence, fixation weighting, gaze inputs and state-anchor widths across S0/S1.
+- Same complete-frame masks, references, correspondence, fixation weighting, initial gaze anchors, state-update policy and state-anchor widths across S0/S1.
 - Positive P1 scale, finite denominators, monotonic radial branch, bound/active-constraint reporting; do not silently drop invalid measured inversions.
 
 ### Identification / sensitivity
@@ -202,14 +144,8 @@ Produce a new saved run directory for each candidate (S0/S1, optional S2), each 
 
 Suggested plots: per-capture P4 signed residual vectors versus gaze; \(b_0(A)\) versus nominal demand with no misinterpretation of four points as independent physiology; \(k_A/b_{0,A}\) profile; Capture-1 inferred A vs gaze; inverse-tail distribution; omit-one-P4 predictions.
 
-## 7. Proposed implementation order (smallest useful next step)
+## 7. Implementation boundary and artifacts
 
-1. Create a versioned global raw-keystone model class with **one shared native coefficient basis** (no per-capture K lookup).
-2. Build an S0 all-capture P4 fitter with provisional gaze/P1 scale frozen as a controlled comparison; jointly refit radial law.
-3. Add a *single* S1 global \(b_{0,A}\) option, correct \(\partial_A K\) and deterministic inverse.
-4. Run CPU derivative/closure audits and matched S0-vs-S1 native-residual comparisons.
-5. Reconcile shared P1 calibration and reprofile its framewise scale; rerun S0/S1.
-6. Refit framewise A under globally frozen optics; evaluate angular bias and bounds.
-7. Advance to joint gaze/relative-displacement inference and held-P4 prediction only if global response identification is credible.
+The current sequence uses new folders under `experiments/reverse_transform/shared_keystone/`: `stage_01_mean_initialization`, `stage_02_framewise_alternation`, `stage_03_joint_refinement`, optional `stage_04_a_dependent_keystone`, and `stage_05_validation`. Detailed manifests and acceptance criteria are in the current protocol.
 
-**Do not change Stages 01–06 in place.** The first implementation deliverable should be a *new* controlled all-capture shared-keystone ablation, not a wholesale rewrite of the gaze estimator.
+Preserve raw Stages 01–06. Start with mean initialization, explicit frozen anchors and the repaired all-frame accommodation feedback, then complete the shared S0 joint objective. A fixed-Stage06-input P4 ablation may be reported as an additional control; it does not replace this revised sequence. No new implementation or numerical results are claimed by these document changes.

@@ -102,17 +102,17 @@ Offset is Euclidean distance from each derived optical center to that pattern’
 
 ## Audit and limitations
 
-The independent CPU audit passed all six A-fit cycles, finite-difference gradients, stationary/free-curvature certificates, all-frame inverse validity, translation invariance, and synthetic center/inverse closure. Full checks and tolerances are in [`audit.json`](results/run/audit.json). The saved [protocol](results/run/protocol.json), [frame arrays](results/run/frames.npz), and [provenance](results/run/provenance.json) contain the full inputs and outputs.
+The independent CPU audit passed all six A-fit cycles, finite-difference gradients, stationary/free-curvature certificates, all-frame inverse validity, translation invariance, and synthetic center/inverse closure. Full checks and tolerances are in [`audit.json`](results/run/audit.json). The saved [protocol](results/run/protocol.json), frame arrays (archived artifact: `results/run/frames.npz`), and [provenance](results/run/provenance.json) contain the full inputs and outputs.
 
 This is a conditional, same-recording model-derived center and gaze calibration, not a physical-center measurement or an independent validation set. Fixation labels define the gaze map; capture and demand remain confounded. The vertical map is assumed from the horizontal first-order slope and has no independent vertical-target calibration. The outer loop shows numerical self-consistency, not physiological truth or a globally optimal joint objective.
 
 ## Figures
 
-- [Accommodation by source order, four captures](results/run/accommodation_by_source_order.png)
-- [Centers by source order](results/run/centers_by_source_order.png)
-- [Measured and corrected center separation](results/run/corrected_center_separation_by_capture.png)
-- [Corrected-center fixation means and gaze calibration](results/run/corrected_center_gaze_calibration.png)
-- [Initial versus refined gaze](results/run/gaze_initial_vs_refined.png)
-- [Forward point metrics](results/run/forward_point_metrics_by_capture.png)
-- [Outer-cycle changes and A-only starts](results/run/outer_cycle_convergence.png)
+- Accommodation by source order, four captures (archived artifact: `results/run/accommodation_by_source_order.png`)
+- Centers by source order (archived artifact: `results/run/centers_by_source_order.png`)
+- Measured and corrected center separation (archived artifact: `results/run/corrected_center_separation_by_capture.png`)
+- Corrected-center fixation means and gaze calibration (archived artifact: `results/run/corrected_center_gaze_calibration.png`)
+- Initial versus refined gaze (archived artifact: `results/run/gaze_initial_vs_refined.png`)
+- Forward point metrics (archived artifact: `results/run/forward_point_metrics_by_capture.png`)
+- Outer-cycle changes and A-only starts (archived artifact: `results/run/outer_cycle_convergence.png`)
 - Plot hash record: [`plot_metadata.json`](results/run/plot_metadata.json).
