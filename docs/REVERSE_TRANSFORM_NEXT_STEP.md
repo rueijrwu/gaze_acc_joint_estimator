@@ -1,5 +1,7 @@
 # Reverse-transform next-step plan: remove keystone size normalization
 
+> **Latest handoff (2026-10-10):** The raw-keystone rebuild described below **has already been implemented** through raw Stage 06 at commit `980d6d3`. This file is retained as the historical pipeline-normalization correction plan. The **next unimplemented optical-model change** is a controlled global/shared P1/P4 keystone calibration: [audit](SHARED_KEYSTONE_CALIBRATION_AUDIT.md) and [implementation plan](SHARED_KEYSTONE_CALIBRATION_PLAN.md). Do not rerun the normalization removal as if raw Stages 01–06 were still pending, and do not promote independently fit `K_{4,c}` as a final physiological accommodation model.
+
 **Branch:** `exp5_distortion_model`  
 **Purpose:** Replace the size-normalized keystone convention with the direct physical/projective keystone transform across the **entire reverse-transform pipeline**, then rebuild Stages 01–05 in order before drawing further accommodation conclusions.  
 **Status:** Planning document only. Existing Stage 01–05 results remain historical evidence under the old normalized-keystone convention.
