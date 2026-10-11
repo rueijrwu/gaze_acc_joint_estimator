@@ -1,0 +1,140 @@
+{
+  "archived_source_path_map": {
+    "experiments/reverse_transform/capture1_p4_inverse_keystone": "experiments/archive/reverse_transform/superseded_baseline/capture1_p4_inverse_keystone",
+    "experiments/reverse_transform/fixed_keystone_barrel_zero_gaze": "experiments/archive/reverse_transform/superseded_baseline/fixed_keystone_barrel_zero_gaze",
+    "experiments/reverse_transform/joint_keystone_barrel_learned_reference": "experiments/archive/reverse_transform/superseded_baseline/joint_keystone_barrel_learned_reference",
+    "experiments/reverse_transform/p4_fixation_geometry": "experiments/archive/reverse_transform/superseded_baseline/p4_fixation_geometry",
+    "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p1_joint_bounded_magnification": "experiments/archive/reverse_transform/superseded_baseline/p1_joint_bounded_magnification",
+    "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p1_joint_keystone_magnification": "experiments/archive/reverse_transform/superseded_baseline/p1_joint_keystone_magnification",
+    "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p1_scale_analysis": "experiments/archive/reverse_transform/superseded_baseline/p1_scale_analysis",
+    "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p1_zero_origin_comparison": "experiments/archive/reverse_transform/superseded_baseline/p1_zero_origin_comparison",
+    "experiments/reverse_transform/per_capture_p4_inverse_keystone": "experiments/archive/reverse_transform/superseded_baseline/per_capture_p4_inverse_keystone"
+  },
+  "bundle_array_hashes": {
+    "P4_observed": "a877b2e04ccdd3017cc39edc69a2ce41e639da516a59f9f0e5281a289dd1c1ea",
+    "capture": "b4c98508979a9d1397d15cceec5e86d89cfe0268242456467b6d22c3cd3ee4d0",
+    "fixation_id": "d66ea73944fe8cb535457cbece8643665b3d707b95815e728e6f8172aae7421d",
+    "frozen_R04_px": "1ad48128170a5de64023fc6cf764c3575ca1a515cd316a5840e0549ea58f9376",
+    "nominal_demand_diopters": "cfa8b084e6584580e8d095f1ac5632b790c273b9719e78e1bd1b2daabb15087f",
+    "nominal_theta_deg": "19ae83d5c6f17fca6b4174a20920fe6c47899826849eff3a42eda4c01ff8aeb6",
+    "p1_m": "69c92f619dc5b25341fd930f82df8758e2ee6cf8cb25d728c84942f74bff9c3e",
+    "reference_B4_initial_px": "9a6acbec81a31d5aa880c85a0751459024a84a79b785c598d881d9321c9e08da",
+    "saved_gaze_theta_deg": "4b034332ff49c05c804bbae5bee36190e94a1ebcb11b1d591b0b06b09698ba5a",
+    "source_row": "0787fda5efeeea3152f9fad21d9799817f14086d4a35a2806de8ac99b7f3af2c"
+  },
+  "bundle_file": "baseline_inputs.npz",
+  "bundle_sha256": "2f81de5a16d0458992de3dd49a3ad911e29593fccffd71e6f4bf620c3fc3eeeb",
+  "captures": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "fixations": [
+    -10.0,
+    -5.0,
+    0.0,
+    5.0,
+    10.0
+  ],
+  "input_rule": "existing per-capture filtered_complete_mask; complete P1/P4 rows gated by the saved P4 geometry mask",
+  "nominal_demand_diopters_by_capture": {
+    "1": 0.36036036036036034,
+    "2": 4.0,
+    "3": 3.0,
+    "4": 2.0
+  },
+  "p1_scale_source": {
+    "P1_fit_gauge": "sum(B**2)=sum(initial_reference**2); centroid(B)=0 is the fixed coordinate-origin convention; no mean-log(m) constraint",
+    "P1_fit_param_names": [
+      "b",
+      "cx",
+      "cy",
+      "theta0",
+      "template_q1",
+      "template_q2",
+      "template_q3"
+    ],
+    "P1_fit_params": [
+      -0.0025463737488180703,
+      0.0001553820245507194,
+      0.04579629469175016,
+      42.40272298911414,
+      0.013093620633454681,
+      0.014532941470230452,
+      -0.008675183581002987
+    ],
+    "P1_fit_scope": "C1 all rows",
+    "P1_fit_stationary": true,
+    "array_key": "frozen_learned_primary_m",
+    "array_sha256": "69c92f619dc5b25341fd930f82df8758e2ee6cf8cb25d728c84942f74bff9c3e",
+    "artifact": "experiments/archive/reverse_transform/superseded_baseline/p1_joint_bounded_magnification/results/arrays.npz",
+    "artifact_sha256": "c4142bf576f179e7b5a2ec36f5b57f8017d7997cd1cae1f8217785c157236bef",
+    "fit_summary_artifact": "experiments/archive/reverse_transform/superseded_baseline/p1_joint_bounded_magnification/results/summary.json",
+    "fit_summary_sha256": "3365cae410e9e08aafe96571fc74d002631c903cf6ad40298781157f1d4cc33b",
+    "m_bounds": [
+      0.98,
+      1.02
+    ],
+    "m_max": 0.9993325307405625,
+    "m_mean": 0.9878618796255786,
+    "m_min": 0.98,
+    "model": "m_pm_2pct_learned_all",
+    "source_row_alignment": "exact (capture, source_row); fixation exact; saved P1 gaze equals P4 saved gaze within 1e-12 deg"
+  },
+  "p4_reference": {
+    "B4_initial_px": [
+      [
+        163.71532581147684,
+        -98.30175000664312
+      ],
+      [
+        -9.390615338176305,
+        198.36981941275016
+      ],
+      [
+        -154.32471047330088,
+        -100.06806940610701
+      ]
+    ],
+    "R04_frozen_px": 191.2541464888512,
+    "rows_n": 4900,
+    "rule": "mean centered observed P4 rows in C1 nominal-zero fixation, using the exact frozen cohort"
+  },
+  "row_count": 88978,
+  "row_identity": "unique exact (capture, source_row) from the reviewed P4-complete filtered roster",
+  "saved_gaze_rule": "frozen P4 polynomial gaze, checked against P1 on exact (capture, source_row) identities",
+  "schema": "p4-scale-effect-inputs-v1",
+  "source_input_hashes": {
+    "data/detections/capture_1_detections.pkl": "fd89194a791f7bd88dd86f59f0f8e8e1275416f3a1d0ecda9e268946516dba54",
+    "data/detections/capture_2_detections.pkl": "66c2fa8170b7140221476755db56ff9cd17dd238cb5ae8a39ccd5c6e1964d04d",
+    "data/detections/capture_3_detections.pkl": "f8eb76c62d0de7ee7fa66ef99a49d0f424514131227990078a64065b4afdedf9",
+    "data/detections/capture_4_detections.pkl": "2a307476772098b22b3933617065be3e6d51890754ea21dc9e40d99172ad32cf",
+    "distortion_model/p4_scale_comparison.py": "676cc31bd355cda621c306fc3e2957eb2171e77b216d9cbe8d72ae281cdc2cf7",
+    "distortion_model/shared_keystone.py": "f746d45c31a33cb27f80c8bb5854993f05831623520585ffb33d9b3d9b1d3b7d",
+    "experiments/reverse_transform/fixed_keystone_barrel_zero_gaze/results/parameters.csv": "d1180bca17109e43330788e0753ab2edf3a60bc5d43493e61872fdb380b20b62",
+    "experiments/reverse_transform/fixed_keystone_barrel_zero_gaze/results/summary.json": "5c373d6d87e68be35745e9080e0c49618db1170fa4f330cb694b996d6870b2f1",
+    "experiments/reverse_transform/joint_keystone_barrel_learned_reference/data.py": "57c1f9f2f0b63f38f1cc4765f3f4f869b3ed5d065100761d3ce83c80f796b6b8",
+    "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p1_joint_bounded_magnification/results/arrays.npz": "c4142bf576f179e7b5a2ec36f5b57f8017d7997cd1cae1f8217785c157236bef",
+    "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p1_joint_bounded_magnification/results/summary.json": "3365cae410e9e08aafe96571fc74d002631c903cf6ad40298781157f1d4cc33b",
+    "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p1_joint_bounded_magnification/run.py": "07499cec7c968255e37fcbadf252dd992e9e012b1aab900ff4e0e7b27c2779d9",
+    "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p1_scale_analysis/data.py": "17dff8f9966096724d08c7f57fe65fcaa231dc5f6d78929802a158bec41404aa",
+    "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p4_p1_scale_effect/repair_stationarity.py": "20f29b10cfc0ff6fe8189b055b97615703b56365cf3f8a2759bd78122ded0cea",
+    "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p4_p1_scale_effect/results/source_snapshot/run_executed.py": "cdeff1634e59cac8ba86743e91c75d3348d1dfc2a3843fd583ae8be91ad5a6e5",
+    "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p4_p1_scale_effect/run.py": "86b1e10e5d609477ddfe142d99b2fcbd69b6b92692171e74cea99997abb43e41",
+    "experiments/reverse_transform/per_capture_p4_inverse_keystone/results/capture_1/arrays.npz": "9a35577f9b3ba460c7c34439163905497f1e376edfb4e5510183aafd1057cab9",
+    "experiments/reverse_transform/per_capture_p4_inverse_keystone/results/capture_1/summary.json": "305acbb606c15b1bfeab3a1f00c44d81bd41061ab8d35dceb10a067e74883f9d",
+    "experiments/reverse_transform/per_capture_p4_inverse_keystone/results/capture_2/arrays.npz": "5111aa349c55d80be03d6e7f1be20d50da013f8cee4886406f4653a649c142a5",
+    "experiments/reverse_transform/per_capture_p4_inverse_keystone/results/capture_2/summary.json": "5788eb10a55b81d92c3abe5522ba4cba2cc6479d42b26216ec918bf0b9a35a70",
+    "experiments/reverse_transform/per_capture_p4_inverse_keystone/results/capture_3/arrays.npz": "4743d3b64b6e5571a198c5af39e4513ee708398dff756133d485c1fa5a501578",
+    "experiments/reverse_transform/per_capture_p4_inverse_keystone/results/capture_3/summary.json": "0bb9d8e59e255f989169f102bd35cf361bd1cef5e0dd47a6282ce9a6e7264cbb",
+    "experiments/reverse_transform/per_capture_p4_inverse_keystone/results/capture_4/arrays.npz": "c44a9066c0fb5ebc263a3aa7d52155a8806bd506731f886ee9fa397bf3354144",
+    "experiments/reverse_transform/per_capture_p4_inverse_keystone/results/capture_4/summary.json": "aff475b497ca7e6c5b89f972f57a92acaaf161d619229f275f7a6f6f460e58ba"
+  },
+  "source_results": {
+    "arrays_path": "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p4_p1_scale_effect/results/arrays.npz",
+    "arrays_sha256": "1b4ebdde4a78a9bbfd684ea0ea888b747b4c5be180b639407bd3c3d9172ee7e3",
+    "summary_path": "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p4_p1_scale_effect/results/summary.json",
+    "summary_sha256": "cee623d9e1713e5b11dc47dc40c7f771832f922a4566f8f54c7ac43d10b14f6b"
+  }
+}
