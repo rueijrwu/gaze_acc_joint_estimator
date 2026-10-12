@@ -1,0 +1,561 @@
+{
+  "arrays_sha256": "ac51a287a22231f6643651d665197ae84f5be7d3cc3c690f9fca2fe8db6c4757",
+  "branch": "primary",
+  "conventions": {
+    "fit": "equal-weight means of the five fixation displacements; theta_x=a1*u+a2*u^2",
+    "vertical": "theta_y=(a1/h)*(delta_y-y0), diagnostic only",
+    "x": "P4 minus P1 raw centroid displacement"
+  },
+  "evaluated_row_count": 88978,
+  "fit_row_count": 66268,
+  "fit_split": "train",
+  "polynomials": [
+    {
+      "a1_deg": 9.996973028071537,
+      "a2_deg": 0.0658504981847855,
+      "capture": 1,
+      "design_singular_values": [
+        1.583231661993472,
+        1.4566568820457673
+      ],
+      "fit_rows_by_fixation": [
+        3338,
+        3600,
+        3675,
+        3741,
+        3869
+      ],
+      "fit_split": "train",
+      "fixation_calibration_prediction_deg": [
+        -9.99827450790217,
+        -4.999244600057356,
+        0.0,
+        5.01638744197785,
+        9.993878514200732
+      ],
+      "fixation_calibration_residual_deg": [
+        0.001725492097829573,
+        0.0007553999426441749,
+        0.0,
+        0.016387441977849804,
+        -0.006121485799267745
+      ],
+      "fixation_design_rank": 2,
+      "fixation_mean_delta_px": [
+        [
+          -155.91783985523222,
+          39.973761861535266
+        ],
+        [
+          -51.50125074529395,
+          43.58326989933453
+        ],
+        [
+          52.22501807526406,
+          45.23548997943908
+        ],
+        [
+          155.62234948572376,
+          48.58916881951493
+        ],
+        [
+          257.55328906557054,
+          52.62173150217777
+        ]
+      ],
+      "fixation_mean_input_u": [
+        -1.0068072151676857,
+        -0.5017340344477884,
+        0.0,
+        0.5001429322542357,
+        0.9931927848323143
+      ],
+      "h_px": 206.73556446040138,
+      "minimum_abs_derivative_deg_per_u": 9.856607802314745,
+      "monotonic_on_observed_range": true,
+      "observed_u_range": [
+        -1.0657871210245629,
+        1.053812454051291
+      ],
+      "x0_px": 52.22501807526406,
+      "y0_px": 45.23548997943908
+    },
+    {
+      "a1_deg": 10.003445236520216,
+      "a2_deg": -0.17493187973641744,
+      "capture": 2,
+      "design_singular_values": [
+        1.5913454509119458,
+        1.4487439411768799
+      ],
+      "fit_rows_by_fixation": [
+        2811,
+        3190,
+        3302,
+        3612,
+        3439
+      ],
+      "fit_split": "train",
+      "fixation_calibration_prediction_deg": [
+        -9.978842742162113,
+        -5.076316827675979,
+        0.0,
+        4.934733331252607,
+        10.014557822773696
+      ],
+      "fixation_calibration_residual_deg": [
+        0.02115725783788669,
+        -0.0763168276759787,
+        0.0,
+        -0.06526666874739284,
+        0.014557822773696216
+      ],
+      "fixation_design_rank": 2,
+      "fixation_mean_delta_px": [
+        [
+          -152.32157485401038,
+          45.43258108547451
+        ],
+        [
+          -73.43112571521198,
+          45.73608152543399
+        ],
+        [
+          9.644651030637753,
+          47.50285350538202
+        ],
+        [
+          91.82894895051824,
+          49.774209208735414
+        ],
+        [
+          177.97866984508045,
+          51.41981076007052
+        ]
+      ],
+      "fixation_mean_input_u": [
+        -0.980721198267365,
+        -0.5030318813207855,
+        0.0,
+        0.4976338906121719,
+        1.0192788017326349
+      ],
+      "h_px": 165.15012234954543,
+      "minimum_abs_derivative_deg_per_u": 9.619740426713543,
+      "monotonic_on_observed_range": true,
+      "observed_u_range": [
+        -1.0801724515845645,
+        1.096726366814413
+      ],
+      "x0_px": 9.644651030637753,
+      "y0_px": 47.50285350538202
+    },
+    {
+      "a1_deg": 9.995751270744158,
+      "a2_deg": -0.27488069095888085,
+      "capture": 3,
+      "design_singular_values": [
+        1.606041070390471,
+        1.43771804775004
+      ],
+      "fit_rows_by_fixation": [
+        3379,
+        2819,
+        3668,
+        3104,
+        1737
+      ],
+      "fit_split": "train",
+      "fixation_calibration_prediction_deg": [
+        -10.026839790610117,
+        -4.854507861036698,
+        0.0,
+        5.20022144592468,
+        9.939228542477425
+      ],
+      "fixation_calibration_residual_deg": [
+        -0.026839790610116765,
+        0.14549213896330215,
+        0.0,
+        0.20022144592468027,
+        -0.06077145752257529
+      ],
+      "fixation_design_rank": 2,
+      "fixation_mean_delta_px": [
+        [
+          -150.18358005153448,
+          47.31084484512888
+        ],
+        [
+          -63.47859740292555,
+          49.006477239710065
+        ],
+        [
+          20.05627375703026,
+          47.9536906218739
+        ],
+        [
+          112.05520266827163,
+          48.69059007082565
+        ],
+        [
+          198.35862091956548,
+          52.04947925169705
+        ]
+      ],
+      "fixation_mean_input_u": [
+        -0.9768679565013735,
+        -0.47933863346942174,
+        0.0,
+        0.5279069716947683,
+        1.0231320434986264
+      ],
+      "h_px": 174.27110048555,
+      "minimum_abs_derivative_deg_per_u": 9.403594442575256,
+      "monotonic_on_observed_range": true,
+      "observed_u_range": [
+        -1.1256540793423844,
+        1.077116086443268
+      ],
+      "x0_px": 20.05627375703026,
+      "y0_px": 47.9536906218739
+    },
+    {
+      "a1_deg": 10.00226244748734,
+      "a2_deg": -0.12163476450674458,
+      "capture": 4,
+      "design_singular_values": [
+        1.586134240252688,
+        1.4529838319590005
+      ],
+      "fit_rows_by_fixation": [
+        2908,
+        3674,
+        3497,
+        3513,
+        3392
+      ],
+      "fit_split": "train",
+      "fixation_calibration_prediction_deg": [
+        -10.013668266019144,
+        -4.943927829947575,
+        0.0,
+        5.05615460689885,
+        9.985621416227875
+      ],
+      "fixation_calibration_residual_deg": [
+        -0.013668266019143616,
+        0.05607217005242493,
+        0.0,
+        0.05615460689884966,
+        -0.014378583772124642
+      ],
+      "fixation_design_rank": 2,
+      "fixation_mean_delta_px": [
+        [
+          -146.24379902770562,
+          45.30934169996877
+        ],
+        [
+          -53.231285752801874,
+          47.816071704303006
+        ],
+        [
+          38.55767363666525,
+          46.46114899352935
+        ],
+        [
+          133.5788900956004,
+          48.24101743630879
+        ],
+        [
+          227.37937190792385,
+          50.44657079040513
+        ]
+      ],
+      "fixation_mean_input_u": [
+        -0.9892398921704447,
+        -0.4913451120261554,
+        0.0,
+        0.5086473422993678,
+        1.0107601078295554
+      ],
+      "h_px": 186.81158546781472,
+      "minimum_abs_derivative_deg_per_u": 9.745732707929015,
+      "monotonic_on_observed_range": true,
+      "observed_u_range": [
+        -1.0439565517977896,
+        1.054508308535841
+      ],
+      "x0_px": 38.55767363666525,
+      "y0_px": 46.46114899352935
+    }
+  ],
+  "source_hashes": {
+    "CURRENT_PLAN.md": "3f08c50fd5d5f8a01e91e8d09fc875dcb428fa4a60e347739e45b47387787a1c",
+    "distortion_model/capturewise_reverse.py": "234406ad2e8d0ff065ad144d3136dc6c92188b6e21b08a53e72d61d2ecac7cc6",
+    "distortion_model/p1_joint.py": "de8ebe256152f188a190a36073a9ade8db7d34b94e0aeddb2bbd4a967bb936e5",
+    "experiments/reverse_transform/p1_scale_capturewise_p4/common.py": "79cb3023f6d01888557ce3782ed006c0170d628053426de3fe12c862fa87f020",
+    "experiments/reverse_transform/p1_scale_capturewise_p4/data.py": "c08a7cf311a1d576b95e1404b21f52354787a083189149e55c6307964935ef99",
+    "experiments/reverse_transform/p1_scale_capturewise_p4/stage_01_gaze_initialization/run.py": "f5384b631cbde1dcccb70e1095972a8dd26d7b982b6534d1d40684e8fe44e9e9",
+    "experiments/reverse_transform/p1_scale_capturewise_p4/stage_02_shared_p1_scale/run.py": "ed5a51e25c1901e73d708ce23a47a48109e655291d448fb1327850a9f2f2f2bf",
+    "experiments/reverse_transform/p1_scale_capturewise_p4/stage_03_capturewise_p4_keystone/run.py": "0101dc63bdca738c8d2bd4e779984f413363c3e0614253b4d56fb88ec98b89be",
+    "experiments/reverse_transform/p1_scale_capturewise_p4/stage_04_capturewise_barrel/run.py": "ea76c5b9d5be02709f6a731f1e66d7c50bfbd5e7a3a3fa49a1994b2329ab30d2"
+  },
+  "source_provenance": {
+    "bundle_json_path": "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p4_p1_scale_effect/baseline_inputs.json",
+    "bundle_json_sha256": "b3e614f03e75251e9fe8f2a8b0dca8c945a62ff96c68d4e2be9902b82eec9b5c",
+    "bundle_npz_path": "experiments/reverse_transform/p4_gaze_accommodation_decoupling/stage_00_baseline_sensitivity/p4_p1_scale_effect/baseline_inputs.npz",
+    "bundle_npz_sha256": "2f81de5a16d0458992de3dd49a3ad911e29593fccffd71e6f4bf620c3fc3eeeb",
+    "dataset_n": 88978,
+    "identity": "unique exact (capture, source_row); source_frame is joined from the trusted raw detection index",
+    "inclusion": "existing per-capture filtered_complete_mask; complete P1/P4 rows gated by the saved P4 geometry mask",
+    "reviewed_intervals_sha256": "51c4c7514b31dab44b7eb898e7e640c624bf02133cf8324ae605998b455bf015",
+    "reviewed_mask_counts": [
+      {
+        "capture": 1,
+        "fixations": [
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4433,
+            "end_row_exclusive": 5700,
+            "filtered_n": 4334,
+            "fixation": 0,
+            "geometry_keep_n": 4334,
+            "scheduled_n": 4800,
+            "start_row": 900
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4800,
+            "end_row_exclusive": 10500,
+            "filtered_n": 4800,
+            "fixation": 1,
+            "geometry_keep_n": 4800,
+            "scheduled_n": 4800,
+            "start_row": 5700
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4900,
+            "end_row_exclusive": 15500,
+            "filtered_n": 4900,
+            "fixation": 2,
+            "geometry_keep_n": 4900,
+            "scheduled_n": 4900,
+            "start_row": 10600
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4993,
+            "end_row_exclusive": 20500,
+            "filtered_n": 4991,
+            "fixation": 3,
+            "geometry_keep_n": 4991,
+            "scheduled_n": 5000,
+            "start_row": 15500
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 5154,
+            "end_row_exclusive": 25700,
+            "filtered_n": 5123,
+            "fixation": 4,
+            "geometry_keep_n": 5123,
+            "scheduled_n": 5200,
+            "start_row": 20500
+          }
+        ]
+      },
+      {
+        "capture": 2,
+        "fixations": [
+          {
+            "archived_mask_verified": true,
+            "complete_n": 3912,
+            "end_row_exclusive": 6800,
+            "filtered_n": 3879,
+            "fixation": 0,
+            "geometry_keep_n": 3879,
+            "scheduled_n": 4600,
+            "start_row": 2200
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4345,
+            "end_row_exclusive": 11800,
+            "filtered_n": 4332,
+            "fixation": 1,
+            "geometry_keep_n": 4332,
+            "scheduled_n": 5000,
+            "start_row": 6800
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4553,
+            "end_row_exclusive": 16800,
+            "filtered_n": 4552,
+            "fixation": 2,
+            "geometry_keep_n": 4552,
+            "scheduled_n": 5000,
+            "start_row": 11800
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4781,
+            "end_row_exclusive": 21800,
+            "filtered_n": 4781,
+            "fixation": 3,
+            "geometry_keep_n": 4781,
+            "scheduled_n": 5000,
+            "start_row": 16800
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4435,
+            "end_row_exclusive": 27090,
+            "filtered_n": 4435,
+            "fixation": 4,
+            "geometry_keep_n": 4435,
+            "scheduled_n": 5290,
+            "start_row": 21800
+          }
+        ]
+      },
+      {
+        "capture": 3,
+        "fixations": [
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4505,
+            "end_row_exclusive": 6000,
+            "filtered_n": 4505,
+            "fixation": 0,
+            "geometry_keep_n": 4505,
+            "scheduled_n": 4700,
+            "start_row": 1300
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 3902,
+            "end_row_exclusive": 11000,
+            "filtered_n": 3902,
+            "fixation": 1,
+            "geometry_keep_n": 3902,
+            "scheduled_n": 4900,
+            "start_row": 6100
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4811,
+            "end_row_exclusive": 16000,
+            "filtered_n": 4811,
+            "fixation": 2,
+            "geometry_keep_n": 4811,
+            "scheduled_n": 5000,
+            "start_row": 11000
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4251,
+            "end_row_exclusive": 21000,
+            "filtered_n": 4251,
+            "fixation": 3,
+            "geometry_keep_n": 4251,
+            "scheduled_n": 5000,
+            "start_row": 16000
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 2326,
+            "end_row_exclusive": 26500,
+            "filtered_n": 2326,
+            "fixation": 4,
+            "geometry_keep_n": 2326,
+            "scheduled_n": 5500,
+            "start_row": 21000
+          }
+        ]
+      },
+      {
+        "capture": 4,
+        "fixations": [
+          {
+            "archived_mask_verified": true,
+            "complete_n": 3914,
+            "end_row_exclusive": 5300,
+            "filtered_n": 3913,
+            "fixation": 0,
+            "geometry_keep_n": 3913,
+            "scheduled_n": 4800,
+            "start_row": 500
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4899,
+            "end_row_exclusive": 10200,
+            "filtered_n": 4899,
+            "fixation": 1,
+            "geometry_keep_n": 4899,
+            "scheduled_n": 4900,
+            "start_row": 5300
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4747,
+            "end_row_exclusive": 15200,
+            "filtered_n": 4747,
+            "fixation": 2,
+            "geometry_keep_n": 4747,
+            "scheduled_n": 5000,
+            "start_row": 10200
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4738,
+            "end_row_exclusive": 20100,
+            "filtered_n": 4738,
+            "fixation": 3,
+            "geometry_keep_n": 4738,
+            "scheduled_n": 4900,
+            "start_row": 15200
+          },
+          {
+            "archived_mask_verified": true,
+            "complete_n": 4776,
+            "end_row_exclusive": 25900,
+            "filtered_n": 4759,
+            "fixation": 4,
+            "geometry_keep_n": 4759,
+            "scheduled_n": 5800,
+            "start_row": 20100
+          }
+        ]
+      }
+    ],
+    "reviewed_source_manifest": [
+      {
+        "capture": 1,
+        "detection_path": "data/detections/capture_1_detections.pkl",
+        "detection_sha256": "fd89194a791f7bd88dd86f59f0f8e8e1275416f3a1d0ecda9e268946516dba54"
+      },
+      {
+        "capture": 2,
+        "detection_path": "data/detections/capture_2_detections.pkl",
+        "detection_sha256": "66c2fa8170b7140221476755db56ff9cd17dd238cb5ae8a39ccd5c6e1964d04d"
+      },
+      {
+        "capture": 3,
+        "detection_path": "data/detections/capture_3_detections.pkl",
+        "detection_sha256": "f8eb76c62d0de7ee7fa66ef99a49d0f424514131227990078a64065b4afdedf9"
+      },
+      {
+        "capture": 4,
+        "detection_path": "data/detections/capture_4_detections.pkl",
+        "detection_sha256": "2a307476772098b22b3933617065be3e6d51890754ea21dc9e40d99172ad32cf"
+      }
+    ],
+    "split": "within each reviewed fixation interval by source-row fractions: [0,.75) train, [.75,.80) gap, [.80,1) test; floor boundaries"
+  },
+  "stage": 1
+}

@@ -1,0 +1,2602 @@
+{
+  "R01_px": 250.98983193568156,
+  "arrays_sha256": "579045c7c5486e75df2a03761e8ffcf08f64986b76b50b8f2d68e08c6a14e831",
+  "branch": "primary",
+  "evaluated_rows": 88978,
+  "fit_rows": 88978,
+  "fit_split": "all",
+  "fixed_full_evaluation": {
+    "bound_tie_rows": 0,
+    "g_max": 1.013382981639328,
+    "g_mean": 1.0015098547623906,
+    "g_min": 0.9843283456614064,
+    "lower_contact_rows": 0,
+    "upper_contact_rows": 0,
+    "valid_rows": 88978
+  },
+  "fixed_template_control": {
+    "B": [
+      [
+        -230.03015087309288,
+        124.16337007691226
+      ],
+      [
+        17.39823254228451,
+        -245.70354103970618
+      ],
+      [
+        212.63191833080884,
+        121.54017096279388
+      ]
+    ],
+    "R0": 250.98983193568156,
+    "active_bounds": [],
+    "alpha": [
+      -0.0002826243408718148,
+      0.003096785118796666,
+      -0.003964792965008125
+    ],
+    "best_start": 1,
+    "bounds": [
+      [
+        -0.25,
+        0.25
+      ],
+      [
+        -0.2,
+        0.2
+      ],
+      [
+        -0.2,
+        0.2
+      ],
+      [
+        -120.0,
+        120.0
+      ]
+    ],
+    "evaluations": 35,
+    "gauge": "B fixed to initial centered reference; no additional scale gauge",
+    "gradient": [
+      -9.085970430026957e-08,
+      -1.2118465813758424e-07,
+      -3.295950756938837e-08,
+      -2.2107762368552676e-11
+    ],
+    "gradient_norm": 1.5500818320793683e-07,
+    "invalid_rows": 0,
+    "iterations": 29,
+    "loss": 1.0674700274218636,
+    "m_bounds": [
+      0.98,
+      1.02
+    ],
+    "magnification_constraint": {
+      "bound_active_fraction": 0.0,
+      "bound_active_rows": 0,
+      "bound_tie_fraction": 0.0,
+      "bound_tie_rows": 0,
+      "bounds": [
+        0.98,
+        1.02
+      ],
+      "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+      "lower_active_fraction": 0.0,
+      "lower_active_rows": 0,
+      "method": "exact scalar least-squares minimum over explicit positive interval",
+      "unconstrained_m_max": 1.013382981639328,
+      "unconstrained_m_min": 0.9843283456614064,
+      "unconstrained_nonpositive_rows": 0,
+      "upper_active_fraction": 0.0,
+      "upper_active_rows": 0
+    },
+    "max_trial_invalid_rows": 88978,
+    "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+    "min_trial_denominator": -2.7127394031523515,
+    "numerical_search_envelope": "finite optimizer boxes only; not physical limits; repeat with widened boxes to audit sensitivity",
+    "param_names": [
+      "b",
+      "cx",
+      "cy",
+      "theta0"
+    ],
+    "param_scales": [
+      0.05,
+      0.05,
+      0.05,
+      10.0
+    ],
+    "params": [
+      -0.0002826243408718148,
+      0.003096785118796666,
+      -0.003964792965008125,
+      -4.057538303703582
+    ],
+    "projected_gradient_norm": 6.0592329068792125e-09,
+    "reference_energy": 188987.68720530506,
+    "rejected_domain_evaluations": 1,
+    "start_stability": {
+      "loss_max": 1.1075114680740783,
+      "loss_min": 1.0674700274218636,
+      "parameter_max": [
+        -0.0002826243368478639,
+        0.003096785125170566,
+        0.004791866612407871,
+        24.521338924805978
+      ],
+      "parameter_min": [
+        -0.0008682138806824851,
+        -0.0009903761618876349,
+        -0.003964793051064233,
+        -4.05753831046629
+      ],
+      "prediction_difference_coordinate_rms": [
+        6.045264939149549e-10,
+        0.0,
+        5.128791482072427e-09,
+        0.2623139605429326,
+        0.26231396033823867,
+        1.2327308889230253e-09,
+        5.407745071176425e-10,
+        7.301775592524772e-10
+      ],
+      "scale_difference_rms": [
+        2.1530582953265706e-13,
+        0.0,
+        6.641442068432675e-13,
+        0.00014543532424026739,
+        0.00014543532336808762,
+        1.972984712576665e-13,
+        1.5630205779857412e-13,
+        6.228553094645054e-14
+      ],
+      "template_difference_coordinate_rms": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "valid_starts": 8
+    },
+    "starts": [
+      {
+        "active_bounds": [],
+        "evaluations": 23,
+        "gradient_norm": 4.261009404300771e-08,
+        "initial_params": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "iterations": 20,
+        "loss": 1.0674700274218638,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.0,
+          "bound_active_rows": 0,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.0,
+          "lower_active_rows": 0,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 1.0133829816393423,
+          "unconstrained_m_min": 0.9843283456614972,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 0,
+        "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+        "min_trial_denominator": 0.8035732290398309,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 23,
+            "iterations": 20,
+            "loss": 1.0674700274218638,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          -0.0002826243368478639,
+          0.003096785125170566,
+          -0.003964792955531919,
+          -4.057538303207313
+        ],
+        "projected_gradient_norm": 1.4621978892438714e-09,
+        "rejected_domain_evaluations": 0,
+        "start": 0,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      },
+      {
+        "active_bounds": [],
+        "evaluations": 35,
+        "gradient_norm": 1.5500818320793683e-07,
+        "initial_params": [
+          0.008220255713403835,
+          0.007368217850011921,
+          -0.039527637287882715,
+          -20.0
+        ],
+        "iterations": 29,
+        "loss": 1.0674700274218636,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.0,
+          "bound_active_rows": 0,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.0,
+          "lower_active_rows": 0,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 1.013382981639328,
+          "unconstrained_m_min": 0.9843283456614064,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 88978,
+        "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+        "min_trial_denominator": -2.7127394031523515,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 422.38798772025063,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.1,
+            "evaluations": 35,
+            "iterations": 29,
+            "loss": 1.0674700274218636,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          -0.0002826243408718148,
+          0.003096785118796666,
+          -0.003964792965008125,
+          -4.057538303703582
+        ],
+        "projected_gradient_norm": 6.0592329068792125e-09,
+        "rejected_domain_evaluations": 1,
+        "start": 1,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      },
+      {
+        "active_bounds": [],
+        "evaluations": 41,
+        "gradient_norm": 2.0047169011744747e-06,
+        "initial_params": [
+          0.045063711994825235,
+          0.04517659740399827,
+          0.013885846872174834,
+          -10.0
+        ],
+        "iterations": 29,
+        "loss": 1.0674700274218638,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.0,
+          "bound_active_rows": 0,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.0,
+          "lower_active_rows": 0,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 1.0133829816395907,
+          "unconstrained_m_min": 0.9843283456610152,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 88978,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "min_trial_denominator": -2.7127394031523515,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 550.2002630386013,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.1,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 550.2002630386013,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.01,
+            "evaluations": 41,
+            "iterations": 29,
+            "loss": 1.0674700274218638,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          -0.0002826243550682127,
+          0.003096785076948764,
+          -0.003964793051064233,
+          -4.057538292378098
+        ],
+        "projected_gradient_norm": 7.022238093182948e-08,
+        "rejected_domain_evaluations": 2,
+        "start": 2,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      },
+      {
+        "active_bounds": [],
+        "evaluations": 40,
+        "gradient_norm": 5.883271858054629e-06,
+        "initial_params": [
+          0.01637774581296906,
+          0.005259855810353893,
+          -0.02061044020711068,
+          10.0
+        ],
+        "iterations": 33,
+        "loss": 1.1075114680740783,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.0,
+          "bound_active_rows": 0,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.0,
+          "lower_active_rows": 0,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 1.013226192111244,
+          "unconstrained_m_min": 0.9840703365636344,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 88978,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "min_trial_denominator": -0.6720937414753514,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 35.520168520059144,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.1,
+            "evaluations": 40,
+            "iterations": 33,
+            "loss": 1.1075114680740783,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          -0.0008682138806824851,
+          -0.0009903761618876349,
+          0.004791866612407871,
+          24.521338658478374
+        ],
+        "projected_gradient_norm": 2.8558279885002036e-07,
+        "rejected_domain_evaluations": 1,
+        "start": 3,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      },
+      {
+        "active_bounds": [],
+        "evaluations": 38,
+        "gradient_norm": 2.7815296023251814e-06,
+        "initial_params": [
+          0.0029706394345232,
+          -0.0339734231056155,
+          -0.01808291320845353,
+          20.0
+        ],
+        "iterations": 34,
+        "loss": 1.1075114680740783,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.0,
+          "bound_active_rows": 0,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.0,
+          "lower_active_rows": 0,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 1.0132261921128756,
+          "unconstrained_m_min": 0.9840703365652569,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 88978,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "min_trial_denominator": -2.6904515785506358,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 81.71799153582052,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.1,
+            "evaluations": 38,
+            "iterations": 34,
+            "loss": 1.1075114680740783,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          -0.0008682138634758073,
+          -0.0009903761486925546,
+          0.004791866551274788,
+          24.521338924805978
+        ],
+        "projected_gradient_norm": 1.3451597187449927e-07,
+        "rejected_domain_evaluations": 1,
+        "start": 4,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      },
+      {
+        "active_bounds": [],
+        "evaluations": 22,
+        "gradient_norm": 8.221337818840558e-07,
+        "initial_params": [
+          0.02153017855405895,
+          0.0028931283758925523,
+          -0.01333296983957466,
+          -5.0
+        ],
+        "iterations": 18,
+        "loss": 1.067470027421864,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.0,
+          "bound_active_rows": 0,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.0,
+          "lower_active_rows": 0,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 1.0133829816391595,
+          "unconstrained_m_min": 0.9843283456613109,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 88978,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "min_trial_denominator": -2.7127394031523515,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 49.72655430397201,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.1,
+            "evaluations": 22,
+            "iterations": 18,
+            "loss": 1.067470027421864,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          -0.0002826243413117222,
+          0.0030967851214289996,
+          -0.003964792947809443,
+          -4.05753831046629
+        ],
+        "projected_gradient_norm": 3.826657930909583e-08,
+        "rejected_domain_evaluations": 1,
+        "start": 5,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      },
+      {
+        "active_bounds": [],
+        "evaluations": 33,
+        "gradient_norm": 5.5079294556050085e-08,
+        "initial_params": [
+          0.006471888929428455,
+          -0.030884762621488374,
+          -0.013771227680808176,
+          5.0
+        ],
+        "iterations": 29,
+        "loss": 1.067470027421864,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.0,
+          "bound_active_rows": 0,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.0,
+          "lower_active_rows": 0,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 1.0133829816394206,
+          "unconstrained_m_min": 0.9843283456615445,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 88978,
+        "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+        "min_trial_denominator": -2.6904515785506358,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 14.21305930519982,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.1,
+            "evaluations": 33,
+            "iterations": 29,
+            "loss": 1.067470027421864,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          -0.00028262433703782553,
+          0.0030967851249272945,
+          -0.0039647929551161545,
+          -4.057538299594165
+        ],
+        "projected_gradient_norm": 2.47111681351761e-09,
+        "rejected_domain_evaluations": 1,
+        "start": 6,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      },
+      {
+        "active_bounds": [],
+        "evaluations": 24,
+        "gradient_norm": 4.569802124496333e-07,
+        "initial_params": [
+          0.013118600832921526,
+          0.00815674319149549,
+          -0.01661007257040938,
+          0.0
+        ],
+        "iterations": 23,
+        "loss": 1.0674700274218638,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.0,
+          "bound_active_rows": 0,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.0,
+          "lower_active_rows": 0,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 1.0133829816393967,
+          "unconstrained_m_min": 0.9843283456615124,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 88978,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "min_trial_denominator": -2.7127394031523515,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 6.9482979783056615,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.1,
+            "evaluations": 24,
+            "iterations": 23,
+            "loss": 1.0674700274218638,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          -0.00028262433946261534,
+          0.0030967851235617154,
+          -0.003964792952941845,
+          -4.057538300364664
+        ],
+        "projected_gradient_norm": 2.135956409564724e-08,
+        "rejected_domain_evaluations": 1,
+        "start": 7,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      }
+    ],
+    "stationary": true,
+    "status": 0,
+    "success": true,
+    "template_energy": 188987.68720530506,
+    "theta0": -4.057538303703582,
+    "valid_rows": 88978
+  },
+  "fixed_training_diagnostics": {
+    "active_bounds": [],
+    "bounds": [
+      [
+        -0.25,
+        0.25
+      ],
+      [
+        -0.2,
+        0.2
+      ],
+      [
+        -0.2,
+        0.2
+      ],
+      [
+        -120.0,
+        120.0
+      ]
+    ],
+    "condition_number": 5191.092848472846,
+    "domain": {
+      "denominator_min": 0.9928896895126362,
+      "invalid_rows": 0,
+      "m_max": 1.013382981639328,
+      "m_min": 0.9843283456614064,
+      "nonpositive_m": 0,
+      "nonpositive_projective_rows": 0,
+      "rows": 88978,
+      "weak_shape_rows": 0
+    },
+    "gauge": "B fixed to initial centered reference; no additional scale gauge",
+    "gradient_norm": 1.5500818320793683e-07,
+    "interior_shape_scalar_orthogonality_max": 9.565326308802469e-11,
+    "magnification_constraint": {
+      "bound_active_fraction": 0.0,
+      "bound_active_rows": 0,
+      "bound_tie_fraction": 0.0,
+      "bound_tie_rows": 0,
+      "bounds": [
+        0.98,
+        1.02
+      ],
+      "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+      "lower_active_fraction": 0.0,
+      "lower_active_rows": 0,
+      "method": "exact scalar least-squares minimum over explicit positive interval",
+      "unconstrained_m_max": 1.013382981639328,
+      "unconstrained_m_min": 0.9843283456614064,
+      "unconstrained_nonpositive_rows": 0,
+      "upper_active_fraction": 0.0,
+      "upper_active_rows": 0
+    },
+    "objective": 1.0674700274218636,
+    "param_names": [
+      "b",
+      "cx",
+      "cy",
+      "theta0"
+    ],
+    "parameter_scales": [
+      0.05,
+      0.05,
+      0.05,
+      10.0
+    ],
+    "parameter_units": [
+      "dimensionless",
+      "dimensionless",
+      "dimensionless",
+      "degree"
+    ],
+    "projected_gradient_norm": 6.0592329068792125e-09,
+    "rank": 4,
+    "rank_definition": "weighted data-only residual Jacobian after exact selected scalar profiling; no prior/constraint residuals appended; bounded case conditional on reported active set and interior derivative branch at nonsmooth ties",
+    "rank_rtol": 1e-08,
+    "rank_tolerance": 2.5904376648816144e-06,
+    "raw_K_area_identity_max_absolute_error": 1.1102230246251565e-15,
+    "reference_energy": 188987.68720530506,
+    "scalar_bound_kkt": {
+      "expected_signs": "lower-active gradient>=0; upper-active gradient<=0; interior gradient=0; exact bound ties are scalar-map nonsmooth points",
+      "gradient_definition": "d(sum_vertex_coordinate_squared_error)/dm=-2*dot(residual,H), native px\u00b2 per unit m",
+      "interior_gradient_max_absolute": 1.9130652617604937e-10,
+      "lower_active_gradient_range": null,
+      "max_violation": 1.9130652617604937e-10,
+      "upper_active_gradient_range": null
+    },
+    "scale_coordinate_noise_gain_max": 0.0023006247203337347,
+    "scale_coordinate_noise_gain_min": 0.002299602704477709,
+    "scale_coordinate_noise_gain_unconstrained_max": 0.0023006247203337347,
+    "scale_coordinate_noise_gain_unconstrained_min": 0.002299602704477709,
+    "scaled_gradient_inf": 6.0592329068792125e-09,
+    "shape_scalar_orthogonality_interpretation": "all-row residual dot H is descriptive; scalar orthogonality applies only to unconstrained/interior rows, while active scalar bounds require the reported KKT signs",
+    "shape_scalar_orthogonality_max": 9.565326308802469e-11,
+    "singular_values": [
+      259.04376648816145,
+      103.91059202891917,
+      50.29146485029965,
+      0.04990158605318895
+    ],
+    "stationary": true,
+    "template_centroid": [
+      1.6105635343895605e-13,
+      -1.4210854715202004e-14
+    ],
+    "template_energy": 188987.68720530506,
+    "unit_scaled_spectrum": {
+      "condition_number": 26.041904611033818,
+      "rank": 4,
+      "rank_tolerance": 1.2954791782425282e-07,
+      "singular_values": [
+        12.954791782425282,
+        5.198400207841169,
+        2.5205410299279647,
+        0.4974594591263653
+      ]
+    }
+  },
+  "primary_full_evaluation": {
+    "bound_tie_rows": 0,
+    "g_max": 1.0052455155610955,
+    "g_mean": 0.9915777119461399,
+    "g_min": 0.98,
+    "lower_contact_rows": 1775,
+    "pooled_vertex_coordinate_rms_px": 0.6740137707268312,
+    "upper_contact_rows": 0,
+    "valid_rows": 88978
+  },
+  "primary_learned": {
+    "B": [
+      [
+        -236.4866952823643,
+        120.18524624985758
+      ],
+      [
+        15.51669746968534,
+        -236.62375664225164
+      ],
+      [
+        220.96999781267897,
+        116.43851039239406
+      ]
+    ],
+    "R0": 250.98983193568156,
+    "active_bounds": [],
+    "alpha": [
+      0.0013553586228144917,
+      -0.0001417012691352096,
+      0.02772097988551171
+    ],
+    "best_start": 2,
+    "bounds": [
+      [
+        -0.25,
+        0.25
+      ],
+      [
+        -0.2,
+        0.2
+      ],
+      [
+        -0.2,
+        0.2
+      ],
+      [
+        -120.0,
+        120.0
+      ],
+      [
+        -0.75,
+        0.75
+      ],
+      [
+        -0.75,
+        0.75
+      ],
+      [
+        -0.75,
+        0.75
+      ]
+    ],
+    "evaluations": 117,
+    "gauge": "sum(B**2)=sum(initial_reference**2); centroid(B)=0 is the fixed coordinate-origin convention; no mean-log(m) constraint",
+    "gradient": [
+      8.050199029940863e-06,
+      4.6191813610034493e-07,
+      -7.792902818049008e-07,
+      7.801544900346729e-12,
+      -7.606007835307665e-07,
+      8.80993499640561e-07,
+      9.647659147185193e-07
+    ],
+    "gradient_norm": 8.240861757001804e-06,
+    "invalid_rows": 0,
+    "iterations": 102,
+    "loss": 0.875093185201015,
+    "m_bounds": [
+      0.98,
+      1.02
+    ],
+    "magnification_constraint": {
+      "bound_active_fraction": 0.019948751376744813,
+      "bound_active_rows": 1775,
+      "bound_tie_fraction": 0.0,
+      "bound_tie_rows": 0,
+      "bounds": [
+        0.98,
+        1.02
+      ],
+      "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+      "lower_active_fraction": 0.019948751376744813,
+      "lower_active_rows": 1775,
+      "method": "exact scalar least-squares minimum over explicit positive interval",
+      "unconstrained_m_max": 1.0052455155610955,
+      "unconstrained_m_min": 0.9729170397756463,
+      "unconstrained_nonpositive_rows": 0,
+      "upper_active_fraction": 0.0,
+      "upper_active_rows": 0
+    },
+    "max_trial_invalid_rows": 72311,
+    "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "min_trial_denominator": -0.16841542486470296,
+    "numerical_search_envelope": "finite optimizer boxes only; not physical limits; repeat with widened boxes to audit sensitivity",
+    "param_names": [
+      "b",
+      "cx",
+      "cy",
+      "theta0",
+      "template_q1",
+      "template_q2",
+      "template_q3"
+    ],
+    "param_scales": [
+      0.05,
+      0.05,
+      0.05,
+      10.0,
+      0.1,
+      0.1,
+      0.1
+    ],
+    "params": [
+      0.0013553586228144917,
+      -0.0001417012691352096,
+      0.02772097988551171,
+      -66.77121335404098,
+      -0.010294372726197855,
+      -0.012083945118084074,
+      0.008020141876111114
+    ],
+    "projected_gradient_norm": 4.0250995149704317e-07,
+    "reference_energy": 188987.68720530506,
+    "rejected_domain_evaluations": 1,
+    "start_stability": {
+      "loss_max": 0.8848719210283881,
+      "loss_min": 0.875093185201015,
+      "parameter_max": [
+        0.0013553586238672472,
+        0.0003307162479517938,
+        0.030103128256219167,
+        64.72986142141542,
+        0.013404295229510636,
+        0.01390165820562067,
+        0.008020142107678358
+      ],
+      "parameter_min": [
+        -0.0011628071206559196,
+        -0.0001417012746725676,
+        0.027720979833971496,
+        -66.7712148790536,
+        -0.010294373114633987,
+        -0.012083945560692111,
+        -0.007986907646322126
+      ],
+      "prediction_difference_coordinate_rms": [
+        0.18306266204988897,
+        3.0320792695957907e-09,
+        0.0,
+        0.18306266451346134,
+        0.1830626639764705,
+        3.180566823461097e-08,
+        0.18306266039958816,
+        0.18306266159565604
+      ],
+      "scale_difference_rms": [
+        0.006532272167821792,
+        8.483565174829302e-11,
+        0.0,
+        0.006532272323661947,
+        0.006532270602820457,
+        8.597498180876901e-10,
+        0.006532272448809407,
+        0.006532272254418656
+      ],
+      "template_difference_coordinate_rms": [
+        13.710480435440102,
+        3.0620100473540087e-08,
+        0.0,
+        13.710480503670885,
+        13.710479860931255,
+        2.2453552435292698e-07,
+        13.71048055692965,
+        13.710480489042634
+      ],
+      "valid_starts": 8
+    },
+    "starts": [
+      {
+        "active_bounds": [],
+        "evaluations": 138,
+        "gradient_norm": 5.029201340663324e-06,
+        "initial_params": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "iterations": 109,
+        "loss": 0.8848719210283827,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.011441030367057025,
+          "bound_active_rows": 1018,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.011441030367057025,
+          "lower_active_rows": 1018,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 0.9981613209873027,
+          "unconstrained_m_min": 0.9667038902175589,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 0,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "min_trial_denominator": 0.8609700362781294,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 138,
+            "iterations": 109,
+            "loss": 0.8848719210283827,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          -0.001162807086242443,
+          0.00033071610546785585,
+          0.030103127666022106,
+          64.72986055956065,
+          0.013404295092256841,
+          0.01390165796459205,
+          -0.007986907413611037
+        ],
+        "projected_gradient_norm": 1.6391638419793743e-07,
+        "rejected_domain_evaluations": 0,
+        "start": 0,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      },
+      {
+        "active_bounds": [],
+        "evaluations": 114,
+        "gradient_norm": 8.748077227671138e-07,
+        "initial_params": [
+          0.003609234078988953,
+          -0.02055738269369037,
+          0.02205243419994861,
+          -20.0,
+          -0.001067966893457865,
+          0.029046087398868305,
+          0.02831840138395426
+        ],
+        "iterations": 98,
+        "loss": 0.8750931852010151,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.019948751376744813,
+          "bound_active_rows": 1775,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.019948751376744813,
+          "lower_active_rows": 1775,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 1.0052455154782167,
+          "unconstrained_m_min": 0.9729170396840168,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 88978,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "min_trial_denominator": -1.677654853648666,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 318.75787128563445,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.1,
+            "evaluations": 114,
+            "iterations": 98,
+            "loss": 0.8750931852010151,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          0.0013553586124192562,
+          -0.00014170125225346962,
+          0.027720979833971496,
+          -66.77121375306331,
+          -0.010294372788561523,
+          -0.012083945176667932,
+          0.008020141887295634
+        ],
+        "projected_gradient_norm": 4.347766535961473e-08,
+        "rejected_domain_evaluations": 1,
+        "start": 1,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      },
+      {
+        "active_bounds": [],
+        "evaluations": 117,
+        "gradient_norm": 8.240861757001804e-06,
+        "initial_params": [
+          -0.022975006529885524,
+          0.0025740668023660567,
+          0.005023845966988144,
+          -10.0,
+          -0.011674328343192774,
+          -0.011180517334311088,
+          0.004559824965014066
+        ],
+        "iterations": 102,
+        "loss": 0.875093185201015,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.019948751376744813,
+          "bound_active_rows": 1775,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.019948751376744813,
+          "lower_active_rows": 1775,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 1.0052455155610955,
+          "unconstrained_m_min": 0.9729170397756463,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 72311,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "min_trial_denominator": -0.16841542486470296,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 97.51969715272047,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.1,
+            "evaluations": 117,
+            "iterations": 102,
+            "loss": 0.875093185201015,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          0.0013553586228144917,
+          -0.0001417012691352096,
+          0.02772097988551171,
+          -66.77121335404098,
+          -0.010294372726197855,
+          -0.012083945118084074,
+          0.008020141876111114
+        ],
+        "projected_gradient_norm": 4.0250995149704317e-07,
+        "rejected_domain_evaluations": 1,
+        "start": 2,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      },
+      {
+        "active_bounds": [],
+        "evaluations": 140,
+        "gradient_norm": 1.179085546734346e-05,
+        "initial_params": [
+          -0.018352879975850542,
+          -0.013607895461845737,
+          0.008988563533278756,
+          10.0,
+          0.004015402433527099,
+          0.005576088048123875,
+          -0.0018490561862119033
+        ],
+        "iterations": 116,
+        "loss": 0.8848719210283827,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.011441030367057025,
+          "bound_active_rows": 1018,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.011441030367057025,
+          "lower_active_rows": 1018,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 0.998161320883421,
+          "unconstrained_m_min": 0.9667038899338946,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 88978,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "min_trial_denominator": -1.0966466911190382,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 121.39165093269861,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.1,
+            "evaluations": 140,
+            "iterations": 116,
+            "loss": 0.8848719210283827,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          -0.0011628071206559196,
+          0.00033071607351828667,
+          0.030103128256219167,
+          64.72985967317413,
+          0.013404295149910183,
+          0.013901658115632166,
+          -0.007986907547627332
+        ],
+        "projected_gradient_norm": 5.50693322275142e-07,
+        "rejected_domain_evaluations": 1,
+        "start": 3,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      },
+      {
+        "active_bounds": [],
+        "evaluations": 129,
+        "gradient_norm": 0.00016612375259803937,
+        "initial_params": [
+          0.017210524981945013,
+          -0.0002055796270168203,
+          -0.007997289390104084,
+          20.0,
+          0.0034450801756146124,
+          -0.001223066117028215,
+          -0.008823409149386834
+        ],
+        "iterations": 102,
+        "loss": 0.8848719210283881,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.011441030367057025,
+          "bound_active_rows": 1018,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.011441030367057025,
+          "lower_active_rows": 1018,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 0.9981613230149781,
+          "unconstrained_m_min": 0.9667038930560963,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 88978,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "min_trial_denominator": -3.501511760691246,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 383.16046222503223,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.1,
+            "evaluations": 129,
+            "iterations": 102,
+            "loss": 0.8848719210283881,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          -0.0011628070963229837,
+          0.0003307162479517938,
+          0.030103126476474784,
+          64.7298574587162,
+          0.013404294206047761,
+          0.013901656878285932,
+          -0.007986906577396579
+        ],
+        "projected_gradient_norm": 8.186582799396547e-06,
+        "rejected_domain_evaluations": 1,
+        "start": 4,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      },
+      {
+        "active_bounds": [],
+        "evaluations": 129,
+        "gradient_norm": 0.00012121806407186929,
+        "initial_params": [
+          -0.014947094290716941,
+          -0.03648354386719486,
+          0.006157447179174924,
+          -5.0,
+          0.029163158867355883,
+          -0.003729779340889691,
+          0.008270807761453804
+        ],
+        "iterations": 104,
+        "loss": 0.8750931852010168,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.019948751376744813,
+          "bound_active_rows": 1775,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.019948751376744813,
+          "lower_active_rows": 1775,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 1.0052455148083117,
+          "unconstrained_m_min": 0.9729170387217444,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 88978,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "min_trial_denominator": -2.0053465095757317,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 242.90703647332668,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.1,
+            "evaluations": 129,
+            "iterations": 104,
+            "loss": 0.8750931852010168,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          0.0013553586238672472,
+          -0.0001417012746725676,
+          0.027720980360710943,
+          -66.7712148790536,
+          -0.010294373114633987,
+          -0.012083945560692111,
+          0.008020142107678358
+        ],
+        "projected_gradient_norm": 5.8700725143842615e-06,
+        "rejected_domain_evaluations": 1,
+        "start": 5,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      },
+      {
+        "active_bounds": [],
+        "evaluations": 126,
+        "gradient_norm": 7.293497562511027e-05,
+        "initial_params": [
+          -0.01646459433222199,
+          0.042284313630496055,
+          -0.0172668452822808,
+          5.0,
+          -0.002785223311120994,
+          0.03330753115263433,
+          -0.02258691918230148
+        ],
+        "iterations": 100,
+        "loss": 0.8848719210283832,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.011441030367057025,
+          "bound_active_rows": 1018,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.011441030367057025,
+          "lower_active_rows": 1018,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 0.9981613206003664,
+          "unconstrained_m_min": 0.9667038897085254,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 72418,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "min_trial_denominator": -0.1614013484042831,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 661.15101326171,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.1,
+            "evaluations": 126,
+            "iterations": 100,
+            "loss": 0.8848719210283832,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          -0.0011628070720336055,
+          0.0003307160353940986,
+          0.030103127740248804,
+          64.72986142141542,
+          0.013404295229510636,
+          0.01390165820562067,
+          -0.007986907646322126
+        ],
+        "projected_gradient_norm": 3.612734033911491e-06,
+        "rejected_domain_evaluations": 1,
+        "start": 6,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      },
+      {
+        "active_bounds": [],
+        "evaluations": 172,
+        "gradient_norm": 1.7801262776100363e-05,
+        "initial_params": [
+          -0.00198779163398493,
+          -0.005327885332151428,
+          -0.016853527120050605,
+          0.0,
+          -0.032826308971661756,
+          0.00016720953253341253,
+          0.014261592164397555
+        ],
+        "iterations": 138,
+        "loss": 0.8848719210283829,
+        "magnification_constraint": {
+          "bound_active_fraction": 0.011441030367057025,
+          "bound_active_rows": 1018,
+          "bound_tie_fraction": 0.0,
+          "bound_tie_rows": 0,
+          "bounds": [
+            0.98,
+            1.02
+          ],
+          "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+          "lower_active_fraction": 0.011441030367057025,
+          "lower_active_rows": 1018,
+          "method": "exact scalar least-squares minimum over explicit positive interval",
+          "unconstrained_m_max": 0.9981613208767596,
+          "unconstrained_m_min": 0.9667038900613519,
+          "unconstrained_nonpositive_rows": 0,
+          "upper_active_fraction": 0.0,
+          "upper_active_rows": 0
+        },
+        "max_trial_invalid_rows": 88978,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "min_trial_denominator": -1.6938260729295034,
+        "optimizer_attempts": [
+          {
+            "coordinate_scale_factor": 1.0,
+            "evaluations": 3,
+            "iterations": 1,
+            "loss": 327.14914807081186,
+            "stationary": false,
+            "status": 0
+          },
+          {
+            "coordinate_scale_factor": 0.1,
+            "evaluations": 172,
+            "iterations": 138,
+            "loss": 0.8848719210283829,
+            "stationary": true,
+            "status": 0
+          }
+        ],
+        "params": [
+          -0.001162807082074501,
+          0.0003307160979499738,
+          0.03010312771988372,
+          64.72986075921061,
+          0.013404295164101068,
+          0.013901658076818056,
+          -0.00798690749003039
+        ],
+        "projected_gradient_norm": 8.877243801358459e-07,
+        "rejected_domain_evaluations": 1,
+        "start": 7,
+        "stationary": true,
+        "status": 0,
+        "success": true,
+        "valid": true
+      }
+    ],
+    "stationary": true,
+    "status": 0,
+    "success": true,
+    "template_energy": 188987.687205305,
+    "theta0": -66.77121335404098,
+    "valid_rows": 88978
+  },
+  "primary_training_diagnostics": {
+    "active_bounds": [],
+    "bounds": [
+      [
+        -0.25,
+        0.25
+      ],
+      [
+        -0.2,
+        0.2
+      ],
+      [
+        -0.2,
+        0.2
+      ],
+      [
+        -120.0,
+        120.0
+      ],
+      [
+        -0.75,
+        0.75
+      ],
+      [
+        -0.75,
+        0.75
+      ],
+      [
+        -0.75,
+        0.75
+      ]
+    ],
+    "condition_number": 2696838.4256422683,
+    "domain": {
+      "denominator_min": 0.7973174953328386,
+      "invalid_rows": 0,
+      "m_max": 1.0052455155610955,
+      "m_min": 0.98,
+      "nonpositive_m": 0,
+      "nonpositive_projective_rows": 0,
+      "rows": 88978,
+      "weak_shape_rows": 0
+    },
+    "gauge": "sum(B**2)=sum(initial_reference**2); centroid(B)=0 is the fixed coordinate-origin convention; no mean-log(m) constraint",
+    "gradient_norm": 8.240861757001804e-06,
+    "interior_shape_scalar_orthogonality_max": 9.665512834544643e-11,
+    "magnification_constraint": {
+      "bound_active_fraction": 0.019948751376744813,
+      "bound_active_rows": 1775,
+      "bound_tie_fraction": 0.0,
+      "bound_tie_rows": 0,
+      "bounds": [
+        0.98,
+        1.02
+      ],
+      "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+      "lower_active_fraction": 0.019948751376744813,
+      "lower_active_rows": 1775,
+      "method": "exact scalar least-squares minimum over explicit positive interval",
+      "unconstrained_m_max": 1.0052455155610955,
+      "unconstrained_m_min": 0.9729170397756463,
+      "unconstrained_nonpositive_rows": 0,
+      "upper_active_fraction": 0.0,
+      "upper_active_rows": 0
+    },
+    "objective": 0.875093185201015,
+    "param_names": [
+      "b",
+      "cx",
+      "cy",
+      "theta0",
+      "template_q1",
+      "template_q2",
+      "template_q3"
+    ],
+    "parameter_scales": [
+      0.05,
+      0.05,
+      0.05,
+      10.0,
+      0.1,
+      0.1,
+      0.1
+    ],
+    "parameter_units": [
+      "dimensionless",
+      "dimensionless",
+      "dimensionless",
+      "degree",
+      "dimensionless",
+      "dimensionless",
+      "dimensionless"
+    ],
+    "projected_gradient_norm": 4.0250995149704317e-07,
+    "rank": 7,
+    "rank_definition": "weighted data-only residual Jacobian after exact selected scalar profiling; no prior/constraint residuals appended; bounded case conditional on reported active set and interior derivative branch at nonsmooth ties",
+    "rank_rtol": 1e-08,
+    "rank_tolerance": 0.00011617103692548304,
+    "raw_K_area_identity_max_absolute_error": 8.881784197001252e-16,
+    "reference_energy": 188987.68720530506,
+    "scalar_bound_kkt": {
+      "expected_signs": "lower-active gradient>=0; upper-active gradient<=0; interior gradient=0; exact bound ties are scalar-map nonsmooth points",
+      "gradient_definition": "d(sum_vertex_coordinate_squared_error)/dm=-2*dot(residual,H), native px\u00b2 per unit m",
+      "interior_gradient_max_absolute": 1.9331025669089286e-10,
+      "lower_active_gradient_range": [
+        0.3561119080590913,
+        2752.628038052303
+      ],
+      "max_violation": 1.9331025669089286e-10,
+      "upper_active_gradient_range": null
+    },
+    "scale_coordinate_noise_gain_max": 0.002287054039803354,
+    "scale_coordinate_noise_gain_min": 0.0,
+    "scale_coordinate_noise_gain_unconstrained_max": 0.002287054039803354,
+    "scale_coordinate_noise_gain_unconstrained_min": 0.002266947357202065,
+    "scaled_gradient_inf": 4.0250995149704317e-07,
+    "shape_scalar_orthogonality_interpretation": "all-row residual dot H is descriptive; scalar orthogonality applies only to unconstrained/interior rows, while active scalar bounds require the reported KKT signs",
+    "shape_scalar_orthogonality_max": 1376.3140190261515,
+    "singular_values": [
+      11617.103692548304,
+      909.5006563445651,
+      485.86530965324386,
+      135.47334784438354,
+      37.269714698521746,
+      23.36227624540744,
+      0.00430767508430974
+    ],
+    "stationary": true,
+    "template_centroid": [
+      0.0,
+      4.736951571734001e-15
+    ],
+    "template_energy": 188987.687205305,
+    "unit_scaled_spectrum": {
+      "condition_number": 13565.415868841437,
+      "rank": 7,
+      "rank_tolerance": 5.828352144127963e-06,
+      "singular_values": [
+        582.8352144127963,
+        66.71038906340644,
+        44.76764966044894,
+        11.54579923561998,
+        2.7111781667418513,
+        1.3928249241696518,
+        0.042964787813952486
+      ]
+    }
+  },
+  "reference_rule": "mean centered observed P1 triangles in C1 nominal-zero fixation, restricted to fit_mask",
+  "scale_bounds": [
+    0.98,
+    1.02
+  ],
+  "source_hashes": {
+    "CURRENT_PLAN.md": "3f08c50fd5d5f8a01e91e8d09fc875dcb428fa4a60e347739e45b47387787a1c",
+    "distortion_model/capturewise_reverse.py": "f6db4f174835c5832643bd8d89f3eede16a35207f5a7747aa0b3e94b389fdfe1",
+    "distortion_model/capturewise_states.py": "63900ffabe89a332f763c6d5151773cc03634ef4d04223cd6232c714f3f63d46",
+    "distortion_model/p1_joint.py": "de8ebe256152f188a190a36073a9ade8db7d34b94e0aeddb2bbd4a967bb936e5",
+    "experiments/reverse_transform/p1_scale_capturewise_p4/common.py": "79cb3023f6d01888557ce3782ed006c0170d628053426de3fe12c862fa87f020",
+    "experiments/reverse_transform/p1_scale_capturewise_p4/data.py": "c08a7cf311a1d576b95e1404b21f52354787a083189149e55c6307964935ef99",
+    "experiments/reverse_transform/p1_scale_capturewise_p4/stage_01_gaze_initialization/run.py": "f5384b631cbde1dcccb70e1095972a8dd26d7b982b6534d1d40684e8fe44e9e9",
+    "experiments/reverse_transform/p1_scale_capturewise_p4/stage_02_shared_p1_scale/run.py": "a3b7072adf90c8581824aa8ce434353b08e9c827347a6b14577d22b6f6cc428d",
+    "experiments/reverse_transform/p1_scale_capturewise_p4/stage_03_capturewise_p4_keystone/run.py": "0101dc63bdca738c8d2bd4e779984f413363c3e0614253b4d56fb88ec98b89be",
+    "experiments/reverse_transform/p1_scale_capturewise_p4/stage_04_capturewise_barrel/run.py": "ea76c5b9d5be02709f6a731f1e66d7c50bfbd5e7a3a3fa49a1994b2329ab30d2",
+    "experiments/reverse_transform/p1_scale_capturewise_p4/stage_05_joint_states/run.py": "8f4d5bbadd6d2030354afbb14171f76d6bc230b172c6647273b220cc051ca879"
+  },
+  "stage": 2,
+  "theta0_profile": {
+    "baseline_loss": 0.875093185201015,
+    "baseline_magnification_constraint": {
+      "bound_active_fraction": 0.019948751376744813,
+      "bound_active_rows": 1775,
+      "bound_tie_fraction": 0.0,
+      "bound_tie_rows": 0,
+      "bounds": [
+        0.98,
+        1.02
+      ],
+      "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+      "lower_active_fraction": 0.019948751376744813,
+      "lower_active_rows": 1775,
+      "method": "exact scalar least-squares minimum over explicit positive interval",
+      "unconstrained_m_max": 1.0052455155610955,
+      "unconstrained_m_min": 0.9729170397756463,
+      "unconstrained_nonpositive_rows": 0,
+      "upper_active_fraction": 0.0,
+      "upper_active_rows": 0
+    },
+    "baseline_params": [
+      0.0013553586228144917,
+      -0.0001417012691352096,
+      0.02772097988551171,
+      -66.77121335404098,
+      -0.010294372726197855,
+      -0.012083945118084074,
+      0.008020141876111114
+    ],
+    "bounds": [
+      [
+        -0.25,
+        0.25
+      ],
+      [
+        -0.2,
+        0.2
+      ],
+      [
+        -0.2,
+        0.2
+      ],
+      [
+        -120.0,
+        120.0
+      ],
+      [
+        -0.75,
+        0.75
+      ],
+      [
+        -0.75,
+        0.75
+      ],
+      [
+        -0.75,
+        0.75
+      ]
+    ],
+    "gauge": "sum(B**2)=sum(initial_reference**2); centroid(B)=0 is the fixed coordinate-origin convention; no mean-log(m) constraint",
+    "interpretation": "data-only conditional loss profiles; numerical box endpoints are not physical bounds; no confidence cutoff imposed",
+    "m_bounds": [
+      0.98,
+      1.02
+    ],
+    "profiles": {
+      "theta0": [
+        {
+          "active_bounds": [
+            "theta0"
+          ],
+          "delta_loss": 0.021550199265184422,
+          "denominator_min": 0.8081555818185409,
+          "loss": 0.8966433844661994,
+          "m_max": 1.0033144302789152,
+          "m_mean": 0.9905343920037485,
+          "m_min": 0.98,
+          "magnification_constraint": {
+            "bound_active_fraction": 0.034300613634831084,
+            "bound_active_rows": 3052,
+            "bound_tie_fraction": 0.0,
+            "bound_tie_rows": 0,
+            "bounds": [
+              0.98,
+              1.02
+            ],
+            "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+            "lower_active_fraction": 0.034300613634831084,
+            "lower_active_rows": 3052,
+            "method": "exact scalar least-squares minimum over explicit positive interval",
+            "unconstrained_m_max": 1.0033144302789152,
+            "unconstrained_m_min": 0.9734682210461719,
+            "unconstrained_nonpositive_rows": 0,
+            "upper_active_fraction": 0.0,
+            "upper_active_rows": 0
+          },
+          "params": [
+            0.00046573457108385114,
+            0.0008255859596636977,
+            0.015514373126802749,
+            -120.0,
+            -0.010720273795009566,
+            -0.010162570864216123,
+            0.004751873069715414
+          ],
+          "prediction_difference_coordinate_rms": 0.08632027073369739,
+          "projected_gradient_norm": 6.989586025629713e-07,
+          "scale_difference_rms": 0.001551620904274136,
+          "starts": [
+            {
+              "active_bounds": [
+                "theta0"
+              ],
+              "evaluations": 80,
+              "gradient_norm": 0.000437553681740329,
+              "iterations": 67,
+              "loss": 0.8966433844661994,
+              "magnification_constraint": {
+                "bound_active_fraction": 0.034300613634831084,
+                "bound_active_rows": 3052,
+                "bound_tie_fraction": 0.0,
+                "bound_tie_rows": 0,
+                "bounds": [
+                  0.98,
+                  1.02
+                ],
+                "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+                "lower_active_fraction": 0.034300613634831084,
+                "lower_active_rows": 3052,
+                "method": "exact scalar least-squares minimum over explicit positive interval",
+                "unconstrained_m_max": 1.0033144302789152,
+                "unconstrained_m_min": 0.9734682210461719,
+                "unconstrained_nonpositive_rows": 0,
+                "upper_active_fraction": 0.0,
+                "upper_active_rows": 0
+              },
+              "max_trial_invalid_rows": 88978,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "min_trial_denominator": -1.3344930041602114,
+              "nuisance_scaled_gradient_inf": 6.989586025629713e-07,
+              "optimizer_attempts": [
+                {
+                  "coordinate_scale_factor": 1.0,
+                  "evaluations": 3,
+                  "iterations": 1,
+                  "loss": 169.60154084027857,
+                  "stationary": false,
+                  "status": 0
+                },
+                {
+                  "coordinate_scale_factor": 0.1,
+                  "evaluations": 3,
+                  "iterations": 1,
+                  "loss": 169.60154084027857,
+                  "stationary": false,
+                  "status": 0
+                },
+                {
+                  "coordinate_scale_factor": 0.01,
+                  "evaluations": 80,
+                  "iterations": 67,
+                  "loss": 0.8966433844661994,
+                  "stationary": true,
+                  "status": 0
+                }
+              ],
+              "params": [
+                0.00046573457108385114,
+                0.0008255859596636977,
+                0.015514373126802749,
+                -120.0,
+                -0.010720273795009566,
+                -0.010162570864216123,
+                0.004751873069715414
+              ],
+              "projected_gradient_norm": 6.989586025629713e-07,
+              "rejected_domain_evaluations": 2,
+              "scaled_gradient_inf": 0.004373255439620175,
+              "stationary": true,
+              "status": 0,
+              "success": true,
+              "valid": true
+            }
+          ],
+          "stationary": true,
+          "template_difference_coordinate_rms": 1.3537893050540384,
+          "valid": true,
+          "value": -120.0
+        },
+        {
+          "active_bounds": [],
+          "delta_loss": 0.005966752125494801,
+          "denominator_min": 0.8007035945823358,
+          "loss": 0.8810599373265098,
+          "m_max": 1.0041910702013523,
+          "m_mean": 0.9909545544285367,
+          "m_min": 0.98,
+          "magnification_constraint": {
+            "bound_active_fraction": 0.033120546651981386,
+            "bound_active_rows": 2947,
+            "bound_tie_fraction": 0.0,
+            "bound_tie_rows": 0,
+            "bounds": [
+              0.98,
+              1.02
+            ],
+            "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+            "lower_active_fraction": 0.033120546651981386,
+            "lower_active_rows": 2947,
+            "method": "exact scalar least-squares minimum over explicit positive interval",
+            "unconstrained_m_max": 1.0041910702013523,
+            "unconstrained_m_min": 0.9730564955057347,
+            "unconstrained_nonpositive_rows": 0,
+            "upper_active_fraction": 0.0,
+            "upper_active_rows": 0
+          },
+          "params": [
+            0.0008465683123210024,
+            0.0003329009697373097,
+            0.02165937265634558,
+            -86.77121335404098,
+            -0.010592782824910163,
+            -0.01156174363150662,
+            0.00696897601821187
+          ],
+          "prediction_difference_coordinate_rms": 0.04576374355387268,
+          "projected_gradient_norm": 2.370076459659587e-06,
+          "scale_difference_rms": 0.0008302780722827996,
+          "starts": [
+            {
+              "active_bounds": [],
+              "evaluations": 78,
+              "gradient_norm": 0.00045634809175550286,
+              "iterations": 58,
+              "loss": 0.8810599373265098,
+              "magnification_constraint": {
+                "bound_active_fraction": 0.033120546651981386,
+                "bound_active_rows": 2947,
+                "bound_tie_fraction": 0.0,
+                "bound_tie_rows": 0,
+                "bounds": [
+                  0.98,
+                  1.02
+                ],
+                "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+                "lower_active_fraction": 0.033120546651981386,
+                "lower_active_rows": 2947,
+                "method": "exact scalar least-squares minimum over explicit positive interval",
+                "unconstrained_m_max": 1.0041910702013523,
+                "unconstrained_m_min": 0.9730564955057347,
+                "unconstrained_nonpositive_rows": 0,
+                "upper_active_fraction": 0.0,
+                "upper_active_rows": 0
+              },
+              "max_trial_invalid_rows": 88978,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "min_trial_denominator": -1.0110139756365784,
+              "nuisance_scaled_gradient_inf": 2.370076459659587e-06,
+              "optimizer_attempts": [
+                {
+                  "coordinate_scale_factor": 1.0,
+                  "evaluations": 3,
+                  "iterations": 1,
+                  "loss": 8.364861487857526,
+                  "stationary": false,
+                  "status": 0
+                },
+                {
+                  "coordinate_scale_factor": 0.1,
+                  "evaluations": 3,
+                  "iterations": 1,
+                  "loss": 8.364861487857526,
+                  "stationary": false,
+                  "status": 0
+                },
+                {
+                  "coordinate_scale_factor": 0.01,
+                  "evaluations": 78,
+                  "iterations": 58,
+                  "loss": 0.8810599373265098,
+                  "stationary": true,
+                  "status": 0
+                }
+              ],
+              "params": [
+                0.0008465683123210024,
+                0.0003329009697373097,
+                0.02165937265634558,
+                -86.77121335404098,
+                -0.010592782824910163,
+                -0.01156174363150662,
+                0.00696897601821187
+              ],
+              "projected_gradient_norm": 2.370076459659587e-06,
+              "rejected_domain_evaluations": 2,
+              "scaled_gradient_inf": 0.004538550615307087,
+              "stationary": true,
+              "status": 0,
+              "success": true,
+              "valid": true
+            }
+          ],
+          "stationary": true,
+          "template_difference_coordinate_rms": 0.4297422725085256,
+          "valid": true,
+          "value": -86.77121335404098
+        },
+        {
+          "active_bounds": [],
+          "delta_loss": 0.0019224176384796676,
+          "denominator_min": 0.7986279696135216,
+          "loss": 0.8770156028394946,
+          "m_max": 1.004629104072011,
+          "m_mean": 0.9911934349464802,
+          "m_min": 0.98,
+          "magnification_constraint": {
+            "bound_active_fraction": 0.027355076535772887,
+            "bound_active_rows": 2434,
+            "bound_tie_fraction": 0.0,
+            "bound_tie_rows": 0,
+            "bounds": [
+              0.98,
+              1.02
+            ],
+            "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+            "lower_active_fraction": 0.027355076535772887,
+            "lower_active_rows": 2434,
+            "method": "exact scalar least-squares minimum over explicit positive interval",
+            "unconstrained_m_max": 1.004629104072011,
+            "unconstrained_m_min": 0.9729396172575263,
+            "unconstrained_nonpositive_rows": 0,
+            "upper_active_fraction": 0.0,
+            "upper_active_rows": 0
+          },
+          "params": [
+            0.0010576924405371086,
+            0.00011594943007599791,
+            0.024394770164211585,
+            -76.77121335404098,
+            -0.010484977331396673,
+            -0.011883580677357865,
+            0.0075495928331493715
+          ],
+          "prediction_difference_coordinate_rms": 0.026063392004436057,
+          "projected_gradient_norm": 4.222741234313765e-06,
+          "scale_difference_rms": 0.0004830998107465327,
+          "starts": [
+            {
+              "active_bounds": [],
+              "evaluations": 58,
+              "gradient_norm": 0.00034342610260379544,
+              "iterations": 51,
+              "loss": 0.8770156028394946,
+              "magnification_constraint": {
+                "bound_active_fraction": 0.027355076535772887,
+                "bound_active_rows": 2434,
+                "bound_tie_fraction": 0.0,
+                "bound_tie_rows": 0,
+                "bounds": [
+                  0.98,
+                  1.02
+                ],
+                "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+                "lower_active_fraction": 0.027355076535772887,
+                "lower_active_rows": 2434,
+                "method": "exact scalar least-squares minimum over explicit positive interval",
+                "unconstrained_m_max": 1.004629104072011,
+                "unconstrained_m_min": 0.9729396172575263,
+                "unconstrained_nonpositive_rows": 0,
+                "upper_active_fraction": 0.0,
+                "upper_active_rows": 0
+              },
+              "max_trial_invalid_rows": 88978,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "min_trial_denominator": -1.0770789095194644,
+              "nuisance_scaled_gradient_inf": 4.222741234313765e-06,
+              "optimizer_attempts": [
+                {
+                  "coordinate_scale_factor": 1.0,
+                  "evaluations": 3,
+                  "iterations": 1,
+                  "loss": 2.019197644688939,
+                  "stationary": false,
+                  "status": 0
+                },
+                {
+                  "coordinate_scale_factor": 0.1,
+                  "evaluations": 58,
+                  "iterations": 51,
+                  "loss": 0.8770156028394946,
+                  "stationary": true,
+                  "status": 0
+                }
+              ],
+              "params": [
+                0.0010576924405371086,
+                0.00011594943007599791,
+                0.024394770164211585,
+                -76.77121335404098,
+                -0.010484977331396673,
+                -0.011883580677357865,
+                0.0075495928331493715
+              ],
+              "projected_gradient_norm": 4.222741234313765e-06,
+              "rejected_domain_evaluations": 1,
+              "scaled_gradient_inf": 0.0033279602420724173,
+              "stationary": true,
+              "status": 0,
+              "success": true,
+              "valid": true
+            }
+          ],
+          "stationary": true,
+          "template_difference_coordinate_rms": 0.19367130369193908,
+          "valid": true,
+          "value": -76.77121335404098
+        },
+        {
+          "active_bounds": [],
+          "delta_loss": -1.1102230246251565e-16,
+          "denominator_min": 0.7973174953328385,
+          "loss": 0.8750931852010149,
+          "m_max": 1.0052455155610955,
+          "m_mean": 0.9915777119461399,
+          "m_min": 0.98,
+          "magnification_constraint": {
+            "bound_active_fraction": 0.019948751376744813,
+            "bound_active_rows": 1775,
+            "bound_tie_fraction": 0.0,
+            "bound_tie_rows": 0,
+            "bounds": [
+              0.98,
+              1.02
+            ],
+            "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+            "lower_active_fraction": 0.019948751376744813,
+            "lower_active_rows": 1775,
+            "method": "exact scalar least-squares minimum over explicit positive interval",
+            "unconstrained_m_max": 1.0052455155610955,
+            "unconstrained_m_min": 0.9729170397756461,
+            "unconstrained_nonpositive_rows": 0,
+            "upper_active_fraction": 0.0,
+            "upper_active_rows": 0
+          },
+          "params": [
+            0.0013553586228144834,
+            -0.00014170126913521007,
+            0.027720979885511712,
+            -66.77121335404098,
+            -0.010294372726197853,
+            -0.012083945118084078,
+            0.008020141876111109
+          ],
+          "prediction_difference_coordinate_rms": 7.808875085376156e-14,
+          "projected_gradient_norm": 4.023964659580215e-07,
+          "scale_difference_rms": 1.832338275311442e-16,
+          "starts": [
+            {
+              "active_bounds": [],
+              "evaluations": 9,
+              "gradient_norm": 8.238624975215175e-06,
+              "iterations": 1,
+              "loss": 0.8750931852010149,
+              "magnification_constraint": {
+                "bound_active_fraction": 0.019948751376744813,
+                "bound_active_rows": 1775,
+                "bound_tie_fraction": 0.0,
+                "bound_tie_rows": 0,
+                "bounds": [
+                  0.98,
+                  1.02
+                ],
+                "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+                "lower_active_fraction": 0.019948751376744813,
+                "lower_active_rows": 1775,
+                "method": "exact scalar least-squares minimum over explicit positive interval",
+                "unconstrained_m_max": 1.0052455155610955,
+                "unconstrained_m_min": 0.9729170397756461,
+                "unconstrained_nonpositive_rows": 0,
+                "upper_active_fraction": 0.0,
+                "upper_active_rows": 0
+              },
+              "max_trial_invalid_rows": 0,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "min_trial_denominator": 0.7973174802135822,
+              "nuisance_scaled_gradient_inf": 4.023964659580215e-07,
+              "optimizer_attempts": [
+                {
+                  "coordinate_scale_factor": 1.0,
+                  "evaluations": 9,
+                  "iterations": 1,
+                  "loss": 0.8750931852010149,
+                  "stationary": true,
+                  "status": 0
+                }
+              ],
+              "params": [
+                0.0013553586228144834,
+                -0.00014170126913521007,
+                0.027720979885511712,
+                -66.77121335404098,
+                -0.010294372726197853,
+                -0.012083945118084078,
+                0.008020141876111109
+              ],
+              "projected_gradient_norm": 4.023964659580215e-07,
+              "rejected_domain_evaluations": 0,
+              "scaled_gradient_inf": 4.023964659580215e-07,
+              "stationary": true,
+              "status": 0,
+              "success": true,
+              "valid": true
+            }
+          ],
+          "stationary": true,
+          "template_difference_coordinate_rms": 0.0,
+          "valid": true,
+          "value": -66.77121335404098
+        },
+        {
+          "active_bounds": [],
+          "delta_loss": 0.0035197394173024366,
+          "denominator_min": 0.7990930567059931,
+          "loss": 0.8786129246183174,
+          "m_max": 1.0062397650289594,
+          "m_mean": 0.9923448842301446,
+          "m_min": 0.98,
+          "magnification_constraint": {
+            "bound_active_fraction": 0.010216008451527344,
+            "bound_active_rows": 909,
+            "bound_tie_fraction": 0.0,
+            "bound_tie_rows": 0,
+            "bounds": [
+              0.98,
+              1.02
+            ],
+            "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+            "lower_active_fraction": 0.010216008451527344,
+            "lower_active_rows": 909,
+            "method": "exact scalar least-squares minimum over explicit positive interval",
+            "unconstrained_m_max": 1.0062397650289594,
+            "unconstrained_m_min": 0.9733043475120119,
+            "unconstrained_nonpositive_rows": 0,
+            "upper_active_fraction": 0.0,
+            "upper_active_rows": 0
+          },
+          "params": [
+            0.0017749239531776664,
+            -0.0004146745011058158,
+            0.031518950720563065,
+            -56.77121335404098,
+            -0.00989538951308311,
+            -0.011979723777342598,
+            0.008211347943191163
+          ],
+          "prediction_difference_coordinate_rms": 0.03504055802972661,
+          "projected_gradient_norm": 3.7014906063460576e-08,
+          "scale_difference_rms": 0.000815595547103209,
+          "starts": [
+            {
+              "active_bounds": [],
+              "evaluations": 48,
+              "gradient_norm": 0.0008177549276009586,
+              "iterations": 39,
+              "loss": 0.8786129246183174,
+              "magnification_constraint": {
+                "bound_active_fraction": 0.010216008451527344,
+                "bound_active_rows": 909,
+                "bound_tie_fraction": 0.0,
+                "bound_tie_rows": 0,
+                "bounds": [
+                  0.98,
+                  1.02
+                ],
+                "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+                "lower_active_fraction": 0.010216008451527344,
+                "lower_active_rows": 909,
+                "method": "exact scalar least-squares minimum over explicit positive interval",
+                "unconstrained_m_max": 1.0062397650289594,
+                "unconstrained_m_min": 0.9733043475120119,
+                "unconstrained_nonpositive_rows": 0,
+                "upper_active_fraction": 0.0,
+                "upper_active_rows": 0
+              },
+              "max_trial_invalid_rows": 0,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "min_trial_denominator": 0.2245888751676468,
+              "nuisance_scaled_gradient_inf": 3.7014906063460576e-08,
+              "optimizer_attempts": [
+                {
+                  "coordinate_scale_factor": 1.0,
+                  "evaluations": 48,
+                  "iterations": 39,
+                  "loss": 0.8786129246183174,
+                  "stationary": true,
+                  "status": 0
+                }
+              ],
+              "params": [
+                0.0017749239531776664,
+                -0.0004146745011058158,
+                0.031518950720563065,
+                -56.77121335404098,
+                -0.00989538951308311,
+                -0.011979723777342598,
+                0.008211347943191163
+              ],
+              "projected_gradient_norm": 3.7014906063460576e-08,
+              "rejected_domain_evaluations": 0,
+              "scaled_gradient_inf": 0.008177546393863495,
+              "stationary": true,
+              "status": 0,
+              "success": true,
+              "valid": true
+            }
+          ],
+          "stationary": true,
+          "template_difference_coordinate_rms": 0.1612911299766459,
+          "valid": true,
+          "value": -56.77121335404098
+        },
+        {
+          "active_bounds": [],
+          "delta_loss": 0.01825509119427371,
+          "denominator_min": 0.8283383765598276,
+          "loss": 0.8933482763952887,
+          "m_max": 1.009003792465469,
+          "m_mean": 0.995441402158167,
+          "m_min": 0.98,
+          "magnification_constraint": {
+            "bound_active_fraction": 2.2477466339994156e-05,
+            "bound_active_rows": 2,
+            "bound_tie_fraction": 0.0,
+            "bound_tie_rows": 0,
+            "bounds": [
+              0.98,
+              1.02
+            ],
+            "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+            "lower_active_fraction": 2.2477466339994156e-05,
+            "lower_active_rows": 2,
+            "method": "exact scalar least-squares minimum over explicit positive interval",
+            "unconstrained_m_max": 1.009003792465469,
+            "unconstrained_m_min": 0.9770653618859727,
+            "unconstrained_nonpositive_rows": 0,
+            "upper_active_fraction": 0.0,
+            "upper_active_rows": 0
+          },
+          "params": [
+            0.0020927685757028513,
+            -0.00025999626670671105,
+            0.03141107200027681,
+            -46.77121335404098,
+            -0.008147304222407762,
+            -0.009955994835410636,
+            0.00668160927275471
+          ],
+          "prediction_difference_coordinate_rms": 0.05989826636220296,
+          "projected_gradient_norm": 1.1978077415833455e-07,
+          "scale_difference_rms": 0.0038753791837543928,
+          "starts": [
+            {
+              "active_bounds": [],
+              "evaluations": 46,
+              "gradient_norm": 0.0019493212279076996,
+              "iterations": 42,
+              "loss": 0.8933482763952887,
+              "magnification_constraint": {
+                "bound_active_fraction": 2.2477466339994156e-05,
+                "bound_active_rows": 2,
+                "bound_tie_fraction": 0.0,
+                "bound_tie_rows": 0,
+                "bounds": [
+                  0.98,
+                  1.02
+                ],
+                "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+                "lower_active_fraction": 2.2477466339994156e-05,
+                "lower_active_rows": 2,
+                "method": "exact scalar least-squares minimum over explicit positive interval",
+                "unconstrained_m_max": 1.009003792465469,
+                "unconstrained_m_min": 0.9770653618859727,
+                "unconstrained_nonpositive_rows": 0,
+                "upper_active_fraction": 0.0,
+                "upper_active_rows": 0
+              },
+              "max_trial_invalid_rows": 0,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "min_trial_denominator": 0.35603176329968866,
+              "nuisance_scaled_gradient_inf": 1.1978077415833455e-07,
+              "optimizer_attempts": [
+                {
+                  "coordinate_scale_factor": 1.0,
+                  "evaluations": 46,
+                  "iterations": 42,
+                  "loss": 0.8933482763952887,
+                  "stationary": true,
+                  "status": 0
+                }
+              ],
+              "params": [
+                0.0020927685757028513,
+                -0.00025999626670671105,
+                0.03141107200027681,
+                -46.77121335404098,
+                -0.008147304222407762,
+                -0.009955994835410636,
+                0.00668160927275471
+              ],
+              "projected_gradient_norm": 1.1978077415833455e-07,
+              "rejected_domain_evaluations": 0,
+              "scaled_gradient_inf": 0.019493196876814577,
+              "stationary": true,
+              "status": 0,
+              "success": true,
+              "valid": true
+            }
+          ],
+          "stationary": true,
+          "template_difference_coordinate_rms": 1.1731724020934948,
+          "valid": true,
+          "value": -46.77121335404098
+        },
+        {
+          "active_bounds": [
+            "theta0"
+          ],
+          "delta_loss": 0.031783187895318865,
+          "denominator_min": 0.8850627580593953,
+          "loss": 0.9068763730963338,
+          "m_max": 0.9994100629699274,
+          "m_mean": 0.988771890843594,
+          "m_min": 0.98,
+          "magnification_constraint": {
+            "bound_active_fraction": 0.017228977949605522,
+            "bound_active_rows": 1533,
+            "bound_tie_fraction": 0.0,
+            "bound_tie_rows": 0,
+            "bounds": [
+              0.98,
+              1.02
+            ],
+            "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+            "lower_active_fraction": 0.017228977949605522,
+            "lower_active_rows": 1533,
+            "method": "exact scalar least-squares minimum over explicit positive interval",
+            "unconstrained_m_max": 0.9994100629699274,
+            "unconstrained_m_min": 0.9695016399617766,
+            "unconstrained_nonpositive_rows": 0,
+            "upper_active_fraction": 0.0,
+            "upper_active_rows": 0
+          },
+          "params": [
+            -0.0003792791002732415,
+            0.0008815309216976619,
+            0.016142730903828534,
+            120.0,
+            0.013482662668458956,
+            0.011226785598302192,
+            -0.0047431486126959296
+          ],
+          "prediction_difference_coordinate_rms": 0.14324679314112676,
+          "projected_gradient_norm": 1.627901549966504e-06,
+          "scale_difference_rms": 0.004996727470567614,
+          "starts": [
+            {
+              "active_bounds": [
+                "theta0"
+              ],
+              "evaluations": 97,
+              "gradient_norm": 0.0003761997425300876,
+              "iterations": 84,
+              "loss": 0.9068763730963338,
+              "magnification_constraint": {
+                "bound_active_fraction": 0.017228977949605522,
+                "bound_active_rows": 1533,
+                "bound_tie_fraction": 0.0,
+                "bound_tie_rows": 0,
+                "bounds": [
+                  0.98,
+                  1.02
+                ],
+                "derivative_convention": "dm=0 on strictly active rows; exact ties use unconstrained interior derivative branch and are nonsmooth",
+                "lower_active_fraction": 0.017228977949605522,
+                "lower_active_rows": 1533,
+                "method": "exact scalar least-squares minimum over explicit positive interval",
+                "unconstrained_m_max": 0.9994100629699274,
+                "unconstrained_m_min": 0.9695016399617766,
+                "unconstrained_nonpositive_rows": 0,
+                "upper_active_fraction": 0.0,
+                "upper_active_rows": 0
+              },
+              "max_trial_invalid_rows": 88978,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "min_trial_denominator": -1.3485917586088716,
+              "nuisance_scaled_gradient_inf": 1.627901549966504e-06,
+              "optimizer_attempts": [
+                {
+                  "coordinate_scale_factor": 1.0,
+                  "evaluations": 3,
+                  "iterations": 1,
+                  "loss": 9737.025420567083,
+                  "stationary": false,
+                  "status": 0
+                },
+                {
+                  "coordinate_scale_factor": 0.1,
+                  "evaluations": 3,
+                  "iterations": 1,
+                  "loss": 9737.025420567083,
+                  "stationary": false,
+                  "status": 0
+                },
+                {
+                  "coordinate_scale_factor": 0.01,
+                  "evaluations": 97,
+                  "iterations": 84,
+                  "loss": 0.9068763730963338,
+                  "stationary": true,
+                  "status": 0
+                }
+              ],
+              "params": [
+                -0.0003792791002732415,
+                0.0008815309216976619,
+                0.016142730903828534,
+                120.0,
+                0.013482662668458956,
+                0.011226785598302192,
+                -0.0047431486126959296
+              ],
+              "projected_gradient_norm": 1.627901549966504e-06,
+              "rejected_domain_evaluations": 2,
+              "scaled_gradient_inf": 0.0037477431764435837,
+              "stationary": true,
+              "status": 0,
+              "success": true,
+              "valid": true
+            }
+          ],
+          "stationary": true,
+          "template_difference_coordinate_rms": 12.653558570521058,
+          "valid": true,
+          "value": 120.0
+        }
+      ]
+    }
+  },
+  "weighting": "p1_joint receives integer group=(capture-1)*5+fixation, making each of twenty groups equal weight"
+}

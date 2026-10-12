@@ -1,0 +1,567 @@
+{
+  "exact_size_zero_equivalence": [
+    {
+      "case": "free_size_sigma050_optical2",
+      "retained": [
+        0,
+        1,
+        2
+      ],
+      "loss": 0.0,
+      "state_gradient": 0.0,
+      "global_scaled": 0.0,
+      "prediction": 0.0
+    },
+    {
+      "case": "free_size_sigma050_optical2",
+      "retained": [
+        0,
+        2
+      ],
+      "loss": 0.0,
+      "state_gradient": 0.0,
+      "global_scaled": 0.0,
+      "prediction": 0.0
+    },
+    {
+      "case": "free_size_sigma025_optical1",
+      "retained": [
+        0,
+        1,
+        2
+      ],
+      "loss": 0.0,
+      "state_gradient": 0.0,
+      "global_scaled": 0.0,
+      "prediction": 0.0
+    },
+    {
+      "case": "free_size_sigma025_optical1",
+      "retained": [
+        0,
+        2
+      ],
+      "loss": 0.0,
+      "state_gradient": 0.0,
+      "global_scaled": 0.0,
+      "prediction": 0.0
+    }
+  ],
+  "derivative_checks": [
+    {
+      "case": "free_size_sigma050_optical2",
+      "retained": [
+        0,
+        1,
+        2
+      ],
+      "global_fd_scaled_max": 1.4534798253862391e-08,
+      "state_fd_max": 1.6382508197243517e-10
+    },
+    {
+      "case": "free_size_sigma050_optical2",
+      "retained": [
+        0,
+        2
+      ],
+      "global_fd_scaled_max": 2.4107905005621433e-08,
+      "state_fd_max": 3.842892670746778e-10
+    },
+    {
+      "case": "free_size_sigma025_optical1",
+      "retained": [
+        0,
+        1,
+        2
+      ],
+      "global_fd_scaled_max": 1.4534798253862391e-08,
+      "state_fd_max": 3.99718008692318e-10
+    },
+    {
+      "case": "free_size_sigma025_optical1",
+      "retained": [
+        0,
+        2
+      ],
+      "global_fd_scaled_max": 2.4107905005621433e-08,
+      "state_fd_max": 3.3736079554924636e-10
+    }
+  ],
+  "template_derivative_max_abs": 3.954163041441916e-08,
+  "roundtrip_max_abs_px": 1.4210854715202004e-13,
+  "held_vertex_loss_leak": 0.0,
+  "data_only_rank": {
+    "dimension": 18,
+    "parameter_names": [
+      "capture1_b",
+      "capture1_cx",
+      "capture1_cy",
+      "capture2_b",
+      "capture2_cx",
+      "capture2_cy",
+      "capture3_b",
+      "capture3_cx",
+      "capture3_cy",
+      "capture4_b",
+      "capture4_cx",
+      "capture4_cy",
+      "offset_deg",
+      "slope_pxminus2_perD",
+      "template_q1",
+      "template_q2",
+      "template_q3",
+      "log_template_size"
+    ],
+    "data_only_profiled_optical_singular_values": [
+      23.516013493197658,
+      0.6381938143842338,
+      0.6309791068237376,
+      0.6230081199382467,
+      0.596247211107066,
+      0.45973030695855555,
+      0.4574168569985076,
+      0.45331574965848603,
+      0.44871366358691206,
+      0.024979345518271166,
+      0.0006678488231575527,
+      0.0006494895563433128,
+      0.0006447317797233683,
+      0.0006214033546417738,
+      2.808331839851027e-06,
+      6.29495480183593e-07,
+      1.4181530503383103e-08,
+      0.0
+    ],
+    "relative_singular_threshold": 1e-06,
+    "data_only_rank_at_relative_1e_minus6": 14,
+    "weakest_scaled_modes": [
+      [
+        5.37553715536138e-13,
+        -0.0001605457515919586,
+        0.0057209395821486994,
+        0.017578649924175634
+      ],
+      [
+        -1.8139314906449968e-12,
+        0.007381675695067847,
+        -0.022849391176200818,
+        0.05391691954782221
+      ],
+      [
+        2.518504273791077e-11,
+        -0.003742466398243673,
+        0.25243466686684324,
+        -0.1662760443184954
+      ],
+      [
+        5.377146152825626e-13,
+        -0.0001819802899963401,
+        0.005735252399888277,
+        0.017350948109415176
+      ],
+      [
+        -8.771294375160141e-13,
+        0.008243850741546224,
+        -0.014148109245345796,
+        0.05739948771599074
+      ],
+      [
+        2.4908790183785894e-11,
+        -0.0041589105714091,
+        0.24997694794427372,
+        -0.1693375886747263
+      ],
+      [
+        5.376843480038569e-13,
+        -0.00017714639226313212,
+        0.0057320937728206406,
+        0.017402120241589995
+      ],
+      [
+        -1.0966251381495304e-12,
+        0.008056103870818928,
+        -0.01606013499245348,
+        0.0565962148483736
+      ],
+      [
+        2.4974944568814163e-11,
+        -0.004068250117439718,
+        0.25050470494913585,
+        -0.16863629472197803
+      ],
+      [
+        5.375859965574536e-13,
+        -0.0001711746047467922,
+        0.005727583106083167,
+        0.017466147674650982
+      ],
+      [
+        -1.352262154525543e-12,
+        0.00781021417675097,
+        -0.018502915096692506,
+        0.05563004524917206
+      ],
+      [
+        2.504924123199097e-11,
+        -0.003949404191665191,
+        0.2511980869917638,
+        -0.16778489576800812
+      ],
+      [
+        7.366866173297651e-11,
+        0.0020842133887835506,
+        0.7310328791161457,
+        -0.31767039582787693
+      ],
+      [
+        1.0000000000000002,
+        -7.328341218171825e-11,
+        -1.0000158783704242e-10,
+        1.2962117953619424e-12
+      ],
+      [
+        -2.7454751081243543e-11,
+        -0.025519982895213136,
+        -0.2623309070310132,
+        -0.5006541078459943
+      ],
+      [
+        -2.7171289995672427e-11,
+        -0.02414874894395237,
+        -0.26071848274668913,
+        -0.5174878409220153
+      ],
+      [
+        -2.862270259725291e-11,
+        -0.02577536113758187,
+        -0.2738439731244717,
+        -0.5022355248315025
+      ],
+      [
+        -7.155335661057368e-11,
+        -0.9988918530683605,
+        0.017032924087950926,
+        0.042027963294109176
+      ]
+    ],
+    "slope_column_after_state_projection_max": 3.0366520453896425e-14,
+    "method": "framewise data-only theta/A projection includes P1 and P4; no priors/bounds; native equal-pattern weights, declared parameter characteristic units",
+    "interpretation": "Gram spectrum can lose precision in weakest modes. Anchors select D units; data alone leaves slope/A scale null. Learned template may add weak or ambiguous modes.",
+    "chunk_size": 4096
+  },
+  "size_ratio_bounds": [
+    0.5,
+    2.0
+  ],
+  "size_prior": "none",
+  "Aref": 0.36036036036036034,
+  "pass": true,
+  "immutable_control_equivalence": [
+    {
+      "family": "/home/aplab/ACC/experiments/reverse_transform/p1_scale_barrel_first_free_size",
+      "case": "free_size_sigma050_optical2",
+      "rows": 88978,
+      "loss_zero_difference": 5.551115123125783e-16,
+      "saved_loss_difference": 1.9984014443252818e-15,
+      "saved_native_prediction_max_abs": 0.0,
+      "shared_g_identical": true,
+      "fit_mask_identical": true
+    },
+    {
+      "family": "/home/aplab/ACC/experiments/reverse_transform/p1_scale_barrel_first_free_size",
+      "case": "free_size_sigma025_optical1",
+      "rows": 88978,
+      "loss_zero_difference": 5.551115123125783e-15,
+      "saved_loss_difference": 6.8833827526759706e-15,
+      "saved_native_prediction_max_abs": 0.0,
+      "shared_g_identical": true,
+      "fit_mask_identical": true
+    },
+    {
+      "family": "/home/aplab/ACC/experiments/reverse_transform/p1_scale_barrel_first_free_size/validation_temporal",
+      "case": "free_size_sigma050_optical2",
+      "rows": 66268,
+      "loss_zero_difference": 1.2212453270876722e-15,
+      "saved_loss_difference": 2.9976021664879227e-15,
+      "saved_native_prediction_max_abs": 0.0,
+      "shared_g_identical": true,
+      "fit_mask_identical": true
+    },
+    {
+      "family": "/home/aplab/ACC/experiments/reverse_transform/p1_scale_barrel_first_free_size/validation_temporal",
+      "case": "free_size_sigma025_optical1",
+      "rows": 66268,
+      "loss_zero_difference": 1.1102230246251565e-15,
+      "saved_loss_difference": 3.774758283725532e-15,
+      "saved_native_prediction_max_abs": 0.0,
+      "shared_g_identical": true,
+      "fit_mask_identical": true
+    }
+  ],
+  "cpu": {
+    "exact_size_zero_equivalence": [
+      {
+        "case": "free_size_sigma050_optical2",
+        "retained": [
+          0,
+          1,
+          2
+        ],
+        "loss": 0.0,
+        "state_gradient": 0.0,
+        "global_scaled": 0.0,
+        "prediction": 0.0
+      },
+      {
+        "case": "free_size_sigma050_optical2",
+        "retained": [
+          0,
+          2
+        ],
+        "loss": 0.0,
+        "state_gradient": 0.0,
+        "global_scaled": 0.0,
+        "prediction": 0.0
+      },
+      {
+        "case": "free_size_sigma025_optical1",
+        "retained": [
+          0,
+          1,
+          2
+        ],
+        "loss": 0.0,
+        "state_gradient": 0.0,
+        "global_scaled": 0.0,
+        "prediction": 0.0
+      },
+      {
+        "case": "free_size_sigma025_optical1",
+        "retained": [
+          0,
+          2
+        ],
+        "loss": 0.0,
+        "state_gradient": 0.0,
+        "global_scaled": 0.0,
+        "prediction": 0.0
+      }
+    ],
+    "derivative_checks": [
+      {
+        "case": "free_size_sigma050_optical2",
+        "retained": [
+          0,
+          1,
+          2
+        ],
+        "global_fd_scaled_max": 1.4712313145537337e-08,
+        "state_fd_max": 1.9485303995314673e-10
+      },
+      {
+        "case": "free_size_sigma050_optical2",
+        "retained": [
+          0,
+          2
+        ],
+        "global_fd_scaled_max": 2.4107833951347857e-08,
+        "state_fd_max": 4.731071923114172e-10
+      },
+      {
+        "case": "free_size_sigma025_optical1",
+        "retained": [
+          0,
+          1,
+          2
+        ],
+        "global_fd_scaled_max": 1.4712313145537337e-08,
+        "state_fd_max": 7.549893158570464e-10
+      },
+      {
+        "case": "free_size_sigma025_optical1",
+        "retained": [
+          0,
+          2
+        ],
+        "global_fd_scaled_max": 2.4107833951347857e-08,
+        "state_fd_max": 5.531724384111314e-11
+      }
+    ],
+    "template_derivative_max_abs": 3.954163041441916e-08,
+    "roundtrip_max_abs_px": 1.4210854715202004e-13,
+    "held_vertex_loss_leak": 0.0,
+    "data_only_rank": {
+      "dimension": 18,
+      "parameter_names": [
+        "capture1_b",
+        "capture1_cx",
+        "capture1_cy",
+        "capture2_b",
+        "capture2_cx",
+        "capture2_cy",
+        "capture3_b",
+        "capture3_cx",
+        "capture3_cy",
+        "capture4_b",
+        "capture4_cx",
+        "capture4_cy",
+        "offset_deg",
+        "slope_pxminus2_perD",
+        "template_q1",
+        "template_q2",
+        "template_q3",
+        "log_template_size"
+      ],
+      "data_only_profiled_optical_singular_values": [
+        23.516013493197672,
+        0.638193814384234,
+        0.6309791068237367,
+        0.6230081199382456,
+        0.5962472111070654,
+        0.4597303069585532,
+        0.45741685699850765,
+        0.4533157496584855,
+        0.4487136635869119,
+        0.02497934552021589,
+        0.0006678488213417637,
+        0.0006494895546686336,
+        0.0006447317795741346,
+        0.0006214033476938587,
+        2.794451231659643e-06,
+        6.109956713770493e-07,
+        2.3236616838784522e-10,
+        7.932589078519367e-12
+      ],
+      "relative_singular_threshold": 1e-06,
+      "data_only_rank_at_relative_1e_minus6": 14,
+      "weakest_scaled_modes": [
+        [
+          -5.130272609280571e-09,
+          -0.00011940819881184496,
+          0.005821433199464193,
+          0.017545954401986658
+        ],
+        [
+          3.1284611245020434e-07,
+          0.007281862050147142,
+          -0.022583918034256568,
+          0.054042210259493954
+        ],
+        [
+          -1.0387300638199741e-07,
+          -0.0024175148733898214,
+          0.2515037925352075,
+          -0.16770506490674275
+        ],
+        [
+          -6.052787292222315e-09,
+          -0.00014088086781572672,
+          0.005834573028076598,
+          0.017318185486291774
+        ],
+        [
+          3.520540781812051e-07,
+          0.008194485268935686,
+          -0.013867980736624035,
+          0.05747486168357863
+        ],
+        [
+          -1.2242278725500666e-07,
+          -0.002849286656566102,
+          0.249031109936721,
+          -0.1707523864715306
+        ],
+        [
+          -5.844730004063781e-09,
+          -0.000136038077099384,
+          0.005831677915094485,
+          0.017369372362675623
+        ],
+        [
+          3.4351099544633125e-07,
+          0.007995632793962919,
+          -0.01578345430861016,
+          0.05668255266384108
+        ],
+        [
+          -1.1838543442296439e-07,
+          -0.002755311889367252,
+          0.24956232330264616,
+          -0.17005414572371694
+        ],
+        [
+          -5.587824475528259e-09,
+          -0.00013005828418289657,
+          0.005827497407988845,
+          0.017433421454594564
+        ],
+        [
+          3.3233892183436994e-07,
+          0.0077355860729631295,
+          -0.018230264898706612,
+          0.05573039205478964
+        ],
+        [
+          -1.1309406953672031e-07,
+          -0.0026321479344256532,
+          0.25025985085658103,
+          -0.16920675675053432
+        ],
+        [
+          2.580095544345304e-07,
+          0.006006245320697061,
+          0.7291948928475992,
+          -0.32181769260841164
+        ],
+        [
+          0.9999999990771229,
+          -4.2962233374271574e-05,
+          4.3508572871606825e-11,
+          -1.3438668576644195e-12
+        ],
+        [
+          -1.1705757152963717e-06,
+          -0.027246874340521303,
+          -0.26502154945466144,
+          -0.4991437637907545
+        ],
+        [
+          -1.1116544942928667e-06,
+          -0.02587540678133257,
+          -0.2635123961568146,
+          -0.5159870501092959
+        ],
+        [
+          -1.1843475972553355e-06,
+          -0.027567443829044372,
+          -0.27654179752481484,
+          -0.5006596491892338
+        ],
+        [
+          -4.290891807898395e-05,
+          -0.998758996729975,
+          0.02285884013343927,
+          0.042418655832238215
+        ]
+      ],
+      "slope_column_after_state_projection_max": 4.884981308350689e-15,
+      "method": "framewise data-only theta/A projection includes P1 and P4; no priors/bounds; native equal-pattern weights, declared parameter characteristic units",
+      "interpretation": "Gram spectrum can lose precision in weakest modes. Anchors select D units; data alone leaves slope/A scale null. Learned template may add weak or ambiguous modes.",
+      "chunk_size": 4096
+    },
+    "size_ratio_bounds": [
+      0.5,
+      2.0
+    ],
+    "size_prior": "none",
+    "Aref": 0.36036036036036034,
+    "pass": true
+  },
+  "cpu_gpu_output_max_abs": {
+    "loss": 7.105427357601002e-15,
+    "state_gradient": 1.5959455978986625e-16,
+    "global_scaled": 1.2079226507921703e-13,
+    "prediction": 5.684341886080802e-14
+  },
+  "cpu_gpu_fd_max_delta": 1.7751489167494583e-10
+}

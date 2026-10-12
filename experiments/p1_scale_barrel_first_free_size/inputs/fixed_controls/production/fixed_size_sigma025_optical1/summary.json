@@ -1,0 +1,1757 @@
+{
+  "A_anchor_policy": "Equal20 fixationmean standardized-square average",
+  "all_forward1": {
+    "complete_denominator": 88978,
+    "conditional_on_valid": false,
+    "invalid_rows": 0,
+    "pooled_vertex_rms_px": 0.9525741653996718,
+    "scored_rows": 88978,
+    "weighted_vertex_rms_px": 0.9348434572614562
+  },
+  "all_forward4": {
+    "complete_denominator": 88978,
+    "conditional_on_valid": false,
+    "invalid_rows": 0,
+    "pooled_vertex_rms_px": 1.0627298490484824,
+    "scored_rows": 88978,
+    "weighted_vertex_rms_px": 1.0597443635223565
+  },
+  "all_forward_invalid_rows": 0,
+  "all_inverse1": {
+    "complete_denominator": 88978,
+    "conditional_on_valid": false,
+    "invalid_rows": 0,
+    "pooled_vertex_rms_px": 0.8748651199937353,
+    "scored_rows": 88978,
+    "weighted_vertex_rms_px": 0.859511776273088
+  },
+  "all_inverse4": {
+    "complete_denominator": 88978,
+    "conditional_on_valid": false,
+    "invalid_rows": 0,
+    "pooled_vertex_rms_px": 1.26441046254704,
+    "scored_rows": 88978,
+    "weighted_vertex_rms_px": 1.2620062189999113
+  },
+  "all_inverse4_invalid_rows": 0,
+  "all_row_loss_components": {
+    "Amean": 0.14214915213821344,
+    "barrel_mean_anchor": 0.0,
+    "data": 0.9984952028009784,
+    "gaze": 0.0017297351778283955,
+    "optical": 0.024269524641662262
+  },
+  "arrays_sha256": "0e6d4a4fa3ee3ae01bc8709be1f1f91ac715df8d48386ae9da19ccfa49586c4f",
+  "backend": "cupy",
+  "baseline_comparison": {
+    "complete_denominator": 88978,
+    "conditional_on_valid": false,
+    "invalid_rows": 0,
+    "pooled_vertex_rms_px": 1.0627298490484824,
+    "scored_rows": 88978,
+    "weighted_vertex_rms_px": 1.0597443635223565
+  },
+  "branch": "fixation_sigma025_optical1",
+  "capture_Amean_targets": [
+    0.36036036036036034,
+    3.9310263212652243,
+    3.136314403391506,
+    1.933655197885378
+  ],
+  "case": "fixation_sigma025_optical1",
+  "certified_starts": 2,
+  "complement_state_certificate": null,
+  "data_only_rank": {
+    "chunk_size": 4096,
+    "data_only_profiled_optical_singular_values": [
+      30.04815399510908,
+      26.152890305017497,
+      22.646460368131436,
+      20.891890191135353,
+      19.49768584053196,
+      16.624072047866758,
+      5.45489774718717,
+      2.5230574770139764,
+      2.385127391593956,
+      2.331719260831748,
+      0.7219118683198912,
+      0.686368984959743,
+      0.6377897228524865,
+      0.5791289920931358,
+      0.11830057081871444,
+      0.053912856195538365,
+      8.304444666003882e-09
+    ],
+    "data_only_rank_at_relative_1e_minus6": 16,
+    "dimension": 17,
+    "interpretation": "Gram spectrum can lose precision in weakest modes. Anchors select D units; data alone leaves slope/A scale null. Learned template may add weak or ambiguous modes.",
+    "method": "framewise data-only theta/A projection includes P1 and P4; no priors/bounds; native equal-pattern weights, declared parameter characteristic units",
+    "parameter_names": [
+      "capture1_b",
+      "capture1_cx",
+      "capture1_cy",
+      "capture2_b",
+      "capture2_cx",
+      "capture2_cy",
+      "capture3_b",
+      "capture3_cx",
+      "capture3_cy",
+      "capture4_b",
+      "capture4_cx",
+      "capture4_cy",
+      "offset_deg",
+      "slope_pxminus2_perD",
+      "template_q1",
+      "template_q2",
+      "template_q3"
+    ],
+    "relative_singular_threshold": 1e-06,
+    "slope_column_after_state_projection_max": 2.8421709430404007e-13,
+    "weakest_scaled_modes": [
+      [
+        -1.3583507115850627e-19,
+        -0.00028099262612128506,
+        -0.050854511475051184,
+        -0.012767115136699139
+      ],
+      [
+        -7.568741344234891e-17,
+        -0.01581227837420784,
+        -0.0782562396174189,
+        -0.044622809757838305
+      ],
+      [
+        -2.0228181779855087e-15,
+        -0.34457633864323184,
+        0.3180006330122489,
+        0.08133823358633023
+      ],
+      [
+        -9.515767214484925e-17,
+        -0.017366729648031688,
+        -0.05938636138914233,
+        0.11336467246150785
+      ],
+      [
+        -3.898374739649272e-17,
+        -0.010830334228055483,
+        -0.09092010911389112,
+        0.11042525991432404
+      ],
+      [
+        -1.7298828514827091e-15,
+        -0.2886302448260125,
+        0.42469186460102526,
+        -0.77856858207918
+      ],
+      [
+        -6.551436198684556e-17,
+        -0.010778188709126902,
+        -0.05837163881172253,
+        -0.0841516495487175
+      ],
+      [
+        -1.026720394594127e-16,
+        -0.019540777123959324,
+        -0.09133036778202028,
+        -0.13303230218061968
+      ],
+      [
+        -1.9053097948046447e-15,
+        -0.328879570991644,
+        0.393195469536435,
+        0.5572358779095592
+      ],
+      [
+        -2.9394965457129495e-17,
+        -0.005263359812389514,
+        -0.053653489822517386,
+        -0.021167271388652056
+      ],
+      [
+        -9.745929012796607e-17,
+        -0.019659371746701283,
+        -0.08567358985702002,
+        -0.05651896732799971
+      ],
+      [
+        -1.9618309544932795e-15,
+        -0.33425100709092953,
+        0.3533275441954802,
+        0.1386977239633837
+      ],
+      [
+        4.3779066611486414e-15,
+        0.751699231774519,
+        0.6293781830018073,
+        0.04181259592911143
+      ],
+      [
+        -1.0,
+        5.7965228412604964e-15,
+        -3.4564998364236067e-17,
+        1.1020926646522743e-16
+      ],
+      [
+        1.7199604503306316e-16,
+        0.029775924949585163,
+        -0.017353837662346515,
+        0.002963063300013679
+      ],
+      [
+        4.120770304164576e-16,
+        0.0704082303988391,
+        -0.01302077506241956,
+        -0.002649767274087004
+      ],
+      [
+        -4.41272927940265e-16,
+        -0.07481543475917522,
+        -0.0033498489808735494,
+        0.009003129722117718
+      ]
+    ]
+  },
+  "fixed_state_certificate": {
+    "A_lower_contacts": 12,
+    "A_upper_contacts": 0,
+    "global_bound_contacts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "global_native_gradient": [
+      1.003194909097118,
+      0.16966112893938545,
+      0.3795506224743057,
+      0.9820731345954821,
+      0.14783897840370888,
+      0.1254794186372145,
+      1.5595769733615281,
+      0.2538514414252024,
+      0.15927276048263952,
+      1.673641049468113,
+      0.15760160219200176,
+      0.3582369358129188,
+      0.007576582057526473,
+      7534330.881351115,
+      0.8172925610373025,
+      -1.3782803309980185,
+      4.233644085092889
+    ],
+    "global_projected_gradient_scaled_inf": 3.8588643944856478,
+    "global_stationary": false,
+    "invalid_rows": 0,
+    "state_projected_gradient_characteristic_inf": 6.078752787797015e-07,
+    "state_stationary": true,
+    "theta_lower_contacts": 0,
+    "theta_upper_contacts": 0
+  },
+  "fresh_Amean_targets": [
+    [
+      0.36036036036036034,
+      0.36036036036036034,
+      0.36036036036036034,
+      0.36036036036036034,
+      0.36036036036036034
+    ],
+    [
+      3.5705092909649645,
+      3.805718802550408,
+      4.038676756189035,
+      4.536616960047215,
+      3.7036097965744994
+    ],
+    [
+      2.9635899720226533,
+      3.4212860214542724,
+      3.2176913775264246,
+      3.3435736793384505,
+      2.7354309666157293
+    ],
+    [
+      1.748361325400289,
+      1.920269711816931,
+      2.102750971058087,
+      2.1456108449922833,
+      1.7512831361593002
+    ]
+  ],
+  "fresh_s0": -5.121708158632988e-07,
+  "initializer_artifact_hashes": {
+    "/home/aplab/ACC/experiments/archive/reverse_transform/superseded_p1_scale_capturewise_p4/stage_01_gaze_initialization/results/arrays.npz": "86394efaf1156948f3e4ab61475ffc6b72878fb0d145b81e5caddf0f81c4c80d",
+    "/home/aplab/ACC/experiments/archive/reverse_transform/superseded_p1_scale_capturewise_p4/stage_02_shared_p1_scale/results/arrays.npz": "579045c7c5486e75df2a03761e8ffcf08f64986b76b50b8f2d68e08c6a14e831",
+    "/home/aplab/ACC/experiments/archive/reverse_transform/superseded_p1_scale_capturewise_p4/stage_05_joint_states/results/controls/keystone_first_anchor_off/arrays.npz": "9fef82d6f3b7c456c5e2d19bf3b88dd90d3b3f5d366ce29161db15661bf0ef46",
+    "/home/aplab/ACC/experiments/reverse_transform/p1_scale_barrel_first_p4/stage_01_gaze_initialization/results/arrays.npz": "86394efaf1156948f3e4ab61475ffc6b72878fb0d145b81e5caddf0f81c4c80d",
+    "/home/aplab/ACC/experiments/reverse_transform/p1_scale_barrel_first_p4/stage_02_shared_p1_scale/results/arrays.npz": "579045c7c5486e75df2a03761e8ffcf08f64986b76b50b8f2d68e08c6a14e831",
+    "/home/aplab/ACC/experiments/reverse_transform/p1_scale_barrel_first_p4/stage_05_joint_states/results/arrays.npz": "2012ef073395ae2c2c40bd9714ad8d70a15a7962b3f3fbb1aa86b2fd7d864156"
+  },
+  "input_artifact_hashes": {
+    "/home/aplab/ACC/experiments/reverse_transform/p1_scale_barrel_first_sensitivity/stage_01_gaze_initialization/results/arrays.npz": "86394efaf1156948f3e4ab61475ffc6b72878fb0d145b81e5caddf0f81c4c80d",
+    "/home/aplab/ACC/experiments/reverse_transform/p1_scale_barrel_first_sensitivity/stage_02_shared_p1_scale/results/arrays.npz": "579045c7c5486e75df2a03761e8ffcf08f64986b76b50b8f2d68e08c6a14e831",
+    "/home/aplab/ACC/experiments/reverse_transform/p1_scale_barrel_first_sensitivity/stage_03_per_gaze_barrel/results/arrays.npz": "2b5b41516e73c2a175c8e2a63ca9b3116a90a40c24231824801e23e675d03b4e",
+    "/home/aplab/ACC/experiments/reverse_transform/p1_scale_barrel_first_sensitivity/stage_04_capturewise_keystone/results/arrays.npz": "43eacfcaadbb81bdc98f6224205c74c10444a1685ba7c7c9b8fab69cde9c6af4"
+  },
+  "interpretation": "One frozen sharedphysical P1/P4 g. All calibration/prior targets exclusively active barrel-first Stages1..4. Archived old-protocol fit used only as explicitly prediction-changing heuristic initial point. Data-only slope/A ambiguity and capture/demand confounding remain.",
+  "lowest_all_start_loss": 1.166643614758688,
+  "multistart_spread": {
+    "capture_Amean_max_D": [
+      0.4495182208820275,
+      3.9079733759114683,
+      3.142234036664773,
+      1.9727270449139456
+    ],
+    "capture_Amean_min_D": [
+      0.4495172175169631,
+      3.907973313334872,
+      3.142233541776667,
+      1.9727263267782384
+    ],
+    "certified_loss_max": 1.1666436147702797,
+    "certified_loss_min": 1.166643614758688,
+    "native_q_max": [
+      -0.004597742444598876,
+      -0.02624661938086384,
+      0.04400964971086216,
+      -0.005513727886088992,
+      -0.028790686962235114,
+      0.06232422104248388,
+      -0.005407461532180383,
+      -0.02912967380229932,
+      0.056957008460065135,
+      -0.004880964041194288,
+      -0.027944495301999286,
+      0.049830379706648636,
+      -24.77849596883446,
+      -5.723893843892695e-07,
+      -0.001156571496056753,
+      -0.0032126947179844517,
+      0.0038037354301849236
+    ],
+    "native_q_min": [
+      -0.004597756615890292,
+      -0.026246633706389626,
+      0.04400951363578185,
+      -0.005513741206231105,
+      -0.028790701226947345,
+      0.06232406753422702,
+      -0.005407474753264724,
+      -0.029129689669408654,
+      0.05695686355887275,
+      -0.004880977003163095,
+      -0.027944510281563133,
+      0.04983024351708854,
+      -24.778505949777525,
+      -5.723895028305432e-07,
+      -0.0011565899648914191,
+      -0.00321271948937135,
+      0.003803720076403447
+    ],
+    "template_vertex_max_abs_spread_px": 1.2775776895068702e-05
+  },
+  "optical_anchor_policy": "FreshStage04 alpha/offset andStage03s0 only; mean14 standardized squares with widths 1.0 times [.05,10deg,abs(s0)]; template no prior. Individual Gaussian interpretation includes sqrt14 averaging factor. Raw coefficients same model/gauge; characteristic gradient certificate units unchanged.",
+  "order": "forward D(K(B)); inverse barrel FIRST then K",
+  "rows": 88978,
+  "runtime_seconds": 68.51481225000316,
+  "selected_certificate": {
+    "A_lower_contacts": 5,
+    "A_upper_contacts": 0,
+    "global_bound_contacts": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "global_native_gradient": [
+      1.3058800973853035e-05,
+      -1.3168753553324808e-05,
+      4.463737854953909e-06,
+      -3.097494980258686e-06,
+      1.5828746599260562e-06,
+      3.125219567245985e-06,
+      -3.4639359357997723e-06,
+      -2.634212089271115e-06,
+      2.4949437258392493e-06,
+      -2.6613375082897017e-06,
+      -6.56348940996504e-06,
+      3.4228381278200715e-06,
+      2.208913634383497e-08,
+      -0.12248245572118321,
+      4.2289005685036685e-06,
+      2.1752815955733418e-06,
+      -4.16828056459817e-06
+    ],
+    "global_projected_gradient_scaled_inf": 6.584376776662404e-07,
+    "global_stationary": true,
+    "invalid_rows": 0,
+    "state_projected_gradient_characteristic_inf": 1.1344157818444867e-05,
+    "state_stationary": true,
+    "theta_lower_contacts": 0,
+    "theta_upper_contacts": 0
+  },
+  "selected_start": 0,
+  "selection_policy": "Lowest loss among valid starts meeting both unchanged state/global stationarity certificates; uncertified lower finite starts not promoted",
+  "settings": {
+    "anchor_mode": "fixation",
+    "optical_width": 1.0,
+    "sigma_A": 0.25
+  },
+  "source_hashes": {
+    "CURRENT_PLAN.md": "2a275b5d4fdb71647af2ab3556876de692b57db032b2668826cb98f1e28044ac",
+    "distortion_model/barrel_first_pipeline.py": "7025cb7426a285f2f8f6e6cde8a984053e68cda51ab7f4b64d084181f7f199f3",
+    "distortion_model/capturewise_barrel_anchors.py": "66dcf701c8aa552396a378bc0cc84fe75ff54549fd256d3a5a279a80b2ed2297",
+    "distortion_model/capturewise_keystone_first.py": "ee38842299061434ef56e6460b6ee697f4f5b38f1ca21fd3c529b97a4ce69ed0",
+    "distortion_model/capturewise_reverse.py": "f6db4f174835c5832643bd8d89f3eede16a35207f5a7747aa0b3e94b389fdfe1",
+    "distortion_model/capturewise_states.py": "aa1aa51d054d6045b030a363209083e4a70dcb04ba52a37b7ee77a8595febce2",
+    "distortion_model/p1_fixed_scale.py": "f60a38d1d358ac1aa54b7ba797b6f9e422469cc3d562e73ea47da9baa05cf3b2",
+    "distortion_model/p1_joint.py": "de8ebe256152f188a190a36073a9ade8db7d34b94e0aeddb2bbd4a967bb936e5",
+    "experiments/reverse_transform/p1_scale_barrel_first_sensitivity/audit_sensitivity.py": "bb4c1c5571cc1263757be0dc4e746c09f949f1e49579e6457dddc62f95bc778e",
+    "experiments/reverse_transform/p1_scale_barrel_first_sensitivity/common.py": "fbb072fdc7d410b9099f8f7108541e63dbe69cc8b51a939447df80a4519e5f2e",
+    "experiments/reverse_transform/p1_scale_barrel_first_sensitivity/model.py": "8caa3a986e0ea23c1cb9078c77e4d82fb716dc48eb4b4c926218d3c4488bd510",
+    "experiments/reverse_transform/p1_scale_barrel_first_sensitivity/report_sensitivity.py": "436cb5b3637155780afda8332541016a142beff78c36ca2d3c0f4fc4749e023b",
+    "experiments/reverse_transform/p1_scale_barrel_first_sensitivity/run.py": "352d4c50e2cfa8fbefcd5e0ba5a98d88e536e6014b6734fb82c51e5a79ae4ab0",
+    "experiments/reverse_transform/p1_scale_barrel_first_sensitivity/validation.py": "97692f969fb42dc97b60c9326a95184aa5c3a01a56b0bb4371662533d2690eff"
+  },
+  "stage": 5,
+  "stage_gate": "stationary barrel-first anchor sensitivity conditional estimator",
+  "starts": [
+    {
+      "certificate": {
+        "A_lower_contacts": 5,
+        "A_upper_contacts": 0,
+        "global_bound_contacts": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "global_native_gradient": [
+          1.3058800973853035e-05,
+          -1.3168753553324808e-05,
+          4.463737854953909e-06,
+          -3.097494980258686e-06,
+          1.5828746599260562e-06,
+          3.125219567245985e-06,
+          -3.4639359357997723e-06,
+          -2.634212089271115e-06,
+          2.4949437258392493e-06,
+          -2.6613375082897017e-06,
+          -6.56348940996504e-06,
+          3.4228381278200715e-06,
+          2.208913634383497e-08,
+          -0.12248245572118321,
+          4.2289005685036685e-06,
+          2.1752815955733418e-06,
+          -4.16828056459817e-06
+        ],
+        "global_projected_gradient_scaled_inf": 6.584376776662404e-07,
+        "global_stationary": true,
+        "invalid_rows": 0,
+        "state_projected_gradient_characteristic_inf": 1.1344157818444867e-05,
+        "state_stationary": true,
+        "theta_lower_contacts": 0,
+        "theta_upper_contacts": 0
+      },
+      "history": [
+        {
+          "certificate": {
+            "A_lower_contacts": 5,
+            "A_upper_contacts": 0,
+            "global_bound_contacts": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "global_native_gradient": [
+              1.3058800973853035e-05,
+              -1.3168753553324808e-05,
+              4.463737854953909e-06,
+              -3.097494980258686e-06,
+              1.5828746599260562e-06,
+              3.125219567245985e-06,
+              -3.4639359357997723e-06,
+              -2.634212089271115e-06,
+              2.4949437258392493e-06,
+              -2.6613375082897017e-06,
+              -6.56348940996504e-06,
+              3.4228381278200715e-06,
+              2.208913634383497e-08,
+              -0.12248245572118321,
+              4.2289005685036685e-06,
+              2.1752815955733418e-06,
+              -4.16828056459817e-06
+            ],
+            "global_projected_gradient_scaled_inf": 6.584376776662404e-07,
+            "global_stationary": true,
+            "invalid_rows": 0,
+            "state_projected_gradient_characteristic_inf": 1.1344157733239925e-05,
+            "state_stationary": true,
+            "theta_lower_contacts": 0,
+            "theta_upper_contacts": 0
+          },
+          "iteration": 0,
+          "loss": 1.1666436147586843,
+          "optical_message": "Physical gradient certificate controls completion; numerical coordinate retries are recorded",
+          "optical_success": false,
+          "optical_trials": []
+        }
+      ],
+      "initial_capture_Amean_D": [
+        0.4495182208820261,
+        3.907973375911491,
+        3.1422340366647883,
+        1.9727270449139471
+      ],
+      "initial_q": [
+        -0.004597756615890292,
+        -0.026246633706389626,
+        0.04400964971086216,
+        -0.005513741206231105,
+        -0.028790701226947345,
+        0.06232422104248388,
+        -0.005407474753264724,
+        -0.029129689669408654,
+        0.056957008460065135,
+        -0.004880977003163095,
+        -0.027944510281563133,
+        0.049830379706648636,
+        -24.77849596883446,
+        -5.723895028305432e-07,
+        -0.0011565899648914191,
+        -0.00321271948937135,
+        0.0038037354301849236
+      ],
+      "initializer": {
+        "label": "Current active barrel-first solution in exact common gauge, initialization only",
+        "starting_objective": 1.1666436147586843
+      },
+      "loss": 1.166643614758688,
+      "q": [
+        -0.004597756615890292,
+        -0.026246633706389626,
+        0.04400964971086216,
+        -0.005513741206231105,
+        -0.028790701226947345,
+        0.06232422104248388,
+        -0.005407474753264724,
+        -0.029129689669408654,
+        0.056957008460065135,
+        -0.004880977003163095,
+        -0.027944510281563133,
+        0.049830379706648636,
+        -24.77849596883446,
+        -5.723895028305432e-07,
+        -0.0011565899648914191,
+        -0.00321271948937135,
+        0.0038037354301849236
+      ],
+      "start": 0
+    },
+    {
+      "certificate": {
+        "A_lower_contacts": 5,
+        "A_upper_contacts": 0,
+        "global_bound_contacts": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "global_native_gradient": [
+          2.4008007756148864e-05,
+          8.255120471097055e-06,
+          -1.4453582101753293e-05,
+          1.7447161241163078e-06,
+          -6.42402522182603e-07,
+          -1.3285039225929829e-05,
+          -2.5940127985624173e-06,
+          1.031235805385583e-05,
+          2.7636935764352444e-06,
+          -5.4895435591152675e-06,
+          7.790813132825536e-06,
+          2.6670548350926637e-06,
+          -3.000304065955972e-08,
+          0.22788446127378847,
+          -1.1810502288378544e-06,
+          -8.622111234313223e-06,
+          -6.140237142848726e-06
+        ],
+        "global_projected_gradient_scaled_inf": 1.2004003878074433e-06,
+        "global_stationary": true,
+        "invalid_rows": 0,
+        "state_projected_gradient_characteristic_inf": 1.8926462343561837e-05,
+        "state_stationary": true,
+        "theta_lower_contacts": 0,
+        "theta_upper_contacts": 0
+      },
+      "history": [
+        {
+          "certificate": {
+            "A_lower_contacts": 11,
+            "A_upper_contacts": 0,
+            "global_bound_contacts": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "global_native_gradient": [
+              2.9763772195087417,
+              2.8001902350656906,
+              -1.6842700518951415,
+              -0.6584799246506455,
+              0.5582850499158889,
+              -0.46665511347360217,
+              -0.410741649847378,
+              1.3765808651987799,
+              -1.0702281131858458,
+              0.705665608783868,
+              1.9204751372993112,
+              -1.3072142230030475,
+              0.010736191578997745,
+              401484.58816108946,
+              1.3298818248118818,
+              -0.37507515206560615,
+              5.177790531749085
+            ],
+            "global_projected_gradient_scaled_inf": 0.5177790531749085,
+            "global_stationary": false,
+            "invalid_rows": 0,
+            "state_projected_gradient_characteristic_inf": 4.7108058559564014e-07,
+            "state_stationary": true,
+            "theta_lower_contacts": 0,
+            "theta_upper_contacts": 0
+          },
+          "iteration": 0,
+          "loss": 1.1874069565921357,
+          "optical_message": "Physical gradient certificate controls completion; numerical coordinate retries are recorded",
+          "optical_success": true,
+          "optical_trials": [
+            {
+              "accepted": true,
+              "coordinate_factor": 1.0,
+              "iterations": 150,
+              "loss": 1.2466069996704319,
+              "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+              "physical_projected_gradient_scaled_inf": 0.0035004883330706713,
+              "rejected_domain_evaluations": 0,
+              "success": false
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.1,
+              "iterations": 150,
+              "loss": 1.2465949446011273,
+              "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+              "physical_projected_gradient_scaled_inf": 0.00016859152241653077,
+              "rejected_domain_evaluations": 0,
+              "success": false
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.01,
+              "iterations": 62,
+              "loss": 1.2465949438939996,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.4702083103945719e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.001,
+              "iterations": 2,
+              "loss": 1.246594943893982,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 6.217255743012906e-07,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            }
+          ]
+        },
+        {
+          "certificate": {
+            "A_lower_contacts": 8,
+            "A_upper_contacts": 0,
+            "global_bound_contacts": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "global_native_gradient": [
+              0.9763223803683803,
+              0.9818772160514289,
+              -0.6223757975421155,
+              -0.04248093776301224,
+              0.04059825818433559,
+              0.0013784365466147364,
+              -0.05862390122006303,
+              0.3814151107565835,
+              -0.28820299735585286,
+              0.20386479601132684,
+              0.5915453900459998,
+              -0.4238821273956716,
+              0.003344169216132266,
+              118020.18244407904,
+              0.4386209039400093,
+              -0.006753310026534787,
+              1.584252141952453
+            ],
+            "global_projected_gradient_scaled_inf": 0.1584252141952453,
+            "global_stationary": false,
+            "invalid_rows": 0,
+            "state_projected_gradient_characteristic_inf": 1.4336685338706134e-05,
+            "state_stationary": true,
+            "theta_lower_contacts": 0,
+            "theta_upper_contacts": 0
+          },
+          "iteration": 1,
+          "loss": 1.1682295274900165,
+          "optical_message": "Physical gradient certificate controls completion; numerical coordinate retries are recorded",
+          "optical_success": true,
+          "optical_trials": [
+            {
+              "accepted": true,
+              "coordinate_factor": 1.0,
+              "iterations": 150,
+              "loss": 1.1721935091140578,
+              "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+              "physical_projected_gradient_scaled_inf": 0.00030428157205680817,
+              "rejected_domain_evaluations": 0,
+              "success": false
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.1,
+              "iterations": 134,
+              "loss": 1.1721935062558708,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 2.0726334586052e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.01,
+              "iterations": 1,
+              "loss": 1.1721935062558668,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.807896629035799e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.001,
+              "iterations": 1,
+              "loss": 1.1721935062558666,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.8061233334087936e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            }
+          ]
+        },
+        {
+          "certificate": {
+            "A_lower_contacts": 5,
+            "A_upper_contacts": 0,
+            "global_bound_contacts": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "global_native_gradient": [
+              0.2944993797076886,
+              0.30617540716762137,
+              -0.19905488972658975,
+              -0.0022846670020841044,
+              -0.010660953817988877,
+              0.021780956204261015,
+              -0.018907249607041147,
+              0.10805001162172406,
+              -0.08274496905729833,
+              0.05732758273246559,
+              0.1785560191772981,
+              -0.13054233722527242,
+              0.0009893804063877522,
+              37479.82548305817,
+              0.12862639714033702,
+              -0.002445936520529074,
+              0.46781540525236054
+            ],
+            "global_projected_gradient_scaled_inf": 0.04678154052523606,
+            "global_stationary": false,
+            "invalid_rows": 0,
+            "state_projected_gradient_characteristic_inf": 3.6098273619306065e-06,
+            "state_stationary": true,
+            "theta_lower_contacts": 0,
+            "theta_upper_contacts": 0
+          },
+          "iteration": 2,
+          "loss": 1.1667770743375687,
+          "optical_message": "Physical gradient certificate controls completion; numerical coordinate retries are recorded",
+          "optical_success": true,
+          "optical_trials": [
+            {
+              "accepted": true,
+              "coordinate_factor": 1.0,
+              "iterations": 150,
+              "loss": 1.1670996353140284,
+              "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+              "physical_projected_gradient_scaled_inf": 0.0004293312028627011,
+              "rejected_domain_evaluations": 0,
+              "success": false
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.1,
+              "iterations": 150,
+              "loss": 1.167099602736418,
+              "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+              "physical_projected_gradient_scaled_inf": 3.3188906081671466e-06,
+              "rejected_domain_evaluations": 0,
+              "success": false
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.01,
+              "iterations": 1,
+              "loss": 1.1670996027364204,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 2.8512895573649596e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.001,
+              "iterations": 1,
+              "loss": 1.167099602736418,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 2.8512895573649596e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            }
+          ]
+        },
+        {
+          "certificate": {
+            "A_lower_contacts": 5,
+            "A_upper_contacts": 0,
+            "global_bound_contacts": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "global_native_gradient": [
+              0.08804278478623843,
+              0.09227729372641504,
+              -0.06038110971547822,
+              0.0010984749732994223,
+              -0.007557306981405557,
+              0.010580721735880316,
+              -0.0057340141063297115,
+              0.030981742758708537,
+              -0.023827115003383526,
+              0.016804365027719474,
+              0.05317361391454624,
+              -0.03910782740974206,
+              0.00028643343884960683,
+              12355.624548215634,
+              0.03766478250651112,
+              -0.00038998272179285864,
+              0.13573308549708452
+            ],
+            "global_projected_gradient_scaled_inf": 0.013573308549708452,
+            "global_stationary": false,
+            "invalid_rows": 0,
+            "state_projected_gradient_characteristic_inf": 1.5413256311824775e-06,
+            "state_stationary": true,
+            "theta_lower_contacts": 0,
+            "theta_upper_contacts": 0
+          },
+          "iteration": 3,
+          "loss": 1.1666551587816574,
+          "optical_message": "Physical gradient certificate controls completion; numerical coordinate retries are recorded",
+          "optical_success": true,
+          "optical_trials": [
+            {
+              "accepted": true,
+              "coordinate_factor": 1.0,
+              "iterations": 150,
+              "loss": 1.1666827588381294,
+              "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+              "physical_projected_gradient_scaled_inf": 0.00014508134871546964,
+              "rejected_domain_evaluations": 0,
+              "success": false
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.1,
+              "iterations": 87,
+              "loss": 1.1666827577339756,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.2900415783063947e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": false,
+              "coordinate_factor": 0.01,
+              "iterations": 1,
+              "loss": 1.1666827577339758,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.2983453045269101e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": false,
+              "coordinate_factor": 0.001,
+              "iterations": 1,
+              "loss": 1.1666827577339793,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.2901245514007622e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            }
+          ]
+        },
+        {
+          "certificate": {
+            "A_lower_contacts": 5,
+            "A_upper_contacts": 0,
+            "global_bound_contacts": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "global_native_gradient": [
+              0.026110818433204293,
+              0.027424220724488056,
+              -0.01795401049973236,
+              0.0007569589432742385,
+              -0.0032449676315539546,
+              0.004081020629582821,
+              -0.0016224690502372099,
+              0.008826050062765881,
+              -0.0067783491270401175,
+              0.004955573744793223,
+              0.015657722629752353,
+              -0.011530707416325392,
+              8.154237241900578e-05,
+              4164.879905466962,
+              0.011002233596198452,
+              0.00020095591745100672,
+              0.03881563143477251
+            ],
+            "global_projected_gradient_scaled_inf": 0.0038815631434772515,
+            "global_stationary": false,
+            "invalid_rows": 0,
+            "state_projected_gradient_characteristic_inf": 1.696796544736756e-05,
+            "state_stationary": true,
+            "theta_lower_contacts": 0,
+            "theta_upper_contacts": 0
+          },
+          "iteration": 4,
+          "loss": 1.1666446224794589,
+          "optical_message": "Physical gradient certificate controls completion; numerical coordinate retries are recorded",
+          "optical_success": true,
+          "optical_trials": [
+            {
+              "accepted": true,
+              "coordinate_factor": 1.0,
+              "iterations": 150,
+              "loss": 1.166647022548048,
+              "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+              "physical_projected_gradient_scaled_inf": 7.325495151943446e-06,
+              "rejected_domain_evaluations": 0,
+              "success": false
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.1,
+              "iterations": 49,
+              "loss": 1.1666470225351147,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 2.1622179940248253e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.01,
+              "iterations": 1,
+              "loss": 1.1666470225351138,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.917467435064331e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.001,
+              "iterations": 1,
+              "loss": 1.1666470225351084,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.9153861645895312e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            }
+          ]
+        },
+        {
+          "certificate": {
+            "A_lower_contacts": 5,
+            "A_upper_contacts": 0,
+            "global_bound_contacts": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "global_native_gradient": [
+              0.007697728840110531,
+              0.008087221027334522,
+              -0.005297542332485694,
+              0.0003411710415627614,
+              -0.0012123883763880492,
+              0.0014707194553655878,
+              -0.00048264978661041735,
+              0.0024927182359368895,
+              -0.0018748127903333023,
+              0.0014065993851793378,
+              0.004573182885056572,
+              -0.003351451946996764,
+              2.278942799708878e-05,
+              1426.8233955069954,
+              0.003214634680685391,
+              0.00018347075464628104,
+              0.010920950641426064
+            ],
+            "global_projected_gradient_scaled_inf": 0.0010920950641426063,
+            "global_stationary": false,
+            "invalid_rows": 0,
+            "state_projected_gradient_characteristic_inf": 5.017611707514025e-06,
+            "state_stationary": true,
+            "theta_lower_contacts": 0,
+            "theta_upper_contacts": 0
+          },
+          "iteration": 5,
+          "loss": 1.1666437027464505,
+          "optical_message": "Physical gradient certificate controls completion; numerical coordinate retries are recorded",
+          "optical_success": true,
+          "optical_trials": [
+            {
+              "accepted": true,
+              "coordinate_factor": 1.0,
+              "iterations": 150,
+              "loss": 1.1666439131865858,
+              "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+              "physical_projected_gradient_scaled_inf": 7.842281119489758e-06,
+              "rejected_domain_evaluations": 0,
+              "success": false
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.1,
+              "iterations": 17,
+              "loss": 1.1666439131831903,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.704567379949215e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.01,
+              "iterations": 1,
+              "loss": 1.1666439131831938,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.7045673564208137e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.001,
+              "iterations": 1,
+              "loss": 1.1666439131831974,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.7024174472007187e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            }
+          ]
+        },
+        {
+          "certificate": {
+            "A_lower_contacts": 5,
+            "A_upper_contacts": 0,
+            "global_bound_contacts": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "global_native_gradient": [
+              0.002273199295821253,
+              0.0023975606474029437,
+              -0.0015603248465463626,
+              0.00014389332024213747,
+              -0.0004466908325190984,
+              0.000515098951006876,
+              -0.0001448016969394575,
+              0.0006646717532688556,
+              -0.0005123856020043949,
+              0.00041048076659467095,
+              0.0013225025042401181,
+              -0.0009694125338836623,
+              6.245311189811975e-06,
+              494.2336029228609,
+              0.0009215427785559394,
+              0.00011229862431369475,
+              0.003004111064256909
+            ],
+            "global_projected_gradient_scaled_inf": 0.00030041110642569095,
+            "global_stationary": false,
+            "invalid_rows": 0,
+            "state_projected_gradient_characteristic_inf": 1.4638433347702318e-06,
+            "state_stationary": true,
+            "theta_lower_contacts": 0,
+            "theta_upper_contacts": 0
+          },
+          "iteration": 6,
+          "loss": 1.1666436225531416,
+          "optical_message": "Physical gradient certificate controls completion; numerical coordinate retries are recorded",
+          "optical_success": true,
+          "optical_trials": [
+            {
+              "accepted": true,
+              "coordinate_factor": 1.0,
+              "iterations": 133,
+              "loss": 1.1666436408887289,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 4.846188150821676e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.1,
+              "iterations": 2,
+              "loss": 1.1666436408887177,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.032577740222485e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.01,
+              "iterations": 1,
+              "loss": 1.1666436408887046,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.0209080686839957e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.001,
+              "iterations": 1,
+              "loss": 1.1666436408887089,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.020796750621175e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            }
+          ]
+        },
+        {
+          "certificate": {
+            "A_lower_contacts": 5,
+            "A_upper_contacts": 0,
+            "global_bound_contacts": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "global_native_gradient": [
+              0.0006891167995497077,
+              0.0006935077669989603,
+              -0.000448756841544079,
+              7.431042152839656e-05,
+              -0.00015815704361920452,
+              0.00015765474290518888,
+              -3.0127509872086844e-05,
+              0.00018411656053541128,
+              -0.0001393185212549275,
+              0.000126983477727792,
+              0.00036836248577136466,
+              -0.0002859922035511886,
+              1.6577936818359257e-06,
+              172.6692135390549,
+              0.0002609986062538372,
+              5.3909096786042277e-05,
+              0.000813454218295484
+            ],
+            "global_projected_gradient_scaled_inf": 8.843613197277191e-05,
+            "global_stationary": false,
+            "invalid_rows": 0,
+            "state_projected_gradient_characteristic_inf": 4.2718300086175276e-07,
+            "state_stationary": true,
+            "theta_lower_contacts": 0,
+            "theta_upper_contacts": 0
+          },
+          "iteration": 7,
+          "loss": 1.1666436154687807,
+          "optical_message": "Physical gradient certificate controls completion; numerical coordinate retries are recorded",
+          "optical_success": true,
+          "optical_trials": [
+            {
+              "accepted": true,
+              "coordinate_factor": 1.0,
+              "iterations": 119,
+              "loss": 1.1666436170788403,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 6.123797796910025e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.1,
+              "iterations": 2,
+              "loss": 1.1666436170788028,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.4074003589992224e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.01,
+              "iterations": 1,
+              "loss": 1.1666436170787993,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.4074003589992224e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.001,
+              "iterations": 1,
+              "loss": 1.1666436170788006,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.4074003537867252e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            }
+          ]
+        },
+        {
+          "certificate": {
+            "A_lower_contacts": 5,
+            "A_upper_contacts": 0,
+            "global_bound_contacts": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "global_native_gradient": [
+              0.0002099643510606944,
+              0.0002052593651047374,
+              -0.00013345123045158114,
+              5.5071978789997256e-06,
+              -5.281966886064478e-05,
+              5.4612721051228164e-05,
+              -3.4831811310040775e-05,
+              6.1691101375487e-05,
+              -4.1172580080961474e-05,
+              4.129111242860695e-06,
+              0.00011365421334333381,
+              -9.071745925026686e-05,
+              3.710412241134109e-07,
+              59.91238209079893,
+              7.725751310633244e-05,
+              2.022874615081882e-05,
+              0.00024033941771384182
+            ],
+            "global_projected_gradient_scaled_inf": 3.068537361575818e-05,
+            "global_stationary": false,
+            "invalid_rows": 0,
+            "state_projected_gradient_characteristic_inf": 1.251395672641209e-07,
+            "state_stationary": true,
+            "theta_lower_contacts": 0,
+            "theta_upper_contacts": 0
+          },
+          "iteration": 8,
+          "loss": 1.166643614815227,
+          "optical_message": "Physical gradient certificate controls completion; numerical coordinate retries are recorded",
+          "optical_success": true,
+          "optical_trials": [
+            {
+              "accepted": true,
+              "coordinate_factor": 1.0,
+              "iterations": 71,
+              "loss": 1.1666436149664718,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 3.21866965894424e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.1,
+              "iterations": 1,
+              "loss": 1.1666436149664727,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 2.242564837007244e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.01,
+              "iterations": 1,
+              "loss": 1.1666436149664634,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 2.2425302465101107e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.001,
+              "iterations": 1,
+              "loss": 1.1666436149664734,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 2.238311467306353e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            }
+          ]
+        },
+        {
+          "certificate": {
+            "A_lower_contacts": 5,
+            "A_upper_contacts": 0,
+            "global_bound_contacts": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "global_native_gradient": [
+              2.4008007756148864e-05,
+              8.255120471097055e-06,
+              -1.4453582101753293e-05,
+              1.7447161241163078e-06,
+              -6.42402522182603e-07,
+              -1.3285039225929829e-05,
+              -2.5940127985624173e-06,
+              1.031235805385583e-05,
+              2.7636935764352444e-06,
+              -5.4895435591152675e-06,
+              7.790813132825536e-06,
+              2.6670548350926637e-06,
+              -3.000304065955972e-08,
+              0.22788446127378847,
+              -1.1810502288378544e-06,
+              -8.622111234313223e-06,
+              -6.140237142848726e-06
+            ],
+            "global_projected_gradient_scaled_inf": 1.2004003878074433e-06,
+            "global_stationary": true,
+            "invalid_rows": 0,
+            "state_projected_gradient_characteristic_inf": 1.8926462345785756e-05,
+            "state_stationary": true,
+            "theta_lower_contacts": 0,
+            "theta_upper_contacts": 0
+          },
+          "iteration": 9,
+          "loss": 1.1666436147702726,
+          "optical_message": "Physical gradient certificate controls completion; numerical coordinate retries are recorded",
+          "optical_success": true,
+          "optical_trials": [
+            {
+              "accepted": true,
+              "coordinate_factor": 1.0,
+              "iterations": 49,
+              "loss": 1.1666436147702888,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.0495901591550672e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.1,
+              "iterations": 1,
+              "loss": 1.1666436147702826,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.3302308370266582e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.01,
+              "iterations": 1,
+              "loss": 1.1666436147702752,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.200400395255652e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            },
+            {
+              "accepted": true,
+              "coordinate_factor": 0.001,
+              "iterations": 1,
+              "loss": 1.166643614770276,
+              "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+              "physical_projected_gradient_scaled_inf": 1.2004003878074433e-06,
+              "rejected_domain_evaluations": 0,
+              "success": true
+            }
+          ]
+        }
+      ],
+      "initial_capture_Amean_D": [
+        0.37324457504938674,
+        3.92622293082695,
+        3.1202154500699115,
+        1.928317442113114
+      ],
+      "initial_q": [
+        -0.0009725229722852118,
+        -0.030021181407006384,
+        -0.007613973962954119,
+        -0.00047834361168868934,
+        -0.029527725815675414,
+        0.003548930966282737,
+        -0.00038534882314484085,
+        -0.03229203072737923,
+        -0.0025646198699088027,
+        -0.0010350477196953926,
+        -0.030192876059686766,
+        -0.0030864149694488294,
+        -7.989109619261908,
+        -5.191619258838781e-07,
+        0.0014083120395022878,
+        0.007131563912646866,
+        -0.010922293445309077
+      ],
+      "initializer": {
+        "chart": [
+          0.0014083120395022878,
+          0.007131563912646866,
+          -0.010922293445309077
+        ],
+        "chart_reconstruction_max_abs_px": 7.105427357601002e-14,
+        "common_centered_energy_px2": 111923.15036959956,
+        "common_centroid_px": [
+          -2.368475785867001e-13,
+          -1.2316074086508402e-13
+        ],
+        "common_invalid_rows": 0,
+        "label": "Projected old-protocol D(K) heuristic, initialization only",
+        "legacy_centered_energy_px2": 111664.15425778987,
+        "legacy_centroid_px": [
+          -0.038011905323922214,
+          -0.010440662659457681
+        ],
+        "maximum_allowed_start_loss": 11.666436147586843,
+        "native_radius_conversion": [
+          1.0,
+          1.0758781719154882,
+          1.058012511625679,
+          1.0345820810369124
+        ],
+        "original_forward_invalid_rows": 0,
+        "policy": "Heuristic projected legacy initialization only; not an exact/equivalent gauge transform, not a prior",
+        "projection_linear_size_ratio": 1.0011590384901519,
+        "starting_objective": 2.4881945161008363,
+        "starting_prediction_mismatch": {
+          "complete_denominator": 88978,
+          "conditional_on_valid": false,
+          "invalid_rows": 0,
+          "pooled_vertex_rms_px": 0.21482582564236036,
+          "scored_rows": 88978,
+          "weighted_vertex_rms_px": 0.21451360372679046
+        }
+      },
+      "loss": 1.1666436147702797,
+      "q": [
+        -0.004597742444598876,
+        -0.02624661938086384,
+        0.04400951363578185,
+        -0.005513727886088992,
+        -0.028790686962235114,
+        0.06232406753422702,
+        -0.005407461532180383,
+        -0.02912967380229932,
+        0.05695686355887275,
+        -0.004880964041194288,
+        -0.027944495301999286,
+        0.04983024351708854,
+        -24.778505949777525,
+        -5.723893843892695e-07,
+        -0.001156571496056753,
+        -0.0032126947179844517,
+        0.003803720076403447
+      ],
+      "start": 1
+    }
+  ],
+  "template_gauge": {
+    "centroid_max_abs_error_px": 9.47390314346802e-15,
+    "chart_bound_contacts": [
+      false,
+      false,
+      false
+    ],
+    "chart_coordinates": [
+      -0.0011565899648914191,
+      -0.00321271948937135,
+      0.0038037354301849236
+    ],
+    "frozen_capture_radii_px": [
+      193.15205613678185,
+      193.18580436789514,
+      193.150998869252,
+      193.1492977196925
+    ],
+    "initial_centered_energy_px2": 111923.15036959956,
+    "initial_centroid_px": [
+      -2.368475785867001e-13,
+      -1.2316074086508402e-13
+    ],
+    "learned_centered_energy_px2": 111923.15036959958,
+    "learned_centroid_px": [
+      -2.2737367544323206e-13,
+      -1.2316074086508402e-13
+    ],
+    "template_prior": "none; freshreference energy/centroid fixed"
+  },
+  "training_fixation_A_spans_D": [
+    0.23134977245848365,
+    0.7795371965662063,
+    0.7807026967753359,
+    0.37393992021938205
+  ],
+  "training_loss_components": {
+    "Amean": 0.1421491521382123,
+    "barrel_mean_anchor": 0.0,
+    "data": 0.9984952028009784,
+    "gaze": 0.0017297351778283955,
+    "optical": 0.024269524641662262
+  },
+  "training_rows": 88978
+}
