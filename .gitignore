@@ -4,6 +4,12 @@ __pycache__/
 .venv/
 venv/
 
+# CMake build trees and local presets
+/build/
+/build-*/
+/CMakeUserPresets.json
+tests/
+
 # Editor and OS files
 .DS_Store
 .vscode/
@@ -23,3 +29,5 @@ tests/scratch/*
 
 .pytest_cache/
 experiments/archive
+
+.clang-format
