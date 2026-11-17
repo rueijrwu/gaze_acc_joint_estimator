@@ -1,0 +1,57 @@
+{
+  "schema": "gaze_displacement_plot_v5",
+  "captures": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "fixation_periods": 20,
+  "source_fixation_file_sha256": "51c4c7514b31dab44b7eb898e7e640c624bf02133cf8324ae605998b455bf015",
+  "validity": "paired P1 and P4 rows with all P1 points valid, all P4 points found, and finite coordinates",
+  "displacement_definition": "per frame, absolute horizontal difference between the rightmost and leftmost x coordinates in each three-point P1 or P4 set; fixation value is the mean of these nonnegative spans",
+  "error_bar_definition": "sample standard deviation of the valid framewise nonnegative horizontal spans within each fixation",
+  "noise_filter": {
+    "method": "rolling Hampel despiking per reflection within each fixation",
+    "window_valid_frames": 101,
+    "threshold": "max(2 px, 6 * 1.4826 * local MAD)"
+  },
+  "accommodation_labels": "reviewed demand_diopters_label values, one fixed accommodation condition per capture",
+  "y_axis_scales": {
+    "limits_px": {
+      "p4": [
+        295.0,
+        325.0
+      ],
+      "p1": [
+        428.479753574603,
+        458.479753574603
+      ]
+    },
+    "tick_interval_px": 5
+  },
+  "axis_labels": {
+    "x": "Eye Rotation (deg)",
+    "p1_y": "$|P_{1a}-P_{1b}|$ (pixels)",
+    "p4_y": "$|P_{4a}-P_{4b}|$ (pixels)"
+  },
+  "vector_editing": "SVG keeps text as text for editing in Inkscape; labels use LaTeX-style mathtext",
+  "polynomial_fits": {
+    "degree": 2,
+    "count": 8,
+    "p1_outlier": {
+      "capture": 2,
+      "accommodation_D": 4.0,
+      "target_gaze_deg": 5.0,
+      "excluded_from_fit": true
+    }
+  },
+  "layout": "1x2: P1 and P4 panels side by side",
+  "outputs": [
+    "fixation_displacements.csv",
+    "polynomial_fits.csv",
+    "p1_p4_displacement_vs_gaze.png",
+    "p1_p4_displacement_vs_gaze.svg",
+    "p1_p4_displacement_vs_gaze.pdf"
+  ]
+}

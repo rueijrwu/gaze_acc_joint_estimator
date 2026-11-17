@@ -7,7 +7,7 @@ This repository contains the frozen estimator baseline, the conditional full-pos
 - [Theory](Theory.md) and [estimator plan](ESTIMATOR_PLAN.md) describe the measurement model and estimator.
 - [Current status](CURRENT_STATUS.md) summarizes the retained results and limits.
 - [Accommodation response theory](ACCOMMODATION_RESPONSE_THEORY.md), [response plan](ACCOMMODATION_RESPONSE_PLAN.md), [full calibration plan](ACCOMMODATION_FULL_CALIBRATION_PLAN.md), and [literal power plan](LITERAL_POWER_PLAN.md) define the research workstreams.
-- [Experiment index](EXPERIMENTS.md) describes the retained result sets.
+- [Experiment index](EXPERIMENTS.md) describes the retained result sets; the [P1/P4 gaze-displacement analysis](GAZE_DISPLACEMENT.md) documents its standalone script and plots.
 - [Cleanup manifest](CLEANUP_MANIFEST.md) records the repository pruning.
 - [Full-position package guide](full_position.md) and [accommodation response guide](ACCOMMODATION_RESPONSE.md) describe the Python package.
 
